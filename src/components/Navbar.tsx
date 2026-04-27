@@ -6,6 +6,7 @@ import { Phone, Mail, Menu, X, MessageCircle } from 'lucide-react';
 import { projects } from '@/data/master-data';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '@/context/LanguageContext';
+import Link from 'next/link';
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -28,17 +29,17 @@ export default function Navbar() {
             scrolled ? 'bg-navy/90 backdrop-blur-3xl shadow-2xl scale-95' : 'bg-navy/40 backdrop-blur-xl'
           }`}
         >
-          <div className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2">
+          <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group">
              <img 
                src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
                alt="PSCL" 
-               className="h-8 brightness-0 invert"
+               className="h-8 brightness-0 invert transition-transform duration-300 group-hover:scale-105"
              />
              <div className="flex flex-col">
-               <span className="font-serif font-bold text-sm tracking-widest text-warm-white">BLUE RIDGE</span>
+               <span className="font-serif font-bold text-sm tracking-widest text-warm-white group-hover:text-gold transition-colors">BLUE RIDGE</span>
                <span className="text-[10px] text-gold font-bold tracking-[4px] uppercase">Sovereign</span>
              </div>
-          </div>
+          </Link>
 
           <ul className="hidden xl:flex gap-8 items-center list-none p-0 m-0">
             {projects.map(p => {
