@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.paranjapeblueridge.com'),
   title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
   description: "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1. Discover The Altius, Ridges 41, and Promenade Residences. Premium riverfront apartments near Rajiv Gandhi Infotech Park with a 9-hole golf course. Book your site visit today.",
+  verification: {
+    google: 'zmv23601-d-KkNZ1p3VNswXKvfW57A68g_hVf1WUqFg',
+  },
   keywords: [
     "paranjape blue ridge hinjewadi", "blue ridge hinjewadi pune", "blue ridge township pune", 
     "the ridges 41 blue ridge", "the altius blue ridge hinjewadi", "blue ridge phase 1 resale", 
