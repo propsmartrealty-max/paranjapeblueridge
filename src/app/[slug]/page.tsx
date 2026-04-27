@@ -12,11 +12,11 @@ import { CheckCircle2, Shield, Calendar, Maximize, MapPin, Phone } from 'lucide-
 import { motion } from 'framer-motion';
 
 export default function ProjectSilo() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   
-  const project = projects.find(p => p.id === id);
+  const project = projects.find(p => p.slug === slug);
 
   if (!project) return notFound();
   if (!hasMounted) return <div className="bg-navy h-screen"></div>;
@@ -29,8 +29,8 @@ export default function ProjectSilo() {
       <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src={id === 'promenade' ? '/assets/images/sky-lounge.png' : 
-                 id === 'altius' ? '/assets/images/altius-riverside.png' : 
+            src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
+                 project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
                  '/assets/images/ridges-41.png'} 
             className="w-full h-full object-cover opacity-30 grayscale-[0.3]"
             alt={`Paranjape Blue Ridge ${project.name} - Official Showcase`}
@@ -42,7 +42,7 @@ export default function ProjectSilo() {
           <Breadcrumbs 
             items={[
                 { label: t('Projects', 'प्रोजेक्ट्स'), href: '/#projects' },
-                { label: project.name, href: `/projects/${project.id}` }
+                { label: project.name, href: `/${project.slug}` }
             ]} 
           />
           <div className="flex items-center gap-4 text-gold font-bold tracking-[4px] uppercase text-[10px] mb-6">

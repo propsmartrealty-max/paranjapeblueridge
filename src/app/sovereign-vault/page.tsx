@@ -124,8 +124,12 @@ export default function SovereignVault() {
                                 </td>
                                 <td className="p-6">
                                     <div className="flex gap-4">
-                                        <Mail size={16} className="text-text-light hover:text-gold cursor-pointer transition-colors" title={lead.email} />
-                                        <Phone size={16} className="text-text-light hover:text-gold cursor-pointer transition-colors" title={lead.phone} />
+                                        <span title={lead.email}>
+                                            <Mail size={16} className="text-text-light hover:text-gold cursor-pointer transition-colors" />
+                                        </span>
+                                        <span title={lead.phone}>
+                                            <Phone size={16} className="text-text-light hover:text-gold cursor-pointer transition-colors" />
+                                        </span>
                                     </div>
                                 </td>
                                 <td className="p-6 text-xs text-text-light">

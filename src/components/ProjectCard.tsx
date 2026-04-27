@@ -70,7 +70,7 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
         <div className="mt-8 flex gap-4">
             <BlueprintExplorer projectId={project.id} projectName={project.name} />
             <a 
-              href={`/projects/${project.id}`}
+              href={`/${project.slug}`}
               className="px-10 py-4 bg-white/5 border border-white/10 rounded-full text-warm-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-3"
             >
               View Official Page

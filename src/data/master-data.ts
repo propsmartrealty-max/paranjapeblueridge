@@ -1,5 +1,6 @@
 export interface Project {
   id: string;
+  slug: string;
   name: string;
   tagline: string;
   taglineMr: string;
@@ -15,11 +16,17 @@ export interface Project {
     items: string[];
   }[];
   amenities: string[];
+  configurations: {
+    slug: string;
+    title: string;
+    titleMr: string;
+  }[];
 }
 
 export const projects: Project[] = [
   {
     id: "promenade",
+    slug: "paranjape-blue-ridge-promenade-hinjewadi-pune",
     name: "Promenade Residences",
     tagline: "New Urbanism Landmark Hinjewadi Phase 1",
     taglineMr: "न्यू अर्बनिझम लँडमार्क हिंजवडी फेज १",
@@ -34,10 +41,15 @@ export const projects: Project[] = [
       { title: "Flooring", items: ["Polished Glazed Vitrified Tiles", "Anti-skid Ceramic for Decks"] },
       { title: "Structure", items: ["MiVAN Aluminium Formwork", "Earthquake Resistant RCC"] }
     ],
-    amenities: ["Podium Garden", "Work-from-Home Pods", "Private Mini Theatre", "Infinity Pool"]
+    amenities: ["Podium Garden", "Work-from-Home Pods", "Private Mini Theatre", "Infinity Pool"],
+    configurations: [
+      { slug: "3-bhk-flats", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स" },
+      { slug: "4-bhk-flats", title: "4 BHK Premium Flats", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स" }
+    ]
   },
   {
     id: "altius",
+    slug: "paranjape-blue-ridge-altius-hinjewadi-pune",
     name: "The Altius",
     tagline: "Ultra-Luxury 4 & 5 BHK Riverside Residences",
     taglineMr: "अल्ट्रा-लक्झरी ४ आणि ५ बीएचके रिव्हरसाईड निवास",
@@ -51,10 +63,15 @@ export const projects: Project[] = [
     specs: [
         { title: "Internal", items: ["Velvet Paint Finish", "Modular Kitchen with Chimney"] }
     ],
-    amenities: ["Exclusive Clubhouse", "Golf Access", "Sky Lounge", "Concierge Service"]
+    amenities: ["Exclusive Clubhouse", "Golf Access", "Sky Lounge", "Concierge Service"],
+    configurations: [
+      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स" },
+      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस" }
+    ]
   },
   {
     id: "ridge41",
+    slug: "paranjape-blue-ridge-41-hinjewadi-pune",
     name: "Ridges 41",
     tagline: "High-Rise 2, 3 & 4 BHK Living",
     taglineMr: "हाय-राईज २, ३ आणि ४ बीएचके लिविंग",
@@ -68,7 +85,12 @@ export const projects: Project[] = [
     specs: [
         { title: "Tech", items: ["1 KVA Dedicated DG Backup", "Solar Water Provision"] }
     ],
-    amenities: ["Recreational Podium", "Multipurpose Hall", "Gymnasium", "Kids Play Area"]
+    amenities: ["Recreational Podium", "Multipurpose Hall", "Gymnasium", "Kids Play Area"],
+    configurations: [
+      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स" },
+      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स" },
+      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे" }
+    ]
   }
 ];
 
