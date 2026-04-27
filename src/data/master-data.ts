@@ -20,6 +20,9 @@ export interface Project {
     slug: string;
     title: string;
     titleMr: string;
+    carpetArea?: string;
+    price?: string;
+    image?: string;
   }[];
 }
 
