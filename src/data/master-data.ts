@@ -43,8 +43,8 @@ export const projects: Project[] = [
     ],
     amenities: ["Podium Garden", "Work-from-Home Pods", "Private Mini Theatre", "Infinity Pool"],
     configurations: [
-      { slug: "3-bhk-flats", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स" },
-      { slug: "4-bhk-flats", title: "4 BHK Premium Flats", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स" }
+      { slug: "3-bhk-flats", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स", carpetArea: "1,317 Sq. Ft.", price: "₹ 1.65 Cr*", image: "/assets/images/floor-plan-3bhk.png" },
+      { slug: "4-bhk-flats", title: "4 BHK Premium Flats", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,716 Sq. Ft.", price: "₹ 2.10 Cr*", image: "/assets/images/floor-plan-4bhk.png" }
     ]
   },
   {
@@ -65,8 +65,8 @@ export const projects: Project[] = [
     ],
     amenities: ["Exclusive Clubhouse", "Golf Access", "Sky Lounge", "Concierge Service"],
     configurations: [
-      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स" },
-      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस" }
+      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", image: "/assets/images/floor-plan-4bhk.png" },
+      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस", carpetArea: "2,480 Sq. Ft.", price: "₹ 2.65 Cr*", image: "/assets/images/unit-plan-3bhk.png" }
     ]
   },
   {
@@ -87,9 +87,9 @@ export const projects: Project[] = [
     ],
     amenities: ["Recreational Podium", "Multipurpose Hall", "Gymnasium", "Kids Play Area"],
     configurations: [
-      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स" },
-      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स" },
-      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे" }
+      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "970 Sq. Ft.", price: "₹ 97.60 L*", image: "/assets/images/unit-plan-3bhk.png" },
+      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 Sq. Ft.", price: "₹ 1.25 Cr*", image: "/assets/images/floor-plan-3bhk.png" },
+      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,550 Sq. Ft.", price: "₹ 1.58 Cr*", image: "/assets/images/floor-plan-4bhk.png" }
     ]
   }
 ];
