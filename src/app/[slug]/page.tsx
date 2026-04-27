@@ -10,11 +10,21 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import EnquiryModal from '@/components/EnquiryModal';
+import { useState, useEffect } from 'react';
 
 export default function ProjectSilo() {
   const { slug } = useParams();
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsModalOpen(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
   
   const project = projects.find(p => p.slug === slug);
 
@@ -24,6 +34,7 @@ export default function ProjectSilo() {
   return (
     <main className="min-h-screen bg-navy text-text">
       <Navbar />
+      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
       {/* PROJECT HERO */}
       <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden">

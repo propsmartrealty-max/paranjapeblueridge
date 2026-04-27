@@ -20,6 +20,15 @@ export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const { useEffect } = React;
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsModalOpen(true);
+    }, 3000); // 3-second delay
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!hasMounted) return <div className="bg-navy h-screen w-full"></div>;
 
