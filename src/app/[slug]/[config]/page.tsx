@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
-import { CheckCircle2, Shield, Phone, Download } from 'lucide-react';
+import { CheckCircle2, Shield, Download, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ConfigPage() {

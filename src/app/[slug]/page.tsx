@@ -8,7 +8,7 @@ import BlueprintExplorer from '@/components/BlueprintExplorer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
-import { CheckCircle2, Shield, Calendar, Maximize, MapPin, Phone } from 'lucide-react';
+import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ProjectSilo() {
