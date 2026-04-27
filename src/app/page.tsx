@@ -14,14 +14,12 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
 import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const { useEffect } = React;
   
   useEffect(() => {
     const timer = setTimeout(() => {
