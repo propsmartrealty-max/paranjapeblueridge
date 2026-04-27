@@ -18,8 +18,9 @@ export default function ConnectivityHub() {
         </div>
         <div className="flex gap-4">
             <a 
-                href="https://maps.app.goo.gl/r6vK6G6G6G6G6G6G6" // Mock CID link
+                href="https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z" 
                 target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-text-light hover:text-gold transition-all"
             >
                 <Navigation size={14} />
@@ -30,7 +31,7 @@ export default function ConnectivityHub() {
 
       <div className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl h-[600px] bg-navy-light">
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.261!2d73.738!3d18.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb9e762b3b79%3A0x6739f3a9e64e58b!2sParanjape%20Blue%20Ridge!5e0!3m2!1sen!2sin!4v1714200000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.354!2d73.7370331!3d18.5786825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bbe4d114d579%3A0xfec1d303cfb8941a!2sBlue%20Ridge%2C%20Hinjawadi!5e0!3m2!1sen!2sin!4v1714200000000!5m2!1sen!2sin"
             className="w-full h-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
             style={{ border: 0 }}
             allowFullScreen={true}
