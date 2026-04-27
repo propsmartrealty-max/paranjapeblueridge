@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, Menu, X } from 'lucide-react';
+import { Phone, Mail, Menu, X, MessageCircle } from 'lucide-react';
 import { projects } from '@/data/master-data';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '@/context/LanguageContext';
@@ -61,8 +61,13 @@ export default function Navbar() {
             <div className="hidden md:block">
                 <LanguageToggle />
             </div>
-            <a href="tel:+919672559666" className="hidden lg:flex items-center gap-2 text-gold font-bold text-sm">
-              <Phone size={14} />
+            <a 
+              href="https://wa.me/919672559666?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hidden lg:flex items-center gap-2 text-emerald-400 font-bold text-sm hover:text-emerald-300 transition-colors"
+            >
+              <MessageCircle size={14} className="fill-emerald-400/20" />
               +91 96725 59666
             </a>
             <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
@@ -116,8 +121,13 @@ export default function Navbar() {
 
             <div className="mt-auto space-y-6">
                 <LanguageToggle />
-                <a href="tel:+919672559666" className="flex items-center gap-4 text-gold text-xl font-bold">
-                    <Phone size={24} />
+                <a 
+                    href="https://wa.me/919672559666?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-4 text-emerald-400 text-xl font-bold"
+                >
+                    <MessageCircle size={24} className="fill-emerald-400/20" />
                     +91 96725 59666
                 </a>
                 <a href="/#enquiry" onClick={() => setIsOpen(false)} className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest">
