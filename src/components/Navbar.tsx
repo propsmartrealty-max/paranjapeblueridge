@@ -68,7 +68,7 @@ export default function Navbar() {
               className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 overflow-hidden hover:scale-110 transition-all duration-300 shadow-xl"
               title="Chat on WhatsApp"
             >
-              <img src="/assets/images/whatsapp-icon.jpg" alt="WhatsApp" className="w-full h-full object-cover" />
+              <img src="/assets/images/whatsapp-icon.png" alt="WhatsApp" className="w-full h-full object-contain p-1" />
             </a>
             <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
               {t('Enquire', 'चौकशी करा')}
