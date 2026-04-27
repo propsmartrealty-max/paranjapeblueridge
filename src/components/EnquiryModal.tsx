@@ -70,66 +70,73 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop overlay */}
       <div 
-        className="absolute inset-0 bg-space-black/80 backdrop-blur-md"
+        className="absolute inset-0 bg-navy/95 backdrop-blur-xl"
         onClick={onClose}
       />
       
       {/* Modal Content */}
-      <div className="relative w-full max-w-lg bg-warm-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+      <div className="relative w-full max-w-lg bg-navy border border-gold/30 rounded-[3rem] shadow-[0_0_100px_rgba(212,168,83,0.15)] overflow-hidden animate-in fade-in zoom-in duration-500">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
+        
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-space-black/50 hover:text-space-black transition-colors"
+          className="absolute top-8 right-8 text-gold hover:text-warm-white transition-colors z-20"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
-        <div className="p-8">
-          <h2 className="text-2xl font-playfair font-bold text-space-black mb-2">Request Information</h2>
-          <p className="text-space-black/70 mb-6 font-inter text-sm">
-            Enter your details below to receive the complete project brochure, pricing, and floor plans for Paranjape Blue Ridge.
-          </p>
+        <div className="p-12">
+          <div className="mb-10">
+            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Request Access</span>
+            <h2 className="text-4xl font-serif text-warm-white leading-tight">Priority <span className="italic font-normal text-gold">Enquiry</span></h2>
+            <p className="text-text-light mt-4 text-sm leading-relaxed">
+              Unlock the sovereign portfolio for Paranjape Blue Ridge. Enter your details for exclusive inventory access.
+            </p>
+          </div>
 
           {status === 'success' ? (
-            <div className="bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 text-center">
-              <svg className="w-12 h-12 text-emerald-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-              <h3 className="font-bold text-lg">Request Sent Successfully!</h3>
-              <p className="text-sm opacity-80 mt-1">Our sales team will contact you shortly.</p>
+            <div className="bg-gold/10 text-gold p-8 rounded-3xl border border-gold/20 text-center animate-in slide-in-from-bottom duration-500">
+              <div className="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-gold/20">
+                <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <h3 className="font-serif text-2xl text-warm-white">Request Dispatched</h3>
+              <p className="text-sm text-gold mt-2">Check your email for the Sovereign Vault access.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-space-black/80 mb-1">Full Name *</label>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
                 <input 
                   type="text" 
                   required 
                   value={formData.name}
                   onChange={e => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-4 py-3 bg-white border border-space-black/10 rounded-xl focus:ring-2 focus:ring-accent-bronze focus:border-transparent transition-all outline-none"
-                  placeholder="John Doe"
+                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                  placeholder="Enter your name"
                 />
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-space-black/80 mb-1">Phone Number *</label>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
                   <input 
                     type="tel" 
                     required 
                     value={formData.phone}
                     onChange={e => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-space-black/10 rounded-xl focus:ring-2 focus:ring-accent-bronze focus:border-transparent transition-all outline-none"
-                    placeholder="+91 90000 00000"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                    placeholder="+91"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-space-black/80 mb-1">Email Address *</label>
+                <div className="space-y-2">
+                  <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
                   <input 
                     type="email" 
                     required 
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-space-black/10 rounded-xl focus:ring-2 focus:ring-accent-bronze focus:border-transparent transition-all outline-none"
-                    placeholder="john@example.com"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                    placeholder="name@email.com"
                   />
                 </div>
               </div>
@@ -137,14 +144,14 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               <button 
                 type="submit" 
                 disabled={status === 'submitting'}
-                className="w-full bg-accent-bronze text-white font-inter font-medium py-4 rounded-xl mt-6 hover:bg-opacity-90 transition-all flex items-center justify-center disabled:opacity-70"
+                className="w-full bg-gradient-to-r from-gold to-gold-light text-navy font-bold py-5 rounded-2xl mt-4 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center disabled:opacity-50 shadow-xl shadow-gold/20 uppercase text-xs tracking-widest"
               >
                 {status === 'submitting' ? (
-                  <span className="flex items-center gap-2">
-                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                    Sending Request...
+                  <span className="flex items-center gap-3">
+                    <svg className="animate-spin h-5 w-5 text-navy" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    Dispatching...
                   </span>
-                ) : 'Request Details'}
+                ) : 'Secure Priority Access'}
               </button>
             </form>
           )}
