@@ -150,9 +150,14 @@ export default function ProjectSilo() {
                 <p className="font-bold uppercase text-[10px] tracking-[4px]">Request Private Site Visit to {project.name}</p>
             </div>
             <div className="flex gap-4">
-                <a href="tel:+919672559666" className="flex items-center gap-3 bg-navy text-warm-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all">
-                    <Phone size={16} />
-                    {t('Call Desk', 'कॉल करा')}
+                <a 
+                  href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-3 bg-emerald-500 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/20"
+                >
+                  <MessageCircle size={18} />
+                  WhatsApp Enquiry
                 </a>
                 <a href="/#enquiry" className="bg-navy/10 border-2 border-navy text-navy px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-navy hover:text-warm-white transition-all">
                     {t('Download Brochure', 'माहितीपत्रक डाउनलोड करा')}

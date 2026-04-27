@@ -101,10 +101,15 @@ export default function ConfigPage() {
                     ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                    <a href="tel:+919672559666" className="flex items-center justify-center gap-3 bg-gold text-navy px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-transform">
-                        <Phone size={16} />
-                        Enquire Now
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a 
+                      href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/20"
+                    >
+                      <MessageCircle size={18} />
+                      WhatsApp Enquiry
                     </a>
                     <a href="/#enquiry" className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-warm-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-colors">
                         <Download size={16} />

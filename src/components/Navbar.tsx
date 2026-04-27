@@ -62,13 +62,13 @@ export default function Navbar() {
                 <LanguageToggle />
             </div>
             <a 
-              href="https://wa.me/919672559666?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+              href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hidden lg:flex items-center gap-2 text-emerald-400 font-bold text-sm hover:text-emerald-300 transition-colors"
+              className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 hover:bg-emerald-500 hover:text-white transition-all duration-300 shadow-lg shadow-emerald-500/10"
+              title="Chat on WhatsApp"
             >
-              <MessageCircle size={14} className="fill-emerald-400/20" />
-              +91 96725 59666
+              <MessageCircle size={20} className="fill-current/20" />
             </a>
             <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
               {t('Enquire', 'चौकशी करा')}
@@ -122,13 +122,13 @@ export default function Navbar() {
             <div className="mt-auto space-y-6">
                 <LanguageToggle />
                 <a 
-                    href="https://wa.me/919672559666?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+                    href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="flex items-center gap-4 text-emerald-400 text-xl font-bold"
+                    className="flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-2xl text-emerald-400 text-xl font-bold hover:bg-emerald-500 hover:text-white transition-all"
                 >
-                    <MessageCircle size={24} className="fill-emerald-400/20" />
-                    +91 96725 59666
+                    <MessageCircle size={24} className="fill-current/20" />
+                    Connect on WhatsApp
                 </a>
                 <a href="/#enquiry" onClick={() => setIsOpen(false)} className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest">
                     {t('Enquire Now', 'आत्ताच चौकशी करा')}
