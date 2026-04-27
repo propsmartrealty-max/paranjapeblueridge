@@ -9,20 +9,24 @@ import TownshipExperience from '@/components/TownshipExperience';
 import FAQSection from '@/components/FAQSection';
 import ConnectivityHub from '@/components/ConnectivityHub';
 import BlogSection from '@/components/BlogSection';
+import EnquiryModal from '@/components/EnquiryModal';
 import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
 import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!hasMounted) return <div className="bg-navy h-screen w-full"></div>;
 
   return (
     <main className="bg-navy text-text selection:bg-gold selection:text-navy">
       <Navbar />
+      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center overflow-hidden">
@@ -118,13 +122,19 @@ export default function Home() {
                 <h2 className="text-6xl font-serif text-warm-white mt-4 leading-tight">Secure Your <br /><span className="italic text-gold font-normal">Sovereign Unit</span></h2>
                 <p className="text-text-light mt-8 text-lg">Direct dispatch to our relationship managers for immediate inventory updates and virtual tours.</p>
                 <div className="mt-12 space-y-6">
-                    <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold"><Mail size={20} /></div>
-                        <div>
-                            <span className="block text-[10px] text-text-light uppercase tracking-widest mb-1">Direct Email</span>
-                            <span className="text-warm-white font-bold">propsmartrealty@gmail.com</span>
+                    <button 
+                        onClick={() => setIsModalOpen(true)}
+                        className="w-full flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 transition-colors rounded-2xl border border-white/5 cursor-pointer text-left"
+                    >
+                        <div className="flex items-center gap-6">
+                            <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold"><Mail size={20} /></div>
+                            <div>
+                                <span className="block text-[10px] text-text-light uppercase tracking-widest mb-1">Priority Enquiries</span>
+                                <span className="text-warm-white font-bold">Request Details Now</span>
+                            </div>
                         </div>
-                    </div>
+                        <span className="text-gold opacity-50">→</span>
+                    </button>
                     <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/5">
                         <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold"><MapPin size={20} /></div>
                         <div>

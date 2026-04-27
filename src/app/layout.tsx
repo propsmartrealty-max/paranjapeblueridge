@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.paranjapeblueridge.com'),
   title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
   description: "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1. Discover The Altius, Ridges 41, and Promenade Residences. Premium riverfront apartments near Rajiv Gandhi Infotech Park with a 9-hole golf course. Book your site visit today.",
   keywords: [
@@ -14,12 +15,12 @@ export const metadata: Metadata = {
     "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune"
   ],
   alternates: {
-    canonical: 'https://blueridge-hinjewadi.com',
+    canonical: 'https://www.paranjapeblueridge.com',
   },
   openGraph: {
     title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
     description: 'Explore premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with a private boat club and golf course.',
-    url: 'https://blueridge-hinjewadi.com',
+    url: 'https://www.paranjapeblueridge.com',
     siteName: 'Paranjape Blue Ridge Sovereign Portal',
     images: [{ url: '/assets/images/township-night.png' }],
     type: 'website',

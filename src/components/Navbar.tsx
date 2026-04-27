@@ -46,15 +46,15 @@ export default function Navbar() {
                                  p.id === 'altius' ? 'Altius' : '41 Ridge';
               return (
                 <li key={p.id}>
-                  <a href={`/#${p.id}`} className="text-[11px] font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">
+                  <a href={`/${p.slug}`} className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">
                     {t(displayName, p.id === 'promenade' ? 'प्रॉमनेड' : p.id === 'altius' ? 'अल्टियस' : '४१ रिज')}
                   </a>
                 </li>
               );
             })}
-            <li><a href="/#amenities" className="text-[11px] font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Township', 'टाऊनशिप')}</a></li>
-            <li><a href="/#market" className="text-[11px] font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Insights', 'इन्साईट्स')}</a></li>
-            <li><a href="/hinjewadi-micro-market" className="text-[11px] font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</a></li>
+            <li><a href="/#amenities" className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Township', 'टाऊनशिप')}</a></li>
+            <li><a href="/#market" className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Insights', 'इन्साईट्स')}</a></li>
+            <li><a href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</a></li>
           </ul>
 
           <div className="flex items-center gap-4 ml-4">
@@ -65,7 +65,7 @@ export default function Navbar() {
               <Phone size={14} />
               +91 96725 59666
             </a>
-            <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
+            <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
               {t('Enquire', 'चौकशी करा')}
             </a>
             
@@ -99,7 +99,7 @@ export default function Navbar() {
                 {projects.map(p => (
                     <li key={p.id}>
                         <a 
-                            href={`/#${p.id}`} 
+                            href={`/${p.slug}`} 
                             onClick={() => setIsOpen(false)}
                             className="text-4xl font-serif text-warm-white hover:text-gold transition-colors block"
                         >

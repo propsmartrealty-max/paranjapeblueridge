@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/data/master-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://blueridge-hinjewadi.com';
+  const baseUrl = 'https://www.paranjapeblueridge.com';
   
   const projectUrls = projects.map(p => ({
     url: `${baseUrl}/${p.slug}`,

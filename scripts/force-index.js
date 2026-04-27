@@ -21,10 +21,10 @@ async function forceIndex() {
   const indexing = google.indexing({ version: 'v3', auth });
 
   const urls = [
-    'https://blueridge-hinjewadi.com',
-    'https://blueridge-hinjewadi.com/#promenade',
-    'https://blueridge-hinjewadi.com/#altius',
-    'https://blueridge-hinjewadi.com/#ridge41'
+    'https://www.paranjapeblueridge.com',
+    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune',
+    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune',
+    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune'
   ];
 
   for (const url of urls) {

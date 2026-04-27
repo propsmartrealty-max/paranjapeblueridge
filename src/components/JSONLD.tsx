@@ -6,19 +6,19 @@ export default function JSONLD() {
     "@graph": [
       {
         "@type": "RealEstateListing",
-        "@id": "https://blueridge-hinjewadi.com/#listing",
-        "name": "Paranjape Blue Ridge Hinjewadi",
-        "description": "Premium 138-acre integrated township in Hinjewadi Phase 1, Pune. Featuring Promenade, The Altius, and Ridges 41.",
-        "url": "https://blueridge-hinjewadi.com",
-        "image": "https://blueridge-hinjewadi.com/assets/images/township-night.png"
+        "@id": "https://www.paranjapeblueridge.com/listing",
+        "name": "Paranjape Blue Ridge Hinjewadi - 2, 3 & 4 BHK Luxury Flats",
+        "description": "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1.",
+        "url": "https://www.paranjapeblueridge.com",
+        "image": "https://www.paranjapeblueridge.com/assets/images/township-night.png"
       },
       {
-        "@type": "LocalBusiness",
-        "name": "Paranjape Blue Ridge",
+        "@type": "RealEstateAgent",
+        "name": "Paranjape Schemes (Construction) Ltd.",
         "image": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg",
-        "@id": "https://blueridge-hinjewadi.com/#business",
-        "url": "https://blueridge-hinjewadi.com",
-        "telephone": "+919672559666",
+        "@id": "https://www.paranjapeblueridge.com/business",
+        "url": "https://www.paranjapeblueridge.com",
+        "telephone": "+918149866385",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Phase 1, Hinjewadi",
@@ -55,7 +55,7 @@ export default function JSONLD() {
       },
       {
         "@type": "Product",
-        "name": "The Altius Riverside Residences",
+        "name": "The Altius",
         "description": "Ultra-luxury 4 & 5 BHK riverfront apartments with golf course access.",
         "brand": {
           "@type": "Brand",
@@ -66,7 +66,7 @@ export default function JSONLD() {
           "priceCurrency": "INR",
           "price": "18000000",
           "availability": "https://schema.org/InStock",
-          "url": "https://blueridge-hinjewadi.com/#altius"
+          "url": "https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune"
         }
       }
     ]

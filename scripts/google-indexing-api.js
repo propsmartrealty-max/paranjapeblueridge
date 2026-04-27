@@ -10,7 +10,7 @@ const { google } = require('googleapis');
 
 const KEY_PATH = path.join(__dirname, 'google-service-account.json');
 const REGISTRY_PATH = path.join(__dirname, '../data/seo-registry.json');
-const DOMAIN = 'https://blueridge-hinjewadi.com';
+const DOMAIN = 'https://www.paranjapeblueridge.com';
 
 async function triggerIndexing() {
     console.log('\n🚀 INITIATING SOVEREIGN INDEXING SWEEP...');
