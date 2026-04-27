@@ -30,7 +30,7 @@ export default function ConnectivityHub() {
 
       <div className="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl h-[600px] bg-navy-light">
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3782.261!2d73.738!3d18.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb9e762b3b79%3A0x6739f3a9e64e58b!2sParanjape%20Blue%20Ridge!5e0!3m2!1sen!2sin!4v1714200000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.261!2d73.738!3d18.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb9e762b3b79%3A0x6739f3a9e64e58b!2sParanjape%20Blue%20Ridge!5e0!3m2!1sen!2sin!4v1714200000000!5m2!1sen!2sin"
             className="w-full h-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
             style={{ border: 0 }}
             allowFullScreen={true}
