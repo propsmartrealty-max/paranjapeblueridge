@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Shield, CheckCircle2, MessageCircle } from 'lucide-react';
 import EnquiryModal from '@/components/EnquiryModal';
+import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -128,6 +129,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             ))}
         </div>
       </section>
+
+      <InteractiveFloorPlans />
 
       {/* WHY CHOOSE US - SEO CONTENT REINFORCEMENT */}
       <section className="py-24 bg-navy-light border-y border-white/5">

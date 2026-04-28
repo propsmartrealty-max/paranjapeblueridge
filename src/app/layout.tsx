@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
+import StickyCTA from "@/components/StickyCTA";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.paranjapeblueridge.com'),
+  metadataBase: new URL('https://paranjapeblueridge.com'),
   title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
   description: "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1. Discover The Altius, Ridges 41, and Promenade Residences. Premium riverfront apartments near Rajiv Gandhi Infotech Park with a 9-hole golf course. Book your site visit today.",
   verification: {
@@ -54,6 +55,7 @@ export default function RootLayout({
           </div>
           <div className="architect-grid"></div>
           {children}
+          <StickyCTA />
         </LanguageProvider>
       </body>
     </html>

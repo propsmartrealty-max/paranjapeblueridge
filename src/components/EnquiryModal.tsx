@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -8,16 +9,25 @@ interface EnquiryModalProps {
 }
 
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
+    bhk: '',
+    budget: '',
+    intent: 'Self Use',
     message: ''
   });
   
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   if (!isOpen) return null;
+
+  const nextStep = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep(2);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +36,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     // 1. Sovereign Vault - Local Storage Backup
     try {
       const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
-      existingLeads.push({ ...formData, timestamp: new Date().toISOString(), source: 'blueridge_modal' });
+      existingLeads.push({ ...formData, timestamp: new Date().toISOString(), source: 'blueridge_qualified_modal' });
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {
       console.error("Vault save failed", err);
@@ -43,24 +53,23 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       },
       body: JSON.stringify({
         ...formData,
-        _subject: `New Enquiry from ${formData.name} - Paranjape Blue Ridge`,
-        _captcha: "false" // Disable captcha for smoother UX
+        _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget}`,
+        _captcha: "false" 
       }),
     })
     .then(response => response.json())
     .then(data => {
       setStatus('success');
-      // Optional: Delay close
       setTimeout(() => {
         setStatus('idle');
-        setFormData({ name: '', phone: '', email: '', message: '' });
+        setStep(1);
+        setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '' });
         onClose();
       }, 3000);
     })
     .catch(error => {
       console.error("FormSubmit failed, attempting mailto fallback", error);
-      // 3. Fallback mailto:
-      window.location.href = `mailto:propsmartrealty@gmail.com?subject=Enquiry from ${formData.name}&body=Name: ${formData.name}%0D%0APhone: ${formData.phone}%0D%0AEmail: ${formData.email}%0D%0AMessage: ${formData.message}`;
+      window.location.href = `mailto:propsmartrealty@gmail.com?subject=Enquiry from ${formData.name}&body=Name: ${formData.name}%0D%0APhone: ${formData.phone}%0D%0AConfig: ${formData.bhk}%0D%0ABudget: ${formData.budget}`;
       setStatus('success');
       setTimeout(() => { onClose(); }, 2000);
     });
@@ -78,6 +87,9 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       <div className="relative w-full max-w-lg bg-navy border border-gold/30 rounded-[3rem] shadow-[0_0_100px_rgba(212,168,83,0.15)] overflow-hidden animate-in fade-in zoom-in duration-500">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
         
+        {/* Progress Bar */}
+        <div className="absolute top-2 left-0 h-1 bg-gold transition-all duration-500" style={{ width: `${(step / 2) * 100}%` }}></div>
+
         <button 
           onClick={onClose}
           className="absolute top-8 right-8 text-gold hover:text-warm-white transition-colors z-20"
@@ -87,11 +99,11 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
         <div className="p-12">
           <div className="mb-10">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Request Access</span>
-            <h2 className="text-4xl font-serif text-warm-white leading-tight">Priority <span className="italic font-normal text-gold">Enquiry</span></h2>
-            <p className="text-text-light mt-4 text-sm leading-relaxed">
-              Unlock the sovereign portfolio for Paranjape Blue Ridge. Enter your details for exclusive inventory access.
-            </p>
+            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 2</span>
+            <h2 className="text-4xl font-serif text-warm-white leading-tight">
+              {step === 1 ? 'Priority ' : 'Qualification '}
+              <span className="italic font-normal text-gold">{step === 1 ? 'Enquiry' : 'Protocol'}</span>
+            </h2>
           </div>
 
           {status === 'success' ? (
@@ -99,61 +111,125 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               <div className="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-gold/20">
                 <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
               </div>
-              <h3 className="font-serif text-2xl text-warm-white">Request Dispatched</h3>
-              <p className="text-sm text-gold mt-2">Check your email for the Sovereign Vault access.</p>
+              <h3 className="font-serif text-2xl text-warm-white">Protocol Activated</h3>
+              <p className="text-sm text-gold mt-2">Our Sovereign desk will contact you within 60 minutes.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
-                <input 
-                  type="text" 
-                  required 
-                  value={formData.name}
-                  onChange={e => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
-                  placeholder="Enter your name"
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    value={formData.phone}
-                    onChange={e => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
-                    placeholder="+91"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
-                  <input 
-                    type="email" 
-                    required 
-                    value={formData.email}
-                    onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
-                    placeholder="name@email.com"
-                  />
-                </div>
-              </div>
+            <div className="min-h-[350px]">
+              <AnimatePresence mode="wait">
+                {step === 1 ? (
+                  <motion.form 
+                    key="step1"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    onSubmit={nextStep} 
+                    className="space-y-6"
+                  >
+                    <div className="space-y-2">
+                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
+                      <input 
+                        type="text" 
+                        required 
+                        value={formData.name}
+                        onChange={e => setFormData({...formData, name: e.target.value})}
+                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        value={formData.phone}
+                        onChange={e => setFormData({...formData, phone: e.target.value})}
+                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                        placeholder="+91"
+                      />
+                    </div>
 
-              <button 
-                type="submit" 
-                disabled={status === 'submitting'}
-                className="w-full bg-gradient-to-r from-gold to-gold-light text-navy font-bold py-5 rounded-2xl mt-4 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center disabled:opacity-50 shadow-xl shadow-gold/20 uppercase text-xs tracking-widest"
-              >
-                {status === 'submitting' ? (
-                  <span className="flex items-center gap-3">
-                    <svg className="animate-spin h-5 w-5 text-navy" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                    Dispatching...
-                  </span>
-                ) : 'Secure Priority Access'}
-              </button>
-            </form>
+                    <div className="space-y-2">
+                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
+                      <input 
+                        type="email" 
+                        required 
+                        value={formData.email}
+                        onChange={e => setFormData({...formData, email: e.target.value})}
+                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                        placeholder="name@email.com"
+                      />
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      className="w-full bg-gold text-navy font-bold py-5 rounded-2xl mt-4 hover:scale-[1.02] transition-all uppercase text-xs tracking-widest shadow-xl shadow-gold/20"
+                    >
+                      Next: Choose Configuration
+                    </button>
+                  </motion.form>
+                ) : (
+                  <motion.form 
+                    key="step2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
+                    <div className="space-y-2">
+                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
+                      <select 
+                        required
+                        value={formData.bhk}
+                        onChange={e => setFormData({...formData, bhk: e.target.value})}
+                        className="w-full px-6 py-4 bg-navy-light border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none"
+                      >
+                        <option value="">Select BHK</option>
+                        <option value="2BHK">2 BHK Apartment</option>
+                        <option value="3BHK">3 BHK Apartment</option>
+                        <option value="4BHK">4 BHK Elite</option>
+                        <option value="5BHK">5 BHK Sky Villa</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
+                      <select 
+                        required
+                        value={formData.budget}
+                        onChange={e => setFormData({...formData, budget: e.target.value})}
+                        className="w-full px-6 py-4 bg-navy-light border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none"
+                      >
+                        <option value="">Select Range</option>
+                        <option value="80L - 1Cr">₹80L - ₹1 Cr</option>
+                        <option value="1Cr - 1.5Cr">₹1 Cr - ₹1.5 Cr</option>
+                        <option value="1.5Cr - 2.5Cr">₹1.5 Cr - ₹2.5 Cr</option>
+                        <option value="Above 2.5Cr">Above ₹2.5 Cr</option>
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                       <button 
+                         type="button" 
+                         onClick={() => setStep(1)}
+                         className="py-4 border border-white/10 text-text-light rounded-2xl text-[10px] font-bold uppercase tracking-widest"
+                       >
+                         Back
+                       </button>
+                       <button 
+                         type="submit" 
+                         disabled={status === 'submitting'}
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest disabled:opacity-50"
+                       >
+                         {status === 'submitting' ? 'Processing...' : 'Complete Request'}
+                       </button>
+                    </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
           )}
         </div>
       </div>

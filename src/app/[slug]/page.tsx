@@ -11,6 +11,7 @@ import { useHasMounted } from '@/hooks/useHasMounted';
 import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import EnquiryModal from '@/components/EnquiryModal';
+import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
 import { useState, useEffect } from 'react';
 import { generatePseoUrls } from '@/data/seo-matrix';
 import PseoLandingPage from '@/components/PseoLandingPage';
@@ -160,27 +161,9 @@ export default function ProjectSilo() {
             </div>
         </div>
 
-        {/* LAYOUT PLANS EXPANSION */}
+        {/* INTERACTIVE ARCHITECTURAL FLOOR PLANS */}
         <div className="mt-32">
-            <h2 className="text-4xl font-serif text-warm-white mb-16 text-center">Architectural <span className="italic font-normal text-gold">Layout Plans</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {project.configurations?.map((config, i) => (
-                    <div key={i} className="bg-navy-light rounded-[2.5rem] border border-white/5 p-8 group hover:border-gold/30 transition-all">
-                        <div className="aspect-[4/5] bg-white/5 rounded-2xl overflow-hidden mb-6 relative">
-                            <img src={config.image || '/assets/images/unit-plan-3bhk.png'} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700" alt={config.title} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
-                        </div>
-                        <h4 className="text-xl font-serif text-warm-white mb-2">{config.title}</h4>
-                        <div className="flex justify-between items-center border-t border-white/5 pt-4 mt-4">
-                            <div>
-                                <span className="block text-[8px] text-text-light uppercase tracking-widest">Carpet Area</span>
-                                <span className="text-gold font-bold text-sm">{config.carpetArea || 'TBD'}</span>
-                            </div>
-                            <a href="#enquiry" className="bg-gold text-navy px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all">Enquire</a>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <InteractiveFloorPlans />
         </div>
       </div>
 
