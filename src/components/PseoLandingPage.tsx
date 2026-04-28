@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -64,10 +65,13 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
       {/* SEO HERO SECTION */}
       <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden pt-24">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="/assets/images/master-hero-v4.png" 
-            className="w-full h-full object-cover opacity-30"
+            fill
+            priority
+            className="object-cover opacity-30"
             alt={pageData.title}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent"></div>
         </div>

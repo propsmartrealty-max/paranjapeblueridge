@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import ProjectCard from '@/components/ProjectCard';
 import MarketAnalysis from '@/components/MarketAnalysis';
@@ -39,7 +40,14 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/images/master-hero-v4.png" className="w-full h-full object-cover opacity-60" alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama" />
+          <Image 
+            src="/assets/images/master-hero-v4.png" 
+            fill
+            priority
+            className="object-cover opacity-60" 
+            alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama"
+            sizes="100vw"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/40 to-transparent"></div>
         </div>
         

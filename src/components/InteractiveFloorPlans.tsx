@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layout, Maximize2, Ruler, Box } from 'lucide-react';
 
@@ -110,11 +111,16 @@ export default function InteractiveFloorPlans() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="relative bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl overflow-hidden border border-white/10"
               >
-                <img 
-                  src={activeTab.image} 
-                  alt={activeTab.name}
-                  className="w-full h-auto object-contain min-h-[400px]"
-                />
+                <div className="relative w-full aspect-[16/10] min-h-[400px]">
+                  <Image 
+                    src={activeTab.image} 
+                    alt={activeTab.name}
+                    fill
+                    priority
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 66vw"
+                  />
+                </div>
                 
                 {/* Floating Overlay Controls */}
                 <div className="absolute bottom-8 right-8 flex gap-2">

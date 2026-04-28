@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
@@ -48,12 +49,15 @@ export default function ProjectSilo() {
       {/* PROJECT HERO */}
       <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
                  project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
                  '/assets/images/ridges-41.png'} 
-            className="w-full h-full object-cover opacity-30 grayscale-[0.3]"
+            fill
+            priority
+            className="object-cover opacity-30 grayscale-[0.3]"
             alt={`Paranjape Blue Ridge ${project.name} - Official Showcase`}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
         </div>
