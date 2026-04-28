@@ -17,17 +17,27 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
       <motion.div 
         initial={{ x: reverse ? 100 : -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        className={`relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group ${reverse ? 'lg:order-2' : ''}`}
+        viewport={{ once: true, margin: "-100px" }}
+        className={`relative rounded-3xl overflow-hidden shadow-2xl border border-gold/10 group ${reverse ? 'lg:order-2' : ''}`}
       >
-        <img 
+        {/* Real Image */}
+        <motion.img 
           src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
                project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
                '/assets/images/ridges-41.png'} 
           alt={`Paranjape Blue Ridge ${project.name} - Luxury ${project.id === 'promenade' ? '3/4 BHK' : project.id === 'altius' ? '4/5 BHK' : '2/3 BHK'} Apartments in Hinjewadi Phase 1`}
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-60"></div>
+
+        {/* Blueprint Simulation Layer */}
+        <motion.div 
+          initial={{ opacity: 1 }}
+          whileInView={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+          className="absolute inset-0 bg-gold/20 backdrop-invert grayscale brightness-150 mix-blend-overlay pointer-events-none"
+        ></motion.div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
       </motion.div>
 
       <motion.div 

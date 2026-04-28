@@ -13,53 +13,81 @@ import BlogSection from '@/components/BlogSection';
 import EnquiryModal from '@/components/EnquiryModal';
 import PopularSearches from '@/components/PopularSearches';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAtmosphere } from '@/context/AtmosphereContext';
+import { useBuyerIntent } from '@/components/TrackingProvider';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
 import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsModalOpen(true);
-    }, 3000); // 3-second delay
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
-  if (!hasMounted) return <div className="bg-navy h-screen w-full"></div>;
+  const { intent } = useBuyerIntent();
+  const { atmosphere } = useAtmosphere();
+
+  if (!hasMounted) return <div className="bg-black h-screen w-full"></div>;
 
   return (
-    <main className="bg-black text-text selection:bg-gold selection:text-navy">
+    <main 
+      style={{ backgroundColor: 'var(--bg)' }}
+      className="text-text selection:bg-gold selection:text-navy transition-colors duration-1000"
+    >
       <Navbar />
       <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* HERO SECTION */}
-      <section className="relative h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section ref={heroRef} className="relative h-screen flex items-center overflow-hidden">
+        <motion.div style={{ scale: imageScale }} className="absolute inset-0 z-0">
           <Image 
             src="/assets/images/master-hero-v4.png" 
             fill
             priority
-            className="object-cover opacity-60" 
+            className={`object-cover transition-all duration-1000 ${atmosphere === 'night' ? 'opacity-40 brightness-50' : 'opacity-80 brightness-110'}`} 
             alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-        </div>
+          <div 
+            className="absolute inset-0 transition-colors duration-1000" 
+            style={{ background: `linear-gradient(to right, var(--bg) 0%, transparent 100%)` }}
+          ></div>
+        </motion.div>
         
-        <div className="container relative z-10 pt-20">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container relative z-10 pt-20">
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-3 text-gold font-bold tracking-[8px] uppercase text-[10px] mb-8">
               <span className="w-10 h-[1px] bg-gold"></span>
-              {t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
+              {intent === 'investor' 
+                ? t('High-Yield Investment Legacy', 'उच्च-उत्पन्न गुंतवणूक वारसा') 
+                : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
             <h1 className="text-[7rem] font-serif text-warm-white leading-[0.9] tracking-tighter mb-10">
-              <span className="text-gilded block mb-2">{t('Zenith of', 'सर्वोच्च')}</span>
-              <span className="italic font-normal">{t('Integrated Living', 'इंटिग्रेटेड लिविंग')}</span>
+              <span className="text-gilded block mb-2">
+                {intent === 'investor' ? t('Capital', 'कॅपिटल') : t('Zenith of', 'सर्वोच्च')}
+              </span>
+              <span className="italic font-normal">
+                {intent === 'investor' ? t('Appreciation', 'अप्रीशिएशन') : t('Integrated Living', 'इंटिग्रेटेड लिविंग')}
+              </span>
             </h1>
             <p className="text-xl text-text-light max-w-2xl leading-relaxed mb-12">
               {t("Welcome to Paranjape Blue Ridge—Pune's most celebrated integrated township. A future-ready ecosystem crafted for the elite IT workforce of Hinjewadi Phase 1.", "परंजपे ब्लू रिजमध्ये आपले स्वागत आहे—पुण्यातील सर्वात प्रसिद्ध इंटिग्रेटेड टाऊनशिप. हिंजवडी फेज १ मधील एलिट आयटी कर्मचाऱ्यांसाठी तयार केलेली भविष्यातील इकोसिस्टम.")}
@@ -73,11 +101,11 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* TRUST SYMBOLS */}
-      <section className="py-10 border-y border-gold/10 bg-black">
+      <section className="py-10 border-y border-gold/10 bg-[var(--bg)]">
         <div className="container flex justify-between items-center opacity-60 grayscale group hover:grayscale-0 transition-all">
           <div className="flex items-center gap-3">
              <ShieldCheck className="text-gold" size={20} />
@@ -214,7 +242,7 @@ export default function Home() {
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
             <div className="col-span-2">
                 <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-10 brightness-0 invert mb-8" alt="" />
-                <p className="text-text-light max-w-sm">Hinjewadi's first 138-acre integrated township. A Paranjape Schemes legacy setting global benchmarks in community living.</p>
+                <p className="text-text-light max-sm">Hinjewadi's first 138-acre integrated township. A Paranjape Schemes legacy setting global benchmarks in community living.</p>
             </div>
             <div>
                 <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Navigation</h4>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, Menu, X, MessageCircle } from 'lucide-react';
 import { projects } from '@/data/master-data';
 import LanguageToggle from './LanguageToggle';
+import AtmosphereToggle from './AtmosphereToggle';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
 
@@ -59,7 +60,8 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-4 ml-4">
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-4">
+                <AtmosphereToggle />
                 <LanguageToggle />
             </div>
             <a 
@@ -121,7 +123,10 @@ export default function Navbar() {
             </ul>
 
             <div className="mt-auto space-y-6">
-                <LanguageToggle />
+                <div className="flex items-center justify-between">
+                   <LanguageToggle />
+                   <AtmosphereToggle />
+                </div>
                 <a 
                     href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
                     target="_blank" 

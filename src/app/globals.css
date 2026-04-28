@@ -3,21 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --navy: #000000; /* Pure Obsidian for maximum Gold contrast */
-  --navy-light: #0a0a0a;
-  --gold: #c5a059; /* Imperial Gold */
-  --gold-light: #e6c88f; /* Champagne Gold */
-  --text: #e5e5e5; /* High contrast silver-white */
+  --bg: #000000;
+  --bg-light: #0a0a0a;
+  --gold: #c5a059;
+  --gold-light: #e6c88f;
+  --text: #e5e5e5;
   --text-light: #a3a3a3;
   --warm-white: #ffffff;
-  --glass-border: rgba(197, 160, 89, 0.2); /* Golden glass border */
+  --glass-border: rgba(197, 160, 89, 0.2);
+  --grid-opacity: 0.08;
+}
+
+.light-atmosphere {
+  --bg: #fdfbf7; /* Premium Parchment */
+  --bg-light: #f5f2ed;
+  --gold: #a67c00; /* Deep Gold for contrast on light */
+  --gold-light: #c5a059;
+  --text: #1a1a1a; /* Rich Charcoal */
+  --text-light: #525252;
+  --warm-white: #000000;
+  --glass-border: rgba(166, 124, 0, 0.1);
+  --grid-opacity: 0.04;
 }
 
 @layer base {
   body {
-    @apply bg-navy text-text;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 1s ease, color 1s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -31,17 +46,19 @@
   inset: 0;
   background-image: linear-gradient(var(--glass-border) 1px, transparent 1px), linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
   background-size: 60px 60px;
-  opacity: 0.08;
+  opacity: var(--grid-opacity);
   pointer-events: none;
   z-index: 0;
+  transition: opacity 1s ease;
 }
 
-/* Custom Scrollbar - Aurelian Luxe */
+/* Custom Scrollbar - Sovereign Atmosphere */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--bg);
+  transition: background 1s ease;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--gold);
@@ -57,7 +74,18 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  
+  .light-atmosphere .text-gilded {
+    background: linear-gradient(to bottom, #b8860b 0%, #a67c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .gold-glow {
     box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+  }
+  
+  .light-atmosphere .gold-glow {
+    box-shadow: 0 0 20px rgba(166, 124, 0, 0.2);
   }
 }

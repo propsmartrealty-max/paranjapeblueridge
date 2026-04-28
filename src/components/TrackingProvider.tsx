@@ -1,36 +1,53 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function TrackingProvider({ children }: { children: React.ReactNode }) {
+type Intent = 'general' | 'investor' | 'homebuyer';
+
+interface TrackingContextType {
+  intent: Intent;
+}
+
+const TrackingContext = createContext<TrackingContextType>({ intent: 'general' });
+
+export function TrackingProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [intent, setIntent] = useState<Intent>('general');
 
   useEffect(() => {
-    // 1. Log Page View to Sovereign Vault (Optional Analytics)
-    console.log(`[SOVEREIGN TRACKING] Page viewed: ${pathname}`);
+    // Detect intent based on path and search params
+    const path = pathname.toLowerCase();
+    const query = searchParams.toString().toLowerCase();
     
-    // 2. Mock Pixel Trigger (Ready for GTM/FB Pixel)
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'PageView');
+    let currentIntent: Intent = 'general';
+    
+    const investorKeywords = ['yield', 'roi', 'investment', 'nri', 'rental', 'appreciation', 'market'];
+    const homebuyerKeywords = ['bhk', 'flats', 'apartments', 'residences', 'family', 'school', 'amenities'];
+
+    if (investorKeywords.some(k => path.includes(k) || query.includes(k))) {
+      currentIntent = 'investor';
+    } else if (homebuyerKeywords.some(k => path.includes(k) || query.includes(k))) {
+      currentIntent = 'homebuyer';
     }
+
+    if (currentIntent !== 'general') {
+      setIntent(currentIntent);
+      localStorage.setItem('sovereign-intent', currentIntent);
+    } else {
+      const saved = localStorage.getItem('sovereign-intent') as Intent;
+      if (saved) setIntent(saved);
+    }
+
+    console.log(`[SOVEREIGN TRACKING] Intent detected: ${currentIntent}`);
   }, [pathname, searchParams]);
 
   return (
-    <>
-      {/* PLACEHOLDERS FOR ANALYTICS SCRIPTS */}
-      {/* 
-        <Script id="google-analytics" strategy="afterInteractive">
-           {`
-             window.dataLayer = window.dataLayer || [];
-             function gtag(){dataLayer.push(arguments);}
-             gtag('js', new Date());
-             gtag('config', 'G-XXXXXXXXXX');
-           `}
-        </Script>
-      */}
+    <TrackingContext.Provider value={{ intent }}>
       {children}
-    </>
+    </TrackingContext.Provider>
   );
 }
+
+export const useBuyerIntent = () => useContext(TrackingContext);
