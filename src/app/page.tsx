@@ -38,8 +38,8 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/assets/images/master-hero-v3.png" className="w-full h-full object-cover opacity-40 grayscale-[0.2]" alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Night Panorama" />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/60 to-transparent"></div>
+          <img src="/assets/images/master-hero-v4.png" className="w-full h-full object-cover opacity-60" alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/40 to-transparent"></div>
         </div>
         
         <div className="container relative z-10 pt-20">
