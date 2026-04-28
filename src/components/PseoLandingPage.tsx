@@ -13,6 +13,7 @@ interface PseoLandingPageProps {
     title: string;
     intent: string;
     type: string;
+    silo: string;
   }
 }
 
@@ -25,6 +26,34 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
     }, 5000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Determine benefits based on silo
+  const getBenefits = (silo: string) => {
+    switch(silo) {
+      case 'investor':
+        return ['High Rental Yield', 'Strong Capital Appreciation', 'Premium Tenant Profile', 'Zero Maintenance Headaches'];
+      case 'corporate':
+        return ['Zero Commute Time', 'Walk to Office Hubs', 'Premium Work-Life Balance', 'Corporate Community'];
+      case 'infrastructure':
+        return ['Future-Proof Connectivity', 'Metro Station Access', 'Highway Proximity', 'Appreciating Asset'];
+      case 'ecosystem':
+        return ['Private Boat Club', 'ICSE School Inside', '9-Hole Golf Course', '138 Acre Mega Township'];
+      case 'competitor':
+        return ['Superior Build Quality', 'Better Location', 'Higher ROI', 'Integrated Township Living'];
+      default:
+        return ['High Rental Yield', 'Walk to Work', 'Premium Amenities', 'Capital Appreciation'];
+    }
+  };
+
+  const getParagraph = (silo: string) => {
+    if (silo === 'investor') return `For discerning investors seeking ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge stands as Hinjewadi's crown jewel. With a proven track record of 4-5% rental yields and consistent capital appreciation, this is the definitive choice for NRIs and HNIs looking to secure wealth in Pune's IT corridor.`;
+    if (silo === 'corporate') return `Maximize your work-life balance with luxury living near your office. When searching for ${pageData.intent.toLowerCase()}, Blue Ridge eliminates the daily commute fatigue, placing you right at the nexus of Pune's massive corporate ecosystem.`;
+    if (silo === 'infrastructure') return `Location and connectivity dictate real estate value. By securing ${pageData.title.toLowerCase()}, you leverage the upcoming Metro Line 3 and expressway access to guarantee your asset remains future-proofed and highly connected.`;
+    if (silo === 'ecosystem') return `True luxury is an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school, private boat club, and professional golf course within the gates, your lifestyle is elevated beyond just an apartment.`;
+    if (silo === 'competitor') return `When evaluating your options across Pune West, Paranjape Blue Ridge consistently emerges as the superior choice. If you are exploring ${pageData.title.toLowerCase()}, our 138-acre integrated township offers a scale of amenities, build quality, and community that standalone projects simply cannot match.`;
+    
+    return `Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for ${pageData.intent.toLowerCase()}, this 138-acre township offers an unparalleled ecosystem. From proximity to major IT hubs to a private 9-hole golf course and river-facing promenades, every aspect of ${pageData.type.toLowerCase()} living is elevated to global standards.`;
+  };
 
   return (
     <main className="min-h-screen bg-navy text-text">
@@ -107,12 +136,10 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
                 Why Invest in {pageData.title}?
             </h2>
             <p className="text-text-light leading-relaxed mb-12">
-                Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for {pageData.intent.toLowerCase()}, 
-                this 138-acre township offers an unparalleled ecosystem. From proximity to major IT hubs to a private 9-hole golf course 
-                and river-facing promenades, every aspect of {pageData.type.toLowerCase()} living is elevated to global standards.
+                {getParagraph(pageData.silo)}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-                {['High Rental Yield', 'Walk to Work', 'Premium Amenities', 'Capital Appreciation'].map((benefit, i) => (
+                {getBenefits(pageData.silo).map((benefit, i) => (
                     <div key={i} className="flex items-center gap-3 bg-navy p-4 rounded-xl border border-white/5">
                         <CheckCircle2 size={16} className="text-gold shrink-0" />
                         <span className="text-xs text-warm-white font-bold uppercase tracking-widest">{benefit}</span>

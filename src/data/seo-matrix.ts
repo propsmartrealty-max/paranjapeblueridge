@@ -4,7 +4,6 @@ export const seoMatrix = {
     { slug: '3-bhk-flats', name: '3 BHK Flats', type: 'Apartment' },
     { slug: '4-bhk-flats', name: '4 BHK Flats', type: 'Apartment' },
     { slug: '5-bhk-flats', name: '5 BHK Flats', type: 'Apartment' },
-    { slug: 'penthouses', name: 'Penthouses', type: 'Penthouse' },
     { slug: 'luxury-apartments', name: 'Luxury Apartments', type: 'Apartment' }
   ],
   locations: [
@@ -12,58 +11,124 @@ export const seoMatrix = {
     { slug: 'hinjewadi-phase-2', name: 'Hinjewadi Phase 2' },
     { slug: 'hinjewadi-phase-3', name: 'Hinjewadi Phase 3' },
     { slug: 'wakad', name: 'Wakad' },
-    { slug: 'baner', name: 'Baner' },
     { slug: 'pune', name: 'Pune' }
   ],
-  landmarks: [
-    { slug: 'near-infosys', name: 'near Infosys' },
-    { slug: 'near-wipro', name: 'near Wipro' },
-    { slug: 'near-rajiv-gandhi-infotech-park', name: 'near Rajiv Gandhi Infotech Park' }
+  // Phase 3 Silos
+  techParks: [
+    { slug: 'near-embassy-tech-zone', name: 'near Embassy Tech Zone' },
+    { slug: 'near-quadron-business-park', name: 'near Quadron Business Park' },
+    { slug: 'near-qubix-it-park', name: 'near Qubix IT Park' },
+    { slug: 'near-infosys-hinjewadi', name: 'near Infosys Hinjewadi' },
+    { slug: 'near-tcs-hinjewadi', name: 'near TCS Hinjewadi' }
   ],
-  features: [
-    { slug: 'river-facing', name: 'River Facing' },
-    { slug: 'golf-course-facing', name: 'Golf Course Facing' },
-    { slug: 'ready-possession', name: 'Ready Possession' },
-    { slug: 'under-construction', name: 'Under Construction' }
+  infrastructure: [
+    { slug: 'near-hinjewadi-metro-station', name: 'near Hinjewadi Metro Station' },
+    { slug: 'on-pune-metro-line-3', name: 'on Pune Metro Line 3' },
+    { slug: 'near-mumbai-pune-expressway', name: 'near Mumbai-Pune Expressway' }
+  ],
+  ecosystem: [
+    { slug: 'with-golf-course', name: 'with Golf Course' },
+    { slug: 'near-blue-ridge-public-school', name: 'near Blue Ridge Public School' },
+    { slug: 'with-private-boat-club', name: 'with Private Boat Club' }
+  ],
+  investors: [
+    { slug: 'high-rental-yield-properties', name: 'High Rental Yield Properties' },
+    { slug: 'best-roi-real-estate-investment', name: 'Best ROI Real Estate Investment' },
+    { slug: 'nri-investment-luxury-properties', name: 'NRI Investment Luxury Properties' },
+    { slug: 'pre-launch-offers', name: 'Pre-launch Offers' }
+  ],
+  competitors: [
+    { slug: 'near-life-republic', name: 'near Life Republic' },
+    { slug: 'near-lodha-belmondo', name: 'near Lodha Belmondo' },
+    { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' }
   ]
 };
 
 // Helper function to generate combinations
 export function generatePseoUrls() {
-  const urls: { slug: string; title: string; intent: string; type: string }[] = [];
+  const urls: { slug: string; title: string; intent: string; type: string; silo: string }[] = [];
 
-  // Config + Location
+  // Silo 1: Tech Parks (Config + Tech Park)
+  seoMatrix.configurations.forEach(config => {
+    seoMatrix.techParks.forEach(park => {
+      urls.push({
+        slug: `${config.slug}-${park.slug}`,
+        title: `${config.name} ${park.name}`,
+        intent: `${config.name} ${park.name} Pune`,
+        type: config.type,
+        silo: 'corporate'
+      });
+    });
+  });
+
+  // Silo 2: Infrastructure (Config + Infra)
+  seoMatrix.configurations.forEach(config => {
+    seoMatrix.infrastructure.forEach(infra => {
+      urls.push({
+        slug: `${config.slug}-${infra.slug}`,
+        title: `${config.name} ${infra.name}`,
+        intent: `Premium ${config.name} ${infra.name}`,
+        type: config.type,
+        silo: 'infrastructure'
+      });
+    });
+  });
+
+  // Silo 3: Ecosystem (Townships / Flats + Ecosystem)
+  seoMatrix.ecosystem.forEach(eco => {
+    urls.push({
+      slug: `integrated-townships-${eco.slug}-in-pune`,
+      title: `Integrated Townships ${eco.name} in Pune`,
+      intent: `Luxury Integrated Townships ${eco.name} in Pune`,
+      type: 'Township',
+      silo: 'ecosystem'
+    });
+    seoMatrix.configurations.slice(0, 3).forEach(config => {
+      urls.push({
+        slug: `${config.slug}-${eco.slug}`,
+        title: `${config.name} ${eco.name}`,
+        intent: `Buy ${config.name} ${eco.name} in Pune`,
+        type: config.type,
+        silo: 'ecosystem'
+      });
+    });
+  });
+
+  // Silo 4: Investors
+  seoMatrix.investors.forEach(inv => {
+    seoMatrix.locations.slice(0, 3).forEach(loc => {
+      urls.push({
+        slug: `${inv.slug}-in-${loc.slug}`,
+        title: `${inv.name} in ${loc.name}`,
+        intent: `Discover ${inv.name} in ${loc.name}`,
+        type: 'Investment',
+        silo: 'investor'
+      });
+    });
+  });
+
+  // Silo 5: Competitors Alternative (Config + Competitor location proxy)
+  seoMatrix.configurations.slice(0, 3).forEach(config => {
+    seoMatrix.competitors.forEach(comp => {
+      urls.push({
+        slug: `${config.slug}-${comp.slug}`,
+        title: `${config.name} ${comp.name}`,
+        intent: `Premium ${config.name} alternative ${comp.name} Pune`,
+        type: config.type,
+        silo: 'competitor'
+      });
+    });
+  });
+
+  // Legacy locations
   seoMatrix.configurations.forEach(config => {
     seoMatrix.locations.forEach(location => {
       urls.push({
         slug: `${config.slug}-in-${location.slug}`,
         title: `${config.name} in ${location.name}`,
         intent: `${config.name} for sale in ${location.name}`,
-        type: config.type
-      });
-    });
-  });
-
-  // Config + Landmark
-  seoMatrix.configurations.forEach(config => {
-    seoMatrix.landmarks.forEach(landmark => {
-      urls.push({
-        slug: `${config.slug}-${landmark.slug}-hinjewadi`,
-        title: `${config.name} ${landmark.name} Hinjewadi`,
-        intent: `${config.name} near ${landmark.name} Hinjewadi Pune`,
-        type: config.type
-      });
-    });
-  });
-
-  // Feature + Config + Location
-  seoMatrix.features.forEach(feature => {
-    seoMatrix.configurations.slice(0, 3).forEach(config => { // limit to prevent explosion
-      urls.push({
-        slug: `${feature.slug}-${config.slug}-in-hinjewadi`,
-        title: `${feature.name} ${config.name} in Hinjewadi`,
-        intent: `Buy ${feature.name.toLowerCase()} ${config.name.toLowerCase()} in Hinjewadi Pune`,
-        type: config.type
+        type: config.type,
+        silo: 'location'
       });
     });
   });
