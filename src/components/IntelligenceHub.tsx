@@ -33,7 +33,7 @@ export default function IntelligenceHub() {
   ];
 
   return (
-    <section id="market" className="py-32 bg-black border-t border-gold/10">
+    <section id="market" className="py-32 bg-[var(--bg)] border-t border-gold/10">
       <div className="container">
         <div className="mb-20">
           <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Sovereign Data Engine</span>
@@ -76,7 +76,7 @@ export default function IntelligenceHub() {
                 Download Q2 Market Report
               </button>
            </div>
-           <div className="w-full md:w-1/3 aspect-square bg-black border border-gold/10 rounded-2xl p-8 flex items-center justify-center">
+           <div className="w-full md:w-1/3 aspect-square bg-[var(--bg)] border border-gold/10 rounded-2xl p-8 flex items-center justify-center">
               <div className="text-center">
                  <div className="text-6xl font-serif text-gilded mb-2">98%</div>
                  <span className="text-[10px] text-text-light uppercase tracking-[4px]">Occupancy Rate</span>

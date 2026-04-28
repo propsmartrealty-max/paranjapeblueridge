@@ -120,7 +120,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {projects.map((project, i) => (
-                <div key={i} className="bg-black/40 rounded-[2.5rem] border border-gold/10 p-8 group hover:border-gold/30 transition-all flex flex-col h-full">
+                <div key={i} className="bg-[var(--bg)]/40 rounded-[2.5rem] border border-gold/10 p-8 group hover:border-gold/30 transition-all flex flex-col h-full">
                     <div className="mb-6 flex-grow">
                         <h3 className="text-2xl font-serif text-gilded mb-2">{project.name}</h3>
                         <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-4">{project.tagline}</p>

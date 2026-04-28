@@ -7,7 +7,7 @@ export default function PopularSearches() {
   const regionalLinks = allUrls.filter(u => u.silo === 'regional-mr').slice(0, 12);
 
   return (
-    <section className="bg-black py-20 border-t border-gold/10">
+    <section className="bg-[var(--bg)] py-20 border-t border-gold/10">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>

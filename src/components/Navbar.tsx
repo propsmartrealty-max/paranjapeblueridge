@@ -27,7 +27,7 @@ export default function Navbar() {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className={`flex items-center gap-6 px-6 py-3 rounded-full border border-glass-border transition-all duration-500 shadow-2xl ${
-            scrolled ? 'bg-black/90 backdrop-blur-3xl scale-95 border-gold/30' : 'bg-black/40 backdrop-blur-xl border-white/10'
+            scrolled ? 'bg-[var(--bg)]/90 backdrop-blur-3xl scale-95 border-gold/30' : 'bg-[var(--bg)]/40 backdrop-blur-xl border-white/10'
           }`}
         >
           <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group">

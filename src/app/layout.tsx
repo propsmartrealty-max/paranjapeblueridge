@@ -64,7 +64,7 @@ export default function RootLayout({
           <AtmosphereProvider>
             <Suspense fallback={null}>
               <TrackingProvider>
-                <div className="fixed top-0 left-0 right-0 z-[100] bg-black/80 text-text-light/80 text-[9px] sm:text-[10px] py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 border-b border-gold/10 font-medium tracking-[2px] uppercase backdrop-blur-md">
+                <div className="fixed top-0 left-0 right-0 z-[100] bg-[var(--bg)]/80 text-text-light/80 text-[9px] sm:text-[10px] py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 border-b border-gold/10 font-medium tracking-[2px] uppercase backdrop-blur-md">
                   <span><strong className="text-gilded">MahaRERA Registration Numbers:</strong></span>
                   <span className="hidden sm:inline">Promenade: P52100055581</span>
                   <span className="hidden sm:inline">Altius: P52100078116</span>

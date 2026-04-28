@@ -37,7 +37,7 @@ export default function InventoryMatrix() {
 
   return (
     <>
-      <section className="py-20 bg-black border-y border-gold/10 relative overflow-hidden">
+      <section className="py-20 bg-[var(--bg)] border-y border-gold/10 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>

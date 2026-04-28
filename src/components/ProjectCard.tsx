@@ -53,12 +53,12 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
         <p className="text-text-light text-lg leading-relaxed">{project.description}</p>
         
         <div className="grid grid-cols-2 gap-6 mt-4">
-          <div className="bg-black/40 p-6 rounded-2xl border border-gold/10">
+          <div className="bg-[var(--bg)]/40 p-6 rounded-2xl border border-gold/10">
             <Ruler className="text-gold mb-3" size={20} />
             <span className="block text-2xl font-serif text-gilded">{project.carpetArea.split(' ')[0]}</span>
             <span className="text-[10px] text-text-light uppercase tracking-widest">Carpet Area (Sq.Ft)</span>
           </div>
-          <div className="bg-black/40 p-6 rounded-2xl border border-gold/10">
+          <div className="bg-[var(--bg)]/40 p-6 rounded-2xl border border-gold/10">
             <IndianRupee className="text-gold mb-3" size={20} />
             <span className="block text-2xl font-serif text-gilded">{project.price.split(' ')[1]}</span>
             <span className="text-[10px] text-text-light uppercase tracking-widest">Starting Price</span>

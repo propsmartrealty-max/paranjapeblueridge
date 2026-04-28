@@ -48,7 +48,7 @@ export default function Home() {
   const { intent } = useBuyerIntent();
   const { atmosphere } = useAtmosphere();
 
-  if (!hasMounted) return <div className="bg-black h-screen w-full"></div>;
+  if (!hasMounted) return <div className="bg-[var(--bg)] h-screen w-full"></div>;
 
   return (
     <main 
@@ -206,7 +206,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-black p-12 rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
+              <div className="bg-[var(--bg)] p-12 rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                     <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="h-20" alt="Paranjape Blue Ridge Township Logo" />
                 </div>
@@ -242,7 +242,7 @@ export default function Home() {
         </section>
       </div>
 
-      <footer className="py-20 border-t border-gold/10 bg-black relative overflow-hidden">
+      <footer className="py-20 border-t border-gold/10 bg-[var(--bg)] relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
             <div className="col-span-2">
@@ -271,7 +271,7 @@ export default function Home() {
       </footer>
 
       {/* LEGAL DISCLAIMER */}
-      <section className="bg-black text-center py-6 border-t border-gold/10">
+      <section className="bg-[var(--bg)] text-center py-6 border-t border-gold/10">
         <div className="container">
           <p className="text-[10px] text-text-light/50 max-w-4xl mx-auto leading-relaxed">
             Disclaimer: The images, layout plans, and specifications shown are for representation purposes only. 

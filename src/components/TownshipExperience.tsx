@@ -29,7 +29,7 @@ export default function TownshipExperience() {
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group p-10 bg-black/40 border border-gold/10 rounded-[2.5rem] hover:bg-gold/5 hover:border-gold/20 transition-all text-center"
+              className="group p-10 bg-[var(--bg)]/40 border border-gold/10 rounded-[2.5rem] hover:bg-gold/5 hover:border-gold/20 transition-all text-center"
             >
               <div className="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center text-gold mx-auto mb-8 group-hover:-rotate-12 transition-transform">
                 <IconComp size={32} />

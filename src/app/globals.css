@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #000000;
-  --bg-light: #0a0a0a;
+  --bg: #0f172a; /* Rich Slate/Navy, distinctly non-black */
+  --bg-light: #1e293b;
   --gold: #c5a059;
   --gold-light: #e6c88f;
-  --text: #e5e5e5;
-  --text-light: #a3a3a3;
+  --text: #f8fafc; /* Lighter text for the slate background */
+  --text-light: #94a3b8;
   --warm-white: #ffffff;
-  --glass-border: rgba(197, 160, 89, 0.2);
-  --grid-opacity: 0.08;
+  --glass-border: rgba(197, 160, 89, 0.25);
+  --grid-opacity: 0.12;
 }
 
 .light-atmosphere {

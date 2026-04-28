@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: "#060b13",
-        "navy-light": "#0d1522",
+        navy: "#0f172a", // Slate 900
+        "navy-light": "#1e293b", // Slate 800
         royal: "#1e3a5f",
         gold: "#d4a853",
         "gold-light": "#e8c87a",
