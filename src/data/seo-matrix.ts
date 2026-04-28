@@ -41,6 +41,18 @@ export const seoMatrix = {
     { slug: 'near-life-republic', name: 'near Life Republic' },
     { slug: 'near-lodha-belmondo', name: 'near Lodha Belmondo' },
     { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' }
+  ],
+  battlegrounds: [
+    { slug: 'blue-ridge-vs-life-republic', name: 'Blue Ridge vs Life Republic', vs: 'Life Republic' },
+    { slug: 'blue-ridge-vs-vtp-blue-waters', name: 'Blue Ridge vs VTP Blue Waters', vs: 'VTP Blue Waters' },
+    { slug: 'blue-ridge-vs-lodha-belmondo', name: 'Blue Ridge vs Lodha Belmondo', vs: 'Lodha Belmondo' },
+    { slug: 'blue-ridge-vs-shapoorji-joyville', name: 'Blue Ridge vs Shapoorji Joyville', vs: 'Shapoorji Joyville' }
+  ],
+  infraGuides: [
+    { slug: 'hinjewadi-metro-line-3-impact', name: 'Hinjewadi Metro Line 3 Impact & Stations' },
+    { slug: 'blue-ridge-public-school-admission-guide', name: 'Blue Ridge Public School Admission & Facilities' },
+    { slug: 'private-boat-club-membership-pune', name: 'Private Boat Club Membership & Riverfront Living' },
+    { slug: 'hinjewadi-phase-1-infrastructure-updates', name: 'Hinjewadi Phase 1 Latest Infrastructure Updates' }
   ]
 };
 
@@ -117,6 +129,28 @@ export function generatePseoUrls() {
         type: config.type,
         silo: 'competitor'
       });
+    });
+  });
+
+  // Silo 6: Competitor Battlegrounds
+  seoMatrix.battlegrounds.forEach(bg => {
+    urls.push({
+      slug: bg.slug,
+      title: bg.name,
+      intent: `Detailed Comparison: ${bg.name} - Amenities, Location & ROI`,
+      type: 'Comparison',
+      silo: 'battleground'
+    });
+  });
+
+  // Silo 7: Infrastructure Guides
+  seoMatrix.infraGuides.forEach(guide => {
+    urls.push({
+      slug: guide.slug,
+      title: guide.name,
+      intent: `${guide.name} - Complete Buyer's Guide`,
+      type: 'Guide',
+      silo: 'infra-guide'
     });
   });
 
