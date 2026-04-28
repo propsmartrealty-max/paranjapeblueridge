@@ -1,9 +1,16 @@
+"use client";
+
 import React from 'react';
+import { usePathname } from 'next/navigation';
+import { generatePseoUrls } from '@/data/seo-matrix';
 
 export default function JSONLD() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
+  const pathname = usePathname();
+  const slug = pathname ? pathname.replace(/^\//, '') : '';
+  const allUrls = generatePseoUrls();
+  const pseoData = allUrls.find(u => u.slug === slug);
+
+  const baseGraph: any[] = [
       {
         "@type": "RealEstateListing",
         "@id": "https://www.paranjapeblueridge.com/listing",
@@ -52,8 +59,28 @@ export default function JSONLD() {
             }
           }
         ]
-      },
-      {
+      }
+  ];
+
+  if (pseoData) {
+      baseGraph.push({
+        "@type": "Product",
+        "name": pseoData.title,
+        "description": pseoData.intent,
+        "brand": {
+          "@type": "Brand",
+          "name": "Paranjape Schemes"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "9760000",
+          "availability": "https://schema.org/InStock",
+          "url": `https://www.paranjapeblueridge.com/${pseoData.slug}`
+        }
+      });
+  } else {
+      baseGraph.push({
         "@type": "Product",
         "name": "The Altius",
         "description": "Ultra-luxury 4 & 5 BHK riverfront apartments with golf course access.",
@@ -68,8 +95,12 @@ export default function JSONLD() {
           "availability": "https://schema.org/InStock",
           "url": "https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune"
         }
-      }
-    ]
+      });
+  }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": baseGraph
   };
 
   return (

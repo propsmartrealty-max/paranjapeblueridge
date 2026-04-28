@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { projects } from '@/data/master-data';
+import { generatePseoUrls } from '@/data/seo-matrix';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.paranjapeblueridge.com';
@@ -19,6 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }))
   );
+
+  const pseoUrlsData = generatePseoUrls();
+  const pseoUrls = pseoUrlsData.map(u => ({
+    url: `${baseUrl}/${u.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.7,
+  }));
 
   const staticUrls = [
     {
@@ -41,5 +50,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
-  return [...staticUrls, ...projectUrls, ...configUrls];
+  return [...staticUrls, ...projectUrls, ...configUrls, ...pseoUrls];
 }

@@ -12,6 +12,8 @@ import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 
 import { motion } from 'framer-motion';
 import EnquiryModal from '@/components/EnquiryModal';
 import { useState, useEffect } from 'react';
+import { generatePseoUrls } from '@/data/seo-matrix';
+import PseoLandingPage from '@/components/PseoLandingPage';
 
 export default function ProjectSilo() {
   const { slug } = useParams();
@@ -27,9 +29,15 @@ export default function ProjectSilo() {
   }, []);
   
   const project = projects.find(p => p.slug === slug);
+  const allUrls = generatePseoUrls();
+  const pseoData = allUrls.find(u => u.slug === slug);
 
-  if (!project) return notFound();
+  if (!project && !pseoData) return notFound();
   if (!hasMounted) return <div className="bg-navy h-screen"></div>;
+
+  if (pseoData) {
+    return <PseoLandingPage pageData={pseoData} />;
+  }
 
   return (
     <main className="min-h-screen bg-navy text-text">

@@ -10,6 +10,7 @@ import FAQSection from '@/components/FAQSection';
 import ConnectivityHub from '@/components/ConnectivityHub';
 import BlogSection from '@/components/BlogSection';
 import EnquiryModal from '@/components/EnquiryModal';
+import PopularSearches from '@/components/PopularSearches';
 import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
@@ -214,14 +215,22 @@ export default function Home() {
                 </ul>
             </div>
         </div>
-        
-        <div className="container relative z-10 mt-16 pt-8 border-t border-white/10 text-center">
-            <p className="text-[10px] text-text-light/50 max-w-5xl mx-auto leading-relaxed">
-                <strong className="text-warm-white">Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute a legal offering. All images, plans, layouts, and specifications are indicative and subject to change as per the developer's discretion or regulatory approvals. Furniture, fixtures, and accessories shown are for representational purposes only. Please verify all project details, including RERA registration, amenities, and pricing with the official sales team before making a purchasing decision.
-            </p>
-            <p className="text-[10px] text-text-light/30 mt-4">&copy; {new Date().getFullYear()} Paranjape Blue Ridge. All rights reserved.</p>
-        </div>
       </footer>
+
+      {/* LEGAL DISCLAIMER */}
+      <section className="bg-navy-dark text-center py-6 border-t border-white/5">
+        <div className="container">
+          <p className="text-[10px] text-text-light/50 max-w-4xl mx-auto leading-relaxed">
+            Disclaimer: The images, layout plans, and specifications shown are for representation purposes only. 
+            All details should be verified with the official MahaRERA website or the sales team before making a purchase decision. 
+            This website belongs to an authorized marketing partner and does not constitute an official offer from Paranjape Schemes.
+            <br className="my-1"/>
+            &copy; {new Date().getFullYear()} Paranjape Blue Ridge. All Rights Reserved.
+          </p>
+        </div>
+      </section>
+
+      <PopularSearches />
     </main>
   );
 }

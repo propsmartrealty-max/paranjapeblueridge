@@ -20,13 +20,26 @@ async function forceIndex() {
 
   const indexing = google.indexing({ version: 'v3', auth });
 
-  const urls = [
-    'https://www.paranjapeblueridge.com',
-    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune',
-    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune',
-    'https://www.paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune'
-  ];
+  console.log('Fetching live sitemap from production...');
+  let urls = [];
+  try {
+      const response = await fetch('https://www.paranjapeblueridge.com/sitemap.xml');
+      const xml = await response.text();
+      // Regex to extract all <loc> tags
+      const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
+      for (const match of matches) {
+          urls.push(match[1]);
+      }
+      console.log(`✅ Found ${urls.length} URLs in sitemap.`);
+  } catch (error) {
+      console.error('❌ Failed to fetch sitemap:', error.message);
+      return;
+  }
 
+  // Batch index to prevent rate limiting (we will add a slight delay)
+  console.log('Initiating Google Indexing API dispatch...');
+  let successCount = 0;
+  
   for (const url of urls) {
     try {
       const res = await indexing.urlNotifications.publish({
@@ -36,10 +49,15 @@ async function forceIndex() {
         },
       });
       console.log(`✅ Success: Indexed ${url} (Status: ${res.status})`);
+      successCount++;
+      // Sleep for 100ms to avoid Google API rate limits
+      await new Promise(resolve => setTimeout(resolve, 100));
     } catch (err) {
       console.error(`❌ Error indexing ${url}:`, err.message);
     }
   }
+  
+  console.log(`\n🎉 Force-Indexing Complete! Successfully submitted ${successCount}/${urls.length} URLs to Google.`);
 }
 
 forceIndex();
