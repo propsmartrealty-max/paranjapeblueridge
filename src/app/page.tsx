@@ -209,10 +209,17 @@ export default function Home() {
                 <ul className="space-y-4 text-[11px] text-text-light list-none p-0">
                     <li>Promenade: P52100055581</li>
                     <li>Altius: P52100078116</li>
-                    <li>Agent: Propsmart Realty</li>
+                    <li>Ridge 41: P52100000054</li>
                     <li className="text-gold font-bold">MahaRERA Registered</li>
                 </ul>
             </div>
+        </div>
+        
+        <div className="container relative z-10 mt-16 pt-8 border-t border-white/10 text-center">
+            <p className="text-[10px] text-text-light/50 max-w-5xl mx-auto leading-relaxed">
+                <strong className="text-warm-white">Disclaimer:</strong> The information provided on this website is for general informational purposes only and does not constitute a legal offering. All images, plans, layouts, and specifications are indicative and subject to change as per the developer's discretion or regulatory approvals. Furniture, fixtures, and accessories shown are for representational purposes only. Please verify all project details, including RERA registration, amenities, and pricing with the official sales team before making a purchasing decision.
+            </p>
+            <p className="text-[10px] text-text-light/30 mt-4">&copy; {new Date().getFullYear()} Paranjape Blue Ridge. All rights reserved.</p>
         </div>
       </footer>
     </main>
