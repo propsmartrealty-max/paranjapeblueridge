@@ -25,8 +25,8 @@ export default function Navbar() {
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`flex items-center gap-6 px-6 py-3 rounded-full border border-glass-border transition-all duration-500 ${
-            scrolled ? 'bg-navy/90 backdrop-blur-3xl shadow-2xl scale-95' : 'bg-navy/40 backdrop-blur-xl'
+          className={`flex items-center gap-6 px-6 py-3 rounded-full border border-glass-border transition-all duration-500 shadow-2xl ${
+            scrolled ? 'bg-black/90 backdrop-blur-3xl scale-95 border-gold/30' : 'bg-black/40 backdrop-blur-xl border-white/10'
           }`}
         >
           <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group">
@@ -37,7 +37,7 @@ export default function Navbar() {
              />
              <div className="flex flex-col">
                <span className="font-serif font-bold text-sm tracking-widest text-warm-white group-hover:text-gold transition-colors">BLUE RIDGE</span>
-               <span className="text-[10px] text-gold font-bold tracking-[4px] uppercase">Sovereign</span>
+               <span className="text-[10px] text-gilded font-bold tracking-[4px] uppercase">Sovereign</span>
              </div>
           </Link>
 
@@ -47,14 +47,14 @@ export default function Navbar() {
                                  p.id === 'altius' ? 'Altius' : '41 Ridge';
               return (
                 <li key={p.id}>
-                  <a href={`/${p.slug}`} className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">
+                  <a href={`/${p.slug}`} className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">
                     {t(displayName, p.id === 'promenade' ? 'प्रॉमनेड' : p.id === 'altius' ? 'अल्टियस' : '४१ रिज')}
                   </a>
                 </li>
               );
             })}
-            <li><a href="/#amenities" className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Township', 'टाऊनशिप')}</a></li>
-            <li><a href="/#market" className="text-xs font-bold text-text hover:text-gold uppercase tracking-widest transition-colors">{t('Insights', 'इन्साईट्स')}</a></li>
+            <li><a href="/#amenities" className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">{t('Township', 'टाऊनशिप')}</a></li>
+            <li><a href="/#market" className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">{t('Insights', 'इन्साईट्स')}</a></li>
             <li><a href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</a></li>
           </ul>
 

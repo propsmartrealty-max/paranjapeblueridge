@@ -38,19 +38,19 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
       >
         <span className="text-gold font-bold tracking-[6px] uppercase text-xs">{project.tagline}</span>
         <h2 className="text-5xl font-serif text-warm-white leading-tight">
-          {project.name.split(' ')[0]} <span className="italic font-normal text-gold">{project.name.split(' ').slice(1).join(' ')}</span>
+          {project.name.split(' ')[0]} <span className="italic font-normal text-gilded">{project.name.split(' ').slice(1).join(' ')}</span>
         </h2>
         <p className="text-text-light text-lg leading-relaxed">{project.description}</p>
         
         <div className="grid grid-cols-2 gap-6 mt-4">
-          <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+          <div className="bg-black/40 p-6 rounded-2xl border border-gold/10">
             <Ruler className="text-gold mb-3" size={20} />
-            <span className="block text-2xl font-serif text-gold">{project.carpetArea.split(' ')[0]}</span>
+            <span className="block text-2xl font-serif text-gilded">{project.carpetArea.split(' ')[0]}</span>
             <span className="text-[10px] text-text-light uppercase tracking-widest">Carpet Area (Sq.Ft)</span>
           </div>
-          <div className="bg-white/5 p-6 rounded-2xl border border-white/5">
+          <div className="bg-black/40 p-6 rounded-2xl border border-gold/10">
             <IndianRupee className="text-gold mb-3" size={20} />
-            <span className="block text-2xl font-serif text-gold">{project.price.split(' ')[1]}</span>
+            <span className="block text-2xl font-serif text-gilded">{project.price.split(' ')[1]}</span>
             <span className="text-[10px] text-text-light uppercase tracking-widest">Starting Price</span>
           </div>
         </div>

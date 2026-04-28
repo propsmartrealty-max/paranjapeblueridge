@@ -7,7 +7,7 @@ import MarketAnalysis from '@/components/MarketAnalysis';
 import ComparisonMatrix from '@/components/ComparisonMatrix';
 import InvestmentMatrix from '@/components/InvestmentMatrix';
 import TownshipExperience from '@/components/TownshipExperience';
-import FAQSection from '@/components/FAQSection';
+import IntelligenceHub from '@/components/IntelligenceHub';
 import ConnectivityHub from '@/components/ConnectivityHub';
 import BlogSection from '@/components/BlogSection';
 import EnquiryModal from '@/components/EnquiryModal';
@@ -33,7 +33,7 @@ export default function Home() {
   if (!hasMounted) return <div className="bg-navy h-screen w-full"></div>;
 
   return (
-    <main className="bg-navy text-text selection:bg-gold selection:text-navy">
+    <main className="bg-black text-text selection:bg-gold selection:text-navy">
       <Navbar />
       <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
@@ -48,7 +48,7 @@ export default function Home() {
             alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
         </div>
         
         <div className="container relative z-10 pt-20">
@@ -58,14 +58,14 @@ export default function Home() {
               {t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
             <h1 className="text-[7rem] font-serif text-warm-white leading-[0.9] tracking-tighter mb-10">
-              {t('Zenith of', 'सर्वोच्च')} <br />
-              <span className="italic text-gold font-normal">{t('Integrated Living', 'इंटिग्रेटेड लिविंग')}</span>
+              <span className="text-gilded block mb-2">{t('Zenith of', 'सर्वोच्च')}</span>
+              <span className="italic font-normal">{t('Integrated Living', 'इंटिग्रेटेड लिविंग')}</span>
             </h1>
             <p className="text-xl text-text-light max-w-2xl leading-relaxed mb-12">
               {t("Welcome to Paranjape Blue Ridge—Pune's most celebrated integrated township. A future-ready ecosystem crafted for the elite IT workforce of Hinjewadi Phase 1.", "परंजपे ब्लू रिजमध्ये आपले स्वागत आहे—पुण्यातील सर्वात प्रसिद्ध इंटिग्रेटेड टाऊनशिप. हिंजवडी फेज १ मधील एलिट आयटी कर्मचाऱ्यांसाठी तयार केलेली भविष्यातील इकोसिस्टम.")}
             </p>
             <div className="flex gap-6">
-              <a href="#market" className="bg-gold text-navy px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-2xl">
+              <a href="#market" className="bg-gold text-navy px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow">
                 {t('Analyze Market', 'मार्केट विश्लेषण')}
               </a>
               <a href="#amenities" className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-all">
@@ -77,8 +77,8 @@ export default function Home() {
       </section>
 
       {/* TRUST SYMBOLS */}
-      <section className="py-10 border-y border-white/5 bg-navy-light/30">
-        <div className="container flex justify-between items-center opacity-40 grayscale group hover:grayscale-0 transition-all">
+      <section className="py-10 border-y border-gold/10 bg-black">
+        <div className="container flex justify-between items-center opacity-60 grayscale group hover:grayscale-0 transition-all">
           <div className="flex items-center gap-3">
              <ShieldCheck className="text-gold" size={20} />
              <span className="text-[10px] uppercase font-bold tracking-[3px]">MahaRERA Certified</span>
@@ -87,7 +87,7 @@ export default function Home() {
              <Award className="text-gold" size={20} />
              <span className="text-[10px] uppercase font-bold tracking-[3px]">Best Township 2024</span>
           </div>
-          <div className="flex items-center gap-3 font-serif italic text-lg text-warm-white">
+          <div className="flex items-center gap-3 font-serif italic text-2xl text-gilded">
              Paranjape Schemes
           </div>
           <div className="flex items-center gap-3">
@@ -111,7 +111,7 @@ export default function Home() {
         <div className="py-20">
           <div className="text-center mb-32">
             <span className="text-gold font-bold tracking-[6px] uppercase text-xs">The Architecture</span>
-            <h2 className="text-6xl font-serif text-warm-white mt-4">Residential <span className="italic font-normal text-gold">Volumes</span></h2>
+            <h2 className="text-6xl font-serif text-warm-white mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
           </div>
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} reverse={i % 2 !== 0} />
@@ -121,37 +121,49 @@ export default function Home() {
         {/* TOWNSHIP EXPERIENCE SECTION */}
         <TownshipExperience />
 
-        {/* CONNECTIVITY HUB SECTION */}
-        <ConnectivityHub />
+        {/* MARKET INTELLIGENCE HUB */}
+        <IntelligenceHub />
 
-        {/* FAQ SECTION */}
-        <FAQSection />
+        {/* CONNECTIVITY HUB SECTION */}
+        <div className="py-24">
+            <div className="mb-20 text-center">
+               <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Infrastructure Hardening</span>
+               <h2 className="text-5xl font-serif text-warm-white mt-4">Micro-Market <span className="italic font-normal text-gilded">Connectivity</span></h2>
+            </div>
+            <ConnectivityHub />
+        </div>
 
         {/* BLOG SECTION */}
-        <BlogSection />
+        <div className="py-24 border-t border-gold/10">
+            <div className="mb-20 text-center">
+               <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Thought Leadership</span>
+               <h2 className="text-5xl font-serif text-warm-white mt-4">The Sovereign <span className="italic font-normal text-gilded">Insights</span></h2>
+            </div>
+            <BlogSection />
+        </div>
 
         {/* ENQUIRY SECTION */}
         <section id="enquiry" className="py-32">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div>
                 <span className="text-gold font-bold tracking-[6px] uppercase text-xs">Priority Access</span>
-                <h2 className="text-6xl font-serif text-warm-white mt-4 leading-tight">Secure Your <br /><span className="italic text-gold font-normal">Sovereign Unit</span></h2>
+                <h2 className="text-6xl font-serif text-warm-white mt-4 leading-tight">Secure Your <br /><span className="italic text-gilded font-normal">Sovereign Unit</span></h2>
                 <p className="text-text-light mt-8 text-lg">Direct dispatch to our relationship managers for immediate inventory updates and virtual tours.</p>
                 <div className="mt-12 space-y-6">
                     <button 
                         onClick={() => setIsModalOpen(true)}
-                        className="w-full flex items-center justify-between p-6 bg-white/5 hover:bg-white/10 transition-colors rounded-2xl border border-white/5 cursor-pointer text-left"
+                        className="w-full flex items-center justify-between p-6 bg-white/5 hover:bg-gold/5 transition-colors rounded-2xl border border-gold/10 cursor-pointer text-left group"
                     >
                         <div className="flex items-center gap-6">
                             <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold"><Mail size={20} /></div>
                             <div>
                                 <span className="block text-[10px] text-text-light uppercase tracking-widest mb-1">Priority Enquiries</span>
-                                <span className="text-warm-white font-bold">Request Details Now</span>
+                                <span className="text-warm-white font-bold group-hover:text-gold transition-colors">Request Details Now</span>
                             </div>
                         </div>
                         <span className="text-gold opacity-50">→</span>
                     </button>
-                    <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-gold/10">
                         <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold"><MapPin size={20} /></div>
                         <div>
                             <span className="block text-[10px] text-text-light uppercase tracking-widest mb-1">Visit Hub</span>
@@ -161,34 +173,34 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-navy-light p-12 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden">
+              <div className="bg-black p-12 rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                     <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="h-20" alt="Paranjape Blue Ridge Township Logo" />
                 </div>
                 <form className="space-y-6 relative z-10">
                   <div className="space-y-2">
                     <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Full Name</label>
-                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="Enter your name" />
+                    <input type="text" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="Enter your name" />
                   </div>
                   <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Phone</label>
-                        <input type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="+91" />
+                        <input type="tel" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="+91" />
                     </div>
                     <div className="space-y-2">
                         <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Email</label>
-                        <input type="email" className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="email@example.com" />
+                        <input type="email" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="email@example.com" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Interested In</label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all appearance-none">
+                    <select className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all appearance-none">
                         <option>Promenade Residences</option>
                         <option>The Altius</option>
                         <option>Ridges 41</option>
                     </select>
                   </div>
-                  <button className="w-full bg-gradient-to-r from-gold to-gold-light text-navy py-5 rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl">
+                  <button className="w-full bg-gold text-navy py-5 rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl gold-glow">
                     Dispatch to Sovereign Vault
                   </button>
                 </form>
@@ -197,8 +209,8 @@ export default function Home() {
         </section>
       </div>
 
-      <footer className="py-20 border-t border-white/5 bg-navy-light/20 relative overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-white/[0.02] whitespace-nowrap pointer-events-none">BLUE RIDGE</div>
+      <footer className="py-20 border-t border-gold/10 bg-black relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
             <div className="col-span-2">
                 <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-10 brightness-0 invert mb-8" alt="" />
@@ -219,14 +231,14 @@ export default function Home() {
                     <li>Promenade: P52100055581</li>
                     <li>Altius: P52100078116</li>
                     <li>Ridge 41: P52100000054</li>
-                    <li className="text-gold font-bold">MahaRERA Registered</li>
+                    <li className="text-gilded font-bold">MahaRERA Registered</li>
                 </ul>
             </div>
         </div>
       </footer>
 
       {/* LEGAL DISCLAIMER */}
-      <section className="bg-navy-dark text-center py-6 border-t border-white/5">
+      <section className="bg-black text-center py-6 border-t border-gold/10">
         <div className="container">
           <p className="text-[10px] text-text-light/50 max-w-4xl mx-auto leading-relaxed">
             Disclaimer: The images, layout plans, and specifications shown are for representation purposes only. 

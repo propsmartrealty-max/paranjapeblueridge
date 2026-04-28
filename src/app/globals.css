@@ -3,24 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --navy: #060b13;
-  --navy-light: #0d1522;
-  --gold: #d4a853;
-  --gold-light: #e8c87a;
-  --text: #c8cdd3;
-  --text-light: #8b95a2;
-  --warm-white: #f8f6f3;
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --navy: #000000; /* Pure Obsidian for maximum Gold contrast */
+  --navy-light: #0a0a0a;
+  --gold: #c5a059; /* Imperial Gold */
+  --gold-light: #e6c88f; /* Champagne Gold */
+  --text: #e5e5e5; /* High contrast silver-white */
+  --text-light: #a3a3a3;
+  --warm-white: #ffffff;
+  --glass-border: rgba(197, 160, 89, 0.2); /* Golden glass border */
 }
 
 @layer base {
   body {
     @apply bg-navy text-text;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
+    @apply tracking-tighter;
   }
 }
 
@@ -28,33 +30,34 @@
   position: fixed;
   inset: 0;
   background-image: linear-gradient(var(--glass-border) 1px, transparent 1px), linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.05;
+  background-size: 60px 60px;
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Aurelian Luxe */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--navy);
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--navy-light);
-  border: 2px solid var(--navy);
-  border-radius: 10px;
+  background: var(--gold);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--gold-light);
 }
 
 @layer utilities {
-  .direction-rtl {
-    direction: rtl;
+  .text-gilded {
+    background: linear-gradient(to bottom, #f7e7ce 0%, #c5a059 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .direction-rtl > * {
-    direction: ltr;
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
   }
 }

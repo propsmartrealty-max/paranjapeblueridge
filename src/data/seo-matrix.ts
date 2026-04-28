@@ -167,5 +167,26 @@ export function generatePseoUrls() {
     });
   });
 
+  // REGIONAL SEO (Marathi)
+  seoMatrix.configurations.slice(0, 3).forEach(config => {
+    seoMatrix.locations.slice(0, 3).forEach(loc => {
+      // English version (already done below, but keeping it organized)
+      
+      // Marathi version
+      const mrConfig = config.slug === '2-bhk-flats' ? '२ बीएचके फ्लॅट' : 
+                       config.slug === '3-bhk-flats' ? '३ बीएचके फ्लॅट' : '४ बीएचके फ्लॅट';
+      const mrLoc = loc.slug === 'hinjewadi-phase-1' ? 'हिंजवडी फेज १' : 
+                    loc.slug === 'hinjewadi-phase-2' ? 'हिंजवडी फेज २' : 'हिंजवडी फेज ३';
+
+      urls.push({
+        slug: `mr-${config.slug}-in-${loc.slug}`,
+        title: `${mrLoc} मध्ये ${mrConfig}`,
+        intent: `${mrLoc} मध्ये विक्रीसाठी ${mrConfig} - परंजपे ब्लू रिज`,
+        type: config.type,
+        silo: 'regional-mr'
+      });
+    });
+  });
+
   return urls;
 }

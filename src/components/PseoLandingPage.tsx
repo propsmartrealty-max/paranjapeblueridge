@@ -10,6 +10,7 @@ import EnquiryModal from '@/components/EnquiryModal';
 import FAQSection from '@/components/FAQSection';
 import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
 import SiloLinks from '@/components/SiloLinks';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -23,8 +24,15 @@ interface PseoLandingPageProps {
 
 export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setLanguage } = useLanguage();
 
   useEffect(() => {
+    if (pageData.slug.startsWith('mr-')) {
+      setLanguage('mr');
+    } else {
+      setLanguage('en');
+    }
+
     const timer = setTimeout(() => {
       setIsModalOpen(true);
     }, 5000);
@@ -92,7 +100,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             Exclusive Premium Inventory
           </div>
           <h1 className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
-            {pageData.intent}
+            <span className="text-gilded">{pageData.intent}</span>
           </h1>
           <p className="text-xl text-text-light max-w-2xl leading-relaxed">
             Discover the finest {pageData.type.toLowerCase()}s tailored to your lifestyle. 
@@ -112,9 +120,9 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {projects.map((project, i) => (
-                <div key={i} className="bg-navy-light rounded-[2.5rem] border border-white/5 p-8 group hover:border-gold/30 transition-all flex flex-col h-full">
+                <div key={i} className="bg-black/40 rounded-[2.5rem] border border-gold/10 p-8 group hover:border-gold/30 transition-all flex flex-col h-full">
                     <div className="mb-6 flex-grow">
-                        <h3 className="text-2xl font-serif text-warm-white mb-2">{project.name}</h3>
+                        <h3 className="text-2xl font-serif text-gilded mb-2">{project.name}</h3>
                         <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-4">{project.tagline}</p>
                         <p className="text-sm text-text-light line-clamp-3">{project.description}</p>
                     </div>

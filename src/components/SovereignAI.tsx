@@ -54,7 +54,7 @@ export default function SovereignAI() {
       {/* Floating Toggle */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gold text-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all group"
+        className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gold text-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all group gold-glow"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
         {!isOpen && (
@@ -68,15 +68,15 @@ export default function SovereignAI() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-28 right-8 z-[100] w-[90vw] md:w-[400px] h-[600px] bg-navy-light border border-gold/30 rounded-[2.5rem] shadow-[0_20px_80px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
+            className="fixed bottom-28 right-8 z-[100] w-[90vw] md:w-[400px] h-[600px] bg-black border border-gold/30 rounded-[2.5rem] shadow-[0_20px_80px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="p-6 bg-navy border-b border-white/5 flex items-center gap-4">
+            <div className="p-6 bg-black border-b border-gold/10 flex items-center gap-4">
               <div className="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-gold">
                 <Bot size={24} />
               </div>
               <div>
-                <h3 className="text-warm-white font-serif text-lg leading-tight">Sovereign <span className="italic font-normal text-gold">Concierge</span></h3>
+                <h3 className="text-warm-white font-serif text-lg leading-tight">Sovereign <span className="italic font-normal text-gilded">Concierge</span></h3>
                 <div className="flex items-center gap-2">
                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
                    <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Active Intelligence</span>
@@ -112,7 +112,7 @@ export default function SovereignAI() {
             </div>
 
             {/* Input Area */}
-            <form onSubmit={handleSend} className="p-6 bg-navy border-t border-white/5">
+            <form onSubmit={handleSend} className="p-6 bg-black border-t border-gold/10">
               <div className="relative">
                 <input 
                   type="text"
