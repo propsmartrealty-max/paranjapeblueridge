@@ -3,7 +3,7 @@ import { projects } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.paranjapeblueridge.com';
+  const baseUrl = 'https://paranjapeblueridge.com';
   
   const projectUrls = projects.map(p => ({
     url: `${baseUrl}/${p.slug}`,

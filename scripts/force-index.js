@@ -23,7 +23,7 @@ async function forceIndex() {
   console.log('Fetching live sitemap from production...');
   let urls = [];
   try {
-      const response = await fetch('https://www.paranjapeblueridge.com/sitemap.xml');
+      const response = await fetch('https://paranjapeblueridge.com/sitemap.xml');
       const xml = await response.text();
       // Regex to extract all <loc> tags
       const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
