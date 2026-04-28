@@ -21,6 +21,8 @@ import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
+import InventoryMatrix from '@/components/InventoryMatrix';
+
 export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
@@ -103,6 +105,9 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      {/* FLASH-INVENTORY SECTION */}
+      <InventoryMatrix />
 
       {/* TRUST SYMBOLS */}
       <section className="py-10 border-y border-gold/10 bg-[var(--bg)]">

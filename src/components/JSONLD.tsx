@@ -58,6 +58,21 @@ export default function JSONLD() {
           "postalCode": "411057",
           "addressCountry": "IN"
         }
+      },
+      {
+        "@type": "VideoObject",
+        "name": "Paranjape Blue Ridge - Sovereign Cinematic Tour",
+        "description": "A 138-acre luxury integrated township by Paranjape Schemes in Hinjewadi Phase 1.",
+        "thumbnailUrl": "https://paranjapeblueridge.com/assets/images/township-night.png",
+        "uploadDate": "2024-05-01T08:00:00+08:00",
+        "duration": "PT2M30S",
+        "contentUrl": "https://paranjapeblueridge.com/assets/videos/sovereign-tour.mp4",
+        "embedUrl": "https://paranjapeblueridge.com",
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": { "@type": "WatchAction" },
+          "userInteractionCount": 8504
+        }
       }
   ];
 

@@ -2,8 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Sparkles, Mic, MicOff } from 'lucide-react';
 import { projects } from '@/data/master-data';
+
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
 
 export default function SovereignAI() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +19,9 @@ export default function SovereignAI() {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -20,12 +29,45 @@ export default function SovereignAI() {
     }
   }, [messages, isTyping]);
 
-  const handleSend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
 
-    const userMsg = input;
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+      recognitionRef.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setInput(transcript);
+        setIsListening(false);
+        // Automatically send after voice input
+        processInput(transcript);
+      };
+
+      recognitionRef.current.onerror = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+  }, []);
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      setIsListening(true);
+      recognitionRef.current?.start();
+    }
+  };
+
+  const processInput = (text: string) => {
+    if (!text.trim()) return;
+
+    setMessages(prev => [...prev, { role: 'user', text }]);
     setInput('');
     setIsTyping(true);
 
@@ -33,7 +75,7 @@ export default function SovereignAI() {
     setTimeout(() => {
       let response = "I'm analyzing your request within the Sovereign database... For specific inventory details, I recommend booking a priority site visit.";
       
-      const lower = userMsg.toLowerCase();
+      const lower = text.toLowerCase();
       if (lower.includes('altius')) {
         const p = projects.find(x => x.id === 'altius');
         response = `The Altius offers ${p?.carpetArea} configurations starting from ${p?.price}. It's currently ${p?.possession}. Would you like to see the floor plan?`;
@@ -47,6 +89,11 @@ export default function SovereignAI() {
       setMessages(prev => [...prev, { role: 'bot', text: response }]);
       setIsTyping(false);
     }, 1500);
+  };
+
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    processInput(input);
   };
 
   return (
@@ -79,7 +126,7 @@ export default function SovereignAI() {
                 <h3 className="text-warm-white font-serif text-lg leading-tight">Sovereign <span className="italic font-normal text-gilded">Concierge</span></h3>
                 <div className="flex items-center gap-2">
                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                   <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Active Intelligence</span>
+                   <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Voice-Enabled AI</span>
                 </div>
               </div>
             </div>
@@ -111,26 +158,62 @@ export default function SovereignAI() {
               )}
             </div>
 
+            {/* Voice Visualizer Overlay */}
+            {isListening && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="absolute inset-0 z-20 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center"
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <motion.div 
+                      key={i}
+                      animate={{ height: [20, 60, 20] }}
+                      transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.1 }}
+                      className="w-2 bg-gold rounded-full"
+                    ></motion.div>
+                  ))}
+                </div>
+                <span className="text-gold font-bold tracking-[4px] uppercase text-xs">Listening for Sovereign Command...</span>
+                <button 
+                  onClick={toggleListening}
+                  className="mt-12 w-16 h-16 bg-red-500 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl"
+                >
+                  <MicOff size={24} />
+                </button>
+              </motion.div>
+            )}
+
             {/* Input Area */}
             <form onSubmit={handleSend} className="p-6 bg-black border-t border-gold/10">
-              <div className="relative">
-                <input 
-                  type="text"
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  placeholder="Ask about floor plans, pricing..."
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-14 text-sm text-warm-white focus:border-gold outline-none transition-all"
-                />
+              <div className="flex items-center gap-3">
                 <button 
-                  type="submit"
-                  className="absolute right-2 top-2 p-3 bg-gold text-navy rounded-xl hover:scale-105 transition-all"
+                  type="button"
+                  onClick={toggleListening}
+                  className={`p-3 rounded-xl transition-all ${isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-white/5 text-gold border border-white/10 hover:bg-white/10'}`}
                 >
-                  <Send size={18} />
+                  <Mic size={18} />
                 </button>
+                <div className="relative flex-1">
+                  <input 
+                    type="text"
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    placeholder="Ask about floor plans..."
+                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-6 pr-12 text-sm text-warm-white focus:border-gold outline-none transition-all"
+                  />
+                  <button 
+                    type="submit"
+                    className="absolute right-1 top-1 p-2 bg-gold text-navy rounded-lg hover:scale-105 transition-all"
+                  >
+                    <Send size={16} />
+                  </button>
+                </div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-2 text-[8px] text-text-light/50 uppercase tracking-[2px]">
                 <Sparkles size={10} />
-                Powered by Sovereign AI
+                Neural Voice Interface Active
               </div>
             </form>
           </motion.div>

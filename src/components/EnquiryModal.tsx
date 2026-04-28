@@ -6,9 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialInterest?: string;
 }
 
-export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
+export default function EnquiryModal({ isOpen, onClose, initialInterest }: EnquiryModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -17,7 +18,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     bhk: '',
     budget: '',
     intent: 'Self Use',
-    message: ''
+    message: initialInterest ? `Interested in reserving ${initialInterest}` : ''
   });
   
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -101,9 +102,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           <div className="mb-10">
             <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 2</span>
             <h2 className="text-4xl font-serif text-warm-white leading-tight">
-              {step === 1 ? 'Priority ' : 'Qualification '}
-              <span className="italic font-normal text-gold">{step === 1 ? 'Enquiry' : 'Protocol'}</span>
+              {initialInterest ? 'Unit ' : (step === 1 ? 'Priority ' : 'Qualification ')}
+              <span className="italic font-normal text-gold">{initialInterest ? 'Reservation' : (step === 1 ? 'Enquiry' : 'Protocol')}</span>
             </h2>
+            {initialInterest && (
+              <p className="text-gold/80 text-sm mt-2">Holding configuration: <span className="font-bold">{initialInterest}</span></p>
+            )}
           </div>
 
           {status === 'success' ? (
