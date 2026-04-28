@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Suspense } from 'react';
 import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import StickyCTA from "@/components/StickyCTA";
+import PulseNotifications from "@/components/PulseNotifications";
+import SovereignAI from "@/components/SovereignAI";
+import TrackingProvider from "@/components/TrackingProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://paranjapeblueridge.com'),
@@ -46,7 +50,9 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
-          <div className="fixed top-0 left-0 right-0 z-[100] bg-navy-dark text-text-light/80 text-[9px] sm:text-[10px] py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 border-b border-white/10 font-medium tracking-[2px] uppercase backdrop-blur-md">
+          <Suspense fallback={null}>
+            <TrackingProvider>
+              <div className="fixed top-0 left-0 right-0 z-[100] bg-navy-dark text-text-light/80 text-[9px] sm:text-[10px] py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 border-b border-white/10 font-medium tracking-[2px] uppercase backdrop-blur-md">
              <span><strong className="text-gold">MahaRERA Registration Numbers:</strong></span>
              <span className="hidden sm:inline">Promenade: P52100055581</span>
              <span className="hidden sm:inline">Altius: P52100078116</span>
@@ -56,6 +62,10 @@ export default function RootLayout({
           <div className="architect-grid"></div>
           {children}
           <StickyCTA />
+          <PulseNotifications />
+          <SovereignAI />
+            </TrackingProvider>
+          </Suspense>
         </LanguageProvider>
       </body>
     </html>
