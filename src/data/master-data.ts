@@ -81,7 +81,7 @@ export const projects: Project[] = [
     taglineMr: "हाय-राईज २, ३ आणि ४ बीएचके लिविंग",
     description: "Part of the prestigious Ridges cluster at Blue Ridge Hinjewadi, Ridges 41 utilizes advanced MiVAN technology to offer modern 2, 3, and 4 BHK residences. Featuring 6 levels of dedicated parking, it's the ideal investment for those seeking high rental yields near Hinjewadi Phase 1 and 2.",
     descriptionMr: "ब्लू रिज हिंजवडीतील प्रतिष्ठित रिजेस क्लस्टरचा भाग, रिजेस ४१ प्रगत मिवान तंत्रज्ञानाचा वापर करून आधुनिक २, ३ आणि ४ बीएचके निवासस्थान प्रदान करते. ६ स्तरांच्या समर्पित पार्किंगसह, हिंजवडी फेज १ आणि २ जवळ उच्च भाड्याने मिळकत शोधणाऱ्यांसाठी हे एक आदर्श गुंतवणूक आहे.",
-    carpetArea: "970 - 1,550 Sq. Ft.",
+    carpetArea: "793 - 1,613 Sq. Ft.",
     price: "₹ 97.60 L onwards",
     storeys: 41,
     possession: "Dec 2028",
@@ -91,9 +91,9 @@ export const projects: Project[] = [
     ],
     amenities: ["Recreational Podium", "Multipurpose Hall", "Gymnasium", "Kids Play Area"],
     configurations: [
-      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "970 Sq. Ft.", price: "₹ 97.60 L*", image: "/assets/images/unit-plan-3bhk.png" },
-      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 Sq. Ft.", price: "₹ 1.25 Cr*", image: "/assets/images/floor-plan-3bhk.png" },
-      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,550 Sq. Ft.", price: "₹ 1.58 Cr*", image: "/assets/images/floor-plan-4bhk.png" }
+      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "793 - 970 Sq. Ft.", price: "₹ 97.60 L*", image: "/assets/images/unit-plan-3bhk.png" },
+      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 - 1,275 Sq. Ft.", price: "₹ 1.25 Cr*", image: "/assets/images/floor-plan-3bhk.png" },
+      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,592 - 1,613 Sq. Ft.", price: "₹ 1.58 Cr*", image: "/assets/images/floor-plan-4bhk.png" }
     ]
   }
 ];
