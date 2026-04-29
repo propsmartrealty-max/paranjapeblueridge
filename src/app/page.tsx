@@ -77,31 +77,31 @@ export default function Home() {
         
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container relative z-10 pt-20">
           <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-3 text-gold font-bold tracking-[8px] uppercase text-[10px] mb-8">
-              <span className="w-10 h-[1px] bg-gold"></span>
+            <span className="inline-flex items-center gap-2 sm:gap-3 text-gold font-bold tracking-[4px] sm:tracking-[8px] uppercase text-[8px] sm:text-[10px] mb-4 sm:mb-8">
+              <span className="w-6 sm:w-10 h-[1px] bg-gold"></span>
               {intent === 'investor' 
                 ? t('High-Yield Investment Legacy', 'उच्च-उत्पन्न गुंतवणूक वारसा') 
                 : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
-            <h1 className="text-[7rem] font-serif text-warm-white leading-[0.9] tracking-tighter mb-10">
-              <span className="block text-[1.8rem] font-bold tracking-[0.3em] uppercase text-gold mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
+            <h1 className="text-[2.8rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] font-serif text-warm-white leading-[0.95] sm:leading-[0.9] tracking-tighter mb-6 sm:mb-10">
+              <span className="block text-[0.85rem] sm:text-[1.2rem] md:text-[1.8rem] font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-gold mb-3 sm:mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
                 Paranjape Blue Ridge Township
               </span>
-              <span className="text-gilded block mb-2">
+              <span className="text-gilded block mb-1 sm:mb-2">
                 {intent === 'investor' ? t('Capital', 'कॅपिटल') : t('Zenith of', 'सर्वोच्च')}
               </span>
               <span className="italic font-normal">
                 {intent === 'investor' ? t('Appreciation', 'अप्रीशिएशन') : t('Integrated Living', 'इंटिग्रेटेड लिविंग')}
               </span>
             </h1>
-            <p className="text-xl text-text-light max-w-2xl leading-relaxed mb-12">
+            <p className="text-sm sm:text-base md:text-xl text-text-light max-w-2xl leading-relaxed mb-8 sm:mb-12">
               {t("Welcome to Paranjape Blue Ridge—Pune's most celebrated integrated township. A future-ready ecosystem crafted for the elite IT workforce of Hinjewadi Phase 1.", "परंजपे ब्लू रिजमध्ये आपले स्वागत आहे—पुण्यातील सर्वात प्रसिद्ध इंटिग्रेटेड टाऊनशिप. हिंजवडी फेज १ मधील एलिट आयटी कर्मचाऱ्यांसाठी तयार केलेली भविष्यातील इकोसिस्टम.")}
             </p>
-            <div className="flex gap-6">
-              <a href="#market" className="bg-gold text-navy px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+              <a href="#market" className="bg-gold text-navy px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow text-center">
                 {t('Analyze Market', 'मार्केट विश्लेषण')}
               </a>
-              <a href="#amenities" className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-all">
+              <a href="#amenities" className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-all text-center">
                 {t('Experience Township', 'टाऊनशिप अनुभव')}
               </a>
             </div>
@@ -113,22 +113,22 @@ export default function Home() {
       <InventoryMatrix />
 
       {/* TRUST SYMBOLS */}
-      <section className="py-10 border-y border-gold/10 bg-[var(--bg)]">
-        <div className="container flex justify-between items-center opacity-60 grayscale group hover:grayscale-0 transition-all">
-          <div className="flex items-center gap-3">
-             <ShieldCheck className="text-gold" size={20} />
-             <span className="text-[10px] uppercase font-bold tracking-[3px]">MahaRERA Certified</span>
+      <section className="py-6 sm:py-10 border-y border-gold/10 bg-[var(--bg)] overflow-x-auto">
+        <div className="container flex flex-wrap justify-center sm:justify-between items-center gap-4 sm:gap-3 opacity-60 grayscale group hover:grayscale-0 transition-all">
+          <div className="flex items-center gap-2 sm:gap-3">
+             <ShieldCheck className="text-gold" size={16} />
+             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">MahaRERA Certified</span>
           </div>
-          <div className="flex items-center gap-3">
-             <Award className="text-gold" size={20} />
-             <span className="text-[10px] uppercase font-bold tracking-[3px]">Best Township 2024</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+             <Award className="text-gold" size={16} />
+             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">Best Township 2024</span>
           </div>
-          <div className="flex items-center gap-3 font-serif italic text-2xl text-gilded">
+          <div className="hidden sm:flex items-center gap-3 font-serif italic text-xl md:text-2xl text-gilded">
              Paranjape Schemes
           </div>
-          <div className="flex items-center gap-3">
-             <MapPin className="text-gold" size={20} />
-             <span className="text-[10px] uppercase font-bold tracking-[3px]">Hinjewadi Phase 1</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+             <MapPin className="text-gold" size={16} />
+             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">Hinjewadi Phase 1</span>
           </div>
         </div>
       </section>
@@ -145,9 +145,9 @@ export default function Home() {
 
         {/* PROJECT SHOWCASE SECTION */}
         <div className="py-20">
-          <div className="text-center mb-32">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-xs">The Architecture</span>
-            <h2 className="text-6xl font-serif text-warm-white mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
+          <div className="text-center mb-16 sm:mb-32">
+            <span className="text-gold font-bold tracking-[4px] sm:tracking-[6px] uppercase text-[10px] sm:text-xs">The Architecture</span>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 sm:mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
           </div>
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} reverse={i % 2 !== 0} />
@@ -155,19 +155,19 @@ export default function Home() {
         </div>
 
         {/* LIFE BEYOND ORDINARY SECTION */}
-        <section className="relative h-[70vh] rounded-[3rem] overflow-hidden my-20 border border-gold/10 group">
+        <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-2xl sm:rounded-[3rem] overflow-hidden my-10 sm:my-20 border border-gold/10 group">
           <img
             src="/assets/images/township-aerial-night.jpg"
             alt="Paranjape Blue Ridge - Life Beyond Ordinary - 138 Acre Integrated Township Aerial View"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-16">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">138-Acre Integrated Township</span>
-            <h2 className="text-6xl font-serif text-warm-white leading-tight">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-6 sm:p-10 md:p-16">
+            <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px] block mb-2 sm:mb-4">138-Acre Integrated Township</span>
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-serif text-warm-white leading-tight">
               Life <span className="italic font-normal text-gilded">Beyond Ordinary</span>
             </h2>
-            <p className="text-white/80 mt-4 max-w-lg text-lg">A self-sufficient ecosystem with golf course, school, boat club, and Pune's finest IT connectivity — all within one sovereign address.</p>
+            <p className="text-white/80 mt-2 sm:mt-4 max-w-lg text-sm sm:text-base md:text-lg">A self-sufficient ecosystem with golf course, school, boat club, and Pune's finest IT connectivity — all within one sovereign address.</p>
           </div>
         </section>
 
@@ -175,16 +175,16 @@ export default function Home() {
         <TownshipExperience />
 
         {/* MASTER TOWNSHIP LAYOUT */}
-        <section id="master-layout" className="py-24 border-t border-gold/10">
-          <div className="text-center mb-16">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Sovereign Blueprint</span>
-            <h2 className="text-5xl font-serif text-warm-white">Master <span className="italic font-normal text-gilded">Township Layout</span></h2>
-            <p className="text-[var(--text)] mt-4 max-w-2xl mx-auto text-base leading-relaxed">
+        <section id="master-layout" className="py-12 sm:py-24 border-t border-gold/10">
+          <div className="text-center mb-8 sm:mb-16">
+            <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px] block mb-2 sm:mb-4">Sovereign Blueprint</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white">Master <span className="italic font-normal text-gilded">Township Layout</span></h2>
+            <p className="text-[var(--text)] mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-4 sm:px-0">
               Every amenity, every cluster, every green corridor — meticulously planned across 138 acres of Hinjewadi's most coveted address.
             </p>
           </div>
           {/* White bg ensures map labels are crisp — no overlay darkening */}
-          <div className="rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
+          <div className="rounded-xl sm:rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_15px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
             <img
               src="/assets/images/master-layout-plan-hq.jpg"
               alt="Paranjape Blue Ridge Master Layout Plan - 138 Acre Integrated Township Hinjewadi Phase 1 Pune"
@@ -205,30 +205,30 @@ export default function Home() {
         <IntelligenceHub />
 
         {/* CONNECTIVITY HUB SECTION */}
-        <div className="py-24">
-            <div className="mb-20 text-center">
-               <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Infrastructure Hardening</span>
-               <h2 className="text-5xl font-serif text-warm-white mt-4">Micro-Market <span className="italic font-normal text-gilded">Connectivity</span></h2>
+        <div className="py-12 sm:py-24">
+            <div className="mb-10 sm:mb-20 text-center">
+               <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px]">Infrastructure Hardening</span>
+               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">Micro-Market <span className="italic font-normal text-gilded">Connectivity</span></h2>
             </div>
             <ConnectivityHub />
         </div>
 
         {/* BLOG SECTION */}
-        <div className="py-24 border-t border-gold/10">
-            <div className="mb-20 text-center">
-               <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Thought Leadership</span>
-               <h2 className="text-5xl font-serif text-warm-white mt-4">The Sovereign <span className="italic font-normal text-gilded">Insights</span></h2>
+        <div className="py-12 sm:py-24 border-t border-gold/10">
+            <div className="mb-10 sm:mb-20 text-center">
+               <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px]">Thought Leadership</span>
+               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">The Sovereign <span className="italic font-normal text-gilded">Insights</span></h2>
             </div>
             <BlogSection />
         </div>
 
         {/* ENQUIRY SECTION */}
-        <section id="enquiry" className="py-32">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <section id="enquiry" className="py-16 sm:py-32">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
               <div>
-                <span className="text-gold font-bold tracking-[6px] uppercase text-xs">Priority Access</span>
-                <h2 className="text-6xl font-serif text-warm-white mt-4 leading-tight">Secure Your <br /><span className="italic text-gilded font-normal">Sovereign Unit</span></h2>
-                <p className="text-text-light mt-8 text-lg">Direct dispatch to our relationship managers for immediate inventory updates and virtual tours.</p>
+                <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[9px] sm:text-xs">Priority Access</span>
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 sm:mt-4 leading-tight">Secure Your <br /><span className="italic text-gilded font-normal">Sovereign Unit</span></h2>
+                <p className="text-text-light mt-4 sm:mt-8 text-sm sm:text-lg">Direct dispatch to our relationship managers for immediate inventory updates and virtual tours.</p>
                 <div className="mt-12 space-y-6">
                     <button 
                         onClick={() => setIsModalOpen(true)}
@@ -253,7 +253,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-[var(--bg)] p-12 rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
+              <div className="bg-[var(--bg)] p-6 sm:p-12 rounded-2xl sm:rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                     <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="h-20" alt="Paranjape Blue Ridge Township Logo" />
                 </div>

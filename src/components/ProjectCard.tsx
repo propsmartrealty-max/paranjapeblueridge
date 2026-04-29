@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, reverse }: ProjectCardProps) {
   return (
-    <div id={project.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40 ${reverse ? 'direction-rtl' : ''}`}>
+    <div id={project.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-20 sm:mb-40 ${reverse ? 'direction-rtl' : ''}`}>
       <motion.div 
         initial={{ x: reverse ? 100 : -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -46,22 +46,22 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
         viewport={{ once: true }}
         className="flex flex-col gap-6"
       >
-        <span className="text-gold font-bold tracking-[6px] uppercase text-xs">{project.tagline}</span>
-        <h2 className="text-5xl font-serif text-warm-white leading-tight">
+        <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[9px] sm:text-xs">{project.tagline}</span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white leading-tight">
           {project.name.split(' ')[0]} <span className="italic font-normal text-gilded">{project.name.split(' ').slice(1).join(' ')}</span>
         </h2>
-        <p className="text-text-light text-lg leading-relaxed">{project.description}</p>
+        <p className="text-text-light text-sm sm:text-base md:text-lg leading-relaxed">{project.description}</p>
         
-        <div className="grid grid-cols-2 gap-6 mt-4">
-          <div className="bg-[var(--bg)]/40 p-6 rounded-2xl border border-gold/10">
-            <Ruler className="text-gold mb-3" size={20} />
-            <span className="block text-2xl font-serif text-gilded">{project.carpetArea.split(' ')[0]}</span>
-            <span className="text-[10px] text-text-light uppercase tracking-widest">Carpet Area (Sq.Ft)</span>
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-4">
+          <div className="bg-[var(--bg)]/40 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gold/10">
+            <Ruler className="text-gold mb-2 sm:mb-3" size={18} />
+            <span className="block text-lg sm:text-2xl font-serif text-gilded">{project.carpetArea.split(' ')[0]}</span>
+            <span className="text-[8px] sm:text-[10px] text-text-light uppercase tracking-widest">Carpet Area (Sq.Ft)</span>
           </div>
-          <div className="bg-[var(--bg)]/40 p-6 rounded-2xl border border-gold/10">
-            <IndianRupee className="text-gold mb-3" size={20} />
-            <span className="block text-2xl font-serif text-gilded">{project.price.split(' ')[1]}</span>
-            <span className="text-[10px] text-text-light uppercase tracking-widest">Starting Price</span>
+          <div className="bg-[var(--bg)]/40 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gold/10">
+            <IndianRupee className="text-gold mb-2 sm:mb-3" size={18} />
+            <span className="block text-lg sm:text-2xl font-serif text-gilded">{project.price.split(' ')[1]}</span>
+            <span className="text-[8px] sm:text-[10px] text-text-light uppercase tracking-widest">Starting Price</span>
           </div>
         </div>
 
@@ -77,11 +77,11 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
             </div>
         </div>
 
-        <div className="mt-8 flex gap-4">
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <BlueprintExplorer projectId={project.id} projectName={project.name} />
             <a 
               href={`/${project.slug}`}
-              className="px-10 py-4 bg-white/5 border border-white/10 rounded-full text-warm-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-3"
+              className="px-6 sm:px-10 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-full text-warm-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-3"
             >
               View Official Page
             </a>
