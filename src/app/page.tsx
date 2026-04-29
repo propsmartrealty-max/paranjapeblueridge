@@ -62,11 +62,11 @@ export default function Home() {
       <section ref={heroRef} className="relative h-screen flex items-center overflow-hidden">
         <motion.div style={{ scale: imageScale }} className="absolute inset-0 z-0">
           <Image 
-            src="/assets/images/master-hero-v4.png" 
+            src={atmosphere === 'night' ? "/assets/images/real-township-night.jpg" : "/assets/images/real-township-day.jpg"} 
             fill
             priority
-            className={`object-cover transition-all duration-1000 ${atmosphere === 'night' ? 'opacity-40 brightness-50' : 'opacity-80 brightness-110'}`} 
-            alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Daytime Panorama"
+            className="object-cover transition-all duration-1000 opacity-80" 
+            alt="Paranjape Blue Ridge Hinjewadi Phase 1 - Actual Township View"
             sizes="100vw"
           />
           <div 

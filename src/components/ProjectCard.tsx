@@ -22,8 +22,8 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
       >
         {/* Real Image */}
         <motion.img 
-          src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
-               project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
+          src={project.id === 'promenade' ? '/assets/images/real-township-day-2.jpg' : 
+               project.id === 'altius' ? '/assets/images/real-altius-view.jpg' : 
                '/assets/images/ridges-41.png'} 
           alt={`Paranjape Blue Ridge ${project.name} - Luxury ${project.id === 'promenade' ? '3/4 BHK' : project.id === 'altius' ? '4/5 BHK' : '2/3 BHK'} Apartments in Hinjewadi Phase 1`}
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"

@@ -7,28 +7,28 @@ import { Layout, Maximize2, Ruler, Box } from 'lucide-react';
 
 const plans = [
   {
-    id: '2bhk',
-    label: '2 BHK',
-    name: 'Sovereign 2BHK Elite',
-    area: '850 - 950 Sq. Ft.',
-    image: '/assets/images/floor-plans/2bhk.png',
-    features: ['River Facing Balcony', 'Spacious Living', 'Master Suite']
+    id: '3bhk-1316',
+    label: '3 BHK (1316)',
+    name: 'Promenade 3BHK Luxury',
+    area: '1,316 Sq. Ft.',
+    image: '/assets/images/promenade-3bhk-1316.jpg',
+    features: ['River Facing Balcony', 'Advanced MiVAN Tech', 'Premium IT Hub Proximity']
   },
   {
-    id: '3bhk',
-    label: '3 BHK',
-    name: 'Sovereign 3BHK Grand',
-    area: '1250 - 1450 Sq. Ft.',
-    image: '/assets/images/floor-plans/3bhk.png',
-    features: ['Wrap-around Balcony', 'Servant Quarter', 'Premium Finishes']
+    id: '4bhk-1633',
+    label: '4 BHK (1633)',
+    name: 'Promenade 4BHK Type 1',
+    area: '1,633 Sq. Ft.',
+    image: '/assets/images/promenade-4bhk-1633.jpg',
+    features: ['Dual Balcony System', 'Spacious Servant Room', 'Skyline Vistas']
   },
   {
-    id: '4bhk',
-    label: '4 BHK',
-    name: 'Sovereign 4BHK Presidential',
-    area: '1850 - 2200 Sq. Ft.',
-    image: '/assets/images/floor-plans/4bhk.png',
-    features: ['Private Foyer', 'Home Theater Room', 'Sky Deck']
+    id: '4bhk-1718',
+    label: '4 BHK (1718)',
+    name: 'Promenade 4BHK Type 2',
+    area: '1,718 Sq. Ft.',
+    image: '/assets/images/promenade-4bhk-1718.jpg',
+    features: ['Grand Living Foyer', 'Master Suite Deck', 'Luxury Riverside Lifestyle']
   }
 ];
 

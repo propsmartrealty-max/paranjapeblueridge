@@ -35,7 +35,7 @@ export const projects: Project[] = [
     taglineMr: "न्यू अर्बनिझम लँडमार्क हिंजवडी फेज १",
     description: "Designed on the principles of New Urbanism, Promenade at Paranjape Blue Ridge Phase 1 features the first 41-storey river-facing residences in Hinjewadi. These high-rise luxury towers are the perfect choice for IT professionals at Infosys and Wipro looking for 3 BHK and 4 BHK flats near Rajiv Gandhi Infotech Park.",
     descriptionMr: "न्यू अर्बनिझमच्या तत्त्वांवर आधारित, परंजपे ब्लू रिज फेज १ मधील प्रॉमनेडमध्ये हिंजवडीतील पहिले ४१ मजली नदीभिमुख निवासस्थान आहे. इन्फोसिस आणि विप्रोमधील आयटी व्यावसायिकांसाठी हे लक्झरी टॉवर्स ३ बीएचके आणि ४ बीएचके फ्लॅट्ससाठी सर्वोत्तम पर्याय आहेत.",
-    carpetArea: "1,317 - 1,716 Sq. Ft.",
+    carpetArea: "1,316 - 1,718 Sq. Ft.",
     price: "₹ 1.65 Cr onwards",
     storeys: 41,
     possession: "Sept 2029",
@@ -46,8 +46,9 @@ export const projects: Project[] = [
     ],
     amenities: ["Podium Garden", "Work-from-Home Pods", "Private Mini Theatre", "Infinity Pool"],
     configurations: [
-      { slug: "3-bhk-flats", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स", carpetArea: "1,317 Sq. Ft.", price: "₹ 1.65 Cr*", image: "/assets/images/floor-plan-3bhk.png" },
-      { slug: "4-bhk-flats", title: "4 BHK Premium Flats", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,716 Sq. Ft.", price: "₹ 2.10 Cr*", image: "/assets/images/floor-plan-4bhk.png" }
+      { slug: "3-bhk-flats-1316", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स", carpetArea: "1,316 Sq. Ft.", price: "₹ 1.65 Cr*", image: "/assets/images/promenade-3bhk-1316.jpg" },
+      { slug: "4-bhk-flats-1633", title: "4 BHK Premium Flats (Type 1)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,633 Sq. Ft.", price: "₹ 2.05 Cr*", image: "/assets/images/promenade-4bhk-1633.jpg" },
+      { slug: "4-bhk-flats-1718", title: "4 BHK Premium Flats (Type 2)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,718 Sq. Ft.", price: "₹ 2.15 Cr*", image: "/assets/images/promenade-4bhk-1718.jpg" }
     ]
   },
   {
