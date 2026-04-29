@@ -103,7 +103,7 @@ export default function ConfigPage() {
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                     <a 
-                      href="https://wa.me/917744009295?text=Interested%20in%20Paranjape%20Blue%20Ridge" 
+                      href="https://wa.me/919860500216?text=Hello%20PropSmart%20Realty%2C%0A%0AI%20am%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APlease%20share%20the%20following%3A%0A%E2%9C%85%20Available%20inventory%20%26%20floor%20plans%0A%E2%9C%85%20Updated%20price%20list%0A%E2%9C%85%20Site%20visit%20schedule%0A%0AKindly%20call%20me%20back%20at%20your%20earliest%20convenience.%0A%0AThank%20you." 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/20"
