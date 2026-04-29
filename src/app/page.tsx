@@ -84,6 +84,9 @@ export default function Home() {
                 : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
             <h1 className="text-[7rem] font-serif text-warm-white leading-[0.9] tracking-tighter mb-10">
+              <span className="block text-[1.8rem] font-bold tracking-[0.3em] uppercase text-gold mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
+                Paranjape Blue Ridge Township
+              </span>
               <span className="text-gilded block mb-2">
                 {intent === 'investor' ? t('Capital', 'कॅपिटल') : t('Zenith of', 'सर्वोच्च')}
               </span>
