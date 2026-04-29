@@ -183,7 +183,7 @@ export default function Home() {
           {/* White bg ensures map labels are crisp — no overlay darkening */}
           <div className="rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
             <img
-              src="/assets/images/master-layout-plan.jpg"
+              src="/assets/images/master-layout-plan-hq.jpg"
               alt="Paranjape Blue Ridge Master Layout Plan - 138 Acre Integrated Township Hinjewadi Phase 1 Pune"
               className="w-full h-auto block"
             />
