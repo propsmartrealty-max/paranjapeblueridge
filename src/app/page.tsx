@@ -151,8 +151,47 @@ export default function Home() {
           ))}
         </div>
 
+        {/* LIFE BEYOND ORDINARY SECTION */}
+        <section className="relative h-[70vh] rounded-[3rem] overflow-hidden my-20 border border-gold/10 group">
+          <img 
+            src="/assets/images/township-aerial-night.jpg" 
+            alt="Paranjape Blue Ridge - Life Beyond Ordinary - 138 Acre Integrated Township Aerial View"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-16">
+            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">138-Acre Integrated Township</span>
+            <h2 className="text-6xl font-serif text-warm-white leading-tight">
+              Life <span className="italic font-normal text-gilded">Beyond Ordinary</span>
+            </h2>
+            <p className="text-text-light mt-4 max-w-lg text-lg">A self-sufficient ecosystem with golf course, school, boat club, and Pune's finest IT connectivity — all within one sovereign address.</p>
+          </div>
+        </section>
+
         {/* TOWNSHIP EXPERIENCE SECTION */}
         <TownshipExperience />
+
+        {/* MASTER TOWNSHIP LAYOUT */}
+        <section id="master-layout" className="py-24 border-t border-gold/10">
+          <div className="text-center mb-16">
+            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Sovereign Blueprint</span>
+            <h2 className="text-5xl font-serif text-warm-white">Master <span className="italic font-normal text-gilded">Township Layout</span></h2>
+            <p className="text-text-light mt-4 max-w-2xl mx-auto">Every amenity, every cluster, every green corridor — meticulously planned across 138 acres of Hinjewadi's most coveted address.</p>
+          </div>
+          <div className="relative rounded-[3rem] overflow-hidden border border-gold/20 shadow-2xl group">
+            <img 
+              src="/assets/images/master-layout-plan.jpg" 
+              alt="Paranjape Blue Ridge Master Layout Plan - 138 Acre Township Hinjewadi Phase 1 Pune"
+              className="w-full object-contain transition-transform duration-1000 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-8 right-8 flex gap-3">
+              <a href="/#enquiry" className="px-8 py-4 bg-gold text-navy font-bold text-[10px] uppercase tracking-widest rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold/30">
+                Request Full Brochure
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* MARKET INTELLIGENCE HUB */}
         <IntelligenceHub />
