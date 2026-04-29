@@ -6,7 +6,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import StickyCTA from "@/components/StickyCTA";
 import PulseNotifications from "@/components/PulseNotifications";
-import SovereignAI from "@/components/SovereignAI";
+
 import { TrackingProvider } from "@/components/TrackingProvider";
 import { AtmosphereProvider } from "@/context/AtmosphereContext";
 
@@ -75,7 +75,7 @@ export default function RootLayout({
                 {children}
                 <StickyCTA />
                 <PulseNotifications />
-                <SovereignAI />
+
               </TrackingProvider>
             </Suspense>
           </AtmosphereProvider>
