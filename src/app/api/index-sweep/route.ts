@@ -14,10 +14,22 @@ export async function POST(request: Request) {
 
   const SITE_URL = 'https://www.paranjapeblueridge.com';
   const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
-  const KEY_FILE = path.join(process.cwd(), 'scripts', 'google-service-account.json');
+  const serviceAccountEnv = process.env.GCP_SERVICE_ACCOUNT;
+  let credentials;
 
-  if (!fs.existsSync(KEY_FILE)) {
-    return NextResponse.json({ error: 'Service account key not found on server' }, { status: 500 });
+  if (serviceAccountEnv) {
+    try {
+      credentials = JSON.parse(serviceAccountEnv);
+    } catch (e) {
+      return NextResponse.json({ error: 'GCP_SERVICE_ACCOUNT is not valid JSON' }, { status: 500 });
+    }
+  } else {
+    const KEY_FILE = path.join(process.cwd(), 'scripts', 'google-service-account.json');
+    if (fs.existsSync(KEY_FILE)) {
+      credentials = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+    } else {
+      return NextResponse.json({ error: 'Service account credentials not found in environment or fallback file' }, { status: 500 });
+    }
   }
 
   try {
@@ -33,7 +45,7 @@ export async function POST(request: Request) {
 
     // 3. Authenticate with Google
     const auth = new google.auth.GoogleAuth({
-      keyFile: KEY_FILE,
+      credentials,
       scopes: ['https://www.googleapis.com/auth/indexing'],
     });
 
@@ -41,33 +53,34 @@ export async function POST(request: Request) {
     const authClient = await auth.getClient();
     google.options({ auth: authClient as any });
 
-    // 4. Indexing Loop (Limited to first 5 for test/safety in API route, or use a background task)
-    // For a real production app, this should be a background job (e.g. Inngest or Vercel Cron)
+    // 4. Indexing Loop (Optimized Concurrent Batching for Serverless)
     const successCount = [];
     const failCount = [];
 
-    // Limit to 10 URLs per manual trigger to avoid timeout
-    const targetUrls = urls.slice(0, 20);
-
-    for (const url of targetUrls) {
-      try {
-        await indexing.urlNotifications.publish({
-          requestBody: {
-            url: url,
-            type: 'URL_UPDATED',
-          },
-        });
-        successCount.push(url);
-      } catch (err: any) {
-        failCount.push({ url, error: err.message });
-      }
+    // Process all URLs in chunks of 20 to avoid timeouts but respect Google quotas
+    const chunkSize = 20;
+    for (let i = 0; i < urls.length; i += chunkSize) {
+      const chunk = urls.slice(i, i + chunkSize);
+      
+      const promises = chunk.map(async (url) => {
+        try {
+          await indexing.urlNotifications.publish({
+            requestBody: { url: url, type: 'URL_UPDATED' },
+          });
+          successCount.push(url);
+        } catch (err: any) {
+          failCount.push({ url, error: err.message });
+        }
+      });
+      
+      await Promise.all(promises);
     }
 
     return NextResponse.json({
       message: 'Indexing Sweep Initiated',
       stats: {
         totalFound: urls.length,
-        processed: targetUrls.length,
+        processed: urls.length,
         success: successCount.length,
         failed: failCount.length,
       },

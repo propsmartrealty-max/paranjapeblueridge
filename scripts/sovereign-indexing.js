@@ -35,13 +35,28 @@ async function fetchSitemapUrls() {
 }
 
 async function indexUrls(urls) {
-  if (!fs.existsSync(KEY_FILE)) {
-    console.error(`❌ Service account key not found at: ${KEY_FILE}`);
-    process.exit(1);
+  const serviceAccountEnv = process.env.GCP_SERVICE_ACCOUNT;
+  let credentials;
+
+  if (serviceAccountEnv) {
+    try {
+      credentials = JSON.parse(serviceAccountEnv);
+      console.log(`🔑 Using GCP_SERVICE_ACCOUNT from environment variables`);
+    } catch (e) {
+      console.error(`❌ GCP_SERVICE_ACCOUNT environment variable is not valid JSON`);
+      process.exit(1);
+    }
+  } else {
+    if (!fs.existsSync(KEY_FILE)) {
+      console.error(`❌ Service account key not found at: ${KEY_FILE} and GCP_SERVICE_ACCOUNT env var is missing`);
+      process.exit(1);
+    }
+    credentials = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+    console.log(`🔑 Using local key file: ${KEY_FILE}`);
   }
 
   const auth = new google.auth.GoogleAuth({
-    keyFile: KEY_FILE,
+    credentials,
     scopes: ['https://www.googleapis.com/auth/indexing'],
   });
 
