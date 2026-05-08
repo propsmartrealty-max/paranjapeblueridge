@@ -86,13 +86,14 @@ export default function Home() {
                 : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
             <h1 className="text-[2.8rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] font-serif text-warm-white leading-[0.95] sm:leading-[0.9] tracking-tighter mb-6 sm:mb-10">
-              <span className="block text-[0.85rem] sm:text-[1.2rem] md:text-[1.8rem] font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-gold mb-3 sm:mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
+              <span className="sr-only">Paranjape Blue Ridge Hinjewadi Phase 1 - Premium 2, 3 & 4 BHK Ready Possession Flats</span>
+              <span className="block text-[0.85rem] sm:text-[1.2rem] md:text-[1.8rem] font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-gold mb-3 sm:mb-6" style={{ fontFamily: 'var(--font-sans)' }} aria-hidden="true">
                 Paranjape Blue Ridge Township
               </span>
-              <span className="text-gilded block mb-1 sm:mb-2">
+              <span className="text-gilded block mb-1 sm:mb-2" aria-hidden="true">
                 {intent === 'investor' ? t('Capital', 'कॅपिटल') : t('Zenith of', 'सर्वोच्च')}
               </span>
-              <span className="italic font-normal">
+              <span className="italic font-normal" aria-hidden="true">
                 {intent === 'investor' ? t('Appreciation', 'अप्रीशिएशन') : t('Integrated Living', 'इंटिग्रेटेड लिविंग')}
               </span>
             </h1>
@@ -158,10 +159,12 @@ export default function Home() {
 
         {/* LIFE BEYOND ORDINARY SECTION */}
         <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-2xl sm:rounded-[3rem] overflow-hidden my-10 sm:my-20 border border-gold/10 group">
-          <img
+          <Image
             src="/assets/images/township-aerial-night.jpg"
-            alt="Paranjape Blue Ridge - Life Beyond Ordinary - 138 Acre Integrated Township Aerial View"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            alt="Ready Possession Flats in Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Aerial View"
+            fill
+            sizes="100vw"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 p-6 sm:p-10 md:p-16">
@@ -187,9 +190,12 @@ export default function Home() {
           </div>
           {/* White bg ensures map labels are crisp — no overlay darkening */}
           <div className="rounded-xl sm:rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_15px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
-            <img
+            <Image
               src="/assets/images/master-layout-plan-hq.jpg"
-              alt="Paranjape Blue Ridge Master Layout Plan - 138 Acre Integrated Township Hinjewadi Phase 1 Pune"
+              alt="Paranjape Blue Ridge Township Master Layout Plan - Premium 2, 3 & 4 BHK Flats in Hinjewadi Phase 1 Pune"
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 80vw"
               className="w-full h-auto block"
             />
           </div>
@@ -260,7 +266,7 @@ export default function Home() {
 
               <div className="bg-[var(--bg)] p-6 sm:p-12 rounded-2xl sm:rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
-                    <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="h-20" alt="Paranjape Blue Ridge Township Logo" />
+                    <Image src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Blue Ridge Township Hinjewadi Phase 1 Logo" />
                 </div>
                 <form className="space-y-6 relative z-10">
                   <div className="space-y-2">
@@ -298,7 +304,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
             <div className="col-span-1 lg:col-span-1">
-                <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-10 brightness-0 invert mb-8" alt="Paranjape Schemes Construction Ltd Logo" />
+                <Image src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" width={200} height={40} className="h-10 w-auto brightness-0 invert mb-8" alt="Paranjape Schemes Construction Ltd - Top Real Estate Developers in Pune" />
                 <p className="text-text-light text-sm">Hinjewadi's first 138-acre integrated township. A Paranjape Schemes legacy setting global benchmarks in community living.</p>
             </div>
             <div>
