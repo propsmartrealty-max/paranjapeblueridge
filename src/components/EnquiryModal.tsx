@@ -22,11 +22,24 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   });
   
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [error, setError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const nextStep = (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    
+    // 10-digit Indian phone validation
+    const phoneRegex = /^[6-9]\d{9}$/;
+    const cleanPhone = formData.phone.replace(/[\s\-\(\)\+]/g, '');
+    const mobileOnly = cleanPhone.length > 10 ? cleanPhone.slice(-10) : cleanPhone;
+
+    if (!phoneRegex.test(mobileOnly)) {
+      setError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
     setStep(2);
   };
 
@@ -37,7 +50,12 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     // 1. Sovereign Vault - Local Storage Backup
     try {
       const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
-      existingLeads.push({ ...formData, timestamp: new Date().toISOString(), source: 'blueridge_qualified_modal' });
+      const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
+      existingLeads.push({ 
+        ...formData, 
+        timestamp: new Date().toISOString(), 
+        source: source === '/' ? 'Homepage' : source.replace(/^\//, '') 
+      });
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {
       console.error("Vault save failed", err);
@@ -109,6 +127,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
               <p className="text-gold/80 text-sm mt-2">Holding configuration: <span className="font-bold">{initialInterest}</span></p>
             )}
           </div>
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              {error}
+            </div>
+          )}
 
           {status === 'success' ? (
             <div className="bg-gold/10 text-gold p-8 rounded-3xl border border-gold/20 text-center animate-in slide-in-from-bottom duration-500">

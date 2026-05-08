@@ -20,7 +20,7 @@ if [ ! -f "scripts/google-service-account.json" ]; then
 else
     # 3. Trigger Indexing Sweep
     echo "📡 Triggering Sovereign Indexing Sweep..."
-    node scripts/google-indexing-api.js
+    node scripts/sovereign-indexing.js
 fi
 
 echo "──────────────────────────────────────────"

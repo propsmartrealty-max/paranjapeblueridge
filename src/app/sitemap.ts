@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
-import { projects } from '@/data/master-data';
+import { projects, articles } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://paranjapeblueridge.com';
+  const baseUrl = 'https://www.paranjapeblueridge.com';
   
   const projectUrls = projects.map(p => ({
     url: `${baseUrl}/${p.slug}`,
@@ -20,6 +20,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }))
   );
+
+  const brochureUrls = projects.map(p => ({
+    url: `${baseUrl}/brochure/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  const articleUrls = articles.map(a => ({
+    url: `${baseUrl}/insights/${a.slug}`,
+    lastModified: new Date(a.dateISO),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
 
   const pseoUrlsData = generatePseoUrls();
   const pseoUrls = pseoUrlsData.map(u => ({
@@ -42,13 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    {
-        url: `${baseUrl}/sovereign-vault`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
-        priority: 0.3,
-    }
   ];
 
-  return [...staticUrls, ...projectUrls, ...configUrls, ...pseoUrls];
+  return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...pseoUrls];
 }

@@ -11,6 +11,9 @@ export const seoMatrix = {
     { slug: 'hinjewadi-phase-2', name: 'Hinjewadi Phase 2' },
     { slug: 'hinjewadi-phase-3', name: 'Hinjewadi Phase 3' },
     { slug: 'wakad', name: 'Wakad' },
+    { slug: 'baner', name: 'Baner' },
+    { slug: 'balewadi', name: 'Balewadi' },
+    { slug: 'punawale', name: 'Punawale' },
     { slug: 'pune', name: 'Pune' }
   ],
   // Phase 3 Silos
@@ -19,40 +22,48 @@ export const seoMatrix = {
     { slug: 'near-quadron-business-park', name: 'near Quadron Business Park' },
     { slug: 'near-qubix-it-park', name: 'near Qubix IT Park' },
     { slug: 'near-infosys-hinjewadi', name: 'near Infosys Hinjewadi' },
-    { slug: 'near-tcs-hinjewadi', name: 'near TCS Hinjewadi' }
+    { slug: 'near-tcs-hinjewadi', name: 'near TCS Hinjewadi' },
+    { slug: 'near-wipro-hinjewadi', name: 'near Wipro Hinjewadi' }
   ],
   infrastructure: [
     { slug: 'near-hinjewadi-metro-station', name: 'near Hinjewadi Metro Station' },
     { slug: 'on-pune-metro-line-3', name: 'on Pune Metro Line 3' },
-    { slug: 'near-mumbai-pune-expressway', name: 'near Mumbai-Pune Expressway' }
+    { slug: 'near-mumbai-pune-expressway', name: 'near Mumbai-Pune Expressway' },
+    { slug: 'near-mahalunge-ingale-bridge', name: 'near Mahalunge-Ingale Bridge' }
   ],
   ecosystem: [
     { slug: 'with-golf-course', name: 'with Golf Course' },
     { slug: 'near-blue-ridge-public-school', name: 'near Blue Ridge Public School' },
-    { slug: 'with-private-boat-club', name: 'with Private Boat Club' }
+    { slug: 'with-private-boat-club', name: 'with Private Boat Club' },
+    { slug: 'river-facing-apartments', name: 'River Facing Apartments' },
+    { slug: 'integrated-township-living', name: 'Integrated Township Living' }
   ],
   investors: [
     { slug: 'high-rental-yield-properties', name: 'High Rental Yield Properties' },
     { slug: 'best-roi-real-estate-investment', name: 'Best ROI Real Estate Investment' },
     { slug: 'nri-investment-luxury-properties', name: 'NRI Investment Luxury Properties' },
-    { slug: 'pre-launch-offers', name: 'Pre-launch Offers' }
+    { slug: 'pre-launch-offers', name: 'Pre-launch Offers' },
+    { slug: 'ready-to-move-resale-flats', name: 'Ready-to-move Resale Flats' }
   ],
   competitors: [
     { slug: 'near-life-republic', name: 'near Life Republic' },
     { slug: 'near-lodha-belmondo', name: 'near Lodha Belmondo' },
-    { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' }
+    { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' },
+    { slug: 'near-shapoorji-joyville', name: 'near Shapoorji Joyville' }
   ],
   battlegrounds: [
     { slug: 'blue-ridge-vs-life-republic', name: 'Blue Ridge vs Life Republic', vs: 'Life Republic' },
     { slug: 'blue-ridge-vs-vtp-blue-waters', name: 'Blue Ridge vs VTP Blue Waters', vs: 'VTP Blue Waters' },
     { slug: 'blue-ridge-vs-lodha-belmondo', name: 'Blue Ridge vs Lodha Belmondo', vs: 'Lodha Belmondo' },
-    { slug: 'blue-ridge-vs-shapoorji-joyville', name: 'Blue Ridge vs Shapoorji Joyville', vs: 'Shapoorji Joyville' }
+    { slug: 'blue-ridge-vs-shapoorji-joyville', name: 'Blue Ridge vs Shapoorji Joyville', vs: 'Shapoorji Joyville' },
+    { slug: 'blue-ridge-vs-kumar-prospera', name: 'Blue Ridge vs Kumar Prospera', vs: 'Kumar Prospera' }
   ],
   infraGuides: [
     { slug: 'hinjewadi-metro-line-3-impact', name: 'Hinjewadi Metro Line 3 Impact & Stations' },
     { slug: 'blue-ridge-public-school-admission-guide', name: 'Blue Ridge Public School Admission & Facilities' },
     { slug: 'private-boat-club-membership-pune', name: 'Private Boat Club Membership & Riverfront Living' },
-    { slug: 'hinjewadi-phase-1-infrastructure-updates', name: 'Hinjewadi Phase 1 Latest Infrastructure Updates' }
+    { slug: 'hinjewadi-phase-1-infrastructure-updates', name: 'Hinjewadi Phase 1 Latest Infrastructure Updates' },
+    { slug: 'mula-river-rejuvenation-project-impact', name: 'Mula River Rejuvenation Project Impact' }
   ]
 };
 

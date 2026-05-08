@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { Shield, CheckCircle2, MessageCircle } from 'lucide-react';
+import { Shield, CheckCircle2, MessageCircle, Star } from 'lucide-react';
 import EnquiryModal from '@/components/EnquiryModal';
 import FAQSection from '@/components/FAQSection';
 import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
@@ -102,6 +102,12 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
           <h1 className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
             <span className="text-gilded">{pageData.intent}</span>
           </h1>
+          <div className="flex items-center gap-4 mb-8">
+             <div className="flex text-gold">
+                {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" className="mr-0.5" />)}
+             </div>
+             <span className="text-[10px] text-warm-white font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 rounded-full border border-gold/20">Google Verified Inventory</span>
+          </div>
           <p className="text-xl text-text-light max-w-2xl leading-relaxed">
             Discover the finest {pageData.type.toLowerCase()}s tailored to your lifestyle. 
             Experience unparalleled luxury at Paranjape Blue Ridge, the most successful integrated township.

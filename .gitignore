@@ -37,3 +37,6 @@ yarn-error.log*
 next-env.d.ts
 
 credentials/
+
+# ignore secrets
+scripts/google-service-account.json

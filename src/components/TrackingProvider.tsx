@@ -40,7 +40,7 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
       if (saved) setIntent(saved);
     }
 
-    console.log(`[SOVEREIGN TRACKING] Intent detected: ${currentIntent}`);
+    // Sovereign Tracking logic for intent-based content injection
   }, [pathname, searchParams]);
 
   return (

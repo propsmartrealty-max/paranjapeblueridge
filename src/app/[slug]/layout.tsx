@@ -20,13 +20,19 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title,
     description,
     alternates: {
-      canonical: `https://paranjapeblueridge.com/${params.slug}`,
+      canonical: `https://www.paranjapeblueridge.com/${params.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://paranjapeblueridge.com/${params.slug}`,
+      url: `https://www.paranjapeblueridge.com/${params.slug}`,
       images: [{ url: '/assets/images/township-night.png' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/assets/images/township-night.png'],
     },
   };
 }

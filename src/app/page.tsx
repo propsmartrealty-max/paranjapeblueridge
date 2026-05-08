@@ -12,6 +12,8 @@ import ConnectivityHub from '@/components/ConnectivityHub';
 import BlogSection from '@/components/BlogSection';
 import EnquiryModal from '@/components/EnquiryModal';
 import PopularSearches from '@/components/PopularSearches';
+import FAQSection from '@/components/FAQSection';
+import GoogleEcosystem from '@/components/GoogleEcosystem';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAtmosphere } from '@/context/AtmosphereContext';
 import { useBuyerIntent } from '@/components/TrackingProvider';
@@ -201,6 +203,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* GOOGLE ECOSYSTEM INTEGRATION */}
+        <GoogleEcosystem />
+
         {/* MARKET INTELLIGENCE HUB */}
         <IntelligenceHub />
 
@@ -275,7 +280,7 @@ export default function Home() {
                   <div className="space-y-2">
                     <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Interested In</label>
                     <select className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all appearance-none">
-                        <option>Promenade Residences</option>
+                <option>Promenade Residences</option>
                         <option>The Altius</option>
                         <option>Ridges 41</option>
                     </select>
@@ -292,17 +297,26 @@ export default function Home() {
       <footer className="py-20 border-t border-gold/10 bg-[var(--bg)] relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
-            <div className="col-span-2">
-                <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-10 brightness-0 invert mb-8" alt="" />
-                <p className="text-text-light max-sm">Hinjewadi's first 138-acre integrated township. A Paranjape Schemes legacy setting global benchmarks in community living.</p>
+            <div className="col-span-1 lg:col-span-1">
+                <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-10 brightness-0 invert mb-8" alt="Paranjape Schemes Construction Ltd Logo" />
+                <p className="text-text-light text-sm">Hinjewadi's first 138-acre integrated township. A Paranjape Schemes legacy setting global benchmarks in community living.</p>
             </div>
             <div>
-                <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Navigation</h4>
+                <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Projects</h4>
                 <ul className="space-y-4 text-sm text-text-light list-none p-0">
-                    <li className="hover:text-gold cursor-pointer transition-colors">Master Analysis</li>
-                    <li className="hover:text-gold cursor-pointer transition-colors">Project Portfolio</li>
-                    <li className="hover:text-gold cursor-pointer transition-colors">Township Amenities</li>
-                    <li className="hover:text-gold cursor-pointer transition-colors">Blogs & Insights</li>
+                    <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" className="hover:text-gold transition-colors">Promenade Residences</a></li>
+                    <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune" className="hover:text-gold transition-colors">The Altius</a></li>
+                    <li><a href="/paranjape-blue-ridge-41-hinjewadi-pune" className="hover:text-gold transition-colors">Ridges 41</a></li>
+                    <li><a href="/hinjewadi-micro-market" className="hover:text-gold transition-colors">Hinjewadi Micro-Market Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Insights</h4>
+                <ul className="space-y-4 text-sm text-text-light list-none p-0">
+                    <li><a href="/insights/why-blue-ridge-hinjewadi-best-investment-2026" className="hover:text-gold transition-colors">Best Investment 2026</a></li>
+                    <li><a href="/insights/ridges-41-new-benchmark-high-rise-living-hinjewadi" className="hover:text-gold transition-colors">Ridges 41 Analysis</a></li>
+                    <li><a href="/insights/hinjewadi-metro-line-3-impact-blue-ridge-property" className="hover:text-gold transition-colors">Metro Line 3 Impact</a></li>
+                    <li><a href="/insights/blue-ridge-public-school-admission-facilities-guide" className="hover:text-gold transition-colors">School Guide</a></li>
                 </ul>
             </div>
             <div>
@@ -329,6 +343,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* HOMEPAGE FAQ SECTION */}
+      <FAQSection />
 
       <PopularSearches />
     </main>

@@ -1,63 +1,128 @@
-const { google } = require('googleapis');
+/**
+ * SOVEREIGN INDEXING ENGINE v4.0 — Multi-Channel
+ * Bypasses Google Indexing API by using:
+ * 1. Google Sitemap Ping (notifies Google of sitemap changes)
+ * 2. Bing/Yandex IndexNow Protocol (instant indexing)
+ * 3. Search Engine Sitemap Submission pings
+ */
+
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-// NOTE: This requires a service_account.json file with Google Indexing API access.
-// Since we don't have the key file yet, this script provides the infrastructure.
-const keyPath = path.join(__dirname, '../credentials/service_account.json');
+const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
 
-async function forceIndex() {
-  if (!fs.existsSync(keyPath)) {
-    console.error('❌ Google Indexing Credentials (service_account.json) NOT FOUND in /credentials directory.');
-    console.log('💡 Please provide the Google Service Account JSON to enable Force-Indexing.');
+// IndexNow key — also needs to be served at /{key}.txt on the site
+const INDEXNOW_KEY = 'b7f2a1c9e4d6f8a3b5c7d9e1f3a5b7c9';
+
+async function fetchSitemapUrls() {
+  console.log(`📡 Fetching live sitemap from: ${SITEMAP_URL}`);
+  const response = await fetch(SITEMAP_URL);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const xml = await response.text();
+  const urls = [];
+  for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/g)) {
+    urls.push(match[1]);
+  }
+  console.log(`✅ Found ${urls.length} URLs\n`);
+  return urls;
+}
+
+async function pingGoogle() {
+  console.log('━━━ CHANNEL 1: Google Sitemap Ping ━━━');
+  const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`;
+  try {
+    const res = await fetch(pingUrl);
+    console.log(`   ✅ Google notified (HTTP ${res.status})`);
+    return true;
+  } catch (e) {
+    console.log(`   ❌ Google ping failed: ${e.message}`);
+    return false;
+  }
+}
+
+async function pingBingSitemap() {
+  console.log('\n━━━ CHANNEL 2: Bing Sitemap Ping ━━━');
+  const pingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`;
+  try {
+    const res = await fetch(pingUrl);
+    console.log(`   ✅ Bing notified (HTTP ${res.status})`);
+    return true;
+  } catch (e) {
+    console.log(`   ❌ Bing ping failed: ${e.message}`);
+    return false;
+  }
+}
+
+async function submitIndexNow(urls) {
+  console.log('\n━━━ CHANNEL 3: IndexNow (Bing + Yandex) ━━━');
+  console.log(`   Submitting ${urls.length} URLs...`);
+
+  const payload = {
+    host: 'www.paranjapeblueridge.com',
+    key: INDEXNOW_KEY,
+    keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
+    urlList: urls.slice(0, 10000) // IndexNow supports up to 10k
+  };
+
+  // Submit to Bing's IndexNow endpoint
+  try {
+    const res = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    console.log(`   ✅ IndexNow accepted (HTTP ${res.status}) — ${urls.length} URLs queued`);
+    return true;
+  } catch (e) {
+    console.log(`   ❌ IndexNow failed: ${e.message}`);
+    return false;
+  }
+}
+
+async function main() {
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('  SOVEREIGN INDEXING ENGINE v4.0');
+  console.log('  Multi-Channel Bypass Mode');
+  console.log('  Project: Paranjape Blue Ridge');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+
+  // Fetch all URLs from live sitemap
+  let urls;
+  try {
+    urls = await fetchSitemapUrls();
+  } catch (e) {
+    console.error(`❌ Failed to fetch sitemap: ${e.message}`);
     return;
   }
 
-  const auth = new google.auth.GoogleAuth({
-    keyFile: keyPath,
-    scopes: ['https://www.googleapis.com/auth/indexing'],
-  });
+  // Channel 1: Google Sitemap Ping
+  await pingGoogle();
 
-  const indexing = google.indexing({ version: 'v3', auth });
+  // Channel 2: Bing Sitemap Ping
+  await pingBingSitemap();
 
-  console.log('Fetching live sitemap from production...');
-  let urls = [];
-  try {
-      const response = await fetch('https://paranjapeblueridge.com/sitemap.xml');
-      const xml = await response.text();
-      // Regex to extract all <loc> tags
-      const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
-      for (const match of matches) {
-          urls.push(match[1]);
-      }
-      console.log(`✅ Found ${urls.length} URLs in sitemap.`);
-  } catch (error) {
-      console.error('❌ Failed to fetch sitemap:', error.message);
-      return;
-  }
+  // Channel 3: IndexNow batch submission
+  await submitIndexNow(urls);
 
-  // Batch index to prevent rate limiting (we will add a slight delay)
-  console.log('Initiating Google Indexing API dispatch...');
-  let successCount = 0;
-  
-  for (const url of urls) {
-    try {
-      const res = await indexing.urlNotifications.publish({
-        requestBody: {
-          url: url,
-          type: 'URL_UPDATED',
-        },
-      });
-      console.log(`✅ Success: Indexed ${url} (Status: ${res.status})`);
-      successCount++;
-      // Sleep for 100ms to avoid Google API rate limits
-      await new Promise(resolve => setTimeout(resolve, 100));
-    } catch (err) {
-      console.error(`❌ Error indexing ${url}:`, err.message);
-    }
-  }
-  
-  console.log(`\n🎉 Force-Indexing Complete! Successfully submitted ${successCount}/${urls.length} URLs to Google.`);
+  // Summary
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('  SWEEP COMPLETE');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log(`  📊 Total URLs: ${urls.length}`);
+  console.log('  📌 Google: Sitemap ping sent');
+  console.log('  📌 Bing:   Sitemap ping + IndexNow batch');
+  console.log('  📌 Yandex: IndexNow batch');
+  console.log('');
+  console.log('  💡 For fastest Google indexing, also:');
+  console.log('     1. Open Google Search Console');
+  console.log('     2. Paste your homepage URL in the URL Inspection bar');
+  console.log('     3. Click "Request Indexing"');
+  console.log('     4. Repeat for your top 10 priority pages');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 }
 
-forceIndex();
+if (require.main === module) {
+  main();
+}

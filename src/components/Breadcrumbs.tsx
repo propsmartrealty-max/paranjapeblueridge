@@ -14,23 +14,26 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   const { t } = useLanguage();
 
   return (
-    <nav className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light mb-10">
+    <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light mb-10">
       <Link href="/" className="hover:text-gold transition-colors flex items-center gap-1.5">
         <Home size={10} />
         {t('Home', 'होम')}
       </Link>
       
-      {items.map((item, idx) => (
-        <React.Fragment key={idx}>
-          <ChevronRight size={10} className="opacity-30" />
-          <Link 
-            href={item.href} 
-            className={`hover:text-gold transition-colors ${idx === items.length - 1 ? 'text-gold' : ''}`}
-          >
-            {item.label}
-          </Link>
-        </React.Fragment>
-      ))}
+      <ol className="flex items-center gap-2">
+        {items.map((item, idx) => (
+          <li key={idx} className="flex items-center gap-2">
+            <ChevronRight size={10} className="opacity-30" />
+            <Link 
+              href={item.href} 
+              aria-current={idx === items.length - 1 ? 'page' : undefined}
+              className={`hover:text-gold transition-colors ${idx === items.length - 1 ? 'text-gold' : ''}`}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ol>
     </nav>
   );
 }

@@ -1,0 +1,30 @@
+name: Zero-Touch SEO Indexing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  index_urls:
+    name: Trigger Google Indexing API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install googleapis dotenv ts-node typescript
+
+      - name: Execute Sovereign Indexing Engine
+        env:
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        run: |
+          echo "$GCP_SERVICE_ACCOUNT" > scripts/google-service-account.json
+          node scripts/sovereign-indexing.js
