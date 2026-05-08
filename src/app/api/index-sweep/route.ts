@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
     const indexing = google.indexing('v3');
     const authClient = await auth.getClient();
-    google.options({ auth: authClient });
+    google.options({ auth: authClient as any });
 
     // 4. Indexing Loop (Limited to first 5 for test/safety in API route, or use a background task)
     // For a real production app, this should be a background job (e.g. Inngest or Vercel Cron)
