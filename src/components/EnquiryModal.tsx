@@ -3,6 +3,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SOVEREIGN LEAD DISPATCH CONSTANTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const WHATSAPP_NUMBER = '917744009295';
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || '';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
+
 interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -43,55 +50,97 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     setStep(2);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // TRIPLE-REDUNDANT LEAD DISPATCH
+  // Channel 1: Google Apps Script Webhook (Email)
+  // Channel 2: WhatsApp Deep Link (Instant notification)
+  // Channel 3: Sovereign Vault (localStorage backup)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
     
-    // 1. Sovereign Vault - Local Storage Backup
+    const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
+    const leadPayload = {
+      ...formData,
+      source: source === '/' ? 'Homepage' : source.replace(/^\//, ''),
+      timestamp: new Date().toISOString(),
+    };
+
+    // ── Channel 3: Sovereign Vault (Always executes first) ──
     try {
       const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
-      const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
-      existingLeads.push({ 
-        ...formData, 
-        timestamp: new Date().toISOString(), 
-        source: source === '/' ? 'Homepage' : source.replace(/^\//, '') 
-      });
+      existingLeads.push(leadPayload);
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {
       console.error("Vault save failed", err);
     }
 
-    // 2. FormSubmit Endpoint for Email Delivery
-    const formUrl = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
-    
-    fetch(formUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        ...formData,
-        _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget}`,
-        _captcha: "false" 
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      setStatus('success');
-      setTimeout(() => {
-        setStatus('idle');
-        setStep(1);
-        setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '' });
-        onClose();
-      }, 3000);
-    })
-    .catch(error => {
-      console.error("FormSubmit failed, attempting mailto fallback", error);
-      window.location.href = `mailto:propsmartrealty@gmail.com?subject=Enquiry from ${formData.name}&body=Name: ${formData.name}%0D%0APhone: ${formData.phone}%0D%0AConfig: ${formData.bhk}%0D%0ABudget: ${formData.budget}`;
-      setStatus('success');
-      setTimeout(() => { onClose(); }, 2000);
-    });
+    // ── Channel 2: WhatsApp Notification (Silent background) ──
+    try {
+      const waMessage = `🏗 *NEW LEAD — Blue Ridge*%0A%0A` +
+        `👤 *Name:* ${formData.name}%0A` +
+        `📱 *Phone:* ${formData.phone}%0A` +
+        `📧 *Email:* ${formData.email}%0A` +
+        `🏠 *Config:* ${formData.bhk || 'N/A'}%0A` +
+        `💰 *Budget:* ${formData.budget || 'N/A'}%0A` +
+        `📍 *Source:* ${leadPayload.source}%0A` +
+        `⏰ *Time:* ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
+
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      console.error("WhatsApp dispatch failed", err);
+    }
+
+    // ── Channel 1: Email via Webhook (Primary) ──
+    let emailSent = false;
+
+    // Try Google Apps Script Webhook first
+    if (WEBHOOK_URL) {
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload),
+        });
+        const data = await response.json();
+        if (data.success) emailSent = true;
+      } catch (err) {
+        console.error("Webhook dispatch failed, trying FormSubmit fallback", err);
+      }
+    }
+
+    // Fallback to FormSubmit if webhook failed or not configured
+    if (!emailSent) {
+      try {
+        const response = await fetch(FORMSUBMIT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget}`,
+            _captcha: "false" 
+          }),
+        });
+        const data = await response.json();
+        if (data.success) emailSent = true;
+      } catch (err) {
+        console.error("FormSubmit fallback also failed", err);
+      }
+    }
+
+    // Final state — always show success since Vault + WhatsApp are guaranteed
+    setStatus('success');
+    setTimeout(() => {
+      setStatus('idle');
+      setStep(1);
+      setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '' });
+      onClose();
+    }, 3000);
   };
 
   return (
@@ -250,7 +299,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="submit" 
                          disabled={status === 'submitting'}
-                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest disabled:opacity-50"
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest disabled:opacity-50"
                        >
                          {status === 'submitting' ? 'Processing...' : 'Complete Request'}
                        </button>

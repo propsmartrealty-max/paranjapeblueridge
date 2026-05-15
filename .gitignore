@@ -40,3 +40,15 @@ credentials/
 
 # ignore secrets
 scripts/google-service-account.json
+scripts/.verification-token
+
+# Service account keys (all patterns)
+*-service-account*.json
+*credentials*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+
+# Audit logs (keep local only)
+data/indexing-audit.json
+

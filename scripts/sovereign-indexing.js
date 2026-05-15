@@ -1,60 +1,168 @@
 /**
- * SOVEREIGN INDEXING ENGINE v5.0 — Google Indexing API
+ * SOVEREIGN INDEXING ENGINE v6.0 — Production Hardened
  * 
- * This script notifies Google about sitemap changes using the 
- * official Google Indexing API for instantaneous indexing.
+ * Features:
+ *   - Exponential backoff with jitter for retry logic
+ *   - Credential rotation (env var → local file fallback)
+ *   - Concurrent batch processing with configurable chunk size
+ *   - Comprehensive audit logging to JSON file
+ *   - Rate-limit detection and graceful degradation
+ *   - Sitemap validation and URL deduplication
+ *   - Dry-run mode for testing
  */
 
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const SITE_URL = 'https://www.paranjapeblueridge.com';
-const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
-const KEY_FILE = path.join(__dirname, 'google-service-account.json');
-const MAX_URLS_PER_RUN = 200; // Google Indexing API daily limit
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CONFIGURATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const CONFIG = {
+  SITE_URL: 'https://www.paranjapeblueridge.com',
+  KEY_FILE: path.join(__dirname, 'google-service-account.json'),
+  AUDIT_LOG: path.join(__dirname, '..', 'data', 'indexing-audit.json'),
+  MAX_URLS_PER_RUN: 200,        // Google daily quota
+  CHUNK_SIZE: 10,                // Concurrent batch size
+  MAX_RETRIES: 3,                // Max retry attempts per URL
+  BASE_DELAY_MS: 1000,           // Base delay between batches
+  DRY_RUN: process.argv.includes('--dry-run'),
+};
 
-async function fetchSitemapUrls() {
-  console.log(`📡 Fetching live sitemap from: ${SITEMAP_URL}`);
-  try {
-    const response = await fetch(SITEMAP_URL);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const xml = await response.text();
-    const urls = [];
-    const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
-    for (const match of matches) {
-      urls.push(match[1]);
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CREDENTIAL RESOLVER — Multi-source with fallback
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function resolveCredentials() {
+  // Priority 1: Environment variable (CI/CD pipelines)
+  const envCred = process.env.GCP_SERVICE_ACCOUNT;
+  if (envCred) {
+    try {
+      const parsed = JSON.parse(envCred);
+      console.log(`🔑 Credentials: Environment variable (${parsed.client_email})`);
+      return parsed;
+    } catch (e) {
+      console.error('⚠️  GCP_SERVICE_ACCOUNT env var is not valid JSON, trying file fallback...');
     }
-    console.log(`✅ Found ${urls.length} URLs in sitemap`);
-    return urls;
-  } catch (error) {
-    console.error(`❌ Error fetching sitemap: ${error.message}`);
-    process.exit(1);
+  }
+
+  // Priority 2: Local key file
+  if (fs.existsSync(CONFIG.KEY_FILE)) {
+    const parsed = JSON.parse(fs.readFileSync(CONFIG.KEY_FILE, 'utf8'));
+    console.log(`🔑 Credentials: Local file (${parsed.client_email})`);
+    return parsed;
+  }
+
+  // Priority 3: Credentials directory
+  const credDir = path.join(__dirname, '..', 'credentials', 'service_account.json');
+  if (fs.existsSync(credDir)) {
+    const parsed = JSON.parse(fs.readFileSync(credDir, 'utf8'));
+    console.log(`🔑 Credentials: Credentials dir (${parsed.client_email})`);
+    return parsed;
+  }
+
+  console.error('❌ FATAL: No valid credentials found in any location.');
+  console.error('   Checked: GCP_SERVICE_ACCOUNT env, scripts/google-service-account.json, credentials/service_account.json');
+  process.exit(1);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SITEMAP FETCHER — With validation
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function fetchSitemapUrls() {
+  const sitemapUrl = `${CONFIG.SITE_URL}/sitemap.xml`;
+  console.log(`📡 Fetching sitemap: ${sitemapUrl}`);
+  
+  let retries = 3;
+  while (retries > 0) {
+    try {
+      const response = await fetch(sitemapUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const xml = await response.text();
+      
+      const urls = [];
+      const matches = xml.matchAll(/<loc>(.*?)<\/loc>/g);
+      for (const match of matches) {
+        const url = match[1].trim();
+        // Validate URL format
+        if (url.startsWith('http') && url.includes(CONFIG.SITE_URL.replace('https://', ''))) {
+          urls.push(url);
+        }
+      }
+      
+      // Deduplicate
+      const uniqueUrls = [...new Set(urls)];
+      console.log(`✅ Sitemap: ${uniqueUrls.length} unique URLs (${urls.length - uniqueUrls.length} duplicates removed)`);
+      return uniqueUrls;
+    } catch (error) {
+      retries--;
+      if (retries === 0) {
+        console.error(`❌ Sitemap fetch failed after 3 attempts: ${error.message}`);
+        process.exit(1);
+      }
+      console.warn(`⚠️  Sitemap fetch failed (${3 - retries}/3), retrying in 2s...`);
+      await sleep(2000);
+    }
   }
 }
 
-async function indexUrls(urls) {
-  const serviceAccountEnv = process.env.GCP_SERVICE_ACCOUNT;
-  let credentials;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// EXPONENTIAL BACKOFF WITH JITTER
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  if (serviceAccountEnv) {
-    try {
-      credentials = JSON.parse(serviceAccountEnv);
-      console.log(`🔑 Using GCP_SERVICE_ACCOUNT from environment variables`);
-    } catch (e) {
-      console.error(`❌ GCP_SERVICE_ACCOUNT environment variable is not valid JSON`);
+function getBackoffDelay(attempt) {
+  const exponentialDelay = CONFIG.BASE_DELAY_MS * Math.pow(2, attempt);
+  const jitter = Math.random() * 500;
+  return Math.min(exponentialDelay + jitter, 30000); // Cap at 30s
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INDEXING ENGINE — With retry and batch processing
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function indexUrl(indexing, url, attempt = 0) {
+  try {
+    if (CONFIG.DRY_RUN) {
+      console.log(`   🔍 [DRY RUN] ${url}`);
+      return { url, status: 'dry-run', attempts: 1 };
+    }
+
+    await indexing.urlNotifications.publish({
+      requestBody: { url, type: 'URL_UPDATED' },
+    });
+    return { url, status: 'success', attempts: attempt + 1 };
+  } catch (error) {
+    // 429 = Rate limited — always retry with backoff
+    if (error.code === 429 && attempt < CONFIG.MAX_RETRIES) {
+      const delay = getBackoffDelay(attempt);
+      console.warn(`   ⏳ [THROTTLED] ${url} — Retry ${attempt + 1}/${CONFIG.MAX_RETRIES} in ${Math.round(delay / 1000)}s`);
+      await sleep(delay);
+      return indexUrl(indexing, url, attempt + 1);
+    }
+
+    // 403 = Permission denied — fatal, stop everything
+    if (error.code === 403) {
+      console.error(`\n🚫 PERMISSION DENIED (403): Service account is not an Owner in Search Console.`);
+      console.error(`   Account: Check credentials. URL: ${url}`);
       process.exit(1);
     }
-  } else {
-    if (!fs.existsSync(KEY_FILE)) {
-      console.error(`❌ Service account key not found at: ${KEY_FILE} and GCP_SERVICE_ACCOUNT env var is missing`);
-      process.exit(1);
+
+    // Other errors — retry up to MAX_RETRIES
+    if (attempt < CONFIG.MAX_RETRIES) {
+      const delay = getBackoffDelay(attempt);
+      console.warn(`   ⚠️  [RETRY] ${url} — ${error.message} (${attempt + 1}/${CONFIG.MAX_RETRIES})`);
+      await sleep(delay);
+      return indexUrl(indexing, url, attempt + 1);
     }
-    credentials = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
-    console.log(`🔑 Using local key file: ${KEY_FILE}`);
+
+    return { url, status: 'failed', error: error.message, attempts: attempt + 1 };
   }
+}
 
+async function runIndexingSweep(urls) {
+  const credentials = resolveCredentials();
+  
   const auth = new google.auth.GoogleAuth({
     credentials,
     scopes: ['https://www.googleapis.com/auth/indexing'],
@@ -64,66 +172,118 @@ async function indexUrls(urls) {
   const authClient = await auth.getClient();
   google.options({ auth: authClient });
 
-  console.log(`🚀 Starting indexing sweep for ${urls.length} URLs...`);
-  
-  let successCount = 0;
-  let failCount = 0;
+  const urlsToProcess = urls.slice(0, CONFIG.MAX_URLS_PER_RUN);
+  console.log(`\n🚀 Indexing ${urlsToProcess.length}/${urls.length} URLs (limit: ${CONFIG.MAX_URLS_PER_RUN})${CONFIG.DRY_RUN ? ' [DRY RUN]' : ''}...\n`);
 
-  for (const url of urls) {
-    if (successCount >= MAX_URLS_PER_RUN) {
-      console.log(`\n⚠️  Reached maximum of ${MAX_URLS_PER_RUN} URLs for this run to respect standard Google quotas.`);
-      break;
+  const results = { success: [], failed: [], skipped: [] };
+  const startTime = Date.now();
+
+  // Process in concurrent chunks
+  for (let i = 0; i < urlsToProcess.length; i += CONFIG.CHUNK_SIZE) {
+    const chunk = urlsToProcess.slice(i, i + CONFIG.CHUNK_SIZE);
+    const chunkNum = Math.floor(i / CONFIG.CHUNK_SIZE) + 1;
+    const totalChunks = Math.ceil(urlsToProcess.length / CONFIG.CHUNK_SIZE);
+    
+    const chunkResults = await Promise.all(
+      chunk.map(url => indexUrl(indexing, url))
+    );
+
+    for (const result of chunkResults) {
+      if (result.status === 'success' || result.status === 'dry-run') {
+        results.success.push(result);
+        console.log(`   ✅ [${result.status.toUpperCase()}] ${result.url}`);
+      } else {
+        results.failed.push(result);
+        console.error(`   ❌ [FAILED] ${result.url}: ${result.error}`);
+      }
     }
 
-    try {
-      // We use URL_UPDATED to notify Google of new or modified content
-      await indexing.urlNotifications.publish({
-        requestBody: {
-          url: url,
-          type: 'URL_UPDATED',
-        },
-      });
-      console.log(`   ✅ [SUCCESS] ${url}`);
-      successCount++;
-      
-      // Dynamic delay to prevent burst triggers
-      await new Promise(resolve => setTimeout(resolve, 500)); 
-    } catch (error) {
-      console.error(`   ❌ [FAILED]  ${url}: ${error.message}`);
-      failCount++;
-      
-      if (error.code === 403) {
-        console.error('\n🚫 PERMISSION DENIED (403): Ensure the service account is an OWNER of the property in Search Console.');
-        process.exit(1);
-      }
-      
-      if (error.code === 429) {
-        console.error('\n⚠️  QUOTA EXCEEDED (429): Google Indexing API daily limit reached.');
-        break;
-      }
+    // Progress indicator
+    const processed = Math.min(i + CONFIG.CHUNK_SIZE, urlsToProcess.length);
+    const pct = Math.round((processed / urlsToProcess.length) * 100);
+    console.log(`   📊 Progress: ${processed}/${urlsToProcess.length} (${pct}%) — Chunk ${chunkNum}/${totalChunks}\n`);
+
+    // Inter-chunk delay to respect rate limits
+    if (i + CONFIG.CHUNK_SIZE < urlsToProcess.length) {
+      await sleep(CONFIG.BASE_DELAY_MS);
     }
   }
+
+  const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+  
+  return { ...results, elapsed, total: urlsToProcess.length };
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// AUDIT LOGGER — Persistent JSON audit trail
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function writeAuditLog(results) {
+  const auditDir = path.dirname(CONFIG.AUDIT_LOG);
+  if (!fs.existsSync(auditDir)) {
+    fs.mkdirSync(auditDir, { recursive: true });
+  }
+
+  let auditHistory = [];
+  if (fs.existsSync(CONFIG.AUDIT_LOG)) {
+    try {
+      auditHistory = JSON.parse(fs.readFileSync(CONFIG.AUDIT_LOG, 'utf8'));
+    } catch (e) {
+      auditHistory = [];
+    }
+  }
+
+  const entry = {
+    timestamp: new Date().toISOString(),
+    engine: 'sovereign-indexing-v6.0',
+    mode: CONFIG.DRY_RUN ? 'dry-run' : 'live',
+    stats: {
+      total: results.total,
+      success: results.success.length,
+      failed: results.failed.length,
+      elapsed: `${results.elapsed}s`,
+    },
+    failures: results.failed.map(f => ({ url: f.url, error: f.error })),
+  };
+
+  // Keep last 100 entries
+  auditHistory.unshift(entry);
+  if (auditHistory.length > 100) auditHistory = auditHistory.slice(0, 100);
+
+  fs.writeFileSync(CONFIG.AUDIT_LOG, JSON.stringify(auditHistory, null, 2));
+  console.log(`📋 Audit log: ${CONFIG.AUDIT_LOG}`);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MAIN ENTRY POINT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+async function main() {
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('  SOVEREIGN INDEXING ENGINE v6.0');
+  console.log('  Production Hardened | Google Indexing API');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+
+  const urls = await fetchSitemapUrls();
+  const results = await runIndexingSweep(urls);
+  writeAuditLog(results);
 
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('  INDEXING SWEEP COMPLETE');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log(`  📊 Total URLs:   ${urls.length}`);
-  console.log(`  ✅ Successful:   ${successCount}`);
-  console.log(`  ❌ Failed:       ${failCount}`);
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-}
-
-async function main() {
-  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('  SOVEREIGN INDEXING ENGINE v5.0');
-  console.log('  Channel: Google Indexing API (Official)');
+  console.log(`  📊 Total URLs:   ${results.total}`);
+  console.log(`  ✅ Successful:   ${results.success.length}`);
+  console.log(`  ❌ Failed:       ${results.failed.length}`);
+  console.log(`  ⏱️  Elapsed:      ${results.elapsed}s`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
-  const urls = await fetchSitemapUrls();
-  await indexUrls(urls);
+  if (results.failed.length > 0) {
+    console.log('  FAILED URLs:');
+    results.failed.forEach(f => console.log(`    → ${f.url}: ${f.error}`));
+    console.log('');
+    process.exit(1);
+  }
 }
 
 main().catch(err => {
-  console.error('Fatal Error:', err);
+  console.error('Fatal Error:', err.message);
   process.exit(1);
 });

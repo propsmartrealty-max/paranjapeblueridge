@@ -1,28 +1,67 @@
 #!/bin/bash
 
-# SOVEREIGN DEPLOYMENT ORCHESTRATOR
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# SOVEREIGN DEPLOYMENT ORCHESTRATOR v2.0
 # Project: Paranjape Blue Ridge
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-echo "──────────────────────────────────────────"
-echo "  SOVEREIGN ADVANCED DEPLOYMENT ENGINE    "
-echo "──────────────────────────────────────────"
+set -e  # Exit on any error
 
-# 1. Dependency Check
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  SOVEREIGN DEPLOYMENT ORCHESTRATOR v2.0"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+# ── Phase 1: Pre-flight Checks ──
+echo "🔍 Phase 1: Pre-flight Checks..."
+
 if [ ! -d "node_modules" ]; then
-    echo "📦 Installing Google API dependencies..."
-    npm install googleapis
+    echo "📦 Installing dependencies..."
+    npm ci || npm install
 fi
 
-# 2. Key Check
-if [ ! -f "scripts/google-service-account.json" ]; then
-    echo "⚠️  WARNING: Service Account Key not found."
-    echo "   Indexing will be skipped. Place key in scripts/ to activate."
+# Credential check — 3 sources
+CRED_FOUND=false
+if [ -n "$GCP_SERVICE_ACCOUNT" ]; then
+    echo "   ✅ Credentials: GCP_SERVICE_ACCOUNT env var"
+    CRED_FOUND=true
+elif [ -f "scripts/google-service-account.json" ]; then
+    echo "   ✅ Credentials: scripts/google-service-account.json"
+    CRED_FOUND=true
+elif [ -f "credentials/service_account.json" ]; then
+    echo "   ✅ Credentials: credentials/service_account.json"
+    CRED_FOUND=true
+fi
+
+if [ "$CRED_FOUND" = false ]; then
+    echo "   ⚠️  No credentials found. Indexing will be skipped."
+fi
+
+# ── Phase 2: Security Audit ──
+echo ""
+echo "🔒 Phase 2: Security Audit..."
+
+# Check that credentials aren't tracked by git
+if git ls-files --cached | grep -q "service-account\|service_account"; then
+    echo "   ⛔ WARNING: Credential files are tracked by git!"
+    echo "   Run: git rm --cached <file> to untrack"
 else
-    # 3. Trigger Indexing Sweep
-    echo "📡 Triggering Sovereign Indexing Sweep..."
-    node scripts/sovereign-indexing.js
+    echo "   ✅ No credentials tracked in git"
 fi
 
-echo "──────────────────────────────────────────"
-echo "✅ ARCHITECTURE DEPLOYED & OPTIMIZED"
-echo "──────────────────────────────────────────"
+# ── Phase 3: Indexing Sweep ──
+if [ "$CRED_FOUND" = true ]; then
+    echo ""
+    echo "📡 Phase 3: Sovereign Indexing Sweep..."
+    node scripts/sovereign-indexing.js
+else
+    echo ""
+    echo "⏭️  Phase 3: Skipped (no credentials)"
+fi
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  ✅ SOVEREIGN DEPLOYMENT COMPLETE"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""

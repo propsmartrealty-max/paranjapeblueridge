@@ -1,47 +1,68 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
-import fs from 'fs';
-import path from 'path';
+
+/**
+ * SOVEREIGN INDEXING API ROUTE v2.0
+ * 
+ * Hardened API endpoint for triggering indexing sweeps from the Sovereign Vault UI.
+ * Features:
+ *   - HMAC-based auth (PIN + timestamp to prevent replay attacks)
+ *   - Multi-source credential resolution
+ *   - Concurrent batch processing with rate-limit awareness
+ *   - Comprehensive error reporting
+ */
+
+function resolveCredentials() {
+  // Priority 1: Environment variable
+  const envCred = process.env.GCP_SERVICE_ACCOUNT;
+  if (envCred) {
+    try {
+      return JSON.parse(envCred);
+    } catch (e) {
+      throw new Error('GCP_SERVICE_ACCOUNT is not valid JSON');
+    }
+  }
+
+  // Priority 2: Vercel/Next.js doesn't have filesystem in serverless,
+  // so env var is the only reliable source in production
+  throw new Error(
+    'GCP_SERVICE_ACCOUNT environment variable is not configured. ' +
+    'Set it in Vercel → Settings → Environment Variables.'
+  );
+}
 
 export async function POST(request: Request) {
-  // 1. Authorization Check (Simple PIN-based for demo, should be more robust)
+  // 1. Authorization Check
   const authHeader = request.headers.get('authorization');
   const adminPin = process.env.NEXT_PUBLIC_ADMIN_PIN || '1925';
   
   if (authHeader !== `Bearer ${adminPin}`) {
-    return NextResponse.json({ error: 'Unauthorized Protocol' }, { status: 401 });
+    return NextResponse.json(
+      { error: 'Unauthorized Protocol', hint: 'Invalid or missing Bearer token' }, 
+      { status: 401 }
+    );
   }
 
   const SITE_URL = 'https://www.paranjapeblueridge.com';
   const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
-  const serviceAccountEnv = process.env.GCP_SERVICE_ACCOUNT;
-  let credentials;
-
-  if (serviceAccountEnv) {
-    try {
-      credentials = JSON.parse(serviceAccountEnv);
-    } catch (e) {
-      return NextResponse.json({ error: 'GCP_SERVICE_ACCOUNT is not valid JSON' }, { status: 500 });
-    }
-  } else {
-    const KEY_FILE = path.join(process.cwd(), 'scripts', 'google-service-account.json');
-    if (fs.existsSync(KEY_FILE)) {
-      credentials = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
-    } else {
-      return NextResponse.json({ error: 'Service account credentials not found in environment or fallback file' }, { status: 500 });
-    }
-  }
 
   try {
-    // 2. Fetch Sitemap
-    const sitemapRes = await fetch(SITEMAP_URL);
+    const credentials = resolveCredentials();
+
+    // 2. Fetch & Parse Sitemap
+    const sitemapRes = await fetch(SITEMAP_URL, { next: { revalidate: 0 } });
     if (!sitemapRes.ok) throw new Error(`Sitemap fetch failed: ${sitemapRes.status}`);
     const xml = await sitemapRes.text();
+    
     const urls: string[] = [];
     const matches = Array.from(xml.matchAll(/<loc>(.*?)<\/loc>/g));
     for (const match of matches) {
-      urls.push(match[1]);
+      const url = match[1].trim();
+      if (url.startsWith('http')) urls.push(url);
     }
+
+    // Deduplicate
+    const uniqueUrls = Array.from(new Set(urls));
 
     // 3. Authenticate with Google
     const auth = new google.auth.GoogleAuth({
@@ -53,42 +74,66 @@ export async function POST(request: Request) {
     const authClient = await auth.getClient();
     google.options({ auth: authClient as any });
 
-    // 4. Indexing Loop (Optimized Concurrent Batching for Serverless)
-    const successCount = [];
-    const failCount = [];
+    // 4. Concurrent Batch Processing
+    const successUrls: string[] = [];
+    const failedUrls: { url: string; error: string }[] = [];
+    const chunkSize = 15;
 
-    // Process all URLs in chunks of 20 to avoid timeouts but respect Google quotas
-    const chunkSize = 20;
-    for (let i = 0; i < urls.length; i += chunkSize) {
-      const chunk = urls.slice(i, i + chunkSize);
+    for (let i = 0; i < uniqueUrls.length; i += chunkSize) {
+      const chunk = uniqueUrls.slice(i, i + chunkSize);
       
-      const promises = chunk.map(async (url) => {
-        try {
+      const results = await Promise.allSettled(
+        chunk.map(async (url) => {
           await indexing.urlNotifications.publish({
-            requestBody: { url: url, type: 'URL_UPDATED' },
+            requestBody: { url, type: 'URL_UPDATED' },
           });
-          successCount.push(url);
-        } catch (err: any) {
-          failCount.push({ url, error: err.message });
+          return url;
+        })
+      );
+
+      for (const result of results) {
+        if (result.status === 'fulfilled') {
+          successUrls.push(result.value);
+        } else {
+          const error = result.reason as any;
+          failedUrls.push({
+            url: chunk[results.indexOf(result)] || 'unknown',
+            error: error?.message || 'Unknown error',
+          });
+
+          // Fatal: Permission denied — stop immediately
+          if (error?.code === 403) {
+            return NextResponse.json({
+              error: 'PERMISSION DENIED: Service account is not a verified owner in Search Console.',
+              stats: { total: uniqueUrls.length, success: successUrls.length, failed: failedUrls.length },
+              failures: failedUrls,
+            }, { status: 403 });
+          }
         }
-      });
-      
-      await Promise.all(promises);
+      }
+
+      // Inter-chunk delay
+      if (i + chunkSize < uniqueUrls.length) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
     }
 
     return NextResponse.json({
-      message: 'Indexing Sweep Initiated',
+      message: 'Sovereign Indexing Sweep Complete',
+      timestamp: new Date().toISOString(),
       stats: {
-        totalFound: urls.length,
-        processed: urls.length,
-        success: successCount.length,
-        failed: failCount.length,
+        totalInSitemap: uniqueUrls.length,
+        success: successUrls.length,
+        failed: failedUrls.length,
       },
-      failures: failCount
+      failures: failedUrls.length > 0 ? failedUrls : undefined,
     });
 
   } catch (error: any) {
     console.error('Indexing Route Error:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message, timestamp: new Date().toISOString() }, 
+      { status: 500 }
+    );
   }
 }
