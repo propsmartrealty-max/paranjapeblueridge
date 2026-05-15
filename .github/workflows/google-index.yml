@@ -1,30 +1,52 @@
-name: Zero-Touch SEO Indexing
+name: Sovereign Indexing Engine v6.0
 
 on:
+  # Auto-trigger on deployment
   push:
     branches:
       - main
+  # Manual trigger via GitHub UI
   workflow_dispatch:
+  # Scheduled daily sweep at 6 AM IST (12:30 AM UTC)
+  schedule:
+    - cron: '30 0 * * *'
 
 jobs:
-  index_urls:
-    name: Trigger Google Indexing API
+  sovereign_indexing:
+    name: Google Indexing API Sweep
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install googleapis dotenv ts-node typescript
+        run: npm ci || npm install googleapis
 
-      - name: Execute Sovereign Indexing Engine
+      - name: Execute Sovereign Indexing Engine v6.0
         env:
           GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
         run: |
-          echo "$GCP_SERVICE_ACCOUNT" > scripts/google-service-account.json
+          if [ -z "$GCP_SERVICE_ACCOUNT" ]; then
+            echo "❌ FATAL: GCP_SERVICE_ACCOUNT secret is not configured."
+            echo "   Go to: Settings → Secrets → Actions → New repository secret"
+            echo "   Name: GCP_SERVICE_ACCOUNT"
+            echo "   Value: (paste your service account JSON)"
+            exit 1
+          fi
           node scripts/sovereign-indexing.js
+
+      - name: Upload Audit Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexing-audit-${{ github.run_number }}
+          path: data/indexing-audit.json
+          retention-days: 30
