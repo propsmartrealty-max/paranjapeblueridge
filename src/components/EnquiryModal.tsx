@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DOMPurify from 'dompurify';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // SOVEREIGN LEAD DISPATCH CONSTANTS
@@ -25,7 +26,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     bhk: '',
     budget: '',
     intent: 'Self Use',
-    message: initialInterest ? `Interested in reserving ${initialInterest}` : ''
+    message: initialInterest ? `Interested in reserving ${initialInterest}` : '',
+    bot_field: '' // Honeypot
   });
   
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -58,14 +60,52 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check
+    if (formData.bot_field) {
+      console.warn('Bot detected');
+      return;
+    }
+
     setStatus('submitting');
     
+// ── XSS Sanitization ──
+    const sanitize = (str: string) => {
+      // Basic manual replacement
+      let clean = str.replace(/[<>]/g, '');
+      // Fallback to DOMPurify
+      if (DOMPurify) {
+        clean = DOMPurify.sanitize(clean);
+      }
+      return clean;
+    };
+
     const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
     const leadPayload = {
-      ...formData,
+      name: sanitize(formData.name),
+      phone: sanitize(formData.phone),
+      email: sanitize(formData.email),
+      bhk: sanitize(formData.bhk),
+      budget: sanitize(formData.budget),
+      intent: sanitize(formData.intent),
+      message: sanitize(formData.message),
       source: source === '/' ? 'Homepage' : source.replace(/^\//, ''),
       timestamp: new Date().toISOString(),
     };
+
+    // ── Rate Limiting (Prevent Spam) ──
+    try {
+      const lastSubmit = localStorage.getItem('ks_last_submit');
+      if (lastSubmit && (Date.now() - parseInt(lastSubmit)) < 60000) {
+        setError("Please wait 60 seconds before submitting again.");
+        setStatus('idle');
+        setStep(1);
+        return;
+      }
+      localStorage.setItem('ks_last_submit', Date.now().toString());
+    } catch (err) {
+      console.error("Rate limit check failed", err);
+    }
 
     // ── Channel 3: Sovereign Vault (Always executes first) ──
     try {
@@ -123,7 +163,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     setTimeout(() => {
       setStatus('idle');
       setStep(1);
-      setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '' });
+      setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '', bot_field: '' });
       onClose();
     }, 3000);
   };
@@ -189,11 +229,26 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     onSubmit={nextStep} 
                     className="space-y-6"
                   >
+                    {/* Honeypot Field */}
+                    <div style={{ display: 'none' }} aria-hidden="true">
+                      <input 
+                        type="text" 
+                        name="bot_field" 
+                        tabIndex={-1} 
+                        autoComplete="off"
+                        value={formData.bot_field}
+                        onChange={e => setFormData({...formData, bot_field: e.target.value})}
+                      />
+                    </div>
+
                     <div className="space-y-2">
                       <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
                       <input 
                         type="text" 
                         required 
+                        maxLength={50}
+                        pattern="^[A-Za-z\s.'-]+$"
+                        title="Only alphabets, spaces, dots, hyphens and apostrophes are allowed."
                         value={formData.name}
                         onChange={e => setFormData({...formData, name: e.target.value})}
                         className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
@@ -206,6 +261,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <input 
                         type="tel" 
                         required 
+                        maxLength={15}
+                        pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
+                        title="Please enter a valid phone number."
                         value={formData.phone}
                         onChange={e => setFormData({...formData, phone: e.target.value})}
                         className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
@@ -218,6 +276,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <input 
                         type="email" 
                         required 
+                        maxLength={100}
                         value={formData.email}
                         onChange={e => setFormData({...formData, email: e.target.value})}
                         className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
