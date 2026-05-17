@@ -76,22 +76,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       console.error("Vault save failed", err);
     }
 
-    // ── Channel 2: WhatsApp Notification (Silent background) ──
-    try {
-      const waMessage = `🏗 *NEW LEAD — Blue Ridge*%0A%0A` +
-        `👤 *Name:* ${formData.name}%0A` +
-        `📱 *Phone:* ${formData.phone}%0A` +
-        `📧 *Email:* ${formData.email}%0A` +
-        `🏠 *Config:* ${formData.bhk || 'N/A'}%0A` +
-        `💰 *Budget:* ${formData.budget || 'N/A'}%0A` +
-        `📍 *Source:* ${leadPayload.source}%0A` +
-        `⏰ *Time:* ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
-
-      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-    } catch (err) {
-      console.error("WhatsApp dispatch failed", err);
-    }
+    // WhatsApp notification removed as per requirement. Lead is only sent via Email.
 
     // ── Channel 1: Email via Webhook (Primary) ──
     let emailSent = false;
