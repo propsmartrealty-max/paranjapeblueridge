@@ -101,12 +101,18 @@ export default function Home() {
               {t("Welcome to Paranjape Blue Ridge—Pune's most celebrated integrated township. A future-ready ecosystem crafted for the elite IT workforce of Hinjewadi Phase 1.", "परंजपे ब्लू रिजमध्ये आपले स्वागत आहे—पुण्यातील सर्वात प्रसिद्ध इंटिग्रेटेड टाऊनशिप. हिंजवडी फेज १ मधील एलिट आयटी कर्मचाऱ्यांसाठी तयार केलेली भविष्यातील इकोसिस्टम.")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
-              <a href="#market" className="bg-gold text-navy px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow text-center">
+              <button 
+                onClick={() => document.getElementById('market')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="bg-gold text-navy px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow text-center border-none cursor-pointer"
+              >
                 {t('Analyze Market', 'मार्केट विश्लेषण')}
-              </a>
-              <a href="#amenities" className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-all text-center">
+              </button>
+              <button 
+                onClick={() => document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-all text-center cursor-pointer"
+              >
                 {t('Experience Township', 'टाऊनशिप अनुभव')}
-              </a>
+              </button>
             </div>
           </div>
         </motion.div>
@@ -200,12 +206,12 @@ export default function Home() {
             />
           </div>
           <div className="flex justify-center mt-10">
-            <a
-              href="/#enquiry"
-              className="px-10 py-4 bg-gold text-navy font-bold text-[11px] uppercase tracking-widest rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold/30"
+            <button
+              onClick={() => document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-10 py-4 bg-gold text-navy font-bold text-[11px] uppercase tracking-widest rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold/30 border-none cursor-pointer"
             >
               Request Full Brochure
-            </a>
+            </button>
           </div>
         </section>
 

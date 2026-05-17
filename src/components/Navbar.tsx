@@ -48,15 +48,35 @@ export default function Navbar() {
                                  p.id === 'altius' ? 'Altius' : '41 Ridge';
               return (
                 <li key={p.id}>
-                  <a href={`/${p.slug}`} className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">
+                  <Link href={`/${p.slug}`} className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">
                     {t(displayName, p.id === 'promenade' ? 'प्रॉमनेड' : p.id === 'altius' ? 'अल्टियस' : '४१ रिज')}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
-            <li><a href="/#amenities" className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">{t('Township', 'टाऊनशिप')}</a></li>
-            <li><a href="/#market" className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">{t('Insights', 'इन्साईट्स')}</a></li>
-            <li><a href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</a></li>
+            <li>
+              <button 
+                onClick={() => {
+                  if (window.location.pathname !== '/') window.location.href = '/';
+                  else document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' });
+                }} 
+                className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
+              >
+                {t('Township', 'टाऊनशिप')}
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => {
+                  if (window.location.pathname !== '/') window.location.href = '/';
+                  else document.getElementById('market')?.scrollIntoView({ behavior: 'smooth' });
+                }} 
+                className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
+              >
+                {t('Insights', 'इन्साईट्स')}
+              </button>
+            </li>
+            <li><Link href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</Link></li>
           </ul>
 
           <div className="flex items-center gap-4 ml-4">
@@ -73,9 +93,15 @@ export default function Navbar() {
             >
               <img src="/assets/images/whatsapp-icon.png" alt="WhatsApp" className="w-full h-full object-contain p-1" />
             </a>
-            <a href="/#enquiry" className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
+            <button 
+              onClick={() => {
+                if (window.location.pathname !== '/') window.location.href = '/';
+                else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg cursor-pointer border-none"
+            >
               {t('Enquire', 'चौकशी करा')}
-            </a>
+            </button>
             
             <button 
               onClick={() => setIsOpen(!isOpen)}
@@ -136,9 +162,16 @@ export default function Navbar() {
                     <MessageCircle size={24} className="fill-current/20" />
                     Connect on WhatsApp
                 </a>
-                <a href="/#enquiry" onClick={() => setIsOpen(false)} className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest">
+                <button 
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (window.location.pathname !== '/') window.location.href = '/';
+                      else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
+                    }} 
+                    className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest cursor-pointer border-none"
+                >
                     {t('Enquire Now', 'आत्ताच चौकशी करा')}
-                </a>
+                </button>
             </div>
           </motion.div>
         )}

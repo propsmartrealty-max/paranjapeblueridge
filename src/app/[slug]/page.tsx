@@ -188,9 +188,12 @@ export default function ProjectSilo() {
                   <MessageCircle size={18} />
                   WhatsApp Enquiry
                 </a>
-                <a href="/#enquiry" className="bg-navy/10 border-2 border-navy text-navy px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-navy hover:text-warm-white transition-all">
+                <button 
+                  onClick={() => setIsModalOpen(true)} 
+                  className="bg-navy/10 border-2 border-navy text-navy px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-navy hover:text-warm-white transition-all cursor-pointer"
+                >
                     {t('Download Brochure', 'माहितीपत्रक डाउनलोड करा')}
-                </a>
+                </button>
             </div>
          </div>
       </section>

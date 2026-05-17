@@ -9,11 +9,13 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { CheckCircle2, Shield, Download, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import EnquiryModal from '@/components/EnquiryModal';
 
 export default function ConfigPage() {
   const { slug, config } = useParams();
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   
   const project = projects.find(p => p.slug === slug);
   if (!project) return notFound();
@@ -26,6 +28,7 @@ export default function ConfigPage() {
   return (
     <main className="min-h-screen bg-navy text-text">
       <Navbar />
+      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialInterest={`${project.name} - ${configuration.title}`} />
       
       {/* CONFIG HERO */}
       <section className="relative pt-40 pb-20 overflow-hidden bg-navy-light/30">
@@ -111,10 +114,13 @@ export default function ConfigPage() {
                       <MessageCircle size={18} />
                       WhatsApp Enquiry
                     </a>
-                    <a href="/#enquiry" className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-warm-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-colors">
+                    <button 
+                      onClick={() => setIsModalOpen(true)}
+                      className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-warm-white px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition-colors cursor-pointer"
+                    >
                         <Download size={16} />
                         Download Floor Plan
-                    </a>
+                    </button>
                 </div>
             </div>
 
