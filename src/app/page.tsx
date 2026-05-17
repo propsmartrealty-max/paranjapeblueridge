@@ -24,7 +24,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import DOMPurify from 'dompurify';
 
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || '';
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycby2dfeDEMYGEo7HIWGTUebqeFYAZBw60AOzbtKHblZZxR2L7-gBbONd3o_u5dalwffq_A/exec';
 const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
 
 import InventoryMatrix from '@/components/InventoryMatrix';
