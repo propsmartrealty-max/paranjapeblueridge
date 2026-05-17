@@ -133,12 +133,18 @@ async function indexUrl(indexing, url, attempt = 0) {
     });
     return { url, status: 'success', attempts: attempt + 1 };
   } catch (error) {
-    // 429 = Rate limited — always retry with backoff
-    if (error.code === 429 && attempt < CONFIG.MAX_RETRIES) {
-      const delay = getBackoffDelay(attempt);
-      console.warn(`   ⏳ [THROTTLED] ${url} — Retry ${attempt + 1}/${CONFIG.MAX_RETRIES} in ${Math.round(delay / 1000)}s`);
-      await sleep(delay);
-      return indexUrl(indexing, url, attempt + 1);
+    // 429 = Rate limited or Quota Exceeded
+    if (error.code === 429) {
+      if (error.message && error.message.toLowerCase().includes('quota')) {
+        console.warn(`   🛑 [QUOTA EXCEEDED] Daily limit reached. Skipping ${url}`);
+        return { url, status: 'quota-exceeded', error: error.message, attempts: attempt + 1 };
+      }
+      if (attempt < CONFIG.MAX_RETRIES) {
+        const delay = getBackoffDelay(attempt);
+        console.warn(`   ⏳ [THROTTLED] ${url} — Retry ${attempt + 1}/${CONFIG.MAX_RETRIES} in ${Math.round(delay / 1000)}s`);
+        await sleep(delay);
+        return indexUrl(indexing, url, attempt + 1);
+      }
     }
 
     // 403 = Permission denied — fatal, stop everything
@@ -192,6 +198,8 @@ async function runIndexingSweep(urls) {
       if (result.status === 'success' || result.status === 'dry-run') {
         results.success.push(result);
         console.log(`   ✅ [${result.status.toUpperCase()}] ${result.url}`);
+      } else if (result.status === 'quota-exceeded') {
+        results.skipped.push(result);
       } else {
         results.failed.push(result);
         console.error(`   ❌ [FAILED] ${result.url}: ${result.error}`);
@@ -206,6 +214,12 @@ async function runIndexingSweep(urls) {
     // Inter-chunk delay to respect rate limits
     if (i + CONFIG.CHUNK_SIZE < urlsToProcess.length) {
       await sleep(CONFIG.BASE_DELAY_MS);
+    }
+    
+    // Short circuit if quota exceeded
+    if (results.skipped.some(r => r.status === 'quota-exceeded')) {
+      console.warn(`\n   🛑 [QUOTA EXCEEDED] Halting indexing sweep to respect daily limits.`);
+      break;
     }
   }
 
@@ -271,6 +285,7 @@ async function main() {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`  📊 Total URLs:   ${results.total}`);
   console.log(`  ✅ Successful:   ${results.success.length}`);
+  console.log(`  ⏭️  Skipped:      ${results.skipped?.length || 0}`);
   console.log(`  ❌ Failed:       ${results.failed.length}`);
   console.log(`  ⏱️  Elapsed:      ${results.elapsed}s`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
