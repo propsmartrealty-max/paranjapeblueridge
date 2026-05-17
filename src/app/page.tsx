@@ -22,6 +22,10 @@ import { projects } from '@/data/master-data';
 import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import DOMPurify from 'dompurify';
+
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || '';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
 
 import InventoryMatrix from '@/components/InventoryMatrix';
 
@@ -29,6 +33,105 @@ export default function Home() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Inline form state
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    intent: 'Promenade Residences',
+    bot_field: ''
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const handleInlineSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+    
+    // Honeypot check
+    if (formData.bot_field) return;
+
+    // Phone validation
+    const phoneRegex = /^[6-9]\d{9}$/;
+    const cleanPhone = formData.phone.replace(/[\s\-\(\)\+]/g, '');
+    const mobileOnly = cleanPhone.length > 10 ? cleanPhone.slice(-10) : cleanPhone;
+    if (!phoneRegex.test(mobileOnly)) {
+      setFormError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
+    setFormStatus('submitting');
+
+    const sanitize = (str: string) => {
+      let clean = str.replace(/[<>]/g, '');
+      if (DOMPurify) clean = DOMPurify.sanitize(clean);
+      return clean;
+    };
+
+    const leadPayload = {
+      name: sanitize(formData.name),
+      phone: sanitize(formData.phone),
+      email: sanitize(formData.email),
+      bhk: sanitize(formData.intent),
+      source: 'Homepage_Inline_Form',
+      timestamp: new Date().toISOString(),
+    };
+
+    // Rate Limiting
+    try {
+      const lastSubmit = localStorage.getItem('ks_last_submit');
+      if (lastSubmit && (Date.now() - parseInt(lastSubmit)) < 60000) {
+        setFormError("Please wait 60 seconds before submitting again.");
+        setFormStatus('idle');
+        return;
+      }
+      localStorage.setItem('ks_last_submit', Date.now().toString());
+    } catch (err) {}
+
+    // Sovereign Vault
+    try {
+      const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
+      existingLeads.push(leadPayload);
+      localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
+    } catch (err) {}
+
+    // Webhook dispatch
+    let emailSent = false;
+    if (WEBHOOK_URL) {
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload),
+        });
+        const data = await response.json();
+        if (data.success) emailSent = true;
+      } catch (err) {}
+    }
+
+    if (!emailSent) {
+      try {
+        const response = await fetch(FORMSUBMIT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            ...leadPayload,
+            _subject: `💎 QUALIFIED INLINE: ${leadPayload.name} - ${leadPayload.bhk}`,
+            _captcha: "false" 
+          }),
+        });
+        const data = await response.json();
+        if (data.success) emailSent = true;
+      } catch (err) {}
+    }
+
+    setFormStatus('success');
+    setTimeout(() => {
+      setFormStatus('idle');
+      setFormData({ name: '', phone: '', email: '', intent: 'Promenade Residences', bot_field: '' });
+    }, 4000);
+  };
   
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -274,32 +377,99 @@ export default function Home() {
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                     <Image src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Blue Ridge Township Hinjewadi Phase 1 Logo" />
                 </div>
-                <form className="space-y-6 relative z-10">
-                  <div className="space-y-2">
-                    <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Full Name</label>
-                    <input type="text" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="Enter your name" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                        <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Phone</label>
-                        <input type="tel" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="+91" />
+                <form onSubmit={handleInlineSubmit} className="space-y-6 relative z-10">
+                  {/* Honeypot field for bot protection */}
+                  <input
+                    type="text"
+                    name="bot_field"
+                    className="hidden"
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.bot_field}
+                    onChange={(e) => setFormData({ ...formData, bot_field: e.target.value })}
+                  />
+
+                  {formError && (
+                    <div className="bg-red-500/10 border border-red-500/50 text-red-500 p-3 rounded-lg text-xs font-bold text-center">
+                      {formError}
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Email</label>
-                        <input type="email" className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" placeholder="email@example.com" />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Interested In</label>
-                    <select className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all appearance-none">
-                <option>Promenade Residences</option>
-                        <option>The Altius</option>
-                        <option>Ridges 41</option>
-                    </select>
-                  </div>
-                  <button className="w-full bg-gold text-navy py-5 rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl gold-glow">
-                    Dispatch to Sovereign Vault
-                  </button>
+                  )}
+
+                  {formStatus === 'success' ? (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-emerald-500/10 border border-emerald-500/50 p-8 rounded-2xl text-center space-y-4"
+                    >
+                      <div className="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto">
+                        <Award size={32} />
+                      </div>
+                      <h3 className="text-emerald-400 font-bold text-xl">Sovereign Protocol Initiated</h3>
+                      <p className="text-emerald-500/80 text-sm">Your priority access request has been vaulted securely. Our relationship manager will dispatch the inventory directly to you.</p>
+                    </motion.div>
+                  ) : (
+                    <>
+                      <div className="space-y-2">
+                        <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Full Name</label>
+                        <input 
+                          type="text" 
+                          required
+                          maxLength={50}
+                          pattern="[a-zA-Z\s]+"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" 
+                          placeholder="Enter your name" 
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Phone</label>
+                            <input 
+                              type="tel" 
+                              required
+                              maxLength={15}
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" 
+                              placeholder="+91" 
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Email</label>
+                            <input 
+                              type="email" 
+                              required
+                              maxLength={80}
+                              value={formData.email}
+                              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                              className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all" 
+                              placeholder="email@example.com" 
+                            />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] text-gold uppercase font-bold tracking-widest">Interested In</label>
+                        <select 
+                          value={formData.intent}
+                          onChange={(e) => setFormData({ ...formData, intent: e.target.value })}
+                          className="w-full bg-white/5 border border-gold/10 rounded-xl p-4 text-warm-white focus:border-gold outline-none transition-all appearance-none"
+                        >
+                            <option value="Promenade Residences">Promenade Residences</option>
+                            <option value="The Altius">The Altius</option>
+                            <option value="Ridges 41">Ridges 41</option>
+                        </select>
+                      </div>
+                      <button 
+                        type="submit"
+                        disabled={formStatus === 'submitting'}
+                        className="w-full bg-gold text-navy py-5 rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl gold-glow disabled:opacity-50 disabled:hover:scale-100 border-none cursor-pointer"
+                      >
+                        {formStatus === 'submitting' ? 'Vaulting...' : 'Dispatch to Sovereign Vault'}
+                      </button>
+                    </>
+                  )}
                 </form>
               </div>
            </div>
