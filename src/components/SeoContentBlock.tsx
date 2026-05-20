@@ -108,8 +108,8 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
         }}
         aria-hidden="false"
       >
-        <h1>{project.name} — Paranjape Blue Ridge Hinjewadi | {project.configurations.map(c => c.title).join(', ')}</h1>
-        <p>{project.description}</p>
+        <h1 id="speakable-title">{project.name} — Paranjape Blue Ridge Hinjewadi | {project.configurations.map(c => c.title).join(', ')}</h1>
+        <p id="speakable-summary">{project.description}</p>
         <p>Starting Price: {project.price} | Carpet Area: {project.carpetArea} | Possession: {project.possession} | MahaRERA: {project.reraNumber}</p>
         <p>Key USPs: {project.usp.join(', ')}</p>
         <p>Amenities: {project.amenities.join(', ')}</p>
@@ -144,8 +144,8 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
       }}
       aria-hidden="false"
     >
-      <h1>{pseo!.title} at Paranjape Blue Ridge Hinjewadi Pune</h1>
-      <p>
+      <h1 id="speakable-title">{pseo!.title} at Paranjape Blue Ridge Hinjewadi Pune</h1>
+      <p id="speakable-summary">
         Explore premium {pseo!.type.toLowerCase()} options for {pseo!.intent} at Paranjape Blue Ridge — 
         Pune&apos;s finest 138-acre integrated township in Hinjewadi Phase 1. 
         MahaRERA certified. Prices from ₹97.60 Lakhs. Walk-to-work lifestyle with ICSE school, 

@@ -21,6 +21,8 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
+import SpeculationRules from "@/components/SpeculationRules";
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.paranjapeblueridge.com'),
   title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
@@ -74,6 +76,10 @@ export default function RootLayout({
     'isPartOf': { '@id': 'https://www.paranjapeblueridge.com/#website' },
     'inLanguage': 'en-IN',
     'potentialAction': { '@type': 'ReadAction', 'target': 'https://www.paranjapeblueridge.com/' },
+    'speakable': {
+      '@type': 'SpeakableSpecification',
+      'cssSelector': ['#speakable-title', '#speakable-summary']
+    }
   };
 
   return (
@@ -93,6 +99,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageWebPageSchema) }}
         />
+        <SpeculationRules />
       </head>
       <body className="antialiased">
         <LanguageProvider>
@@ -120,8 +127,8 @@ export default function RootLayout({
                     borderWidth: 0,
                   }}
                 >
-                  <h1>Paranjape Blue Ridge Hinjewadi — Premium 2, 3 &amp; 4 BHK Luxury Flats in 138-Acre Integrated Township</h1>
-                  <p>Welcome to Paranjape Blue Ridge, Pune&apos;s most celebrated 138-acre integrated township in Hinjewadi Phase 1, Rajiv Gandhi Infotech Park. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with walk-to-work lifestyle, private 9-hole golf course, ICSE school inside township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses.</p>
+                  <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3 &amp; 4 BHK Luxury Flats in 138-Acre Integrated Township</h1>
+                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge, Pune&apos;s most celebrated 138-acre integrated township in Hinjewadi Phase 1, Rajiv Gandhi Infotech Park. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with walk-to-work lifestyle, private 9-hole golf course, ICSE school inside township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses.</p>
                   <ul>
                     <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
                     <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune">The Altius — 4 &amp; 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>

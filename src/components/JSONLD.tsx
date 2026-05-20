@@ -212,15 +212,64 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ]
   };
 
+  // --- SiteNavigationElement Schema (Helps Google generate sitelinks) ---
+  const siteNavigationSchema = {
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/${slug}#navigation`,
+    "name": "Main Navigation",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Promenade Residences",
+        "url": `${SITE_URL}/paranjape-blue-ridge-promenade-hinjewadi-pune`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "The Altius",
+        "url": `${SITE_URL}/paranjape-blue-ridge-altius-hinjewadi-pune`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "Ridges 41",
+        "url": `${SITE_URL}/paranjape-blue-ridge-41-hinjewadi-pune`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Hinjewadi Market Guide",
+        "url": `${SITE_URL}/hinjewadi-micro-market`
+      }
+    ]
+  };
+
+  // --- WebPage Schema with Speakable specifications ---
+  const webPageSchema = {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/${slug}#webpage`,
+    "url": `${SITE_URL}/${slug}`,
+    "name": pseoData?.title || projectData?.name || "Paranjape Blue Ridge Hinjewadi",
+    "isPartOf": { "@id": `${SITE_URL}/#website` },
+    "inLanguage": "en-IN",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["#speakable-title", "#speakable-summary"]
+    }
+  };
+
   // --- Build the Graph ---
 
   const graph: any[] = [
     organizationSchema,
     webSiteSchema,
+    webPageSchema,
     breadcrumbSchema,
     realEstateListingSchema,
     localBusinessSchema,
     announcementSchema,
+    siteNavigationSchema,
   ];
 
   // --- Per-Property Apartment & Product Schemas (Google Products Tab Hack) ---
