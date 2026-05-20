@@ -83,6 +83,12 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* LCP hero image preload — prevents render-blocking image fetch */}
+        <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
+        {/* RSS feed discovery */}
+        <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
         <JSONLD pathname="/" />
         <script
           type="application/ld+json"

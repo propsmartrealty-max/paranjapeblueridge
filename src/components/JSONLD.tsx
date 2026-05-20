@@ -8,26 +8,53 @@ function getSiloFAQs(silo: string, title: string) {
   switch(silo) {
     case 'investor':
       return [
-        { q: `Is ${title} a good investment?`, a: `Yes, ${title} offers 4-5% rental yields and is the most secure asset in Hinjewadi Phase 1.` },
-        { q: "What is the expected ROI?", a: "Blue Ridge has seen a 12% annual capital appreciation over the last 3 years." }
+        { q: `Is ${title} a good investment in 2026?`, a: `Yes. Blue Ridge Hinjewadi offers 4-5% rental yields and 12% annual capital appreciation — the highest in western Pune. Metro Line 3 proximity adds a further 15-20% premium.` },
+        { q: 'What is the expected ROI at Blue Ridge?', a: 'Blue Ridge has seen 12% annual capital appreciation over 3 years. Rental yield of 4-5% makes it the best-yielding gated community in Hinjewadi Phase 1.' }
       ];
     case 'corporate':
       return [
-        { q: `How far is ${title} from IT parks?`, a: "It is located within walking distance to Embassy Tech Zone, Quadron, and Infosys Phase 1." },
-        { q: "Is there a walk-to-work lifestyle?", a: "Yes, Blue Ridge is designed as a walk-to-work integrated township." }
+        { q: `How far is ${title} from Hinjewadi IT Park?`, a: 'Infosys Phase 1 is 1.2 KM, Wipro 1.5 KM, TCS 1.8 KM, Embassy Tech Zone 2.5 KM. Blue Ridge SEZ is inside the township — zero commute for many residents.' },
+        { q: 'Is there a walk-to-work lifestyle at Blue Ridge?', a: 'Yes. Blue Ridge is the only 138-acre integrated township in Hinjewadi Phase 1 with an office park inside its gates. True walk-to-work lifestyle.' }
       ];
     case 'battleground':
       return [
-        { q: `Why choose Blue Ridge over ${title.split('vs')[1]}?`, a: "Blue Ridge offers a 138-acre ready integrated ecosystem with a golf course, school, and boat club which standalone projects lack." },
-        { q: "Is the possession ready?", a: "Most clusters in Blue Ridge are ready or near possession compared to competitors' under-construction phases." }
+        { q: `Why choose Blue Ridge over ${title.split('vs')[1]?.trim() || 'other townships'}?`, a: 'Blue Ridge offers a 138-acre ready integrated ecosystem with ICSE school, 9-hole golf course, private boat club, and walk-to-work SEZ — a complete lifestyle no competitor can match.' },
+        { q: 'Is possession ready at Blue Ridge Hinjewadi?', a: 'Multiple clusters are ready or near-ready. Ridges 41: Dec 2028. Promenade: Sept 2029. Resale units in older towers available for immediate possession.' }
+      ];
+    case 'infrastructure':
+    case 'infra-guide':
+      return [
+        { q: 'When will Pune Metro Line 3 be ready near Blue Ridge?', a: 'The Hinjewadi-Balewadi section is expected by late 2027. Full corridor to Shivajinagar by 2029. The nearest station is 800m from Blue Ridge entrance.' },
+        { q: 'How will the Metro impact Blue Ridge property values?', a: 'Properties within 1 km of new metro stations historically appreciate 15-25% within 2 years of opening. Blue Ridge at 800m is optimally positioned.' }
+      ];
+    case 'price-list':
+      return [
+        { q: `What is the price of ${title.split('Price')[0].trim()} at Blue Ridge?`, a: '2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr | 5 BHK: ₹2.65 Cr. Prices subject to floor rise and applicable taxes.' },
+        { q: 'What is the payment plan at Blue Ridge Hinjewadi?', a: 'Construction-linked plan: 10% on booking, 80% linked to milestones, 10% on possession. Home loans from SBI, HDFC, ICICI, Axis available. Contact sales for current schemes.' }
+      ];
+    case 'floor-plan':
+      return [
+        { q: `What is the carpet area for ${title.split('Floor')[0].trim()}?`, a: '2 BHK: 793-970 sq ft | 3 BHK: 1,250-1,316 sq ft | 4 BHK: 1,592-1,858 sq ft | 5 BHK: 2,480 sq ft. All carpet areas as per RERA registered plans.' },
+        { q: 'How do I get the floor plan for Blue Ridge?', a: 'WhatsApp +91-7744009295 or use the enquiry form on this page. We dispatch the full PDF with all configurations within 30 minutes during business hours.' }
+      ];
+    case 'site-visit':
+      return [
+        { q: 'How do I book a site visit to Blue Ridge Hinjewadi?', a: 'Call +91-20-67210000 or WhatsApp +91-7744009295. We offer 7-day slots including weekends. Sales Gallery at Blue Ridge Township, Phase 1, Hinjewadi, Pune - 411057. Open 9 AM-8 PM.' },
+        { q: 'Is there a virtual tour of Blue Ridge available?', a: 'Yes. Request a 360-degree virtual walkthrough of all towers and amenities via our enquiry form. Available instantly via WhatsApp.' }
+      ];
+    case 'amenities':
+      return [
+        { q: `What amenities does ${title} offer?`, a: 'Paranjape Blue Ridge offers: 9-hole golf course, private boat club on Mula river, ICSE school inside, infinity pool, gymnasium, pet park, work-from-home pods, and 24/7 security.' },
+        { q: 'Is Blue Ridge Hinjewadi a fully gated community?', a: 'Yes. 138-acre fully gated township with CCTV, video door phones, intercom, and 24/7 manned checkpoints. Pets welcome in dedicated pet park.' }
       ];
     default:
       return [
-        { q: `What are the amenities at ${title}?`, a: "9-hole golf course, private boat club, Blue Ridge Public School, pet park, and multi-tier security." },
-        { q: "Is it RERA registered?", a: "Yes, all projects in Blue Ridge are MahaRERA certified." }
+        { q: `What are the key features of ${title} at Blue Ridge?`, a: '9-hole golf course, private boat club, Blue Ridge Public School (ICSE), pet park, infinity pool, and multi-tier security. MahaRERA registered.' },
+        { q: 'Is Blue Ridge RERA registered?', a: 'Yes. Promenade: P52100055581, Altius: P52100078116, Ridges 41: P52100000054. All MahaRERA certified and compliant.' }
       ];
   }
 }
+
 
 interface JSONLDProps {
   pathname?: string;

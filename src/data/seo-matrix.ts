@@ -64,7 +64,47 @@ export const seoMatrix = {
     { slug: 'private-boat-club-membership-pune', name: 'Private Boat Club Membership & Riverfront Living' },
     { slug: 'hinjewadi-phase-1-infrastructure-updates', name: 'Hinjewadi Phase 1 Latest Infrastructure Updates' },
     { slug: 'mula-river-rejuvenation-project-impact', name: 'Mula River Rejuvenation Project Impact' }
+  ],
+  // Silo 8: Price List — high commercial intent (buyer is ready to transact)
+  priceLists: [
+    { slug: '2-bhk-price-list-blue-ridge-hinjewadi', name: '2 BHK Price List Blue Ridge Hinjewadi 2026' },
+    { slug: '3-bhk-price-list-blue-ridge-hinjewadi', name: '3 BHK Price List Blue Ridge Hinjewadi 2026' },
+    { slug: '4-bhk-price-list-blue-ridge-hinjewadi', name: '4 BHK Price List Blue Ridge Hinjewadi 2026' },
+    { slug: 'blue-ridge-promenade-price-list', name: 'Promenade Residences Price List & Payment Plan' },
+    { slug: 'blue-ridge-altius-price-list', name: 'The Altius Price List & Cost Sheet 2026' },
+    { slug: 'blue-ridge-ridges-41-price-list', name: 'Ridges 41 Price List & Possession Date' },
+    { slug: 'blue-ridge-hinjewadi-resale-price', name: 'Blue Ridge Hinjewadi Resale Price Per Sqft' },
+    { slug: 'paranjape-blue-ridge-cost-sheet', name: 'Paranjape Blue Ridge Cost Sheet & All-Inclusive Price' },
+  ],
+  // Silo 9: Floor Plans — mid-funnel buyers visualising their home
+  floorPlans: [
+    { slug: '2-bhk-floor-plan-blue-ridge', name: '2 BHK Floor Plan Blue Ridge Hinjewadi' },
+    { slug: '3-bhk-floor-plan-blue-ridge', name: '3 BHK Floor Plan Blue Ridge Hinjewadi' },
+    { slug: '4-bhk-floor-plan-blue-ridge', name: '4 BHK Floor Plan Blue Ridge Hinjewadi' },
+    { slug: 'blue-ridge-promenade-floor-plan', name: 'Promenade Residences Floor Plan & Layout' },
+    { slug: 'blue-ridge-altius-floor-plan', name: 'The Altius Floor Plan & Unit Plan Download' },
+    { slug: 'ridges-41-floor-plan-hinjewadi', name: 'Ridges 41 Floor Plan & Carpet Area Details' },
+  ],
+  // Silo 10: Site Visit — bottom-funnel, highest conversion intent
+  siteVisit: [
+    { slug: 'blue-ridge-hinjewadi-site-visit', name: 'Blue Ridge Hinjewadi Site Visit Booking' },
+    { slug: 'paranjape-blue-ridge-sales-office', name: 'Paranjape Blue Ridge Sales Office & Contact' },
+    { slug: 'blue-ridge-hinjewadi-brochure-download', name: 'Blue Ridge Hinjewadi Brochure Download PDF' },
+    { slug: 'blue-ridge-hinjewadi-virtual-tour', name: 'Blue Ridge Hinjewadi Virtual Tour & 3D Walkthrough' },
+    { slug: 'book-flat-blue-ridge-hinjewadi', name: 'Book a Flat at Blue Ridge Hinjewadi — Pre-Registration' },
+  ],
+  // Silo 11: Amenities — lifestyle-driven searches
+  amenitiesSearch: [
+    { slug: 'flats-with-golf-course-pune', name: 'Flats with Golf Course in Pune' },
+    { slug: 'apartments-with-boat-club-pune', name: 'Apartments with Boat Club Pune' },
+    { slug: 'gated-community-hinjewadi-pune', name: 'Premium Gated Community Hinjewadi Pune' },
+    { slug: 'walk-to-work-flats-hinjewadi', name: 'Walk to Work Flats Hinjewadi IT Park' },
+    { slug: 'flats-with-school-inside-township-pune', name: 'Flats with School Inside Township Pune' },
+    { slug: 'pet-friendly-apartments-hinjewadi', name: 'Pet Friendly Luxury Apartments Hinjewadi' },
+    { slug: 'swimming-pool-apartments-hinjewadi-pune', name: 'Swimming Pool Apartments Hinjewadi Pune' },
+    { slug: 'ready-possession-flats-hinjewadi-2026', name: 'Ready Possession Flats Hinjewadi 2026' },
   ]
+
 };
 
 // Helper function to generate combinations
@@ -162,6 +202,50 @@ export function generatePseoUrls() {
       intent: `${guide.name} - Complete Buyer's Guide`,
       type: 'Guide',
       silo: 'infra-guide'
+    });
+  });
+
+  // Silo 8: Price Lists — highest commercial intent
+  seoMatrix.priceLists.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: `${item.name} — Download Official Blue Ridge Pricing`,
+      type: 'Price Guide',
+      silo: 'price-list'
+    });
+  });
+
+  // Silo 9: Floor Plans — mid-funnel, high engagement
+  seoMatrix.floorPlans.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: `${item.name} — View Carpet Area & Layout Details`,
+      type: 'Floor Plan',
+      silo: 'floor-plan'
+    });
+  });
+
+  // Silo 10: Site Visit — bottom-funnel, max conversion intent
+  seoMatrix.siteVisit.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: `${item.name} — Schedule Your Private Viewing Today`,
+      type: 'Contact',
+      silo: 'site-visit'
+    });
+  });
+
+  // Silo 11: Amenities Search — lifestyle & brand keyword capture
+  seoMatrix.amenitiesSearch.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: `${item.name} — Explore Paranjape Blue Ridge Hinjewadi`,
+      type: 'Lifestyle',
+      silo: 'amenities'
     });
   });
 

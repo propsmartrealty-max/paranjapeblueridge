@@ -10,11 +10,25 @@ interface SiloLinksProps {
   silo: string;
 }
 
+// Deterministic hash for stable link ordering (no Math.random which causes hydration mismatch)
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
 export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
   const allUrls = generatePseoUrls();
+  const seed = hashString(currentSlug);
+
   const related = allUrls
     .filter(u => u.silo === silo && u.slug !== currentSlug)
-    .sort(() => 0.5 - Math.random()) // Randomize for fresh linking
+    // Deterministic shuffle based on current page slug — stable across server/client renders
+    .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
     .slice(0, 6);
 
   if (related.length === 0) return null;

@@ -59,6 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/feed.xml`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
   ];
 
   return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...pseoUrls];

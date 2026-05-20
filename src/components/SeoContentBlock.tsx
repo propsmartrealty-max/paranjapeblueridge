@@ -34,6 +34,34 @@ function getSiloFAQs(silo: string, title: string) {
         { q: 'Is Blue Ridge connected to the Mumbai-Pune Expressway?', a: 'Yes — the expressway is 4.5 KM away (12 minutes). The Mahalunge-Ingale Bridge provides a direct arterial connection.' },
         { q: `What connectivity advantages does ${title} offer?`, a: 'Blue Ridge Phase 1 has direct access to NH48 (Pune-Mumbai), upcoming Metro Line 3, and is adjacent to Hinjewadi IT Park — the trifecta of connectivity.' },
       ];
+    case 'price-list':
+      return [
+        { q: `What is the current price of ${title.split('Price')[0].trim()}?`, a: '2 BHK in Ridges 41 starts at ₹97.60 L. 3 BHK in Promenade starts at ₹1.65 Cr. 4 BHK Altius starts at ₹1.80 Cr. 5 BHK penthouses at ₹2.65 Cr. All prices subject to floor rise and GST.' },
+        { q: 'What is the payment plan for Blue Ridge Hinjewadi?', a: 'Blue Ridge offers construction-linked payment plans. Typically: 10% on booking, 80% linked to construction milestones, 10% on possession. Home loans available from all major banks.' },
+        { q: 'What is the all-inclusive cost at Blue Ridge?', a: 'All-inclusive cost includes base price, GST (5%), stamp duty (5%), registration (1%), maintenance deposit, and club membership. Contact the sales office for exact cost sheet.' },
+        { q: 'Is the price negotiable at Blue Ridge Hinjewadi?', a: 'Blue Ridge is a premium branded township with fixed pricing. However, early-stage bookings and bulk purchases may qualify for preferential allotment. Contact our team for current offers.' },
+      ];
+    case 'floor-plan':
+      return [
+        { q: `What is the carpet area for ${title.split('Floor')[0].trim()} at Blue Ridge?`, a: '2 BHK: 793-970 sq ft | 3 BHK Promenade: 1,316 sq ft | 3 BHK Ridges 41: 1,250-1,275 sq ft | 4 BHK Altius: 1,858 sq ft | 5 BHK: 2,480+ sq ft. All carpet areas per RERA definition.' },
+        { q: 'Does Blue Ridge use MiVAN construction for better carpet area?', a: 'Yes. Ridges 41 and Promenade use MiVAN aluminium formwork, resulting in superior wall accuracy and 3-5% more usable carpet area vs conventional construction.' },
+        { q: 'How do I download the floor plan for Blue Ridge?', a: 'Request the official floor plan brochure through our enquiry form or WhatsApp +91-7744009295. We will dispatch the complete PDF with all unit configurations within 30 minutes.' },
+        { q: 'Are the floor plans RERA compliant?', a: 'Yes. All unit plans at Blue Ridge are exactly as registered with MahaRERA. Promenade: P52100055581, Altius: P52100078116, Ridges 41: P52100000054.' },
+      ];
+    case 'site-visit':
+      return [
+        { q: 'How do I book a site visit to Blue Ridge Hinjewadi?', a: 'Call +91-20-67210000 or WhatsApp +91-7744009295 to schedule a private site visit. We offer weekday and weekend slots, including early morning visits for working professionals.' },
+        { q: 'Is there a virtual tour available for Blue Ridge?', a: 'Yes. We offer a 360-degree virtual walkthrough of all completed towers, podium amenities, and the golf course. Request the virtual tour link through our enquiry form.' },
+        { q: 'Where is the Blue Ridge sales office located?', a: 'Sales Gallery: Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune - 411057. Open 9 AM to 8 PM, 7 days a week.' },
+        { q: 'What should I bring for a site visit to Blue Ridge?', a: 'A government-issued photo ID is required. We recommend comfortable footwear for the township walk. Our team will provide refreshments and a comprehensive project brief during the visit.' },
+      ];
+    case 'amenities':
+      return [
+        { q: `What amenities are included in ${title}?`, a: 'Blue Ridge offers a 9-hole golf course, private boat club on Mula river, Blue Ridge Public School (ICSE), infinity pool, gymnasium, pet park, work-from-home pods, and 24/7 multi-tier security.' },
+        { q: 'Does Blue Ridge Hinjewadi have a swimming pool?', a: 'Yes. Multiple clusters feature infinity pools and recreational swimming pools within the podium level. The Altius features a rooftop pool with river views.' },
+        { q: 'Is Blue Ridge a gated community?', a: 'Yes. Blue Ridge is a fully gated 138-acre township with CCTV surveillance, video door phones, intercom systems, and 24/7 manned security checkpoints at all entry points.' },
+        { q: 'Are pets allowed at Blue Ridge Hinjewadi?', a: 'Yes. Blue Ridge has a dedicated pet park within the township. Most residential towers are pet-friendly with separate pet entry/exit protocols.' },
+      ];
     default:
       return [
         { q: `What amenities are available at ${title}?`, a: '9-hole golf course, private boat club on Mula river, Blue Ridge Public School (ICSE), pet park, gymnasium, infinity pool, and 24/7 security with multi-tier access control.' },
@@ -43,6 +71,7 @@ function getSiloFAQs(silo: string, title: string) {
       ];
   }
 }
+
 
 function getRelatedLinks(silo: string, currentSlug: string) {
   const allUrls = generatePseoUrls();
