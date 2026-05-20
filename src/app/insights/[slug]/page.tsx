@@ -1,25 +1,62 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
-import { useParams, notFound } from 'next/navigation';
+import React from 'react';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { articles, projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import EnquiryModal from '@/components/EnquiryModal';
+import ArticleModalWrapper from '@/components/ArticleModalWrapper';
 import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-export default function ArticlePage() {
-  const { slug } = useParams();
-  const article = articles.find(a => a.slug === slug);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface ArticlePageProps {
+  params: {
+    slug: string;
+  };
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsModalOpen(true), 8000);
-    return () => clearTimeout(timer);
-  }, []);
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
 
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const article = articles.find((a) => a.slug === params.slug);
+  if (!article) return {};
+
+  return {
+    title: `${article.title} | Paranjape Blue Ridge Hinjewadi`,
+    description: article.excerpt,
+    alternates: {
+      canonical: `https://www.paranjapeblueridge.com/insights/${article.slug}`,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: `https://www.paranjapeblueridge.com/insights/${article.slug}`,
+      images: [
+        {
+          url: 'https://www.paranjapeblueridge.com/assets/images/township-night.png',
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      type: 'article',
+      publishedTime: article.dateISO,
+      authors: [article.author],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: ['https://www.paranjapeblueridge.com/assets/images/township-night.png'],
+    },
+  };
+}
+
+export default function ArticlePage({ params }: ArticlePageProps) {
+  const article = articles.find((a) => a.slug === params.slug);
   if (!article) return notFound();
 
   const readTime = Math.ceil(article.content.join(' ').split(' ').length / 200);
@@ -27,7 +64,6 @@ export default function ArticlePage() {
   return (
     <main className="min-h-screen bg-navy text-text">
       <Navbar />
-      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* ARTICLE HERO */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -49,7 +85,7 @@ export default function ArticlePage() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-white leading-tight mb-8">
+          <h1 id="speakable-title" className="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-white leading-tight mb-8">
             {article.title}
           </h1>
 
@@ -74,34 +110,18 @@ export default function ArticlePage() {
       <article className="container max-w-4xl mx-auto pb-24">
         <div className="prose prose-invert prose-lg max-w-none">
           {article.content.map((paragraph, i) => (
-            <motion.p
+            <p
               key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              viewport={{ once: true }}
+              id={i === 0 ? "speakable-summary" : undefined}
               className="text-text-light text-lg leading-relaxed mb-8"
             >
               {paragraph}
-            </motion.p>
+            </p>
           ))}
         </div>
 
-        {/* CTA BANNER */}
-        <div className="mt-16 p-8 sm:p-12 bg-gold/5 border border-gold/20 rounded-[2rem] text-center">
-          <h3 className="text-2xl sm:text-3xl font-serif text-warm-white mb-4">
-            Interested in <span className="italic text-gilded">Blue Ridge</span>?
-          </h3>
-          <p className="text-text-light mb-8 max-w-lg mx-auto">
-            Get exclusive pricing, floor plans, and schedule a private site visit to Paranjape Blue Ridge Hinjewadi.
-          </p>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-gold text-navy px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl gold-glow"
-          >
-            Request Details Now
-          </button>
-        </div>
+        {/* CLIENT INTERACTION CTA BANNER */}
+        <ArticleModalWrapper />
 
         {/* RELATED PROJECTS */}
         <div className="mt-20 border-t border-white/5 pt-16">
@@ -130,7 +150,7 @@ export default function ArticlePage() {
         <div className="mt-16 border-t border-white/5 pt-16">
           <h3 className="text-gold font-bold tracking-[6px] uppercase text-[10px] mb-8">More Insights</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {articles.filter(a => a.slug !== slug).slice(0, 4).map((a) => (
+            {articles.filter(a => a.slug !== params.slug).slice(0, 4).map((a) => (
               <Link
                 key={a.slug}
                 href={`/insights/${a.slug}`}
@@ -146,25 +166,40 @@ export default function ArticlePage() {
           </div>
         </div>
 
-        {/* JSON-LD Article Schema (client-side supplement) */}
+        {/* JSON-LD Article Schema (server-rendered dynamic graph) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Article",
-              "headline": article.title,
-              "description": article.excerpt,
-              "author": { "@type": "Organization", "name": article.author },
-              "publisher": {
-                "@type": "Organization",
-                "name": "Paranjape Blue Ridge Sovereign Portal",
-                "logo": { "@type": "ImageObject", "url": "https://www.paranjapeblueridge.com/favicon.png" }
-              },
-              "datePublished": article.dateISO,
-              "dateModified": article.dateISO,
-              "mainEntityOfPage": `https://www.paranjapeblueridge.com/insights/${article.slug}`,
-              "image": "https://www.paranjapeblueridge.com/assets/images/township-night.png"
+              "@graph": [
+                {
+                  "@type": "NewsArticle",
+                  "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}#article`,
+                  "headline": article.title,
+                  "description": article.excerpt,
+                  "datePublished": article.dateISO,
+                  "dateModified": article.dateISO,
+                  "author": { "@type": "Person", "name": article.author },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Paranjape Schemes (Construction) Ltd.",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg"
+                    }
+                  },
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}`
+                  },
+                  "image": "https://www.paranjapeblueridge.com/assets/images/township-night.png",
+                  "speakable": {
+                    "@type": "SpeakableSpecification",
+                    "cssSelector": ["#speakable-title", "#speakable-summary"]
+                  }
+                }
+              ]
             })
           }}
         />
