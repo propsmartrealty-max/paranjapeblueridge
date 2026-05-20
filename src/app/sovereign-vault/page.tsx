@@ -169,7 +169,7 @@ export default function UnifiedSovereignVault() {
                   </span>
                   {indexStatus && (
                     <span className={`text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${indexStatus.error ? 'text-red-500 border-red-500/30 bg-red-500/10' : 'text-emerald-500 border-emerald-500/30 bg-emerald-500/10'}`}>
-                      {indexStatus.error ? 'Failed' : 'Last Success'}
+                      {indexStatus.error ? 'Failed' : 'Success'}
                     </span>
                   )}
                 </div>
@@ -192,6 +192,40 @@ export default function UnifiedSovereignVault() {
                     Trigger Sweep
                   </button>
                 </div>
+
+                {indexStatus && (
+                  <div className="mt-4 pt-4 border-t border-white/5 text-[10px] space-y-1 text-text-light font-mono">
+                    {indexStatus.error ? (
+                      <p className="text-red-400">❌ Error: {indexStatus.error}</p>
+                    ) : (
+                      <>
+                        <p className="text-gold">✅ {indexStatus.message || 'Complete'}</p>
+                        <div className="grid grid-cols-3 gap-2 mt-2 bg-navy/40 p-2.5 rounded-lg border border-white/5">
+                          <div>
+                            <span className="text-[8px] uppercase text-text-light/60 block">Sitemap Urls</span>
+                            <span className="text-xs font-bold text-warm-white">{indexStatus.stats?.totalInSitemap || indexStatus.stats?.total || 0}</span>
+                          </div>
+                          <div>
+                            <span className="text-[8px] uppercase text-emerald-500/70 block">Submitted</span>
+                            <span className="text-xs font-bold text-emerald-500">{indexStatus.stats?.success || 0}</span>
+                          </div>
+                          <div>
+                            <span className="text-[8px] uppercase text-red-500/70 block">Failed</span>
+                            <span className="text-xs font-bold text-red-500">{indexStatus.stats?.failed || 0}</span>
+                          </div>
+                        </div>
+                        {indexStatus.failures && indexStatus.failures.length > 0 && (
+                          <div className="mt-2 text-[8px] text-red-400 max-h-16 overflow-y-auto scrollbar-hide">
+                            <p className="font-bold uppercase tracking-wider mb-1">Failures:</p>
+                            {indexStatus.failures.slice(0, 3).map((f: any, i: number) => (
+                              <p key={i}>• {f.url}: {f.error}</p>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
             </div>
         </div>
 

@@ -84,6 +84,52 @@ interface SeoContentBlockProps {
   slug: string;
 }
 
+const keywordMap = [
+  { phrase: 'Promenade Residences', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune' },
+  { phrase: 'The Altius', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune' },
+  { phrase: 'Ridges 41', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune' },
+  { phrase: 'Hinjewadi Phase 1', url: 'https://www.paranjapeblueridge.com/hinjewadi-micro-market' },
+  { phrase: '2 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/2-bhk-flats-near-infosys-hinjewadi' },
+  { phrase: '3 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/3-bhk-flats-near-infosys-hinjewadi' },
+  { phrase: 'high rental yield', url: 'https://www.paranjapeblueridge.com/high-rental-yield-properties-in-hinjewadi-phase-1' },
+];
+
+function escapeRegExp(str: string) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function injectLinks(text: string): React.ReactNode {
+  let parts: (string | React.ReactNode)[] = [text];
+
+  for (const item of keywordMap) {
+    const newParts: (string | React.ReactNode)[] = [];
+    for (const part of parts) {
+      if (typeof part !== 'string') {
+        newParts.push(part);
+        continue;
+      }
+      
+      const regex = new RegExp(`(${escapeRegExp(item.phrase)})`, 'gi');
+      const subparts = part.split(regex);
+      
+      subparts.forEach((sub, idx) => {
+        if (idx % 2 === 1) {
+          newParts.push(
+            <a key={`${item.phrase}-${idx}`} href={item.url} style={{ textDecoration: 'underline' }}>
+              {sub}
+            </a>
+          );
+        } else if (sub) {
+          newParts.push(sub);
+        }
+      });
+    }
+    parts = newParts;
+  }
+
+  return <>{parts}</>;
+}
+
 export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   const project = projects.find(p => p.slug === slug);
   const allUrls = generatePseoUrls();
@@ -109,7 +155,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
         aria-hidden="false"
       >
         <h1 id="speakable-title">{project.name} — Paranjape Blue Ridge Hinjewadi | {project.configurations.map(c => c.title).join(', ')}</h1>
-        <p id="speakable-summary">{project.description}</p>
+        <p id="speakable-summary">{injectLinks(project.description)}</p>
         <p>Starting Price: {project.price} | Carpet Area: {project.carpetArea} | Possession: {project.possession} | MahaRERA: {project.reraNumber}</p>
         <p>Key USPs: {project.usp.join(', ')}</p>
         <p>Amenities: {project.amenities.join(', ')}</p>
@@ -146,16 +192,10 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
     >
       <h1 id="speakable-title">{pseo!.title} at Paranjape Blue Ridge Hinjewadi Pune</h1>
       <p id="speakable-summary">
-        Explore premium {pseo!.type.toLowerCase()} options for {pseo!.intent} at Paranjape Blue Ridge — 
-        Pune&apos;s finest 138-acre integrated township in Hinjewadi Phase 1. 
-        MahaRERA certified. Prices from ₹97.60 Lakhs. Walk-to-work lifestyle with ICSE school, 
-        9-hole golf course, and private boat club inside the township.
+        {injectLinks(`Explore premium ${pseo!.type.toLowerCase()} options for ${pseo!.intent} at Paranjape Blue Ridge — Pune's finest 138-acre integrated township in Hinjewadi Phase 1. MahaRERA certified. Prices from ₹97.60 Lakhs. Walk-to-work lifestyle with ICSE school, 9-hole golf course, and private boat club inside the township.`)}
       </p>
       <p>
-        Paranjape Blue Ridge offers 2 BHK, 3 BHK, 4 BHK, and 5 BHK luxury residences across three premium clusters: 
-        Promenade Residences (3 &amp; 4 BHK, ₹1.65 Cr onwards), The Altius (4 &amp; 5 BHK, ₹1.80 Cr onwards), 
-        and Ridges 41 (2, 3 &amp; 4 BHK, ₹97.60 L onwards). All projects are MahaRERA registered and 
-        located within walking distance of Infosys, Wipro, and TCS campuses in Hinjewadi Phase 1, Pune.
+        {injectLinks(`Paranjape Blue Ridge offers 2 BHK, 3 BHK, 4 BHK, and 5 BHK luxury residences across three premium clusters: Promenade Residences (3 & 4 BHK, ₹1.65 Cr onwards), The Altius (4 & 5 BHK, ₹1.80 Cr onwards), and Ridges 41 (2, 3 & 4 BHK, ₹97.60 L onwards). All projects are MahaRERA registered and located within walking distance of Infosys, Wipro, and TCS campuses in Hinjewadi Phase 1, Pune.`)}
       </p>
       <ul>
         <li>Township Size: 138 Acres Integrated Township</li>
@@ -173,7 +213,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
         {faqs.map((faq, i) => (
           <div key={i}>
             <h3>{faq.q}</h3>
-            <p>{faq.a}</p>
+            <p>{injectLinks(faq.a)}</p>
           </div>
         ))}
       </section>
@@ -199,3 +239,4 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
     </div>
   );
 }
+
