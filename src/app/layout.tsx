@@ -51,14 +51,14 @@ export const metadata: Metadata = {
     description: 'Explore premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with a private boat club and golf course.',
     url: 'https://www.paranjapeblueridge.com',
     siteName: 'Paranjape Blue Ridge Sovereign Portal',
-    images: [{ url: '/assets/images/township-night.png' }],
+    images: [{ url: 'https://www.paranjapeblueridge.com/assets/images/township-night.png', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
     description: 'Premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with golf course and boat club.',
-    images: ['/assets/images/township-night.png'],
+    images: ['https://www.paranjapeblueridge.com/assets/images/township-night.png'],
   },
 };
 
@@ -73,7 +73,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <JSONLD />
+        <JSONLD pathname="/" />
       </head>
       <body className="antialiased">
         <LanguageProvider>

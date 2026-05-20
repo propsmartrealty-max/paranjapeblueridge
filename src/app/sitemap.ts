@@ -36,10 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const pseoUrlsData = generatePseoUrls();
+  // Use a fixed publication date for PSEO pages — avoids Google treating them
+  // as freshly-modified on every build (which signals thin content churn).
+  const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
   const pseoUrls = pseoUrlsData.map(u => ({
     url: `${baseUrl}/${u.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily' as const,
+    lastModified: pseoPublishedDate,
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 

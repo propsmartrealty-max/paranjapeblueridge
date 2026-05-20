@@ -1,42 +1,87 @@
-import { projects } from "@/data/master-data";
-import { generatePseoUrls } from "@/data/seo-matrix";
-import { Metadata } from "next";
+import { Metadata } from 'next';
+import { projects } from '@/data/master-data';
+import { generatePseoUrls } from '@/data/seo-matrix';
+import JSONLD from '@/components/JSONLD';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const project = projects.find((p) => p.slug === params.slug);
-  const pseoData = generatePseoUrls().find(u => u.slug === params.slug);
-  
-  if (!project && !pseoData) return {};
+const SITE_URL = 'https://www.paranjapeblueridge.com';
+const OG_IMAGE = `${SITE_URL}/assets/images/township-night.png`;
 
-  const title = project 
-    ? `${project.name} Hinjewadi | Official Layout, Pricing & Brochure`
-    : `${pseoData?.title} | Paranjape Blue Ridge Hinjewadi`;
-    
-  const description = project
-    ? `Explore ${project.name} at Paranjape Blue Ridge Hinjewadi Phase 1. ${project.tagline}. View floor plans, current pricing, and possession dates.`
-    : `Secure the best deals on ${pseoData?.type}s at Blue Ridge Hinjewadi. ${pseoData?.intent}. 138-acre integrated township with world-class amenities.`;
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = params;
 
+  // --- Project page metadata ---
+  const project = projects.find((p) => p.slug === slug);
+  if (project) {
+    const title = `${project.name} | Paranjape Blue Ridge Hinjewadi - ${project.configurations.map(c => c.title.split(' ')[0] + ' ' + c.title.split(' ')[1]).join(', ')} Flats`;
+    const description = project.description.slice(0, 160);
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `${SITE_URL}/${slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        url: `${SITE_URL}/${slug}`,
+        type: 'website',
+        images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${project.name} - Paranjape Blue Ridge` }],
+        siteName: 'Paranjape Blue Ridge Sovereign Portal',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: [OG_IMAGE],
+      },
+    };
+  }
+
+  // --- PSEO page metadata ---
+  const allUrls = generatePseoUrls();
+  const pseo = allUrls.find((u) => u.slug === slug);
+  if (pseo) {
+    const title = `${pseo.title} | Paranjape Blue Ridge Hinjewadi Pune`;
+    const description = `${pseo.intent} — Explore premium residences at Paranjape Blue Ridge, Pune's finest 138-acre integrated township in Hinjewadi Phase 1. 2, 3 & 4 BHK luxury flats. MahaRERA certified.`;
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `${SITE_URL}/${slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        url: `${SITE_URL}/${slug}`,
+        type: 'website',
+        images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${pseo.title} - Paranjape Blue Ridge` }],
+        siteName: 'Paranjape Blue Ridge Sovereign Portal',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: [OG_IMAGE],
+      },
+    };
+  }
+
+  // --- Fallback (404 handled by page.tsx) ---
   return {
-    title,
-    description,
-    alternates: {
-      canonical: `https://www.paranjapeblueridge.com/${params.slug}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `https://www.paranjapeblueridge.com/${params.slug}`,
-      images: [{ url: '/assets/images/township-night.png' }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: ['/assets/images/township-night.png'],
-    },
+    title: 'Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal',
+    description: 'Premium 2, 3 & 4 BHK luxury flats at Paranjape Blue Ridge, Hinjewadi Phase 1, Pune.',
   };
 }
 
-export default function ProjectLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function SlugLayout({ children, params }: { children: React.ReactNode; params: { slug: string } }) {
+  return (
+    <>
+      <JSONLD pathname={`/${params.slug}`} />
+      {children}
+    </>
+  );
 }

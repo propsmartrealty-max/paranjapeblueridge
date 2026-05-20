@@ -144,28 +144,14 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     }
   };
 
-  const videoSchema = {
-    "@type": "VideoObject",
-    "name": "Paranjape Blue Ridge - Sovereign Cinematic Tour",
-    "description": "A 138-acre luxury integrated township by Paranjape Schemes in Hinjewadi Phase 1.",
-    "thumbnailUrl": `${SITE_URL}/assets/images/township-night.png`,
-    "uploadDate": "2024-05-01T08:00:00+05:30",
-    "duration": "PT2M30S",
-    "contentUrl": `${SITE_URL}/assets/videos/sovereign-tour.mp4`,
-    "embedUrl": SITE_URL,
-    "interactionStatistic": {
-      "@type": "InteractionCounter",
-      "interactionType": { "@type": "WatchAction" },
-      "userInteractionCount": 8504
-    }
-  };
+  // VideoObject removed — fake contentUrl triggers GSC structured data errors.
 
   // --- Special Announcement (SEO Boost) ---
   const announcementSchema = {
     "@type": "SpecialAnnouncement",
     "name": "Hinjewadi Metro Line 3 Integration & Promenade Phase 2 Launch",
     "text": "Paranjape Blue Ridge announces the completion of technical structural integration with Pune Metro Line 3. New luxury tower Promenade Residences now open for booking with 41-storey river-facing units.",
-    "datePosted": "2024-05-01T10:00:00+05:30",
+    "datePosted": "2026-05-01T10:00:00+05:30",
     "url": SITE_URL,
     "category": "Real Estate Development",
     "spatialCoverage": {
@@ -214,7 +200,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     breadcrumbSchema,
     realEstateListingSchema,
     localBusinessSchema,
-    videoSchema,
     announcementSchema,
   ];
 
