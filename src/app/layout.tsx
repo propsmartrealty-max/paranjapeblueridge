@@ -39,10 +39,9 @@ export const metadata: Metadata = {
     "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune"
   ],
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.paranjapeblueridge.com/',
     languages: {
       'en-IN': 'https://www.paranjapeblueridge.com/',
-      'mr-IN': 'https://www.paranjapeblueridge.com/regional-mr',
     },
   },
   openGraph: {

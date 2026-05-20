@@ -147,13 +147,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "description": "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1.",
     "url": SITE_URL,
     "image": `${SITE_URL}/assets/images/township-night.png`,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "bestRating": "5",
-      "ratingCount": "2150",
-      "reviewCount": "876"
-    }
   };
 
   const realEstateAgentSchema = {
@@ -263,7 +256,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         } : undefined
       });
 
-      // Duplicate as Product for Google Shopping/Search Tab rich results
+      // Product schema for Google Shopping/Search Tab rich results
       graph.push({
         "@type": "Product",
         "name": `${config.title} - ${projectData.name}`,
@@ -278,11 +271,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
           "price": String(config.priceValue || 9500000),
           "availability": "https://schema.org/InStock"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "120"
-        }
       });
     });
   }
