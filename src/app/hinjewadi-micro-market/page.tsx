@@ -1,20 +1,17 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import InvestmentMatrix from '@/components/InvestmentMatrix';
 import ConnectivityHub from '@/components/ConnectivityHub';
 import { useLanguage } from '@/context/LanguageContext';
-import { useHasMounted } from '@/hooks/useHasMounted';
-import { Shield, TrendingUp, Users, Building2, TrainFront } from 'lucide-react';
+import { TrendingUp, Users, TrainFront } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function MicroMarketGuide() {
   const { t } = useLanguage();
-  const hasMounted = useHasMounted();
-
-  if (!hasMounted) return <div className="bg-navy h-screen"></div>;
 
   return (
     <main className="min-h-screen bg-navy text-text">
@@ -23,10 +20,13 @@ export default function MicroMarketGuide() {
       {/* GUIDE HERO */}
       <section className="relative h-[60vh] flex items-end pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/assets/images/township-night.png" 
-            className="w-full h-full object-cover opacity-20 grayscale"
-            alt="Hinjewadi Phase 1 IT Hub Overview"
+          <Image 
+            src="/assets/images/township-night.png"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-20 grayscale"
+            alt="Hinjewadi Phase 1 IT Hub — Paranjape Blue Ridge Integrated Township Overview"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-transparent"></div>
         </div>

@@ -6,7 +6,6 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import StickyCTA from "@/components/StickyCTA";
 import PulseNotifications from "@/components/PulseNotifications";
-
 import { TrackingProvider } from "@/components/TrackingProvider";
 import { AtmosphereProvider } from "@/context/AtmosphereContext";
 
@@ -67,6 +66,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const homepageWebPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://www.paranjapeblueridge.com/#webpage',
+    'url': 'https://www.paranjapeblueridge.com/',
+    'name': 'Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal',
+    'isPartOf': { '@id': 'https://www.paranjapeblueridge.com/#website' },
+    'inLanguage': 'en-IN',
+    'potentialAction': { '@type': 'ReadAction', 'target': 'https://www.paranjapeblueridge.com/' },
+  };
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
@@ -74,6 +84,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <JSONLD pathname="/" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageWebPageSchema) }}
+        />
       </head>
       <body className="antialiased">
         <LanguageProvider>
@@ -87,11 +101,39 @@ export default function RootLayout({
                   <span className="hidden sm:inline">Ridge 41: P52100000054</span>
                   <span className="sm:hidden">P52100055581 | P52100078116 | P52100000054</span>
                 </div>
+                {/* Server-rendered SEO content for homepage — crawlable by Googlebot on first pass */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: '1px',
+                    height: '1px',
+                    padding: 0,
+                    margin: '-1px',
+                    overflow: 'hidden',
+                    clip: 'rect(0,0,0,0)',
+                    whiteSpace: 'nowrap',
+                    borderWidth: 0,
+                  }}
+                >
+                  <h1>Paranjape Blue Ridge Hinjewadi — Premium 2, 3 &amp; 4 BHK Luxury Flats in 138-Acre Integrated Township</h1>
+                  <p>Welcome to Paranjape Blue Ridge, Pune&apos;s most celebrated 138-acre integrated township in Hinjewadi Phase 1, Rajiv Gandhi Infotech Park. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with walk-to-work lifestyle, private 9-hole golf course, ICSE school inside township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses.</p>
+                  <ul>
+                    <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
+                    <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune">The Altius — 4 &amp; 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>
+                    <li><a href="/paranjape-blue-ridge-41-hinjewadi-pune">Ridges 41 — 2, 3 &amp; 4 BHK High-Rise Living from ₹97.60 L</a></li>
+                    <li><a href="/hinjewadi-micro-market">Hinjewadi Phase 1 Micro-Market Investment Guide 2026</a></li>
+                    <li><a href="/insights/why-blue-ridge-hinjewadi-best-investment-2026">Why Blue Ridge is the Best Investment in 2026</a></li>
+                    <li><a href="/2-bhk-flats-near-infosys-hinjewadi">2 BHK Flats near Infosys Hinjewadi</a></li>
+                    <li><a href="/3-bhk-flats-near-infosys-hinjewadi">3 BHK Flats near Infosys Hinjewadi</a></li>
+                    <li><a href="/high-rental-yield-properties-in-hinjewadi-phase-1">High Rental Yield Properties in Hinjewadi Phase 1</a></li>
+                    <li><a href="/blue-ridge-vs-life-republic">Blue Ridge vs Life Republic Comparison</a></li>
+                  </ul>
+                  <p>MahaRERA Registration: Promenade P52100055581 | Altius P52100078116 | Ridges 41 P52100000054. Contact: +91-20-67210000. Address: Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune - 411057, Maharashtra, India.</p>
+                </div>
                 <div className="architect-grid"></div>
                 {children}
                 <StickyCTA />
                 <PulseNotifications />
-
               </TrackingProvider>
             </Suspense>
           </AtmosphereProvider>

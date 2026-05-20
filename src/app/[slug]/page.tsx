@@ -8,7 +8,6 @@ import Navbar from '@/components/Navbar';
 import BlueprintExplorer from '@/components/BlueprintExplorer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { useLanguage } from '@/context/LanguageContext';
-import { useHasMounted } from '@/hooks/useHasMounted';
 import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import EnquiryModal from '@/components/EnquiryModal';
@@ -20,7 +19,6 @@ import PseoLandingPage from '@/components/PseoLandingPage';
 export default function ProjectSilo() {
   const { slug } = useParams();
   const { t } = useLanguage();
-  const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -35,7 +33,8 @@ export default function ProjectSilo() {
   const pseoData = allUrls.find(u => u.slug === slug);
 
   if (!project && !pseoData) return notFound();
-  if (!hasMounted) return <div className="bg-navy h-screen"></div>;
+  // Note: hasMounted guard removed — project content is now rendered immediately.
+  // PSEO pages use PseoLandingPage which manages its own mounting.
 
   if (pseoData) {
     return <PseoLandingPage pageData={pseoData} />;
