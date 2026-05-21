@@ -116,10 +116,6 @@ export default function CustomBrochure() {
                     <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-6 mb-6 opacity-30" alt="Paranjape" />
                     <p className="text-[10px] text-navy/40 max-w-sm">MahaRERA: {project.id === 'promenade' ? 'P52100055581' : project.id === 'altius' ? 'P52100078116' : 'P52100000054'}</p>
                 </div>
-                <div className="text-right">
-                    <div className="text-xs font-bold text-navy uppercase tracking-widest mb-2">Exclusive Partner</div>
-                    <div className="text-2xl font-serif italic text-gold">PropSmart Realty</div>
-                </div>
             </div>
         </div>
       </div>
