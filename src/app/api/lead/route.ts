@@ -82,27 +82,27 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    // ── Dual-Channel Dispatch (In Parallel) ──
+    const visitTag = leadPayload.visitDate ? ` [Visit: ${leadPayload.visitDate}]` : '';
 
-    // ── Channel 1: Google Apps Script Webhook ──
-    let webhookSuccess = false;
-    try {
-      const webhookResponse = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leadPayload),
-        signal: AbortSignal.timeout(10_000), // 10s timeout
-      });
-      const webhookData = await webhookResponse.json();
-      if (webhookData.success) webhookSuccess = true;
-    } catch (err) {
-      console.error('[Lead API] Webhook dispatch failed:', err);
-    }
-
-    // ── Channel 2: FormSubmit fallback (if webhook failed) ──
-    let formsubmitSuccess = false;
-    if (!webhookSuccess) {
+    const webhookPromise = (async () => {
       try {
-        const visitTag = leadPayload.visitDate ? ` [Visit: ${leadPayload.visitDate}]` : '';
+        const webhookResponse = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadPayload),
+          signal: AbortSignal.timeout(10_000), // 10s timeout
+        });
+        const webhookData = await webhookResponse.json();
+        return !!webhookData.success;
+      } catch (err) {
+        console.error('[Lead API] Webhook dispatch failed:', err);
+        return false;
+      }
+    })();
+
+    const formsubmitPromise = (async () => {
+      try {
         const fsResponse = await fetch(FORMSUBMIT_URL, {
           method: 'POST',
           headers: {
@@ -127,11 +127,17 @@ export async function POST(request: NextRequest) {
           signal: AbortSignal.timeout(10_000),
         });
         const fsData = await fsResponse.json();
-        if (fsData.success) formsubmitSuccess = true;
+        return !!fsData.success;
       } catch (err) {
-        console.error('[Lead API] FormSubmit fallback failed:', err);
+        console.error('[Lead API] FormSubmit dispatch failed:', err);
+        return false;
       }
-    }
+    })();
+
+    const [webhookSuccess, formsubmitSuccess] = await Promise.all([
+      webhookPromise,
+      formsubmitPromise
+    ]);
 
     const delivered = webhookSuccess || formsubmitSuccess;
 
