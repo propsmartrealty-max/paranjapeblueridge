@@ -24,8 +24,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import DOMPurify from 'dompurify';
 
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycby2dfeDEMYGEo7HIWGTUebqeFYAZBw60AOzbtKHblZZxR2L7-gBbONd3o_u5dalwffq_A/exec';
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
+const LEAD_API = '/api/lead';
 
 import InventoryMatrix from '@/components/InventoryMatrix';
 
@@ -78,52 +77,29 @@ export default function Home() {
       timestamp: new Date().toISOString(),
     };
 
-    // Rate Limiting
-    try {
-      const lastSubmit = localStorage.getItem('ks_last_submit');
-      if (lastSubmit && (Date.now() - parseInt(lastSubmit)) < 60000) {
-        setFormError("Please wait 60 seconds before submitting again.");
-        setFormStatus('idle');
-        return;
-      }
-      localStorage.setItem('ks_last_submit', Date.now().toString());
-    } catch (err) {}
-
-    // Sovereign Vault
+    // Sovereign Vault (local backup)
     try {
       const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
       existingLeads.push(leadPayload);
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {}
 
-    // Webhook dispatch
-    let emailSent = false;
-    if (WEBHOOK_URL) {
-      try {
-        const response = await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadPayload),
-        });
-        const data = await response.json();
-        if (data.success) emailSent = true;
-      } catch (err) {}
-    }
+    // Server-side API dispatch
+    try {
+      const response = await fetch(LEAD_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadPayload),
+      });
+      const data = await response.json();
 
-    if (!emailSent) {
-      try {
-        const response = await fetch(FORMSUBMIT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            ...leadPayload,
-            _subject: `💎 QUALIFIED INLINE: ${leadPayload.name} - ${leadPayload.bhk}`,
-            _captcha: "false" 
-          }),
-        });
-        const data = await response.json();
-        if (data.success) emailSent = true;
-      } catch (err) {}
+      if (!response.ok && data.error) {
+        setFormError(data.error);
+        setFormStatus('idle');
+        return;
+      }
+    } catch (err) {
+      console.error("Lead API dispatch failed", err);
     }
 
     setFormStatus('success');

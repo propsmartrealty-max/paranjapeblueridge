@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import DOMPurify from 'dompurify';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// SOVEREIGN LEAD DISPATCH CONSTANTS
+// SOVEREIGN LEAD DISPATCH — via /api/lead
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const WHATSAPP_NUMBER = '917744009295';
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycby2dfeDEMYGEo7HIWGTUebqeFYAZBw60AOzbtKHblZZxR2L7-gBbONd3o_u5dalwffq_A/exec';
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
+const LEAD_API = '/api/lead';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -57,10 +55,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   };
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // TRIPLE-REDUNDANT LEAD DISPATCH
-  // Channel 1: Google Apps Script Webhook (Email)
-  // Channel 2: WhatsApp Deep Link (Instant notification)
-  // Channel 3: Sovereign Vault (localStorage backup)
+  // LEAD DISPATCH via Server-Side API
+  // Channel 1: /api/lead → Google Apps Script + FormSubmit
+  // Channel 2: Sovereign Vault (localStorage backup)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,11 +70,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
 
     setStatus('submitting');
     
-// ── XSS Sanitization ──
+    // ── XSS Sanitization ──
     const sanitize = (str: string) => {
-      // Basic manual replacement
       let clean = str.replace(/[<>]/g, '');
-      // Fallback to DOMPurify
       if (DOMPurify) {
         clean = DOMPurify.sanitize(clean);
       }
@@ -95,25 +90,11 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       visitDate: sanitize(formData.visitDate),
       visitTime: sanitize(formData.visitTime),
       message: sanitize(formData.message),
-      source: source === '/' ? 'Homepage' : source.replace(/^\//, ''),
+      source: source === '/' ? 'Homepage_Modal' : source.replace(/^\//, ''),
       timestamp: new Date().toISOString(),
     };
 
-    // ── Rate Limiting (Prevent Spam) ──
-    try {
-      const lastSubmit = localStorage.getItem('ks_last_submit');
-      if (lastSubmit && (Date.now() - parseInt(lastSubmit)) < 60000) {
-        setError("Please wait 60 seconds before submitting again.");
-        setStatus('idle');
-        setStep(1);
-        return;
-      }
-      localStorage.setItem('ks_last_submit', Date.now().toString());
-    } catch (err) {
-      console.error("Rate limit check failed", err);
-    }
-
-    // ── Channel 3: Sovereign Vault (Always executes first) ──
+    // ── Channel 2: Sovereign Vault (Always executes first) ──
     try {
       const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
       existingLeads.push(leadPayload);
@@ -122,49 +103,26 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       console.error("Vault save failed", err);
     }
 
-    // WhatsApp notification removed as per requirement. Lead is only sent via Email.
-
-    // ── Channel 1: Email via Webhook (Primary) ──
-    let emailSent = false;
-
-    // Try Google Apps Script Webhook first
-    if (WEBHOOK_URL) {
-      try {
-        const response = await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadPayload),
-        });
-        const data = await response.json();
-        if (data.success) emailSent = true;
-      } catch (err) {
-        console.error("Webhook dispatch failed, trying FormSubmit fallback", err);
+    // ── Channel 1: Server-Side API (Email dispatch) ──
+    try {
+      const response = await fetch(LEAD_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadPayload),
+      });
+      const data = await response.json();
+      
+      if (!response.ok && data.error) {
+        setError(data.error);
+        setStatus('idle');
+        setStep(1);
+        return;
       }
+    } catch (err) {
+      console.error("Lead API dispatch failed", err);
     }
 
-    // Fallback to FormSubmit if webhook failed or not configured
-    if (!emailSent) {
-      try {
-        const response = await fetch(FORMSUBMIT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget} ${formData.visitDate ? `[Visit: ${formData.visitDate}]` : ''}`,
-            _captcha: "false" 
-          }),
-        });
-        const data = await response.json();
-        if (data.success) emailSent = true;
-      } catch (err) {
-        console.error("FormSubmit fallback also failed", err);
-      }
-    }
-
-    // Final state — always show success since Vault + WhatsApp are guaranteed
+    // Always show success since Vault backup is guaranteed
     setStatus('success');
     setTimeout(() => {
       setStatus('idle');
