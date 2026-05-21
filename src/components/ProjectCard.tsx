@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Ruler, IndianRupee, Layers, Calendar, CheckCircle2 } from 'lucide-react';
 import { Project } from '@/data/master-data';
 import BlueprintExplorer from './BlueprintExplorer';
@@ -10,6 +11,8 @@ interface ProjectCardProps {
   project: Project;
   reverse?: boolean;
 }
+
+const MotionImage = motion(Image);
 
 export default function ProjectCard({ project, reverse }: ProjectCardProps) {
   return (
@@ -21,12 +24,15 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
         className={`relative rounded-3xl overflow-hidden shadow-2xl border border-gold/10 group ${reverse ? 'lg:order-2' : ''}`}
       >
         {/* Real Image */}
-        <motion.img 
+        <MotionImage 
           src={project.id === 'promenade' ? '/assets/images/real-township-day-2.jpg' : 
                project.id === 'altius' ? '/assets/images/real-altius-view.jpg' : 
                '/assets/images/ridges41-property.jpg'} 
           alt={`Paranjape Blue Ridge ${project.name} - Luxury ${project.id === 'promenade' ? '3/4 BHK' : project.id === 'altius' ? '4/5 BHK' : '2/3 BHK'} Apartments in Hinjewadi Phase 1`}
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+          width={800}
+          height={600}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="w-full h-auto min-h-[300px] object-cover transition-transform duration-1000 group-hover:scale-105"
         />
 
         {/* Blueprint Simulation Layer */}

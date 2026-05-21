@@ -149,17 +149,45 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "image": `${SITE_URL}/assets/images/township-night.png`,
   };
 
+  let regionName = "Hinjewadi Phase 1";
+  let postalCodeVal = "411057";
+  let geoVal = { latitude: 18.5786825, longitude: 73.7370331 };
+
+  if (slug) {
+    if (slug.includes('wakad')) {
+      regionName = "Wakad";
+      postalCodeVal = "411057";
+      geoVal = { latitude: 18.5987, longitude: 73.7753 };
+    } else if (slug.includes('baner')) {
+      regionName = "Baner";
+      postalCodeVal = "411045";
+      geoVal = { latitude: 18.5590, longitude: 73.7868 };
+    } else if (slug.includes('balewadi')) {
+      regionName = "Balewadi";
+      postalCodeVal = "411045";
+      geoVal = { latitude: 18.5772, longitude: 73.7844 };
+    } else if (slug.includes('punawale')) {
+      regionName = "Punawale";
+      postalCodeVal = "411033";
+      geoVal = { latitude: 18.6305, longitude: 73.7542 };
+    }
+  }
+
   const realEstateAgentSchema = {
     "@type": "RealEstateAgent",
     "name": "Paranjape Schemes (Construction) Ltd.",
     "image": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg",
-    "@id": `${SITE_URL}/#business`,
-    "url": SITE_URL,
+    "@id": `${SITE_URL}/${slug}#business`,
+    "url": `${SITE_URL}/${slug}`,
+    "telephone": "+91-20-67210000",
+    "priceRange": "₹97L - ₹2.65Cr",
+    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
+    "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Phase 1, Hinjewadi",
-      "addressLocality": "Pune",
-      "postalCode": "411057",
+      "addressLocality": regionName,
+      "postalCode": postalCodeVal,
       "addressCountry": "IN"
     }
   };
@@ -178,7 +206,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "@type": "Place",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Hinjewadi Phase 1",
+        "addressLocality": regionName,
         "addressRegion": "Pune"
       }
     }
@@ -187,21 +215,25 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   // --- LocalBusiness with Reviews ---
   const localBusinessSchema = {
     "@type": "LocalBusiness",
-    "@id": `${SITE_URL}/#localbusiness`,
-    "name": "Paranjape Blue Ridge - Sovereign Sales Gallery",
+    "@id": `${SITE_URL}/${slug}#localbusiness`,
+    "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
+      ? `Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`
+      : "Paranjape Blue Ridge - Sovereign Sales Gallery",
     "image": `${SITE_URL}/assets/images/township-night.png`,
-    "url": SITE_URL,
+    "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
     "priceRange": "₹97L - ₹2.65Cr",
+    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
+    "paymentAccepted": "Cash, Credit Card, Cheque, Wire Transfer",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park",
-      "addressLocality": "Pune",
+      "addressLocality": regionName,
       "addressRegion": "Maharashtra",
-      "postalCode": "411057",
+      "postalCode": postalCodeVal,
       "addressCountry": "IN"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": 18.5912, "longitude": 73.7381 },
+    "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -268,6 +300,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     breadcrumbSchema,
     realEstateListingSchema,
     localBusinessSchema,
+    realEstateAgentSchema,
     announcementSchema,
     siteNavigationSchema,
   ];

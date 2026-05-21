@@ -33,10 +33,17 @@ export async function generateMetadata({
         title, description,
         url: `${SITE_URL}/${slug}`,
         type: 'website',
-        images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${project.name} - Paranjape Blue Ridge` }],
+        images: [{ 
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(project.name)}&config=${encodeURIComponent(project.configurations.map(c => c.title).join(', '))}`,
+          width: 1200, height: 630, 
+          alt: `${project.name} - Paranjape Blue Ridge` 
+        }],
         siteName: 'Paranjape Blue Ridge Sovereign Portal',
       },
-      twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE] },
+      twitter: { 
+        card: 'summary_large_image', title, description, 
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(project.name)}&config=${encodeURIComponent(project.configurations.map(c => c.title).join(', '))}`] 
+      },
     };
   }
 
@@ -54,10 +61,17 @@ export async function generateMetadata({
         title, description,
         url: `${SITE_URL}/${slug}`,
         type: 'website',
-        images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${pseo.title} - Paranjape Blue Ridge` }],
+        images: [{ 
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(pseo.title)}`,
+          width: 1200, height: 630, 
+          alt: `${pseo.title} - Paranjape Blue Ridge` 
+        }],
         siteName: 'Paranjape Blue Ridge Sovereign Portal',
       },
-      twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE] },
+      twitter: { 
+        card: 'summary_large_image', title, description, 
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(pseo.title)}`] 
+      },
     };
   }
 

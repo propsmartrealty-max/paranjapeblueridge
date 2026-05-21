@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, startTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User, Sparkles, Mic, MicOff } from 'lucide-react';
 import { projects } from '@/data/master-data';
@@ -67,9 +67,11 @@ export default function SovereignAI() {
   const processInput = (text: string) => {
     if (!text.trim()) return;
 
-    setMessages(prev => [...prev, { role: 'user', text }]);
     setInput('');
-    setIsTyping(true);
+    startTransition(() => {
+      setMessages(prev => [...prev, { role: 'user', text }]);
+      setIsTyping(true);
+    });
 
     // Mock AI Logic (Ready for Gemini API integration)
     setTimeout(() => {
@@ -86,8 +88,10 @@ export default function SovereignAI() {
         response = "Blue Ridge inventory starts from ₹80 Lakhs and goes up to ₹2.5 Crores for premium 4BHK Sky Villas. Which configuration fits your budget?";
       }
 
-      setMessages(prev => [...prev, { role: 'bot', text: response }]);
-      setIsTyping(false);
+      startTransition(() => {
+        setMessages(prev => [...prev, { role: 'bot', text: response }]);
+        setIsTyping(false);
+      });
     }, 1500);
   };
 
@@ -100,10 +104,11 @@ export default function SovereignAI() {
     <>
       {/* Floating Toggle */}
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => startTransition(() => setIsOpen(!isOpen))}
         className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gold text-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all group gold-glow"
+        aria-label={isOpen ? "Close Sovereign Concierge Chat" : "Open Sovereign Concierge Chat"}
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+        {isOpen ? <X className="w-6 h-6" size={24} /> : <MessageSquare className="w-6 h-6" size={24} />}
         {!isOpen && (
            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full animate-bounce">1</span>
         )}
@@ -120,7 +125,7 @@ export default function SovereignAI() {
             {/* Header */}
             <div className="p-6 bg-[var(--bg)] border-b border-gold/10 flex items-center gap-4">
               <div className="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-gold">
-                <Bot size={24} />
+                <Bot className="w-6 h-6" size={24} />
               </div>
               <div>
                 <h3 className="text-warm-white font-serif text-lg leading-tight">Sovereign <span className="italic font-normal text-gilded">Concierge</span></h3>
@@ -179,8 +184,9 @@ export default function SovereignAI() {
                 <button 
                   onClick={toggleListening}
                   className="mt-12 w-16 h-16 bg-red-500 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl"
+                  aria-label="Stop voice listening"
                 >
-                  <MicOff size={24} />
+                  <MicOff className="w-6 h-6" size={24} />
                 </button>
               </motion.div>
             )}
@@ -192,8 +198,9 @@ export default function SovereignAI() {
                   type="button"
                   onClick={toggleListening}
                   className={`p-3 rounded-xl transition-all ${isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-white/5 text-gold border border-white/10 hover:bg-white/10'}`}
+                  aria-label={isListening ? "Stop voice listening" : "Start voice listening"}
                 >
-                  <Mic size={18} />
+                  <Mic className="w-[18px] h-[18px]" size={18} />
                 </button>
                 <div className="relative flex-1">
                   <input 
@@ -202,17 +209,19 @@ export default function SovereignAI() {
                     onChange={e => setInput(e.target.value)}
                     placeholder="Ask about floor plans..."
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-6 pr-12 text-sm text-warm-white focus:border-gold outline-none transition-all"
+                    aria-label="Concierge Message Input"
                   />
                   <button 
                     type="submit"
                     className="absolute right-1 top-1 p-2 bg-gold text-navy rounded-lg hover:scale-105 transition-all"
+                    aria-label="Send message"
                   >
-                    <Send size={16} />
+                    <Send className="w-4 h-4" size={16} />
                   </button>
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-2 text-[8px] text-text-light/50 uppercase tracking-[2px]">
-                <Sparkles size={10} />
+                <Sparkles className="w-2.5 h-2.5" size={10} />
                 Neural Voice Interface Active
               </div>
             </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { projects, articles } from '@/data/master-data';
 
 /**
  * Speculation Rules API Component
@@ -8,16 +9,22 @@ import React from 'react';
  * in the background. This results in 0ms load times and perfect Core Web Vitals.
  */
 export default function SpeculationRules() {
+  const baseUrl = 'https://www.paranjapeblueridge.com';
+  
+  // Prerender homepage, micro-market guide, project detail pages, configuration sub-pages, and insights
+  const prerenderUrls = [
+    baseUrl,
+    `${baseUrl}/hinjewadi-micro-market`,
+    ...projects.map(p => `${baseUrl}/${p.slug}`),
+    ...projects.flatMap(p => (p.configurations || []).map(c => `${baseUrl}/${p.slug}/${c.slug}`)),
+    ...articles.map(a => `${baseUrl}/insights/${a.slug}`)
+  ];
+
   const rules = {
     "prerender": [
       {
         "source": "list",
-        "urls": [
-          "https://www.paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune",
-          "https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune",
-          "https://www.paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune",
-          "https://www.paranjapeblueridge.com/hinjewadi-micro-market"
-        ]
+        "urls": prerenderUrls
       }
     ],
     "prefetch": [
@@ -25,14 +32,15 @@ export default function SpeculationRules() {
         "source": "document",
         "where": {
           "and": [
-            { "href_matches": "https://www.paranjapeblueridge.com/*" },
+            { "href_matches": `${baseUrl}/*` },
             { 
               "not": { 
                 "href_matches": [
-                  "https://www.paranjapeblueridge.com/api/*",
-                  "https://www.paranjapeblueridge.com/feed.xml",
-                  "https://www.paranjapeblueridge.com/sitemap.xml",
-                  "https://www.paranjapeblueridge.com/*\\?*"
+                  `${baseUrl}/api/*`,
+                  `${baseUrl}/feed.xml`,
+                  `${baseUrl}/google-products-feed`,
+                  `${baseUrl}/sitemap.xml`,
+                  `${baseUrl}/*\\?*`
                 ] 
               } 
             }

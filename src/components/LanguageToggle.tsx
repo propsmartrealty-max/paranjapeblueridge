@@ -14,6 +14,7 @@ export default function LanguageToggle() {
         className={`px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest transition-all ${
           language === 'en' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'text-text-light hover:text-warm-white'
         }`}
+        aria-label="Switch language to English"
       >
         EN
       </button>
@@ -22,6 +23,7 @@ export default function LanguageToggle() {
         className={`px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest transition-all ${
           language === 'mr' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'text-text-light hover:text-warm-white'
         }`}
+        aria-label="Switch language to Marathi"
       >
         मराठी
       </button>

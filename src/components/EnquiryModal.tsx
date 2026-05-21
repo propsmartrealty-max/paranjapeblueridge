@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, startTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DOMPurify from 'dompurify';
 
@@ -26,6 +26,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     bhk: '',
     budget: '',
     intent: 'Self Use',
+    visitDate: '',
+    visitTime: '',
     message: initialInterest ? `Interested in reserving ${initialInterest}` : '',
     bot_field: '' // Honeypot
   });
@@ -49,7 +51,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       return;
     }
 
-    setStep(2);
+    startTransition(() => {
+      setStep(2);
+    });
   };
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -88,6 +92,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       bhk: sanitize(formData.bhk),
       budget: sanitize(formData.budget),
       intent: sanitize(formData.intent),
+      visitDate: sanitize(formData.visitDate),
+      visitTime: sanitize(formData.visitTime),
       message: sanitize(formData.message),
       source: source === '/' ? 'Homepage' : source.replace(/^\//, ''),
       timestamp: new Date().toISOString(),
@@ -147,7 +153,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
           },
           body: JSON.stringify({
             ...formData,
-            _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget}`,
+            _subject: `💎 QUALIFIED: ${formData.name} - ${formData.bhk} - ${formData.budget} ${formData.visitDate ? `[Visit: ${formData.visitDate}]` : ''}`,
             _captcha: "false" 
           }),
         });
@@ -163,7 +169,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     setTimeout(() => {
       setStatus('idle');
       setStep(1);
-      setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', message: '', bot_field: '' });
+      setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', visitDate: '', visitTime: '', message: '', bot_field: '' });
       onClose();
     }, 3000);
   };
@@ -174,6 +180,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       <div 
         className="absolute inset-0 bg-navy/95 backdrop-blur-xl"
         onClick={onClose}
+        aria-hidden="true"
       />
       
       {/* Modal Content */}
@@ -181,18 +188,19 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
         
         {/* Progress Bar */}
-        <div className="absolute top-2 left-0 h-1 bg-gold transition-all duration-500" style={{ width: `${(step / 2) * 100}%` }}></div>
+        <div className="absolute top-2 left-0 h-1 bg-gold transition-all duration-500" style={{ width: `${(step / 3) * 100}%` }}></div>
 
         <button 
           onClick={onClose}
           className="absolute top-8 right-8 text-gold hover:text-warm-white transition-colors z-20"
+          aria-label="Close Enquiry Modal"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
         <div className="p-12">
           <div className="mb-10">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 2</span>
+            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 3</span>
             <h2 className="text-4xl font-serif text-warm-white leading-tight">
               {initialInterest ? 'Unit ' : (step === 1 ? 'Priority ' : 'Qualification ')}
               <span className="italic font-normal text-gold">{initialInterest ? 'Reservation' : (step === 1 ? 'Enquiry' : 'Protocol')}</span>
@@ -234,6 +242,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <input 
                         type="text" 
                         name="bot_field" 
+                        id="enquiry-bot-field"
                         tabIndex={-1} 
                         autoComplete="off"
                         value={formData.bot_field}
@@ -242,8 +251,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
+                      <label htmlFor="enquiry-name" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
                       <input 
+                        id="enquiry-name"
                         type="text" 
                         required 
                         maxLength={50}
@@ -257,8 +267,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
                     
                     <div className="space-y-2">
-                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
+                      <label htmlFor="enquiry-phone" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
                       <input 
+                        id="enquiry-phone"
                         type="tel" 
                         required 
                         maxLength={15}
@@ -272,8 +283,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
+                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
                       <input 
+                        id="enquiry-email"
                         type="email" 
                         required 
                         maxLength={100}
@@ -291,18 +303,19 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       Next: Choose Configuration
                     </button>
                   </motion.form>
-                ) : (
+                ) : step === 2 ? (
                   <motion.form 
                     key="step2"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    onSubmit={handleSubmit} 
+                    onSubmit={(e) => { e.preventDefault(); startTransition(() => setStep(3)); }}
                     className="space-y-6"
                   >
                     <div className="space-y-2">
-                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
+                      <label htmlFor="enquiry-bhk" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
                       <select 
+                        id="enquiry-bhk"
                         required
                         value={formData.bhk}
                         onChange={e => setFormData({...formData, bhk: e.target.value})}
@@ -317,8 +330,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
+                      <label htmlFor="enquiry-budget" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
                       <select 
+                        id="enquiry-budget"
                         required
                         value={formData.budget}
                         onChange={e => setFormData({...formData, budget: e.target.value})}
@@ -335,7 +349,55 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     <div className="grid grid-cols-2 gap-4">
                        <button 
                          type="button" 
-                         onClick={() => setStep(1)}
+                         onClick={() => startTransition(() => setStep(1))}
+                         className="py-4 border border-white/10 text-text-light rounded-2xl text-[10px] font-bold uppercase tracking-widest"
+                       >
+                         Back
+                       </button>
+                       <button 
+                         type="submit" 
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest"
+                       >
+                         Next: Schedule Visit
+                       </button>
+                    </div>
+                  </motion.form>
+                ) : (
+                  <motion.form 
+                    key="step3"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
+                    <div className="space-y-2">
+                      <label htmlFor="enquiry-date" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Visit Date (Optional)</label>
+                      <input 
+                        id="enquiry-date"
+                        type="date"
+                        min={new Date().toISOString().split('T')[0]}
+                        value={formData.visitDate}
+                        onChange={e => setFormData({...formData, visitDate: e.target.value})}
+                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none [color-scheme:dark]"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="enquiry-time" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Time (Optional)</label>
+                      <input 
+                        id="enquiry-time"
+                        type="time"
+                        value={formData.visitTime}
+                        onChange={e => setFormData({...formData, visitTime: e.target.value})}
+                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none [color-scheme:dark]"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                       <button 
+                         type="button" 
+                         onClick={() => startTransition(() => setStep(2))}
                          className="py-4 border border-white/10 text-text-light rounded-2xl text-[10px] font-bold uppercase tracking-widest"
                        >
                          Back
@@ -343,7 +405,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="submit" 
                          disabled={status === 'submitting'}
-                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest disabled:opacity-50"
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest disabled:opacity-50 shadow-xl shadow-gold/20"
                        >
                          {status === 'submitting' ? 'Processing...' : 'Complete Request'}
                        </button>

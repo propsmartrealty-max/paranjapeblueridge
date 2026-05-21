@@ -8,12 +8,12 @@ export async function GET() {
     return project.configurations.map((config) => {
       const id = `${project.id}-${config.slug}`;
       const title = `${config.title} at ${project.name} - Blue Ridge Hinjewadi`;
-      const description = `Premium ${config.title} apartment with world-class amenities at ${project.name}, Paranjape Blue Ridge integrated township, Hinjewadi Phase 1, Pune. Carpet area: ${config.carpetArea}. Price: ${config.price}. MahaRERA: ${project.reraNumber}.`;
+      const description = `Premium ${config.title} at ${project.name}, Paranjape Blue Ridge, Hinjewadi Phase 1, Pune. Carpet area: ${config.carpetArea || project.carpetArea}. MahaRERA Number: ${project.reraNumber}. Features high-quality specifications, 24/7 security, captive power substation, and access to premium township facilities like the ICSE school, Mula river boat club, and 9-hole golf course.`;
       const link = `${SITE_URL}/${project.slug}`;
       const imageLink = `${SITE_URL}${config.image || '/assets/images/township-night.png'}`;
       
       // Resolve price number from string if possible (default to safe defaults)
-      const priceValue = config.priceValue || 9500000;
+      const priceValue = config.priceValue || project.priceValue || 9500000;
       const priceString = `${priceValue} INR`;
 
       return `    <item>

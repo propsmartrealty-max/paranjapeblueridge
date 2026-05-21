@@ -30,10 +30,12 @@ export default function Navbar() {
             scrolled ? 'bg-[var(--bg)]/90 backdrop-blur-3xl scale-95 border-gold/30' : 'bg-[var(--bg)]/40 backdrop-blur-xl border-white/10'
           }`}
         >
-          <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group">
+          <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group" aria-label="Blue Ridge Sovereign Homepage">
              <img 
                src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
-               alt="PSCL" 
+               alt="PSCL Logo" 
+               width={112}
+               height={32}
                className="h-8 brightness-0 invert transition-transform duration-300 group-hover:scale-105"
              />
              <div className="flex flex-col">
@@ -45,10 +47,10 @@ export default function Navbar() {
           <ul className="hidden xl:flex gap-8 items-center list-none p-0 m-0">
             {projects.map(p => {
               const displayName = p.id === 'promenade' ? 'Promenade' : 
-                                 p.id === 'altius' ? 'Altius' : '41 Ridge';
+                                   p.id === 'altius' ? 'Altius' : '41 Ridge';
               return (
                 <li key={p.id}>
-                  <Link href={`/${p.slug}`} className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors">
+                  <Link href={`/${p.slug}`} className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors" aria-label={`Go to ${displayName}`}>
                     {t(displayName, p.id === 'promenade' ? 'प्रॉमनेड' : p.id === 'altius' ? 'अल्टियस' : '४१ रिज')}
                   </Link>
                 </li>
@@ -61,6 +63,7 @@ export default function Navbar() {
                   else document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' });
                 }} 
                 className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
+                aria-label="Scroll to Township Amenities"
               >
                 {t('Township', 'टाऊनशिप')}
               </button>
@@ -72,11 +75,16 @@ export default function Navbar() {
                   else document.getElementById('market')?.scrollIntoView({ behavior: 'smooth' });
                 }} 
                 className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
+                aria-label="Scroll to Insights"
               >
                 {t('Insights', 'इन्साईट्स')}
               </button>
             </li>
-            <li><Link href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors">{t('Area Guide', 'एरिया गाइड')}</Link></li>
+            <li>
+              <Link href="/hinjewadi-micro-market" className="text-xs font-bold text-gold uppercase tracking-widest transition-colors" aria-label="Go to Area Guide">
+                {t('Area Guide', 'एरिया गाइड')}
+              </Link>
+            </li>
           </ul>
 
           <div className="flex items-center gap-4 ml-4">
@@ -90,8 +98,9 @@ export default function Navbar() {
               rel="noopener noreferrer" 
               className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 overflow-hidden hover:scale-110 transition-all duration-300 shadow-xl"
               title="Chat on WhatsApp"
+              aria-label="Chat on WhatsApp"
             >
-              <img src="/assets/images/whatsapp-icon.png" alt="WhatsApp" className="w-full h-full object-contain p-1" />
+              <img src="/assets/images/whatsapp-icon.png" alt="WhatsApp Icon" width={32} height={32} className="w-full h-full object-contain p-1" />
             </a>
             <button 
               onClick={() => {
@@ -99,6 +108,7 @@ export default function Navbar() {
                 else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg cursor-pointer border-none"
+              aria-label="Open Enquiry Form"
             >
               {t('Enquire', 'चौकशी करा')}
             </button>
@@ -106,8 +116,9 @@ export default function Navbar() {
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="xl:hidden w-10 h-10 flex items-center justify-center text-warm-white bg-white/5 rounded-full border border-white/10"
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
             >
-              {isOpen ? <X size={18} /> : <Menu size={18} />}
+              {isOpen ? <X className="w-[18px] h-[18px]" size={18} /> : <Menu className="w-[18px] h-[18px]" size={18} />}
             </button>
           </div>
         </motion.nav>
@@ -125,8 +136,9 @@ export default function Navbar() {
             <button 
                 onClick={() => setIsOpen(false)}
                 className="absolute top-10 right-10 w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold"
+                aria-label="Close menu"
             >
-                <X size={24} />
+                <X className="w-6 h-6" size={24} />
             </button>
 
             <ul className="space-y-8 list-none p-0 m-0">
@@ -158,8 +170,9 @@ export default function Navbar() {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-2xl text-emerald-400 text-xl font-bold hover:bg-emerald-500 hover:text-white transition-all"
+                    aria-label="Connect on WhatsApp"
                 >
-                    <MessageCircle size={24} className="fill-current/20" />
+                    <MessageCircle className="w-6 h-6 fill-current/20" size={24} />
                     Connect on WhatsApp
                 </a>
                 <button 
@@ -169,6 +182,7 @@ export default function Navbar() {
                       else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
                     }} 
                     className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest cursor-pointer border-none"
+                    aria-label="Open Enquiry Form"
                 >
                     {t('Enquire Now', 'आत्ताच चौकशी करा')}
                 </button>

@@ -22,6 +22,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://www.paranjapeblueridge.com/sitemap.xml',
+    host: 'https://www.paranjapeblueridge.com',
   };
 }
 

@@ -10,6 +10,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const title = `${article.title} | Paranjape Blue Ridge Insights`;
   const description = article.excerpt;
+  const dynamicOgUrl = `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
 
   return {
     title,
@@ -24,20 +25,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: 'article',
       publishedTime: article.dateISO,
       authors: [article.author],
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: article.title }],
+      images: [{ url: dynamicOgUrl, width: 1200, height: 630, alt: article.title }],
       siteName: 'Paranjape Blue Ridge Sovereign Portal',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [OG_IMAGE],
+      images: [dynamicOgUrl],
     },
   };
 }
 
 export default function ArticleLayout({ children, params }: { children: React.ReactNode; params: { slug: string } }) {
   const article = articles.find(a => a.slug === params.slug);
+  const dynamicOgUrl = article 
+    ? `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`
+    : OG_IMAGE;
 
   // Server-side NewsArticle schema for Google rich results
   const newsArticleSchema = article ? {
@@ -54,7 +58,7 @@ export default function ArticleLayout({ children, params }: { children: React.Re
       "logo": { "@type": "ImageObject", "url": `${SITE_URL}/favicon.png` }
     },
     "mainEntityOfPage": `${SITE_URL}/insights/${article.slug}`,
-    "image": OG_IMAGE,
+    "image": dynamicOgUrl,
     "articleSection": article.category,
     "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"]
   } : null;

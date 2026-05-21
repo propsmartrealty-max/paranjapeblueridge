@@ -22,8 +22,9 @@ export default function ConnectivityHub() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-text-light hover:text-gold transition-all"
+                aria-label="Open Paranjape Blue Ridge location in Google Maps"
             >
-                <Navigation size={14} />
+                <Navigation className="w-[14px] h-[14px]" size={14} />
                 {t('Open in Google Maps', 'गुगल मॅप्समध्ये उघडा')}
             </a>
         </div>
@@ -37,6 +38,7 @@ export default function ConnectivityHub() {
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="Google Maps Location of Paranjape Blue Ridge"
         ></iframe>
         
         <div className="absolute bottom-8 left-8 right-8 flex flex-wrap gap-4 pointer-events-none">
@@ -47,7 +49,7 @@ export default function ConnectivityHub() {
                 { label: "Wipro", dist: "1.5km" }
             ].map((tag, i) => (
                 <div key={i} className="px-6 py-3 bg-navy/90 backdrop-blur-xl border border-white/10 rounded-full text-gold font-bold text-[10px] uppercase tracking-widest flex items-center gap-2">
-                    <MapIcon size={12} />
+                    <MapIcon className="w-[12px] h-[12px]" size={12} />
                     {tag.label}: {tag.dist}
                 </div>
             ))}

@@ -47,15 +47,18 @@ export default function GoogleEcosystem() {
             
             <div className="pt-8 grid grid-cols-2 gap-4">
                <a 
-                href="https://maps.app.goo.gl/3m1R1Y1X1B1V1C1D1" 
-                target="_blank" 
+                href="https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-white/5 hover:bg-gold hover:text-navy text-warm-white py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all border border-white/10"
                >
                  <MapPin size={16} />
                  Directions
                </a>
                <a 
-                href="#" 
+                href="https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-gold text-navy py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-xl shadow-gold/20"
                >
                  <ExternalLink size={16} />
@@ -67,7 +70,7 @@ export default function GoogleEcosystem() {
           {/* MAP EMBED (Simulated with aesthetic placeholder or real iframe if allowed) */}
           <div className="mt-10 h-64 w-full rounded-3xl overflow-hidden border border-white/5 relative">
              <iframe 
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3782.3!2d73.738!3d18.591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb95f32a8187%3A0x67399f99238e8!2sBlue%20Ridge%20Township!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.354!2d73.7370331!3d18.5786825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bb95f32a8187%3A0x67399f99238e8!2sBlue%20Ridge%20Township!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
                width="100%" 
                height="100%" 
                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.6) contrast(1.2)' }} 

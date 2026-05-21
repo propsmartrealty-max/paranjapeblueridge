@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from 'next/font/google';
 import { Suspense } from 'react';
+import { headers } from 'next/headers';
 import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import StickyCTA from "@/components/StickyCTA";
 import PulseNotifications from "@/components/PulseNotifications";
 import { TrackingProvider } from "@/components/TrackingProvider";
 import { AtmosphereProvider } from "@/context/AtmosphereContext";
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { WebVitalsReporter } from '@/components/WebVitalsReporter';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,6 +28,17 @@ import SpeculationRules from "@/components/SpeculationRules";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.paranjapeblueridge.com'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
   description: "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1. Discover The Altius, Ridges 41, and Promenade Residences. Premium riverfront apartments near Rajiv Gandhi Infotech Park with a 9-hole golf course. Book your site visit today.",
   verification: {
@@ -67,6 +81,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const country = headersList.get('x-user-country') || 'IN';
+
   const homepageWebPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -90,8 +107,18 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Google Maps iframe preconnect — prevents 300ms DNS on scroll-to-map */}
+        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+        <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+        {/* Vercel edge network preconnect */}
+        <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://vercel.live" />
         {/* LCP hero image preload — prevents render-blocking image fetch */}
         <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
+        {/* Secondary hero image preload — above-fold atmosphere variant */}
+        <link rel="preload" as="image" href="/assets/images/township-night.png" />
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
         <JSONLD pathname="/" />
@@ -101,7 +128,7 @@ export default function RootLayout({
         />
         <SpeculationRules />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" data-country={country}>
         <LanguageProvider>
           <AtmosphereProvider>
             <Suspense fallback={null}>
@@ -150,6 +177,9 @@ export default function RootLayout({
             </Suspense>
           </AtmosphereProvider>
         </LanguageProvider>
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        <GoogleTagManager gtmId="GTM-XXXXXXX" />
+        <WebVitalsReporter />
       </body>
     </html>
   );

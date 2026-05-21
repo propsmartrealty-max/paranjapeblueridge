@@ -4,7 +4,7 @@ const SITE_URL = 'https://www.paranjapeblueridge.com';
 
 export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Paranjape Blue Ridge Hinjewadi — Sovereign Insights</title>
     <link>${SITE_URL}</link>
@@ -20,7 +20,9 @@ export async function GET() {
     <category>Real Estate</category>
     <category>Pune Property</category>
     <category>Hinjewadi Investment</category>
-    ${articles.map(article => `
+    ${articles.map(article => {
+      const dynamicOgUrl = `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
+      return `
     <item>
       <title><![CDATA[${article.title}]]></title>
       <link>${SITE_URL}/insights/${article.slug}</link>
@@ -30,7 +32,10 @@ export async function GET() {
       <pubDate>${new Date(article.dateISO).toUTCString()}</pubDate>
       <author>insights@paranjapeblueridge.com (${article.author})</author>
       <category>${article.category}</category>
-    </item>`).join('')}
+      <enclosure url="${dynamicOgUrl}" length="12345" type="image/png" />
+      <media:content url="${dynamicOgUrl}" medium="image" type="image/png" width="1200" height="630" />
+    </item>`;
+    }).join('')}
   </channel>
 </rss>`;
 

@@ -1,6 +1,8 @@
 import { projects } from "@/data/master-data";
 import { Metadata } from "next";
 
+const SITE_URL = 'https://www.paranjapeblueridge.com';
+
 export async function generateMetadata({ params }: { params: { slug: string, config: string } }): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
@@ -21,11 +23,18 @@ export async function generateMetadata({ params }: { params: { slug: string, con
       title: `${configuration.title} - ${project.name}`,
       description: `Official layout and specs for ${configuration.title} in Hinjewadi Phase 1.`,
       url: `https://www.paranjapeblueridge.com/${project.slug}/${configuration.slug}`,
+      images: [{
+        url: `${SITE_URL}/api/og?title=${encodeURIComponent(configuration.title)}&config=${encodeURIComponent(project.name)}`,
+        width: 1200,
+        height: 630,
+        alt: `${configuration.title} at Paranjape Blue Ridge`,
+      }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [`${SITE_URL}/api/og?title=${encodeURIComponent(configuration.title)}&config=${encodeURIComponent(project.name)}`],
     },
   };
 }

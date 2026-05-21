@@ -81,6 +81,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             src="/assets/images/master-hero-v4.png" 
             fill
             priority
+            fetchPriority="high"
             className="object-cover opacity-30"
             alt={pageData.title}
             sizes="100vw"
