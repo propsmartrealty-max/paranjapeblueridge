@@ -65,6 +65,44 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
+    // ── AI Lead Scoring Engine ──
+    let leadScore = 50; // Base score
+    let vipTag = '';
+
+    // 1. Geolocation Signal (from Edge Middleware)
+    const userCountry = request.headers.get('x-user-country') || 'Unknown';
+    const isNri = request.headers.get('x-is-nri-traffic') === 'true';
+    if (isNri) leadScore += 25; // NRI investors get massive boost
+
+    // 2. Configuration Intent Signal
+    const intentLower = (leadPayload.bhk || leadPayload.intent).toLowerCase();
+    if (intentLower.includes('4 bhk') || intentLower.includes('5 bhk') || intentLower.includes('penthouse') || intentLower.includes('altius')) {
+      leadScore += 20;
+    } else if (intentLower.includes('3 bhk')) {
+      leadScore += 10;
+    }
+
+    // 3. Immediacy Signal
+    if (leadPayload.visitDate) {
+      leadScore += 15; // Buyers scheduling visits are high intent
+    }
+
+    // Cap score at 99
+    leadScore = Math.min(leadScore, 99);
+
+    // Apply VIP Tagging
+    if (leadScore >= 80) {
+      vipTag = ' [💎 URGENT VIP]';
+    }
+
+    // Append score to payload for webhook CRM
+    const enhancedPayload = {
+      ...leadPayload,
+      leadScore,
+      userCountry,
+      isVip: leadScore >= 80
+    };
+
     // ── Validate required fields ──
     if (!leadPayload.name || !leadPayload.phone) {
       return NextResponse.json(
@@ -90,7 +128,7 @@ export async function POST(request: NextRequest) {
         const webhookResponse = await fetch(WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadPayload),
+          body: JSON.stringify(enhancedPayload),
           signal: AbortSignal.timeout(10_000), // 10s timeout
         });
         const webhookData = await webhookResponse.json();
@@ -121,7 +159,7 @@ export async function POST(request: NextRequest) {
             message: leadPayload.message,
             source: leadPayload.source,
             timestamp: leadPayload.timestamp,
-            _subject: `💎 Blue Ridge Lead: ${leadPayload.name} - ${leadPayload.bhk || leadPayload.intent}${visitTag}`,
+            _subject: `Blue Ridge Lead${vipTag} [Score: ${leadScore}] - ${leadPayload.name} - ${leadPayload.bhk || leadPayload.intent}${visitTag}`,
             _captcha: 'false',
           }),
           signal: AbortSignal.timeout(10_000),

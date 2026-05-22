@@ -28,25 +28,10 @@ export default function FAQSection() {
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
-      }
-    }))
-  };
 
   return (
     <section id="faq" className="py-20 bg-navy-light/30 border-t border-white/5">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+
       <div className="container">
         <div className="text-center mb-16">
           <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">{t('Questions & Answers', 'प्रश्न आणि उत्तरे')}</span>

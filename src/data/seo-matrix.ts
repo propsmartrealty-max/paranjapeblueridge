@@ -1,10 +1,26 @@
 export const seoMatrix = {
   configurations: [
+    { slug: '1-bhk-flats', name: '1 BHK Flats', type: 'Apartment' },
     { slug: '2-bhk-flats', name: '2 BHK Flats', type: 'Apartment' },
+    { slug: '2-5-bhk-flats', name: '2.5 BHK Flats', type: 'Apartment' },
     { slug: '3-bhk-flats', name: '3 BHK Flats', type: 'Apartment' },
+    { slug: '3-5-bhk-flats', name: '3.5 BHK Flats', type: 'Apartment' },
     { slug: '4-bhk-flats', name: '4 BHK Flats', type: 'Apartment' },
     { slug: '5-bhk-flats', name: '5 BHK Flats', type: 'Apartment' },
-    { slug: 'luxury-apartments', name: 'Luxury Apartments', type: 'Apartment' }
+    { slug: 'duplex-apartments', name: 'Duplex Apartments', type: 'Apartment' },
+    { slug: 'penthouses', name: 'Penthouses', type: 'Apartment' },
+    { slug: 'studio-apartments', name: 'Studio Apartments', type: 'Apartment' },
+    { slug: 'luxury-residences', name: 'Luxury Residences', type: 'Apartment' },
+    { slug: 'premium-flats', name: 'Premium Flats', type: 'Apartment' },
+    { slug: 'smart-homes', name: 'Smart Homes', type: 'Apartment' },
+    { slug: 'ready-possession-flats', name: 'Ready Possession Flats', type: 'Apartment' },
+    { slug: 'resale-apartments', name: 'Resale Apartments', type: 'Apartment' },
+    { slug: 'under-construction-apartments', name: 'Under Construction Apartments', type: 'Apartment' },
+    { slug: 'furnished-flats', name: 'Furnished Flats', type: 'Apartment' },
+    { slug: 'semi-furnished-flats', name: 'Semi Furnished Flats', type: 'Apartment' },
+    { slug: 'river-facing-flats', name: 'River Facing Flats', type: 'Apartment' },
+    { slug: 'golf-facing-apartments', name: 'Golf Facing Apartments', type: 'Apartment' },
+    { slug: 'terrace-apartments', name: 'Terrace Apartments', type: 'Apartment' }
   ],
   locations: [
     { slug: 'hinjewadi-phase-1', name: 'Hinjewadi Phase 1' },
@@ -14,6 +30,9 @@ export const seoMatrix = {
     { slug: 'baner', name: 'Baner' },
     { slug: 'balewadi', name: 'Balewadi' },
     { slug: 'punawale', name: 'Punawale' },
+    { slug: 'marunji', name: 'Marunji' },
+    { slug: 'mahalunge', name: 'Mahalunge' },
+    { slug: 'pimpri-chinchwad', name: 'Pimpri Chinchwad' },
     { slug: 'pune', name: 'Pune' }
   ],
   // Phase 3 Silos
@@ -23,40 +42,76 @@ export const seoMatrix = {
     { slug: 'near-qubix-it-park', name: 'near Qubix IT Park' },
     { slug: 'near-infosys-hinjewadi', name: 'near Infosys Hinjewadi' },
     { slug: 'near-tcs-hinjewadi', name: 'near TCS Hinjewadi' },
-    { slug: 'near-wipro-hinjewadi', name: 'near Wipro Hinjewadi' }
+    { slug: 'near-wipro-hinjewadi', name: 'near Wipro Hinjewadi' },
+    { slug: 'near-tech-mahindra-hinjewadi', name: 'near Tech Mahindra Hinjewadi' },
+    { slug: 'near-cognizant-hinjewadi', name: 'near Cognizant Hinjewadi' },
+    { slug: 'near-accenture-hinjewadi', name: 'near Accenture Hinjewadi' },
+    { slug: 'near-capgemini-hinjewadi', name: 'near Capgemini Hinjewadi' },
+    { slug: 'near-rajiv-gandhi-infotech-park', name: 'near Rajiv Gandhi Infotech Park' }
   ],
   infrastructure: [
     { slug: 'near-hinjewadi-metro-station', name: 'near Hinjewadi Metro Station' },
     { slug: 'on-pune-metro-line-3', name: 'on Pune Metro Line 3' },
     { slug: 'near-mumbai-pune-expressway', name: 'near Mumbai-Pune Expressway' },
-    { slug: 'near-mahalunge-ingale-bridge', name: 'near Mahalunge-Ingale Bridge' }
+    { slug: 'near-mahalunge-ingale-bridge', name: 'near Mahalunge-Ingale Bridge' },
+    { slug: 'near-mumbai-bangalore-highway', name: 'near Mumbai Bangalore Highway' },
+    { slug: 'near-hinjewadi-bridge', name: 'near Hinjewadi Bridge' },
+    { slug: 'near-xion-mall', name: 'near Xion Mall' },
+    { slug: 'near-maan-road', name: 'near Maan Road' },
+    { slug: 'walking-distance-from-infosys-hinjewadi', name: 'walking distance from Infosys Hinjewadi' },
+    { slug: 'directions-from-wipro-hinjewadi-phase-1', name: 'directions from Wipro Hinjewadi Phase 1' },
+    { slug: 'distance-from-tcs-hinjewadi-to-blue-ridge', name: 'distance from TCS Hinjewadi to Blue Ridge' },
+    { slug: 'near-hinjewadi-it-park-phase-1', name: 'near Hinjewadi IT Park Phase 1' }
   ],
   ecosystem: [
     { slug: 'with-golf-course', name: 'with Golf Course' },
     { slug: 'near-blue-ridge-public-school', name: 'near Blue Ridge Public School' },
     { slug: 'with-private-boat-club', name: 'with Private Boat Club' },
     { slug: 'river-facing-apartments', name: 'River Facing Apartments' },
-    { slug: 'integrated-township-living', name: 'Integrated Township Living' }
+    { slug: 'integrated-township-living', name: 'Integrated Township Living' },
+    { slug: 'riverfront-lifestyle', name: 'Riverfront Lifestyle' },
+    { slug: 'with-clubhouse', name: 'with Clubhouse' },
+    { slug: 'with-swimming-pool', name: 'with Swimming Pool' },
+    { slug: 'with-tennis-court', name: 'with Tennis Court' },
+    { slug: 'with-gymnasium', name: 'with Gymnasium' },
+    { slug: 'with-landscaped-gardens', name: 'with Landscaped Gardens' },
+    { slug: 'with-jogging-track', name: 'with Jogging Track' },
+    { slug: 'with-shopping-complex', name: 'with Shopping Complex' },
+    { slug: 'with-business-center', name: 'with Business Center' },
+    { slug: 'work-from-home-apartments', name: 'Work from Home Apartments' }
   ],
   investors: [
     { slug: 'high-rental-yield-properties', name: 'High Rental Yield Properties' },
     { slug: 'best-roi-real-estate-investment', name: 'Best ROI Real Estate Investment' },
     { slug: 'nri-investment-luxury-properties', name: 'NRI Investment Luxury Properties' },
     { slug: 'pre-launch-offers', name: 'Pre-launch Offers' },
-    { slug: 'ready-to-move-resale-flats', name: 'Ready-to-move Resale Flats' }
+    { slug: 'ready-to-move-resale-flats', name: 'Ready-to-move Resale Flats' },
+    { slug: 'it-employee-housing', name: 'IT Employee Housing' },
+    { slug: 'passive-income-property', name: 'Passive Income Property' },
+    { slug: 'real-estate-appreciation', name: 'Real Estate Appreciation' },
+    { slug: 'corporate-rental-apartments', name: 'Corporate Rental Apartments' },
+    { slug: 'commercial-investment', name: 'Commercial Investment' },
+    { slug: 'office-investment', name: 'Office Investment' }
   ],
   competitors: [
     { slug: 'near-life-republic', name: 'near Life Republic' },
     { slug: 'near-lodha-belmondo', name: 'near Lodha Belmondo' },
     { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' },
-    { slug: 'near-shapoorji-joyville', name: 'near Shapoorji Joyville' }
+    { slug: 'near-shapoorji-joyville', name: 'near Shapoorji Joyville' },
+    { slug: 'near-megapolis', name: 'near Megapolis' },
+    { slug: 'near-tathawade-projects', name: 'near Tathawade projects' },
+    { slug: 'near-kolte-patil-township', name: 'near Kolte Patil Township' }
   ],
   battlegrounds: [
     { slug: 'blue-ridge-vs-life-republic', name: 'Blue Ridge vs Life Republic', vs: 'Life Republic' },
     { slug: 'blue-ridge-vs-vtp-blue-waters', name: 'Blue Ridge vs VTP Blue Waters', vs: 'VTP Blue Waters' },
     { slug: 'blue-ridge-vs-lodha-belmondo', name: 'Blue Ridge vs Lodha Belmondo', vs: 'Lodha Belmondo' },
     { slug: 'blue-ridge-vs-shapoorji-joyville', name: 'Blue Ridge vs Shapoorji Joyville', vs: 'Shapoorji Joyville' },
-    { slug: 'blue-ridge-vs-kumar-prospera', name: 'Blue Ridge vs Kumar Prospera', vs: 'Kumar Prospera' }
+    { slug: 'blue-ridge-vs-kumar-prospera', name: 'Blue Ridge vs Kumar Prospera', vs: 'Kumar Prospera' },
+    { slug: 'blue-ridge-vs-megapolis', name: 'Blue Ridge vs Megapolis', vs: 'Megapolis' },
+    { slug: 'blue-ridge-vs-tathawade-projects', name: 'Blue Ridge vs Tathawade projects', vs: 'Tathawade projects' },
+    { slug: 'blue-ridge-vs-kolte-patil', name: 'Blue Ridge vs Kolte Patil Township', vs: 'Kolte Patil Township' },
+    { slug: 'blue-ridge-better-than-wakad-projects', name: 'Blue Ridge vs Wakad projects', vs: 'Wakad projects' }
   ],
   infraGuides: [
     { slug: 'hinjewadi-metro-line-3-impact', name: 'Hinjewadi Metro Line 3 Impact & Stations' },
@@ -78,6 +133,7 @@ export const seoMatrix = {
   ],
   // Silo 9: Floor Plans — mid-funnel buyers visualising their home
   floorPlans: [
+    { slug: 'paranjape-blue-ridge-floor-plans', name: 'Paranjape Blue Ridge Floor Plans & Master Layout' },
     { slug: '2-bhk-floor-plan-blue-ridge', name: '2 BHK Floor Plan Blue Ridge Hinjewadi' },
     { slug: '3-bhk-floor-plan-blue-ridge', name: '3 BHK Floor Plan Blue Ridge Hinjewadi' },
     { slug: '4-bhk-floor-plan-blue-ridge', name: '4 BHK Floor Plan Blue Ridge Hinjewadi' },
@@ -85,16 +141,21 @@ export const seoMatrix = {
     { slug: 'blue-ridge-altius-floor-plan', name: 'The Altius Floor Plan & Unit Plan Download' },
     { slug: 'ridges-41-floor-plan-hinjewadi', name: 'Ridges 41 Floor Plan & Carpet Area Details' },
   ],
-  // Silo 10: Site Visit — bottom-funnel, highest conversion intent
+  // Silo 10: Site Visit & Exact Locational Queries
   siteVisit: [
+    { slug: 'distance-from-paranjape-blue-ridge-to-rajiv-gandhi-infotech-park', name: 'Distance from Paranjape Blue Ridge to Rajiv Gandhi Infotech Park' },
     { slug: 'blue-ridge-hinjewadi-site-visit', name: 'Blue Ridge Hinjewadi Site Visit Booking' },
     { slug: 'paranjape-blue-ridge-sales-office', name: 'Paranjape Blue Ridge Sales Office & Contact' },
     { slug: 'blue-ridge-hinjewadi-brochure-download', name: 'Blue Ridge Hinjewadi Brochure Download PDF' },
     { slug: 'blue-ridge-hinjewadi-virtual-tour', name: 'Blue Ridge Hinjewadi Virtual Tour & 3D Walkthrough' },
     { slug: 'book-flat-blue-ridge-hinjewadi', name: 'Book a Flat at Blue Ridge Hinjewadi — Pre-Registration' },
   ],
-  // Silo 11: Amenities — lifestyle-driven searches
+  // Silo 11: Amenities Search & High Volume Reviews
   amenitiesSearch: [
+    { slug: 'paranjape-blue-ridge-reviews-and-ratings', name: 'Paranjape Blue Ridge Reviews and Ratings' },
+    { slug: 'life-at-blue-ridge-township-pune', name: 'Life at Blue Ridge Township Pune' },
+    { slug: 'safety-and-security-in-blue-ridge-hinjewadi', name: 'Safety and Security in Blue Ridge Hinjewadi' },
+    { slug: 'blue-ridge-public-school-hinjewadi', name: 'Blue Ridge Public School Hinjewadi ICSE' },
     { slug: 'flats-with-golf-course-pune', name: 'Flats with Golf Course in Pune' },
     { slug: 'apartments-with-boat-club-pune', name: 'Apartments with Boat Club Pune' },
     { slug: 'gated-community-hinjewadi-pune', name: 'Premium Gated Community Hinjewadi Pune' },
@@ -103,6 +164,15 @@ export const seoMatrix = {
     { slug: 'pet-friendly-apartments-hinjewadi', name: 'Pet Friendly Luxury Apartments Hinjewadi' },
     { slug: 'swimming-pool-apartments-hinjewadi-pune', name: 'Swimming Pool Apartments Hinjewadi Pune' },
     { slug: 'ready-possession-flats-hinjewadi-2026', name: 'Ready Possession Flats Hinjewadi 2026' },
+  ],
+  // Silo 12: High Intent Transaction Queries
+  transactionQueries: [
+    { slug: 'paranjape-blue-ridge-apartments-for-sale', name: 'Paranjape Blue Ridge Apartments For Sale' },
+    { slug: 'paranjape-blue-ridge-flat-for-rent', name: 'Paranjape Blue Ridge Flat For Rent' },
+    { slug: 'paranjape-blue-ridge-resale-price', name: 'Paranjape Blue Ridge Resale Price' },
+    { slug: 'paranjape-schemes-construction-ltd-projects', name: 'Paranjape Schemes Construction Ltd Projects' },
+    { slug: '138-acre-township-hinjewadi', name: '138-Acre Township Hinjewadi' },
+    { slug: 'paranjape-blue-ridge-township-hinjewadi', name: 'Paranjape Blue Ridge Township Hinjewadi' },
   ]
 
 };
@@ -246,6 +316,17 @@ export function generatePseoUrls() {
       intent: `${item.name} — Explore Paranjape Blue Ridge Hinjewadi`,
       type: 'Lifestyle',
       silo: 'amenities'
+    });
+  });
+
+  // Silo 12: High Intent Transaction Queries
+  seoMatrix.transactionQueries.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: `${item.name} — Official Portal Pricing & Listings`,
+      type: 'Listing',
+      silo: 'transactions'
     });
   });
 

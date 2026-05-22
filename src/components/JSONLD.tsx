@@ -173,6 +173,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     }
   }
 
+  // Knowledge Graph Trust Flow via Wikipedia
+  const trustBridges = [
+    "https://en.wikipedia.org/wiki/Pune",
+    "https://en.wikipedia.org/wiki/Hinjawadi",
+    "https://en.wikipedia.org/wiki/Paranjape_Schemes"
+  ];
+
   const realEstateAgentSchema = {
     "@type": "RealEstateAgent",
     "name": "Paranjape Schemes (Construction) Ltd.",
@@ -183,13 +190,19 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "priceRange": "₹97L - ₹2.65Cr",
     "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
     "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
+      "geoRadius": "5000" // 5km radius dominance
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Phase 1, Hinjewadi",
       "addressLocality": regionName,
       "postalCode": postalCodeVal,
       "addressCountry": "IN"
-    }
+    },
+    "sameAs": trustBridges
   };
 
   // VideoObject removed — fake contentUrl triggers GSC structured data errors.
@@ -234,6 +247,11 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "addressCountry": "IN"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
+    "areaServed": {
+      "@type": "City",
+      "name": "Pune",
+      "sameAs": "https://en.wikipedia.org/wiki/Pune"
+    },
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from 'next/font/google';
 import { Suspense } from 'react';
@@ -26,6 +26,10 @@ const playfair = Playfair_Display({
 
 import SpeculationRules from "@/components/SpeculationRules";
 
+export const viewport: Viewport = {
+  themeColor: '#0a192f',
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.paranjapeblueridge.com'),
   robots: {
@@ -39,8 +43,9 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  title: "Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal - 2, 3 & 4 BHK Luxury Flats",
-  description: "Experience the grand 138-acre integrated township at Paranjape Blue Ridge Hinjewadi Phase 1. Discover The Altius, Ridges 41, and Promenade Residences. Premium riverfront apartments near Rajiv Gandhi Infotech Park with a 9-hole golf course. Book your site visit today.",
+  title: "Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune",
+  description: "Paranjape Blue Ridge is Hinjewadi's premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.",
+  manifest: '/manifest.json',
   verification: {
     google: [
       'zmv23601-d-KkNZ1p3VNswXKvfW57A68g_hVf1WUqFg',
@@ -48,11 +53,19 @@ export const metadata: Metadata = {
     ],
   },
   keywords: [
+    "pune real estate market", "west pune real estate market", "hinjewadi real estate market",
     "paranjape blue ridge hinjewadi", "blue ridge hinjewadi pune", "blue ridge township pune", 
+    "paranjape blue ridge apartments for sale", "paranjape blue ridge township hinjewadi",
+    "paranjape schemes construction ltd projects", "138-acre township hinjewadi", 
+    "blue ridge public school hinjewadi", "paranjape blue ridge reviews and ratings",
+    "paranjape blue ridge floor plans", "paranjape blue ridge flat for rent",
     "the ridges 41 blue ridge", "the altius blue ridge hinjewadi", "blue ridge phase 1 resale", 
     "2 bhk flat blue ridge pune", "3 bhk luxury blue ridge pune", "blue ridge ready possession", 
+    "distance from paranjape blue ridge to rajiv gandhi infotech park",
     "township near infosys hinjewadi", "riverfront flats pune", "golf course township pune",
-    "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune"
+    "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune",
+    "blue ridge apartments", "invest in blue ridge hinjewadi", "blue ridge pune", "blue ridge flats",
+    "blue ridge luxury apartments", "blue ridge integrated township", "blue ridge megatownship"
   ],
   alternates: {
     canonical: 'https://www.paranjapeblueridge.com/',
@@ -61,8 +74,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
-    description: 'Explore premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with a private boat club and golf course.',
+    title: 'Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune',
+    description: 'Paranjape Blue Ridge is Hinjewadi\'s premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.',
     url: 'https://www.paranjapeblueridge.com',
     siteName: 'Paranjape Blue Ridge Sovereign Portal',
     images: [{ url: 'https://www.paranjapeblueridge.com/assets/images/township-night.png', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
@@ -99,6 +112,49 @@ export default function RootLayout({
     }
   };
 
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'RealEstateAgent'],
+    '@id': 'https://www.paranjapeblueridge.com/#organization',
+    'name': 'Paranjape Blue Ridge',
+    'url': 'https://www.paranjapeblueridge.com/',
+    'logo': 'https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg',
+    'description': 'The premier 138-acre integrated township in the Pune Real Estate Market, offering luxury 2, 3, 4, and 5 BHK apartments in Hinjewadi Phase 1.',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': 'Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park',
+      'addressLocality': 'Pune',
+      'addressRegion': 'Maharashtra',
+      'postalCode': '411057',
+      'addressCountry': 'IN'
+    },
+    'geo': {
+      '@type': 'GeoCoordinates',
+      'latitude': 18.5808,
+      'longitude': 73.7383
+    },
+    'telephone': '+91-20-67210000',
+    'areaServed': [
+      {
+        '@type': 'City',
+        'name': 'Pune'
+      },
+      {
+        '@type': 'City',
+        'name': 'Hinjewadi'
+      }
+    ],
+    'priceRange': '₹97.60 Lakhs - ₹3.50 Crores',
+    'sameAs': [
+      'https://www.facebook.com/ParanjapeSchemes/',
+      'https://www.instagram.com/paranjapeschemes/',
+      'https://www.youtube.com/user/ParanjapeSchemes',
+      'https://en.wikipedia.org/wiki/Hinjawadi',
+      'https://en.wikipedia.org/wiki/Rajiv_Gandhi_Infotech_Park'
+    ]
+  };
+
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
@@ -126,6 +182,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageWebPageSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+
         <SpeculationRules />
       </head>
       <body className="antialiased" data-country={country}>
@@ -154,8 +215,8 @@ export default function RootLayout({
                     borderWidth: 0,
                   }}
                 >
-                  <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3 &amp; 4 BHK Luxury Flats in 138-Acre Integrated Township</h1>
-                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge, Pune&apos;s most celebrated 138-acre integrated township in Hinjewadi Phase 1, Rajiv Gandhi Infotech Park. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with walk-to-work lifestyle, private 9-hole golf course, ICSE school inside township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses.</p>
+                  <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune's 138-Acre Township</h1>
+                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune's most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle, private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Check our latest Paranjape Blue Ridge reviews and ratings, exact floor plans, and distance to Rajiv Gandhi Infotech Park for the best investment in Hinjewadi.</p>
                   <ul>
                     <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
                     <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune">The Altius — 4 &amp; 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>
@@ -173,6 +234,22 @@ export default function RootLayout({
                 {children}
                 <StickyCTA />
                 <PulseNotifications />
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                  }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
               </TrackingProvider>
             </Suspense>
           </AtmosphereProvider>

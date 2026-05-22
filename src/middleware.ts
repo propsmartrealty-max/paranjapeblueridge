@@ -1,48 +1,46 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
-  // 1. URL Normalization (Remove trailing slashes)
-  // Note: Next.js handles basic trailing slashes based on next.config.mjs,
-  // but enforcing it here guarantees consistency for SEO.
-  const url = request.nextUrl.clone();
+export function middleware(req: NextRequest) {
+  // Extract geographical data from Vercel Edge/Next.js Edge Headers
+  // On Vercel, the header 'x-vercel-ip-country' is automatically populated.
+  // We provide a fallback 'IN' (India) for local development or missing headers.
+  const country = req.geo?.country || req.headers.get('x-vercel-ip-country') || 'IN';
   
-  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
-    url.pathname = url.pathname.slice(0, -1);
-    return NextResponse.redirect(url, 301);
-  }
-
-  // 2. Clone headers and inject Geo-Enrichment data
-  const requestHeaders = new Headers(request.headers);
+  // Define high-value NRI hubs (USA, UAE, UK, Singapore, Australia, Canada)
+  const isNRIHub = ['US', 'AE', 'GB', 'SG', 'AU', 'CA'].includes(country);
   
-  // Vercel provides these headers at the edge
-  const country = request.geo?.country || request.headers.get('x-vercel-ip-country') || 'IN';
-  const city = request.geo?.city || request.headers.get('x-vercel-ip-city') || 'Pune';
-  
+  // Clone the request headers and inject our custom tracking data
+  const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-user-country', country);
-  requestHeaders.set('x-user-city', city);
-  
-  // Create response and apply request headers so server components can read them
+  requestHeaders.set('x-is-nri-traffic', isNRIHub ? 'true' : 'false');
+
   const response = NextResponse.next({
     request: {
+      // Pass the modified headers deeper into the Next.js routing tree
       headers: requestHeaders,
     },
   });
 
-  // 3. Apply Basic Security Headers
-  response.headers.set('X-DNS-Prefetch-Control', 'on');
-  response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
-  response.headers.set('X-XSS-Protection', '1; mode=block');
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+  // Also set a secure HTTP-only cookie so that client-side tracking or API routes 
+  // (/api/lead) can capture if the lead originated from an NRI hub.
+  response.cookies.set('nri_session', isNRIHub ? 'true' : 'false', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 24 * 7, // 1 Week
+  });
 
+  // Inject a header into the final response for verification tools
+  response.headers.set('x-edge-geo-status', 'Active');
+  
   return response;
 }
 
+// Config ensures the middleware ONLY runs on actual pages and API routes, 
+// skipping static files, images, and the _next internal folder to preserve 0.0s caching speeds.
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|assets|images|.*\\.png|.*\\.jpg|.*\\.svg|.*\\.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|assets|sw.js|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif)$).*)',
   ],
 };

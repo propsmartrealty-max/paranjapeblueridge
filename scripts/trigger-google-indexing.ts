@@ -1,40 +1,27 @@
 import { google } from 'googleapis';
+import * as fs from 'fs';
+import * as path from 'path';
 import { projects, articles } from '../src/data/master-data';
 import { generatePseoUrls } from '../src/data/seo-matrix';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
-function resolveCredentials() {
-  const envCred = process.env.GCP_SERVICE_ACCOUNT;
-  if (!envCred) {
-    return null;
-  }
-  try {
-    return JSON.parse(envCred);
-  } catch (e) {
-    console.error('Error: GCP_SERVICE_ACCOUNT environment variable is not valid JSON.');
-    return null;
-  }
-}
-
 async function triggerIndexing() {
-  console.log('⚡ Starting postbuild Google Indexing Sweep...');
+  console.log('⚡ Starting Google Indexing API Sweep...');
 
-  // 1. Resolve GCP Service Account Credentials
-  const credentials = resolveCredentials();
-  if (!credentials) {
-    console.warn('⚠️  GCP_SERVICE_ACCOUNT is not configured. Skipping automated indexing sweep.');
-    process.exit(0);
+  const credPath = path.join(process.cwd(), 'google-credentials.json');
+  if (!fs.existsSync(credPath)) {
+    console.error('❌ Error: google-credentials.json not found in the root directory.');
+    console.error('Please download the Service Account JSON key and save it as google-credentials.json');
+    process.exit(1);
   }
 
-  // 2. Generate URLs list (same logic as sitemap.ts)
+  // 1. Generate URLs list
   const urls: string[] = [
     SITE_URL,
     `${SITE_URL}/hinjewadi-micro-market`,
-    `${SITE_URL}/feed.xml`,
   ];
 
-  // Add projects and configurations
   projects.forEach((p) => {
     urls.push(`${SITE_URL}/${p.slug}`);
     urls.push(`${SITE_URL}/brochure/${p.slug}`);
@@ -45,12 +32,10 @@ async function triggerIndexing() {
     }
   });
 
-  // Add articles
   articles.forEach((a) => {
     urls.push(`${SITE_URL}/insights/${a.slug}`);
   });
 
-  // Add PSEO URLs
   const pseoUrls = generatePseoUrls();
   pseoUrls.forEach((u) => {
     urls.push(`${SITE_URL}/${u.slug}`);
@@ -60,9 +45,9 @@ async function triggerIndexing() {
   console.log(`📡 Collected ${uniqueUrls.length} total URLs for Google Indexing API submission.`);
 
   try {
-    // 3. Authenticate with Google
+    // 2. Authenticate with Google
     const auth = new google.auth.GoogleAuth({
-      credentials,
+      keyFile: credPath,
       scopes: ['https://www.googleapis.com/auth/indexing'],
     });
 
@@ -70,11 +55,10 @@ async function triggerIndexing() {
     const authClient = await auth.getClient();
     google.options({ auth: authClient as any });
 
-    // 4. Batch trigger url notifications
     console.log(`📤 Submitting URLs to Google Indexing API...`);
     
-    // We process in small chunks with a delay to prevent rate limits
-    const chunkSize = 15;
+    // Process in small chunks to prevent rate limits
+    const chunkSize = 10;
     const successUrls: string[] = [];
     const failedUrls: { url: string; error: string }[] = [];
 
@@ -102,18 +86,20 @@ async function triggerIndexing() {
         }
       });
 
+      console.log(`Progress: ${Math.min(i + chunkSize, uniqueUrls.length)} / ${uniqueUrls.length}`);
+      
       if (i + chunkSize < uniqueUrls.length) {
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 500)); // Rate limit buffer
       }
     }
 
-    console.log(`✅ Indexing sweep complete. Success: ${successUrls.length}/${uniqueUrls.length}`);
+    console.log(`✅ Indexing API sweep complete. Successfully submitted: ${successUrls.length}/${uniqueUrls.length}`);
     if (failedUrls.length > 0) {
-      console.warn(`⚠️ Failed to submit ${failedUrls.length} URLs. Sample error: ${failedUrls[0].error}`);
+      console.warn(`⚠️ Failed to submit ${failedUrls.length} URLs. Check API Quotas. Sample error: ${failedUrls[0].error}`);
     }
 
   } catch (error: any) {
-    console.error('❌ Failed to run Google Indexing sweep:', error.message);
+    console.error('❌ Failed to run Google Indexing sweep. Ensure the Web Search Indexing API is enabled in GCP.', error.message);
   }
 }
 

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
+        formats: ['image/avif', 'image/webp'],
         remotePatterns: [
             {
                 protocol: 'https',
@@ -32,9 +33,19 @@ const nextConfig = {
                     { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
                     { key: 'X-Content-Type-Options', value: 'nosniff' },
                     { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-                    { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' }
+                    { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+                    { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://maps.googleapis.com https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.pscl.in https://maps.gstatic.com https://maps.googleapis.com; connect-src 'self' https://region1.google-analytics.com https://maps.googleapis.com https://vercel.live wss://ws-us3.pusher.com;" }
                 ],
             },
+            {
+                source: '/assets/images/:all*(svg|jpg|jpeg|png|webp|avif)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
+                    }
+                ],
+            }
         ];
     },
 };
