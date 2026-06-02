@@ -39,7 +39,7 @@ export const projects: Project[] = [
     name: "Promenade Residences",
     tagline: "New Urbanism Landmark Hinjewadi Phase 1",
     taglineMr: "न्यू अर्बनिझम लँडमार्क हिंजवडी फेज १",
-    description: "Designed on the principles of New Urbanism, Promenade at Paranjape Blue Ridge Phase 1 features the first 41-storey river-facing luxury apartments in Hinjewadi. As part of the Blue Ridge Megatownship, these high-rise premium flats are the perfect choice for IT professionals seeking 3 BHK and 4 BHK flats near Rajiv Gandhi Infotech Park and Pune IT hub.",
+    description: "Designed on the principles of New Urbanism, Promenade at Paranjape Blue Ridge Phase 1 features the first 41-storey river facing luxury apartments in Hinjewadi. As part of the prestigious 138-acre Blue Ridge Integrated Township Pune, these high-rise premium flats are the perfect choice for IT professionals seeking 3 BHK and 4 BHK flats near Rajiv Gandhi Infotech Park, Infosys, and TCS Hinjewadi.",
     descriptionMr: "न्यू अर्बनिझमच्या तत्त्वांवर आधारित, परंजपे ब्लू रिज फेज १ मधील प्रॉमनेडमध्ये हिंजवडीतील पहिले ४१ मजली नदीभिमुख निवासस्थान आहे. इन्फोसिस आणि विप्रोमधील आयटी व्यावसायिकांसाठी हे लक्झरी टॉवर्स ३ बीएचके आणि ४ बीएचके फ्लॅट्ससाठी सर्वोत्तम पर्याय आहेत.",
     carpetArea: "1,316 - 1,718 Sq. Ft.",
     price: "₹ 1.65 Cr onwards",
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     name: "The Altius",
     tagline: "Ultra-Luxury 4 & 5 BHK Riverside Residences",
     taglineMr: "अल्ट्रा-लक्झरी ४ आणि ५ बीएचके रिव्हरसाईड निवास",
-    description: "The crown jewel of Paranjape luxury homes Pune. The Altius offers iconic Blue Ridge riverfront apartments with a professional 9-hole golf course as your backyard. These premium 4 BHK and 5 BHK luxury residences are designed for the elite seeking a signature lifestyle in Pune's most successful Blue Ridge integrated township.",
+    description: "The crown jewel of luxury apartments Pune West. Paranjape The Altius offers iconic Blue Ridge riverfront apartments and golf view flats with a professional 9-hole golf course as your backyard. These ultra luxury 4 BHK and 5 BHK sky residences are designed for the elite seeking a signature lifestyle in Pune's most successful premium township near Baner and Balewadi.",
     descriptionMr: "ब्लू रिज लक्झरीचा मुकुट मणी. अल्टियस आपल्या घराच्या बागेत ९-होल प्रोफेशनल गोल्फ कोर्ससह आयकॉनिक रिव्हरफ्रंट निवासस्थान प्रदान करते. हे प्रीमियम ४ बीएचके आणि ५ बीएचके अपार्टमेंट्स पुण्यातील सर्वात यशस्वी टाऊनशिपमध्ये राहू इच्छिणाऱ्या उच्चभ्रू लोकांसाठी आहेत.",
     carpetArea: "1,858 - 2,480+ Sq. Ft.",
     price: "₹ 1.80 Cr onwards",
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     name: "Ridges 41",
     tagline: "High-Rise 2, 3 & 4 BHK Living",
     taglineMr: "हाय-राईज २, ३ आणि ४ बीएचके लिविंग",
-    description: "Part of the prestigious Ridges cluster at Blue Ridge Hinjewadi, Ridges 41 utilizes advanced MiVAN technology to offer modern 2, 3, and 4 BHK under construction apartments. Featuring 6 levels of dedicated parking, it's the ideal smart investment property in Hinjewadi for those seeking high rental yield property Pune near Phase 1 and Phase 2.",
+    description: "Part of the prestigious Ridges cluster at Paranjape Blue Ridge Pune, The Ridges 41 utilizes advanced MiVAN technology to offer modern 2, 3, and 4 BHK luxury residences. Featuring 6 levels of dedicated parking, it's the ideal smart investment property in Hinjewadi for those seeking high rental yield property Pune near Phase 1 offices. Buy flat in Blue Ridge to secure your future in this self sufficient township.",
     descriptionMr: "ब्लू रिज हिंजवडीतील प्रतिष्ठित रिजेस क्लस्टरचा भाग, रिजेस ४१ प्रगत मिवान तंत्रज्ञानाचा वापर करून आधुनिक २, ३ आणि ४ बीएचके निवासस्थान प्रदान करते. ६ स्तरांच्या समर्पित पार्किंगसह, हिंजवडी फेज १ आणि २ जवळ उच्च भाड्याने मिळकत शोधणाऱ्यांसाठी हे एक आदर्श गुंतवणूक आहे.",
     carpetArea: "793 - 1,613 Sq. Ft.",
     price: "₹ 97.60 L onwards",
@@ -245,6 +245,57 @@ export const articles: Article[] = [
       "For township residents, the school offers a unique lifestyle advantage: children walk to school within the secure, gated community. This eliminates the daily school-bus commute that typically consumes 45-60 minutes for Hinjewadi families sending children to schools in Wakad, Baner, or Aundh. The time saved translates directly into better study hours, more family time, and reduced transportation costs.",
       "Admissions for the 2026-27 academic year follow a structured process: registration typically opens in October-November of the preceding year, followed by an interaction round for the child and parents. Priority is given to Blue Ridge township residents, followed by Hinjewadi Phase 1 residents, and then external applicants based on available capacity.",
       "The school's commitment to extracurricular development is reflected in its active clubs and societies — including robotics, debate, music, and art — as well as inter-school sports competitions. Annual fees are competitive with other premium ICSE schools in Pune, and the convenience of having a top-tier school within walking distance adds significant intangible value to the Blue Ridge living experience."
+    ]
+  },
+  {
+    slug: "blue-ridge-vs-life-republic-megapolis-comparison",
+    title: "Blue Ridge vs Life Republic & Megapolis: The Ultimate Township Comparison",
+    date: "June 2026",
+    dateISO: "2026-06-05T10:00:00+05:30",
+    excerpt: "An objective comparison of the best townships in Pune: Paranjape Blue Ridge vs Life Republic, Megapolis, and VTP Blue Waters.",
+    category: "Market Analysis",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/township-investment-aerial.png",
+    content: [
+      "When buyers search for the best township in Pune comparison, the debate often narrows down to Blue Ridge vs Life Republic, Blue Ridge vs Megapolis, and Blue Ridge vs VTP Blue Waters. This guide objectively analyzes these massive integrated townships to help you decide where to buy a flat in Pune West.",
+      "**Blue Ridge vs Life Republic:** Kolte Patil Life Republic is massive, located slightly further out in Marunji. While it offers a large township feel, Blue Ridge Hinjewadi completely dominates on location. Blue Ridge is a walk-to-work township. You can walk to Infosys Hinjewadi, TCS, and Wipro from Blue Ridge, whereas Life Republic residents must navigate the congested Marunji road. For IT professionals, Blue Ridge is the clear winner for saving commute time.",
+      "**Blue Ridge vs Megapolis:** Megapolis, located in Hinjewadi Phase 3, offers budget-friendly apartments. However, Blue Ridge is positioned as a luxury township in Hinjewadi Phase 1. Blue Ridge features a professional 9-hole golf course, a private boat club, and the Blue Ridge Public School inside the gates. If you want premium residences, golf view apartments, and a higher rental yield, Blue Ridge outperforms Megapolis.",
+      "**Other Competitors:** Buyers frequently compare Blue Ridge vs Tathawade projects, Blue Ridge vs Godrej Evergreen Square, and Blue Ridge vs Krisala 41 Luxovert. Tathawade lacks the integrated infrastructure of a true township. Hiranandani Township and Lodha Belmondo are premium, but Blue Ridge offers superior connectivity to the upcoming Hinjewadi Metro Line.",
+      "Ultimately, Paranjape Blue Ridge remains the gold standard for luxury gated communities in Pune, offering unrivaled ROI for investors and a completely self-sufficient lifestyle for residents."
+    ]
+  },
+  {
+    slug: "luxury-apartments-pune-west-guide",
+    title: "The Ultimate Guide to Luxury Apartments in Pune West (2026)",
+    date: "June 2026",
+    dateISO: "2026-06-10T10:00:00+05:30",
+    excerpt: "Exploring premium residences and ultra luxury apartments across Baner, Balewadi, Pashan, Wakad, and Hinjewadi.",
+    category: "Real Estate Guide",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/township-night.png",
+    content: [
+      "The demand for luxury apartments Pune West has skyrocketed as the IT sector expands and infrastructure like the Pune Metro Line 3 nears completion. Let's explore the prime micro-markets for luxury real estate Pune.",
+      "**Baner & Balewadi Luxury Real Estate:** Baner and Balewadi are renowned for their high street lifestyle. Luxury apartments Baner and premium residences Balewadi command top prices. However, these areas are becoming heavily congested. Buyers seeking branded residences Pune are increasingly looking towards integrated townships just across the highway.",
+      "**Pashan & Bavdhan:** Known for greenery, luxury apartments Pashan and premium homes Bavdhan offer a quieter lifestyle. Yet, they lack walk-to-work proximity to the major IT hubs.",
+      "**Wakad & Mahalunge:** Wakad luxury residences and premium apartments Mahalunge serve as mid-points. But for true, ultra luxury living, buyers are flocking to Hinjewadi Phase 1.",
+      "**Hinjewadi - The New Luxury Hub:** Paranjape Blue Ridge has redefined Hinjewadi luxury real estate. With clusters like The Ridges 41 and The Altius, buyers are discovering high rise luxury homes Pune that offer river view flats and golf facing apartments. Instead of standalone luxury projects in Baner, Blue Ridge offers a 138-acre luxury skyline apartment experience, complete with an SEZ, a boat club, and elite family homes right near Rajiv Gandhi Infotech Park."
+    ]
+  },
+  {
+    slug: "blue-ridge-township-amenities-lifestyle",
+    title: "Inside Blue Ridge: Exploring the 138-Acre Premium Lifestyle",
+    date: "July 2026",
+    dateISO: "2026-07-01T10:00:00+05:30",
+    excerpt: "A look at the clubhouse, golf course, marina front, and sports facilities that make Blue Ridge the best township in Pune.",
+    category: "Township Lifestyle",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/promenade-4bhk-1633.jpg",
+    content: [
+      "Paranjape Blue Ridge Integrated Township is not just a collection of towers; it's a meticulously planned live-work-play environment. Let's break down the Blue Ridge township amenities that command its high resale value.",
+      "**Golf Lifestyle Township Pune:** The centerpiece is the Blue Ridge golf course. Residents of Blue Ridge Tower 25, Tower 26, and The Altius enjoy spectacular golf view apartments. It's the ultimate premium living experience in West Pune.",
+      "**Riverfront Living:** The Blue Ridge marina front and boat club offer kayaking and riverside dining. Blue Ridge river facing apartments are highly sought after by NRI buyers.",
+      "**World-Class Sports Facilities:** The Blue Ridge clubhouse features a massive swimming pool, a fully equipped gym, a tennis court, a football court, and a dedicated cricket pitch. The extensive Blue Ridge jogging track and cycling track weave through landscaped gardens, promoting a healthy outdoor lifestyle.",
+      "**Convenience & Retail:** You don't need to leave the gates. The township features Blue Ridge high street retail, convenience shopping, and an SEZ business park. From premium family homes to executive corporate rentals, Blue Ridge provides a secure, gated township environment with unmatched amenities."
     ]
   }
 ];

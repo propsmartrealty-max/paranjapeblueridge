@@ -47,6 +47,22 @@ function getSiloFAQs(silo: string, title: string) {
         { q: `What amenities does ${title} offer?`, a: 'Paranjape Blue Ridge offers: 9-hole golf course, private boat club on Mula river, ICSE school inside, infinity pool, gymnasium, pet park, work-from-home pods, and 24/7 security.' },
         { q: 'Is Blue Ridge Hinjewadi a fully gated community?', a: 'Yes. 138-acre fully gated township with CCTV, video door phones, intercom, and 24/7 manned checkpoints. Pets welcome in dedicated pet park.' }
       ];
+    case 'towers':
+    case 'clusters':
+      return [
+        { q: `What configurations are available in ${title}?`, a: 'Blue Ridge features premium 2, 3, 4, and 5 BHK luxury residences across its massive 138-acre township, including the ultra-premium Ridges 41 and The Altius clusters.' },
+        { q: `What are the possession dates for ${title}?`, a: 'Many towers in Blue Ridge are ready-to-move-in. Newer clusters like Ridges 41 are slated for Dec 2028 possession, while The Altius and Promenade offer near-ready possession.' }
+      ];
+    case 'luxury-west-pune':
+      return [
+        { q: `Why is Blue Ridge the best choice for ${title}?`, a: 'Unlike standalone luxury projects in Baner or Wakad, Blue Ridge is a self-sufficient 138-acre integrated township offering a golf course, boat club, and walk-to-work IT park proximity.' },
+        { q: 'Is Hinjewadi Phase 1 better than Balewadi for luxury real estate?', a: 'Yes. Hinjewadi Phase 1 offers zero-commute access to major IT hubs (Infosys, TCS) and features massive integrated townships like Blue Ridge that provide unmatched luxury amenities.' }
+      ];
+    case 'transactions':
+      return [
+        { q: `How can I proceed with ${title}?`, a: 'You can easily browse all current Blue Ridge inventory, resale deals, and corporate rentals by contacting the official Paranjape Schemes sales gallery directly through this portal.' },
+        { q: 'What is the resale value at Blue Ridge Hinjewadi?', a: 'Blue Ridge commands the highest resale and rental value in Hinjewadi Phase 1 due to its mature infrastructure, active 9-hole golf course, and the operational Blue Ridge Public School.' }
+      ];
     default:
       return [
         { q: `What are the key features of ${title} at Blue Ridge?`, a: '9-hole golf course, private boat club, Blue Ridge Public School (ICSE), pet park, infinity pool, and multi-tier security. MahaRERA registered.' },
@@ -202,6 +218,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "postalCode": postalCodeVal,
       "addressCountry": "IN"
     },
+    "location": { "@id": `${SITE_URL}/${slug}#place` },
     "sameAs": trustBridges
   };
 
@@ -223,6 +240,36 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "addressRegion": "Pune"
       }
     }
+  };
+
+  // --- Place Schema (Pune Real Estate Authority) ---
+  const placeSchema = {
+    "@type": "Place",
+    "@id": `${SITE_URL}/${slug}#place`,
+    "name": "Paranjape Blue Ridge - 138 Acre Mega Township in West Pune",
+    "description": "Pune's premier real estate destination and luxury township located in the heart of Hinjewadi. Dominating the West Pune real estate market with premium 2, 3, 4, and 5 BHK apartments, a 9-hole golf course, and a massive IT SEZ.",
+    "url": `${SITE_URL}/${slug}`,
+    "image": `${SITE_URL}/assets/images/township-aerial-night.jpg`,
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": geoVal.latitude,
+      "longitude": geoVal.longitude
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rajiv Gandhi Infotech Park, Phase 1",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "postalCode": "411057",
+      "addressCountry": "IN"
+    },
+    "containedInPlace": {
+      "@type": "City",
+      "name": "Pune",
+      "url": "https://en.wikipedia.org/wiki/Pune"
+    },
+    "touristType": "Pune Real Estate Landmark",
+    "publicAccess": true
   };
   
   // --- LocalBusiness with Reviews ---
@@ -302,7 +349,10 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "url": `${SITE_URL}/${slug}`,
     "name": pseoData?.title || projectData?.name || "Paranjape Blue Ridge Hinjewadi",
     "isPartOf": { "@id": `${SITE_URL}/#website` },
+    "about": { "@id": `${SITE_URL}/${slug}#place` },
+    "primaryImageOfPage": { "@id": `${SITE_URL}/#listing` },
     "inLanguage": "en-IN",
+    "dateModified": new Date().toISOString().split('T')[0],
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": ["#speakable-title", "#speakable-summary"]
@@ -321,6 +371,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     realEstateAgentSchema,
     announcementSchema,
     siteNavigationSchema,
+    placeSchema,
   ];
 
   // --- Per-Property Apartment & Product Schemas (Google Products Tab Hack) ---

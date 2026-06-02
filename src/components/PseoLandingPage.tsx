@@ -8,7 +8,11 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import { Shield, CheckCircle2, MessageCircle, Star } from 'lucide-react';
 import EnquiryModal from '@/components/EnquiryModal';
 import FAQSection from '@/components/FAQSection';
-import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
+import dynamic from 'next/dynamic';
+const InteractiveFloorPlans = dynamic(() => import('@/components/InteractiveFloorPlans'), { ssr: false });
+import PuneMarketReport from '@/components/PuneMarketReport';
+import DynamicContentBlock from '@/components/DynamicContentBlock';
+import RelatedSearchesMesh from '@/components/RelatedSearchesMesh';
 import SiloLinks from '@/components/SiloLinks';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -24,6 +28,7 @@ interface PseoLandingPageProps {
 
 export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [abVariant, setAbVariant] = useState<'A' | 'B'>('A');
   const { setLanguage } = useLanguage();
 
   useEffect(() => {
@@ -36,6 +41,17 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
     const timer = setTimeout(() => {
       setIsModalOpen(true);
     }, 5000);
+
+    // A/B Test initialization
+    const savedVariant = localStorage.getItem('hero_ab_variant');
+    if (savedVariant === 'A' || savedVariant === 'B') {
+      setAbVariant(savedVariant);
+    } else {
+      const newVariant = Math.random() > 0.5 ? 'B' : 'A';
+      setAbVariant(newVariant);
+      localStorage.setItem('hero_ab_variant', newVariant);
+    }
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -101,7 +117,9 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             Exclusive Premium Inventory
           </div>
           <h1 className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
-            <span className="text-gilded">{pageData.intent}</span>
+            <span className="text-gilded">
+              {abVariant === 'A' ? pageData.intent : `${pageData.intent} - Official`}
+            </span>
           </h1>
           <div className="flex items-center gap-4 mb-8">
              <div className="flex text-gold">
@@ -152,6 +170,9 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             ))}
         </div>
       </section>
+      {(pageData.silo === 'pune-macro' || pageData.silo === 'west-pune-macro') && (
+        <PuneMarketReport />
+      )}
 
       <InteractiveFloorPlans />
 
@@ -180,6 +201,12 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             <SiloLinks currentSlug={pageData.slug} silo={pageData.silo} />
         </div>
       </section>
+
+      {/* DYNAMIC CONTENT BLOCK FOR EXTREME SEO */}
+      <DynamicContentBlock silo={pageData.silo} title={pageData.intent} />
+
+      {/* RELATED SEARCHES MESH FOR PAGERANK SCULPTING */}
+      <RelatedSearchesMesh currentSlug={pageData.slug} silo={pageData.silo} />
 
       {/* FOOTER CTA */}
       <section className="bg-gold py-20">

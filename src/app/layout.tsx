@@ -7,6 +7,8 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import StickyCTA from "@/components/StickyCTA";
 import PulseNotifications from "@/components/PulseNotifications";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { TrackingProvider } from "@/components/TrackingProvider";
 import { AtmosphereProvider } from "@/context/AtmosphereContext";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
@@ -65,7 +67,14 @@ export const metadata: Metadata = {
     "township near infosys hinjewadi", "riverfront flats pune", "golf course township pune",
     "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune",
     "blue ridge apartments", "invest in blue ridge hinjewadi", "blue ridge pune", "blue ridge flats",
-    "blue ridge luxury apartments", "blue ridge integrated township", "blue ridge megatownship"
+    "blue ridge luxury apartments", "blue ridge integrated township", "blue ridge megatownship",
+    "luxury apartments pune west", "premium homes pune west", "ultra luxury residences pune",
+    "luxury real estate pune", "luxury apartments near metro pune", "luxury homes near IT park pune",
+    "branded residences pune west", "blue ridge tower 25", "blue ridge tower 26", "orion blue ridge",
+    "the ridges 41 hinjewadi", "the altius luxury residences", "blue ridge vs life republic",
+    "blue ridge vs megapolis", "luxury apartments baner", "premium residences balewadi",
+    "flats near TCS hinjewadi", "buy flat in blue ridge", "blue ridge resale flats",
+    "blue ridge corporate rentals"
   ],
   alternates: {
     canonical: 'https://www.paranjapeblueridge.com/',
@@ -216,7 +225,7 @@ export default function RootLayout({
                   }}
                 >
                   <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune's 138-Acre Township</h1>
-                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune's most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle, private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Check our latest Paranjape Blue Ridge reviews and ratings, exact floor plans, and distance to Rajiv Gandhi Infotech Park for the best investment in Hinjewadi.</p>
+                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune's most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle. Home to The Ridges 41, The Altius, Orion, and Towers 1 to 26, it features a private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Compare Blue Ridge vs Life Republic or Megapolis and discover why we are the best luxury real estate investment in Pune West, just minutes from Baner, Balewadi, and the upcoming Hinjewadi Metro Station.</p>
                   <ul>
                     <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
                     <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune">The Altius — 4 &amp; 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>
@@ -234,6 +243,8 @@ export default function RootLayout({
                 {children}
                 <StickyCTA />
                 <PulseNotifications />
+                <ExitIntentPopup />
+                <FloatingWhatsApp />
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{

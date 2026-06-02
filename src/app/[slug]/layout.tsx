@@ -7,9 +7,11 @@ import SeoContentBlock from '@/components/SeoContentBlock';
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/township-night.png`;
 
-// Pre-render named project pages as static HTML at build time
+// Pre-render named project pages AND PSEO pages as static HTML at build time
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  const projectParams = projects.map((p) => ({ slug: p.slug }));
+  const pseoParams = generatePseoUrls().map((u) => ({ slug: u.slug }));
+  return [...projectParams, ...pseoParams];
 }
 
 
