@@ -37,6 +37,20 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
             </p>
           </>
         );
+      case 'battleground':
+      case 'competitors':
+        return (
+          <>
+            <h3 className="text-2xl font-serif text-warm-white mb-4">Objective Comparison: Why {title} Matters</h3>
+            <p className="text-text-light mb-6">
+              When evaluating premium residential projects in Pune, specifically around the Hinjewadi-Wakad corridor, prospective buyers often compare <strong>{title}</strong>. While other projects offer standalone amenities, Paranjape Blue Ridge provides a completely self-sustained 138-acre ecosystem. The fundamental difference lies in the master planning—it's not just about a flat; it's about an integrated lifestyle featuring a functional 9-hole golf course, a private boat club, and a fully operational ICSE school within the premises.
+            </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">Scale and Ready Infrastructure</h4>
+            <p className="text-text-light mb-6">
+              Many competing projects are currently under construction or lack the promised massive infrastructure. Blue Ridge, conversely, is a mature township with thousands of residing families, active commercial SEZs, and lush, fully-grown landscaping. When buyers research {title}, the critical differentiator is the immediate realization of value and the complete elimination of construction risk.
+            </p>
+          </>
+        );
       case 'corporate':
       case 'tech-parks':
         return (

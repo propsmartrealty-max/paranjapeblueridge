@@ -114,7 +114,12 @@ export const seoMatrix = {
     { slug: 'best-investment-in-hinjewadi', name: 'Best Investment in Hinjewadi' },
     { slug: 'township-investment-pune', name: 'Township Investment Pune' },
     { slug: 'rental-income-property-pune', name: 'Rental Income Property Pune' },
-    { slug: 'high-appreciation-property-pune', name: 'High Appreciation Property Pune' }
+    { slug: 'high-appreciation-property-pune', name: 'High Appreciation Property Pune' },
+    { slug: 'best-investment-property-pune', name: 'Best Investment Property Pune' },
+    { slug: 'property-appreciation-hinjewadi', name: 'Property Appreciation Hinjewadi' },
+    { slug: 'high-roi-property-pune', name: 'High ROI Property Pune' },
+    { slug: 'future-growth-locations-pune', name: 'Future Growth Locations Pune' },
+    { slug: 'metro-connected-property-pune', name: 'Metro Connected Property Pune' }
   ],
   competitors: [
     { slug: 'near-life-republic', name: 'near Life Republic' },
@@ -140,6 +145,9 @@ export const seoMatrix = {
     { slug: 'blue-ridge-vs-godrej-evergreen-square', name: 'Blue Ridge vs Godrej Evergreen Square', vs: 'Godrej Evergreen Square' },
     { slug: 'blue-ridge-vs-krisala-41-luxovert', name: 'Blue Ridge vs Krisala 41 Luxovert', vs: 'Krisala 41 Luxovert' },
     { slug: 'blue-ridge-vs-hiranandani-township', name: 'Blue Ridge vs Hiranandani Township', vs: 'Hiranandani Township' },
+    { slug: 'blue-ridge-vs-godrej-hinjewadi', name: 'Blue Ridge vs Godrej Hinjewadi', vs: 'Godrej Hinjewadi' },
+    { slug: 'blue-ridge-vs-kohinoor-projects', name: 'Blue Ridge vs Kohinoor Projects', vs: 'Kohinoor Projects' },
+    { slug: 'best-township-in-hinjewadi', name: 'Best Township in Hinjewadi', vs: 'Other Townships' },
     { slug: 'best-township-in-pune-comparison', name: 'Best Township in Pune Comparison', vs: 'Other Townships' }
   ],
   infraGuides: [
@@ -202,7 +210,10 @@ export const seoMatrix = {
     { slug: 'paranjape-blue-ridge-township-hinjewadi', name: 'Paranjape Blue Ridge Township Hinjewadi' },
     { slug: 'buy-flat-in-blue-ridge', name: 'Buy Flat in Blue Ridge' },
     { slug: 'invest-in-blue-ridge-hinjewadi', name: 'Invest in Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-inventory-available', name: 'Blue Ridge Inventory Available' }
+    { slug: 'blue-ridge-inventory-available', name: 'Blue Ridge Inventory Available' },
+    { slug: 'buy-apartment-in-pune', name: 'Buy Apartment in Pune' },
+    { slug: 'buy-flat-in-blue-ridge-hinjewadi', name: 'Buy Flat in Blue Ridge Hinjewadi' },
+    { slug: 'blue-ridge-property-for-sale', name: 'Blue Ridge Property for Sale' }
   ],
   towers: Array.from({ length: 26 }, (_, i) => ({
     slug: `blue-ridge-tower-${i + 1}`, name: `Blue Ridge Tower ${i + 1}`
@@ -224,7 +235,11 @@ export const seoMatrix = {
     { slug: 'bavdhan', name: 'Bavdhan' },
     { slug: 'mahalunge', name: 'Mahalunge' },
     { slug: 'wakad', name: 'Wakad' },
-    { slug: 'hinjewadi', name: 'Hinjewadi' }
+    { slug: 'hinjewadi', name: 'Hinjewadi' },
+    { slug: 'hinjewadi-baner', name: 'Hinjewadi and Baner' },
+    { slug: 'wakad-hinjewadi', name: 'Wakad and Hinjewadi' },
+    { slug: 'balewadi-hinjewadi', name: 'Balewadi and Hinjewadi' },
+    { slug: 'mahalunge-hinjewadi', name: 'Mahalunge and Hinjewadi' }
   ],
   puneMacroMarket: [
     { slug: 'pune-real-estate-market', name: 'Pune Real Estate Market' },
