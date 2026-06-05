@@ -106,64 +106,6 @@ export default function RootLayout({
   const headersList = headers();
   const country = headersList.get('x-user-country') || 'IN';
 
-  const homepageWebPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'https://www.paranjapeblueridge.com/#webpage',
-    'url': 'https://www.paranjapeblueridge.com/',
-    'name': 'Paranjape Blue Ridge Hinjewadi | Official Sovereign Portal',
-    'isPartOf': { '@id': 'https://www.paranjapeblueridge.com/#website' },
-    'inLanguage': 'en-IN',
-    'potentialAction': { '@type': 'ReadAction', 'target': 'https://www.paranjapeblueridge.com/' },
-    'speakable': {
-      '@type': 'SpeakableSpecification',
-      'cssSelector': ['#speakable-title', '#speakable-summary']
-    }
-  };
-
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': ['Organization', 'RealEstateAgent'],
-    '@id': 'https://www.paranjapeblueridge.com/#organization',
-    'name': 'Paranjape Blue Ridge',
-    'url': 'https://www.paranjapeblueridge.com/',
-    'logo': 'https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg',
-    'description': 'The premier 138-acre integrated township in the Pune Real Estate Market, offering luxury 2, 3, 4, and 5 BHK apartments in Hinjewadi Phase 1.',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': 'Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park',
-      'addressLocality': 'Pune',
-      'addressRegion': 'Maharashtra',
-      'postalCode': '411057',
-      'addressCountry': 'IN'
-    },
-    'geo': {
-      '@type': 'GeoCoordinates',
-      'latitude': 18.5808,
-      'longitude': 73.7383
-    },
-    'telephone': '+91-20-67210000',
-    'areaServed': [
-      {
-        '@type': 'City',
-        'name': 'Pune'
-      },
-      {
-        '@type': 'City',
-        'name': 'Hinjewadi'
-      }
-    ],
-    'priceRange': '₹97.60 Lakhs - ₹3.50 Crores',
-    'sameAs': [
-      'https://www.facebook.com/ParanjapeSchemes/',
-      'https://www.instagram.com/paranjapeschemes/',
-      'https://www.youtube.com/user/ParanjapeSchemes',
-      'https://en.wikipedia.org/wiki/Hinjawadi',
-      'https://en.wikipedia.org/wiki/Rajiv_Gandhi_Infotech_Park'
-    ]
-  };
-
-
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
@@ -189,15 +131,6 @@ export default function RootLayout({
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
         <JSONLD pathname="/" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageWebPageSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-
         <SpeculationRules />
       </head>
       <body className="antialiased" data-country={country}>
@@ -211,26 +144,6 @@ export default function RootLayout({
                   <span className="hidden sm:inline">Altius: P52100078116</span>
                   <span className="hidden sm:inline">Ridge 41: P52100000054</span>
                   <span className="sm:hidden">P52100055581 | P52100078116 | P52100000054</span>
-                </div>
-                {/* Server-rendered SEO content — screen-reader accessible, not cloaking */}
-                <div
-                  className="sr-only"
-                  aria-hidden="false"
-                >
-                  <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune's 138-Acre Township</h1>
-                  <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune's most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle. Home to The Ridges 41, The Altius, Orion, and Towers 1 to 26, it features a private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Compare Blue Ridge vs Life Republic or Megapolis and discover why we are the best luxury real estate investment in Pune West, just minutes from Baner, Balewadi, and the upcoming Hinjewadi Metro Station.</p>
-                  <ul>
-                    <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
-                    <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune">The Altius — 4 &amp; 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>
-                    <li><a href="/paranjape-blue-ridge-41-hinjewadi-pune">Ridges 41 — 2, 3 &amp; 4 BHK High-Rise Living from ₹97.60 L</a></li>
-                    <li><a href="/hinjewadi-micro-market">Hinjewadi Phase 1 Micro-Market Investment Guide 2026</a></li>
-                    <li><a href="/insights/why-blue-ridge-hinjewadi-best-investment-2026">Why Blue Ridge is the Best Investment in 2026</a></li>
-                    <li><a href="/2-bhk-flats-near-infosys-hinjewadi">2 BHK Flats near Infosys Hinjewadi</a></li>
-                    <li><a href="/3-bhk-flats-near-infosys-hinjewadi">3 BHK Flats near Infosys Hinjewadi</a></li>
-                    <li><a href="/high-rental-yield-properties-in-hinjewadi-phase-1">High Rental Yield Properties in Hinjewadi Phase 1</a></li>
-                    <li><a href="/blue-ridge-vs-life-republic">Blue Ridge vs Life Republic Comparison</a></li>
-                  </ul>
-                  <p>MahaRERA Registration: Promenade P52100055581 | Altius P52100078116 | Ridges 41 P52100000054. Contact: +91-20-67210000. Address: Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune - 411057, Maharashtra, India.</p>
                 </div>
                 <div className="architect-grid"></div>
                 {children}

@@ -169,7 +169,6 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
           ))}
         </ul>
         <p>Location: Hinjewadi Phase 1, Rajiv Gandhi Infotech Park, Pune - 411057. Distance from Infosys: 1.2 KM. Distance from Wipro: 1.5 KM. Distance from Metro Station: 800m.</p>
-        <p><strong>Entity Map:</strong> {injectLinks("Paranjape Blue Ridge dominates the Pune Real Estate Market and West Pune real estate market as the premier luxury destination. Featuring premium Promenade Residences, ultra-luxury The Altius, and high-rise Ridges 41, it offers 2 BHK flats near Infosys, 3 BHK flats near Infosys, and 4 BHK luxury apartments. Recognized among the Top Residential Projects in Pune for high rental yield and high capital appreciation. Amenities include Blue Ridge Public School, a Private Boat Club, a 9-hole golf course, and walk-to-work SEZ. Excellent connectivity via Pune Metro Line 3 and Mumbai-Pune Expressway. A 138-acre township setting the benchmark for luxury living in Pune West.")}</p>
       </div>
     );
   }
@@ -226,7 +225,6 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
         Address: Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune - 411057 |
         MahaRERA Numbers: P52100055581 (Promenade), P52100078116 (Altius), P52100000054 (Ridges 41)
       </p>
-      <p><strong>Entity Map:</strong> {injectLinks("Paranjape Blue Ridge dominates the Pune Real Estate Market and West Pune real estate market as the premier luxury destination. Featuring premium Promenade Residences, ultra-luxury The Altius, and high-rise Ridges 41, it offers 2 BHK flats near Infosys, 3 BHK flats near Infosys, and 4 BHK luxury apartments. Recognized among the Top Residential Projects in Pune for high rental yield and high capital appreciation. Amenities include Blue Ridge Public School, a Private Boat Club, a 9-hole golf course, and walk-to-work SEZ. Excellent connectivity via Pune Metro Line 3 and Mumbai-Pune Expressway. A 138-acre township setting the benchmark for luxury living in Pune West.")}</p>
     </div>
   );
 }
