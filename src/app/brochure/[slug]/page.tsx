@@ -17,9 +17,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = projects.find(p => p.slug === params.slug);
   if (!project) return {};
 
-  const title = `${project.name} Official Brochure | Paranjape Blue Ridge Hinjewadi`;
-  const description = `Print or download the official brochure for ${project.name} at Paranjape Blue Ridge Hinjewadi Phase 1, Pune. View specifications, carpet area, configuration details, and price: ${project.price}.`;
+  const title = `Download Brochure: ${project.name} Hinjewadi | Floor Plans & Pricing`;
+  const description = `Get the official brochure for ${project.name} at Paranjape Blue Ridge. Includes high-res floor plans, detailed specifications, and current price list: ${project.price}.`;
   const canonical = `${SITE_URL}/brochure/${params.slug}`;
+  const dynamicOgUrl = `${SITE_URL}/api/og?title=Official+Brochure%3A+${encodeURIComponent(project.name)}&price=${encodeURIComponent(project.price)}&config=Floor+Plans+%26+Blueprints`;
 
   return {
     title,
@@ -33,14 +34,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonical,
       siteName: 'Paranjape Blue Ridge Sovereign Portal',
       type: 'website',
-      images: [{ url: `${SITE_URL}/assets/images/township-night.png`, width: 1200, height: 630, alt: title }],
+      images: [{ url: dynamicOgUrl, width: 1200, height: 630, alt: `Brochure for ${project.name}` }],
     },
     twitter: {
       card: 'summary_large_image',
       site: '@ParanjapeSchemes',
       title,
       description,
-      images: [`${SITE_URL}/assets/images/township-night.png`],
+      images: [dynamicOgUrl],
     }
   };
 }
