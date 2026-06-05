@@ -52,9 +52,29 @@ function testSchemaMetadata() {
   console.log(`✅ Verified dateISO compliance for all ${articles.length} news insights articles.`);
 }
 
+function testAbsoluteUrlFormats() {
+  const SITE_URL = 'https://www.paranjapeblueridge.com';
+  
+  projects.forEach(p => {
+    p.configurations.forEach(c => {
+      if (c.image) {
+        if (!c.image.startsWith('/') && !c.image.startsWith('http')) {
+          throw new Error(`Verification Failed: Configuration image path in ${p.name} must start with '/' or 'http': ${c.image}`);
+        }
+        const absoluteImageUrl = c.image.startsWith('http') ? c.image : `${SITE_URL}${c.image}`;
+        if (!absoluteImageUrl.startsWith('https://')) {
+          throw new Error(`Verification Failed: Absolute image URL is not secure: ${absoluteImageUrl}`);
+        }
+      }
+    });
+  });
+  console.log('✅ All configuration asset images utilize clean, secure absolute paths.');
+}
+
 try {
   testPseoUrls();
   testSchemaMetadata();
+  testAbsoluteUrlFormats();
   console.log('🎉 SCHEMA VALIDATION AUDIT COMPLETE: 100% compliant. Build can proceed.');
   process.exit(0);
 } catch (error: any) {

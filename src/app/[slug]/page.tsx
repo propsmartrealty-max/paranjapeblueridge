@@ -52,11 +52,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
     const description = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
 
+    const isMr = slug.startsWith('mr-');
+    const altSlug = isMr ? slug.replace(/^mr-/, '') : `mr-${slug}`;
+    const hasAlternate = allUrls.some(item => item.slug === altSlug);
+
     return {
       title,
       description,
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
+        ...(hasAlternate ? {
+          languages: {
+            'en-IN': isMr ? `${SITE_URL}/${altSlug}` : `${SITE_URL}/${slug}`,
+            'mr-IN': isMr ? `${SITE_URL}/${slug}` : `${SITE_URL}/${altSlug}`,
+          }
+        } : {}),
       },
       openGraph: {
         title,
