@@ -1,17 +1,56 @@
-"use client";
-
 import React from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import InvestmentMatrix from '@/components/InvestmentMatrix';
 import ConnectivityHub from '@/components/ConnectivityHub';
-import { useLanguage } from '@/context/LanguageContext';
 import { TrendingUp, Users, TrainFront } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Metadata } from 'next';
 
-export default function MicroMarketGuide() {
-  const { t } = useLanguage();
+const SITE_URL = 'https://www.paranjapeblueridge.com';
+
+interface PageProps {
+  searchParams?: {
+    lang?: string;
+  };
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
+  const title = lang === 'mr' 
+    ? 'हिंजवडी फेज १ मायक्रो-मार्केट मार्गदर्शक | परंजपे ब्लू रिज' 
+    : 'Hinjewadi Phase 1 Micro-Market Guide | Paranjape Blue Ridge';
+  const description = lang === 'mr'
+    ? 'हिंजवडी फेज १ मधील रिअल इस्टेट मार्केट, गुंतवणूक परतावा, मेट्रो लाईन ३ आणि परंजपे् ब्लू रिज बद्दल संपूर्ण मार्गदर्शक.'
+    : 'Comprehensive guide to Hinjewadi Phase 1 real estate, investment yields, Metro Line 3 impact, and living at Paranjape Blue Ridge Pune.';
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/hinjewadi-micro-market`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/hinjewadi-micro-market`,
+      siteName: 'Paranjape Blue Ridge Sovereign Portal',
+      type: 'website',
+      images: [{ url: `${SITE_URL}/assets/images/township-night.png`, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@ParanjapeSchemes',
+      title,
+      description,
+      images: [`${SITE_URL}/assets/images/township-night.png`],
+    }
+  };
+}
+
+export default function MicroMarketGuide({ searchParams }: PageProps) {
+  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
+  const t = (en: string, mr: string) => lang === 'mr' ? mr : en;
 
   return (
     <main className="min-h-screen bg-navy text-text">

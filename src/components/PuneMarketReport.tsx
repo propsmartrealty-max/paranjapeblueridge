@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { TrendingUp, BarChart3, Building2, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';

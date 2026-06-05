@@ -1,12 +1,9 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Shield, CheckCircle2, MessageCircle, Star } from 'lucide-react';
-import EnquiryModal from '@/components/EnquiryModal';
 import FAQSection from '@/components/FAQSection';
 import dynamic from 'next/dynamic';
 const InteractiveFloorPlans = dynamic(() => import('@/components/InteractiveFloorPlans'), { ssr: false });
@@ -14,7 +11,8 @@ import PuneMarketReport from '@/components/PuneMarketReport';
 import DynamicContentBlock from '@/components/DynamicContentBlock';
 import RelatedSearchesMesh from '@/components/RelatedSearchesMesh';
 import SiloLinks from '@/components/SiloLinks';
-import { useLanguage } from '@/context/LanguageContext';
+import LanguageInitializer from '@/components/LanguageInitializer';
+import EnquiryModalAutoPopup from '@/components/EnquiryModalAutoPopup';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -27,34 +25,6 @@ interface PseoLandingPageProps {
 }
 
 export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [abVariant, setAbVariant] = useState<'A' | 'B'>('A');
-  const { setLanguage } = useLanguage();
-
-  useEffect(() => {
-    if (pageData.slug.startsWith('mr-')) {
-      setLanguage('mr');
-    } else {
-      setLanguage('en');
-    }
-
-    const timer = setTimeout(() => {
-      setIsModalOpen(true);
-    }, 5000);
-
-    // A/B Test initialization
-    const savedVariant = localStorage.getItem('hero_ab_variant');
-    if (savedVariant === 'A' || savedVariant === 'B') {
-      setAbVariant(savedVariant);
-    } else {
-      const newVariant = Math.random() > 0.5 ? 'B' : 'A';
-      setAbVariant(newVariant);
-      localStorage.setItem('hero_ab_variant', newVariant);
-    }
-
-    return () => clearTimeout(timer);
-  }, []);
-
   // Determine benefits based on silo
   const getBenefits = (silo: string) => {
     switch(silo) {
@@ -90,8 +60,9 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
 
   return (
     <main className="min-h-screen bg-navy text-text">
+      <LanguageInitializer lang={pageData.slug.startsWith('mr-') ? 'mr' : 'en'} />
       <Navbar />
-      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <EnquiryModalAutoPopup />
 
       {/* SEO HERO SECTION */}
       <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden pt-24">
@@ -121,7 +92,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
           </div>
           <h1 className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
             <span className="text-gilded">
-              {abVariant === 'A' ? pageData.intent : `${pageData.intent} - Official`}
+              {pageData.intent}
             </span>
           </h1>
           <div className="flex items-center gap-4 mb-8">
