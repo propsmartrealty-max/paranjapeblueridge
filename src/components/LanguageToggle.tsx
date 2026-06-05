@@ -3,6 +3,7 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePathname, useRouter } from 'next/navigation';
+import { projects } from '@/data/master-data';
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
@@ -14,16 +15,30 @@ export default function LanguageToggle() {
 
     if (!pathname) return;
 
+    if (pathname === '/' || pathname === '/mr') {
+      router.push(targetLang === 'mr' ? '/mr' : '/');
+      return;
+    }
+
+    if (pathname === '/hinjewadi-micro-market' || pathname === '/mr-hinjewadi-micro-market') {
+      router.push(targetLang === 'mr' ? '/mr-hinjewadi-micro-market' : '/hinjewadi-micro-market');
+      return;
+    }
+
+    const slug = pathname.substring(1);
+
+    // Detect if this is a project route
+    const isProject = projects.some(p => slug === p.slug || slug === `mr-${p.slug}`);
+
     // Detect if this is a regional PSEO route
     const configs = ['2-bhk-flats', '3-bhk-flats', '4-bhk-flats'];
     const locations = ['hinjewadi-phase-1', 'hinjewadi-phase-2', 'hinjewadi-phase-3'];
-    const slug = pathname.substring(1);
 
     const isRegionalPseo = configs.some(c => 
       locations.some(l => slug === `${c}-in-${l}` || slug === `mr-${c}-in-${l}`)
     );
 
-    if (isRegionalPseo) {
+    if (isProject || isRegionalPseo) {
       if (targetLang === 'mr') {
         if (!slug.startsWith('mr-')) {
           router.push(`/mr-${slug}`);
@@ -34,7 +49,6 @@ export default function LanguageToggle() {
         }
       }
     } else {
-      // Static pages and project pages use query parameter ?lang=mr
       if (targetLang === 'mr') {
         router.push(`${pathname}?lang=mr`);
       } else {

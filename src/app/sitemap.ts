@@ -5,12 +5,32 @@ import { generatePseoUrls } from '@/data/seo-matrix';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.paranjapeblueridge.com';
   
-  const projectUrls = projects.map(p => ({
-    url: `${baseUrl}/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
+  const projectUrls = projects.flatMap(p => [
+    {
+      url: `${baseUrl}/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'en': `${baseUrl}/${p.slug}`,
+          'mr': `${baseUrl}/mr-${p.slug}`,
+        }
+      }
+    },
+    {
+      url: `${baseUrl}/mr-${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'en': `${baseUrl}/${p.slug}`,
+          'mr': `${baseUrl}/mr-${p.slug}`,
+        }
+      }
+    }
+  ]);
 
   const configUrls = projects.flatMap(p => 
     (p.configurations || []).map(c => ({
@@ -75,13 +95,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
-      priority: 1,
+      priority: 1.0,
+      alternates: {
+        languages: {
+          'en': baseUrl,
+          'mr': `${baseUrl}/mr`,
+        }
+      }
+    },
+    {
+      url: `${baseUrl}/mr`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 1.0,
+      alternates: {
+        languages: {
+          'en': baseUrl,
+          'mr': `${baseUrl}/mr`,
+        }
+      }
     },
     {
       url: `${baseUrl}/hinjewadi-micro-market`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
+      alternates: {
+        languages: {
+          'en': `${baseUrl}/hinjewadi-micro-market`,
+          'mr': `${baseUrl}/mr-hinjewadi-micro-market`,
+        }
+      }
+    },
+    {
+      url: `${baseUrl}/mr-hinjewadi-micro-market`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'en': `${baseUrl}/hinjewadi-micro-market`,
+          'mr': `${baseUrl}/mr-hinjewadi-micro-market`,
+        }
+      }
     },
     // NOTE: /feed.xml and /google-products-feed are NOT indexable HTML pages.
     // They are discoverable via <link rel="alternate"> in the layout, not via sitemap.

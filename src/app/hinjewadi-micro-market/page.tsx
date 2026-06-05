@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
       canonical: `${SITE_URL}/hinjewadi-micro-market`,
       languages: {
         'en-IN': `${SITE_URL}/hinjewadi-micro-market`,
-        'mr-IN': `${SITE_URL}/hinjewadi-micro-market?lang=mr`,
+        'mr-IN': `${SITE_URL}/mr-hinjewadi-micro-market`,
       },
     },
     openGraph: {

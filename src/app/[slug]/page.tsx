@@ -6,6 +6,7 @@ import { generatePseoUrls } from '@/data/seo-matrix';
 import PseoLandingPage from '@/components/PseoLandingPage';
 import SlugPageClient from '@/components/SlugPageClient';
 import LanguageInitializer from '@/components/LanguageInitializer';
+import MicroMarketGuide from '@/app/hinjewadi-micro-market/page';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
@@ -21,15 +22,56 @@ interface PageProps {
 export async function generateStaticParams() {
   const allUrls = generatePseoUrls();
   const projectSlugs = projects.map(p => ({ slug: p.slug }));
+  const mrProjectSlugs = projects.map(p => ({ slug: `mr-${p.slug}` }));
   const pseoSlugs = allUrls.map(u => ({ slug: u.slug }));
-  return [...projectSlugs, ...pseoSlugs];
+  return [
+    ...projectSlugs,
+    ...mrProjectSlugs,
+    ...pseoSlugs,
+    { slug: 'mr-hinjewadi-micro-market' }
+  ];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = params;
+
+  if (slug === 'mr-hinjewadi-micro-market') {
+    const title = 'हिंजवडी फेज १ मायक्रो-मार्केट मार्गदर्शक | परंजपे ब्लू रिज';
+    const description = 'हिंजवडी फेज १ मधील रिअल इस्टेट मार्केट, गुंतवणूक परतावा, मेट्रो लाईन ३ आणि परंजपे् ब्लू रिज बद्दल संपूर्ण मार्गदर्शक.';
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `${SITE_URL}/mr-hinjewadi-micro-market`,
+        languages: {
+          'en-IN': `${SITE_URL}/hinjewadi-micro-market`,
+          'mr-IN': `${SITE_URL}/mr-hinjewadi-micro-market`,
+        },
+      },
+      openGraph: {
+        title,
+        description,
+        url: `${SITE_URL}/mr-hinjewadi-micro-market`,
+        siteName: 'Paranjape Blue Ridge Sovereign Portal',
+        images: [{ url: `${SITE_URL}/assets/images/township-night.png`, width: 1200, height: 630, alt: title }],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@ParanjapeSchemes',
+        title,
+        description,
+        images: [`${SITE_URL}/assets/images/township-night.png`],
+      },
+    };
+  }
+
+  const isMrProject = slug.startsWith('mr-') && projects.some(p => `mr-${p.slug}` === slug);
+  const projectSlug = isMrProject ? slug.replace(/^mr-/, '') : slug;
+
   const allUrls = generatePseoUrls();
   const pseoData = allUrls.find(u => u.slug === slug);
-  const project = projects.find(p => p.slug === slug);
+  const project = projects.find(p => p.slug === projectSlug);
 
   // Resolve location name for geo tags
   const geoPlacename = slug.includes('hinjewadi') ? 'Hinjewadi, Pune, Maharashtra'
@@ -110,8 +152,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   if (project) {
-    const title = `${project.name} | Paranjape Blue Ridge Hinjewadi - ${project.configurations.map(c => c.title.split(' ')[0] + ' ' + c.title.split(' ')[1]).join(', ')} Flats`;
-    const description = project.description.slice(0, 155) + '...';
+    const isMr = slug.startsWith('mr-');
+    const title = isMr
+      ? `${project.name} | परंजपे ब्लू रिज हिंजवडी - लक्झरी अपार्टमेंट्स`
+      : `${project.name} | Paranjape Blue Ridge Hinjewadi - ${project.configurations.map(c => c.title.split(' ')[0] + ' ' + c.title.split(' ')[1]).join(', ')} Flats`;
+    const description = isMr
+      ? `${project.descriptionMr || project.description}`
+      : `${project.description.slice(0, 155)}...`;
+
+    const cleanEnSlug = isMr ? slug.replace(/^mr-/, '') : slug;
+    const cleanMrSlug = isMr ? slug : `mr-${slug}`;
 
     return {
       title,
@@ -119,8 +169,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
         languages: {
-          'en-IN': `${SITE_URL}/${slug}`,
-          'mr-IN': `${SITE_URL}/${slug}?lang=mr`,
+          'en-IN': `${SITE_URL}/${cleanEnSlug}`,
+          'mr-IN': `${SITE_URL}/${cleanMrSlug}`,
         },
       },
       openGraph: {
@@ -137,7 +187,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           },
         ],
         type: 'website',
-        locale: 'en_IN',
+        locale: isMr ? 'mr_IN' : 'en_IN',
       },
       twitter: {
         card: 'summary_large_image',
@@ -153,7 +203,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         'ICBM': `${project.geo.latitude}, ${project.geo.longitude}`,
         'DC.title': title,
         'DC.description': description,
-        'DC.language': 'en-IN',
+        'DC.language': isMr ? 'mr-IN' : 'en-IN',
       },
     };
   }
@@ -163,9 +213,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ProjectSilo({ params, searchParams }: PageProps) {
   const { slug } = params;
-  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
 
-  const project = projects.find(p => p.slug === slug);
+  if (slug === 'mr-hinjewadi-micro-market') {
+    return <MicroMarketGuide searchParams={{ lang: 'mr' }} />;
+  }
+
+  const isMrProject = slug.startsWith('mr-') && projects.some(p => `mr-${p.slug}` === slug);
+  const projectSlug = isMrProject ? slug.replace(/^mr-/, '') : slug;
+
+  const project = projects.find(p => p.slug === projectSlug);
   const allUrls = generatePseoUrls();
   const pseoData = allUrls.find(u => u.slug === slug);
 
@@ -177,8 +233,8 @@ export default function ProjectSilo({ params, searchParams }: PageProps) {
 
   return (
     <>
-      <LanguageInitializer lang={lang} />
-      <SlugPageClient slug={slug} />
+      <LanguageInitializer lang={isMrProject ? 'mr' : 'en'} />
+      <SlugPageClient slug={projectSlug} />
     </>
   );
 }

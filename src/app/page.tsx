@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
     languages: {
       'en-IN': SITE_URL,
-      'mr-IN': `${SITE_URL}/?lang=mr`,
+      'mr-IN': `${SITE_URL}/mr`,
     },
   },
   openGraph: {
