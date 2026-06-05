@@ -1,19 +1,55 @@
-"use client";
-
 import React from 'react';
-import { useParams, notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { projects } from '@/data/master-data';
-import { Printer, Download, MapPin, Shield, CheckCircle2 } from 'lucide-react';
+import { MapPin, Shield, CheckCircle2 } from 'lucide-react';
+import PrintButton from '@/components/PrintButton';
+import { Metadata } from 'next';
 
-export default function CustomBrochure() {
-  const { slug } = useParams();
+const SITE_URL = 'https://www.paranjapeblueridge.com';
+
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const project = projects.find(p => p.slug === params.slug);
+  if (!project) return {};
+
+  const title = `${project.name} Official Brochure | Paranjape Blue Ridge Hinjewadi`;
+  const description = `Print or download the official brochure for ${project.name} at Paranjape Blue Ridge Hinjewadi Phase 1, Pune. View specifications, carpet area, configuration details, and price: ${project.price}.`;
+  const canonical = `${SITE_URL}/brochure/${params.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'Paranjape Blue Ridge Sovereign Portal',
+      type: 'website',
+      images: [{ url: `${SITE_URL}/assets/images/township-night.png`, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@ParanjapeSchemes',
+      title,
+      description,
+      images: [`${SITE_URL}/assets/images/township-night.png`],
+    }
+  };
+}
+
+export default function CustomBrochure({ params }: PageProps) {
+  const { slug } = params;
   const project = projects.find(p => p.slug === slug);
 
   if (!project) return notFound();
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   return (
     <main className="min-h-screen bg-white text-navy p-0 md:p-12 print:p-0">
@@ -26,10 +62,7 @@ export default function CustomBrochure() {
                 <span className="text-white font-serif italic">Sovereign Brochure Generator</span>
             </div>
             <div className="flex gap-4">
-                <button onClick={handlePrint} className="flex items-center gap-2 bg-gold text-navy px-6 py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-all">
-                    <Printer size={14} />
-                    Print Brochure
-                </button>
+                <PrintButton />
             </div>
         </div>
 

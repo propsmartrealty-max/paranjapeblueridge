@@ -24,6 +24,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return {};
 
+  const dynamicOgUrl = `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
+
   return {
     title: `${article.title} | Paranjape Blue Ridge Hinjewadi`,
     description: article.excerpt,
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       url: `https://www.paranjapeblueridge.com/insights/${article.slug}`,
       images: [
         {
-          url: 'https://www.paranjapeblueridge.com/assets/images/township-night.png',
+          url: dynamicOgUrl,
           width: 1200,
           height: 630,
           alt: article.title,
@@ -45,12 +47,13 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: 'article',
       publishedTime: article.dateISO,
       authors: [article.author],
+      siteName: 'Paranjape Blue Ridge Sovereign Portal',
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description: article.excerpt,
-      images: ['https://www.paranjapeblueridge.com/assets/images/township-night.png'],
+      images: [dynamicOgUrl],
     },
   };
 }
@@ -193,10 +196,17 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     "@type": "WebPage",
                     "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}`
                   },
-                  "image": "https://www.paranjapeblueridge.com/assets/images/township-night.png",
+                  "image": `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
+                  "articleSection": article.category,
+                  "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"],
+                  "articleBody": article.content.join(" "),
+                  "wordCount": article.content.join(" ").split(/\s+/).filter(Boolean).length,
                   "speakable": {
                     "@type": "SpeakableSpecification",
-                    "cssSelector": ["#speakable-title", "#speakable-summary"]
+                    "xpath": [
+                      "/html/head/title",
+                      "/html/head/meta[@name='description']/@content"
+                    ]
                   }
                 }
               ]
