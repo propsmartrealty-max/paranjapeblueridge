@@ -44,11 +44,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
     const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
 
+    // Dynamic priority based on search intent of the PSEO silo
+    let priority = 0.7;
+    const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions'];
+    const lowIntentSilos = ['competitor', 'battleground'];
+    if (highIntentSilos.includes(u.silo)) {
+      priority = 0.85;
+    } else if (lowIntentSilos.includes(u.silo)) {
+      priority = 0.6;
+    }
+
     return {
       url: `${baseUrl}/${u.slug}`,
       lastModified: pseoPublishedDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority,
       ...(hasAlternate ? {
         alternates: {
           languages: {

@@ -4,77 +4,171 @@ import { projects } from '@/data/master-data';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
-function getSiloFAQs(silo: string, title: string) {
+function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
+  const t = (en: string, mr: string) => isMarathi ? mr : en;
   switch(silo) {
     case 'investor':
       return [
-        { q: `Is ${title} a good investment in 2026?`, a: `Yes. Blue Ridge Hinjewadi offers 4-5% rental yields and 12% annual capital appreciation — the highest in western Pune. Metro Line 3 proximity adds a further 15-20% premium.` },
-        { q: 'What is the expected ROI at Blue Ridge?', a: 'Blue Ridge has seen 12% annual capital appreciation over 3 years. Rental yield of 4-5% makes it the best-yielding gated community in Hinjewadi Phase 1.' }
+        { 
+          q: t(`Is ${title} a good investment in 2026?`, `२०२६ मध्ये ${title} ही एक चांगली गुंतवणूक आहे का?`), 
+          a: t(`Yes. Blue Ridge Hinjewadi offers 4-5% rental yields and 12% annual capital appreciation — the highest in western Pune. Metro Line 3 proximity adds a further 15-20% premium.`, `होय. ब्लू रिज हिंजवडी ४-५% रेंटल यील्ड आणि १२% वार्षिक भांडवली वाढ प्रदान करते — जे पश्चिम पुण्यातील सर्वाधिक आहे. मेट्रो लाईन ३ च्या जवळीकतेमुळे अतिरिक्त १५-२०% प्रीमियम मिळतो.`) 
+        },
+        { 
+          q: t('What is the expected ROI at Blue Ridge?', 'ब्लू रिजमध्ये अपेक्षित आरओआय (ROI) किती आहे?'), 
+          a: t('Blue Ridge has seen 12% annual capital appreciation over 3 years. Rental yield of 4-5% makes it the best-yielding gated community in Hinjewadi Phase 1.', 'ब्लू रिजमध्ये गेल्या ३ वर्षांत १२% वार्षिक भांडवली वाढ झाली आहे. ४-५% चे रेंटल यील्ड याला हिंजवडी फेज १ मधील सर्वोत्तम परतावा देणारी गेटेड कम्युनिटी बनवते.') 
+        }
       ];
     case 'corporate':
       return [
-        { q: `How far is ${title} from Hinjewadi IT Park?`, a: 'Infosys Phase 1 is 1.2 KM, Wipro 1.5 KM, TCS 1.8 KM, Embassy Tech Zone 2.5 KM. Blue Ridge SEZ is inside the township — zero commute for many residents.' },
-        { q: 'Is there a walk-to-work lifestyle at Blue Ridge?', a: 'Yes. Blue Ridge is the only 138-acre integrated township in Hinjewadi Phase 1 with an office park inside its gates. True walk-to-work lifestyle.' }
+        { 
+          q: t(`How far is ${title} from Hinjewadi IT Park?`, `हिंजवडी आयटी पार्कपासून ${title} किती अंतरावर आहे?`), 
+          a: t('Infosys Phase 1 is 1.2 KM, Wipro 1.5 KM, TCS 1.8 KM, Embassy Tech Zone 2.5 KM. Blue Ridge SEZ is inside the township — zero commute for many residents.', 'इन्फोसिस फेज १ हे १.२ किमी, विप्रो १.५ किमी, टीसीएस १.८ किमी, एम्बसी टेक झोन २.५ किमी अंतरावर आहेत. ब्लू रिज एसईझेड टाउनशिपच्या आत आहे — ज्यामुळे रहिवाशांचा प्रवासाचा वेळ वाचतो.') 
+        },
+        { 
+          q: t('Is there a walk-to-work lifestyle at Blue Ridge?', 'ब्लू रिजमध्ये वॉक-टू-वर्क जीवनशैली उपलब्ध आहे का?'), 
+          a: t('Yes. Blue Ridge is the only 138-acre integrated township in Hinjewadi Phase 1 with an office park inside its gates. True walk-to-work lifestyle.', 'होय. ब्लू रिज ही हिंजवडी फेज १ मधील एकमेव १३८ एकरची एकात्मिक टाउनशिप आहे ज्याच्या गेटच्या आत ऑफिस पार्क (SEZ) आहे. खरी वॉक-टू-वर्क जीवनशैली.') 
+        }
       ];
-    case 'battleground':
+    case 'battleground': {
+      const vsLabel = title.split('vs')[1]?.trim() || (isMarathi ? 'इतर टाउनशिप्स' : 'other townships');
       return [
-        { q: `Why choose Blue Ridge over ${title.split('vs')[1]?.trim() || 'other townships'}?`, a: 'Blue Ridge offers a 138-acre ready integrated ecosystem with ICSE school, 9-hole golf course, private boat club, and walk-to-work SEZ — a complete lifestyle no competitor can match.' },
-        { q: 'Is possession ready at Blue Ridge Hinjewadi?', a: 'Multiple clusters are ready or near-ready. Ridges 41: Dec 2028. Promenade: Sept 2029. Resale units in older towers available for immediate possession.' }
+        { 
+          q: t(`Why choose Blue Ridge over ${vsLabel}?`, `${vsLabel} ऐवजी嚮 ब्लू रिज का निवडावे?`), 
+          a: t('Blue Ridge offers a 138-acre ready integrated ecosystem with ICSE school, 9-hole golf course, private boat club, and walk-to-work SEZ — a complete lifestyle no competitor can match.', 'ब्लू रिज एक १३८ एकरची तयार एकात्मिक परिसंस्था प्रदान करते ज्यामध्ये आयसीएसई शाळा, ९-होल गोल्फ कोर्स, खाजगी बोट क्लब आणि वॉक-टू-वर्क एसईझेड समाविष्ट आहे — जे इतर कोणताही स्पर्धक देऊ शकत नाही.') 
+        },
+        { 
+          q: t('Is possession ready at Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडीमध्ये ताबा (Possession) मिळण्यास तयार आहे का?'), 
+          a: t('Multiple clusters are ready or near-ready. Ridges 41: Dec 2028. Promenade: Sept 2029. Resale units in older towers available for immediate possession.', 'अनेक क्लस्टर्स तयार किंवा जवळजवळ तयार आहेत. रिजेस ४१: डिसेंबर २०२८. प्रोमेनेड: सप्टेंबर २०२९. जुन्या टॉवर्समधील पुनर्विक्रीचे युनिट्स त्वरित ताब्यासाठी उपलब्ध आहेत.') 
+        }
       ];
+    }
     case 'infrastructure':
     case 'infra-guide':
       return [
-        { q: 'When will Pune Metro Line 3 be ready near Blue Ridge?', a: 'The Hinjewadi-Balewadi section of Pune Metro Line 3 is expected to open by late 2027, with the full corridor to Shivajinagar operational by 2029. The nearest station is just 800 meters from the entrance of the Blue Ridge township.' },
-        { q: 'How will the Metro impact property appreciation at Blue Ridge Hinjewadi?', a: 'Properties located within a 1-kilometer radius of new metro stations historically command a 15-25% price premium post-launch. Blue Ridge is ideally positioned at 800 meters from the station to maximize this capital appreciation.' },
-        { q: 'What major roads connect Paranjape Blue Ridge to Baner, Balewadi, and Wakad?', a: 'Blue Ridge has direct access via the Hinjewadi-Wakad link road and the Rajiv Gandhi Infotech Park main road. It connects to Baner and Balewadi via the upcoming Balewadi-Hinjewadi bridge and the NH-48 Mumbai-Bangalore Highway, reducing travel times to under 15 minutes.' },
-        { q: 'How far is the Pune Railway Station and Pune Airport from Blue Ridge?', a: 'Pune International Airport (PNQ) in Lohegaon is approximately 26 KM away via the airport road route, and Pune Junction Railway Station is about 20 KM. The upcoming Metro Line 3 will offer direct rapid transit connectivity from Hinjewadi to these key transit hubs.' },
-        { q: 'What schools and healthcare options are close to Blue Ridge Hinjewadi?', a: 'Blue Ridge features the operational ICSE-affiliated Blue Ridge Public School directly within the township gates. Multi-specialty medical care is available at Ruby Hall Clinic Hinjewadi (1.5 KM), Sanjeevani Hospital, and Lifepoint Multispecialty Hospital nearby.' }
+        { 
+          q: t('When will Pune Metro Line 3 be ready near Blue Ridge?', 'ब्लू रिजजवळ पुणे मेट्रो लाईन ३ कधी सुरू होईल?'), 
+          a: t('The Hinjewadi-Balewadi section of Pune Metro Line 3 is expected to open by late 2027, with the full corridor to Shivajinagar operational by 2029. The nearest station is just 800 meters from the entrance of the Blue Ridge township.', 'पुणे मेट्रो लाईन ३ चा हिंजवडी-बालेवाडी टप्पा २०२७ च्या अखेरीस सुरू होण्याची अपेक्षा आहे, आणि शिवाजीनगरपर्यंतचा संपूर्ण कॉरिडॉर २०२९ पर्यंत कार्यान्वित होईल. सर्वात जवळचे स्टेशन ब्लू रिज टाउनशिपच्या प्रवेशद्वारापासून अवघ्या ८०० मीटर अंतरावर आहे.') 
+        },
+        { 
+          q: t('How will the Metro impact property appreciation at Blue Ridge Hinjewadi?', 'मेट्रोमुळे ब्लू रिज हिंजवडी येथील मालमत्ता मूल्य वाढीवर काय परिणाम होईल?'), 
+          a: t('Properties located within a 1-kilometer radius of new metro stations historically command a 15-25% price premium post-launch. Blue Ridge is ideally positioned at 800 meters from the station to maximize this capital appreciation.', 'नवीन मेट्रो स्टेशनच्या १ किमी त्रिज्येतील मालमत्तांच्या किमती मेट्रो सुरू झाल्यानंतर १५-२५% वाढतात. ब्लू रिज या भांडवली वाढीचा जास्तीत जास्त फायदा घेण्यासाठी स्टेशनपासून ८०० मीटर अंतरावर योग्य ठिकाणी स्थित आहे.') 
+        },
+        { 
+          q: t('What major roads connect Paranjape Blue Ridge to Baner, Balewadi, and Wakad?', 'परंजपे ब्लू रिजला बाणेर, बालेवाडी आणि वाकडशी जोडणारे मुख्य रस्ते कोणते आहेत?'), 
+          a: t('Blue Ridge has direct access via the Hinjewadi-Wakad link road and the Rajiv Gandhi Infotech Park main road. It connects to Baner and Balewadi via the upcoming Balewadi-Hinjewadi bridge and the NH-48 Mumbai-Bangalore Highway, reducing travel times to under 15 minutes.', 'ब्लू रिजला हिंजवडी-वाकड लिंक रोड आणि राजीव गांधी इन्फोटेक पार्क मुख्य रस्त्यावरून थेट प्रवेश आहे. हे आगामी बालेवाडी-हिंजवडी पूल आणि NH-48 मुंबई-बंगलोर महामार्गाद्वारे बाणेर आणि बालेवाडीशी जोडले जाते, ज्यामुळे प्रवासाचा वेळ १५ मिनिटांपेक्षा कमी होतो.') 
+        },
+        { 
+          q: t('How far is the Pune Railway Station and Pune Airport from Blue Ridge?', 'पुणे रेल्वे स्टेशन आणि पुणे विमानतळ ब्लू रिजपासून किती अंतरावर आहे?'), 
+          a: t('Pune International Airport (PNQ) in Lohegaon is approximately 26 KM away via the airport road route, and Pune Junction Railway Station is about 20 KM. The upcoming Metro Line 3 will offer direct rapid transit connectivity from Hinjewadi to these key transit hubs.', 'लोहेगाव येथील पुणे आंतरराष्ट्रीय विमानतळ (PNQ) साधारण २६ किमी अंतरावर आहे आणि पुणे जंक्शन रेल्वे स्टेशन सुमारे २० किमी अंतरावर आहे. आगामी मेट्रो लाईन ३ हिंजवडीपासून या प्रमुख वाहतूक केंद्रांना थेट जलद कनेक्टिव्हिटी देईल.') 
+        },
+        { 
+          q: t('What schools and healthcare options are close to Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडीजवळ कोणते शाळा आणि आरोग्य सेवा पर्याय उपलब्ध आहेत?'), 
+          a: t('Blue Ridge features the operational ICSE-affiliated Blue Ridge Public School directly within the township gates. Multi-specialty medical care is available at Ruby Hall Clinic Hinjewadi (1.5 KM), Sanjeevani Hospital, and Lifepoint Multispecialty Hospital nearby.', 'ब्लू रिजच्या आत आयसीएसई-संलग्न ब्लू रिज पब्लिक स्कूल कार्यरत आहे. जवळील रूबी हॉल क्लिनिक हिंजवडी (१.५ किमी), संजीवनी हॉस्पिटल आणि लाईफपॉईंट मल्टीस्पेशालिटी हॉस्पिटलमध्ये वैद्यकीय सेवा उपलब्ध आहेत.') 
+        }
       ];
-    case 'price-list':
+    case 'price-list': {
+      const coreTitle = title.split('Price')[0].trim();
       return [
-        { q: `What is the price of ${title.split('Price')[0].trim()} at Blue Ridge?`, a: '2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr | 5 BHK: ₹2.65 Cr. Prices subject to floor rise and applicable taxes.' },
-        { q: 'What is the payment plan at Blue Ridge Hinjewadi?', a: 'Construction-linked plan: 10% on booking, 80% linked to milestones, 10% on possession. Home loans from SBI, HDFC, ICICI, Axis available. Contact sales for current schemes.' }
+        { 
+          q: t(`What is the price of ${coreTitle} at Blue Ridge?`, `ब्लू रिजमध्ये ${coreTitle} ची किंमत किती आहे?`), 
+          a: t('2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr | 5 BHK: ₹2.65 Cr. Prices subject to floor rise and applicable taxes.', '२ बीएचके रिजेस ४१: ₹९७.६० लाख पासून | ३ बीएचके प्रोमेनेड: ₹१.६५ कोटी पासून | ४ बीएचके आल्टियस: ₹१.८० कोटी पासून | ५ बीएचके: ₹२.६५ कोटी. किमती मजल्यानुसार आणि लागू करांनुसार बदलू शकतात.') 
+        },
+        { 
+          q: t('What is the payment plan at Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडी येथे पेमेंट प्लॅन कसा आहे?'), 
+          a: t('Construction-linked plan: 10% on booking, 80% linked to milestones, 10% on possession. Home loans from SBI, HDFC, ICICI, Axis available. Contact sales for current schemes.', 'कन्स्ट्रक्शन-लिंक्ड प्लॅन: बुकिंगवर १०%, कामाच्या टप्प्यांनुसार ८०%, आणि ताब्यावेळी १०%. एसबीआय, एचडीएफसी, आयसीआयसीआय, ॲक्सिस बँकांकडून गृहकर्ज उपलब्ध. सध्याच्या ऑफर्ससाठी सेल्स टीमशी संपर्क साधा.') 
+        }
       ];
-    case 'floor-plan':
+    }
+    case 'floor-plan': {
+      const coreTitle = title.split('Floor')[0].trim();
       return [
-        { q: `What is the carpet area for ${title.split('Floor')[0].trim()}?`, a: '2 BHK: 793-970 sq ft | 3 BHK: 1,250-1,316 sq ft | 4 BHK: 1,592-1,858 sq ft | 5 BHK: 2,480 sq ft. All carpet areas as per RERA registered plans.' },
-        { q: 'How do I get the floor plan for Blue Ridge?', a: 'WhatsApp +91-7744009295 or use the enquiry form on this page. We dispatch the full PDF with all configurations within 30 minutes during business hours.' }
+        { 
+          q: t(`What is the carpet area for ${coreTitle}?`, `${coreTitle} साठी कारपेट एरिया किती आहे?`), 
+          a: t('2 BHK: 793-970 sq ft | 3 BHK: 1,250-1,316 sq ft | 4 BHK: 1,592-1,858 sq ft | 5 BHK: 2,480 sq ft. All carpet areas as per RERA registered plans.', '२ बीएचके: ७९३-९७० चौ. फूट | ३ बीएचके: १२५०-१३१६ चौ. फूट | ४ बीएचके: १५९२-१८५८ चौ. फूट | ५ बीएचके: २४८० चौ. फूट. सर्व कारपेट एरिया रेरा (RERA) नोंदणीकृत प्लॅन्सच्या आधारे आहेत.') 
+        },
+        { 
+          q: t('How do I get the floor plan for Blue Ridge?', 'मला ब्लू रिजचा फ्लोअर प्लॅन कसा मिळू शकतो?'), 
+          a: t('WhatsApp +91-7744009295 or use the enquiry form on this page. We dispatch the full PDF with all configurations within 30 minutes during business hours.', 'व्हॉट्सॲप +९१-७७४४००९२९५ वर संपर्क साधा किंवा या पेजवरील चौकशी फॉर्म भरा. आम्ही ऑफिस वेळेत ३० मिनिटांच्या आत सर्व कॉन्फिगरेशनसह संपूर्ण पीडीएफ पाठवतो.') 
+        }
       ];
+    }
     case 'site-visit':
       return [
-        { q: 'How do I book a site visit to Blue Ridge Hinjewadi?', a: 'Call +91-20-67210000 or WhatsApp +91-7744009295. We offer 7-day slots including weekends. Sales Gallery at Blue Ridge Township, Phase 1, Hinjewadi, Pune - 411057. Open 9 AM-8 PM.' },
-        { q: 'Is there a virtual tour of Blue Ridge available?', a: 'Yes. Request a 360-degree virtual walkthrough of all towers and amenities via our enquiry form. Available instantly via WhatsApp.' }
+        { 
+          q: t('How do I book a site visit to Blue Ridge Hinjewadi?', 'मी ब्लू रिज हिंजवडीच्या साईट व्हिजिटसाठी बुकिंग कसे करू?'), 
+          a: t('Call +91-20-67210000 or WhatsApp +91-7744009295. We offer 7-day slots including weekends. Sales Gallery at Blue Ridge Township, Phase 1, Hinjewadi, Pune - 411057. Open 9 AM-8 PM.', '+९१-२०-६७२१०००० वर कॉल करा किंवा व्हॉट्सॲप +९१-७७४४००९२९५ करा. आम्ही शनिवार-रविवारसह ७ दिवस बुकिंग देतो. सेल्स गॅलरी:夾 ब्लू रिज टाउनशिप, फेज १, हिंजवडी, पुणे - ४११०५७. वेळ सकाळी ९ ते रात्री ८.') 
+        },
+        { 
+          q: t('Is there a virtual tour of Blue Ridge available?', 'ब्लू रिजचा व्हर्च्युअल टूर उपलब्ध आहे का?'), 
+          a: t('Yes. Request a 360-degree virtual walkthrough of all towers and amenities via our enquiry form. Available instantly via WhatsApp.', 'होय. आमच्या चौकशी फॉर्मद्वारे सर्व टॉवर्स आणि सुविधांचा ३६०-डिग्री व्हर्च्युअल टूर मागवा. व्हॉट्सॲपवर त्वरित उपलब्ध.') 
+        }
       ];
     case 'amenities':
       return [
-        { q: `What amenities does ${title} offer?`, a: 'Paranjape Blue Ridge offers: 9-hole golf course, private boat club on Mula river, ICSE school inside, infinity pool, gymnasium, pet park, work-from-home pods, and 24/7 security.' },
-        { q: 'Is Blue Ridge Hinjewadi a fully gated community?', a: 'Yes. 138-acre fully gated township with CCTV, video door phones, intercom, and 24/7 manned checkpoints. Pets welcome in dedicated pet park.' }
+        { 
+          q: t(`What amenities does ${title} offer?`, `${title} मध्ये कोणत्या सुविधा उपलब्ध आहेत?`), 
+          a: t('Paranjape Blue Ridge offers: 9-hole golf course, private boat club on Mula river, ICSE school inside, infinity pool, gymnasium, pet park, work-from-home pods, and 24/7 security.', 'परंजपे् ब्लू रिजमध्ये ९-होल गोल्फ कोर्स, मुळा नदीवर खाजगी बोट क्लब, आयसीएसई शाळा, इन्फिनिटी पूल, जिम, पेट पार्क, वर्क-फ्रॉम-होम पॉड्स आणि २४/७ सुरक्षा उपलब्ध आहे.') 
+        },
+        { 
+          q: t('Is Blue Ridge Hinjewadi a fully gated community?', 'ब्लू रिज हिंजवडी पूर्णपणे गेटेड कम्युनिटी आहे का?'), 
+          a: t('Yes. 138-acre fully gated township with CCTV, video door phones, intercom, and 24/7 manned checkpoints. Pets welcome in dedicated pet park.', 'होय. १३८ एकरची पूर्णपणे गेटेड टाउनशिप ज्यामध्ये सीसीटीव्ही, व्हिडिओ डोअर फोन, इंटरकॉम आणि २४/७ सुरक्षा चौक्या आहेत. समर्पित पेट पार्कमध्ये पाळीव प्राण्यांचे स्वागत आहे.') 
+        }
       ];
     case 'towers':
     case 'clusters':
       return [
-        { q: `What configurations are available in ${title}?`, a: 'Blue Ridge features premium 2, 3, 4, and 5 BHK luxury residences across its massive 138-acre township, including the ultra-premium Ridges 41 and The Altius clusters.' },
-        { q: `What are the possession dates for ${title}?`, a: 'Many towers in Blue Ridge are ready-to-move-in. Newer clusters like Ridges 41 are slated for Dec 2028 possession, while The Altius and Promenade offer near-ready possession.' }
+        { 
+          q: t(`What configurations are available in ${title}?`, `${title} मध्ये कोणते पर्याय उपलब्ध आहेत?`), 
+          a: t('Blue Ridge features premium 2, 3, 4, and 5 BHK luxury residences across its massive 138-acre township, including the ultra-premium Ridges 41 and The Altius clusters.', 'ब्लू रिजमध्ये त्याच्या भव्य १३८ एकरच्या टाउनशिपमध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके लक्झरी घरे आहेत, ज्यात अति-प्रीमियम रिजेस ४१ आणि द आल्टियस क्लस्टर्स समाविष्ट आहेत.') 
+        },
+        { 
+          q: t(`What are the possession dates for ${title}?`, `${title} साठी ताब्याची तारीख (Possession Date) काय आहे?`), 
+          a: t('Many towers in Blue Ridge are ready-to-move-in. Newer clusters like Ridges 41 are slated for Dec 2028 possession, while The Altius and Promenade offer near-ready possession.', 'ब्लू रिजमधील अनेक टॉवर्स रेडी-टू-मूव्ह आहेत. रिजेस ४१ सारख्या नवीन क्लस्टर्सचा ताबा डिसेंबर २०२८ पर्यंत आहे, तर द आल्टियस आणि प्रोमेनेड लवकरच ताब्यासाठी तयार आहेत.') 
+        }
       ];
     case 'luxury-west-pune':
       return [
-        { q: `Why is Blue Ridge the best choice for ${title}?`, a: 'Unlike standalone luxury projects in Baner or Wakad, Blue Ridge is a self-sufficient 138-acre integrated township offering a golf course, boat club, and walk-to-work IT park proximity.' },
-        { q: 'Is Hinjewadi Phase 1 better than Balewadi for luxury real estate?', a: 'Yes. Hinjewadi Phase 1 offers zero-commute access to major IT hubs (Infosys, TCS) and features massive integrated townships like Blue Ridge that provide unmatched luxury amenities.' }
+        { 
+          q: t(`Why is Blue Ridge the best choice for ${title}?`, `${title} साठी ब्लू रिज सर्वोत्तम पर्याय का आहे?`), 
+          a: t('Unlike standalone luxury projects in Baner or Wakad, Blue Ridge is a self-sufficient 138-acre integrated township offering a golf course, boat club, and walk-to-work IT park proximity.', 'बाणेर किंवा वाकडमधील इतर लक्झरी प्रकल्पांच्या तुलनेत, ब्लू रिज ही एक स्वावलंबी १३८ एकरची एकात्मिक टाउनशिप आहे जी गोल्फ कोर्स, बोट क्लब आणि वॉक-टू-वर्क आयटी पार्क कनेक्टिव्हिटी प्रदान करते.') 
+        },
+        { 
+          q: t('Is Hinjewadi Phase 1 better than Balewadi for luxury real estate?', 'लक्झरी रिअल इस्टेटसाठी बालेवाडीपेक्षा हिंजवडी फेज १ चांगली आहे का?'), 
+          a: t('Yes. Hinjewadi Phase 1 offers zero-commute access to major IT hubs (Infosys, TCS) and features massive integrated townships like Blue Ridge that provide unmatched luxury amenities.', 'होय. हिंजवडी फेज १ प्रमुख आयटी कंपन्यांच्या जवळ प्रवासाचा वेळ वाचवते आणि ब्लू रिज सारख्या भव्य टाउनशिप्स येथे अतुलनीय लक्झरी सुविधा देतात.') 
+        }
       ];
     case 'transactions':
       return [
-        { q: `How can I proceed with ${title}?`, a: 'You can easily browse all current Blue Ridge inventory, resale deals, and corporate rentals by contacting the official Paranjape Schemes sales gallery directly through this portal.' },
-        { q: 'What is the resale value at Blue Ridge Hinjewadi?', a: 'Blue Ridge commands the highest resale and rental value in Hinjewadi Phase 1 due to its mature infrastructure, active 9-hole golf course, and the operational Blue Ridge Public School.' }
+        { 
+          q: t(`How can I proceed with ${title}?`, `मी ${title} साठी पुढे कसे जाऊ?`), 
+          a: t('You can easily browse all current Blue Ridge inventory, resale deals, and corporate rentals by contacting the official Paranjape Schemes sales gallery directly through this portal.', 'तुम्ही या अधिकृत पोर्टलद्वारे थेट संपर्क साधून सर्व ब्लू रिज इन्व्हेंटरी, रिसेल डील्स आणि कॉर्पोरेट रेंटल्स सहज पाहू शकता.') 
+        },
+        { 
+          q: t('What is the resale value at Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडी येथे रिसेलचे मूल्य किती आहे?'), 
+          a: t('Blue Ridge commands the highest resale and rental value in Hinjewadi Phase 1 due to its mature infrastructure, active 9-hole golf course, and the operational Blue Ridge Public School.', 'ब्लू रिज हिंजवडी फेज १ मध्ये त्याचे विकसित इन्फ्रास्ट्रक्चर, सक्रिय ९-होल गोल्फ कोर्स आणि शाळेमुळे सर्वाधिक रिसेल आणि रेंटल व्हॅल्यू मिळवते.') 
+        }
       ];
     case 'paranjape-schemes':
       return [
-        { q: `What is the developer reputation of Paranjape Schemes for ${title}?`, a: 'Paranjape Schemes (Construction) Ltd has over 40 years of track record in Pune, with 50+ delivered projects, zero RERA complaints, and is highly respected for on-time delivery.' },
-        { q: `Where is the project ${title} located?`, a: `The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, premium social infrastructure, and high investment potential.` }
+        { 
+          q: t(`What is the developer reputation of Paranjape Schemes for ${title}?`, `${title} साठी परंजपे स्कीम्सची डेव्हलपर म्हणून प्रतिष्ठा कशी आहे?`), 
+          a: t('Paranjape Schemes (Construction) Ltd has over 40 years of track record in Pune, with 50+ delivered projects, zero RERA complaints, and is highly respected for on-time delivery.', 'परंजपे स्कीम्सचा पुण्यात ४० पेक्षा जास्त वर्षांचा अनुभव आहे, ५० हून अधिक पूर्ण झालेले प्रकल्प आहेत, रेरा अंतर्गत कोणतीही तक्रार नाही आणि वेळेवर ताबा देण्यासाठी ते अत्यंत प्रतिष्ठित आहेत.') 
+        },
+        { 
+          q: t(`Where is the project ${title} located?`, `हा प्रकल्प ${title} कुठे स्थित आहे?`), 
+          a: t('The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, social infrastructure, and high investment potential.', 'हा प्रकल्प ${title} पुण्याच्या मुख्य विकास क्षेत्रात स्थित आहे, जो उत्तम कनेक्टिव्हिटी, सामाजिक पायाभूत सुविधा आणि उच्च परताव्याची क्षमता देतो.') 
+        }
       ];
     default:
       return [
-        { q: `What are the key features of ${title} at Blue Ridge?`, a: '9-hole golf course, private boat club, Blue Ridge Public School (ICSE), pet park, infinity pool, and multi-tier security. MahaRERA registered.' },
-        { q: 'Is Blue Ridge RERA registered?', a: 'Yes. Promenade: P52100055581, Altius: P52100078116, Ridges 41: P52100000054. All MahaRERA certified and compliant.' }
+        { 
+          q: t(`What are the key features of ${title} at Blue Ridge?`, `ब्लू रिज येथील ${title} ची मुख्य वैशिष्ट्ये कोणती आहेत?`), 
+          a: t('9-hole golf course, private boat club, Blue Ridge Public School (ICSE), pet park, infinity pool, and multi-tier security. MahaRERA registered.', '९-होल गोल्फ कोर्स, खाजगी बोट क्लब,ि ब्लू रिज पब्लिक स्कूल (ICSE), pet park, infinity pool, आणि बहुस्तरीय सुरक्षा. महारेरा नोंदणीकृत.') 
+        },
+        { 
+          q: t('Is Blue Ridge RERA registered?', 'ब्लू रिज महारेरा (RERA) नोंदणीकृत आहे का?'), 
+          a: t('Yes. Promenade: P52100055581, Altius: P52100078116, Ridges 41: P52100000054. All MahaRERA certified and compliant.', 'होय. प्रोमेनेड: P52100055581, आल्टियस: P52100078116, रिजेस ४१: P52100000054. सर्व महारेरा प्रमाणित आहेत.') 
+        }
       ];
   }
 }
@@ -511,43 +605,43 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const howToSchema = {
     "@type": "HowTo",
     "@id": `${SITE_URL}/${slug}#howto`,
-    "name": "How to Book a Flat at Paranjape Blue Ridge Hinjewadi",
-    "description": "Step-by-step guide to booking your luxury residence at Paranjape Blue Ridge, Hinjewadi Phase 1, Pune.",
+    "name": t("How to Book a Flat at Paranjape Blue Ridge Hinjewadi", "परंजपे ब्लू रिज हिंजवडी मध्ये फ्लॅट कसा बुक करावा"),
+    "description": t("Step-by-step guide to booking your luxury residence at Paranjape Blue Ridge, Hinjewadi Phase 1, Pune.", "परंजपे ब्लू रिज, हिंजवडी फेज १, पुणे येथे लक्झरी घर बुक करण्यासाठी टप्प्याटप्प्याने मार्गदर्शक."),
     "totalTime": "PT30M",
     "step": [
       {
         "@type": "HowToStep",
         "position": 1,
-        "name": "Choose Your Configuration",
-        "text": "Browse 2 BHK, 3 BHK, 4 BHK, and 5 BHK options across Ridges 41, Promenade Residences, and The Altius. Prices start from ₹97.60 Lakhs.",
+        "name": t("Choose Your Configuration", "तुमचे कॉन्फिगरेशन निवडा"),
+        "text": t("Browse 2 BHK, 3 BHK, 4 BHK, and 5 BHK options across Ridges 41, Promenade Residences, and The Altius. Prices start from ₹97.60 Lakhs.", "रिजेस ४१, प्रोमेनेड रेसिडेन्सेस आणि द आल्टियस मधील २ बीएचके, ३ बीएचके, ४ बीएचके आणि ५ बीएचके पर्याय पहा. किमती ₹९७.६० लाखांपासून सुरू होतात."),
         "url": `${SITE_URL}/#projects`
       },
       {
         "@type": "HowToStep",
         "position": 2,
-        "name": "Register Your Interest",
-        "text": "Fill the enquiry form on this page or WhatsApp +91-7744009295 to connect with a relationship manager.",
+        "name": t("Register Your Interest", "तुमची आवड नोंदवा"),
+        "text": t("Fill the enquiry form on this page or WhatsApp +91-7744009295 to connect with a relationship manager.", "या पेजवरील चौकशी फॉर्म भरा किंवा रिलेशनशिप मॅनेजरशी संपर्क साधण्यासाठी व्हॉट्सॲप +९१-७७४४००९२९५ करा."),
         "url": `${SITE_URL}/#enquiry`
       },
       {
         "@type": "HowToStep",
         "position": 3,
-        "name": "Schedule a Site Visit",
-        "text": "Book a complimentary site visit at Blue Ridge Township, Phase 1, Hinjewadi, Pune. Sales gallery open 9 AM to 8 PM, 7 days a week.",
+        "name": t("Schedule a Site Visit", "साइट व्हिजिटचे नियोजन करा"),
+        "text": t("Book a complimentary site visit at Blue Ridge Township, Phase 1, Hinjewadi, Pune. Sales gallery open 9 AM to 8 PM, 7 days a week.", "ब्लू रिज टाउनशिप, फेज १, हिंजवडी, पुणे येथे मोफत साइट व्हिजिट बुक करा. सेल्स गॅलरी आठवड्याचे ७ दिवस सकाळी ९ ते रात्री ८ वाजेपर्यंत उघडी असते."),
         "url": `${SITE_URL}/blue-ridge-hinjewadi-site-visit`
       },
       {
         "@type": "HowToStep",
         "position": 4,
-        "name": "Review RERA Details",
-        "text": "Verify MahaRERA numbers: Promenade P52100055581, Altius P52100078116, Ridges 41 P52100000054 on the official MahaRERA portal.",
+        "name": t("Review RERA Details", "रेरा (RERA) तपशील तपासा"),
+        "text": t("Verify MahaRERA numbers: Promenade P52100055581, Altius P52100078116, Ridges 41 P52100000054 on the official MahaRERA portal.", "अधिकृत महारेरा पोर्टलवर महारेरा क्रमांक: प्रोमेनेड P52100055581, आल्टियस P52100078116, रिजेस ४१ P52100000054 तपासा."),
         "url": "https://maharera.maharerait.gov.in"
       },
       {
         "@type": "HowToStep",
         "position": 5,
-        "name": "Apply for Home Loan",
-        "text": "Blue Ridge is approved by all major banks: SBI, HDFC, ICICI, Axis, Kotak. Our team assists with home loan documentation and approval.",
+        "name": t("Apply for Home Loan", "गृहकर्जासाठी अर्ज करा"),
+        "text": t("Blue Ridge is approved by all major banks: SBI, HDFC, ICICI, Axis, Kotak. Our team assists with home loan documentation and approval.", "ब्लू रिज सर्व प्रमुख बँकांद्वारे मंजूर आहे: SBI, HDFC, ICICI, Axis, Kotak. आमची टीम गृहकर्ज मंजुरीसाठी मदत करते."),
         "url": `${SITE_URL}/#enquiry`
       }
     ]
@@ -701,8 +795,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     graph.push({
       "@type": "ItemList",
       "@id": `${SITE_URL}/${pseoData.slug}#project-list`,
-      "name": `Available Projects for ${pseoData.title}`,
-      "description": `Premium residential clusters offering configurations for ${pseoData.title} in Paranjape Blue Ridge Hinjewadi.`,
+      "name": t(`Available Projects for ${pseoData.title}`, `${pseoData.title} साठी उपलब्ध प्रकल्प`),
+      "description": t(`Premium residential clusters offering configurations for ${pseoData.title} in Paranjape Blue Ridge Hinjewadi.`, `परंजपे ब्लू रिज हिंजवडी मध्ये ${pseoData.title} साठी घरे उपलब्ध करून देणारे लक्झरी गृहप्रकल्प.`),
       "numberOfItems": projects.length,
       "itemListElement": projects.map((proj, idx) => ({
         "@type": "ListItem",
@@ -712,13 +806,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
           "@id": `${SITE_URL}/${proj.slug}#realestateagent`,
           "name": proj.name,
           "url": `${SITE_URL}/${proj.slug}`,
-          "description": proj.description.slice(0, 150)
+          "description": t(proj.description.slice(0, 150), proj.descriptionMr ? proj.descriptionMr.slice(0, 150) : proj.description.slice(0, 150))
         }
       }))
     });
 
     // Inject Silo FAQ
-    const faqs = getSiloFAQs(pseoData.silo, pseoData.title);
+    const faqs = getSiloFAQs(pseoData.silo, pseoData.title, isMarathi);
     graph.push({
       "@type": "FAQPage",
       "@id": `${SITE_URL}/${pseoData.slug}#faq`,

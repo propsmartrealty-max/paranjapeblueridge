@@ -175,8 +175,12 @@ export default function RootLayout({
             </Suspense>
           </AtmosphereProvider>
         </LanguageProvider>
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
-        <GoogleTagManager gtmId="GTM-XXXXXXX" />
+        {process.env.NEXT_PUBLIC_GA_ID && process.env.NEXT_PUBLIC_GA_ID !== "G-XXXXXXXXXX" && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
+        {process.env.NEXT_PUBLIC_GTM_ID && process.env.NEXT_PUBLIC_GTM_ID !== "GTM-XXXXXXX" && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
         <WebVitalsReporter />
       </body>
     </html>
