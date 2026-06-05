@@ -28,7 +28,7 @@ const path = require('path');
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 const SITE_URL_ENCODED = encodeURIComponent(SITE_URL + '/');
 const KEY_FILE = path.join(__dirname, 'google-service-account.json');
-const INDEXNOW_KEY = '6bc82c36f90e43968a1af7e4cca7d94d';
+const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
 
 // Priority pages — always crawled first regardless of quota
 const PRIORITY_PAGES = [

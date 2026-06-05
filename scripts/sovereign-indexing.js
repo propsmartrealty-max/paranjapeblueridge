@@ -269,7 +269,7 @@ async function runIndexingSweep(queue, cache) {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 async function runIndexNow(allUrls) {
   console.log(`\n⚡ Starting IndexNow API Sweep for Bing & Yahoo...`);
-  const INDEXNOW_KEY = '6bc82c36f90e43968a1af7e4cca7d94d';
+  const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
   const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 
   // Submit in batches of 100 (IndexNow limit)

@@ -14,7 +14,7 @@ const SITE_URL = 'https://www.paranjapeblueridge.com';
 const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
 
 // IndexNow key — also needs to be served at /{key}.txt on the site
-const INDEXNOW_KEY = 'b7f2a1c9e4d6f8a3b5c7d9e1f3a5b7c9';
+const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
 
 async function fetchSitemapUrls() {
   console.log(`📡 Fetching live sitemap from: ${SITEMAP_URL}`);
