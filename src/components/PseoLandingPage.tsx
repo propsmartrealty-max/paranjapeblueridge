@@ -73,7 +73,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             priority
             fetchPriority="high"
             className="object-cover opacity-30"
-            alt={pageData.title}
+            alt={`Paranjape Blue Ridge Township - Premium showcases of ${pageData.title} in Hinjewadi Phase 1 Pune`}
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent"></div>

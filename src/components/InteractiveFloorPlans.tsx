@@ -114,7 +114,7 @@ export default function InteractiveFloorPlans() {
                 <div className="relative w-full aspect-[16/10] min-h-[400px]">
                   <Image 
                     src={activeTab.image} 
-                    alt={activeTab.name}
+                    alt={`Architectural Floor Plan layout for ${activeTab.name} - Paranjape Blue Ridge Hinjewadi`}
                     fill
                     priority
                     className="object-contain"

@@ -84,7 +84,7 @@ export default function CustomBrochure({ params }: PageProps) {
                     </div>
                 </div>
                 <div className="w-full md:w-64">
-                    <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="w-full h-auto opacity-20" alt="Logo" />
+                    <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="w-full h-auto opacity-20" alt="Paranjape Blue Ridge Logo" />
                 </div>
             </div>
 
@@ -95,7 +95,7 @@ export default function CustomBrochure({ params }: PageProps) {
                          project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
                          '/assets/images/ridges-41.png'} 
                     className="w-full h-full object-cover" 
-                    alt={project.name} 
+                    alt={`Brochure cover image for Paranjape Blue Ridge ${project.name} - Luxury residences in Hinjewadi Phase 1`} 
                 />
                 <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-md p-8 rounded-2xl border border-navy/5">
                     <div className="text-[8px] text-navy/50 uppercase tracking-widest mb-1">Starting Price</div>
@@ -147,7 +147,7 @@ export default function CustomBrochure({ params }: PageProps) {
             {/* Footer / Legal */}
             <div className="border-t border-navy/10 pt-12 flex flex-col md:flex-row justify-between items-end gap-10">
                 <div>
-                    <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-6 mb-6 opacity-30" alt="Paranjape" />
+                    <img src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" className="h-6 mb-6 opacity-30" alt="Paranjape Schemes Construction Ltd. New Logo" />
                     <p className="text-[10px] text-navy/40 max-w-sm">MahaRERA: {project.id === 'promenade' ? 'P52100055581' : project.id === 'altius' ? 'P52100078116' : 'P52100000054'}</p>
                 </div>
             </div>

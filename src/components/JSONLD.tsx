@@ -24,8 +24,11 @@ function getSiloFAQs(silo: string, title: string) {
     case 'infrastructure':
     case 'infra-guide':
       return [
-        { q: 'When will Pune Metro Line 3 be ready near Blue Ridge?', a: 'The Hinjewadi-Balewadi section is expected by late 2027. Full corridor to Shivajinagar by 2029. The nearest station is 800m from Blue Ridge entrance.' },
-        { q: 'How will the Metro impact Blue Ridge property values?', a: 'Properties within 1 km of new metro stations historically appreciate 15-25% within 2 years of opening. Blue Ridge at 800m is optimally positioned.' }
+        { q: 'When will Pune Metro Line 3 be ready near Blue Ridge?', a: 'The Hinjewadi-Balewadi section of Pune Metro Line 3 is expected to open by late 2027, with the full corridor to Shivajinagar operational by 2029. The nearest station is just 800 meters from the entrance of the Blue Ridge township.' },
+        { q: 'How will the Metro impact property appreciation at Blue Ridge Hinjewadi?', a: 'Properties located within a 1-kilometer radius of new metro stations historically command a 15-25% price premium post-launch. Blue Ridge is ideally positioned at 800 meters from the station to maximize this capital appreciation.' },
+        { q: 'What major roads connect Paranjape Blue Ridge to Baner, Balewadi, and Wakad?', a: 'Blue Ridge has direct access via the Hinjewadi-Wakad link road and the Rajiv Gandhi Infotech Park main road. It connects to Baner and Balewadi via the upcoming Balewadi-Hinjewadi bridge and the NH-48 Mumbai-Bangalore Highway, reducing travel times to under 15 minutes.' },
+        { q: 'How far is the Pune Railway Station and Pune Airport from Blue Ridge?', a: 'Pune International Airport (PNQ) in Lohegaon is approximately 26 KM away via the airport road route, and Pune Junction Railway Station is about 20 KM. The upcoming Metro Line 3 will offer direct rapid transit connectivity from Hinjewadi to these key transit hubs.' },
+        { q: 'What schools and healthcare options are close to Blue Ridge Hinjewadi?', a: 'Blue Ridge features the operational ICSE-affiliated Blue Ridge Public School directly within the township gates. Multi-specialty medical care is available at Ruby Hall Clinic Hinjewadi (1.5 KM), Sanjeevani Hospital, and Lifepoint Multispecialty Hospital nearby.' }
       ];
     case 'price-list':
       return [

@@ -32,13 +32,13 @@ export default function Navbar() {
           }`}
         >
           <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group" aria-label="Blue Ridge Sovereign Homepage">
-             <img 
-               src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
-               alt="PSCL Logo" 
-               width={112}
-               height={32}
-               className="h-8 brightness-0 invert transition-transform duration-300 group-hover:scale-105"
-             />
+              <img 
+                src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
+                alt="Paranjape Schemes Construction Ltd. - Developer Logo" 
+                width={112}
+                height={32}
+                className="h-8 brightness-0 invert transition-transform duration-300 group-hover:scale-105"
+              />
              <div className="flex flex-col">
                <span className="font-serif font-bold text-sm tracking-widest text-warm-white group-hover:text-gold transition-colors">BLUE RIDGE</span>
                <span className="text-[10px] text-gilded font-bold tracking-[4px] uppercase">Sovereign</span>
