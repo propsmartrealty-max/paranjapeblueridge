@@ -1,5 +1,6 @@
 import React from 'react';
 import HomePageClient from '@/components/HomePageClient';
+import LanguageInitializer from '@/components/LanguageInitializer';
 import { Metadata } from 'next';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
@@ -9,6 +10,10 @@ export const metadata: Metadata = {
   description: "Paranjape Blue Ridge is Hinjewadi's premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.",
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      'en-IN': SITE_URL,
+      'mr-IN': `${SITE_URL}/?lang=mr`,
+    },
   },
   openGraph: {
     title: 'Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune',
@@ -27,9 +32,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+interface PageProps {
+  searchParams?: {
+    lang?: string;
+  };
+}
+
+export default function Home({ searchParams }: PageProps) {
+  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
+
   return (
     <>
+      <LanguageInitializer lang={lang} />
       {/* Homepage-only SEO content — speakable, screen-reader accessible, not repeated on other pages */}
       <div className="sr-only" aria-hidden="false">
         <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune&apos;s 138-Acre Township</h1>

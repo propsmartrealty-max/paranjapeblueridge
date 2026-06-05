@@ -6,6 +6,7 @@ import InvestmentMatrix from '@/components/InvestmentMatrix';
 import ConnectivityHub from '@/components/ConnectivityHub';
 import { TrendingUp, Users, TrainFront } from 'lucide-react';
 import { Metadata } from 'next';
+import LanguageInitializer from '@/components/LanguageInitializer';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
@@ -29,6 +30,10 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     description,
     alternates: {
       canonical: `${SITE_URL}/hinjewadi-micro-market`,
+      languages: {
+        'en-IN': `${SITE_URL}/hinjewadi-micro-market`,
+        'mr-IN': `${SITE_URL}/hinjewadi-micro-market?lang=mr`,
+      },
     },
     openGraph: {
       title,
@@ -54,6 +59,7 @@ export default function MicroMarketGuide({ searchParams }: PageProps) {
 
   return (
     <main className="min-h-screen bg-navy text-text">
+      <LanguageInitializer lang={lang} />
       <Navbar />
       
       {/* GUIDE HERO */}

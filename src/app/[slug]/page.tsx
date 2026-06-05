@@ -5,12 +5,16 @@ import { projects } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 import PseoLandingPage from '@/components/PseoLandingPage';
 import SlugPageClient from '@/components/SlugPageClient';
+import LanguageInitializer from '@/components/LanguageInitializer';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
 interface PageProps {
   params: {
     slug: string;
+  };
+  searchParams?: {
+    lang?: string;
   };
 }
 
@@ -114,6 +118,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
+        languages: {
+          'en-IN': `${SITE_URL}/${slug}`,
+          'mr-IN': `${SITE_URL}/${slug}?lang=mr`,
+        },
       },
       openGraph: {
         title,
@@ -153,8 +161,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {};
 }
 
-export default function ProjectSilo({ params }: PageProps) {
+export default function ProjectSilo({ params, searchParams }: PageProps) {
   const { slug } = params;
+  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
 
   const project = projects.find(p => p.slug === slug);
   const allUrls = generatePseoUrls();
@@ -166,5 +175,10 @@ export default function ProjectSilo({ params }: PageProps) {
     return <PseoLandingPage pageData={pseoData} />;
   }
 
-  return <SlugPageClient slug={slug} />;
+  return (
+    <>
+      <LanguageInitializer lang={lang} />
+      <SlugPageClient slug={slug} />
+    </>
+  );
 }
