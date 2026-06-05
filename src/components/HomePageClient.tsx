@@ -1,15 +1,9 @@
 "use client";
 
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import ProjectCard from '@/components/ProjectCard';
-import MarketAnalysis from '@/components/MarketAnalysis';
-import ComparisonMatrix from '@/components/ComparisonMatrix';
-import InvestmentMatrix from '@/components/InvestmentMatrix';
-import TownshipExperience from '@/components/TownshipExperience';
-import IntelligenceHub from '@/components/IntelligenceHub';
-import ConnectivityHub from '@/components/ConnectivityHub';
-import BlogSection from '@/components/BlogSection';
 import EnquiryModal from '@/components/EnquiryModal';
 import PopularSearches from '@/components/PopularSearches';
 import FAQSection from '@/components/FAQSection';
@@ -24,10 +18,18 @@ import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import DOMPurify from 'dompurify';
+import { blurDataURLs } from '@/utils/blurData';
 
 const LEAD_API = '/api/lead';
 
-import InventoryMatrix from '@/components/InventoryMatrix';
+const MarketAnalysis = dynamic(() => import('@/components/MarketAnalysis'));
+const ComparisonMatrix = dynamic(() => import('@/components/ComparisonMatrix'));
+const InvestmentMatrix = dynamic(() => import('@/components/InvestmentMatrix'));
+const TownshipExperience = dynamic(() => import('@/components/TownshipExperience'));
+const IntelligenceHub = dynamic(() => import('@/components/IntelligenceHub'));
+const ConnectivityHub = dynamic(() => import('@/components/ConnectivityHub'));
+const BlogSection = dynamic(() => import('@/components/BlogSection'));
+const InventoryMatrix = dynamic(() => import('@/components/InventoryMatrix'));
 
 export default function HomePageClient() {
   const { t } = useLanguage();
@@ -147,6 +149,8 @@ export default function HomePageClient() {
             src={atmosphere === 'night' ? "/assets/images/real-township-night.jpg" : "/assets/images/real-township-day.jpg"} 
             fill
             priority
+            placeholder="blur"
+            blurDataURL={atmosphere === 'night' ? blurDataURLs.darkNavy : blurDataURLs.lightSkyBlue}
             className="object-cover transition-all duration-1000 opacity-80" 
             alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Township Apartments For Sale"
             sizes="100vw"
@@ -250,6 +254,8 @@ export default function HomePageClient() {
             alt="Paranjape Blue Ridge Township Hinjewadi - 138 Acre Integrated Township Aerial View - Distance to Rajiv Gandhi Infotech Park"
             fill
             sizes="100vw"
+            placeholder="blur"
+            blurDataURL={blurDataURLs.darkNavy}
             className="object-cover transition-transform duration-1000 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -282,6 +288,8 @@ export default function HomePageClient() {
               width={1920}
               height={1080}
               sizes="(max-width: 768px) 100vw, 80vw"
+              placeholder="blur"
+              blurDataURL={blurDataURLs.lightGray}
               className="w-full h-auto block"
             />
           </div>

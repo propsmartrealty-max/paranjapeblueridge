@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Ruler, IndianRupee, Layers, Calendar, CheckCircle2 } from 'lucide-react';
 import { Project } from '@/data/master-data';
 import BlueprintExplorer from './BlueprintExplorer';
+import { blurDataURLs } from '@/utils/blurData';
 
 interface ProjectCardProps {
   project: Project;
@@ -32,6 +33,8 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
           width={800}
           height={600}
           sizes="(max-width: 768px) 100vw, 50vw"
+          placeholder="blur"
+          blurDataURL={project.id === 'altius' ? blurDataURLs.darkGray : blurDataURLs.lightSkyBlue}
           className="w-full h-auto min-h-[300px] object-cover transition-transform duration-1000 group-hover:scale-105"
         />
 
