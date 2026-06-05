@@ -389,32 +389,38 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   let postalCodeVal = "411057";
   let geoVal = { latitude: 18.5786825, longitude: 73.7370331 };
 
+  // Knowledge Graph Trust Flow via Wikipedia & Wikidata geocoding anchors
+  const trustBridges = [
+    "https://en.wikipedia.org/wiki/Pune",
+    "https://www.wikidata.org/wiki/Q1538", // Pune Wikidata
+    "https://en.wikipedia.org/wiki/Hinjawadi",
+    "https://www.wikidata.org/wiki/Q5766952", // Hinjawadi Wikidata
+    "https://en.wikipedia.org/wiki/Paranjape_Schemes"
+  ];
+
   if (slug) {
     if (slug.includes('wakad')) {
       regionName = "Wakad";
       postalCodeVal = "411057";
       geoVal = { latitude: 18.5987, longitude: 73.7753 };
+      trustBridges.push("https://en.wikipedia.org/wiki/Wakad", "https://www.wikidata.org/wiki/Q7960783");
     } else if (slug.includes('baner')) {
       regionName = "Baner";
       postalCodeVal = "411045";
       geoVal = { latitude: 18.5590, longitude: 73.7868 };
+      trustBridges.push("https://en.wikipedia.org/wiki/Baner", "https://www.wikidata.org/wiki/Q4856903");
     } else if (slug.includes('balewadi')) {
       regionName = "Balewadi";
       postalCodeVal = "411045";
       geoVal = { latitude: 18.5772, longitude: 73.7844 };
+      trustBridges.push("https://en.wikipedia.org/wiki/Balewadi", "https://www.wikidata.org/wiki/Q4850785");
     } else if (slug.includes('punawale')) {
       regionName = "Punawale";
       postalCodeVal = "411033";
       geoVal = { latitude: 18.6305, longitude: 73.7542 };
+      trustBridges.push("https://en.wikipedia.org/wiki/Punawale", "https://www.wikidata.org/wiki/Q110291993");
     }
   }
-
-  // Knowledge Graph Trust Flow via Wikipedia
-  const trustBridges = [
-    "https://en.wikipedia.org/wiki/Pune",
-    "https://en.wikipedia.org/wiki/Hinjawadi",
-    "https://en.wikipedia.org/wiki/Paranjape_Schemes"
-  ];
 
   const realEstateAgentSchema = {
     "@type": "RealEstateAgent",

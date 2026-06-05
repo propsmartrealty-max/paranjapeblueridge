@@ -31,6 +31,48 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
             <p className="text-text-light mb-6">
               One of the most significant value drivers for <strong>{title}</strong> is the upcoming Pune Metro Line 3 (Hinjewadi to Shivajinagar corridor). Real estate economics dictate that properties within a 1-kilometer radius of mass transit stations experience a "hyper-appreciation" phase upon project completion. With the metro line advancing rapidly, current price points offer a fleeting window for investors to capitalize on pre-operation valuations. When you buy a flat in Blue Ridge or similar premium townships, you are effectively securing an asset heavily insulated against market volatility by world-class infrastructure.
             </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">Pune Growth Corridors: West Pune vs. East Pune Comparison</h4>
+            <p className="text-text-light mb-4">
+              Pune's real estate expansion is anchored by two massive growth poles: the Western Corridor (Hinjewadi, Wakad, Baner) and the Eastern Corridor (Kharadi, Hadapsar, Viman Nagar). Salient comparison metrics show why the Western Corridor holds the yield advantage for smart investors:
+            </p>
+            <div className="overflow-x-auto my-6 border border-white/10 rounded-2xl">
+              <table className="min-w-full text-left text-xs text-text-light">
+                <thead className="bg-navy-light text-gold font-bold uppercase tracking-widest border-b border-white/10">
+                  <tr>
+                    <th className="px-6 py-4">Growth Parameter</th>
+                    <th className="px-6 py-4">Western Corridor (Hinjewadi/Wakad)</th>
+                    <th className="px-6 py-4">Eastern Corridor (Kharadi/Hadapsar)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5 bg-navy/30">
+                  <tr>
+                    <td className="px-6 py-4 font-bold text-warm-white">Primary Tech Hubs</td>
+                    <td className="px-6 py-4 text-emerald-400">Rajiv Gandhi Infotech Park (Phase 1, 2 & 3), Blue Ridge SEZ</td>
+                    <td className="px-6 py-4">EON Free Zone, World Trade Center, Magarpatta City</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-bold text-warm-white">Average Rental Yield</td>
+                    <td className="px-6 py-4 text-emerald-400 font-bold">4.5% - 5.5% (High Cashflow)</td>
+                    <td className="px-6 py-4">3.8% - 4.5% (Moderate Cashflow)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-bold text-warm-white">Avg. Capital Appreciation</td>
+                    <td className="px-6 py-4 text-emerald-400">12% - 15% YoY (Metro Proximity Boost)</td>
+                    <td className="px-6 py-4">8% - 11% YoY</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-bold text-warm-white">Mass Transit Line</td>
+                    <td className="px-6 py-4 text-emerald-400">Pune Metro Line 3 (Hinjewadi-Shivajinagar Elevated)</td>
+                    <td className="px-6 py-4">Pune Metro Line 2 Extension (Ramwadi-Kharadi)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-bold text-warm-white">Ecosystem Integration</td>
+                    <td className="px-6 py-4 text-emerald-400">138-Acre Integrated Township model (School, Golf inside)</td>
+                    <td className="px-6 py-4">Predominantly Standalone high-rises or scattered layouts</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <h4 className="text-xl font-serif text-gilded mb-3">The Township Advantage vs. Standalone Projects</h4>
             <p className="text-text-light mb-6">
               The paradigm shift in post-pandemic home buying heavily favors integrated mega townships over standalone buildings. Buyers are prioritizing expansive open spaces, comprehensive security, and in-house lifestyle amenities. A township offers a holistic living experience—featuring private golf courses, riverfront promenades, international schools, and dedicated commercial SEZs. This self-sustaining model not only enhances the quality of life but also ensures the property commands a premium in the resale market, solidifying its status as the best real estate investment in Pune.

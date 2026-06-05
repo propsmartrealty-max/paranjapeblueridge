@@ -300,7 +300,10 @@ export const seoMatrix = {
     { slug: 'gated-community-pune', name: 'Gated Community Pune' },
     { slug: 'nri-investment-property-pune', name: 'NRI Investment Property Pune' },
     { slug: 'affordable-housing-pune', name: 'Affordable Housing Pune' },
-    { slug: 'best-areas-to-invest-pune-2026', name: 'Best Areas to Invest Pune 2026' }
+    { slug: 'best-areas-to-invest-pune-2026', name: 'Best Areas to Invest Pune 2026' },
+    { slug: 'best-roi-flats-in-pune', name: 'Best ROI Flats in Pune' },
+    { slug: 'pune-nri-real-estate-laws', name: 'Pune NRI Real Estate Laws & Guide' },
+    { slug: 'pune-ring-road-property-impact', name: 'Pune Ring Road Property Impact' }
   ],
   westPuneCorridor: [
     { slug: 'west-pune-real-estate', name: 'West Pune Real Estate' },
@@ -332,7 +335,9 @@ export const seoMatrix = {
     { slug: 'best-residential-projects-pune-west', name: 'Best Residential Projects Pune West' },
     { slug: 'premium-flats-pune-west', name: 'Premium Flats Pune West' },
     { slug: 'luxury-homes-pune-west', name: 'Luxury Homes Pune West' },
-    { slug: 'premium-property-pune-west', name: 'Premium Property Pune West' }
+    { slug: 'premium-property-pune-west', name: 'Premium Property Pune West' },
+    { slug: 'pune-it-corridor-housing', name: 'Pune IT Corridor Housing Guide' },
+    { slug: 'hinjewadi-to-wakad-growth-connector', name: 'Hinjewadi to Wakad Growth Connector' }
   ],
   // Deep Hinjewadi Market Authority
   hinjewadiFocus: [
