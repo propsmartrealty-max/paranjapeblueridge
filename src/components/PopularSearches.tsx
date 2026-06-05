@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { generatePseoUrls } from '@/data/seo-matrix';
-import { LayoutGrid, TrendingUp, Cpu, Landmark, Languages } from 'lucide-react';
+import { LayoutGrid, TrendingUp, Cpu, Landmark, Languages, Building2 } from 'lucide-react';
 
 export default function PopularSearches() {
   const allUrls = generatePseoUrls();
@@ -11,6 +11,7 @@ export default function PopularSearches() {
   const battleLinks = allUrls.filter(u => u.silo === 'battleground').slice(0, 8);
   const infraLinks = allUrls.filter(u => u.silo === 'infrastructure' || u.silo === 'infra-guide').slice(0, 8);
   const regionalLinks = allUrls.filter(u => u.silo === 'regional-mr').slice(0, 12);
+  const brandLinks = allUrls.filter(u => u.silo === 'paranjape-schemes').slice(0, 12);
 
   const sections = [
     { title: 'Tech Hub Proximity', icon: Cpu, links: techLinks },
@@ -18,6 +19,7 @@ export default function PopularSearches() {
     { title: 'Project Comparisons', icon: LayoutGrid, links: battleLinks },
     { title: 'Infra & Guides', icon: Landmark, links: infraLinks },
     { title: 'प्रादेशिक रिअल इस्टेट', icon: Languages, links: regionalLinks },
+    { title: 'Paranjape Schemes', icon: Building2, links: brandLinks },
   ];
 
   return (
@@ -28,7 +30,7 @@ export default function PopularSearches() {
           <h2 className="text-4xl font-serif text-warm-white">Pune Real Estate <span className="italic font-normal text-gold">Market Index</span></h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {sections.map((section, idx) => (
             <div key={idx} className="space-y-6">
               <div className="flex items-center gap-3 text-gold/60">

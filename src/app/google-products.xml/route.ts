@@ -1,7 +1,7 @@
 import { generatePseoUrls } from '@/data/seo-matrix';
 
 export async function GET() {
-  const SITE_URL = 'https://paranjape-blueridge-hinjewadi.com'; // Use production domain
+  const SITE_URL = 'https://www.paranjapeblueridge.com'; // Use production domain
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">

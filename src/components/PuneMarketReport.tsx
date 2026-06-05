@@ -12,9 +12,9 @@ export default function PuneMarketReport() {
           <span className="text-gold font-bold tracking-[4px] uppercase text-[10px] block mb-4 flex items-center justify-center gap-2">
             <BarChart3 size={14} /> Official Market Report
           </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-warm-white mb-6">Pune Real Estate <span className="italic font-normal text-gilded">Market Analysis</span></h2>
+          <h2 className="text-3xl md:text-5xl font-serif text-warm-white mb-6">Pune Real Estate <span className="italic font-normal text-gilded">Market Dominance</span></h2>
           <p className="text-text-light leading-relaxed">
-            West Pune, specifically the Hinjewadi-Wakad corridor, continues to dominate the luxury real estate and township sector, driven by a massive influx of IT professionals and upcoming infrastructure like Metro Line 3.
+            Paranjape Blue Ridge stands as the premier integrated township, dominating the Pune Real Estate Market and setting the absolute benchmark for West Pune luxury living. Our unparalleled scale, world-class amenities, and strategic Hinjewadi Phase 1 location capture the highest rental yields and capital appreciation in the city.
           </p>
         </div>
 

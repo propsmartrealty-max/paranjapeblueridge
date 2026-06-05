@@ -22,6 +22,7 @@ const CONFIG = {
   SITE_URL: 'https://www.paranjapeblueridge.com',
   KEY_FILE: path.join(__dirname, 'google-service-account.json'),
   AUDIT_LOG: path.join(__dirname, '..', 'data', 'indexing-audit.json'),
+  CACHE_FILE: path.join(__dirname, '..', 'data', 'google-index-cache.json'),
   MAX_URLS_PER_RUN: 200,        // Google daily quota
   CHUNK_SIZE: 10,                // Concurrent batch size
   MAX_RETRIES: 3,                // Max retry attempts per URL
@@ -178,8 +179,19 @@ async function runIndexingSweep(urls) {
   const authClient = await auth.getClient();
   google.options({ auth: authClient });
 
-  const urlsToProcess = urls.slice(0, CONFIG.MAX_URLS_PER_RUN);
-  console.log(`\n🚀 Indexing ${urlsToProcess.length}/${urls.length} URLs (limit: ${CONFIG.MAX_URLS_PER_RUN})${CONFIG.DRY_RUN ? ' [DRY RUN]' : ''}...\n`);
+  let cache = {};
+  if (fs.existsSync(CONFIG.CACHE_FILE)) {
+    try {
+      cache = JSON.parse(fs.readFileSync(CONFIG.CACHE_FILE, 'utf8'));
+    } catch (e) {
+      cache = {};
+    }
+  }
+
+  const pendingUrls = urls.filter(url => !cache[url]);
+  const urlsToProcess = pendingUrls.slice(0, CONFIG.MAX_URLS_PER_RUN);
+  
+  console.log(`\n🚀 Indexing ${urlsToProcess.length}/${pendingUrls.length} Pending URLs (Total: ${urls.length}, limit: ${CONFIG.MAX_URLS_PER_RUN})${CONFIG.DRY_RUN ? ' [DRY RUN]' : ''}...\n`);
 
   const results = { success: [], failed: [], skipped: [] };
   const startTime = Date.now();
@@ -223,9 +235,18 @@ async function runIndexingSweep(urls) {
     }
   }
 
+  // Update Cache
+  results.success.forEach(r => {
+    cache[r.url] = true;
+  });
+  if (results.success.length > 0 && !CONFIG.DRY_RUN) {
+    fs.writeFileSync(CONFIG.CACHE_FILE, JSON.stringify(cache, null, 2));
+    console.log(`\n💾 Saved ${results.success.length} new URLs to cache.`);
+  }
+
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
   
-  return { ...results, elapsed, total: urlsToProcess.length };
+  return { ...results, elapsed, total: urlsToProcess.length, pendingRemaining: pendingUrls.length - results.success.length };
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -283,11 +304,12 @@ async function main() {
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('  INDEXING SWEEP COMPLETE');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log(`  📊 Total URLs:   ${results.total}`);
-  console.log(`  ✅ Successful:   ${results.success.length}`);
-  console.log(`  ⏭️  Skipped:      ${results.skipped?.length || 0}`);
-  console.log(`  ❌ Failed:       ${results.failed.length}`);
-  console.log(`  ⏱️  Elapsed:      ${results.elapsed}s`);
+  console.log(`  📊 Processed URLs: ${results.total}`);
+  console.log(`  📈 Remaining Pending: ${results.pendingRemaining}`);
+  console.log(`  ✅ Successful:     ${results.success.length}`);
+  console.log(`  ⏭️  Skipped (Quota):${results.skipped?.length || 0}`);
+  console.log(`  ❌ Failed:         ${results.failed.length}`);
+  console.log(`  ⏱️  Elapsed:        ${results.elapsed}s`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   if (results.failed.length > 0) {

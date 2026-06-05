@@ -182,6 +182,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://vercel.live" />
         {/* LCP hero image preload — prevents render-blocking image fetch */}
         <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
+        {/* PSEO hero LCP image preload */}
+        <link rel="preload" as="image" href="/assets/images/master-hero-v4.png" fetchPriority="high" />
         {/* Secondary hero image preload — above-fold atmosphere variant */}
         <link rel="preload" as="image" href="/assets/images/township-night.png" />
         {/* RSS feed discovery */}
@@ -210,19 +212,10 @@ export default function RootLayout({
                   <span className="hidden sm:inline">Ridge 41: P52100000054</span>
                   <span className="sm:hidden">P52100055581 | P52100078116 | P52100000054</span>
                 </div>
-                {/* Server-rendered SEO content for homepage — crawlable by Googlebot on first pass */}
+                {/* Server-rendered SEO content — screen-reader accessible, not cloaking */}
                 <div
-                  style={{
-                    position: 'absolute',
-                    width: '1px',
-                    height: '1px',
-                    padding: 0,
-                    margin: '-1px',
-                    overflow: 'hidden',
-                    clip: 'rect(0,0,0,0)',
-                    whiteSpace: 'nowrap',
-                    borderWidth: 0,
-                  }}
+                  className="sr-only"
+                  aria-hidden="false"
                 >
                   <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune's 138-Acre Township</h1>
                   <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune's most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle. Home to The Ridges 41, The Altius, Orion, and Towers 1 to 26, it features a private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Compare Blue Ridge vs Life Republic or Megapolis and discover why we are the best luxury real estate investment in Pune West, just minutes from Baner, Balewadi, and the upcoming Hinjewadi Metro Station.</p>

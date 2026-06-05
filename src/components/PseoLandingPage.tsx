@@ -70,6 +70,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
       case 'competitor':
       case 'battleground':
         return ['138-Acre Mega Township', 'Ready Possession Clusters', 'Golf Course & Boat Club', 'Blue Ridge Public School'];
+      case 'paranjape-schemes':
+        return ['Brand Credibility', 'Premium Quality', 'Strategic Location', 'MahaRERA Certified'];
       default:
         return ['High Rental Yield', 'Walk to Work', 'Premium Amenities', 'Capital Appreciation'];
     }
@@ -81,6 +83,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
     if (silo === 'infrastructure' || silo === 'infra-guide') return `Location and connectivity dictate real estate value. By securing ${pageData.title.toLowerCase()}, you leverage the upcoming Metro Line 3 and expressway access to guarantee your asset remains future-proofed and highly connected.`;
     if (silo === 'ecosystem') return `True luxury is an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school, private boat club, and professional golf course within the gates, your lifestyle is elevated beyond just an apartment.`;
     if (silo === 'battleground') return `When evaluating ${pageData.title.toLowerCase()}, the contrast is clear. While many competitors offer standalone buildings, Blue Ridge provides a 138-acre ready integrated ecosystem. From the 9-hole golf course to the inside-campus school, our "Township First" approach offers a lifestyle scale that other projects in the vicinity simply cannot replicate.`;
+    if (silo === 'paranjape-schemes') return `Looking for detailed information on ${pageData.intent}? Paranjape Schemes (Construction) Ltd is one of Pune's most trusted real estate developers, with over 40 years of building quality townships, luxury residences, and senior living homes. Discover the pricing, layouts, and reviews for ${pageData.intent} today.`;
     
     return `Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for ${pageData.intent.toLowerCase()}, this 138-acre township offers an unparalleled ecosystem. From proximity to major IT hubs to a private 9-hole golf course and river-facing promenades, every aspect of ${pageData.type.toLowerCase()} living is elevated to global standards.`;
   };

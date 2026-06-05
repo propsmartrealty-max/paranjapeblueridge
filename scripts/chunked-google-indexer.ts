@@ -7,18 +7,13 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 // Paths
-const SITEMAP_PATH = path.join(process.cwd(), 'public', 'sitemap.xml');
+const SITEMAP_URL = 'https://www.paranjapeblueridge.com/sitemap.xml';
 const CACHE_PATH = path.join(process.cwd(), '.google-index-cache.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), 'service-account.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), 'google-credentials.json');
 const MAX_URLS_PER_RUN = 190;
 
 async function chunkedIndex() {
   console.log('⚡ Starting Chunked Google Indexing Sweep...');
-
-  if (!fs.existsSync(SITEMAP_PATH)) {
-    console.error('❌ sitemap.xml not found!');
-    process.exit(1);
-  }
 
   if (!fs.existsSync(CREDENTIALS_PATH)) {
     console.warn('⚠️ service-account.json not found! Skipping indexing.');
@@ -32,7 +27,13 @@ async function chunkedIndex() {
   }
 
   // Parse sitemap
-  const sitemapXml = fs.readFileSync(SITEMAP_PATH, 'utf-8');
+  console.log(`🌐 Fetching sitemap from ${SITEMAP_URL}...`);
+  const response = await fetch(SITEMAP_URL);
+  if (!response.ok) {
+    console.error(`❌ Failed to fetch sitemap: ${response.status} ${response.statusText}`);
+    process.exit(1);
+  }
+  const sitemapXml = await response.text();
   const parser = new xml2js.Parser();
   const parsed = await parser.parseStringPromise(sitemapXml);
 

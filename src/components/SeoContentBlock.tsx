@@ -92,6 +92,21 @@ const keywordMap = [
   { phrase: '2 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/2-bhk-flats-near-infosys-hinjewadi' },
   { phrase: '3 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/3-bhk-flats-near-infosys-hinjewadi' },
   { phrase: 'high rental yield', url: 'https://www.paranjapeblueridge.com/high-rental-yield-properties-in-hinjewadi-phase-1' },
+  { phrase: 'Pune Metro Line 3', url: 'https://www.paranjapeblueridge.com/hinjewadi-metro-line-3-impact' },
+  { phrase: 'Blue Ridge Public School', url: 'https://www.paranjapeblueridge.com/blue-ridge-public-school-admission-guide' },
+  { phrase: 'Private Boat Club', url: 'https://www.paranjapeblueridge.com/private-boat-club-membership-pune' },
+  { phrase: 'golf view apartments', url: 'https://www.paranjapeblueridge.com/flats-with-golf-course-pune' },
+  { phrase: 'luxury apartments in Pune West', url: 'https://www.paranjapeblueridge.com/luxury-living-pune-west' },
+  { phrase: 'ready possession flats', url: 'https://www.paranjapeblueridge.com/ready-possession-flats-hinjewadi' },
+  { phrase: '138-acre township', url: 'https://www.paranjapeblueridge.com/138-acre-township-hinjewadi' },
+  { phrase: 'Pune Real Estate Market', url: 'https://www.paranjapeblueridge.com/pune-real-estate-market' },
+  { phrase: 'West Pune real estate market', url: 'https://www.paranjapeblueridge.com/west-pune-real-estate' },
+  { phrase: 'Top Residential Projects in Pune', url: 'https://www.paranjapeblueridge.com/top-residential-projects-pune' },
+  { phrase: '3 BHK Luxury Homes Pune', url: 'https://www.paranjapeblueridge.com/3-bhk-luxury-homes-pune' },
+  { phrase: '4 BHK Luxury Hinjewadi', url: 'https://www.paranjapeblueridge.com/luxury-4-bhk-hinjewadi' },
+  { phrase: '5 BHK Luxury Villas Hinjewadi Pune', url: 'https://www.paranjapeblueridge.com/5-bhk-luxury-villas-hinjewadi-pune' },
+  { phrase: 'Bungalows in Hinjewadi', url: 'https://www.paranjapeblueridge.com/bungalows-in-hinjewadi' },
+  { phrase: 'Wakad Luxury Real Estate', url: 'https://www.paranjapeblueridge.com/wakad-luxury-real-estate' }
 ];
 
 function escapeRegExp(str: string) {
@@ -140,20 +155,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   if (project) {
     // Server-rendered project content block
     return (
-      <div
-        style={{
-          position: 'absolute',
-          width: '1px',
-          height: '1px',
-          padding: 0,
-          margin: '-1px',
-          overflow: 'hidden',
-          clip: 'rect(0,0,0,0)',
-          whiteSpace: 'nowrap',
-          borderWidth: 0,
-        }}
-        aria-hidden="false"
-      >
+      <div className="sr-only" aria-hidden="false">
         <h1 id="speakable-title">{project.name} — Paranjape Blue Ridge Hinjewadi | {project.configurations.map(c => c.title).join(', ')}</h1>
         <p id="speakable-summary">{injectLinks(project.description)}</p>
         <p>Starting Price: {project.price} | Carpet Area: {project.carpetArea} | Possession: {project.possession} | MahaRERA: {project.reraNumber}</p>
@@ -167,6 +169,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
           ))}
         </ul>
         <p>Location: Hinjewadi Phase 1, Rajiv Gandhi Infotech Park, Pune - 411057. Distance from Infosys: 1.2 KM. Distance from Wipro: 1.5 KM. Distance from Metro Station: 800m.</p>
+        <p><strong>Entity Map:</strong> {injectLinks("Paranjape Blue Ridge dominates the Pune Real Estate Market and West Pune real estate market as the premier luxury destination. Featuring premium Promenade Residences, ultra-luxury The Altius, and high-rise Ridges 41, it offers 2 BHK flats near Infosys, 3 BHK flats near Infosys, and 4 BHK luxury apartments. Recognized among the Top Residential Projects in Pune for high rental yield and high capital appreciation. Amenities include Blue Ridge Public School, a Private Boat Club, a 9-hole golf course, and walk-to-work SEZ. Excellent connectivity via Pune Metro Line 3 and Mumbai-Pune Expressway. A 138-acre township setting the benchmark for luxury living in Pune West.")}</p>
       </div>
     );
   }
@@ -176,20 +179,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   const related = getRelatedLinks(pseo!.silo, slug);
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        width: '1px',
-        height: '1px',
-        padding: 0,
-        margin: '-1px',
-        overflow: 'hidden',
-        clip: 'rect(0,0,0,0)',
-        whiteSpace: 'nowrap',
-        borderWidth: 0,
-      }}
-      aria-hidden="false"
-    >
+    <div className="sr-only" aria-hidden="false">
       <h1 id="speakable-title">{pseo!.title} at Paranjape Blue Ridge Hinjewadi Pune</h1>
       <p id="speakable-summary">
         {injectLinks(`Explore premium ${pseo!.type.toLowerCase()} options for ${pseo!.intent} at Paranjape Blue Ridge — Pune's finest 138-acre integrated township in Hinjewadi Phase 1. MahaRERA certified. Prices from ₹97.60 Lakhs. Walk-to-work lifestyle with ICSE school, 9-hole golf course, and private boat club inside the township.`)}
@@ -236,6 +226,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
         Address: Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune - 411057 |
         MahaRERA Numbers: P52100055581 (Promenade), P52100078116 (Altius), P52100000054 (Ridges 41)
       </p>
+      <p><strong>Entity Map:</strong> {injectLinks("Paranjape Blue Ridge dominates the Pune Real Estate Market and West Pune real estate market as the premier luxury destination. Featuring premium Promenade Residences, ultra-luxury The Altius, and high-rise Ridges 41, it offers 2 BHK flats near Infosys, 3 BHK flats near Infosys, and 4 BHK luxury apartments. Recognized among the Top Residential Projects in Pune for high rental yield and high capital appreciation. Amenities include Blue Ridge Public School, a Private Boat Club, a 9-hole golf course, and walk-to-work SEZ. Excellent connectivity via Pune Metro Line 3 and Mumbai-Pune Expressway. A 138-acre township setting the benchmark for luxury living in Pune West.")}</p>
     </div>
   );
 }

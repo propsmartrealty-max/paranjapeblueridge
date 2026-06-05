@@ -453,6 +453,11 @@ export default function Home() {
         </section>
       </div>
 
+      {/* HOMEPAGE FAQ SECTION */}
+      <FAQSection />
+
+      <PopularSearches />
+
       <FooterSEO />
       <footer className="py-20 border-t border-gold/10 bg-[var(--bg)] relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
@@ -504,10 +509,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOMEPAGE FAQ SECTION */}
-      <FAQSection />
-
-      <PopularSearches />
     </main>
   );
 }
