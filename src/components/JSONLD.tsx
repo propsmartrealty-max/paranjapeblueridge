@@ -90,12 +90,15 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const pseoData = allUrls.find(u => u.slug === slug);
   const projectData = projects.find(p => p.slug === slug);
 
+  const isMarathi = slug.startsWith('mr-') || pathname.includes('lang=mr');
+  const t = (en: string, mr: string) => isMarathi ? mr : en;
+
   // --- Core Schemas (present on every page) ---
 
   const organizationSchema = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
-    "name": "Paranjape Schemes (Construction) Ltd.",
+    "name": t("Paranjape Schemes (Construction) Ltd.", "परंजपे स्कीम्स (कन्स्ट्रक्शन) लि."),
     "alternateName": [
       "Paranjape Schemes",
       "Paranjape Blue Ridge",
@@ -113,13 +116,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "height": 60
     },
     "image": `${SITE_URL}/assets/images/township-night.png`,
-    "description": "Paranjape Schemes (Construction) Ltd. is a Pune-based real estate developer with 40+ years of experience and 50+ delivered projects. Blue Ridge Hinjewadi is their flagship 138-acre integrated township in Hinjewadi Phase 1, Pune.",
+    "description": t("Paranjape Schemes (Construction) Ltd. is a Pune-based real estate developer with 40+ years of experience and 50+ delivered projects. Blue Ridge Hinjewadi is their flagship 138-acre integrated township in Hinjewadi Phase 1, Pune.", "परंजपे स्कीम्स (कन्स्ट्रक्शन) लि. हा पुण्यातील ४०+ वर्षांचा अनुभव असलेला आणि ५०+ यशस्वी प्रकल्प पूर्ण केलेला अग्रगण्य रिअल इस्टेट डेव्हलपर आहे. ब्लू रिज हिंजवडी हा त्यांचा हिंजवडी फेज १ मधील १३८ एकरचा फ्लॅगशिप टाउनशिप प्रकल्प आहे."),
     "foundingDate": "1987",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Blue Ridge, Phase 1, Hinjewadi",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
+      "streetAddress": t("Blue Ridge, Phase 1, Hinjewadi", "ब्लू रिज, फेज १, हिंजवडी"),
+      "addressLocality": t("Pune", "पुणे"),
+      "addressRegion": t("Maharashtra", "महाराष्ट्र"),
       "postalCode": "411057",
       "addressCountry": "IN"
     },
@@ -144,8 +147,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
-    "name": "Paranjape Blue Ridge Hinjewadi",
-    "description": "Official portal for Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1.",
+    "name": t("Paranjape Blue Ridge Hinjewadi", "परंजपे ब्लू रिज हिंजवडी"),
+    "description": t("Official portal for Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1.", "परंजपे ब्लू रिज - हिंजवडी फेज १ मधील पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प अधिकृत पोर्टल."),
     "publisher": { "@id": `${SITE_URL}/#organization` },
     "potentialAction": {
       "@type": "SearchAction",
@@ -159,7 +162,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
   // --- Breadcrumb Schema ---
   const breadcrumbItems: { name: string; url: string }[] = [
-    { name: "Home", url: SITE_URL }
+    { name: t("Home", "होम"), url: SITE_URL }
   ];
 
   if (slug) {
@@ -187,9 +190,9 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const apartmentComplexSchema = {
     "@type": "ApartmentComplex",
     "@id": `${SITE_URL}/#apartmentcomplex`,
-    "name": "Paranjape Blue Ridge — 138-Acre Integrated Township, Hinjewadi Phase 1",
-    "alternateName": "Blue Ridge Hinjewadi",
-    "description": "Pune's premier 138-acre integrated township offering premium 2, 3, 4 & 5 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.",
+    "name": t("Paranjape Blue Ridge — 138-Acre Integrated Township, Hinjewadi Phase 1", "परंजपे् ब्लू रिज — १३८ एकर एकात्मिक टाउनशिप, हिंजवडी फेज १"),
+    "alternateName": t("Blue Ridge Hinjewadi", "ब्लू रिज हिंजवडी"),
+    "description": t("Pune's premier 138-acre integrated township offering premium 2, 3, 4 & 5 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.", "राजीव गांधी इन्फोटेक पार्क जवळ हिंजवडी फेज १ मध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके लक्झरी अपार्टमेंट्स देणारा पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प. सुविधांमध्ये ९-होल गोल्फ कोर्स, खाजगी बोट क्लब, आयसीएसई शाळा आणि पुणे मेट्रो लाईन ३ कनेक्टिव्हिटी समाविष्ट आहे."),
     "url": SITE_URL,
     "image": [
       `${SITE_URL}/assets/images/township-night.png`,
@@ -206,9 +209,9 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ],
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
+      "streetAddress": t("Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park", "ब्लू रिज टाउनशिप, फेज १, हिंजवडी, राजीव गांधी इन्फोटेक पार्क"),
+      "addressLocality": t("Pune", "पुणे"),
+      "addressRegion": t("Maharashtra", "महाराष्ट्र"),
       "postalCode": "411057",
       "addressCountry": "IN"
     },
@@ -383,8 +386,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const placeSchema = {
     "@type": "Place",
     "@id": `${SITE_URL}/${slug}#place`,
-    "name": "Paranjape Blue Ridge - 138 Acre Mega Township in West Pune",
-    "description": "Pune's premier real estate destination and luxury township located in the heart of Hinjewadi. Dominating the West Pune real estate market with premium 2, 3, 4, and 5 BHK apartments, a 9-hole golf course, and a massive IT SEZ.",
+    "name": t("Paranjape Blue Ridge - 138 Acre Mega Township in West Pune", "परंजपे ब्लू रिज - पश्चिम पुण्यातील १३८ एकर मेगा टाउनशिप"),
+    "description": t("Pune's premier real estate destination and luxury township located in the heart of Hinjewadi. Dominating the West Pune real estate market with premium 2, 3, 4, and 5 BHK apartments, a 9-hole golf course, and a massive IT SEZ.", "हिंजवडीच्या मध्यभागी असलेला पुण्याचा प्रमुख रिअल इस्टेट आणि लक्झरी टाउनशिप प्रकल्प. पश्चिम पुण्याच्या रिअल इस्टेट मार्केटमध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके फ्लॅट्स, ९-होल गोल्फ कोर्स आणि भव्य आयटी एसईझेड सह वर्चस्व."),
     "url": `${SITE_URL}/${slug}`,
     "image": `${SITE_URL}/assets/images/township-aerial-night.jpg`,
     "geo": {
@@ -394,18 +397,18 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rajiv Gandhi Infotech Park, Phase 1",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
+      "streetAddress": t("Rajiv Gandhi Infotech Park, Phase 1", "राजीव गांधी इन्फोटेक पार्क, फेज १"),
+      "addressLocality": t("Pune", "पुणे"),
+      "addressRegion": t("Maharashtra", "महाराष्ट्र"),
       "postalCode": "411057",
       "addressCountry": "IN"
     },
     "containedInPlace": {
       "@type": "City",
-      "name": "Pune",
+      "name": t("Pune", "पुणे"),
       "url": "https://en.wikipedia.org/wiki/Pune"
     },
-    "touristType": "Pune Real Estate Landmark",
+    "touristType": t("Pune Real Estate Landmark", "पुणे रिअल इस्टेट लँडमार्क"),
     "publicAccess": true
   };
   
@@ -414,8 +417,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@type": "LocalBusiness",
     "@id": `${SITE_URL}/${slug}#localbusiness`,
     "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
-      ? `Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`
-      : "Paranjape Blue Ridge - Sovereign Sales Gallery",
+      ? t(`Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`, `परंजपे ब्लू रिज - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
+      : t("Paranjape Blue Ridge - Sovereign Sales Gallery", "परंजपे ब्लू रिज - सोव्हरेन सेल्स गॅलरी"),
     "image": `${SITE_URL}/assets/images/township-night.png`,
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
@@ -430,16 +433,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "paymentAccepted": "Cash, Credit Card, Cheque, Wire Transfer",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park",
-      "addressLocality": regionName,
-      "addressRegion": "Maharashtra",
+      "streetAddress": t("Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park", "ब्लू रिज टाउनशिप, फेज १, हिंजवडी, Rajiv Gandhi Infotech Park"),
+      "addressLocality": t(regionName, regionName === "Hinjewadi Phase 1" ? "हिंजवडी फेज १" : regionName),
+      "addressRegion": t("Maharashtra", "महाराष्ट्र"),
       "postalCode": postalCodeVal,
       "addressCountry": "IN"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
     "areaServed": {
       "@type": "City",
-      "name": "Pune",
+      "name": t("Pune", "पुणे"),
       "sameAs": "https://en.wikipedia.org/wiki/Pune"
     },
     "aggregateRating": {

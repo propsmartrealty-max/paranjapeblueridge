@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3005",
-    "build": "next build",
+    "build": "npx tsx scripts/verify-schemas.ts && next build",
     "postbuild": "node scripts/sovereign-indexing.js || echo 'Google Indexing skipped' && npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
     "start": "next start",
     "lint": "next lint"

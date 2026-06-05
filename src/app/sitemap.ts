@@ -39,12 +39,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Use a fixed publication date for PSEO pages — avoids Google treating them
   // as freshly-modified on every build (which signals thin content churn).
   const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
-  const pseoUrls = pseoUrlsData.map(u => ({
-    url: `${baseUrl}/${u.slug}`,
-    lastModified: pseoPublishedDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  const pseoUrls = pseoUrlsData.map(u => {
+    const isMr = u.slug.startsWith('mr-');
+    const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
+    const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
+
+    return {
+      url: `${baseUrl}/${u.slug}`,
+      lastModified: pseoPublishedDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+      ...(hasAlternate ? {
+        alternates: {
+          languages: {
+            'en': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
+            'mr': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
+          }
+        }
+      } : {})
+    };
+  });
 
   const staticUrls = [
     {
