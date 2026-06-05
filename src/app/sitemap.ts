@@ -59,18 +59,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/feed.xml`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/google-products-feed`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
+    // NOTE: /feed.xml and /google-products-feed are NOT indexable HTML pages.
+    // They are discoverable via <link rel="alternate"> in the layout, not via sitemap.
   ];
 
   return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...pseoUrls];

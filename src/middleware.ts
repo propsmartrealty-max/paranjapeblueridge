@@ -14,6 +14,7 @@ export function middleware(req: NextRequest) {
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-user-country', country);
   requestHeaders.set('x-is-nri-traffic', isNRIHub ? 'true' : 'false');
+  requestHeaders.set('x-pathname', req.nextUrl.pathname);
 
   const response = NextResponse.next({
     request: {

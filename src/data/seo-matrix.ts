@@ -546,6 +546,25 @@ export const seoMatrix = {
     { slug: 'paranjape-misty-greens-handewadi-pune', name: 'Paranjape Misty Greens Handewadi', location: 'Handewadi', type: 'Premium Living' },
     { slug: 'paranjape-swaniketan-baner-pune', name: 'Paranjape Swaniketan Baner', location: 'Baner', type: 'Senior Living' },
     { slug: 'paranjape-schemes-pune-projects', name: 'Paranjape Schemes Pune Projects', location: 'Pune', type: 'Developer Portfolio' }
+  ],
+  maintenanceConcerns: [
+    { slug: 'paranjape-blue-ridge-maintenance-charges', name: 'Paranjape Blue Ridge Maintenance Charges & Breakup', intent: 'Blue Ridge Hinjewadi Maintenance Charges & Facilities Cost' },
+    { slug: 'blue-ridge-hinjewadi-water-supply-quality', name: 'Blue Ridge Hinjewadi Water Supply, Quality & Source', intent: 'Water Supply Status & Drinking Water Quality in Blue Ridge' },
+    { slug: 'blue-ridge-hinjewadi-traffic-peak-hours', name: 'Blue Ridge Hinjewadi Traffic Status & Peak Hour Commute', intent: 'Traffic Mitigation & Commute Times near Blue Ridge Phase 1' },
+    { slug: 'blue-ridge-hinjewadi-power-backup-electricity', name: 'Blue Ridge Hinjewadi Power Backup, Electricity & MSEDCL', intent: 'Power Cut Status & DG Backup Capacity in Blue Ridge Pune' }
+  ],
+  resaleRental: [
+    { slug: 'paranjape-blue-ridge-resale-market-trends', name: 'Paranjape Blue Ridge Resale Market Trends & Price Per Sqft', intent: 'Blue Ridge Hinjewadi Resale Pricing, Capital Appreciation & Market Value' },
+    { slug: 'blue-ridge-hinjewadi-rental-yield-income', name: 'Blue Ridge Hinjewadi Rental Yield, Average Rent & Passive Income', intent: 'Average Rent for 2 BHK & 3 BHK flats in Blue Ridge Hinjewadi' },
+    { slug: 'blue-ridge-ready-to-move-resale-flats', name: 'Blue Ridge Ready to Move Resale Flats & Owner Listings', intent: 'Ready possession resale apartments for sale in Blue Ridge Phase 1' }
+  ],
+  calculators: [
+    { slug: 'blue-ridge-hinjewadi-emi-calculator', name: 'Blue Ridge Hinjewadi EMI Calculator & Payment Plan', intent: 'Calculate Home Loan EMI & Down Payment for Paranjape Blue Ridge' },
+    { slug: 'blue-ridge-investment-roi-calculator', name: 'Blue Ridge Investment ROI & Rental Yield Calculator', intent: 'Calculate rental yield, ROI & capital appreciation for Blue Ridge Pune' }
+  ],
+  paaReviews: [
+    { slug: 'paranjape-blue-ridge-honest-reviews-pros-cons', name: 'Paranjape Blue Ridge Honest Reviews: Pros & Cons from Residents', intent: 'Is Paranjape Blue Ridge worth buying? Resident feedback, reviews & ratings' },
+    { slug: 'blue-ridge-public-school-admission-honest-review', name: 'Blue Ridge Public School Admission Review & Parents Feedback', intent: 'Honest parent reviews, curriculum & facilities of Blue Ridge Public School' }
   ]
 };
 
@@ -860,6 +879,50 @@ export function generatePseoUrls() {
       intent: project.name,
       type: project.type,
       silo: 'paranjape-schemes'
+    });
+  });
+
+  // Silo 22: Maintenance & Concerns
+  seoMatrix.maintenanceConcerns.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: item.intent,
+      type: 'Guide',
+      silo: 'maintenance-concerns'
+    });
+  });
+
+  // Silo 23: Resale & Rental market
+  seoMatrix.resaleRental.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: item.intent,
+      type: 'Market Report',
+      silo: 'resale-rental'
+    });
+  });
+
+  // Silo 24: EMI & Investment calculators
+  seoMatrix.calculators.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: item.intent,
+      type: 'Calculator',
+      silo: 'calculators'
+    });
+  });
+
+  // Silo 27: Reviews & PAA
+  seoMatrix.paaReviews.forEach(item => {
+    urls.push({
+      slug: item.slug,
+      title: item.name,
+      intent: item.intent,
+      type: 'FAQ',
+      silo: 'paa-reviews'
     });
   });
 

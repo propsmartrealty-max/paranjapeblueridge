@@ -77,9 +77,10 @@ export const metadata: Metadata = {
     "blue ridge corporate rentals"
   ],
   alternates: {
-    canonical: 'https://www.paranjapeblueridge.com/',
+    canonical: 'https://www.paranjapeblueridge.com',
     languages: {
-      'en-IN': 'https://www.paranjapeblueridge.com/',
+      'en-IN': 'https://www.paranjapeblueridge.com',
+      'mr-IN': 'https://www.paranjapeblueridge.com',
     },
   },
   openGraph: {
@@ -92,6 +93,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@ParanjapeSchemes',
     title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
     description: 'Premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with golf course and boat club.',
     images: ['https://www.paranjapeblueridge.com/assets/images/township-night.png'],
@@ -105,9 +107,12 @@ export default function RootLayout({
 }>) {
   const headersList = headers();
   const country = headersList.get('x-user-country') || 'IN';
+  const pathname = headersList.get('x-pathname') || '';
+  const isMarathi = pathname.startsWith('/mr-') || pathname.includes('/mr-');
+  const lang = isMarathi ? 'mr' : 'en';
 
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang={lang} className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
@@ -122,12 +127,6 @@ export default function RootLayout({
         {/* Vercel edge network preconnect */}
         <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vercel.live" />
-        {/* LCP hero image preload — prevents render-blocking image fetch */}
-        <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
-        {/* PSEO hero LCP image preload */}
-        <link rel="preload" as="image" href="/assets/images/master-hero-v4.png" fetchPriority="high" />
-        {/* Secondary hero image preload — above-fold atmosphere variant */}
-        <link rel="preload" as="image" href="/assets/images/township-night.png" />
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
         <JSONLD pathname="/" />

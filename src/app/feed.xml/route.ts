@@ -32,7 +32,6 @@ export async function GET() {
       <pubDate>${new Date(article.dateISO).toUTCString()}</pubDate>
       <author>insights@paranjapeblueridge.com (${article.author})</author>
       <category>${article.category}</category>
-      <enclosure url="${dynamicOgUrl}" length="12345" type="image/png" />
       <media:content url="${dynamicOgUrl}" medium="image" type="image/png" width="1200" height="630" />
     </item>`;
     }).join('')}

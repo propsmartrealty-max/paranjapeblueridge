@@ -60,7 +60,16 @@ export default function ArticleLayout({ children, params }: { children: React.Re
     "mainEntityOfPage": `${SITE_URL}/insights/${article.slug}`,
     "image": dynamicOgUrl,
     "articleSection": article.category,
-    "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"]
+    "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"],
+    "articleBody": article.content.join(" "),
+    "wordCount": article.content.join(" ").split(/\s+/).filter(Boolean).length,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "xpath": [
+        "/html/head/title",
+        "/html/head/meta[@name='description']/@content"
+      ]
+    }
   } : null;
 
   return (

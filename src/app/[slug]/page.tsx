@@ -36,8 +36,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : 'Hinjewadi, Pune, Maharashtra';
 
   if (pseoData) {
-    const title = `${pseoData.title} | Paranjape Blue Ridge Hinjewadi`;
-    const description = `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
+    const title = `${pseoData.title} | Paranjape Blue Ridge Hinjewadi Pune`;
+    // Silo-specific descriptions for uniqueness — avoids near-duplicate meta across 1500+ pages
+    const siloDescriptions: Record<string, string> = {
+      'corporate': `${pseoData.intent} at Paranjape Blue Ridge — Hinjewadi's only 138-acre walk-to-work township. Zero commute to Infosys, Wipro & TCS. 2, 3 & 4 BHK flats. MahaRERA certified.`,
+      'infrastructure': `${pseoData.intent} — Paranjape Blue Ridge offers Metro Line 3 connectivity, 800m from nearest station. Premium 2, 3 & 4 BHK integrated township flats in Hinjewadi Phase 1, Pune.`,
+      'investor': `${pseoData.intent} at Blue Ridge Hinjewadi — 4-5% rental yield & 12% annual capital appreciation. Pune's best ROI property. 2, 3 & 4 BHK flats. MahaRERA P52100055581.`,
+      'battleground': `${pseoData.intent} — Honest comparison: 138-acre Blue Ridge vs alternatives. Golf course, private boat club, ICSE school, walk-to-work SEZ. Prices from ₹97.60L. MahaRERA certified.`,
+      'price-list': `${pseoData.intent} — Official 2026 pricing for Blue Ridge Hinjewadi. 2 BHK from ₹97.60L, 3 BHK from ₹1.65Cr, 4 BHK from ₹1.80Cr. RERA registered. Call +91-20-67210000.`,
+      'floor-plan': `${pseoData.intent} — Download RERA-verified floor plans for Blue Ridge Hinjewadi. Carpet areas: 2 BHK 793 sq ft, 3 BHK 1250 sq ft, 4 BHK 1592 sq ft. Paranjape Schemes official.`,
+      'amenities': `${pseoData.intent} at Blue Ridge Hinjewadi — 9-hole golf course, private boat club, ICSE school, infinity pool, SEZ. Hinjewadi's most complete integrated township. MahaRERA certified.`,
+      'ecosystem': `${pseoData.intent} at Paranjape Blue Ridge — Golf course, riverfront boat club & ICSE school in one 138-acre township. Premium 2, 3 & 4 BHK flats in Hinjewadi Phase 1, Pune.`,
+      'infra-guide': `${pseoData.intent} — Expert guide by Blue Ridge Hinjewadi's official portal. Infrastructure data, connectivity maps & property impact analysis for Pune's #1 township.`,
+      'pune-macro': `${pseoData.intent} — Paranjape Blue Ridge: Pune's premier 138-acre integrated township. Golf course, boat club, ICSE school. 2, 3 & 4 BHK luxury residences in Hinjewadi Phase 1.`,
+    };
+    const description = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
 
     return {
       title,
@@ -49,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title,
         description,
         url: `${SITE_URL}/${slug}`,
-        siteName: 'Paranjape Blue Ridge',
+        siteName: 'Paranjape Blue Ridge Sovereign Portal',
         images: [
           {
             url: `${SITE_URL}/assets/images/township-night.png`,
@@ -63,6 +76,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
       twitter: {
         card: 'summary_large_image',
+        site: '@ParanjapeSchemes',
         title,
         description,
         images: [`${SITE_URL}/assets/images/township-night.png`],
@@ -82,7 +96,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   if (project) {
-    const title = `${project.name} | Paranjape Blue Ridge Hinjewadi — ${project.tagline}`;
+    const title = `${project.name} | Paranjape Blue Ridge Hinjewadi - ${project.configurations.map(c => c.title.split(' ')[0] + ' ' + c.title.split(' ')[1]).join(', ')} Flats`;
     const description = project.description.slice(0, 155) + '...';
 
     return {
@@ -95,7 +109,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title,
         description,
         url: `${SITE_URL}/${slug}`,
-        siteName: 'Paranjape Blue Ridge',
+        siteName: 'Paranjape Blue Ridge Sovereign Portal',
         images: [
           {
             url: `${SITE_URL}/assets/images/township-night.png`,
@@ -109,6 +123,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
       twitter: {
         card: 'summary_large_image',
+        site: '@ParanjapeSchemes',
         title,
         description,
         images: [`${SITE_URL}/assets/images/township-night.png`],

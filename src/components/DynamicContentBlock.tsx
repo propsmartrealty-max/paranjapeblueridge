@@ -625,6 +625,58 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
             </p>
           </>
         );
+      case 'maintenance-concerns':
+        return (
+          <>
+            <h3 className="text-2xl font-serif text-warm-white mb-4">Paranjape Blue Ridge Maintenance & Infrastructure: Honest Assessment of {title}</h3>
+            <p className="text-text-light mb-6">
+              When choosing a home in a mega township, understanding the recurring operational aspects is as important as the purchase price. Issues related to <strong>{title}</strong> are common search topics for potential residents. At Paranjape Blue Ridge, maintenance charges are managed transparently, averaging ₹3.0 to ₹3.5 per sq. ft. on carpet area. This fee covers 24/7 security patrol, professional upkeep of the 9-hole golf course, private boat club, swimming pools, high-speed elevators, and landscaping.
+            </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">Water Quality, Supply, and Traffic Management</h4>
+            <p className="text-text-light mb-6">
+              The township features its own dedicated water treatment plant (WTP) and sewage treatment plant (STP) to ensure consistent utility supplies. For concerns regarding peak-hour traffic in Hinjewadi Phase 1, the upcoming Metro Line 3 station (800m away) and road expansion projects are successfully mitigating commute bottlenecks, making Blue Ridge the most well-connected address in the IT corridor.
+            </p>
+          </>
+        );
+      case 'resale-rental':
+        return (
+          <>
+            <h3 className="text-2xl font-serif text-warm-white mb-4">Resale and Rental Market Performance: {title}</h3>
+            <p className="text-text-light mb-6">
+              From an investment perspective, <strong>{title}</strong> represents one of the most stable passive-income real estate plays in Pune. Due to its strategic location in Hinjewadi Phase 1, Blue Ridge commands a rental premium of 15-20% over standalone buildings. Average rent for a 2 BHK ranges from ₹26,000 to ₹35,000, while 3 BHK units fetch ₹38,000 to ₹48,000 per month, yielding a strong 4.5% to 5.2% rental return.
+            </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">Secondary Market Liquidity & Capital Growth</h4>
+            <p className="text-text-light mb-6">
+              The secondary resale market for Blue Ridge is highly active with 15-25 registrations per month. Capital values have appreciated from ₹6,500/sq.ft. in 2020 to ₹9,650–₹10,050/sq.ft. in 2026. This high liquidity makes exiting easy for investors, while the upcoming metro line ensures continued price appreciation.
+            </p>
+          </>
+        );
+      case 'calculators':
+        return (
+          <>
+            <h3 className="text-2xl font-serif text-warm-white mb-4">EMI Planning and Financial Analysis: {title}</h3>
+            <p className="text-text-light mb-6">
+              Understanding your financial commitment is crucial before buying a home. Planning for <strong>{title}</strong> helps you structure your home loan, calculate monthly EMIs, and assess tax benefits under Section 24 and 80C. Since Blue Ridge is approved by SBI, HDFC, ICICI, and Axis Bank, buyers can easily secure interest rates ranging from 8.4% to 9.2%.
+            </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">ROI and Cost Breakup Analysis</h4>
+            <p className="text-text-light mb-6">
+              A standard 2 BHK in Ridges 41 at ₹97.60 L can be financed with a 20% down payment (₹19.5 L) and an 80% loan (₹78 L). Over a 20-year tenure, the monthly EMI is approximately ₹67,000. Coupled with tax deductions and rental yields of 4.5%, the net cost of ownership is highly optimized, ensuring rapid wealth growth.
+            </p>
+          </>
+        );
+      case 'paa-reviews':
+        return (
+          <>
+            <h3 className="text-2xl font-serif text-warm-white mb-4">Honest Resident Feedback and Reviews: {title}</h3>
+            <p className="text-text-light mb-6">
+              Prospective buyers searching for <strong>{title}</strong> deserve transparent, unbiased information. Residents rate Paranjape Blue Ridge between 4.3 and 4.6 out of 5 stars. The most praised features are the 'walk-to-work' lifestyle, the ICSE-board school inside the gates, and the active community life.
+            </p>
+            <h4 className="text-xl font-serif text-gilded mb-3">Evaluating Pros & Cons</h4>
+            <p className="text-text-light mb-6">
+              Pros include low-density living, lush green parks, a golf course, and high security. Cons mentioned by some tenants are high maintenance charges and peak-hour traffic outside the main gate. However, the comprehensive self-contained township model means most daily needs are met inside, making Blue Ridge the absolute best place to live in Hinjewadi.
+            </p>
+          </>
+        );
       default:
         return (
           <>
