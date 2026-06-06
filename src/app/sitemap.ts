@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { projects, articles } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
+import { getAllPosts } from '@/utils/mdxUtils';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.paranjapeblueridge.com';
@@ -51,6 +52,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleUrls = articles.map(a => ({
     url: `${baseUrl}/insights/${a.slug}`,
     lastModified: new Date(a.dateISO),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  const mdxPosts = getAllPosts();
+  const mdxUrls = mdxPosts.map(post => ({
+    url: `${baseUrl}/insights/${post.slug}`,
+    lastModified: new Date(post.meta?.dateISO || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
@@ -143,5 +152,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // They are discoverable via <link rel="alternate"> in the layout, not via sitemap.
   ];
 
-  return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...pseoUrls];
+  return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...mdxUrls, ...pseoUrls];
 }

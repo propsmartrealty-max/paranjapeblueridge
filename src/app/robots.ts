@@ -21,9 +21,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/sovereign-vault/'],
       },
+      // Block useless AI crawlers/scrapers to save crawl budget
+      {
+        userAgent: ['GPTBot', 'CCBot', 'ChatGPT-User', 'anthropic-ai', 'Claude-Web', 'Omgili', 'Bytespider'],
+        disallow: ['/'],
+      },
     ],
     sitemap: 'https://www.paranjapeblueridge.com/sitemap.xml',
+    host: 'https://www.paranjapeblueridge.com',
   };
 }
-
 
