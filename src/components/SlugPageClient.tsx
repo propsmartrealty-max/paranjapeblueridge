@@ -128,7 +128,7 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
             {/* BLUEPRINT EXPLORER */}
             <div className="bg-navy-light p-10 rounded-[3rem] border border-white/5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
-                    <img src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" className="h-20" alt="Paranjape Blue Ridge Official Identity" />
+                    <Image src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Blue Ridge Official Identity" />
                 </div>
                 <h3 className="text-3xl font-serif text-warm-white mb-8">{t('Unit Plan', 'युनिट प्लॅन')} <span className="italic font-normal text-gold">{t('Intelligence', 'इंटेलिजन्स')}</span></h3>
                 <p className="text-text-light mb-10 text-sm">{t('Interactive architectural layouts featuring high-resMiVAN construction blueprints.', 'उच्च-रिझोल्यूशन मिवान बांधकाम ब्ल्यूप्रिंट्स वैशिष्ट्यीकृत परस्पर संवादात्मक आर्किटेक्चरल लेआउट.')}</p>

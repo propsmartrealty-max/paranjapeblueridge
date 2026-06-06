@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3005",
     "build": "npx tsx scripts/verify-schemas.ts && next build",
-    "postbuild": "node scripts/sovereign-indexing.js || echo 'Google Indexing skipped' && npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
+    "postbuild": "npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,11 +16,12 @@
     "dompurify": "^3.4.4",
     "dotenv": "^17.4.2",
     "framer-motion": "^11.2.4",
-    "googleapis": "^137.1.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^10.1.0",
     "tailwind-merge": "^2.3.0",
     "vercel": "^54.1.0",
     "xml2js": "^0.6.2"

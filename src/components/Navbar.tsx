@@ -8,6 +8,7 @@ import LanguageToggle from './LanguageToggle';
 import AtmosphereToggle from './AtmosphereToggle';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -32,11 +33,12 @@ export default function Navbar() {
           }`}
         >
           <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group" aria-label="Blue Ridge Sovereign Homepage">
-              <img 
+              <Image 
                 src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
                 alt="Paranjape Schemes Construction Ltd. - Developer Logo" 
                 width={112}
                 height={32}
+                priority
                 className="h-8 brightness-0 invert transition-transform duration-300 group-hover:scale-105"
               />
              <div className="flex flex-col">
@@ -101,7 +103,7 @@ export default function Navbar() {
               title="Chat on WhatsApp"
               aria-label="Chat on WhatsApp"
             >
-              <img src="/assets/images/whatsapp-icon.png" alt="WhatsApp Icon" width={32} height={32} className="w-full h-full object-contain p-1" />
+              <Image src="/assets/images/whatsapp-icon.png" alt="WhatsApp Icon" width={32} height={32} className="w-full h-full object-contain p-1" />
             </a>
             <button 
               onClick={() => {

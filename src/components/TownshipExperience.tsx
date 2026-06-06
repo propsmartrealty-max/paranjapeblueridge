@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { School, Ship, Flag, Zap, Droplets } from 'lucide-react';
 import { townshipData } from '@/data/master-data';
 import MasterNavigator from './MasterNavigator';
+import Image from 'next/image';
+import { blurDataURLs } from '@/utils/blurData';
 
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -44,8 +46,16 @@ export default function TownshipExperience() {
         <MasterNavigator />
       </div>
 
-      <div className="mt-32 relative rounded-[3rem] overflow-hidden group">
-         <img src="/assets/images/amenities-lifestyle.png" alt="Paranjape Blue Ridge Township Lifestyle - Integrated Amenities including Golf Course and Boat Club" className="w-full h-[600px] object-cover transition-transform duration-[3s] group-hover:scale-110" />
+      <div className="mt-32 relative h-[50vh] min-h-[500px] md:h-[600px] rounded-[3rem] overflow-hidden group">
+         <Image 
+           src="/assets/images/amenities-lifestyle.png" 
+           alt="Paranjape Blue Ridge Township Lifestyle - Integrated Amenities including Golf Course and Boat Club" 
+           fill
+           sizes="100vw"
+           placeholder="blur"
+           blurDataURL={blurDataURLs.lightSkyBlue}
+           className="object-cover transition-transform duration-[3s] group-hover:scale-110" 
+         />
          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/40 to-transparent"></div>
          <div className="absolute inset-0 flex items-center p-20">
             <div className="max-w-xl">

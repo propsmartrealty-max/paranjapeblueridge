@@ -43,7 +43,7 @@ export default function PulseNotifications() {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, []);
+  }, [currentEvents.length]);
 
   return (
     <div className="fixed bottom-24 left-6 z-[80] pointer-events-none hidden md:block">
