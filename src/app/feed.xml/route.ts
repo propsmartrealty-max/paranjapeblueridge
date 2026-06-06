@@ -1,8 +1,32 @@
 import { articles } from '@/data/master-data';
+import { getAllPosts } from '@/utils/mdxUtils';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
 
 export async function GET() {
+  const mdxPosts = getAllPosts();
+
+  const allFeedItems = [
+    ...articles.map(article => ({
+      title: article.title,
+      slug: article.slug,
+      excerpt: article.excerpt,
+      content: article.content.join('\n\n'),
+      dateISO: article.dateISO,
+      author: article.author,
+      category: article.category,
+    })),
+    ...mdxPosts.map(post => ({
+      title: post.meta?.title || 'Insight',
+      slug: post.slug,
+      excerpt: post.meta?.excerpt || '',
+      content: post.content || '',
+      dateISO: post.meta?.dateISO || new Date().toISOString(),
+      author: post.meta?.author || 'Sovereign Insights Team',
+      category: post.meta?.category || 'Real Estate',
+    }))
+  ];
+
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
@@ -12,6 +36,7 @@ export async function GET() {
     <language>en-IN</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+    <link rel="hub" href="https://pubsubhubbub.appspot.com"/>
     <image>
       <url>${SITE_URL}/assets/images/township-night.png</url>
       <title>Paranjape Blue Ridge Hinjewadi</title>
@@ -20,18 +45,18 @@ export async function GET() {
     <category>Real Estate</category>
     <category>Pune Property</category>
     <category>Hinjewadi Investment</category>
-    ${articles.map(article => {
-      const dynamicOgUrl = `${SITE_URL}/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
+    ${allFeedItems.map(item => {
+      const dynamicOgUrl = `${SITE_URL}/api/og?title=${encodeURIComponent(item.title)}&config=${encodeURIComponent(item.category)}`;
       return `
     <item>
-      <title><![CDATA[${article.title}]]></title>
-      <link>${SITE_URL}/insights/${article.slug}</link>
-      <guid isPermaLink="true">${SITE_URL}/insights/${article.slug}</guid>
-      <description><![CDATA[${article.excerpt}]]></description>
-      <content:encoded><![CDATA[${article.content.join('\n\n')}]]></content:encoded>
-      <pubDate>${new Date(article.dateISO).toUTCString()}</pubDate>
-      <author>insights@paranjapeblueridge.com (${article.author})</author>
-      <category>${article.category}</category>
+      <title><![CDATA[${item.title}]]></title>
+      <link>${SITE_URL}/insights/${item.slug}</link>
+      <guid isPermaLink="true">${SITE_URL}/insights/${item.slug}</guid>
+      <description><![CDATA[${item.excerpt}]]></description>
+      <content:encoded><![CDATA[${item.content}]]></content:encoded>
+      <pubDate>${new Date(item.dateISO).toUTCString()}</pubDate>
+      <author>insights@paranjapeblueridge.com (${item.author})</author>
+      <category>${item.category}</category>
       <media:content url="${dynamicOgUrl}" medium="image" type="image/png" width="1200" height="630" />
     </item>`;
     }).join('')}
