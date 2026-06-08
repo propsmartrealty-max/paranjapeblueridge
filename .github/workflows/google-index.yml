@@ -41,3 +41,14 @@ jobs:
         run: |
           echo "⚡ Running IndexNow push..."
           npx tsx scripts/trigger-indexnow.ts || echo "IndexNow script execution failed but continuing workflow."
+
+      - name: Trigger Google Indexing API
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "⚠️ Secret missing: Skipping Indexing API"
+          else
+            echo "🚀 Executing Google Indexing API push..."
+            npx tsx scripts/trigger-google-indexing.ts
+          fi
