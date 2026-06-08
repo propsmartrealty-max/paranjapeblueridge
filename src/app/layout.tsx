@@ -134,7 +134,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://vercel.live" />
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
-        <JSONLD pathname="/" />
+        <JSONLD pathname={pathname} />
         <SpeculationRules />
       </head>
       <body className="antialiased" data-country={country}>
