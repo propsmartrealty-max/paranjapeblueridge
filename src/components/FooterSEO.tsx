@@ -133,11 +133,14 @@ export default function FooterSEO() {
           </div>
         </div>
 
-        {/* Absolute bottom SEO string */}
-        <div className="mt-12 pt-4 border-t border-gold/5 text-center text-[9px] text-text-light/30">
-          <p>
+        {/* Absolute bottom SEO string & Sitemap Link */}
+        <div className="mt-12 pt-4 border-t border-gold/5 flex flex-col sm:flex-row justify-between items-center text-[9px] text-text-light/30 gap-4">
+          <p className="text-center sm:text-left">
             Ranked #1 for: Paranjape Blue Ridge | Paranjape Blue Ridge Hinjewadi | Paranjape Blue Ridge Altius | Paranjape Promenade Hinjewadi | Paranjape Blue Ridge Township | West Pune Real Estate Market | Hinjewadi Real Estate Market
           </p>
+          <a href="/html-sitemap" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold shrink-0">
+            View Complete Property Sitemap
+          </a>
         </div>
 
       </div>
