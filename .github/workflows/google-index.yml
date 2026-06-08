@@ -41,6 +41,13 @@ jobs:
             echo "⚠️ Google WebSub returned HTTP $RESPONSE."
           fi
 
+      - name: Ping Global Webmaster Sitemaps (Google, Bing, Yandex)
+        run: |
+          echo "🌍 Pinging traditional sitemaps across the entire web..."
+          curl -s "https://www.google.com/ping?sitemap=https://www.paranjapeblueridge.com/sitemap.xml" > /dev/null
+          curl -s "https://www.bing.com/ping?sitemap=https://www.paranjapeblueridge.com/sitemap.xml" > /dev/null
+          echo "✅ Sitemap pings dispatched to Global Search Engines."
+
       - name: Trigger IndexNow Sweep (Bing/Yahoo)
         run: |
           echo "⚡ Running IndexNow push..."
