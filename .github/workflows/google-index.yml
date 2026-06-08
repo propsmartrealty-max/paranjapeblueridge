@@ -13,10 +13,14 @@ jobs:
     name: WebSub & IndexNow Ping
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -49,6 +53,12 @@ jobs:
           if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
             echo "⚠️ Secret missing: Skipping Indexing API"
           else
-            echo "🚀 Executing Google Indexing API push..."
+            echo "🚀 Executing Google Indexing API Intelligent State Machine..."
             npx tsx scripts/trigger-google-indexing.ts
           fi
+
+      - name: Commit State Memory Back to Repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(seo): auto-update google indexing state memory"
+          file_pattern: ".google-index-cache.json"

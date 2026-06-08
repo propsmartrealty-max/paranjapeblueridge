@@ -1,12 +1,17 @@
+import fs from 'fs';
+import path from 'path';
 import { google } from 'googleapis';
 import { generatePseoUrls } from '../src/data/seo-matrix';
 import { projects, articles } from '../src/data/master-data';
 import { getAllPosts } from '../src/utils/mdxUtils';
 
 const SITE_URL = 'https://www.paranjapeblueridge.com';
+const CACHE_FILE = path.join(process.cwd(), '.google-index-cache.json');
+const MAX_URLS_PER_RUN = 190;
+const REFRESH_DAYS = 30; // Resubmit after 30 days
 
 async function runGoogleIndexing() {
-  console.log("🚀 Starting Google Indexing API push...");
+  console.log("🚀 Starting Google Indexing API Intelligent State Machine...");
   
   const serviceAccountJsonStr = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
   if (!serviceAccountJsonStr) {
@@ -33,34 +38,59 @@ async function runGoogleIndexing() {
     auth: jwtClient,
   });
 
+  // Load state cache
+  let cache: Record<string, string> = {};
+  if (fs.existsSync(CACHE_FILE)) {
+    try {
+      cache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
+    } catch (err) {
+      console.warn("⚠️ Cache file corrupt, starting fresh.");
+      cache = {};
+    }
+  }
+
   console.log("🗺️ Fetching dynamic URLs from master data...");
-  const urls: string[] = [SITE_URL, `${SITE_URL}/mr`, `${SITE_URL}/hinjewadi-micro-market`, `${SITE_URL}/mr-hinjewadi-micro-market`];
+  const allUrls: string[] = [SITE_URL, `${SITE_URL}/mr`, `${SITE_URL}/hinjewadi-micro-market`, `${SITE_URL}/mr-hinjewadi-micro-market`];
 
   projects.forEach(p => {
-    urls.push(`${SITE_URL}/${p.slug}`);
-    urls.push(`${SITE_URL}/mr-${p.slug}`);
+    allUrls.push(`${SITE_URL}/${p.slug}`);
+    allUrls.push(`${SITE_URL}/mr-${p.slug}`);
     p.configurations?.forEach(c => {
-      urls.push(`${SITE_URL}/${p.slug}/${c.slug}`);
+      allUrls.push(`${SITE_URL}/${p.slug}/${c.slug}`);
     });
   });
 
-  articles.forEach(a => urls.push(`${SITE_URL}/insights/${a.slug}`));
-  getAllPosts().forEach(p => urls.push(`${SITE_URL}/insights/${p.slug}`));
-  generatePseoUrls().forEach(p => urls.push(`${SITE_URL}/${p.slug}`));
+  articles.forEach(a => allUrls.push(`${SITE_URL}/insights/${a.slug}`));
+  getAllPosts().forEach(p => allUrls.push(`${SITE_URL}/insights/${p.slug}`));
+  generatePseoUrls().forEach(p => allUrls.push(`${SITE_URL}/${p.slug}`));
 
-  console.log(`📡 Found ${urls.length} URLs to submit.`);
+  // Filter URLs based on cache
+  const now = new Date();
+  const urlsToSubmit: string[] = [];
 
-  // Submit in batches (Google API has quota limits, usually 100/request, but here we'll submit sequentially to avoid rate limits or use a small batch)
-  // To keep it simple and robust, we'll submit sequentially with a small delay.
-  // Note: Standard daily quota is 200 URLs. If we have 2000+, it will hit quota limit quickly. 
-  // We will submit up to the quota limit and catch the error.
-  
+  for (const url of allUrls) {
+    const lastSubmitted = cache[url];
+    if (!lastSubmitted) {
+      urlsToSubmit.push(url);
+    } else {
+      const daysSince = (now.getTime() - new Date(lastSubmitted).getTime()) / (1000 * 3600 * 24);
+      if (daysSince > REFRESH_DAYS) {
+        urlsToSubmit.push(url);
+      }
+    }
+  }
+
+  console.log(`📡 Found ${urlsToSubmit.length} URLs needing indexing.`);
+  if (urlsToSubmit.length === 0) {
+    console.log("✅ All URLs are up-to-date in Google's queue! Exiting.");
+    process.exit(0);
+  }
+
+  const batch = urlsToSubmit.slice(0, MAX_URLS_PER_RUN);
+  console.log(`⚡ Slicing to exactly ${batch.length} URLs to respect Google's daily 200 quota limit.`);
+
   let successCount = 0;
-  let quotaHit = false;
-
-  for (const url of urls) {
-    if (quotaHit) break;
-
+  for (const url of batch) {
     try {
       await indexing.urlNotifications.publish({
         requestBody: {
@@ -68,24 +98,28 @@ async function runGoogleIndexing() {
           type: 'URL_UPDATED',
         },
       });
+      cache[url] = now.toISOString();
       successCount++;
-      if (successCount % 50 === 0) {
-        console.log(`✅ Successfully submitted ${successCount} URLs so far...`);
-      }
     } catch (error: any) {
       if (error.code === 429 || (error.errors && error.errors[0]?.reason === 'rateLimitExceeded')) {
         console.log("⚠️ Google Indexing API Daily Quota reached.");
-        quotaHit = true;
+        break; // Stop completely
       } else if (error.code === 403) {
-        console.error("❌ 403 Forbidden: The Service Account does not have 'Owner' permission in Google Search Console for this domain.");
-        quotaHit = true; // Stop trying
+        console.error("❌ 403 Forbidden: The Service Account does not have 'Owner' permission.");
+        break; // Stop completely
       } else {
         console.error(`❌ Error submitting ${url}:`, error.message);
       }
     }
+    // Small delay to prevent rapid-fire blocking
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
 
-  console.log(`🎉 Google Indexing API push complete! Total successfully submitted today: ${successCount}`);
+  // Save the state file back to disk
+  fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
+
+  console.log(`🎉 Google Indexing API push complete! Successfully submitted: ${successCount}`);
+  console.log(`💾 State committed to ${CACHE_FILE}. GitHub Action will push this to the repo.`);
 }
 
 runGoogleIndexing().catch(console.error);
