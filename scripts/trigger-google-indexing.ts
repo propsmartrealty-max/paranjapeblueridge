@@ -1,5 +1,9 @@
 import { google } from 'googleapis';
-import sitemap from '../src/app/sitemap';
+import { generatePseoUrls } from '../src/data/seo-matrix';
+import { projects, articles } from '../src/data/master-data';
+import { getAllPosts } from '../src/utils/mdxUtils';
+
+const SITE_URL = 'https://www.paranjapeblueridge.com';
 
 async function runGoogleIndexing() {
   console.log("🚀 Starting Google Indexing API push...");
@@ -29,9 +33,21 @@ async function runGoogleIndexing() {
     auth: jwtClient,
   });
 
-  // Get all URLs directly from the sitemap generation function
-  console.log("🗺️ Fetching dynamic URLs from sitemap engine...");
-  const urls = sitemap().map(entry => entry.url);
+  console.log("🗺️ Fetching dynamic URLs from master data...");
+  const urls: string[] = [SITE_URL, `${SITE_URL}/mr`, `${SITE_URL}/hinjewadi-micro-market`, `${SITE_URL}/mr-hinjewadi-micro-market`];
+
+  projects.forEach(p => {
+    urls.push(`${SITE_URL}/${p.slug}`);
+    urls.push(`${SITE_URL}/mr-${p.slug}`);
+    p.configurations?.forEach(c => {
+      urls.push(`${SITE_URL}/${p.slug}/${c.slug}`);
+    });
+  });
+
+  articles.forEach(a => urls.push(`${SITE_URL}/insights/${a.slug}`));
+  getAllPosts().forEach(p => urls.push(`${SITE_URL}/insights/${p.slug}`));
+  generatePseoUrls().forEach(p => urls.push(`${SITE_URL}/${p.slug}`));
+
   console.log(`📡 Found ${urls.length} URLs to submit.`);
 
   // Submit in batches (Google API has quota limits, usually 100/request, but here we'll submit sequentially to avoid rate limits or use a small batch)
