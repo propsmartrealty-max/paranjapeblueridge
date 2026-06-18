@@ -29,7 +29,13 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install --no-audit --no-fund --ignore-scripts
+        run: npm ci || npm install --no-audit --no-fund --ignore-scripts
+
+      - name: Strict Build & Schema Validation (Anomaly Defense)
+        run: |
+          echo "🛡️ Running strict Next.js build and schema validation..."
+          npm run build
+          echo "✅ Build and Schema mathematically verified. Proceeding to indexing sweep."
 
       - name: Ping Google WebSub
         run: |

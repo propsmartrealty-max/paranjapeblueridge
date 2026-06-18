@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// Extremely aggressive bots that drain crawl budget or scrape proprietary data
 export function middleware(req: NextRequest) {
+
   // Extract geographical data from Vercel Edge/Next.js Edge Headers
   // On Vercel, the header 'x-vercel-ip-country' is automatically populated.
   // We provide a fallback 'IN' (India) for local development or missing headers.
@@ -22,6 +24,13 @@ export function middleware(req: NextRequest) {
       headers: requestHeaders,
     },
   });
+
+  // Global Security Headers (Defense in Depth)
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
   // Also set a secure HTTP-only cookie so that client-side tracking or API routes 
   // (/api/lead) can capture if the lead originated from an NRI hub.

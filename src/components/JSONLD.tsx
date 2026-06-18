@@ -596,6 +596,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "name": pseoData?.title || projectData?.name || "Paranjape Blue Ridge Hinjewadi",
     "isPartOf": { "@id": `${SITE_URL}/#website` },
     "about": { "@id": `${SITE_URL}/${slug}#place` },
+    "mainEntity": { "@id": `${SITE_URL}/${slug}#business` },
     "primaryImageOfPage": { "@id": `${SITE_URL}/#listing` },
     "inLanguage": "en-IN",
     "dateModified": new Date().toISOString().split('T')[0],
