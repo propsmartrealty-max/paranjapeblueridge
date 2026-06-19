@@ -40,7 +40,34 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
       if (saved) setIntent(saved);
     }
 
-    // Sovereign Tracking logic for intent-based content injection
+    // --- Behavioral Micro-Data Fingerprinting ---
+    // Track what configurations the user lingers on
+    let hoverTimer: NodeJS.Timeout;
+    
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const trackingId = target.closest('[data-tracking-id]')?.getAttribute('data-tracking-id');
+      
+      if (trackingId) {
+        hoverTimer = setTimeout(() => {
+          const current = JSON.parse(localStorage.getItem('sovereign-fingerprint') || '[]');
+          if (!current.includes(trackingId)) {
+            current.push(trackingId);
+            localStorage.setItem('sovereign-fingerprint', JSON.stringify(current.slice(-5))); // Keep last 5
+          }
+        }, 1500); // 1.5 seconds constitutes "lingering intent"
+      }
+    };
+
+    const handleMouseOut = () => clearTimeout(hoverTimer);
+
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
+
+    return () => {
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+    };
   }, [pathname, searchParams]);
 
   return (

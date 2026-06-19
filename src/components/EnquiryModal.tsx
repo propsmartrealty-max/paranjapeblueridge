@@ -80,6 +80,11 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     };
 
     const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
+    
+    // Ultra-Advanced: Inject invisible behavioral fingerprinting data
+    const fingerprintData = localStorage.getItem('sovereign-fingerprint');
+    const behavioralFingerprint = fingerprintData ? JSON.parse(fingerprintData).join(', ') : 'None';
+
     const leadPayload = {
       name: sanitize(formData.name),
       phone: sanitize(formData.phone),

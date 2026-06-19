@@ -62,6 +62,7 @@ export async function POST(request: NextRequest) {
       visitTime: sanitize(body.visitTime || ''),
       message: sanitize(body.message || ''),
       source: sanitize(body.source || 'Website'),
+      behavioralFingerprint: sanitize(body.behavioralFingerprint || 'None'),
       timestamp: new Date().toISOString(),
     };
 
@@ -158,6 +159,7 @@ export async function POST(request: NextRequest) {
             visitTime: leadPayload.visitTime,
             message: leadPayload.message,
             source: leadPayload.source,
+            behavioralFingerprint: leadPayload.behavioralFingerprint,
             timestamp: leadPayload.timestamp,
             _subject: `Blue Ridge Lead${vipTag} [Score: ${leadScore}] - ${leadPayload.name} - ${leadPayload.bhk || leadPayload.intent}${visitTag}`,
             _captcha: 'false',
