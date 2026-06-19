@@ -931,5 +931,10 @@ export function generatePseoUrls() {
     });
   });
 
-  return urls;
+  return urls.map(u => ({
+    ...u,
+    slug: u.slug.endsWith('-paranjape-blue-ridge-township-hinjewadi') 
+      ? u.slug 
+      : `${u.slug}-paranjape-blue-ridge-township-hinjewadi`
+  }));
 }

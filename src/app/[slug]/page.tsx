@@ -1,5 +1,5 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Metadata } from 'next';
 import { projects } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
@@ -225,7 +225,14 @@ export default function ProjectSilo({ params, searchParams }: PageProps) {
   const allUrls = generatePseoUrls();
   const pseoData = allUrls.find(u => u.slug === slug);
 
-  if (!project && !pseoData) return notFound();
+  if (!project && !pseoData) {
+    const potentialNewSlug = `${slug}-paranjape-blue-ridge-township-hinjewadi`;
+    const newPseoData = allUrls.find(u => u.slug === potentialNewSlug);
+    if (newPseoData) {
+      permanentRedirect(`/${potentialNewSlug}`);
+    }
+    return notFound();
+  }
 
   if (pseoData) {
     return <PseoLandingPage pageData={pseoData} />;
