@@ -3,23 +3,41 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Universal rule for all bots
+      // 1. Universal rule for standard bots
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/cache/', '/sovereign-vault/'],
+        disallow: [
+          '/api/', 
+          '/_next/cache/', 
+          '/sovereign-vault/',
+          '/*?*', // Block all query parameters from indexing (UTMs, etc.)
+        ],
       },
-      // Explicit Googlebot — allow full indexing, no cache paths
+      // 2. Explicit Googlebot & Bingbot Rules (Highest Priority)
       {
-        userAgent: 'Googlebot',
+        userAgent: ['Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot'],
         allow: '/',
         disallow: ['/api/', '/sovereign-vault/'],
       },
-      // Explicit Bingbot — allow full indexing
+      // 3. Block AI Scrapers & Data Miners (Protect Proprietary Data)
       {
-        userAgent: 'Bingbot',
-        allow: '/',
-        disallow: ['/api/', '/sovereign-vault/'],
+        userAgent: [
+          'GPTBot',
+          'ChatGPT-User',
+          'Anthropic-ai',
+          'Claude-Web',
+          'Applebot-Extended',
+          'CCBot',
+          'Bytespider',
+          'Diffbot',
+          'FacebookBot',
+          'ImagesiftBot',
+          'PerplexityBot',
+          'Omgili',
+          'Omgilibot',
+        ],
+        disallow: '/',
       },
     ],
     sitemap: 'https://www.paranjapeblueridge.com/sitemap.xml',
