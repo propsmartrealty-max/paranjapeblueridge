@@ -1,0 +1,46 @@
+name: Autonomous SEO Indexing
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Run automatically every day at midnight to push new dynamic URLs or blog posts
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions UI
+
+jobs:
+  index_urls:
+    name: Ping Search Engines (Google, Bing, Yahoo)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Trigger IndexNow (Bing & Yahoo)
+        run: npx tsx scripts/trigger-indexnow.ts
+        env:
+          NEXT_PUBLIC_SITE_URL: 'https://www.paranjapeblueridge.com'
+
+      - name: Trigger Google Indexing API
+        run: npx tsx scripts/trigger-google-indexing.ts
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+
+      - name: Commit and Push Google Index Cache
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .google-index-cache.json
+          git commit -m "chore(seo): update google index cache state [skip ci]" || echo "No changes to commit"
+          git push
