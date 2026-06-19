@@ -55,26 +55,67 @@ export const metadata: Metadata = {
     ],
   },
   keywords: [
-    "pune real estate market", "west pune real estate market", "hinjewadi real estate market",
-    "paranjape blue ridge hinjewadi", "blue ridge hinjewadi pune", "blue ridge township pune", 
-    "paranjape blue ridge apartments for sale", "paranjape blue ridge township hinjewadi",
-    "paranjape schemes construction ltd projects", "138-acre township hinjewadi", 
-    "blue ridge public school hinjewadi", "paranjape blue ridge reviews and ratings",
-    "paranjape blue ridge floor plans", "paranjape blue ridge flat for rent",
-    "the ridges 41 blue ridge", "the altius blue ridge hinjewadi", "blue ridge phase 1 resale", 
-    "2 bhk flat blue ridge pune", "3 bhk luxury blue ridge pune", "blue ridge ready possession", 
-    "distance from paranjape blue ridge to rajiv gandhi infotech park",
-    "township near infosys hinjewadi", "riverfront flats pune", "golf course township pune",
-    "blue ridge investment property", "blue ridge hinjewadi price list", "paranjape schemes pune",
-    "blue ridge apartments", "invest in blue ridge hinjewadi", "blue ridge pune", "blue ridge flats",
-    "blue ridge luxury apartments", "blue ridge integrated township", "blue ridge megatownship",
-    "luxury apartments pune west", "premium homes pune west", "ultra luxury residences pune",
-    "luxury real estate pune", "luxury apartments near metro pune", "luxury homes near IT park pune",
-    "branded residences pune west", "blue ridge tower 25", "blue ridge tower 26", "orion blue ridge",
-    "the ridges 41 hinjewadi", "the altius luxury residences", "blue ridge vs life republic",
-    "blue ridge vs megapolis", "luxury apartments baner", "premium residences balewadi",
-    "flats near TCS hinjewadi", "buy flat in blue ridge", "blue ridge resale flats",
-    "blue ridge corporate rentals"
+    // Core Brand Dominance
+    "paranjape blue ridge", "paranjape blue ridge hinjewadi", "paranjape blue ridge township hinjewadi",
+    "paranjape schemes pune", "paranjape schemes construction ltd projects", "blue ridge hinjewadi pune",
+    "blue ridge township pune", "paranjape blue ridge apartments for sale", "blue ridge pune",
+    "blue ridge integrated township", "blue ridge megatownship", "blue ridge hinjewadi price list",
+    
+    // Cluster Dominance: Promenade
+    "paranjape blue ridge promenade hinjewadi pune", "blue ridge promenade price list",
+    "promenade residences blue ridge", "promenade river facing flats hinjewadi", "promenade 3 bhk blue ridge",
+    "promenade 4 bhk blue ridge", "paranjape promenade floor plan", "tallest tower in hinjewadi",
+    
+    // Cluster Dominance: The Altius
+    "paranjape blue ridge altius hinjewadi pune", "the altius blue ridge hinjewadi",
+    "the altius luxury residences", "blue ridge altius floor plan", "blue ridge altius price list",
+    "4 bhk river facing flats in hinjewadi", "5 bhk ultra luxury flats pune west", "altius paranjape schemes",
+    
+    // Cluster Dominance: Ridges 41
+    "paranjape blue ridge 41 hinjewadi pune", "the ridges 41 hinjewadi", "ridges 41 blue ridge",
+    "ridges 41 floor plan hinjewadi", "ridges 41 price list", "2 bhk smart homes blue ridge",
+    "mivan construction projects in hinjewadi", "blue ridge phase 1 resale", "ready possession flats in blue ridge",
+    
+    // Legacy Clusters
+    "orion blue ridge", "blue ridge tower 25", "blue ridge tower 26", "blue ridge the groves",
+    
+    // Pune Real Estate Macro Market
+    "pune real estate market", "pune real estate investment", "buy apartment in pune",
+    "pune residential market", "pune premium residences", "pune luxury living",
+    "pune township projects", "best real estate investment pune", "ready possession flats pune",
+    "rera approved projects pune", "branded residences pune", "pune property investment",
+    
+    // West Pune & Hinjewadi Micro Market
+    "west pune real estate market", "hinjewadi real estate market", "luxury apartments pune west",
+    "premium homes pune west", "ultra luxury residences pune", "luxury real estate pune",
+    "luxury apartments baner", "premium residences balewadi", "buy flat in blue ridge hinjewadi",
+    
+    // IT & Walk-to-Work High Intent
+    "distance from paranjape blue ridge to rajiv gandhi infotech park", "township near infosys hinjewadi",
+    "flats near TCS hinjewadi", "walk to work flats hinjewadi", "luxury homes near IT park pune",
+    "corporate rentals hinjewadi", "best corporate housing hinjewadi", "flats near wipro hinjewadi phase 1",
+    
+    // Infrastructure & Metro Connected
+    "pune metro connected homes", "hinjewadi metro line 3 impact", "flats near hinjewadi metro station",
+    "mahalunge hinjewadi bridge connectivity", "pune mumbai expressway access hinjewadi",
+    
+    // Township Lifestyle & Amenities
+    "138-acre township hinjewadi", "blue ridge public school hinjewadi", "flats with school inside township pune",
+    "flats with golf course pune", "apartments with boat club pune", "riverfront flats pune",
+    "gated community hinjewadi pune", "swimming pool apartments hinjewadi pune", "pet friendly apartments hinjewadi",
+    "golf course township pune", "eco friendly apartments pune", "smart homes pune",
+    
+    // Competitor Battleground Intent (Capturing Competitor Searches)
+    "blue ridge vs life republic", "blue ridge vs megapolis", "best township in hinjewadi",
+    "best township in pune comparison", "blue ridge vs vtp blue waters", "blue ridge vs lodha belmondo",
+    "blue ridge vs godrej hinjewadi", "blue ridge vs kohinoor central park",
+    
+    // Transactional & Buyer Intent
+    "paranjape blue ridge flat for rent", "2 bhk flat blue ridge pune", "3 bhk luxury blue ridge pune",
+    "blue ridge ready possession", "blue ridge investment property", "blue ridge apartments",
+    "blue ridge flats", "buy flat in blue ridge", "blue ridge resale flats",
+    "paranjape blue ridge resale price", "blue ridge inventory available", "blue ridge property for sale",
+    "nri investment property pune hinjewadi", "pune property appreciation", "ready possession flats hinjewadi 2026"
   ],
   alternates: {
     canonical: 'https://www.paranjapeblueridge.com',

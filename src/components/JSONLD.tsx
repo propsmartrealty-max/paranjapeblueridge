@@ -425,6 +425,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const realEstateAgentSchema = {
     "@type": "RealEstateAgent",
     "name": "Paranjape Schemes (Construction) Ltd.",
+    "alternateName": ["Paranjape Blue Ridge", "Blue Ridge Hinjewadi", "Paranjape Schemes Pune"],
     "image": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg",
     "@id": `${SITE_URL}/${slug}#business`,
     "url": `${SITE_URL}/${slug}`,
@@ -519,6 +520,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
       ? t(`Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`, `परंजपे ब्लू रिज - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
       : t("Paranjape Blue Ridge - Sovereign Sales Gallery", "परंजपे ब्लू रिज - सोव्हरेन सेल्स गॅलरी"),
+    "alternateName": ["Blue Ridge Township", "Paranjape Blue Ridge Hinjewadi", "Paranjape Schemes Hinjewadi"],
+    "keywords": "Pune Real Estate Market, Paranjape Blue Ridge Township Hinjewadi, Hinjewadi Real Estate Market, Luxury Apartments Pune West",
     "image": `${SITE_URL}/assets/images/township-night.png`,
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
@@ -594,6 +597,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@id": `${SITE_URL}/${slug}#webpage`,
     "url": `${SITE_URL}/${slug}`,
     "name": pseoData?.title || projectData?.name || "Paranjape Blue Ridge Hinjewadi",
+    "keywords": "Paranjape Blue Ridge Township Hinjewadi, Pune Real Estate Market, Blue Ridge Hinjewadi Pune, 2 BHK, 3 BHK, 4 BHK Flats in Hinjewadi, Paranjape Schemes",
     "isPartOf": { "@id": `${SITE_URL}/#website` },
     "about": { "@id": `${SITE_URL}/${slug}#place` },
     "mainEntity": { "@id": `${SITE_URL}/${slug}#business` },
