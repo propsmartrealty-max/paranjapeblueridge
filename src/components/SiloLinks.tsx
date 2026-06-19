@@ -23,13 +23,25 @@ export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
   const allUrls = generatePseoUrls();
   const seed = hashString(currentSlug);
 
+  // --- PageRank Sculpting Engine ---
+  // High-value conversion targets that MUST receive link juice from every PSEO page.
+  const highValueTargets = [
+    'paranjape-blue-ridge-altius-hinjewadi-pune/4-bhk-flats-1633',
+    'paranjape-blue-ridge-promenade-hinjewadi-pune/3-bhk-flats-1316'
+  ];
+
+  const sculptedLinks = allUrls.filter(u => highValueTargets.includes(u.slug) && u.slug !== currentSlug);
+  
   const related = allUrls
-    .filter(u => u.silo === silo && u.slug !== currentSlug)
+    .filter(u => u.silo === silo && u.slug !== currentSlug && !highValueTargets.includes(u.slug))
     // Deterministic shuffle based on current page slug — stable across server/client renders
     .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
-    .slice(0, 6);
+    .slice(0, 6 - sculptedLinks.length);
 
-  if (related.length === 0) return null;
+  // Merge the sculpted links with the dynamically related links
+  const finalLinks = [...sculptedLinks, ...related].sort((a, b) => (hashString(a.slug + seed) % 10) - (hashString(b.slug + seed) % 10));
+
+  if (finalLinks.length === 0) return null;
 
   return (
     <section className="py-20 border-t border-white/5">
@@ -39,7 +51,7 @@ export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {related.map((link) => (
+        {finalLinks.map((link) => (
           <Link 
             key={link.slug} 
             href={`/${link.slug}`}

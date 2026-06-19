@@ -121,7 +121,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         siteName: 'Paranjape Blue Ridge Sovereign Portal',
         images: [
           {
-            url: `${SITE_URL}/assets/images/township-night.png`,
+            url: `${SITE_URL}/api/og?title=${encodeURIComponent(title)}&intent=${encodeURIComponent(pseoData.intent)}`,
             width: 1200,
             height: 630,
             alt: pseoData.title,
@@ -180,7 +180,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         siteName: 'Paranjape Blue Ridge Sovereign Portal',
         images: [
           {
-            url: `${SITE_URL}/assets/images/township-night.png`,
+            url: `${SITE_URL}/api/og?title=${encodeURIComponent(project.name)}&intent=${encodeURIComponent(project.tagline)}`,
             width: 1200,
             height: 630,
             alt: project.name,
