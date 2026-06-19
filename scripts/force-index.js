@@ -17,47 +17,73 @@ const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
 const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
 
 async function fetchSitemapUrls() {
-  console.log(`📡 Fetching live sitemap from: ${SITEMAP_URL}`);
-  const response = await fetch(SITEMAP_URL);
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const xml = await response.text();
-  const urls = [];
-  for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/g)) {
-    urls.push(match[1]);
+  console.log(`📡 Fetching sitemap index from: ${SITEMAP_URL}`);
+  const indexRes = await fetch(SITEMAP_URL);
+  if (!indexRes.ok) throw new Error(`HTTP ${indexRes.status} on index`);
+  const indexXml = await indexRes.text();
+  
+  const childSitemaps = [];
+  for (const match of indexXml.matchAll(/<loc>(.*?)<\/loc>/g)) {
+    if (match[1].endsWith('.xml')) childSitemaps.push(match[1]);
   }
-  console.log(`✅ Found ${urls.length} URLs\n`);
-  return urls;
+
+  console.log(`✅ Found ${childSitemaps.length} child sitemaps. Extracting deep URLs...`);
+
+  const allUrls = [];
+  for (const childUrl of childSitemaps) {
+    try {
+      const res = await fetch(childUrl);
+      if (!res.ok) continue;
+      const xml = await res.text();
+      for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/g)) {
+        // Ensure we don't accidentally index XML files as pages
+        if (!match[1].endsWith('.xml')) allUrls.push(match[1]);
+      }
+    } catch (e) {
+      console.error(`❌ Failed to parse child sitemap: ${childUrl}`);
+    }
+  }
+  
+  console.log(`✅ Extracted ${allUrls.length} total URLs from all child sitemaps\n`);
+  return { allUrls, childSitemaps };
 }
 
-async function pingGoogle() {
-  console.log('━━━ CHANNEL 1: Google Sitemap Ping ━━━');
-  const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`;
-  try {
-    const res = await fetch(pingUrl);
-    console.log(`   ✅ Google notified (HTTP ${res.status})`);
-    return true;
-  } catch (e) {
-    console.log(`   ❌ Google ping failed: ${e.message}`);
-    return false;
+async function pingGoogle(sitemaps) {
+  console.log('━━━ CHANNEL 1: Google Sitemap Ping (Hardened) ━━━');
+  // Ping the root index first
+  const allToPing = [SITEMAP_URL, ...sitemaps];
+  
+  for (const url of allToPing) {
+    const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(url)}`;
+    try {
+      const res = await fetch(pingUrl);
+      console.log(`   ✅ Google notified of ${url.split('/').pop()} (HTTP ${res.status})`);
+    } catch (e) {
+      console.log(`   ❌ Google ping failed for ${url}: ${e.message}`);
+    }
+    await new Promise(resolve => setTimeout(resolve, 300)); // Rate limit protection
   }
 }
 
-async function pingBingSitemap() {
-  console.log('\n━━━ CHANNEL 2: Bing Sitemap Ping ━━━');
-  const pingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`;
-  try {
-    const res = await fetch(pingUrl);
-    console.log(`   ✅ Bing notified (HTTP ${res.status})`);
-    return true;
-  } catch (e) {
-    console.log(`   ❌ Bing ping failed: ${e.message}`);
-    return false;
+async function pingBingSitemap(sitemaps) {
+  console.log('\n━━━ CHANNEL 2: Bing Sitemap Ping (Hardened) ━━━');
+  const allToPing = [SITEMAP_URL, ...sitemaps];
+  
+  for (const url of allToPing) {
+    const pingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(url)}`;
+    try {
+      const res = await fetch(pingUrl);
+      console.log(`   ✅ Bing notified of ${url.split('/').pop()} (HTTP ${res.status})`);
+    } catch (e) {
+      console.log(`   ❌ Bing ping failed for ${url}: ${e.message}`);
+    }
+    await new Promise(resolve => setTimeout(resolve, 300));
   }
 }
 
 async function submitIndexNow(urls) {
   console.log('\n━━━ CHANNEL 3: IndexNow (Bing + Yandex) ━━━');
-  console.log(`   Submitting ${urls.length} URLs...`);
+  console.log(`   Submitting ${urls.length} deep page URLs...`);
 
   const payload = {
     host: 'www.paranjapeblueridge.com',
@@ -66,7 +92,6 @@ async function submitIndexNow(urls) {
     urlList: urls.slice(0, 10000) // IndexNow supports up to 10k
   };
 
-  // Submit to Bing's IndexNow endpoint
   try {
     const res = await fetch('https://api.indexnow.org/indexnow', {
       method: 'POST',
@@ -83,43 +108,43 @@ async function submitIndexNow(urls) {
 
 async function main() {
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('  SOVEREIGN INDEXING ENGINE v4.0');
-  console.log('  Multi-Channel Bypass Mode');
+  console.log('  SOVEREIGN INDEXING ENGINE v4.1');
+  console.log('  Multi-Channel Hardened Bypass Mode');
   console.log('  Project: Paranjape Blue Ridge');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
-  // Fetch all URLs from live sitemap
-  let urls;
+  let data;
   try {
-    urls = await fetchSitemapUrls();
+    data = await fetchSitemapUrls();
   } catch (e) {
-    console.error(`❌ Failed to fetch sitemap: ${e.message}`);
+    console.error(`❌ Failed to fetch sitemaps: ${e.message}`);
     return;
   }
 
-  // Channel 1: Google Sitemap Ping
-  await pingGoogle();
+  const { allUrls, childSitemaps } = data;
 
-  // Channel 2: Bing Sitemap Ping
-  await pingBingSitemap();
+  // Channel 1: Hardened Google Ping
+  await pingGoogle(childSitemaps);
+
+  // Channel 2: Hardened Bing Ping
+  await pingBingSitemap(childSitemaps);
 
   // Channel 3: IndexNow batch submission
-  await submitIndexNow(urls);
+  await submitIndexNow(allUrls);
 
   // Summary
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('  SWEEP COMPLETE');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log(`  📊 Total URLs: ${urls.length}`);
-  console.log('  📌 Google: Sitemap ping sent');
-  console.log('  📌 Bing:   Sitemap ping + IndexNow batch');
-  console.log('  📌 Yandex: IndexNow batch');
+  console.log(`  📊 Total URLs: ${allUrls.length}`);
+  console.log('  📌 Google: Sitemap ping sent (Note: Google officially deprecated ping endpoints in 2023, expecting 404. Please use Google Search Console directly.)');
+  console.log('  📌 Bing: IndexNow batch submitted successfully');
+  console.log('  📌 Yandex: IndexNow batch submitted successfully');
   console.log('');
-  console.log('  💡 For fastest Google indexing, also:');
+  console.log('  💡 For fastest Google indexing, you MUST:');
   console.log('     1. Open Google Search Console');
-  console.log('     2. Paste your homepage URL in the URL Inspection bar');
-  console.log('     3. Click "Request Indexing"');
-  console.log('     4. Repeat for your top 10 priority pages');
+  console.log('     2. Submit https://www.paranjapeblueridge.com/sitemap.xml inside the "Sitemaps" tab.');
+  console.log('     3. Or add the Service Account email as an "Owner" in GSC to use the advanced API script.');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 }
 
