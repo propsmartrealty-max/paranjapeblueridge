@@ -3,154 +3,149 @@ import { projects, articles } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 import { getAllPosts } from '@/utils/mdxUtils';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.paranjapeblueridge.com';
-  
-  const projectUrls = projects.flatMap(p => [
-    {
-      url: `${baseUrl}/${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      alternates: {
-        languages: {
-          'en': `${baseUrl}/${p.slug}`,
-          'mr': `${baseUrl}/mr-${p.slug}`,
-        }
-      }
-    },
-    {
-      url: `${baseUrl}/mr-${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      alternates: {
-        languages: {
-          'en': `${baseUrl}/${p.slug}`,
-          'mr': `${baseUrl}/mr-${p.slug}`,
-        }
-      }
-    }
-  ]);
+const baseUrl = 'https://www.paranjapeblueridge.com';
 
-  const configUrls = projects.flatMap(p => 
-    (p.configurations || []).map(c => ({
-      url: `${baseUrl}/${p.slug}/${c.slug}`,
+export async function generateSitemaps() {
+  // We split the massive sitemap into logical silos for Googlebot
+  return [
+    { id: 0 }, // Core & Projects (Static + Configs + Brochures)
+    { id: 1 }, // Articles & Insights
+    { id: 2 }, // PSEO Matrix Chunk 1 (First 1000)
+    { id: 3 }, // PSEO Matrix Chunk 2 (Remaining)
+  ];
+}
+
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+  if (id === 0) {
+    // 1. Core Static URLs
+    const staticUrls = [
+      {
+        url: baseUrl,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 1.0,
+        alternates: { languages: { 'en': baseUrl, 'mr': `${baseUrl}/mr` } }
+      },
+      {
+        url: `${baseUrl}/mr`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 1.0,
+        alternates: { languages: { 'en': baseUrl, 'mr': `${baseUrl}/mr` } }
+      },
+      {
+        url: `${baseUrl}/hinjewadi-micro-market`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+        alternates: { languages: { 'en': `${baseUrl}/hinjewadi-micro-market`, 'mr': `${baseUrl}/mr-hinjewadi-micro-market` } }
+      },
+      {
+        url: `${baseUrl}/mr-hinjewadi-micro-market`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+        alternates: { languages: { 'en': `${baseUrl}/hinjewadi-micro-market`, 'mr': `${baseUrl}/mr-hinjewadi-micro-market` } }
+      }
+    ];
+
+    // 2. Project URLs
+    const projectUrls = projects.flatMap(p => [
+      {
+        url: `${baseUrl}/${p.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+        alternates: { languages: { 'en': `${baseUrl}/${p.slug}`, 'mr': `${baseUrl}/mr-${p.slug}` } }
+      },
+      {
+        url: `${baseUrl}/mr-${p.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+        alternates: { languages: { 'en': `${baseUrl}/${p.slug}`, 'mr': `${baseUrl}/mr-${p.slug}` } }
+      }
+    ]);
+
+    // 3. Configurations & Brochures
+    const configUrls = projects.flatMap(p => 
+      (p.configurations || []).map(c => ({
+        url: `${baseUrl}/${p.slug}/${c.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
+    );
+
+    const brochureUrls = projects.map(p => ({
+      url: `${baseUrl}/brochure/${p.slug}`,
       lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }));
+
+    return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls];
+  }
+
+  if (id === 1) {
+    // 4. Articles and Insights
+    const articleUrls = articles.map(a => ({
+      url: `${baseUrl}/insights/${a.slug}`,
+      lastModified: new Date(a.dateISO),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-    }))
-  );
+    }));
 
-  const brochureUrls = projects.map(p => ({
-    url: `${baseUrl}/brochure/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+    const mdxPosts = getAllPosts();
+    const mdxUrls = mdxPosts.map(post => ({
+      url: `${baseUrl}/insights/${post.slug}`,
+      lastModified: new Date(post.meta?.dateISO || new Date()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }));
 
-  const articleUrls = articles.map(a => ({
-    url: `${baseUrl}/insights/${a.slug}`,
-    lastModified: new Date(a.dateISO),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+    return [...articleUrls, ...mdxUrls];
+  }
 
-  const mdxPosts = getAllPosts();
-  const mdxUrls = mdxPosts.map(post => ({
-    url: `${baseUrl}/insights/${post.slug}`,
-    lastModified: new Date(post.meta?.dateISO || new Date()),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+  if (id === 2 || id === 3) {
+    // 5. Programmatic SEO Matrix Splitting
+    const pseoUrlsData = generatePseoUrls();
+    const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
+    
+    // Chunk the 2,055 URLs into two chunks to prevent Googlebot crawl failure
+    const chunkSize = 1100;
+    const chunkData = id === 2 ? pseoUrlsData.slice(0, chunkSize) : pseoUrlsData.slice(chunkSize);
 
-  const pseoUrlsData = generatePseoUrls();
-  // Use a fixed publication date for PSEO pages — avoids Google treating them
-  // as freshly-modified on every build (which signals thin content churn).
-  const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
-  const pseoUrls = pseoUrlsData.map(u => {
-    const isMr = u.slug.startsWith('mr-');
-    const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
-    const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
+    return chunkData.map(u => {
+      const isMr = u.slug.startsWith('mr-');
+      const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
+      const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
 
-    // Dynamic priority based on search intent of the PSEO silo
-    let priority = 0.7;
-    const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions'];
-    const lowIntentSilos = ['competitor', 'battleground'];
-    if (highIntentSilos.includes(u.silo)) {
-      priority = 0.85;
-    } else if (lowIntentSilos.includes(u.silo)) {
-      priority = 0.6;
-    }
+      let priority = 0.7;
+      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions'];
+      const lowIntentSilos = ['competitor', 'battleground'];
+      if (highIntentSilos.includes(u.silo)) {
+        priority = 0.85;
+      } else if (lowIntentSilos.includes(u.silo)) {
+        priority = 0.6;
+      }
 
-    return {
-      url: `${baseUrl}/${u.slug}`,
-      lastModified: pseoPublishedDate,
-      changeFrequency: 'monthly' as const,
-      priority,
-      ...(hasAlternate ? {
-        alternates: {
-          languages: {
-            'en': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
-            'mr': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
+      return {
+        url: `${baseUrl}/${u.slug}`,
+        lastModified: pseoPublishedDate,
+        changeFrequency: 'monthly' as const,
+        priority,
+        ...(hasAlternate ? {
+          alternates: {
+            languages: {
+              'en': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
+              'mr': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
+            }
           }
-        }
-      } : {})
-    };
-  });
+        } : {})
+      };
+    });
+  }
 
-  const staticUrls = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1.0,
-      alternates: {
-        languages: {
-          'en': baseUrl,
-          'mr': `${baseUrl}/mr`,
-        }
-      }
-    },
-    {
-      url: `${baseUrl}/mr`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1.0,
-      alternates: {
-        languages: {
-          'en': baseUrl,
-          'mr': `${baseUrl}/mr`,
-        }
-      }
-    },
-    {
-      url: `${baseUrl}/hinjewadi-micro-market`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      alternates: {
-        languages: {
-          'en': `${baseUrl}/hinjewadi-micro-market`,
-          'mr': `${baseUrl}/mr-hinjewadi-micro-market`,
-        }
-      }
-    },
-    {
-      url: `${baseUrl}/mr-hinjewadi-micro-market`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      alternates: {
-        languages: {
-          'en': `${baseUrl}/hinjewadi-micro-market`,
-          'mr': `${baseUrl}/mr-hinjewadi-micro-market`,
-        }
-      }
-    },
-    // NOTE: /feed.xml and /google-products-feed are NOT indexable HTML pages.
-    // They are discoverable via <link rel="alternate"> in the layout, not via sitemap.
-  ];
-
-  return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls, ...articleUrls, ...mdxUrls, ...pseoUrls];
+  return [];
 }

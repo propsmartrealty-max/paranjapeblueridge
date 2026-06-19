@@ -31,6 +31,9 @@ export function middleware(req: NextRequest) {
   response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  
+  // Advanced Edge Preloading: HTTP 103 Early Hints for LCP Image
+  response.headers.set('Link', '</assets/images/township-night.png>; rel=preload; as=image; fetchpriority=high');
 
   // Also set a secure HTTP-only cookie so that client-side tracking or API routes 
   // (/api/lead) can capture if the lead originated from an NRI hub.
