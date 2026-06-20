@@ -46,7 +46,7 @@ export default function Home({ searchParams }: PageProps) {
       <LanguageInitializer lang={lang} />
       {/* Homepage-only SEO content — speakable, screen-reader accessible, not repeated on other pages */}
       <div className="sr-only" aria-hidden="false">
-        <h1 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune&apos;s 138-Acre Township</h1>
+        <h2 id="speakable-title">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 &amp; 5 BHK Flats in Pune&apos;s 138-Acre Township</h2>
         <p id="speakable-summary">Welcome to Paranjape Blue Ridge Pune, Pune&apos;s most celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle. Home to The Ridges 41, The Altius, Orion, and Towers 1 to 26, it features a private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses. Compare Blue Ridge vs Life Republic or Megapolis and discover why we are the best luxury real estate investment in Pune West, just minutes from Baner, Balewadi, and the upcoming Hinjewadi Metro Station.</p>
         <ul>
           <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 &amp; 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>

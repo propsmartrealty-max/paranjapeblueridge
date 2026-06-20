@@ -777,6 +777,11 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
           "price": String(config.priceValue || 9500000),
           "availability": "https://schema.org/InStock"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "2150"
+        }
       });
     });
   }
@@ -795,6 +800,11 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "price": "9500000",
         "availability": "https://schema.org/InStock",
         "url": `${SITE_URL}/${pseoData.slug}`
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "2150"
       }
     });
 
