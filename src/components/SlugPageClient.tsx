@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import BlueprintExplorer from '@/components/BlueprintExplorer';
 import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
 import EnquiryModalAutoPopup from '@/components/EnquiryModalAutoPopup';
+import EnquiryModal from '@/components/EnquiryModal';
 import DynamicFreshness from '@/components/DynamicFreshness';
 
 interface SlugPageClientProps {
@@ -19,15 +20,17 @@ interface SlugPageClientProps {
 
 export default function SlugPageClient({ slug }: SlugPageClientProps) {
   const { t } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const project = projects.find(p => p.slug === slug);
 
-  if (!project) return null;
+  if (!project) return <div>Project not found</div>;
 
   return (
     <main className="min-h-screen bg-navy text-text pt-32 pb-20 selection:bg-gold/30 selection:text-gold">
       <Navbar />
       <EnquiryModalAutoPopup />
+      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
       <div className="container max-w-7xl mx-auto px-4 md:px-8">
         
