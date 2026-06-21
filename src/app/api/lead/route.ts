@@ -63,6 +63,11 @@ export async function POST(request: NextRequest) {
       message: sanitize(body.message || ''),
       source: sanitize(body.source || 'Website'),
       behavioralFingerprint: sanitize(body.behavioralFingerprint || 'None'),
+      utm_source: sanitize(body.utms?.utm_source || ''),
+      utm_medium: sanitize(body.utms?.utm_medium || ''),
+      utm_campaign: sanitize(body.utms?.utm_campaign || ''),
+      utm_term: sanitize(body.utms?.utm_term || ''),
+      utm_content: sanitize(body.utms?.utm_content || ''),
       timestamp: new Date().toISOString(),
     };
 
@@ -160,6 +165,9 @@ export async function POST(request: NextRequest) {
             message: leadPayload.message,
             source: leadPayload.source,
             behavioralFingerprint: leadPayload.behavioralFingerprint,
+            utm_source: leadPayload.utm_source,
+            utm_medium: leadPayload.utm_medium,
+            utm_campaign: leadPayload.utm_campaign,
             timestamp: leadPayload.timestamp,
             _subject: `Blue Ridge Lead${vipTag} [Score: ${leadScore}] - ${leadPayload.name} - ${leadPayload.bhk || leadPayload.intent}${visitTag}`,
             _captcha: 'false',

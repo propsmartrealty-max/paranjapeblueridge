@@ -13,6 +13,7 @@ import RelatedSearchesMesh from '@/components/RelatedSearchesMesh';
 import SiloLinks from '@/components/SiloLinks';
 import LanguageInitializer from '@/components/LanguageInitializer';
 import EnquiryModalAutoPopup from '@/components/EnquiryModalAutoPopup';
+import DynamicFreshness from '@/components/DynamicFreshness';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -177,6 +178,9 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
       </section>
 
       {/* DYNAMIC CONTENT BLOCK FOR EXTREME SEO */}
+      <div className="container max-w-4xl mx-auto px-4">
+        <DynamicFreshness slug={pageData.slug} />
+      </div>
       <DynamicContentBlock silo={pageData.silo} title={pageData.intent} />
 
       {/* RELATED SEARCHES MESH FOR PAGERANK SCULPTING */}

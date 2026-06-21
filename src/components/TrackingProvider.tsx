@@ -40,7 +40,24 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
       if (saved) setIntent(saved);
     }
 
-    // --- Behavioral Micro-Data Fingerprinting ---
+    // --- UTM Trapping Engine ---
+    const utms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    let hasUtms = false;
+    const currentUtms: Record<string, string> = {};
+    
+    utms.forEach(utm => {
+      const value = searchParams.get(utm);
+      if (value) {
+        hasUtms = true;
+        currentUtms[utm] = value;
+      }
+    });
+
+    if (hasUtms) {
+      localStorage.setItem('sovereign-utms', JSON.stringify(currentUtms));
+    }
+
+    // --- Behavioral Micro-Data Fingerprint ---
     // Track what configurations the user lingers on
     let hoverTimer: NodeJS.Timeout;
     

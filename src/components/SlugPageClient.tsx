@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { projects } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
-import dynamic from 'next/dynamic';
-const BlueprintExplorer = dynamic(() => import('@/components/BlueprintExplorer'), { ssr: false });
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { useLanguage } from '@/context/LanguageContext';
 import { CheckCircle2, Shield, Calendar, Maximize, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import EnquiryModal from '@/components/EnquiryModal';
-const InteractiveFloorPlans = dynamic(() => import('@/components/InteractiveFloorPlans'), { ssr: false });
+import BlueprintExplorer from '@/components/BlueprintExplorer';
+import InteractiveFloorPlans from '@/components/InteractiveFloorPlans';
+import EnquiryModalAutoPopup from '@/components/EnquiryModalAutoPopup';
+import DynamicFreshness from '@/components/DynamicFreshness';
 
 interface SlugPageClientProps {
   slug: string;
@@ -19,92 +19,90 @@ interface SlugPageClientProps {
 
 export default function SlugPageClient({ slug }: SlugPageClientProps) {
   const { t } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsModalOpen(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const project = projects.find(p => p.slug === slug);
 
   if (!project) return null;
 
   return (
-    <main className="min-h-screen bg-navy text-text">
+    <main className="min-h-screen bg-navy text-text pt-32 pb-20 selection:bg-gold/30 selection:text-gold">
       <Navbar />
-      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <EnquiryModalAutoPopup />
       
-      {/* PROJECT HERO */}
-      <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
-                 project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
-                 '/assets/images/ridges-41.png'} 
-            fill
-            priority
-            className="object-cover opacity-30 grayscale-[0.3]"
-            alt={`Paranjape Blue Ridge ${project.name} - Official Showcase`}
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
-        </div>
+      <div className="container max-w-7xl mx-auto px-4 md:px-8">
         
-        <div className="container relative z-10">
-          <Breadcrumbs 
-            items={[
-                { label: t('Projects', 'प्रोजेक्ट्स'), href: '/#projects' },
-                { label: project.name, href: `/${project.slug}` }
-            ]} 
-          />
-          <div className="flex items-center gap-4 text-gold font-bold tracking-[4px] uppercase text-[10px] mb-6">
-            <Shield size={14} />
-            {t('Official Sovereign Node', 'अधिकृत सोव्हरेन नोड')}
+        <div className="mb-8">
+          <DynamicFreshness slug={slug} />
+        </div>
+
+        {/* PROJECT HERO */}
+        <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden mb-20 rounded-[2rem]">
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
+                   project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
+                   '/assets/images/ridges-41.png'} 
+              fill
+              priority
+              className="object-cover opacity-30 grayscale-[0.3]"
+              alt={`Paranjape Blue Ridge ${project.name} - Official Showcase`}
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
           </div>
-          <h1 className="text-7xl font-serif text-warm-white mb-6">{project.name}</h1>
-          <p className="text-xl text-text-light max-w-2xl leading-relaxed">
-            {t(project.description, project.descriptionMr)}
-          </p>
-        </div>
-      </section>
+          
+          <div className="container relative z-10">
+            <Breadcrumbs 
+              items={[
+                  { label: t('Projects', 'प्रोजेक्ट्स'), href: '/#projects' },
+                  { label: project.name, href: `/${project.slug}` }
+              ]} 
+            />
+            <div className="flex items-center gap-4 text-gold font-bold tracking-[4px] uppercase text-[10px] mb-6">
+              <Shield size={14} />
+              {t('Official Sovereign Node', 'अधिकृत सोव्हरेन नोड')}
+            </div>
+            <h1 className="text-7xl font-serif text-warm-white mb-6">{project.name}</h1>
+            <p className="text-xl text-text-light max-w-2xl leading-relaxed">
+              {t(project.description, project.descriptionMr)}
+            </p>
+          </div>
+        </section>
 
-      {/* QUICK STATS */}
-      <section className="py-12 border-y border-white/5 bg-navy-light/20">
-        <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex items-center gap-4">
-                <Maximize className="text-gold" size={24} />
-                <div>
-                    <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Carpet Area', 'कार्पेट एरिया')}</span>
-                    <span className="text-warm-white font-bold">{project.carpetArea}</span>
-                </div>
-            </div>
-            <div className="flex items-center gap-4">
-                <Calendar className="text-gold" size={24} />
-                <div>
-                    <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Possession', 'ताबा')}</span>
-                    <span className="text-warm-white font-bold">{project.possession}</span>
-                </div>
-            </div>
-            <div className="flex items-center gap-4">
-                <MapPin className="text-gold" size={24} />
-                <div>
-                    <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Location', 'स्थान')}</span>
-                    <span className="text-warm-white font-bold">Hinjewadi Phase 1</span>
-                </div>
-            </div>
-            <div className="flex items-center gap-4">
-                <div className="px-6 py-3 bg-gold/10 border border-gold/30 rounded-xl">
-                    <span className="text-gold font-bold text-sm">{project.price}</span>
-                </div>
-            </div>
-        </div>
-      </section>
+        {/* QUICK STATS */}
+        <section className="py-12 border-y border-white/5 bg-navy-light/20 mb-20">
+          <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="flex items-center gap-4">
+                  <Maximize className="text-gold" size={24} />
+                  <div>
+                      <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Carpet Area', 'कार्पेट एरिया')}</span>
+                      <span className="text-warm-white font-bold">{project.carpetArea}</span>
+                  </div>
+              </div>
+              <div className="flex items-center gap-4">
+                  <Calendar className="text-gold" size={24} />
+                  <div>
+                      <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Possession', 'ताबा')}</span>
+                      <span className="text-warm-white font-bold">{project.possession}</span>
+                  </div>
+              </div>
+              <div className="flex items-center gap-4">
+                  <MapPin className="text-gold" size={24} />
+                  <div>
+                      <span className="block text-[8px] text-text-light uppercase tracking-widest">{t('Location', 'स्थान')}</span>
+                      <span className="text-warm-white font-bold">Hinjewadi Phase 1</span>
+                  </div>
+              </div>
+              <div className="flex items-center gap-4">
+                  <div className="px-6 py-3 bg-gold/10 border border-gold/30 rounded-xl">
+                      <span className="text-gold font-bold text-sm">{project.price}</span>
+                  </div>
+              </div>
+          </div>
+        </section>
 
-      <div className="container py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        {/* HERO HEADER */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* SPECIFICATIONS */}
             <div>
                 <h2 className="text-4xl font-serif text-warm-white mb-12">{t('Technical', 'तांत्रिक')} <span className="italic font-normal text-gold">{t('Tectonics', 'टेक्टोनिक्स')}</span></h2>

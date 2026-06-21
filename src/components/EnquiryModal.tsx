@@ -81,9 +81,12 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
 
     const source = typeof window !== 'undefined' ? window.location.pathname : 'blueridge_qualified_modal';
     
-    // Ultra-Advanced: Inject invisible behavioral fingerprinting data
+    // Ultra-Advanced: Inject invisible behavioral fingerprinting & UTM tracking data
     const fingerprintData = localStorage.getItem('sovereign-fingerprint');
     const behavioralFingerprint = fingerprintData ? JSON.parse(fingerprintData).join(', ') : 'None';
+    
+    const utmData = localStorage.getItem('sovereign-utms');
+    const utms = utmData ? JSON.parse(utmData) : {};
 
     const leadPayload = {
       name: sanitize(formData.name),
@@ -96,6 +99,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       visitTime: sanitize(formData.visitTime),
       message: sanitize(formData.message),
       source: source === '/' ? 'Homepage_Modal' : source.replace(/^\//, ''),
+      behavioralFingerprint,
+      utms,
       timestamp: new Date().toISOString(),
     };
 

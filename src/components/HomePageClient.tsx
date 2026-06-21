@@ -71,12 +71,21 @@ export default function HomePageClient() {
       return clean;
     };
 
+    // Ultra-Advanced: Inject invisible behavioral fingerprinting & UTM tracking data
+    const fingerprintData = localStorage.getItem('sovereign-fingerprint');
+    const behavioralFingerprint = fingerprintData ? JSON.parse(fingerprintData).join(', ') : 'None';
+    
+    const utmData = localStorage.getItem('sovereign-utms');
+    const utms = utmData ? JSON.parse(utmData) : {};
+
     const leadPayload = {
       name: sanitize(formData.name),
       phone: sanitize(formData.phone),
       email: sanitize(formData.email),
       bhk: sanitize(formData.intent),
       source: 'Homepage_Inline_Form',
+      behavioralFingerprint,
+      utms,
       timestamp: new Date().toISOString(),
     };
 
