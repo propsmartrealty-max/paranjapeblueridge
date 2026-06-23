@@ -25,7 +25,7 @@ export default function HTMLSitemap() {
     }
     acc[curr.silo].push(curr);
     return acc;
-  }, {} as Record<string, typeof pseoUrls>);
+  }, {} as Record<string, Array<{ slug: string; title: string; intent: string; type: string; silo: string }>>);
 
   return (
     <main className="min-h-screen bg-navy text-text">
@@ -74,7 +74,7 @@ export default function HTMLSitemap() {
               <h2 className="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2">Targeted Search Categories</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {Object.entries(groupedPseo).map(([silo, items]) => (
+                {(Object.entries(groupedPseo) as [string, Array<{ slug: string; title: string; intent: string; type: string; silo: string }>][]).map(([silo, items]) => (
                   <div key={silo} className="flex flex-col">
                     <h3 className="text-lg font-bold text-warm-white mb-4 capitalize tracking-wide">
                       {silo.replace(/-/g, ' ')}

@@ -570,11 +570,126 @@ export const seoMatrix = {
   paaReviews: [
     { slug: 'paranjape-blue-ridge-honest-reviews-pros-cons', name: 'Paranjape Blue Ridge Honest Reviews: Pros & Cons from Residents', intent: 'Is Paranjape Blue Ridge worth buying? Resident feedback, reviews & ratings' },
     { slug: 'blue-ridge-public-school-admission-honest-review', name: 'Blue Ridge Public School Admission Review & Parents Feedback', intent: 'Honest parent reviews, curriculum & facilities of Blue Ridge Public School' }
-  ]
+  ],
+  entirePuneMarket: [
+    { slug: 'kharadi', name: 'Kharadi' }, { slug: 'viman-nagar', name: 'Viman Nagar' }, { slug: 'kalyani-nagar', name: 'Kalyani Nagar' }, { slug: 'koregaon-park', name: 'Koregaon Park' }, { slug: 'magarpatta', name: 'Magarpatta' }, { slug: 'hadapsar', name: 'Hadapsar' }, { slug: 'boat-club-road', name: 'Boat Club Road' }, { slug: 'model-colony', name: 'Model Colony' }, { slug: 'shivaji-nagar', name: 'Shivaji Nagar' }, { slug: 'prabhat-road', name: 'Prabhat Road' }, { slug: 'kothrud', name: 'Kothrud' }, { slug: 'nibm', name: 'NIBM' }, { slug: 'undri', name: 'Undri' }, { slug: 'wanowrie', name: 'Wanowrie' }, { slug: 'pimple-saudagar', name: 'Pimple Saudagar' }, { slug: 'chinchwad', name: 'Chinchwad' }, { slug: 'nigdi', name: 'Nigdi' }, { slug: 'baner-pashan-link-road', name: 'Baner Pashan Link Road' }
+  ],
+  ultraLuxuryConfigs: [
+    { slug: '4-bhk-luxury-apartments', name: '4 BHK Luxury Apartments' }, { slug: '5-bhk-luxury-apartments', name: '5 BHK Luxury Apartments' }, { slug: '4-5-bhk-luxury-flats', name: '4.5 BHK Luxury Flats' }, { slug: 'luxury-penthouses', name: 'Luxury Penthouses' }, { slug: 'duplex-penthouses', name: 'Duplex Penthouses' }, { slug: 'sky-villas', name: 'Sky Villas' }, { slug: 'private-pool-apartments', name: 'Private Pool Apartments' }, { slug: 'independent-villas', name: 'Independent Villas' }, { slug: 'golf-course-apartments', name: 'Golf Course Apartments' }
+  ],
+  exactMatches: [
+    "Paranjape Blue Ridge", "Paranjape Blue Ridge Hinjewadi", "Blue Ridge Hinjewadi", "Blue Ridge Township Pune", "Blue Ridge Phase 1", "Blue Ridge Luxury Homes", "Blue Ridge Premium Apartments", "Blue Ridge Residences Pune", "Blue Ridge New Launch", "Blue Ridge Ready Possession Homes", "Blue Ridge Township Living", "Blue Ridge Integrated Township", "Blue Ridge Riverfront Homes", "Blue Ridge Golf View Homes", "Blue Ridge Luxury Apartments Pune", "Blue Ridge Investment Property", "Blue Ridge IT Park Homes", "Blue Ridge Premium Residences",
+    "Blue Ridge 2 BHK Pune", "Blue Ridge 3 BHK Pune", "Blue Ridge 4 BHK Pune", "Blue Ridge 5 BHK Pune", "Blue Ridge Luxury 3 BHK", "Blue Ridge Luxury 4 BHK", "Blue Ridge Luxury 5 BHK", "Blue Ridge Premium Apartments", "Blue Ridge Spacious Homes", "Blue Ridge Family Apartments", "Blue Ridge Luxury Residences", "Blue Ridge River View Apartments", "Blue Ridge Golf Facing Apartments", "Blue Ridge Premium Homes Pune",
+    "Integrated Township Pune", "Township Property Pune", "Township Homes Pune", "Luxury Township Pune", "Premium Township Pune", "Gated Township Pune", "Township Apartments Pune", "Township Living Pune", "Self Sustained Township Pune", "Township Near IT Park Pune", "Township Investment Pune", "Township Homes Hinjewadi", "Premium Township Apartments", "Integrated Community Living Pune",
+    "Luxury Real Estate Pune", "Luxury Homes Pune", "Luxury Apartments Pune", "Luxury Flats Pune", "Luxury Property Pune", "Premium Homes Pune", "Premium Apartments Pune", "Ultra Luxury Homes Pune", "Ultra Luxury Apartments Pune", "Luxury Residential Projects Pune", "Luxury Housing Pune", "Luxury Living Pune", "Luxury Real Estate West Pune", "Luxury Homes West Pune", "Luxury Property Investment Pune", "Luxury Real Estate Maharashtra",
+    "Luxury 3 BHK Pune", "3 BHK Luxury Apartments Pune", "Premium 3 BHK Pune", "Luxury 3 Bedroom Homes Pune", "Large 3 BHK Pune", "Spacious 3 BHK Pune", "Luxury 3 BHK Flats West Pune", "3 BHK Luxury Homes Baner", "3 BHK Luxury Homes Wakad", "3 BHK Luxury Homes Hinjewadi", "3 BHK Luxury Homes Bavdhan", "3 BHK Luxury Homes Balewadi", "3 BHK Luxury Homes Aundh", "3 BHK Luxury Homes Kharadi", "3 BHK Luxury Homes Pashan",
+    "Luxury 4 BHK Pune", "4 BHK Luxury Apartments Pune", "Premium 4 BHK Pune", "4 Bedroom Luxury Homes Pune", "Luxury 4 BHK Flats West Pune", "Ultra Luxury 4 BHK Pune", "4 BHK Golf View Homes Pune", "4 BHK Township Homes Pune", "4 BHK Luxury Residences Pune", "4 BHK Premium Apartments Pune", "Large 4 BHK Apartments Pune", "4 BHK Luxury Homes Baner", "4 BHK Luxury Homes Balewadi", "4 BHK Luxury Homes Bavdhan", "4 BHK Luxury Homes Pashan", "4 BHK Luxury Homes Hinjewadi",
+    "Luxury 5 BHK Pune", "5 BHK Luxury Apartments Pune", "5 Bedroom Luxury Homes Pune", "Ultra Luxury 5 BHK Pune", "Luxury 5 BHK Residences Pune", "Premium 5 BHK Pune", "5 BHK Township Homes Pune", "5 BHK Penthouse Pune", "Luxury 5 BHK Flats Pune", "5 BHK Golf View Homes Pune", "Luxury Villas Pune", "Luxury Duplex Pune", "Luxury Sky Villas Pune", "Luxury Mansions Pune",
+    "Penthouse Pune", "Luxury Penthouse Pune", "Premium Penthouse Pune", "Penthouse West Pune", "Sky Villa Pune", "Luxury Sky Villa Pune", "Luxury Duplex Pune", "Duplex Apartments Pune", "Penthouse Hinjewadi", "Penthouse Baner", "Penthouse Balewadi", "Penthouse Bavdhan", "Penthouse Wakad", "Penthouse Kharadi",
+    "West Pune Real Estate", "West Pune Luxury Real Estate", "Luxury Homes West Pune", "Luxury Flats West Pune", "Premium Apartments West Pune", "Luxury Property West Pune", "West Pune Property Investment", "Luxury Township West Pune", "Premium Residential Projects West Pune", "Luxury Housing West Pune", "Best Luxury Homes West Pune",
+    "Baner Luxury Homes", "Baner Luxury Apartments", "Baner Luxury Real Estate", "Baner Premium Property", "Baner 3 BHK Luxury Homes", "Baner 4 BHK Luxury Homes", "Baner 5 BHK Luxury Homes", "Baner Penthouse", "Baner Duplex Apartments", "Baner Sky Villas", "Baner High Rise Apartments", "Baner Premium Residences",
+    "Baner Pashan Link Road Luxury Homes", "Baner Pashan Luxury Apartments", "Baner Pashan Premium Property", "Luxury Flats Baner Pashan Road", "3 BHK Baner Pashan Link Road", "4 BHK Baner Pashan Link Road", "5 BHK Baner Pashan Link Road", "Premium Residences Baner Pashan", "Luxury Real Estate Baner Pashan",
+    "Balewadi Luxury Homes", "Balewadi Luxury Apartments", "Balewadi Premium Residences", "Luxury Property Balewadi", "Balewadi High Rise Apartments", "Balewadi 3 BHK Luxury", "Balewadi 4 BHK Luxury", "Balewadi 5 BHK Luxury", "Balewadi Penthouse", "Balewadi Duplex Homes",
+    "Bavdhan Luxury Homes", "Bavdhan Luxury Apartments", "Bavdhan Premium Property", "Luxury Real Estate Bavdhan", "Bavdhan 3 BHK Luxury Homes", "Bavdhan 4 BHK Luxury Homes", "Bavdhan 5 BHK Luxury Homes", "Luxury Township Bavdhan", "Premium Homes Bavdhan",
+    "Hinjewadi Luxury Homes", "Hinjewadi Luxury Apartments", "Hinjewadi Luxury Real Estate", "Premium Property Hinjewadi", "Luxury Flats Hinjewadi", "Luxury Township Hinjewadi", "3 BHK Luxury Hinjewadi", "4 BHK Luxury Hinjewadi", "5 BHK Luxury Hinjewadi", "Golf View Apartments Hinjewadi", "IT Park Luxury Homes Hinjewadi", "River View Apartments Hinjewadi",
+    "Wakad Luxury Homes", "Wakad Luxury Apartments", "Wakad Premium Property", "Luxury Flats Wakad", "Luxury Real Estate Wakad", "3 BHK Luxury Wakad", "4 BHK Luxury Wakad", "5 BHK Luxury Wakad", "Premium Residences Wakad", "Luxury Housing Wakad",
+    "Kharadi Luxury Homes", "Kharadi Luxury Apartments", "Kharadi Premium Property", "Luxury Flats Kharadi", "Luxury Real Estate Kharadi", "3 BHK Luxury Kharadi", "4 BHK Luxury Kharadi", "5 BHK Luxury Kharadi", "Luxury Township Kharadi", "Premium Residences Kharadi",
+    "Buy Luxury Home Pune", "Buy Luxury Apartment Pune", "Buy Luxury Flat Pune", "Luxury Homes For Sale Pune", "Luxury Property For Sale Pune", "Luxury Apartments Near IT Park Pune", "Luxury Homes Near Metro Pune", "Ready To Move Luxury Homes Pune", "Under Construction Luxury Homes Pune", "Best Luxury Apartments Pune", "Top Luxury Projects Pune", "Premium Homes Pune For Sale", "Invest In Luxury Property Pune", "Luxury Real Estate Investment Pune", "Best Luxury Township Pune", "Luxury Homes Near Hinjewadi IT Park", "Luxury Homes Near Baner Pune", "Luxury Homes Near Balewadi High Street", "Luxury Homes Near Pune Metro"
+  ],
+  advancedCombinatorial: {
+    locations: ["Baner", "Balewadi", "Hinjewadi", "Wakad", "Kharadi", "Bavdhan", "West Pune", "Baner Pashan Link Road", "Aundh", "Koregaon Park", "Viman Nagar", "Kalyani Nagar"],
+    configurations: ["2 BHK", "3 BHK", "4 BHK", "5 BHK", "Penthouse", "Duplex", "Sky Villa", "Villa"],
+    propertyTypes: ["Apartments", "Flats", "Homes", "Residences", "Housing", "Property", "Projects"],
+    modifiers: ["Luxury", "Premium", "Ultra Luxury", "Spacious", "Large"],
+    features: ["Township", "Golf View", "River View", "High Rise", "Gated Community"],
+    intents: ["Buy", "Investment", "For Sale"]
+  }
 };
 
 export function generatePseoUrls() {
   const urls: { slug: string; title: string; intent: string; type: string; silo: string }[] = [];
+  
+  const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  seoMatrix.exactMatches.forEach(phrase => {
+    urls.push({
+      slug: slugify(phrase),
+      title: phrase,
+      intent: phrase,
+      type: 'Luxury Exact Match',
+      silo: 'exact-match'
+    });
+  });
+
+  seoMatrix.advancedCombinatorial.locations.forEach(loc => {
+    seoMatrix.advancedCombinatorial.configurations.forEach(config => {
+      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
+        seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
+          const phrase = `${mod} ${config} ${prop} ${loc} Pune`;
+          urls.push({
+            slug: slugify(phrase),
+            title: phrase,
+            intent: phrase,
+            type: 'Hyperlocal Combinatorial',
+            silo: 'hyperlocal-seo'
+          });
+        });
+      });
+    });
+  });
+
+  seoMatrix.advancedCombinatorial.features.forEach(feat => {
+    seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
+      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
+        const phrase = `${mod} ${feat} ${prop} Pune`;
+        urls.push({
+          slug: slugify(phrase),
+          title: phrase,
+          intent: phrase,
+          type: 'Feature Match',
+          silo: 'feature-seo'
+        });
+      });
+    });
+  });
+
+  seoMatrix.advancedCombinatorial.intents.forEach(intent => {
+    seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
+      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
+        seoMatrix.advancedCombinatorial.locations.slice(0, 5).forEach(loc => {
+          const phrase = `${intent} ${mod} ${prop} ${loc} Pune`;
+          urls.push({
+            slug: slugify(phrase),
+            title: phrase,
+            intent: phrase,
+            type: 'Intent Match',
+            silo: 'intent-seo'
+          });
+        });
+      });
+    });
+  });
+
+  // Re-add the entirePuneMarket loop that got overwritten by the git restore
+  seoMatrix.ultraLuxuryConfigs.forEach(config => {
+    seoMatrix.entirePuneMarket.forEach(market => {
+      urls.push({
+        slug: `${config.slug}-in-${market.slug}`,
+        title: `${config.name} in ${market.name}`,
+        intent: `Buy ${config.name} in ${market.name} Pune`,
+        type: 'Luxury Residences',
+        silo: 'luxury-pune'
+      });
+      urls.push({
+        slug: `premium-${config.slug}-in-${market.slug}`,
+        title: `Premium ${config.name} in ${market.name}`,
+        intent: `Premium ${config.name} in ${market.name} Pune`,
+        type: 'Luxury Residences',
+        silo: 'luxury-pune'
+      });
+    });
+  });
+
 
   // Silo 15: Pune Macro Market
   seoMatrix.puneMacroMarket.forEach(macro => {
@@ -931,10 +1046,19 @@ export function generatePseoUrls() {
     });
   });
 
-  return urls.map(u => ({
+  const mappedUrls = urls.map(u => ({
     ...u,
     slug: u.slug.endsWith('-paranjape-blue-ridge-township-hinjewadi') 
       ? u.slug 
       : `${u.slug}-paranjape-blue-ridge-township-hinjewadi`
   }));
+
+  const uniqueUrlsMap = new Map();
+  mappedUrls.forEach(u => {
+    if (!uniqueUrlsMap.has(u.slug)) {
+      uniqueUrlsMap.set(u.slug, u);
+    }
+  });
+
+  return Array.from(uniqueUrlsMap.values());
 }

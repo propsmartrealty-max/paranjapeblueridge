@@ -20,14 +20,14 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const allUrls = generatePseoUrls();
   const projectSlugs = projects.map(p => ({ slug: p.slug }));
   const mrProjectSlugs = projects.map(p => ({ slug: `mr-${p.slug}` }));
-  const pseoSlugs = allUrls.map(u => ({ slug: u.slug }));
+  
+  // We explicitly DO NOT return all 6,600+ PSEO slugs here to prevent build timeouts & OOM.
+  // Next.js will generate the PSEO pages instantly on-demand (ISR/SSG) on their first request.
   return [
     ...projectSlugs,
     ...mrProjectSlugs,
-    ...pseoSlugs,
     { slug: 'mr-hinjewadi-micro-market' }
   ];
 }

@@ -69,10 +69,10 @@ export default function BlueprintExplorer({ projectId, projectName }: BlueprintE
                 </div>
 
                 <div className="mt-auto">
-                    <a href="#" className="flex items-center justify-center gap-3 bg-white/5 p-4 rounded-xl text-[10px] font-bold text-gold uppercase tracking-widest hover:bg-gold/10 transition-all">
+                    <button className="flex w-full items-center justify-center gap-3 bg-white/5 p-4 rounded-xl text-[10px] font-bold text-gold uppercase tracking-widest hover:bg-gold/10 transition-all">
                         <Download size={14} />
                         Download PDF
-                    </a>
+                    </button>
                 </div>
               </div>
 

@@ -11,6 +11,11 @@ const nextConfig = {
             },
         ],
     },
+    staticPageGenerationTimeout: 1000,
+    experimental: {
+        workerThreads: false,
+        cpus: 1
+    },
     trailingSlash: false,
     async redirects() {
         return [

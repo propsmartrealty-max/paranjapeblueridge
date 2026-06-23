@@ -7,12 +7,19 @@ const baseUrl = 'https://www.paranjapeblueridge.com';
 
 export async function generateSitemaps() {
   // We split the massive sitemap into logical silos for Googlebot
-  return [
+  const pseoUrlsCount = generatePseoUrls().length;
+  const pseoChunks = Math.ceil(pseoUrlsCount / 1100);
+
+  const sitemaps = [
     { id: 0 }, // Core & Projects (Static + Configs + Brochures)
     { id: 1 }, // Articles & Insights
-    { id: 2 }, // PSEO Matrix Chunk 1 (First 1000)
-    { id: 3 }, // PSEO Matrix Chunk 2 (Remaining)
   ];
+
+  for (let i = 0; i < pseoChunks; i++) {
+    sitemaps.push({ id: 2 + i });
+  }
+
+  return sitemaps;
 }
 
 export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
@@ -107,14 +114,15 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     return [...articleUrls, ...mdxUrls];
   }
 
-  if (id === 2 || id === 3) {
+  if (id >= 2) {
     // 5. Programmatic SEO Matrix Splitting
     const pseoUrlsData = generatePseoUrls();
     const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
     
-    // Chunk the 2,055 URLs into two chunks to prevent Googlebot crawl failure
+    // Chunk URLs based on the id index
     const chunkSize = 1100;
-    const chunkData = id === 2 ? pseoUrlsData.slice(0, chunkSize) : pseoUrlsData.slice(chunkSize);
+    const chunkIndex = id - 2;
+    const chunkData = pseoUrlsData.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
 
     return chunkData.map(u => {
       const isMr = u.slug.startsWith('mr-');
@@ -122,7 +130,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
 
       let priority = 0.7;
-      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions'];
+      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune'];
       const lowIntentSilos = ['competitor', 'battleground'];
       if (highIntentSilos.includes(u.silo)) {
         priority = 0.85;
