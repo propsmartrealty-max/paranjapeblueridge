@@ -85,7 +85,7 @@ export default function CustomBrochure({ params }: PageProps) {
                     </div>
                 </div>
                 <div className="w-full md:w-64">
-                    <Image src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" width={200} height={80} className="w-full h-auto opacity-20" alt="Paranjape Blue Ridge Logo" />
+                    <Image src="/assets/images/blue-ridge-logo.png" width={200} height={80} className="w-full h-auto opacity-20" alt="Paranjape Blue Ridge Logo" />
                 </div>
             </div>
 
@@ -150,7 +150,7 @@ export default function CustomBrochure({ params }: PageProps) {
             {/* Footer / Legal */}
             <div className="border-t border-navy/10 pt-12 flex flex-col md:flex-row justify-between items-end gap-10">
                 <div>
-                    <Image src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" width={200} height={24} className="h-6 w-auto mb-6 opacity-30" alt="Paranjape Schemes Construction Ltd. New Logo" />
+                    <Image src="/assets/images/paranjape-logo.svg" width={200} height={24} className="h-6 w-auto mb-6 opacity-30" alt="Paranjape Schemes Construction Ltd. New Logo" />
                     <p className="text-[10px] text-navy/40 max-w-sm">MahaRERA: {project.id === 'promenade' ? 'P52100055581' : project.id === 'altius' ? 'P52100078116' : 'P52100000054'}</p>
                 </div>
             </div>

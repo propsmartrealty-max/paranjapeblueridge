@@ -205,7 +205,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "url": SITE_URL,
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg",
+      "url": `${SITE_URL}/assets/images/paranjape-logo.svg`,
       "width": 300,
       "height": 60
     },
@@ -423,7 +423,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@type": "RealEstateAgent",
     "name": "Paranjape Schemes (Construction) Ltd.",
     "alternateName": ["Paranjape Blue Ridge", "Blue Ridge Hinjewadi", "Paranjape Schemes Pune"],
-    "image": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg",
+    "image": `${SITE_URL}/assets/images/paranjape-logo.svg`,
     "@id": `${SITE_URL}/${slug}#business`,
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",

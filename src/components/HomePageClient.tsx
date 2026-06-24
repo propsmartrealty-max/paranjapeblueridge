@@ -369,7 +369,7 @@ export default function HomePageClient() {
 
               <div className="bg-[var(--bg)] p-6 sm:p-12 rounded-2xl sm:rounded-[3rem] border border-gold/20 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
-                    <Image src="https://www.pscl.in/wp-content/uploads/2025/11/BLUE-RIDGE-LOGO.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Schemes Construction Ltd Projects - Paranjape Blue Ridge Logo" />
+                    <Image src="/assets/images/blue-ridge-logo.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Schemes Construction Ltd Projects - Paranjape Blue Ridge Logo" />
                 </div>
                 <form onSubmit={handleInlineSubmit} className="space-y-6 relative z-10">
                   {/* Honeypot field for bot protection */}
@@ -480,7 +480,7 @@ export default function HomePageClient() {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[15rem] font-serif font-black text-gold/[0.03] whitespace-nowrap pointer-events-none uppercase">BLUE RIDGE</div>
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
             <div className="col-span-1 lg:col-span-1">
-                <Image src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" width={200} height={40} className="h-10 w-auto brightness-0 invert mb-8" alt="Paranjape Schemes Construction Ltd - Top Real Estate Developers in Pune" />
+                <Image src="/assets/images/paranjape-logo.svg" width={200} height={40} className="h-10 w-auto brightness-0 invert mb-8" alt="Paranjape Schemes Construction Ltd - Top Real Estate Developers in Pune" />
                 <p className="text-text-light text-sm">Hinjewadi's first 138-acre integrated township. Paranjape projects in Hinjewadi set global benchmarks in community living with Paranjape real estate Pune legacy.</p>
             </div>
             <div>

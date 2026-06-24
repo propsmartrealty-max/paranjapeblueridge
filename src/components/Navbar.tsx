@@ -34,7 +34,7 @@ export default function Navbar() {
         >
           <Link href="/" className="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 group" aria-label="Blue Ridge Sovereign Homepage">
               <Image 
-                src="https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg" 
+                src="/assets/images/paranjape-logo.svg" 
                 alt="Paranjape Schemes Construction Ltd. - Developer Logo" 
                 width={112}
                 height={32}

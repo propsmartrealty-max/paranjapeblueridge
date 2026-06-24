@@ -232,7 +232,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     "name": "Paranjape Schemes (Construction) Ltd.",
                     "logo": {
                       "@type": "ImageObject",
-                      "url": "https://www.pscl.in/wp-content/uploads/2025/09/PARANJAPE-NEW-FINAL-LOGO.svg"
+                      "url": "https://www.paranjapeblueridge.com/assets/images/paranjape-logo.svg"
                     }
                   },
                   "mainEntityOfPage": {
