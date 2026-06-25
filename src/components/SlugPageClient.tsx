@@ -73,7 +73,7 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
         </section>
 
         {/* QUICK STATS */}
-        <section className="py-12 border-y border-white/5 bg-navy-light/20 mb-20">
+        <section aria-label="Project Highlights" className="py-12 border-y border-white/5 bg-navy-light/20 mb-20">
           <div className="container grid grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="flex items-center gap-4">
                   <Maximize className="text-gold" size={24} />
@@ -105,10 +105,10 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
         </section>
 
         {/* HERO HEADER */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <article className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* SPECIFICATIONS */}
-            <div>
-                <h2 className="text-4xl font-serif text-warm-white mb-12">{t('Technical', 'तांत्रिक')} <span className="italic font-normal text-gold">{t('Tectonics', 'टेक्टोनिक्स')}</span></h2>
+            <section aria-labelledby="specifications-title">
+                <h2 id="specifications-title" className="text-4xl font-serif text-warm-white mb-12">{t('Technical', 'तांत्रिक')} <span className="italic font-normal text-gold">{t('Tectonics', 'टेक्टोनिक्स')}</span></h2>
                 <div className="space-y-10">
                     {project.specs.map((spec, i) => (
                         <div key={i}>
@@ -124,24 +124,24 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
 
             {/* BLUEPRINT EXPLORER */}
-            <div className="bg-navy-light p-10 rounded-[3rem] border border-white/5 relative overflow-hidden">
+            <section aria-labelledby="blueprint-title" className="bg-navy-light p-10 rounded-[3rem] border border-white/5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                     <Image src="/assets/images/blue-ridge-logo.png" width={200} height={80} className="h-20 w-auto" alt="Paranjape Blue Ridge Official Identity" />
                 </div>
-                <h3 className="text-3xl font-serif text-warm-white mb-8">{t('Unit Plan', 'युनिट प्लॅन')} <span className="italic font-normal text-gold">{t('Intelligence', 'इंटेलिजन्स')}</span></h3>
+                <h3 id="blueprint-title" className="text-3xl font-serif text-warm-white mb-8">{t('Unit Plan', 'युनिट प्लॅन')} <span className="italic font-normal text-gold">{t('Intelligence', 'इंटेलिजन्स')}</span></h3>
                 <p className="text-text-light mb-10 text-sm">{t('Interactive architectural layouts featuring high-resMiVAN construction blueprints.', 'उच्च-रिझोल्यूशन मिवान बांधकाम ब्ल्यूप्रिंट्स वैशिष्ट्यीकृत परस्पर संवादात्मक आर्किटेक्चरल लेआउट.')}</p>
                 <div className="bg-navy rounded-3xl p-4 border border-white/5">
                    <BlueprintExplorer projectId={project.id} projectName={project.name} />
                 </div>
-            </div>
-        </div>
+            </section>
+        </article>
 
         {/* AMENITIES */}
-        <div className="mt-32">
-            <h2 className="text-4xl font-serif text-warm-white mb-16 text-center">{t('Exclusive', 'एक्सक्लुझिव्ह')} <span className="italic font-normal text-gold">{t('Social Infrastructure', 'सोशल इन्फ्रास्ट्रक्चर')}</span></h2>
+        <section aria-labelledby="amenities-title" className="mt-32">
+            <h2 id="amenities-title" className="text-4xl font-serif text-warm-white mb-16 text-center">{t('Exclusive', 'एक्सक्लुझिव्ह')} <span className="italic font-normal text-gold">{t('Social Infrastructure', 'सोशल इन्फ्रास्ट्रक्चर')}</span></h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {project.amenities.map((amenity, i) => (
                     <motion.div 
@@ -155,16 +155,16 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
                     </motion.div>
                 ))}
             </div>
-        </div>
+        </section>
 
         {/* INTERACTIVE ARCHITECTURAL FLOOR PLANS */}
-        <div className="mt-32">
+        <section aria-label="Interactive Floor Plans" className="mt-32">
             <InteractiveFloorPlans />
-        </div>
+        </section>
       </div>
 
       {/* FOOTER CTA */}
-      <section className="bg-gold py-20">
+      <section aria-label="Book a Site Visit" className="bg-gold py-20">
          <div className="container flex flex-col md:flex-row justify-between items-center gap-10 text-navy">
             <div>
                 <h2 className="text-5xl font-serif mb-4">Secure your <span className="italic font-normal">Sovereign Unit</span></h2>

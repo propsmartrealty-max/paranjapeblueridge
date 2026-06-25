@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import ProjectCard from '@/components/ProjectCard';
 import EnquiryModal from '@/components/EnquiryModal';
@@ -246,15 +247,15 @@ export default function HomePageClient() {
         <ComparisonMatrix />
 
         {/* PROJECT SHOWCASE SECTION */}
-        <div className="py-20">
+        <section aria-labelledby="architecture-title" className="py-20">
           <div className="text-center mb-16 sm:mb-32">
             <span className="text-gold font-bold tracking-[4px] sm:tracking-[6px] uppercase text-[10px] sm:text-xs">The Architecture</span>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 sm:mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
+            <h2 id="architecture-title" className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 sm:mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
           </div>
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} reverse={i % 2 !== 0} />
           ))}
-        </div>
+        </section>
 
         {/* LIFE BEYOND ORDINARY SECTION */}
         <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-2xl sm:rounded-[3rem] overflow-hidden my-10 sm:my-20 border border-gold/10 group">
@@ -319,22 +320,22 @@ export default function HomePageClient() {
         <IntelligenceHub />
 
         {/* CONNECTIVITY HUB SECTION */}
-        <div className="py-12 sm:py-24">
+        <section aria-labelledby="connectivity-title" className="py-12 sm:py-24">
             <div className="mb-10 sm:mb-20 text-center">
                <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px]">Infrastructure Hardening</span>
-               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">Micro-Market <span className="italic font-normal text-gilded">Connectivity</span></h2>
+               <h2 id="connectivity-title" className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">Micro-Market <span className="italic font-normal text-gilded">Connectivity</span></h2>
             </div>
             <ConnectivityHub />
-        </div>
+        </section>
 
         {/* BLOG SECTION */}
-        <div className="py-12 sm:py-24 border-t border-gold/10">
+        <section aria-labelledby="blog-title" className="py-12 sm:py-24 border-t border-gold/10">
             <div className="mb-10 sm:mb-20 text-center">
                <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px]">Thought Leadership</span>
-               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">The Sovereign <span className="italic font-normal text-gilded">Insights</span></h2>
+               <h2 id="blog-title" className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white mt-3 sm:mt-4">The Sovereign <span className="italic font-normal text-gilded">Insights</span></h2>
             </div>
             <BlogSection />
-        </div>
+        </section>
 
         {/* ENQUIRY SECTION */}
         <section id="enquiry" className="py-16 sm:py-32">
@@ -486,19 +487,19 @@ export default function HomePageClient() {
             <div>
                 <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Projects</h4>
                 <ul className="space-y-4 text-sm text-text-light list-none p-0">
-                    <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" className="hover:text-gold transition-colors">Promenade Residences</a></li>
-                    <li><a href="/paranjape-blue-ridge-altius-hinjewadi-pune" className="hover:text-gold transition-colors">The Altius</a></li>
-                    <li><a href="/paranjape-blue-ridge-41-hinjewadi-pune" className="hover:text-gold transition-colors">Ridges 41</a></li>
-                    <li><a href="/hinjewadi-micro-market" className="hover:text-gold transition-colors">Hinjewadi Micro-Market Guide</a></li>
+                    <li><Link href="/paranjape-blue-ridge-promenade-hinjewadi-pune" className="hover:text-gold transition-colors">Promenade Residences</Link></li>
+                    <li><Link href="/paranjape-blue-ridge-altius-hinjewadi-pune" className="hover:text-gold transition-colors">The Altius</Link></li>
+                    <li><Link href="/paranjape-blue-ridge-41-hinjewadi-pune" className="hover:text-gold transition-colors">Ridges 41</Link></li>
+                    <li><Link href="/hinjewadi-micro-market" className="hover:text-gold transition-colors">Hinjewadi Micro-Market Guide</Link></li>
                 </ul>
             </div>
             <div>
                 <h4 className="text-gold font-bold uppercase text-[10px] tracking-widest mb-8">Insights</h4>
                 <ul className="space-y-4 text-sm text-text-light list-none p-0">
-                    <li><a href="/insights/why-blue-ridge-hinjewadi-best-investment-2026" className="hover:text-gold transition-colors">Best Investment 2026</a></li>
-                    <li><a href="/insights/ridges-41-new-benchmark-high-rise-living-hinjewadi" className="hover:text-gold transition-colors">Ridges 41 Analysis</a></li>
-                    <li><a href="/insights/hinjewadi-metro-line-3-impact-blue-ridge-property" className="hover:text-gold transition-colors">Metro Line 3 Impact</a></li>
-                    <li><a href="/insights/blue-ridge-public-school-admission-facilities-guide" className="hover:text-gold transition-colors">School Guide</a></li>
+                    <li><Link href="/insights/why-blue-ridge-hinjewadi-best-investment-2026" className="hover:text-gold transition-colors">Best Investment 2026</Link></li>
+                    <li><Link href="/insights/ridges-41-new-benchmark-high-rise-living-hinjewadi" className="hover:text-gold transition-colors">Ridges 41 Analysis</Link></li>
+                    <li><Link href="/insights/hinjewadi-metro-line-3-impact-blue-ridge-property" className="hover:text-gold transition-colors">Metro Line 3 Impact</Link></li>
+                    <li><Link href="/insights/blue-ridge-public-school-admission-facilities-guide" className="hover:text-gold transition-colors">School Guide</Link></li>
                 </ul>
             </div>
             <div>

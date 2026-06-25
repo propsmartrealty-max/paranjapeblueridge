@@ -27,13 +27,14 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light mb-10">
-      <Link href={getLocalizedHref('/')} className="hover:text-gold transition-colors flex items-center gap-1.5">
-        <Home size={10} />
-        {t('Home', 'होम')}
-      </Link>
-      
-      <ol className="flex items-center gap-2">
+    <nav aria-label="Breadcrumb" className="mb-10">
+      <ol className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light">
+        <li className="flex items-center">
+          <Link href={getLocalizedHref('/')} className="hover:text-gold transition-colors flex items-center gap-1.5">
+            <Home size={10} />
+            {t('Home', 'होम')}
+          </Link>
+        </li>
         {items.map((item, idx) => (
           <li key={idx} className="flex items-center gap-2">
             <ChevronRight size={10} className="opacity-30" />

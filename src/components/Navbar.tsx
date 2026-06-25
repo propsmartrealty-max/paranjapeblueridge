@@ -7,6 +7,7 @@ import { projects } from '@/data/master-data';
 import LanguageToggle from './LanguageToggle';
 import AtmosphereToggle from './AtmosphereToggle';
 import { useLanguage } from '@/context/LanguageContext';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -14,6 +15,17 @@ export default function Navbar() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleScrollTo = (hashId: string) => {
+    setIsOpen(false);
+    if (pathname !== '/') {
+      router.push(`/#${hashId}`);
+    } else {
+      document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
@@ -61,10 +73,7 @@ export default function Navbar() {
             })}
             <li>
               <button 
-                onClick={() => {
-                  if (window.location.pathname !== '/') window.location.href = '/';
-                  else document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' });
-                }} 
+                onClick={() => handleScrollTo('amenities')} 
                 className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
                 aria-label="Scroll to Township Amenities"
               >
@@ -73,10 +82,7 @@ export default function Navbar() {
             </li>
             <li>
               <button 
-                onClick={() => {
-                  if (window.location.pathname !== '/') window.location.href = '/';
-                  else document.getElementById('market')?.scrollIntoView({ behavior: 'smooth' });
-                }} 
+                onClick={() => handleScrollTo('market')} 
                 className="text-xs font-bold text-warm-white/80 hover:text-gold uppercase tracking-widest transition-colors cursor-pointer bg-transparent border-none"
                 aria-label="Scroll to Insights"
               >
@@ -106,10 +112,7 @@ export default function Navbar() {
               <Image src="/assets/images/whatsapp-icon.png" alt="WhatsApp Icon" width={32} height={32} className="w-full h-full object-contain p-1" />
             </a>
             <button 
-              onClick={() => {
-                if (window.location.pathname !== '/') window.location.href = '/';
-                else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => handleScrollTo('enquiry')}
               className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg cursor-pointer border-none"
               aria-label="Open Enquiry Form"
             >
@@ -147,19 +150,19 @@ export default function Navbar() {
             <ul className="space-y-8 list-none p-0 m-0">
                 {projects.map(p => (
                     <li key={p.id}>
-                        <a 
+                        <Link 
                             href={`/${p.slug}`} 
                             onClick={() => setIsOpen(false)}
                             className="text-4xl font-serif text-warm-white hover:text-gold transition-colors block"
                         >
                             {t(p.name, p.id === 'promenade' ? 'प्रॉमनेड' : p.id === 'altius' ? 'अल्टियस' : '४१ रिज')}
-                        </a>
+                        </Link>
                     </li>
                 ))}
                 <li>
-                    <a href="/hinjewadi-micro-market" onClick={() => setIsOpen(false)} className="text-4xl font-serif text-gold block">
+                    <Link href="/hinjewadi-micro-market" onClick={() => setIsOpen(false)} className="text-4xl font-serif text-gold block">
                         {t('Area Guide', 'एरिया गाइड')}
-                    </a>
+                    </Link>
                 </li>
             </ul>
 
@@ -179,11 +182,7 @@ export default function Navbar() {
                     Connect on WhatsApp
                 </a>
                 <button 
-                    onClick={() => {
-                      setIsOpen(false);
-                      if (window.location.pathname !== '/') window.location.href = '/';
-                      else document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' });
-                    }} 
+                    onClick={() => handleScrollTo('enquiry')} 
                     className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest cursor-pointer border-none"
                     aria-label="Open Enquiry Form"
                 >
