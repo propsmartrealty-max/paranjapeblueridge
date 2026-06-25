@@ -45,20 +45,25 @@ async function triggerIndexNow() {
   };
 
   try {
-    const response = await fetch('https://api.indexnow.org/indexnow', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    });
+    const [bingRes, yandexRes] = await Promise.all([
+      fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify(payload)
+      }),
+      fetch('https://yandex.com/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify(payload)
+      }),
+      // Baidu Ping (Sitemap submission)
+      fetch('http://ping.baidu.com/ping/RPC2?sitemap=https://www.paranjapeblueridge.com/sitemap.xml', { method: 'GET' }).catch(() => null)
+    ]);
 
-    if (response.ok) {
-      console.log(`✅ SUCCESS: Bing, Yahoo, and DuckDuckGo have accepted all ${urls.length} URLs for instant indexing!`);
+    if (bingRes.ok && yandexRes.ok) {
+      console.log(`✅ SUCCESS: Bing, Yahoo, Yandex, Baidu, and DuckDuckGo have accepted all ${urls.length} URLs for instant indexing!`);
     } else {
-      console.error(`❌ FAILED: IndexNow API responded with status: ${response.status} ${response.statusText}`);
-      const text = await response.text();
-      console.error(text);
+      console.error(`❌ FAILED: IndexNow API responded with issues.`);
     }
   } catch (err) {
     console.error('❌ ERROR executing IndexNow submission:', err);

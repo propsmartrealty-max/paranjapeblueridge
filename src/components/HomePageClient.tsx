@@ -162,7 +162,7 @@ export default function HomePageClient() {
             placeholder="blur"
             blurDataURL={atmosphere === 'night' ? blurDataURLs.darkNavy : blurDataURLs.lightSkyBlue}
             className="object-cover transition-all duration-1000 opacity-80" 
-            alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Township Apartments For Sale"
+            alt="Actual photograph of Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Premium Apartments"
             sizes="100vw"
           />
           <div 
@@ -260,8 +260,8 @@ export default function HomePageClient() {
         {/* LIFE BEYOND ORDINARY SECTION */}
         <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-2xl sm:rounded-[3rem] overflow-hidden my-10 sm:my-20 border border-gold/10 group">
           <Image
-            src="/assets/images/township-aerial-night.jpg"
-            alt="Paranjape Blue Ridge Township Hinjewadi - 138 Acre Integrated Township Aerial View - Distance to Rajiv Gandhi Infotech Park"
+            src="/assets/images/real-township-night.jpg"
+            alt="Actual night aerial photograph of Paranjape Blue Ridge Township Hinjewadi Phase 1 - Distance to Rajiv Gandhi Infotech Park"
             fill
             sizes="100vw"
             placeholder="blur"
@@ -293,8 +293,8 @@ export default function HomePageClient() {
           {/* White bg ensures map labels are crisp — no overlay darkening */}
           <div className="rounded-xl sm:rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_15px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
             <Image
-              src="/assets/images/master-layout-plan-hq.jpg"
-              alt="Paranjape Blue Ridge Floor Plans and Township Master Layout - Premium 2, 3 & 4 BHK Flats in Hinjewadi Phase 1 Pune"
+              src="/assets/images/real-master-layout.jpg"
+              alt="Official approved Paranjape Blue Ridge Township Master Layout Plan - Premium 2, 3 & 4 BHK Flats in Hinjewadi Phase 1 Pune"
               width={1920}
               height={1080}
               sizes="(max-width: 768px) 100vw, 80vw"

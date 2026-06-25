@@ -66,12 +66,12 @@ export default function MicroMarketGuide({ searchParams }: PageProps) {
       <section className="relative h-[60vh] flex items-end pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/assets/images/township-night.png"
+            src="/assets/images/real-township-night.jpg"
             fill
             priority
             sizes="100vw"
             className="object-cover opacity-20 grayscale"
-            alt="Hinjewadi Phase 1 IT Hub — Paranjape Blue Ridge Integrated Township Overview"
+            alt="Actual night view of Hinjewadi Phase 1 IT Hub and Paranjape Blue Ridge Integrated Township"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-transparent"></div>
         </div>

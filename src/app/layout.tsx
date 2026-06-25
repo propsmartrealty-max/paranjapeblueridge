@@ -129,7 +129,7 @@ export const metadata: Metadata = {
     description: 'Paranjape Blue Ridge is Hinjewadi\'s premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.',
     url: 'https://www.paranjapeblueridge.com',
     siteName: 'Paranjape Blue Ridge Sovereign Portal',
-    images: [{ url: 'https://www.paranjapeblueridge.com/assets/images/township-night.png', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
+    images: [{ url: 'https://www.paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
     type: 'website',
   },
   twitter: {
@@ -137,7 +137,19 @@ export const metadata: Metadata = {
     site: '@ParanjapeSchemes',
     title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
     description: 'Premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with golf course and boat club.',
-    images: ['https://www.paranjapeblueridge.com/assets/images/township-night.png'],
+    images: ['https://www.paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal'],
+  },
+  appleWebApp: {
+    capable: true,
+    title: 'Blue Ridge',
+    statusBarStyle: 'black-translucent',
+    startupImage: [
+      'https://www.paranjapeblueridge.com/assets/images/township-night.png',
+    ],
+  },
+  itunes: {
+    appId: '123456789',
+    appArgument: 'https://www.paranjapeblueridge.com',
   },
 };
 

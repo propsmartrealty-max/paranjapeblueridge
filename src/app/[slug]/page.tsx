@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         site: '@ParanjapeSchemes',
         title,
         description,
-        images: [`${SITE_URL}/assets/images/township-night.png`],
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(title)}&intent=Micro-Market Guide&type=Sovereign Portal`],
       },
     };
   }
@@ -135,7 +135,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         site: '@ParanjapeSchemes',
         title,
         description,
-        images: [`${SITE_URL}/assets/images/township-night.png`],
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(title)}&intent=${encodeURIComponent(pseoData.intent)}&type=Sovereign Portal`],
       },
       other: {
         'geo.region': 'IN-MH',
@@ -194,7 +194,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         site: '@ParanjapeSchemes',
         title,
         description,
-        images: [`${SITE_URL}/assets/images/township-night.png`],
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(project.name)}&intent=${encodeURIComponent(project.tagline)}&type=Project Configuration`],
       },
       other: {
         'geo.region': 'IN-MH',

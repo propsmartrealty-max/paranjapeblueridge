@@ -29,7 +29,7 @@ export default function BlogSection() {
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 border border-white/10 group-hover:border-gold/30 transition-all duration-500">
                 <Image 
                   src={article.image} 
-                  alt={article.title}
+                  alt={`Paranjape Blue Ridge Real Estate Insights: ${article.title}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"

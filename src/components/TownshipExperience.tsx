@@ -48,13 +48,13 @@ export default function TownshipExperience() {
 
       <div className="mt-32 relative h-[50vh] min-h-[500px] md:h-[600px] rounded-[3rem] overflow-hidden group">
          <Image 
-           src="/assets/images/amenities-lifestyle.png" 
-           alt="Paranjape Blue Ridge Township Lifestyle - Integrated Amenities including Golf Course and Boat Club" 
-           fill
-           sizes="100vw"
-           placeholder="blur"
-           blurDataURL={blurDataURLs.lightSkyBlue}
-           className="object-cover transition-transform duration-[3s] group-hover:scale-110" 
+            src="/assets/images/real-township-day-2.jpg"
+            alt="Actual photograph of Blue Ridge Township lifestyle amenities - Boat Club, Golf Course, and Riverfront living in Hinjewadi"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            placeholder="blur"
+            blurDataURL={blurDataURLs.lightSkyBlue}
+            className="object-cover group-hover:scale-105 transition-transform duration-1000"
          />
          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/40 to-transparent"></div>
          <div className="absolute inset-0 flex items-center p-20">

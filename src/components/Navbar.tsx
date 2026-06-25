@@ -109,7 +109,7 @@ export default function Navbar() {
               title="Chat on WhatsApp"
               aria-label="Chat on WhatsApp"
             >
-              <Image src="/assets/images/whatsapp-icon.png" alt="WhatsApp Icon" width={32} height={32} className="w-full h-full object-contain p-1" />
+              <Image src="/assets/images/whatsapp-icon.png" alt="Contact Paranjape Blue Ridge Hinjewadi Sales via WhatsApp" width={32} height={32} className="w-full h-full object-contain p-1" />
             </a>
             <button 
               onClick={() => handleScrollTo('enquiry')}

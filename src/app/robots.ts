@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
         disallow: '/',
       },
-      // 3. Block AI Scrapers & Data Miners (Protect Proprietary Data)
+      // 3. Allow AI Scrapers ONLY on the designated Context File (/llm.txt)
       {
         userAgent: [
           'GPTBot',
@@ -41,6 +41,7 @@ export default function robots(): MetadataRoute.Robots {
           'Omgili',
           'Omgilibot',
         ],
+        allow: '/llm.txt',
         disallow: '/',
       },
       // 4. Universal rule for standard bots (Fallback)

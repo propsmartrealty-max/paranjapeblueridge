@@ -792,7 +792,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "@type": "Product",
       "name": pseoData.title,
       "description": pseoData.intent,
-      "image": `${SITE_URL}/assets/images/township-night.png`,
+      "image": {
+        "@type": "ImageObject",
+        "@id": `${SITE_URL}/${pseoData.slug}#primary-image`,
+        "url": `${SITE_URL}/api/og?title=${encodeURIComponent(pseoData.title)}&type=Sovereign%20Portal`,
+        "width": 1200,
+        "height": 630
+      },
       "brand": { "@type": "Brand", "name": "Paranjape Schemes" },
       "offers": {
         "@type": "Offer",

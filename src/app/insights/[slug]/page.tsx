@@ -9,6 +9,7 @@ import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { getPostBySlug, getAllPosts } from '@/utils/mdxUtils';
 import ReactMarkdown from 'react-markdown';
+import SemanticRecommender from '@/components/SemanticRecommender';
 
 interface ArticlePageProps {
   params: {
@@ -169,48 +170,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         {/* CLIENT INTERACTION CTA BANNER */}
         <ArticleModalWrapper />
 
-        {/* RELATED PROJECTS */}
-        <div className="mt-20 border-t border-white/5 pt-16">
-          <h3 className="text-gold font-bold tracking-[6px] uppercase text-[10px] mb-8">Explore Projects</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <Link
-                key={project.id}
-                href={`/${project.slug}`}
-                className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-gold/30 transition-all"
-              >
-                <h4 className="text-warm-white font-serif text-lg group-hover:text-gold transition-colors mb-2">
-                  {project.name}
-                </h4>
-                <p className="text-[10px] text-gold uppercase tracking-widest font-bold mb-3">{project.tagline}</p>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-text-light">{project.price}</span>
-                  <ArrowRight size={14} className="text-gold/30 group-hover:text-gold transition-colors" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* MORE ARTICLES */}
-        <div className="mt-16 border-t border-white/5 pt-16">
-          <h3 className="text-gold font-bold tracking-[6px] uppercase text-[10px] mb-8">More Insights</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {articles.filter(a => a.slug !== params.slug).slice(0, 4).map((a) => (
-              <Link
-                key={a.slug}
-                href={`/insights/${a.slug}`}
-                className="group flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-gold/30 transition-all"
-              >
-                <Tag size={16} className="text-gold mt-1 shrink-0" />
-                <div>
-                  <span className="text-[8px] text-gold uppercase tracking-widest block mb-1">{a.category}</span>
-                  <span className="text-sm text-warm-white group-hover:text-gold transition-colors">{a.title}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+        {/* SEMANTIC RECOMMENDER */}
+        <SemanticRecommender currentSlug={article.slug} silo={article.category ? (article.category as string).toLowerCase().replace(/\s+/g, '-') : 'news'} />
 
         {/* JSON-LD Article Schema (server-rendered dynamic graph) */}
         <script

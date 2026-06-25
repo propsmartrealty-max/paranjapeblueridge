@@ -42,13 +42,13 @@ export default function SlugPageClient({ slug }: SlugPageClientProps) {
         <section className="relative h-[70vh] flex items-end pb-20 overflow-hidden mb-20 rounded-[2rem]">
           <div className="absolute inset-0 z-0">
             <Image 
-              src={project.id === 'promenade' ? '/assets/images/sky-lounge.png' : 
-                   project.id === 'altius' ? '/assets/images/altius-riverside.png' : 
-                   '/assets/images/ridges-41.png'} 
+              src={project.id === 'promenade' ? '/assets/images/real-township-day.jpg' : 
+                   project.id === 'altius' ? '/assets/images/real-altius-view.jpg' : 
+                   '/assets/images/real-township-day-2.jpg'} 
               fill
               priority
               className="object-cover opacity-30 grayscale-[0.3]"
-              alt={`Paranjape Blue Ridge ${project.name} - Official Showcase`}
+              alt={`Actual view of Paranjape Blue Ridge ${project.name} - Premium ${project.configurations.map(c => c.numberOfRooms + ' BHK').join(', ')} Flats in Hinjewadi Phase 1 Pune`}
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>

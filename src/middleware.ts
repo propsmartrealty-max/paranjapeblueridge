@@ -3,7 +3,13 @@ import type { NextRequest } from 'next/server';
 
 // Extremely aggressive bots that drain crawl budget or scrape proprietary data
 export function middleware(req: NextRequest) {
-
+  // 1. Crawl Budget Defense: Block aggressive useless scraping bots
+  const userAgent = req.headers.get('user-agent') || '';
+  const badBots = ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot', 'Rogerbot', 'BLEXBot'];
+  
+  if (badBots.some(bot => userAgent.includes(bot))) {
+    return new NextResponse('Access Denied: Crawl Budget Defense Active.', { status: 403 });
+  }
   // Extract geographical data from Vercel Edge/Next.js Edge Headers
   // On Vercel, the header 'x-vercel-ip-country' is automatically populated.
   // We provide a fallback 'IN' (India) for local development or missing headers.
