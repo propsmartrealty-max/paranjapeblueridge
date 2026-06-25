@@ -1,0 +1,48 @@
+name: Google Indexing API Daily Sync
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
+
+jobs:
+  sync-indexing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # Required to push the cache file back to the repo
+          fetch-depth: 0 
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use the version matching your project
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Google Indexing API Sync
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: npx tsx scripts/trigger-google-indexing.ts
+
+      - name: Commit and Push Cache State
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Check if the cache file was modified
+          if git diff --quiet .google-index-cache.json; then
+            echo "No changes in indexing cache to commit."
+          else
+            git add .google-index-cache.json
+            git commit -m "chore(seo): update google indexing api state cache [skip ci]"
+            git push
+            echo "Successfully pushed updated indexing state cache."
+          fi
