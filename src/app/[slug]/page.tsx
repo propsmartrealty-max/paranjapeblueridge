@@ -95,6 +95,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'ecosystem': `${pseoData.intent} at Paranjape Blue Ridge — Golf course, riverfront boat club & ICSE school in one 138-acre township. Premium 2, 3 & 4 BHK flats in Hinjewadi Phase 1, Pune.`,
       'infra-guide': `${pseoData.intent} — Expert guide by Blue Ridge Hinjewadi's official portal. Infrastructure data, connectivity maps & property impact analysis for Pune's #1 township.`,
       'pune-macro': `${pseoData.intent} — Paranjape Blue Ridge: Pune's premier 138-acre integrated township. Golf course, boat club, ICSE school. 2, 3 & 4 BHK luxury residences in Hinjewadi Phase 1.`,
+      'luxury-pune': `${pseoData.intent} — Premium luxury configurations at Paranjape Blue Ridge. Golf view apartments, riverfront decks, high ROI, and Grade-A build quality in Pune West.`,
+      'exact-match': `${pseoData.intent} — Official configurations, pricing, and resale metrics for Paranjape Blue Ridge Hinjewadi Phase 1. Explore Pune's top integrated township.`,
+      'hyperlocal-seo': `${pseoData.intent} — Discover elite configurations in Pune's core tech corridors. Premium residences with high connectivity and lifestyle upgrades.`,
+      'feature-seo': `${pseoData.intent} — Golf-facing, riverfront, and gated township residences at Paranjape Blue Ridge. 2, 3, 4 & 5 BHK options in Hinjewadi Phase 1, Pune.`,
+      'intent-seo': `${pseoData.intent} — Premium flats for sale in Pune West's most covetable real estate developments. Book a site visit and download cost sheets today.`,
+      'competitor': `${pseoData.intent} — Smart township alternative to surrounding standalone builds. Walk-to-work access, dedicated metro transit, and complete infrastructure.`,
+      'hinjewadi-market': `${pseoData.intent} — Hinjewadi Phase 1 real estate insights, RERA audits, metro stations proximity, and pricing guides for Paranjape Blue Ridge.`,
+      'township': `${pseoData.intent} — Live at Pune's undisputed #1 integrated township. Golf course, Mula river boat club, ICSE school inside, and premium high-rise options.`,
+      'buyer-intent': `${pseoData.intent} — Premium configurations, carpet areas, ready possession dates, and pricing sheet at Paranjape Blue Ridge Hinjewadi Phase 1.`,
     };
     const description = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
 

@@ -597,10 +597,14 @@ export const seoMatrix = {
     "Buy Luxury Home Pune", "Buy Luxury Apartment Pune", "Buy Luxury Flat Pune", "Luxury Homes For Sale Pune", "Luxury Property For Sale Pune", "Luxury Apartments Near IT Park Pune", "Luxury Homes Near Metro Pune", "Ready To Move Luxury Homes Pune", "Under Construction Luxury Homes Pune", "Best Luxury Apartments Pune", "Top Luxury Projects Pune", "Premium Homes Pune For Sale", "Invest In Luxury Property Pune", "Luxury Real Estate Investment Pune", "Best Luxury Township Pune", "Luxury Homes Near Hinjewadi IT Park", "Luxury Homes Near Baner Pune", "Luxury Homes Near Balewadi High Street", "Luxury Homes Near Pune Metro"
   ],
   advancedCombinatorial: {
-    locations: ["Baner", "Balewadi", "Hinjewadi", "Wakad", "Kharadi", "Bavdhan", "West Pune", "Baner Pashan Link Road", "Aundh", "Koregaon Park", "Viman Nagar", "Kalyani Nagar"],
+    locations: [
+      "Baner", "Balewadi", "Hinjewadi", "Wakad", "Kharadi", "Bavdhan", "West Pune", "Baner Pashan Link Road", 
+      "Aundh", "Koregaon Park", "Viman Nagar", "Kalyani Nagar", "Mahalunge", "Tathawade", "Ravet", 
+      "Punawale", "Pimple Nilakh", "Pimple Saudagar", "Mundhwa", "Hadapsar"
+    ],
     configurations: ["2 BHK", "3 BHK", "4 BHK", "5 BHK", "Penthouse", "Duplex", "Sky Villa", "Villa"],
-    propertyTypes: ["Apartments", "Flats", "Homes", "Residences", "Housing", "Property", "Projects"],
-    modifiers: ["Luxury", "Premium", "Ultra Luxury", "Spacious", "Large"],
+    propertyTypes: ["Apartments", "Flats", "Homes", "Residences", "Housing", "Property", "Projects", "Penthouses", "Duplexes", "Sky Villas"],
+    modifiers: ["Luxury", "Premium", "Ultra Luxury", "Spacious", "Large", "Elite", "Exclusive", "High End", "Prestigious"],
     features: ["Township", "Golf View", "River View", "High Rise", "Gated Community"],
     intents: ["Buy", "Investment", "For Sale"]
   }
