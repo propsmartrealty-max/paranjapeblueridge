@@ -254,19 +254,48 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     }
   };
 
-  // --- Breadcrumb Schema ---
+  // --- Breadcrumb Schema (Hierarchical Deep Parsing) ---
   const breadcrumbItems: { name: string; url: string }[] = [
     { name: t("Home", "होम"), url: SITE_URL }
   ];
 
-  if (slug) {
-    // Determine breadcrumb label from available data
-    const pseoLabel = pseoData?.title;
-    breadcrumbItems.push({
-      name: pseoLabel || slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-      url: `${SITE_URL}/${slug}`
-    });
-  }
+  const pathSegments = pathname.split('/').filter(Boolean);
+  let accumulatedPath = '';
+
+  pathSegments.forEach((segment) => {
+    // Strip language prefixes for clean matching
+    const matchSegment = segment.replace(/^mr-/, '');
+    accumulatedPath += `/${segment}`;
+
+    // 1. Check if it's a project
+    const proj = projects.find(p => p.slug === matchSegment || p.slug === segment);
+    if (proj) {
+      breadcrumbItems.push({ name: proj.name, url: `${SITE_URL}${accumulatedPath}` });
+      return;
+    }
+
+    // 2. Check if it's a configuration inside any project
+    const allConfigs = projects.flatMap(p => p.configurations || []);
+    const conf = allConfigs.find(c => c.slug === matchSegment || c.slug === segment);
+    if (conf) {
+      breadcrumbItems.push({ name: conf.title, url: `${SITE_URL}${accumulatedPath}` });
+      return;
+    }
+
+    // 3. Check if it's a PSEO page
+    const pseo = allUrls.find(u => u.slug === matchSegment || u.slug === segment);
+    if (pseo) {
+      breadcrumbItems.push({ name: pseo.title, url: `${SITE_URL}${accumulatedPath}` });
+      return;
+    }
+
+    // 4. Default clean fallback representation
+    const fallbackName = segment
+      .split('-')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+    breadcrumbItems.push({ name: fallbackName, url: `${SITE_URL}${accumulatedPath}` });
+  });
 
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",
