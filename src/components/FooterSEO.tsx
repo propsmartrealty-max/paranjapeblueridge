@@ -1,5 +1,5 @@
 import React from 'react';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { generatePseoUrls, longTailUrls } from '@/data/seo-matrix';
 
 export default function FooterSEO() {
   const pseoUrls = generatePseoUrls();
