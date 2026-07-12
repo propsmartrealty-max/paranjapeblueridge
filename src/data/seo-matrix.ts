@@ -1065,4 +1065,8 @@ export function generatePseoUrls() {
   });
 
   return Array.from(uniqueUrlsMap.values());
+
 }
+
+export const longTailUrls = generatePseoUrls();
+

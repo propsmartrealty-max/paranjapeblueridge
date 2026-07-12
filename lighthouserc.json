@@ -1,0 +1,18 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["http://localhost:3005"],
+      "numberOfRuns": 1,
+      "staticDistDir": "./public",
+      "settings": {
+        "chromeFlags": "--headless"
+      }
+    },
+    "assert": {
+      "preset": "lhci:auto"
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

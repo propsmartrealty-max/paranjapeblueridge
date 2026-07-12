@@ -12,6 +12,7 @@ const nextConfig = {
         ],
     },
     staticPageGenerationTimeout: 1000,
+    pageExtensions: ['tsx', 'mdx'],
     experimental: {
         workerThreads: false,
         cpus: 1

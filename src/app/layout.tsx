@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { headers } from 'next/headers';
 import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
+import SeoHead from "@/components/SeoHead";
 import StickyCTA from "@/components/StickyCTA";
 import PulseNotifications from "@/components/PulseNotifications";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -187,8 +188,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://vercel.live" />
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
-        <JSONLD pathname={pathname} />
-        <SpeculationRules />
+        <SeoHead pathname={pathname} />
       </head>
       <body className="antialiased" data-country={country}>
         <LanguageProvider>
