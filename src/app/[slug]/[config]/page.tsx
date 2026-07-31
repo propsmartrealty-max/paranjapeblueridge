@@ -3,7 +3,7 @@ import { projects } from '@/data/master-data';
 import { notFound } from 'next/navigation';
 import ConfigPageClient from './ConfigPageClient';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 // Pre-render all config sub-pages as static HTML at build time
 export async function generateStaticParams() {
@@ -68,7 +68,7 @@ export default function ConfigPage({ params }: { params: { slug: string; config:
   return (
     <>
       {/* Server-rendered SEO hidden content for Googlebot first-wave indexing */}
-      <div className="sr-only" aria-hidden="false">
+      <div className="container mx-auto px-6 py-12 mt-20 border-t border-white/10 text-xs text-text-light/50 space-y-4 prose prose-invert max-w-none prose-a:text-gold hover:prose-a:text-gold-light">
         <h1>{configuration.title} in {project.name} — Paranjape Blue Ridge Hinjewadi Phase 1</h1>
         <p>
           {configuration.title} at {project.name}, Paranjape Blue Ridge, Hinjewadi Phase 1, Pune.

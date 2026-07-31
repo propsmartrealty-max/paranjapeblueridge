@@ -4,7 +4,7 @@ import { getAllPosts } from '@/utils/mdxUtils';
 import { articles } from '@/data/master-data';
 import Navbar from '@/components/Navbar';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 export const metadata: Metadata = {
   title: 'Insights & Research — Paranjape Blue Ridge Hinjewadi | Real Estate Intelligence',

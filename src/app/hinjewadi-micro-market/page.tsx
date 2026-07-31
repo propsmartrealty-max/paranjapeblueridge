@@ -8,7 +8,7 @@ import { TrendingUp, Users, TrainFront } from 'lucide-react';
 import { Metadata } from 'next';
 import LanguageInitializer from '@/components/LanguageInitializer';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 interface PageProps {
   searchParams?: {

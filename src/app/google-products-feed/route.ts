@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { projects } from '@/data/master-data';
 
 export async function GET() {
-  const SITE_URL = 'https://www.paranjapeblueridge.com';
+  const SITE_URL = 'https://paranjapeblueridge.com';
 
   const feedItems = projects.flatMap((project) => {
     return project.configurations.map((config) => {

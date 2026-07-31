@@ -57,8 +57,8 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 2, // Slow down generic scrapers to protect server resources
       },
     ],
-    sitemap: 'https://www.paranjapeblueridge.com/sitemap.xml',
-    host: 'https://www.paranjapeblueridge.com',
+    sitemap: 'https://paranjapeblueridge.com/sitemap.xml',
+    host: 'https://paranjapeblueridge.com',
   };
 }
 

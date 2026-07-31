@@ -6,7 +6,7 @@ import PrintButton from '@/components/PrintButton';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 interface PageProps {
   params: {

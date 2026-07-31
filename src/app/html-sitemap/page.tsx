@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Complete Property Sitemap | Paranjape Blue Ridge',
   description: 'Explore the complete directory of all configurations, locations, and premium real estate properties at Paranjape Blue Ridge Hinjewadi, Pune.',
   alternates: {
-    canonical: 'https://www.paranjapeblueridge.com/html-sitemap',
+    canonical: 'https://paranjapeblueridge.com/html-sitemap',
   }
 };
 

@@ -3,7 +3,7 @@ import HomePageClient from '@/components/HomePageClient';
 import LanguageInitializer from '@/components/LanguageInitializer';
 import { Metadata } from 'next';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 export const metadata: Metadata = {
   title: "परंजपे ब्लू रिज हिंजवडी | पुण्यातील प्रीमियम २, ३, ४ आणि ५ बीएचके इंटिग्रेटेड टाऊनशिप",
@@ -37,7 +37,7 @@ export default function HomeMr() {
     <>
       <LanguageInitializer lang="mr" />
       {/* Homepage-only SEO content — speakable, screen-reader accessible, not repeated on other pages */}
-      <div className="sr-only" aria-hidden="false">
+      <div className="container mx-auto px-6 py-12 mt-20 border-t border-white/10 text-xs text-text-light/50 space-y-4 prose prose-invert max-w-none prose-a:text-gold hover:prose-a:text-gold-light">
         <h1 id="speakable-title">परंजपे ब्लू रिज हिंजवडी — पुण्यातील १३८-एकरी टाऊनशिपमध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके फ्लॅट्स</h1>
         <p id="speakable-summary">राजीव गांधी इन्फोटेक पार्क जवळील हिंजवडी फेज १ मध्ये वसलेल्या पुण्याच्या सर्वात प्रसिद्ध १३८-एकरी एकात्मिक टाऊनशिप, परंजपे ब्लू रिज पुणे मध्ये आपले स्वागत आहे. परंजपे ब्लू रिज अपार्टमेंट्स खरेदी आणि भाड्याने देण्यासाठी सर्वोच्च ठिकाण म्हणून ओळखले जाते. वॉक-टू-वर्क जीवनशैलीसह प्रीमियम २ बीएचके, ३ बीएचके, ४ बीएचके आणि ५ बीएचके लक्झरी फ्लॅट्स ऑफर करत आहे. द रिज ४१, अल्टियस, ओरियन आणि टॉवर्स १ ते २६ चे घर, यामध्ये खाजगी ९-होल गोल्फ कोर्स, टाऊनशिपच्या आति ब्लू रिज पब्लिक स्कूल (आयसीएसई), मुळा नदीवरील खाजगी बोट क्लब आणि थेट इन्फोसिस, विप्रो आणि टीसीएस कॅम्पसमध्ये प्रवेश समाविष्ट आहे. ब्लू रिज विरुद्ध लाईफ रिपब्लिक किंवा मेगापोलिसची तुलना करा आणि पुणे वेस्ट मधील सर्वोत्तम लक्झरी रिअल इस्टेट गुंतवणुकीचा शोध घ्या, जे बाणेर, बालेवाडी आणि आगामी हिंजवडी मेट्रो स्टेशनपासून काही मिनिटांच्या अंतरावर आहे.</p>
         <ul>

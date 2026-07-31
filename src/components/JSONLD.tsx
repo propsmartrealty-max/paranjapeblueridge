@@ -2,7 +2,7 @@ import React from 'react';
 import { generatePseoUrls } from '@/data/seo-matrix';
 import { projects } from '@/data/master-data';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
   const t = (en: string, mr: string) => isMarathi ? mr : en;

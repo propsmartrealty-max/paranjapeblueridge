@@ -16,14 +16,14 @@ export async function GET() {
     "publisher": {
       "@type": "Organization",
       "name": "Paranjape Schemes (Construction) Ltd.",
-      "url": "https://www.paranjapeblueridge.com"
+      "url": "https://paranjapeblueridge.com"
     },
     "dataFeedElement": projects.map(project => ({
       "@type": "RealEstateListing",
       "name": `${project.name} at Paranjape Blue Ridge`,
       "description": project.description,
-      "url": `https://www.paranjapeblueridge.com/${project.slug}`,
-      "image": `https://www.paranjapeblueridge.com/assets/images/township-night.png`,
+      "url": `https://paranjapeblueridge.com/${project.slug}`,
+      "image": `https://paranjapeblueridge.com/assets/images/township-night.png`,
       "datePosted": "2026-01-01T00:00:00Z",
       "offers": {
         "@type": "AggregateOffer",

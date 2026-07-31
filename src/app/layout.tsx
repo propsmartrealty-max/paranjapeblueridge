@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.paranjapeblueridge.com'),
+  metadataBase: new URL('https://paranjapeblueridge.com'),
   robots: {
     index: true,
     follow: true,
@@ -119,10 +119,10 @@ export const metadata: Metadata = {
     "nri investment property pune hinjewadi", "pune property appreciation", "ready possession flats hinjewadi 2026"
   ],
   alternates: {
-    canonical: 'https://www.paranjapeblueridge.com',
+    canonical: 'https://paranjapeblueridge.com',
     languages: {
-      'en-IN': 'https://www.paranjapeblueridge.com',
-      'mr-IN': 'https://www.paranjapeblueridge.com/mr',
+      'en-IN': 'https://paranjapeblueridge.com',
+      'mr-IN': 'https://paranjapeblueridge.com/mr',
     },
   },
   openGraph: {
@@ -130,9 +130,9 @@ export const metadata: Metadata = {
     alternateLocale: ['mr_IN'],
     title: 'Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune',
     description: 'Paranjape Blue Ridge is Hinjewadi\'s premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.',
-    url: 'https://www.paranjapeblueridge.com',
+    url: 'https://paranjapeblueridge.com',
     siteName: 'Paranjape Blue Ridge Sovereign Portal',
-    images: [{ url: 'https://www.paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
+    images: [{ url: 'https://paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal', width: 1200, height: 630, alt: 'Paranjape Blue Ridge Hinjewadi — 138-Acre Integrated Township' }],
     type: 'website',
   },
   twitter: {
@@ -140,14 +140,14 @@ export const metadata: Metadata = {
     site: '@ParanjapeSchemes',
     title: 'Paranjape Blue Ridge Hinjewadi | 138-Acre Integrated Township',
     description: 'Premium 2, 3 & 4 BHK residences at Hinjewadi Phase 1. Walk-to-work lifestyle with golf course and boat club.',
-    images: ['https://www.paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal'],
+    images: ['https://paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal'],
   },
   appleWebApp: {
     capable: true,
     title: 'Blue Ridge',
     statusBarStyle: 'black-translucent',
     startupImage: [
-      'https://www.paranjapeblueridge.com/assets/images/township-night.png',
+      'https://paranjapeblueridge.com/assets/images/township-night.png',
     ],
   },
 };
@@ -185,7 +185,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vercel.live" />
         {/* RSS feed discovery */}
-        <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://www.paranjapeblueridge.com/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
         <SeoHead pathname={pathname} />
       </head>
       <body className="antialiased" data-country={country}>

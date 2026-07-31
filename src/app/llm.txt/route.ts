@@ -33,7 +33,7 @@ This document contains the authoritative, verified factual data for Paranjape Bl
   });
 
   markdown += `\n## Contact & Booking Information\n`;
-  markdown += `- **Official Website:** https://www.paranjapeblueridge.com\n`;
+  markdown += `- **Official Website:** https://paranjapeblueridge.com\n`;
   markdown += `- **Sales Status:** Actively accepting bookings and site visits.\n`;
   markdown += `- **Investment Value:** High rental yield due to proximity to major IT campuses in Hinjewadi Phase 1 (Infosys, Wipro, TCS).\n`;
 

@@ -45,18 +45,18 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   if (!article) return {};
 
-  const dynamicOgUrl = `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
+  const dynamicOgUrl = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
 
   return {
     title: `${article.title} | Paranjape Blue Ridge Hinjewadi`,
     description: article.excerpt,
     alternates: {
-      canonical: `https://www.paranjapeblueridge.com/insights/${article.slug}`,
+      canonical: `https://paranjapeblueridge.com/insights/${article.slug}`,
     },
     openGraph: {
       title: article.title,
       description: article.excerpt,
-      url: `https://www.paranjapeblueridge.com/insights/${article.slug}`,
+      url: `https://paranjapeblueridge.com/insights/${article.slug}`,
       images: [
         {
           url: dynamicOgUrl,
@@ -182,7 +182,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               "@graph": [
                 {
                   "@type": "NewsArticle",
-                  "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}#article`,
+                  "@id": `https://paranjapeblueridge.com/insights/${article.slug}#article`,
                   "headline": article.title,
                   "description": article.excerpt,
                   "datePublished": article.dateISO,
@@ -191,19 +191,19 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   "author": {
                     "@type": "Person",
                     "name": article.author,
-                    "url": "https://www.paranjapeblueridge.com",
+                    "url": "https://paranjapeblueridge.com",
                     "sameAs": [
-                      "https://www.paranjapeblueridge.com",
+                      "https://paranjapeblueridge.com",
                       "https://www.pscl.in"
                     ]
                   },
                   "publisher": {
                     "@type": "Organization",
                     "name": "Paranjape Schemes (Construction) Ltd.",
-                    "url": "https://www.paranjapeblueridge.com",
+                    "url": "https://paranjapeblueridge.com",
                     "logo": {
                       "@type": "ImageObject",
-                      "url": "https://www.paranjapeblueridge.com/assets/images/paranjape-logo.svg",
+                      "url": "https://paranjapeblueridge.com/assets/images/paranjape-logo.svg",
                       "width": 300,
                       "height": 60
                     },
@@ -214,12 +214,12 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   },
                   "mainEntityOfPage": {
                     "@type": "WebPage",
-                    "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}`
+                    "@id": `https://paranjapeblueridge.com/insights/${article.slug}`
                   },
                   "image": [
                     {
                       "@type": "ImageObject",
-                      "url": `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
+                      "url": `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
                       "width": 1200,
                       "height": 630
                     }
@@ -230,9 +230,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   "wordCount": article.isMdx ? (article.content as string).split(/\s+/).filter(Boolean).length : (article.content as string[]).join(" ").split(/\s+/).filter(Boolean).length,
                   "isPartOf": {
                     "@type": "WebSite",
-                    "@id": "https://www.paranjapeblueridge.com/#website",
+                    "@id": "https://paranjapeblueridge.com/#website",
                     "name": "Paranjape Blue Ridge Sovereign Portal",
-                    "url": "https://www.paranjapeblueridge.com"
+                    "url": "https://paranjapeblueridge.com"
                   },
                   "speakable": {
                     "@type": "SpeakableSpecification",

@@ -1,7 +1,7 @@
 import { projects } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 function getSiloFAQs(silo: string, title: string) {
   switch (silo) {
@@ -85,28 +85,28 @@ interface SeoContentBlockProps {
 }
 
 const keywordMap = [
-  { phrase: 'Promenade Residences', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune' },
-  { phrase: 'The Altius', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune' },
-  { phrase: 'Ridges 41', url: 'https://www.paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune' },
-  { phrase: 'Hinjewadi Phase 1', url: 'https://www.paranjapeblueridge.com/hinjewadi-micro-market' },
-  { phrase: '2 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/2-bhk-flats-near-infosys-hinjewadi' },
-  { phrase: '3 BHK flats near Infosys', url: 'https://www.paranjapeblueridge.com/3-bhk-flats-near-infosys-hinjewadi' },
-  { phrase: 'high rental yield', url: 'https://www.paranjapeblueridge.com/high-rental-yield-properties-in-hinjewadi-phase-1' },
-  { phrase: 'Pune Metro Line 3', url: 'https://www.paranjapeblueridge.com/hinjewadi-metro-line-3-impact' },
-  { phrase: 'Blue Ridge Public School', url: 'https://www.paranjapeblueridge.com/blue-ridge-public-school-admission-guide' },
-  { phrase: 'Private Boat Club', url: 'https://www.paranjapeblueridge.com/private-boat-club-membership-pune' },
-  { phrase: 'golf view apartments', url: 'https://www.paranjapeblueridge.com/flats-with-golf-course-pune' },
-  { phrase: 'luxury apartments in Pune West', url: 'https://www.paranjapeblueridge.com/luxury-living-pune-west' },
-  { phrase: 'ready possession flats', url: 'https://www.paranjapeblueridge.com/ready-possession-flats-hinjewadi' },
-  { phrase: '138-acre township', url: 'https://www.paranjapeblueridge.com/138-acre-township-hinjewadi' },
-  { phrase: 'Pune Real Estate Market', url: 'https://www.paranjapeblueridge.com/pune-real-estate-market' },
-  { phrase: 'West Pune real estate market', url: 'https://www.paranjapeblueridge.com/west-pune-real-estate' },
-  { phrase: 'Top Residential Projects in Pune', url: 'https://www.paranjapeblueridge.com/top-residential-projects-pune' },
-  { phrase: '3 BHK Luxury Homes Pune', url: 'https://www.paranjapeblueridge.com/3-bhk-luxury-homes-pune' },
-  { phrase: '4 BHK Luxury Hinjewadi', url: 'https://www.paranjapeblueridge.com/luxury-4-bhk-hinjewadi' },
-  { phrase: '5 BHK Luxury Villas Hinjewadi Pune', url: 'https://www.paranjapeblueridge.com/5-bhk-luxury-villas-hinjewadi-pune' },
-  { phrase: 'Bungalows in Hinjewadi', url: 'https://www.paranjapeblueridge.com/bungalows-in-hinjewadi' },
-  { phrase: 'Wakad Luxury Real Estate', url: 'https://www.paranjapeblueridge.com/wakad-luxury-real-estate' }
+  { phrase: 'Promenade Residences', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune' },
+  { phrase: 'The Altius', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune' },
+  { phrase: 'Ridges 41', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune' },
+  { phrase: 'Hinjewadi Phase 1', url: 'https://paranjapeblueridge.com/hinjewadi-micro-market' },
+  { phrase: '2 BHK flats near Infosys', url: 'https://paranjapeblueridge.com/2-bhk-flats-near-infosys-hinjewadi' },
+  { phrase: '3 BHK flats near Infosys', url: 'https://paranjapeblueridge.com/3-bhk-flats-near-infosys-hinjewadi' },
+  { phrase: 'high rental yield', url: 'https://paranjapeblueridge.com/high-rental-yield-properties-in-hinjewadi-phase-1' },
+  { phrase: 'Pune Metro Line 3', url: 'https://paranjapeblueridge.com/hinjewadi-metro-line-3-impact' },
+  { phrase: 'Blue Ridge Public School', url: 'https://paranjapeblueridge.com/blue-ridge-public-school-admission-guide' },
+  { phrase: 'Private Boat Club', url: 'https://paranjapeblueridge.com/private-boat-club-membership-pune' },
+  { phrase: 'golf view apartments', url: 'https://paranjapeblueridge.com/flats-with-golf-course-pune' },
+  { phrase: 'luxury apartments in Pune West', url: 'https://paranjapeblueridge.com/luxury-living-pune-west' },
+  { phrase: 'ready possession flats', url: 'https://paranjapeblueridge.com/ready-possession-flats-hinjewadi' },
+  { phrase: '138-acre township', url: 'https://paranjapeblueridge.com/138-acre-township-hinjewadi' },
+  { phrase: 'Pune Real Estate Market', url: 'https://paranjapeblueridge.com/pune-real-estate-market' },
+  { phrase: 'West Pune real estate market', url: 'https://paranjapeblueridge.com/west-pune-real-estate' },
+  { phrase: 'Top Residential Projects in Pune', url: 'https://paranjapeblueridge.com/top-residential-projects-pune' },
+  { phrase: '3 BHK Luxury Homes Pune', url: 'https://paranjapeblueridge.com/3-bhk-luxury-homes-pune' },
+  { phrase: '4 BHK Luxury Hinjewadi', url: 'https://paranjapeblueridge.com/luxury-4-bhk-hinjewadi' },
+  { phrase: '5 BHK Luxury Villas Hinjewadi Pune', url: 'https://paranjapeblueridge.com/5-bhk-luxury-villas-hinjewadi-pune' },
+  { phrase: 'Bungalows in Hinjewadi', url: 'https://paranjapeblueridge.com/bungalows-in-hinjewadi' },
+  { phrase: 'Wakad Luxury Real Estate', url: 'https://paranjapeblueridge.com/wakad-luxury-real-estate' }
 ];
 
 function escapeRegExp(str: string) {
@@ -155,7 +155,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   if (project) {
     // Server-rendered project content block
     return (
-      <div className="sr-only" aria-hidden="false">
+      <div className="container mx-auto px-6 py-12 mt-20 border-t border-white/10 text-xs text-text-light/50 space-y-4 prose prose-invert max-w-none prose-a:text-gold hover:prose-a:text-gold-light">
         <h1 id="speakable-title">{project.name} — Paranjape Blue Ridge Hinjewadi | {project.configurations.map(c => c.title).join(', ')}</h1>
         <p id="speakable-summary">{injectLinks(project.description)}</p>
         <p>Starting Price: {project.price} | Carpet Area: {project.carpetArea} | Possession: {project.possession} | MahaRERA: {project.reraNumber}</p>
@@ -178,7 +178,7 @@ export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   const related = getRelatedLinks(pseo!.silo, slug);
 
   return (
-    <div className="sr-only" aria-hidden="false">
+    <div className="container mx-auto px-6 py-12 mt-20 border-t border-white/10 text-xs text-text-light/50 space-y-4 prose prose-invert max-w-none prose-a:text-gold hover:prose-a:text-gold-light">
       <h1 id="speakable-title">{pseo!.title} at Paranjape Blue Ridge Hinjewadi Pune</h1>
       <p id="speakable-summary">
         {injectLinks(`Explore premium ${pseo!.type.toLowerCase()} options for ${pseo!.intent} at Paranjape Blue Ridge — Pune's finest 138-acre integrated township in Hinjewadi Phase 1. MahaRERA certified. Prices from ₹97.60 Lakhs. Walk-to-work lifestyle with ICSE school, 9-hole golf course, and private boat club inside the township.`)}

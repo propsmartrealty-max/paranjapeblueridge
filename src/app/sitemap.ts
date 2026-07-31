@@ -3,7 +3,7 @@ import { projects, articles } from '@/data/master-data';
 import { generatePseoUrls } from '@/data/seo-matrix';
 import { getAllPosts } from '@/utils/mdxUtils';
 
-const baseUrl = 'https://www.paranjapeblueridge.com';
+const baseUrl = 'https://paranjapeblueridge.com';
 
 export async function generateSitemaps() {
   // We split the massive sitemap into logical silos for Googlebot

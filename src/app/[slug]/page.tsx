@@ -8,7 +8,7 @@ import SlugPageClient from '@/components/SlugPageClient';
 import LanguageInitializer from '@/components/LanguageInitializer';
 import MicroMarketGuide from '@/app/hinjewadi-micro-market/page';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 interface PageProps {
   params: {

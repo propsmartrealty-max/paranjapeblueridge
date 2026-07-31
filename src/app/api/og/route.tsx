@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
             )}
             
             <div style={{ fontSize: 28, color: 'rgba(253, 251, 247, 0.5)', letterSpacing: '2px', fontWeight: 600 }}>
-              www.paranjapeblueridge.com
+              paranjapeblueridge.com
             </div>
           </div>
           

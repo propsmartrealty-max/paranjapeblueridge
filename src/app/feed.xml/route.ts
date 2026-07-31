@@ -1,7 +1,7 @@
 import { articles } from '@/data/master-data';
 import { getAllPosts } from '@/utils/mdxUtils';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 
 export async function GET() {
   const mdxPosts = getAllPosts();

@@ -19,8 +19,8 @@ const nextConfig = {
   async redirects() {
     return [{
       source: '/:path*',
-      has: [{ type: 'host', value: 'paranjapeblueridge.com' }],
-      destination: 'https://www.paranjapeblueridge.com/:path*',
+      has: [{ type: 'host', value: 'www.paranjapeblueridge.com' }],
+      destination: 'https://paranjapeblueridge.com/:path*',
       permanent: true,
     }];
   },

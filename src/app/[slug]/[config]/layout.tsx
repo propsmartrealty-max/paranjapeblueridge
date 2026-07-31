@@ -15,7 +15,7 @@ export default function ConfigLayout({ children, params }: { children: React.Rea
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://www.paranjapeblueridge.com/${project.slug}/${configuration.slug}`,
+      "url": `https://paranjapeblueridge.com/${project.slug}/${configuration.slug}`,
       "priceCurrency": "INR",
       "price": configuration.price.replace(/[^0-9]/g, '') + "00000", // Basic numeric conversion for schema
       "itemCondition": "https://schema.org/NewCondition",
