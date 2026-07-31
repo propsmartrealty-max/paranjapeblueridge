@@ -15,7 +15,12 @@ export async function getBlogPost(slugArray: string[]) {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
   const mdxSource = await serialize(content, {
-    mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings] },
+    mdxOptions: {
+      // @ts-ignore - allow remark-gfm plugin type
+      remarkPlugins: [remarkGfm],
+      // @ts-ignore - allow rehype plugins type
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+    },
     parseFrontmatter: false,
   });
   return { frontMatter: data, mdxSource };

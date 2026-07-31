@@ -122,10 +122,12 @@ export const metadata: Metadata = {
     canonical: 'https://www.paranjapeblueridge.com',
     languages: {
       'en-IN': 'https://www.paranjapeblueridge.com',
-      'mr-IN': 'https://www.paranjapeblueridge.com',
+      'mr-IN': 'https://www.paranjapeblueridge.com/mr',
     },
   },
   openGraph: {
+    locale: 'en_IN',
+    alternateLocale: ['mr_IN'],
     title: 'Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune',
     description: 'Paranjape Blue Ridge is Hinjewadi\'s premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.',
     url: 'https://www.paranjapeblueridge.com',
@@ -147,10 +149,6 @@ export const metadata: Metadata = {
     startupImage: [
       'https://www.paranjapeblueridge.com/assets/images/township-night.png',
     ],
-  },
-  itunes: {
-    appId: '123456789',
-    appArgument: 'https://www.paranjapeblueridge.com',
   },
 };
 

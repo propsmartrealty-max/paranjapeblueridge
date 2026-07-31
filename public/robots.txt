@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://www.blueridge.com/sitemap.xml

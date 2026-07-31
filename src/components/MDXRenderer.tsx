@@ -13,7 +13,9 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 export async function renderMdx(source: string): Promise<MDXRemoteSerializeResult> {
   return await serialize(source, {
     mdxOptions: {
+      // @ts-ignore - allow remark-gfm plugin type
       remarkPlugins: [remarkGfm],
+      // @ts-ignore - allow rehype plugins type
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
     },
     parseFrontmatter: true,

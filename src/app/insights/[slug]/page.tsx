@@ -187,30 +187,56 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   "description": article.excerpt,
                   "datePublished": article.dateISO,
                   "dateModified": article.dateISO,
-                  "author": { "@type": "Person", "name": article.author },
+                  "inLanguage": "en-IN",
+                  "author": {
+                    "@type": "Person",
+                    "name": article.author,
+                    "url": "https://www.paranjapeblueridge.com",
+                    "sameAs": [
+                      "https://www.paranjapeblueridge.com",
+                      "https://www.pscl.in"
+                    ]
+                  },
                   "publisher": {
                     "@type": "Organization",
                     "name": "Paranjape Schemes (Construction) Ltd.",
+                    "url": "https://www.paranjapeblueridge.com",
                     "logo": {
                       "@type": "ImageObject",
-                      "url": "https://www.paranjapeblueridge.com/assets/images/paranjape-logo.svg"
-                    }
+                      "url": "https://www.paranjapeblueridge.com/assets/images/paranjape-logo.svg",
+                      "width": 300,
+                      "height": 60
+                    },
+                    "sameAs": [
+                      "https://www.pscl.in",
+                      "https://en.wikipedia.org/wiki/Paranjape_Schemes"
+                    ]
                   },
                   "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": `https://www.paranjapeblueridge.com/insights/${article.slug}`
                   },
-                  "image": `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
+                  "image": [
+                    {
+                      "@type": "ImageObject",
+                      "url": `https://www.paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
+                      "width": 1200,
+                      "height": 630
+                    }
+                  ],
                   "articleSection": article.category,
                   "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"],
-                  "articleBody": article.isMdx ? (article.content as string).slice(0, 200) : (article.content as string[]).join(" "),
+                  "articleBody": article.isMdx ? (article.content as string).slice(0, 500) : (article.content as string[]).join(" ").slice(0, 500),
                   "wordCount": article.isMdx ? (article.content as string).split(/\s+/).filter(Boolean).length : (article.content as string[]).join(" ").split(/\s+/).filter(Boolean).length,
+                  "isPartOf": {
+                    "@type": "WebSite",
+                    "@id": "https://www.paranjapeblueridge.com/#website",
+                    "name": "Paranjape Blue Ridge Sovereign Portal",
+                    "url": "https://www.paranjapeblueridge.com"
+                  },
                   "speakable": {
                     "@type": "SpeakableSpecification",
-                    "xpath": [
-                      "/html/head/title",
-                      "/html/head/meta[@name='description']/@content"
-                    ]
+                    "cssSelector": ["#speakable-title", "#speakable-summary"]
                   }
                 }
               ]
