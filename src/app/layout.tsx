@@ -182,7 +182,7 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
         <SeoHead pathname="/" />
       </head>
-      <body className="antialiased" data-country="IN">
+      <body className="antialiased bg-ambient-orbs" data-country="IN">
         <LanguageProvider>
           <AtmosphereProvider>
             <Suspense fallback={null}>
