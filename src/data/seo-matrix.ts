@@ -702,7 +702,21 @@ export const seoMatrix = {
     { slug: 'mumbai-pune-expressway-gateway', name: 'Mumbai Pune Expressway Gateway', area: 'Hinjewadi' },
     { slug: 'maan-road-hinjewadi-corridor', name: 'Maan Road Hinjewadi Corridor', area: 'Hinjewadi' },
     { slug: 'punawale-tathawade-it-connector', name: 'Punawale Tathawade IT Connector', area: 'PCMC-Hinjewadi' },
-    { slug: 'marunji-hinjewadi-road', name: 'Marunji Hinjewadi Road', area: 'Hinjewadi' }
+    { slug: 'marunji-hinjewadi-road', name: 'Marunji Hinjewadi Road', area: 'Hinjewadi' },
+    { slug: 'koregaon-park-annexe-pune', name: 'Koregaon Park Annexe Corridor', area: 'East Pune' },
+    { slug: 'viman-nagar-it-corridor', name: 'Viman Nagar IT Corridor', area: 'East Pune' },
+    { slug: 'kalyani-nagar-luxury-belt', name: 'Kalyani Nagar Luxury Belt', area: 'East Pune' },
+    { slug: 'magarpatta-city-hadapsar-belt', name: 'Magarpatta City & Hadapsar Belt', area: 'East Pune' },
+    { slug: 'kharadi-world-trade-center-belt', name: 'Kharadi World Trade Center Belt', area: 'East Pune' },
+    { slug: 'undri-nibm-road-corridor', name: 'Undri NIBM Road Corridor', area: 'South Pune' },
+    { slug: 'bavdhan-chandani-chowk-connector', name: 'Bavdhan Chandani Chowk Connector', area: 'West Pune' },
+    { slug: 'pashan-sus-road-corridor', name: 'Pashan Sus Road Corridor', area: 'West Pune' },
+    { slug: 'kothrud-karve-nagar-belt', name: 'Kothrud Karve Nagar Belt', area: 'Central Pune' },
+    { slug: 'pimple-saudagar-linear-park-belt', name: 'Pimple Saudagar Linear Park Belt', area: 'PCMC' },
+    { slug: 'pimple-nilakh-dp-road', name: 'Pimple Nilakh DP Road Corridor', area: 'PCMC-West' },
+    { slug: 'ravet-kiwale-expressway-belt', name: 'Ravet Kiwale Expressway Belt', area: 'PCMC-North' },
+    { slug: 'tathawade-jspm-college-road', name: 'Tathawade JSPM College Road', area: 'PCMC-West' },
+    { slug: 'aundh-dp-road-corridor', name: 'Aundh DP Road Corridor', area: 'Central-West' }
   ],
   // 6. Pune Real Estate Luxury Ecosystem Master Queries
   puneLuxuryEcosystem: [
@@ -719,7 +733,32 @@ export const seoMatrix = {
     "Best Gated Community for Senior Living and Families Pune",
     "Smart Home Luxury Apartments Hinjewadi Phase 1",
     "High Rise Luxury Towers in Hinjewadi IT Park",
-    "Ready to Move Resale Luxury Flats in Blue Ridge Hinjewadi"
+    "Ready to Move Resale Luxury Flats in Blue Ridge Hinjewadi",
+    "Best Residential Township in Pune for Families 2026",
+    "Top Luxury Property Developers in Pune Ranking",
+    "Pune Metro Line 3 Real Estate Appreciation Forecast",
+    "High Rental Demand Apartments Near Infosys Hinjewadi"
+  ],
+  // 7. Paranjape Blue Ridge Ultra-Authority & Battleground Matrix
+  paranjapeBlueRidgeUltraAuthority: [
+    "Paranjape Blue Ridge Promenade 3 BHK Price List 2026",
+    "Paranjape Blue Ridge Altius 4 BHK Floor Plan PDF",
+    "Paranjape Blue Ridge Ridges 41 Possession Date",
+    "Blue Ridge Hinjewadi Maintenance Charges Per Sq Ft",
+    "Blue Ridge Public School ICSE Admission Fees Hinjewadi",
+    "Paranjape Blue Ridge Golf Course Membership Fee",
+    "Blue Ridge Boat Club Mula River Booking",
+    "Paranjape Blue Ridge Resale 2 BHK Price 2026",
+    "Blue Ridge Hinjewadi Rental Income 3 BHK",
+    "Paranjape Blue Ridge SEZ Companies List Hinjewadi",
+    "Infosys to Paranjape Blue Ridge Walking Time",
+    "Pune Metro Line 3 Distance to Blue Ridge Hinjewadi",
+    "Paranjape Blue Ridge Sales Gallery Address Hinjewadi",
+    "Paranjape Blue Ridge Township Master Plan Map PDF",
+    "Paranjape Schemes Developer Track Record Pune",
+    "Paranjape Blue Ridge vs VTP Blue Waters Hinjewadi",
+    "Paranjape Blue Ridge vs Life Republic Kolte Patil",
+    "Paranjape Blue Ridge vs Megapolis Hinjewadi Phase 3"
   ]
 };
 
@@ -1295,6 +1334,17 @@ export function generatePseoUrls() {
       intent: phrase,
       type: 'Luxury Real Estate Ecosystem',
       silo: 'luxury-ecosystem'
+    });
+  });
+
+  // 7. Paranjape Blue Ridge Ultra-Authority & Battleground Silo
+  seoMatrix.paranjapeBlueRidgeUltraAuthority.forEach(phrase => {
+    urls.push({
+      slug: slugify(phrase),
+      title: phrase,
+      intent: phrase,
+      type: 'Branded Ultra Authority',
+      silo: phrase.includes('vs') ? 'battleground' : 'branded'
     });
   });
 
