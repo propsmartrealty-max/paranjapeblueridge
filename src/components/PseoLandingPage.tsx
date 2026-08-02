@@ -20,6 +20,8 @@ import MahaReraBadge from '@/components/MahaReraBadge';
 import ProximityMatrix from '@/components/ProximityMatrix';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 import EmiCalculator from '@/components/EmiCalculator';
+import SiteVisitBooking from '@/components/SiteVisitBooking';
+import NriCostEstimator from '@/components/NriCostEstimator';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -200,8 +202,12 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
         <DynamicFreshness slug={pageData.slug} />
         {/* OFFICIAL MAHARERA VERIFICATION TRUST BADGE */}
         <MahaReraBadge />
+        {/* PRIVATE SITE VISIT & VIRTUAL 3D TOUR BOOKING ENGINE */}
+        <SiteVisitBooking />
         {/* INTERNATIONAL MULTI-CURRENCY ESTIMATOR FOR NRIS */}
         <CurrencySwitcher />
+        {/* ALL-INCLUSIVE STAMP DUTY & ACQUISITION COST ESTIMATOR */}
+        <NriCostEstimator />
         {/* INTERACTIVE HOME LOAN & EMI CALCULATOR */}
         <EmiCalculator />
         {/* HYPER-LOCAL PROXIMITY & COMMUTE MATRIX */}
