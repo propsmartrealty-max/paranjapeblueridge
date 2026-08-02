@@ -31,6 +31,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     alternates: {
       canonical: `${SITE_URL}/hinjewadi-micro-market`,
       languages: {
+        'x-default': `${SITE_URL}/hinjewadi-micro-market`,
         'en-IN': `${SITE_URL}/hinjewadi-micro-market`,
         'mr-IN': `${SITE_URL}/mr-hinjewadi-micro-market`,
       },

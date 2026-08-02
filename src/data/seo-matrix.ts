@@ -125,7 +125,13 @@ export const seoMatrix = {
     { slug: 'property-appreciation-hinjewadi', name: 'Property Appreciation Hinjewadi' },
     { slug: 'high-roi-property-pune', name: 'High ROI Property Pune' },
     { slug: 'future-growth-locations-pune', name: 'Future Growth Locations Pune' },
-    { slug: 'metro-connected-property-pune', name: 'Metro Connected Property Pune' }
+    { slug: 'metro-connected-property-pune', name: 'Metro Connected Property Pune' },
+    { slug: 'nri-real-estate-investment-hinjewadi', name: 'NRI Real Estate Investment Hinjewadi' },
+    { slug: 'buy-pune-property-from-usa', name: 'Buy Pune Property from USA' },
+    { slug: 'buy-flat-in-pune-from-dubai-uae', name: 'Buy Flat in Pune from Dubai UAE' },
+    { slug: 'nri-property-buying-guide-pune', name: 'NRI Property Buying Guide Pune' },
+    { slug: 'paranjape-blue-ridge-nri-desk', name: 'Paranjape Blue Ridge NRI Desk' },
+    { slug: 'nri-high-yield-rental-apartments', name: 'NRI High Yield Rental Apartments' }
   ],
   competitors: [
     { slug: 'near-life-republic', name: 'near Life Republic' },
