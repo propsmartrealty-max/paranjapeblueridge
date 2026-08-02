@@ -2,18 +2,19 @@ import React from 'react';
 import { projects, articles } from '@/data/master-data';
 
 /**
- * Speculation Rules API Component
+ * Speculation Rules API Component (Chrome / Chromium 0ms Prerender Engine)
  * 
- * Tells Google Chrome (which powers Google Search mobile ranking metrics)
- * to prerender the core project pages and prefetch all other internal pages
- * in the background. This results in 0ms load times and perfect Core Web Vitals.
+ * Instructs Chromium browsers to prerender core project pages, high-intent PSEO hubs,
+ * and configuration routes in background memory for instant 0ms page loads and 100/100 INP.
  */
 export default function SpeculationRules() {
-  // Prerender homepage, micro-market guide, project detail pages, configuration sub-pages, and insights using relative paths
   const prerenderUrls = [
     "/",
+    "/mr",
     "/hinjewadi-micro-market",
+    "/mr-hinjewadi-micro-market",
     ...projects.map(p => `/${p.slug}`),
+    ...projects.map(p => `/mr-${p.slug}`),
     ...projects.flatMap(p => (p.configurations || []).map(c => `/${p.slug}/${c.slug}`)),
     ...articles.map(a => `/insights/${a.slug}`)
   ];
@@ -22,7 +23,8 @@ export default function SpeculationRules() {
     "prerender": [
       {
         "source": "list",
-        "urls": prerenderUrls
+        "urls": prerenderUrls,
+        "eagerness": "eager"
       }
     ],
     "prefetch": [
@@ -36,7 +38,6 @@ export default function SpeculationRules() {
                 "href_matches": [
                   "/api/*",
                   "/feed.xml",
-                  "/google-products-feed",
                   "/sitemap.xml",
                   "/*\\?*"
                 ] 
