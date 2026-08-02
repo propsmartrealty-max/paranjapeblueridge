@@ -130,7 +130,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
 
       let priority = 0.7;
-      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri'];
+      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri', 'duplex-simplex', 'pune-micro-market', 'luxury-ecosystem', 'branded', 'investor', 'corporate'];
       const lowIntentSilos = ['competitor', 'battleground'];
       if (highIntentSilos.includes(u.silo)) {
         priority = 0.85;
