@@ -20,20 +20,35 @@ export async function generateMetadata({
 }: {
   params: { slug: string; config: string };
 }): Promise<Metadata> {
-  const project = projects.find(p => p.slug === params.slug);
+  const isMarathi = params.slug.startsWith('mr-');
+  const englishSlug = isMarathi ? params.slug.replace(/^mr-/, '') : params.slug;
+  
+  const project = projects.find(p => p.slug === englishSlug);
   if (!project) return {};
 
   const configuration = project.configurations?.find(c => c.slug === params.config);
   if (!configuration) return {};
 
-  const title = `${configuration.title} in ${project.name} | Paranjape Blue Ridge Hinjewadi — ${configuration.price || project.price}`;
-  const description = `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}. Download floor plan or book a site visit.`;
-  const canonical = `${SITE_URL}/${params.slug}/${params.config}`;
+  const title = isMarathi 
+    ? `${configuration.title} in ${project.name} | परांजपे ब्लू रिज हिंजवडी — ${configuration.price || project.price}`
+    : `${configuration.title} in ${project.name} | Paranjape Blue Ridge Hinjewadi — ${configuration.price || project.price}`;
+    
+  const description = isMarathi
+    ? `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}.`
+    : `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}. Download floor plan or book a site visit.`;
+    
+  const canonical = `${SITE_URL}/${englishSlug}/${params.config}`;
 
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: { 
+      canonical,
+      languages: {
+        'en-IN': `${SITE_URL}/${englishSlug}/${params.config}`,
+        'mr-IN': `${SITE_URL}/mr-${englishSlug}/${params.config}`
+      }
+    },
     openGraph: {
       title,
       description,
@@ -59,7 +74,10 @@ export async function generateMetadata({
 
 // Server component wrapper — metadata is server-side; interactive UI is client-side
 export default function ConfigPage({ params }: { params: { slug: string; config: string } }) {
-  const project = projects.find(p => p.slug === params.slug);
+  const isMarathi = params.slug.startsWith('mr-');
+  const englishSlug = isMarathi ? params.slug.replace(/^mr-/, '') : params.slug;
+  
+  const project = projects.find(p => p.slug === englishSlug);
   if (!project) return notFound();
 
   const configuration = project.configurations?.find(c => c.slug === params.config);

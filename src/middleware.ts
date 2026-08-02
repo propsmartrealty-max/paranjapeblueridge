@@ -41,19 +41,6 @@ export function middleware(req: NextRequest) {
   // Advanced Edge Preloading: HTTP 103 Early Hints for LCP Image
   response.headers.set('Link', '</assets/images/township-night.png>; rel=preload; as=image; fetchpriority=high');
 
-  // Next-Level Edge Cache HIT Ratio Maximization
-  // SWR: Serve instantly from Edge cache, rebuild in background if older than 1 hour.
-  response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
-
-  // Also set a secure HTTP-only cookie so that client-side tracking or API routes 
-  // (/api/lead) can capture if the lead originated from an NRI hub.
-  response.cookies.set('nri_session', isNRIHub ? 'true' : 'false', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 7, // 1 Week
-  });
-
   // Inject a header into the final response for verification tools
   response.headers.set('x-edge-geo-status', 'Active');
   

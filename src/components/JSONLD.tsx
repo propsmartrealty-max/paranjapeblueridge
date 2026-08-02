@@ -727,6 +727,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       // Add Apartment Schema
       graph.push({
         "@type": "Apartment",
+        "@id": `${SITE_URL}/${projectData.slug}/${config.slug}#apartment`,
         "name": `${config.title} in ${projectData.name} - Blue Ridge Hinjewadi`,
         "description": `${config.title} at ${projectData.name}, Paranjape Blue Ridge Hinjewadi Phase 1. ${projectData.tagline}.`,
         "url": `${SITE_URL}/${projectData.slug}/${config.slug}`,
@@ -758,6 +759,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       if (config.priceValue) {
         graph.push({
           "@type": "RealEstateListing",
+          "@id": `${SITE_URL}/${projectData.slug}/${config.slug}#listing`,
           "name": `${config.title} — ${projectData.name}, Paranjape Blue Ridge Hinjewadi`,
           "url": `${SITE_URL}/${projectData.slug}/${config.slug}`,
           "datePosted": "2026-01-01",
@@ -770,24 +772,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock"
           },
-          "about": {
-            "@type": "Apartment",
-            "numberOfRooms": config.numberOfRooms || 3,
-            "floorSize": config.floorSizeSqFt ? {
-              "@type": "QuantitativeValue",
-              "value": config.floorSizeSqFt,
-              "unitCode": "FTK"
-            } : undefined,
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Blue Ridge Township, Phase 1, Hinjewadi",
-              "addressLocality": "Pune",
-              "addressRegion": "Maharashtra",
-              "postalCode": "411057",
-              "addressCountry": "IN"
-            },
-            "identifier": { "@type": "PropertyValue", "name": "MahaRERA", "value": projectData.reraNumber }
-          },
+          "about": { "@id": `${SITE_URL}/${projectData.slug}/${config.slug}#apartment` },
+          "identifier": { "@type": "PropertyValue", "name": "MahaRERA", "value": projectData.reraNumber },
           "seller": { "@id": `${SITE_URL}/#organization` }
         });
       }
@@ -795,6 +781,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       // Product schema for Google Shopping/Search Tab rich results
       graph.push({
         "@type": "Product",
+        "@id": `${SITE_URL}/${projectData.slug}/${config.slug}#product`,
         "name": `${config.title} - ${projectData.name}`,
         "image": `${SITE_URL}${config.image || '/assets/images/township-night.png'}`,
         "description": `Premium ${config.title} with world-class amenities at Paranjape Blue Ridge Hinjewadi.`,
