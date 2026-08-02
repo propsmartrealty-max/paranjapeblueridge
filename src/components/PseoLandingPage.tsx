@@ -19,6 +19,7 @@ import ContextualWhatsappCTA from '@/components/ContextualWhatsappCTA';
 import MahaReraBadge from '@/components/MahaReraBadge';
 import ProximityMatrix from '@/components/ProximityMatrix';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
+import EmiCalculator from '@/components/EmiCalculator';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -201,6 +202,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
         <MahaReraBadge />
         {/* INTERNATIONAL MULTI-CURRENCY ESTIMATOR FOR NRIS */}
         <CurrencySwitcher />
+        {/* INTERACTIVE HOME LOAN & EMI CALCULATOR */}
+        <EmiCalculator />
         {/* HYPER-LOCAL PROXIMITY & COMMUTE MATRIX */}
         <ProximityMatrix />
         {/* INTERACTIVE FINANCIAL & ROI CALCULATOR */}
