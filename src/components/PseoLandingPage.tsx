@@ -23,6 +23,7 @@ import EmiCalculator from '@/components/EmiCalculator';
 import SiteVisitBooking from '@/components/SiteVisitBooking';
 import NriCostEstimator from '@/components/NriCostEstimator';
 import CompetitorComparison from '@/components/CompetitorComparison';
+import EnvironmentalWidget from '@/components/EnvironmentalWidget';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -203,6 +204,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
         <DynamicFreshness slug={pageData.slug} />
         {/* OFFICIAL MAHARERA VERIFICATION TRUST BADGE */}
         <MahaReraBadge />
+        {/* LIVE MICRO-CLIMATE & ENVIRONMENTAL AQI SENSOR WIDGET */}
+        <EnvironmentalWidget />
         {/* INTERACTIVE COMPETITOR TOWNSHIP COMPARISON MATRIX */}
         <CompetitorComparison />
         {/* PRIVATE SITE VISIT & VIRTUAL 3D TOUR BOOKING ENGINE */}
