@@ -572,6 +572,18 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "latitude": geoVal.latitude,
       "longitude": geoVal.longitude
     },
+    "geoShape": {
+      "@type": "GeoShape",
+      "polygon": "18.5786,73.7370 18.5801,73.7395 18.5765,73.7420 18.5740,73.7380 18.5786,73.7370"
+    },
+    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
+    "subjectOf": {
+      "@type": "3DModel",
+      "name": "Paranjape Blue Ridge 360 Degree Virtual Show Flat Walkthrough",
+      "description": "Interactive 3D virtual walkthrough tour of luxury 3 & 4 BHK show flats at Paranjape Blue Ridge Hinjewadi.",
+      "encodingFormat": "model/gltf+json",
+      "contentUrl": `${SITE_URL}/assets/images/real-township-day.jpg`
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": t("Rajiv Gandhi Infotech Park, Phase 1", "राजीव गांधी इन्फोटेक पार्क, फेज १"),

@@ -200,7 +200,12 @@ export default function RootLayout({
                 <PulseNotifications />
                 <ExitIntentPopup />
                 <FloatingWhatsApp />
-        {/* Service Worker Registration */}
+        {/* Google Fonts preconnect for 100/100 Lighthouse performance score */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* Resource Preconnects for Core Web Vitals (LCP/INP) optimization */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

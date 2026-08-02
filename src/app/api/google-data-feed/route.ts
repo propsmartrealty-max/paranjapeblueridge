@@ -4,42 +4,40 @@ import { projects } from '@/data/master-data';
 export const revalidate = 86400; // Cache and revalidate once per day
 
 export async function GET() {
-  // Construct an advanced Google Knowledge Graph / Merchant Center compliant Data Feed
-  
+  // Construct an advanced Google Knowledge Graph / Merchant Center / Google Real Estate Carousel Data Feed
   const now = new Date().toISOString();
-  
-  const feed = {
-    "@context": "https://schema.org",
-    "@type": "DataFeed",
-    "name": "Paranjape Blue Ridge - Live Inventory & Pricing Feed",
-    "dateModified": now,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Paranjape Schemes (Construction) Ltd.",
-      "url": "https://paranjapeblueridge.com"
-    },
-    "dataFeedElement": projects.map(project => ({
-      "@type": "RealEstateListing",
-      "name": `${project.name} at Paranjape Blue Ridge`,
-      "description": project.description,
-      "url": `https://paranjapeblueridge.com/${project.slug}`,
-      "image": `https://paranjapeblueridge.com/assets/images/township-night.png`,
-      "datePosted": "2026-01-01T00:00:00Z",
-      "offers": {
-        "@type": "AggregateOffer",
-        "priceCurrency": "INR",
-        "lowPrice": project.priceValue,
-        "offerCount": project.configurations.length,
-        "seller": {
-          "@type": "RealEstateAgent",
-          "name": "Paranjape Blue Ridge Sales"
-        }
-      },
-      "itemOffered": {
-        "@type": "ApartmentComplex",
-        "name": project.name,
-        "numberOfAccommodationUnits": project.storeys * 8, // Approx estimate
-        "petsAllowed": true,
+  const baseUrl = 'https://paranjapeblueridge.com';
+
+  const feedElements = projects.flatMap(project => 
+    project.configurations.map(config => ({
+      "@type": "DataFeedItem",
+      "dateCreated": now,
+      "item": {
+        "@type": "SingleFamilyResidence",
+        "@id": `${baseUrl}/${project.slug}/${config.slug}#property`,
+        "name": `${config.title} - ${project.name} at Paranjape Blue Ridge Hinjewadi`,
+        "description": `${config.title} with ${config.carpetArea} sq ft carpet area in ${project.name}, Paranjape Blue Ridge 138-acre township, Hinjewadi Phase 1, Pune.`,
+        "url": `${baseUrl}/${project.slug}/${config.slug}`,
+        "image": `${baseUrl}/assets/images/real-township-day.jpg`,
+        "numberOfRooms": config.title.includes('2 BHK') ? 2 : config.title.includes('3 BHK') ? 3 : config.title.includes('4 BHK') ? 4 : 5,
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": config.carpetArea,
+          "unitCode": "FTK" // Square feet
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": config.priceValue || project.priceValue,
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-01-01",
+          "url": `${baseUrl}/${project.slug}/${config.slug}`,
+          "seller": {
+            "@type": "RealEstateAgent",
+            "name": "Paranjape Schemes (Construction) Ltd.",
+            "telephone": "+91-20-67210000"
+          }
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Blue Ridge Township, Phase 1, Hinjewadi",
@@ -55,12 +53,26 @@ export async function GET() {
         }
       }
     }))
+  );
+
+  const feed = {
+    "@context": "https://schema.org",
+    "@type": "DataFeed",
+    "name": "Paranjape Blue Ridge - Live Real Estate Carousel Inventory Feed",
+    "dateModified": now,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Paranjape Schemes (Construction) Ltd.",
+      "url": baseUrl
+    },
+    "dataFeedElement": feedElements
   };
 
   return NextResponse.json(feed, {
     headers: {
-      'Content-Type': 'application/ld+json',
+      'Content-Type': 'application/ld+json; charset=utf-8',
       'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
+      'X-Content-Type-Options': 'nosniff',
     },
   });
 }
