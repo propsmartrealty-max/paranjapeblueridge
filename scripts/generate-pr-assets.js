@@ -1,0 +1,43 @@
+const fs = require('fs');
+const path = require('path');
+
+const OUTPUT_DIR = path.join(__dirname, '../off-page-assets');
+
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+}
+
+// Generate Off-Page Outreach Manifest for PR and Guest Blogging
+const manifest = {
+  generatedAt: new Date().toISOString(),
+  canonicalDomain: "https://paranjapeblueridge.com",
+  targetKeywords: [
+    "Paranjape Blue Ridge Hinjewadi",
+    "Pune Real Estate Market",
+    "Luxury 3 BHK and 4 BHK Homes in Hinjewadi Pune",
+    "Paranjape Blue Ridge Promenade Hinjewadi Pune",
+    "Paranjape Blue Ridge Altius Hinjewadi Pune",
+    "Paranjape Blue Ridge 41 Hinjewadi Pune",
+    "Walk to Work IT Park Apartments Hinjewadi",
+    "Best Real Estate Investment in West Pune"
+  ],
+  outreachChannels: [
+    { channel: "Medium", format: "Long-form Thought Leadership Article" },
+    { channel: "LinkedIn Pulse", format: "Corporate Real Estate Executive Pulse" },
+    { channel: "Blogger / WordPress", format: "Lifestyle & Golf Course Living Review" },
+    { channel: "Quora Answers", format: "High-Intent Q&A Answers for Hinjewadi Buyers" },
+    { channel: "Press Release Wire", format: "Official Developer Announcement Template" }
+  ],
+  inventorySummary: [
+    { name: "Promenade Residences", tagline: "3 & 4 BHK River-Facing Residences", price: "₹1.65 Cr*", rera: "P52100055581", url: "https://paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune" },
+    { name: "The Altius", tagline: "4 & 5 BHK Ultra-Luxury Riverside Residences", price: "₹1.80 Cr*", rera: "P52100078116", url: "https://paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune" },
+    { name: "Ridges 41", tagline: "2, 3 & 4 BHK Smart High-Rise Homes", price: "₹97.60 L*", rera: "P52100000054", url: "https://paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune" }
+  ]
+};
+
+fs.writeFileSync(
+  path.join(OUTPUT_DIR, 'outreach-manifest.json'),
+  JSON.stringify(manifest, null, 2)
+);
+
+console.log("🚀 Off-Page PR & Outreach Manifest generated successfully at off-page-assets/outreach-manifest.json!");
