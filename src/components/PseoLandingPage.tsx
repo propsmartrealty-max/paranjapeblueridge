@@ -22,6 +22,7 @@ import CurrencySwitcher from '@/components/CurrencySwitcher';
 import EmiCalculator from '@/components/EmiCalculator';
 import SiteVisitBooking from '@/components/SiteVisitBooking';
 import NriCostEstimator from '@/components/NriCostEstimator';
+import CompetitorComparison from '@/components/CompetitorComparison';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -202,6 +203,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
         <DynamicFreshness slug={pageData.slug} />
         {/* OFFICIAL MAHARERA VERIFICATION TRUST BADGE */}
         <MahaReraBadge />
+        {/* INTERACTIVE COMPETITOR TOWNSHIP COMPARISON MATRIX */}
+        <CompetitorComparison />
         {/* PRIVATE SITE VISIT & VIRTUAL 3D TOUR BOOKING ENGINE */}
         <SiteVisitBooking />
         {/* INTERNATIONAL MULTI-CURRENCY ESTIMATOR FOR NRIS */}
