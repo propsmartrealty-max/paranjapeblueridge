@@ -176,8 +176,8 @@ export default function RootLayout({
         {/* Vercel edge network preconnect */}
         <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vercel.live" />
-        {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
+        <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
         <SeoHead pathname="/" />
       </head>
       <body className="antialiased" data-country="IN">
