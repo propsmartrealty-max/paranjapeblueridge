@@ -162,9 +162,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `if (window.location.pathname.startsWith('/mr')) document.documentElement.lang = 'mr-IN';` }} />
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Google Analytics & Tag Manager preconnect */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />

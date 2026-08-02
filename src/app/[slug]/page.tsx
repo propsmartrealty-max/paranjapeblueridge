@@ -106,15 +106,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'township': `${pseoData.intent} — Live at Pune's undisputed #1 integrated township. Golf course, Mula river boat club, ICSE school inside, and premium high-rise options.`,
       'buyer-intent': `${pseoData.intent} — Premium configurations, carpet areas, ready possession dates, and pricing sheet at Paranjape Blue Ridge Hinjewadi Phase 1.`,
     };
-    const description = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
+    const baseDescription = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
 
     const isMr = slug.startsWith('mr-');
+    const finalTitle = isMr ? `${pseoData.title} | परंजपे ब्लू रिज हिंजवडी पुणे` : title;
+    const finalDescription = isMr ? `परंजपे ब्लू रिज हिंजवडी पुणे - ${pseoData.intent}. १३८ एकरची एकात्मिक टाउनशिप, ९-होल गोल्फ कोर्स, मुळा नदीवर बोट क्लब, आयसीएसई शाळा आणि वॉक-टू-वर्क आयटी पार्क. महारेरा नोंदणीकृत.` : baseDescription;
+
     const altSlug = isMr ? slug.replace(/^mr-/, '') : `mr-${slug}`;
     const hasAlternate = allUrls.some(item => item.slug === altSlug);
 
     return {
-      title,
-      description,
+      title: finalTitle,
+      description: finalDescription,
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
         languages: {
@@ -126,8 +129,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       },
       openGraph: {
-        title,
-        description,
+        title: finalTitle,
+        description: finalDescription,
         url: `${SITE_URL}/${slug}`,
         siteName: 'Paranjape Blue Ridge Sovereign Portal',
         images: [
@@ -144,17 +147,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       twitter: {
         card: 'summary_large_image',
         site: '@ParanjapeSchemes',
-        title,
-        description,
-        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(title)}&intent=${encodeURIComponent(pseoData.intent)}&type=Sovereign Portal`],
+        title: finalTitle,
+        description: finalDescription,
+        images: [`${SITE_URL}/api/og?title=${encodeURIComponent(finalTitle)}&intent=${encodeURIComponent(pseoData.intent)}&type=Sovereign Portal`],
       },
       other: {
         'geo.region': 'IN-MH',
         'geo.placename': geoPlacename,
         'geo.position': '18.5786825;73.7370331',
         'ICBM': '18.5786825, 73.7370331',
-        'DC.title': title,
-        'DC.description': description,
+        'DC.title': finalTitle,
+        'DC.description': finalDescription,
         'DC.subject': pseoData.intent,
         'DC.coverage': geoPlacename,
         'DC.language': 'en-IN',

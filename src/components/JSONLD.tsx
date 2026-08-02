@@ -185,7 +185,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
         },
         { 
           q: t(`Where is the project ${title} located?`, `हा प्रकल्प ${title} कुठे स्थित आहे?`), 
-          a: t('The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, social infrastructure, and high investment potential.', 'हा प्रकल्प ${title} पुण्याच्या मुख्य विकास क्षेत्रात स्थित आहे, जो उत्तम कनेक्टिव्हिटी, सामाजिक पायाभूत सुविधा आणि उच्च परताव्याची क्षमता देतो.') 
+          a: t(`The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, social infrastructure, and high investment potential.`, `हा प्रकल्प ${title} पुण्याच्या मुख्य विकास क्षेत्रात स्थित आहे, जो उत्तम कनेक्टिव्हिटी, सामाजिक पायाभूत सुविधा आणि उच्च परताव्याची क्षमता देतो.`) 
         }
       ];
     case 'nri':
@@ -582,7 +582,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "name": "Paranjape Blue Ridge 360 Degree Virtual Show Flat Walkthrough",
       "description": "Interactive 3D virtual walkthrough tour of luxury 3 & 4 BHK show flats at Paranjape Blue Ridge Hinjewadi.",
       "encodingFormat": "model/gltf+json",
-      "contentUrl": `${SITE_URL}/assets/images/real-township-day.jpg`
+      "contentUrl": `${SITE_URL}/assets/models/township-virtual-tour.gltf`
     },
     "address": {
       "@type": "PostalAddress",

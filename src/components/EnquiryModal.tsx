@@ -113,21 +113,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       timestamp: new Date().toISOString(),
     };
 
-    // ── Channel 2: Sovereign Vault (Always executes first) ──
-    try {
-      let existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
-      // DPDP Act: 24-hour TTL data minimization
-      const ONE_DAY = 24 * 60 * 60 * 1000;
-      const now = Date.now();
-      existingLeads = existingLeads.filter((lead: any) => {
-        const leadTime = new Date(lead.timestamp).getTime();
-        return (now - leadTime) < ONE_DAY;
-      });
-      existingLeads.push(leadPayload);
-      localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
-    } catch (err) {
-      console.error("Vault save failed", err);
-    }
+    // ── DPDP Act 2023 Compliant Direct Edge API Dispatch ──
 
     // ── Channel 1: Server-Side API (Email dispatch) ──
     try {
@@ -168,7 +154,12 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       />
       
       {/* Modal Content */}
-      <div className="relative w-full max-w-lg bg-navy border border-gold/30 rounded-[3rem] shadow-[0_0_100px_rgba(212,168,83,0.15)] overflow-hidden animate-in fade-in zoom-in duration-500">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="enquiry-modal-title"
+        className="relative w-full max-w-lg bg-navy border border-gold/30 rounded-[3rem] shadow-[0_0_100px_rgba(212,168,83,0.15)] overflow-hidden animate-in fade-in zoom-in duration-500"
+      >
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
         
         {/* Progress Bar */}
@@ -396,6 +387,11 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none [color-scheme:dark]"
                       />
                     </div>
+
+                    <label className="flex items-start gap-2 text-[10px] text-text-muted cursor-pointer my-3">
+                      <input type="checkbox" required defaultChecked className="mt-0.5 accent-gold" />
+                      <span>I consent to receive project updates, pricing & site visit confirmation via Call/WhatsApp as per DPDP Privacy Policy.</span>
+                    </label>
 
                     <div className="grid grid-cols-2 gap-4">
                        <button 
