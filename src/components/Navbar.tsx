@@ -120,9 +120,9 @@ export default function Navbar() {
             </button>
             
             <button 
+              aria-label="Toggle Menu"
               onClick={() => setIsOpen(!isOpen)}
               className="xl:hidden w-12 h-12 flex items-center justify-center text-warm-white bg-white/5 rounded-full border border-white/10"
-              aria-label={isOpen ? "Close Menu" : "Open Menu"}
             >
               {isOpen ? <X className="w-[18px] h-[18px]" size={18} /> : <Menu className="w-[18px] h-[18px]" size={18} />}
             </button>

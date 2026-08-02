@@ -156,8 +156,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `if (window.location.pathname.startsWith('/mr')) document.documentElement.lang = 'mr-IN';` }} />
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

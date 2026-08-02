@@ -78,6 +78,7 @@ export default function BlueprintExplorer({ projectId, projectName }: BlueprintE
 
               <div className="flex-1 relative bg-white/[0.02] p-6 md:p-12 flex items-center justify-center min-h-[50vh] md:min-h-0">
                  <button 
+                   aria-label="Close Blueprint Explorer"
                    onClick={() => setIsOpen(false)}
                    className="absolute top-8 right-8 text-text-light hover:text-warm-white transition-colors"
                  >

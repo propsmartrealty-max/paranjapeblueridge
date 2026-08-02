@@ -48,7 +48,7 @@ export default function FloatingWhatsApp() {
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
               <span className="text-xs font-bold uppercase tracking-wider text-navy/60">Sales Team Online</span>
             </div>
-            <button onClick={() => setIsExpanded(false)} className="text-navy/40 hover:text-navy">
+            <button aria-label="Close Chat" onClick={() => setIsExpanded(false)} className="text-navy/40 hover:text-navy">
               <X size={14} />
             </button>
           </div>
