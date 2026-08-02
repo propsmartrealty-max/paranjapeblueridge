@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { generatePseoUrls } from '../src/data/seo-matrix';
 import { projects, articles } from '../src/data/master-data';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
 
 async function triggerIndexNow() {
@@ -45,7 +45,7 @@ async function triggerIndexNow() {
     console.log(`📡 Submitting batch ${Math.floor(i / BATCH_SIZE) + 1} (${urlBatch.length} URLs)...`);
 
     const payload = {
-      host: 'www.paranjapeblueridge.com',
+      host: 'paranjapeblueridge.com',
       key: INDEXNOW_KEY,
       keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
       urlList: urlBatch
@@ -77,7 +77,7 @@ async function triggerIndexNow() {
 
   // Baidu Ping (Sitemap submission)
   try {
-    const baiduRes = await fetch('http://ping.baidu.com/ping/RPC2?sitemap=https://www.paranjapeblueridge.com/sitemap.xml', { method: 'GET' });
+    const baiduRes = await fetch('http://ping.baidu.com/ping/RPC2?sitemap=https://paranjapeblueridge.com/sitemap.xml', { method: 'GET' });
     if (!baiduRes.ok) console.warn(`⚠️ Baidu Ping returned status: ${baiduRes.status}`);
   } catch (e) {
     // Ignore silent warnings for Baidu network constraints
