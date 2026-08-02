@@ -18,6 +18,7 @@ import RoiCalculator from '@/components/RoiCalculator';
 import ContextualWhatsappCTA from '@/components/ContextualWhatsappCTA';
 import MahaReraBadge from '@/components/MahaReraBadge';
 import ProximityMatrix from '@/components/ProximityMatrix';
+import CurrencySwitcher from '@/components/CurrencySwitcher';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -198,6 +199,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
         <DynamicFreshness slug={pageData.slug} />
         {/* OFFICIAL MAHARERA VERIFICATION TRUST BADGE */}
         <MahaReraBadge />
+        {/* INTERNATIONAL MULTI-CURRENCY ESTIMATOR FOR NRIS */}
+        <CurrencySwitcher />
         {/* HYPER-LOCAL PROXIMITY & COMMUTE MATRIX */}
         <ProximityMatrix />
         {/* INTERACTIVE FINANCIAL & ROI CALCULATOR */}
