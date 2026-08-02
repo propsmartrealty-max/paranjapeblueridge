@@ -9,15 +9,14 @@ export async function GET(req: NextRequest) {
 
     // Dynamic params
     const title = searchParams.get('title') || 'Paranjape Blue Ridge';
-    
-    // We allow mapping from 'config', 'intent', or 'subtitle' to be flexible with existing usage
-    const subtitle = searchParams.get('subtitle') || searchParams.get('config') || searchParams.get('intent') || '138-Acre Integrated Township in Hinjewadi, Pune';
+    const subtitle = searchParams.get('subtitle') || searchParams.get('config') || searchParams.get('intent') || '138-Acre Integrated Township in Hinjewadi Phase 1, Pune';
     const highlight = searchParams.get('highlight'); // e.g., "Starting ₹1.2 Cr"
     const type = searchParams.get('type') || 'Sovereign Portal'; // 'Project', 'Insight', 'Floor Plan'
 
-    // The dark architectural background gradient
-    const background = 'linear-gradient(135deg, #0a192f 0%, #060d1a 100%)';
-    const goldAccent = '#D4AF37'; // the text-gold color from Tailwind
+    // Deep Midnight Luxury Palette
+    const background = 'linear-gradient(135deg, #040a14 0%, #0d1f38 100%)';
+    const goldAccent = '#dfb15b';
+    const emeraldAccent = '#10b981';
 
     return new ImageResponse(
       (
@@ -32,8 +31,8 @@ export async function GET(req: NextRequest) {
             background: background,
             padding: '60px',
             fontFamily: 'system-ui, sans-serif',
-            color: '#FDFBF7', // warm-white
-            border: `6px solid rgba(212, 175, 55, 0.4)`, // subtle gold border
+            color: '#f8fafc',
+            border: `6px solid rgba(223, 177, 91, 0.4)`,
           }}
         >
           {/* Top Row: Brand & Type Badge */}
@@ -45,7 +44,7 @@ export async function GET(req: NextRequest) {
             <div
               style={{
                 padding: '10px 24px',
-                background: 'rgba(212, 175, 55, 0.1)',
+                background: 'rgba(223, 177, 91, 0.1)',
                 border: `1px solid ${goldAccent}`,
                 borderRadius: '50px',
                 color: goldAccent,
@@ -63,18 +62,19 @@ export async function GET(req: NextRequest) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '950px' }}>
             <div
               style={{
-                fontSize: title.length > 50 ? 60 : 76,
+                fontSize: title.length > 50 ? 56 : 72,
                 fontWeight: 800,
                 lineHeight: 1.1,
                 margin: 0,
+                color: '#ffffff',
               }}
             >
               {title}
             </div>
             <div
               style={{
-                fontSize: 34,
-                color: 'rgba(253, 251, 247, 0.8)',
+                fontSize: 32,
+                color: 'rgba(248, 250, 252, 0.85)',
                 margin: 0,
                 lineHeight: 1.4,
               }}
@@ -93,21 +93,21 @@ export async function GET(req: NextRequest) {
                 </span>
               </div>
             ) : (
-              <div style={{ display: 'flex', fontSize: 24, color: 'rgba(253, 251, 247, 0.6)', gap: '20px' }}>
-                 <span>✦ 138-Acre Township</span>
-                 <span>✦ SEZ Walk-to-Work</span>
+              <div style={{ display: 'flex', fontSize: 24, color: 'rgba(248, 250, 252, 0.7)', gap: '20px' }}>
+                 <span style={{ color: emeraldAccent }}>✦ 138-Acre Township</span>
+                 <span style={{ color: goldAccent }}>✦ Walk-to-Work SEZ</span>
+                 <span>✦ Golf Course</span>
               </div> 
             )}
             
-            <div style={{ fontSize: 28, color: 'rgba(253, 251, 247, 0.5)', letterSpacing: '2px', fontWeight: 600 }}>
+            <div style={{ fontSize: 28, color: 'rgba(248, 250, 252, 0.5)', letterSpacing: '2px', fontWeight: 600 }}>
               paranjapeblueridge.com
             </div>
           </div>
           
-          {/* Architectural Lines overlay */}
-          <div style={{ position: 'absolute', right: 0, bottom: 0, width: '400px', height: '400px', borderTopLeftRadius: '100%', borderTop: `2px solid rgba(212, 175, 55, 0.2)`, borderLeft: `2px solid rgba(212, 175, 55, 0.2)`, zIndex: -1 }} />
-          <div style={{ position: 'absolute', right: 0, bottom: 0, width: '300px', height: '300px', borderTopLeftRadius: '100%', borderTop: `2px solid rgba(212, 175, 55, 0.3)`, borderLeft: `2px solid rgba(212, 175, 55, 0.3)`, zIndex: -1 }} />
-          <div style={{ position: 'absolute', right: 0, bottom: 0, width: '200px', height: '200px', borderTopLeftRadius: '100%', borderTop: `2px solid rgba(212, 175, 55, 0.4)`, borderLeft: `2px solid rgba(212, 175, 55, 0.4)`, zIndex: -1 }} />
+          {/* Architectural Overlay Circles */}
+          <div style={{ position: 'absolute', right: 0, bottom: 0, width: '400px', height: '400px', borderTopLeftRadius: '100%', borderTop: `2px solid rgba(223, 177, 91, 0.2)`, borderLeft: `2px solid rgba(223, 177, 91, 0.2)`, zIndex: -1 }} />
+          <div style={{ position: 'absolute', right: 0, bottom: 0, width: '300px', height: '300px', borderTopLeftRadius: '100%', borderTop: `2px solid rgba(223, 177, 91, 0.3)`, borderLeft: `2px solid rgba(223, 177, 91, 0.3)`, zIndex: -1 }} />
         </div>
       ),
       {
