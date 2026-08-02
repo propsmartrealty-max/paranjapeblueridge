@@ -14,13 +14,35 @@ const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
 // Simple server-side rate-limit map (per IP, 60s cooldown)
 const rateLimitMap = new Map<string, number>();
 
-function sanitize(str: string): string {
-  return str.replace(/[<>]/g, '').trim().slice(0, 500);
+function sanitize(str: any, maxLen: number = 200): string {
+  if (typeof str !== 'string') return '';
+  // Strip dangerous characters to prevent NoSQL/XSS injections
+  return str.replace(/[<>{}$]/g, '').trim().slice(0, maxLen);
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    // ── Strict CSRF Origin Defense ──
+    const origin = request.headers.get('origin');
+    const isLocal = origin === 'http://localhost:3005' || origin === 'http://localhost:3000';
+    const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://www.paranjapeblueridge.com';
+    
+    // In production, reject cross-origin requests
+    if (process.env.NODE_ENV === 'production') {
+      if (!origin || !isProd) {
+        return NextResponse.json({ success: false, error: 'Forbidden: Invalid Origin' }, { status: 403 });
+      }
+    } else if (origin && !isLocal) {
+      return NextResponse.json({ success: false, error: 'Forbidden: Invalid Local Origin' }, { status: 403 });
+    }
+
+    // ── Deep Payload Structure Validation ──
+    // Ensures request.json() doesn't crash on huge payloads (Long-String DoS)
+    const rawText = await request.text();
+    if (rawText.length > 5000) {
+      return NextResponse.json({ success: false, error: 'Payload Too Large' }, { status: 413 });
+    }
+    const body = JSON.parse(rawText);
 
     // ── Honeypot check ──
     if (body.bot_field) {
@@ -50,24 +72,24 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // ── Sanitize payload ──
+    // ── Strict Schema Sanitization ──
     const leadPayload = {
-      name: sanitize(body.name || ''),
-      phone: sanitize(body.phone || ''),
-      email: sanitize(body.email || ''),
-      bhk: sanitize(body.bhk || ''),
-      budget: sanitize(body.budget || ''),
-      intent: sanitize(body.intent || ''),
-      visitDate: sanitize(body.visitDate || ''),
-      visitTime: sanitize(body.visitTime || ''),
-      message: sanitize(body.message || ''),
-      source: sanitize(body.source || 'Website'),
-      behavioralFingerprint: sanitize(body.behavioralFingerprint || 'None'),
-      utm_source: sanitize(body.utms?.utm_source || ''),
-      utm_medium: sanitize(body.utms?.utm_medium || ''),
-      utm_campaign: sanitize(body.utms?.utm_campaign || ''),
-      utm_term: sanitize(body.utms?.utm_term || ''),
-      utm_content: sanitize(body.utms?.utm_content || ''),
+      name: sanitize(body.name, 100),
+      phone: sanitize(body.phone, 20),
+      email: sanitize(body.email, 100),
+      bhk: sanitize(body.bhk, 50),
+      budget: sanitize(body.budget, 50),
+      intent: sanitize(body.intent, 200),
+      visitDate: sanitize(body.visitDate, 50),
+      visitTime: sanitize(body.visitTime, 50),
+      message: sanitize(body.message, 1000),
+      source: sanitize(body.source, 100) || 'Website',
+      behavioralFingerprint: sanitize(body.behavioralFingerprint, 500) || 'None',
+      utm_source: sanitize(body.utms?.utm_source, 100),
+      utm_medium: sanitize(body.utms?.utm_medium, 100),
+      utm_campaign: sanitize(body.utms?.utm_campaign, 100),
+      utm_term: sanitize(body.utms?.utm_term, 100),
+      utm_content: sanitize(body.utms?.utm_content, 100),
       timestamp: new Date().toISOString(),
     };
 

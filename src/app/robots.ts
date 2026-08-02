@@ -3,9 +3,21 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // 1. Explicit Googlebot & Bingbot Rules (Highest Priority - Full Allowance)
+      // 1. Explicit Googlebot Ecosystem & Search Engine Rules (Maximum Allowance & Speed)
       {
-        userAgent: ['Googlebot', 'Googlebot-Image', 'Googlebot-Video', 'Googlebot-News', 'Bingbot', 'Slurp', 'DuckDuckBot'],
+        userAgent: [
+          'Googlebot',
+          'Googlebot-Image',
+          'Googlebot-Video',
+          'Googlebot-News',
+          'GoogleOther',
+          'Google-InspectionTool',
+          'Storebot-Google',
+          'Google-Extended',
+          'Bingbot',
+          'Slurp',
+          'DuckDuckBot'
+        ],
         allow: '/',
         disallow: ['/api/', '/sovereign-vault/'],
       },
@@ -37,14 +49,18 @@ export default function robots(): MetadataRoute.Robots {
           'Diffbot',
           'FacebookBot',
           'ImagesiftBot',
-          'PerplexityBot',
           'Omgili',
           'Omgilibot',
         ],
         allow: '/llm.txt',
         disallow: '/',
       },
-      // 4. Universal rule for standard bots (Fallback)
+      // 4. Allow Search AI overviews (Perplexity, GoogleExtendedCrawler)
+      {
+        userAgent: ['PerplexityBot', 'GoogleExtendedCrawler'],
+        allow: '/',
+      },
+      // 5. Universal rule for standard bots (Fallback)
       {
         userAgent: '*',
         allow: '/',
@@ -53,10 +69,13 @@ export default function robots(): MetadataRoute.Robots {
           '/_next/cache/', 
           '/sovereign-vault/',
         ],
-        crawlDelay: 2, // Slow down generic scrapers to protect server resources
+        crawlDelay: 1, // Reduced to 1 to ensure legit standard bots aren't overly throttled
       },
     ],
-    sitemap: 'https://paranjapeblueridge.com/sitemap.xml',
+    sitemap: [
+      'https://paranjapeblueridge.com/sitemap.xml',
+      'https://paranjapeblueridge.com/sitemap-images.xml'
+    ],
     host: 'https://paranjapeblueridge.com',
   };
 }

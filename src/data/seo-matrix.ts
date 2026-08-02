@@ -607,7 +607,120 @@ export const seoMatrix = {
     modifiers: ["Luxury", "Premium", "Ultra Luxury", "Spacious", "Large", "Elite", "Exclusive", "High End", "Prestigious"],
     features: ["Township", "Golf View", "River View", "High Rise", "Gated Community"],
     intents: ["Buy", "Investment", "For Sale"]
-  }
+  },
+  // Silo 28: NRI & Global Diaspora — high-intent long-tail for international buyers
+  nriDiaspora: {
+    originCountries: [
+      { slug: 'usa', name: 'USA', demonym: 'Indian Americans' },
+      { slug: 'uae', name: 'UAE', demonym: 'Indian Expats in Dubai' },
+      { slug: 'uk', name: 'UK', demonym: 'Indians in UK' },
+      { slug: 'singapore', name: 'Singapore', demonym: 'Indian Expats in Singapore' },
+      { slug: 'canada', name: 'Canada', demonym: 'Indians in Canada' },
+      { slug: 'australia', name: 'Australia', demonym: 'Indians in Australia' },
+    ],
+    configs: [
+      { slug: '2-bhk', name: '2 BHK Flat' },
+      { slug: '3-bhk', name: '3 BHK Flat' },
+      { slug: '4-bhk', name: '4 BHK Luxury Apartment' },
+      { slug: 'penthouse', name: 'Penthouse' },
+    ],
+    intents: [
+      { prefix: 'buy', label: 'Buy' },
+      { prefix: 'invest-in', label: 'Invest in' },
+      { prefix: 'book', label: 'Book' },
+    ],
+    nriGuides: [
+      { slug: 'nri-home-loan-guide-india', name: 'NRI Home Loan Guide India — RBI Rules & Eligibility', intent: 'Complete guide for NRIs applying for home loans in India from abroad' },
+      { slug: 'nri-property-investment-pune-guide', name: 'NRI Property Investment Pune — Complete Guide 2026', intent: 'How NRIs can invest in Pune real estate: legal process, FEMA rules, tax benefits' },
+      { slug: 'nri-repatriation-property-sale-india', name: 'NRI Property Sale & Repatriation Guide India', intent: 'How to sell property in India as NRI and repatriate funds to USA, UAE, UK or Canada' },
+      { slug: 'fema-rules-nri-property-india', name: 'FEMA Rules for NRI Property Purchase in India 2026', intent: 'FEMA compliance, RBI approval, and legal checklist for NRI buying property in India' },
+      { slug: 'nri-property-management-pune', name: 'NRI Property Management Services Pune — Rental & Maintenance', intent: 'End-to-end property management services for NRI investors in Pune real estate' },
+      { slug: 'paranjape-blue-ridge-nri-sales-event', name: 'Paranjape Blue Ridge NRI Sales Event — Dubai & Singapore', intent: 'Register for Blue Ridge exclusive NRI property exhibition in Dubai and Singapore' },
+      { slug: 'nri-corner-paranjape-blue-ridge', name: 'NRI Corner — Paranjape Blue Ridge Official NRI Desk', intent: 'Dedicated NRI sales support, legal assistance and investment advisory at Blue Ridge' },
+    ]
+  },
+  // 1. Branded Authority
+  brandedAuthority: [
+    "Paranjape Blue Ridge Phase 1 Pricing",
+    "Paranjape Blue Ridge Phase 1 Brochure",
+    "Paranjape Blue Ridge Hinjewadi 3 BHK Floor Plan",
+    "Blue Ridge Hinjewadi 4 BHK Cost Sheet",
+    "Blue Ridge Township Amenities",
+    "Paranjape Blue Ridge Reviews 2026",
+    "Is Blue Ridge Hinjewadi a good investment",
+    "Blue Ridge Hinjewadi Resale Flats",
+    "Paranjape Blue Ridge 2 BHK Resale Price",
+    "Blue Ridge Public School Hinjewadi Admission",
+    "Paranjape Blue Ridge Possession Date",
+    "Blue Ridge Pune Rent 3 BHK",
+    "Paranjape Blue Ridge Wakad IT Park Distance",
+    "Blue Ridge Hinjewadi Master Plan",
+    "Paranjape Blue Ridge Construction Status",
+    "Paranjape Blue Ridge Developer Track Record"
+  ],
+  // 2. Luxury 3/4 BHK Hinjewadi Combinatorial
+  luxury3And4BhkHinjewadi: {
+    configs: ["3 BHK", "4 BHK", "5 BHK"],
+    modifiers: ["Luxury", "Ultra-Luxury", "Premium", "Golf-View", "River-Facing", "Spacious", "High-Rise"],
+    locations: ["Hinjewadi", "Hinjewadi Phase 1", "near Infosys Hinjewadi", "Pune West", "Wakad", "Baner", "Balewadi"]
+  },
+  // 3. Pune Real Estate Macro Market Authority
+  puneMarketAuthority: [
+    "Best IT Parks in Pune for Real Estate Investment",
+    "Pune Real Estate Market Trends 2026",
+    "Hinjewadi vs Wakad Real Estate Comparison",
+    "Where to buy luxury homes in West Pune",
+    "Top 10 Luxury Residential Projects in Pune",
+    "Pune Metro Line 3 Impact on Real Estate",
+    "Best Township in Pune for IT Professionals",
+    "Hinjewadi Phase 1 Property Appreciation Rates",
+    "High Rental Yield Areas in Pune 2026",
+    "Luxury Property Investment Guide Pune",
+    "Pune Real Estate Forecast 2026 to 2030",
+    "Pune IT Corridor Housing Demand",
+    "Should I buy a flat in Hinjewadi or Baner",
+    "Hinjewadi Real Estate Investment ROI",
+    "Best Locations for Property Investment in Pune"
+  ],
+  // 4. Pune Duplex, Simplex & Luxury Typologies Matrix
+  puneDuplexSimplex: {
+    typologies: ["Duplex Apartments", "Simplex Luxury Flats", "Sky Villas", "Duplex Penthouses", "Double Height Ceiling Homes", "Multi-Level Luxury Residences", "Garden Duplexes", "Penthouse Sky Suites"],
+    locations: ["Hinjewadi", "Hinjewadi Phase 1", "Wakad", "Baner", "Balewadi", "Kharadi", "Kothrud", "Bavdhan", "Pashan", "West Pune", "Pune"],
+    modifiers: ["Luxury", "Ultra Luxury", "Premium", "Golf View", "Riverfront", "Gated Township"]
+  },
+  // 5. Pune Micro-Markets & Infrastructure Corridor Master Matrix
+  puneMicroMarketsMaster: [
+    { slug: 'baner-pashan-link-road', name: 'Baner Pashan Link Road', area: 'West Pune' },
+    { slug: 'hinjewadi-phase-1-it-hub', name: 'Hinjewadi Phase 1 IT Hub', area: 'Hinjewadi' },
+    { slug: 'hinjewadi-phase-2-quadron', name: 'Hinjewadi Phase 2 near Quadron', area: 'Hinjewadi' },
+    { slug: 'hinjewadi-phase-3-tech-zone', name: 'Hinjewadi Phase 3 Tech Zone', area: 'Hinjewadi' },
+    { slug: 'wakad-datta-mandir-road', name: 'Wakad Datta Mandir Road', area: 'Wakad' },
+    { slug: 'balewadi-high-street-belt', name: 'Balewadi High Street Belt', area: 'Balewadi' },
+    { slug: 'mahalunge-ingale-corridor', name: 'Mahalunge Ingale Corridor', area: 'Mahalunge' },
+    { slug: 'pune-metro-line-3-station-belt', name: 'Pune Metro Line 3 Station Belt', area: 'Hinjewadi-Wakad' },
+    { slug: 'pune-ring-road-connector', name: 'Pune Ring Road Connector Belt', area: 'West Pune' },
+    { slug: 'mumbai-pune-expressway-gateway', name: 'Mumbai Pune Expressway Gateway', area: 'Hinjewadi' },
+    { slug: 'maan-road-hinjewadi-corridor', name: 'Maan Road Hinjewadi Corridor', area: 'Hinjewadi' },
+    { slug: 'punawale-tathawade-it-connector', name: 'Punawale Tathawade IT Connector', area: 'PCMC-Hinjewadi' },
+    { slug: 'marunji-hinjewadi-road', name: 'Marunji Hinjewadi Road', area: 'Hinjewadi' }
+  ],
+  // 6. Pune Real Estate Luxury Ecosystem Master Queries
+  puneLuxuryEcosystem: [
+    "RERA Approved Luxury Real Estate Projects in Pune",
+    "Top 10 High Rental Yield Townships in Pune 2026",
+    "Golf Course Facing Luxury Apartments in Pune",
+    "Riverfront Luxury Residences in West Pune",
+    "Townships with ICSE School Inside Campus Pune",
+    "Private Boat Club Luxury Apartments Pune",
+    "Walk to Work Luxury Apartments for IT Professionals Pune",
+    "NRI Investment Legal Guide for Pune Property 2026",
+    "Ultra Luxury 4 BHK and 5 BHK Homes in Hinjewadi",
+    "Duplex vs Simplex Apartments Investment Comparison Pune",
+    "Best Gated Community for Senior Living and Families Pune",
+    "Smart Home Luxury Apartments Hinjewadi Phase 1",
+    "High Rise Luxury Towers in Hinjewadi IT Park",
+    "Ready to Move Resale Luxury Flats in Blue Ridge Hinjewadi"
+  ]
 };
 
 export function generatePseoUrls() {
@@ -1049,6 +1162,142 @@ export function generatePseoUrls() {
       silo: 'paa-reviews'
     });
   });
+
+  // Silo 28: NRI & Global Diaspora — International buyer PSEO pages
+  const nri = seoMatrix.nriDiaspora;
+  nri.originCountries.forEach(country => {
+    nri.configs.forEach(config => {
+      nri.intents.forEach(intent => {
+        const phrase = `${intent.label} ${config.name} in Pune from ${country.name}`;
+        urls.push({
+          slug: `${intent.prefix}-${config.slug}-in-pune-from-${country.slug}`,
+          title: phrase,
+          intent: `${phrase} — Paranjape Blue Ridge NRI Investment Portal`,
+          type: 'NRI Property',
+          silo: 'nri'
+        });
+        // Hinjewadi-specific variant
+        const phraseHinjewadi = `${intent.label} ${config.name} in Hinjewadi Pune from ${country.name}`;
+        urls.push({
+          slug: `${intent.prefix}-${config.slug}-hinjewadi-pune-from-${country.slug}`,
+          title: phraseHinjewadi,
+          intent: `${phraseHinjewadi} — Blue Ridge Official NRI Desk`,
+          type: 'NRI Property',
+          silo: 'nri'
+        });
+      });
+    });
+    // Country-level NRI landing page
+    urls.push({
+      slug: `nri-property-investment-pune-from-${country.slug}`,
+      title: `NRI Property Investment Pune from ${country.name} — Complete Guide`,
+      intent: `Guide for ${country.demonym} investing in Pune real estate — Blue Ridge Township`,
+      type: 'NRI Guide',
+      silo: 'nri'
+    });
+    urls.push({
+      slug: `blue-ridge-hinjewadi-for-nri-${country.slug}`,
+      title: `Paranjape Blue Ridge for NRI from ${country.name} — Investment & ROI`,
+      intent: `Investment guide for ${country.demonym}: Blue Ridge Hinjewadi pricing, ROI & legal process`,
+      type: 'NRI Guide',
+      silo: 'nri'
+    });
+  });
+  // NRI Legal & Advisory guides (no country suffix — global intent)
+  nri.nriGuides.forEach(guide => {
+    urls.push({
+      slug: guide.slug,
+      title: guide.name,
+      intent: guide.intent,
+      type: 'NRI Guide',
+      silo: 'nri'
+    });
+  });
+
+
+  // 1. Branded Authority Silo
+  seoMatrix.brandedAuthority.forEach(phrase => {
+    urls.push({
+      slug: slugify(phrase),
+      title: phrase,
+      intent: phrase,
+      type: 'Branded Authority',
+      silo: 'branded'
+    });
+  });
+
+  // 2. Luxury 3/4 BHK Hinjewadi Combinatorial Silo
+  seoMatrix.luxury3And4BhkHinjewadi.configs.forEach(config => {
+    seoMatrix.luxury3And4BhkHinjewadi.modifiers.forEach(mod => {
+      seoMatrix.luxury3And4BhkHinjewadi.locations.forEach(loc => {
+        const phrase = `${mod} ${config} Flats in ${loc} Pune`;
+        urls.push({
+          slug: slugify(phrase),
+          title: phrase,
+          intent: `Buy ${phrase} - Paranjape Blue Ridge`,
+          type: 'Luxury Micro-Intent',
+          silo: 'luxury-pune'
+        });
+      });
+    });
+  });
+
+  // 3. Pune Real Estate Macro Market Authority Silo
+  seoMatrix.puneMarketAuthority.forEach(phrase => {
+    urls.push({
+      slug: slugify(phrase),
+      title: phrase,
+      intent: phrase,
+      type: 'Pune Macro Market',
+      silo: 'pune-macro'
+    });
+  });
+
+  // 4. Pune Duplex, Simplex & Luxury Typologies Silo
+  seoMatrix.puneDuplexSimplex.typologies.forEach(typology => {
+    seoMatrix.puneDuplexSimplex.modifiers.slice(0, 3).forEach(mod => {
+      seoMatrix.puneDuplexSimplex.locations.forEach(loc => {
+        const phrase = `${mod} ${typology} in ${loc} Pune`;
+        urls.push({
+          slug: slugify(phrase),
+          title: phrase,
+          intent: `Buy ${phrase} — Paranjape Blue Ridge`,
+          type: typology,
+          silo: 'duplex-simplex'
+        });
+      });
+    });
+  });
+
+  // 5. Pune Micro-Markets Master Silo
+  seoMatrix.puneMicroMarketsMaster.forEach(micro => {
+    urls.push({
+      slug: `${micro.slug}-real-estate-market-pune`,
+      title: `${micro.name} Real Estate & Property Guide ${micro.area}`,
+      intent: `Property Investment & Real Estate Trends in ${micro.name} Pune`,
+      type: 'Micro-Market Authority',
+      silo: 'pune-micro-market'
+    });
+    urls.push({
+      slug: `luxury-flats-near-${micro.slug}-pune`,
+      title: `Luxury Flats Near ${micro.name} Pune`,
+      intent: `Buy Luxury Apartments & Flats Near ${micro.name} Pune`,
+      type: 'Micro-Market Housing',
+      silo: 'pune-micro-market'
+    });
+  });
+
+  // 6. Pune Real Estate Luxury Ecosystem Queries Silo
+  seoMatrix.puneLuxuryEcosystem.forEach(phrase => {
+    urls.push({
+      slug: slugify(phrase),
+      title: phrase,
+      intent: phrase,
+      type: 'Luxury Real Estate Ecosystem',
+      silo: 'luxury-ecosystem'
+    });
+  });
+
 
   const mappedUrls = urls.map(u => ({
     ...u,

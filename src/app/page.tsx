@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
     languages: {
+      'x-default': SITE_URL,
       'en-IN': SITE_URL,
       'mr-IN': `${SITE_URL}/mr`,
     },
@@ -33,13 +34,16 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  searchParams?: {
+  searchParams?: Promise<{
+    lang?: string;
+  }> | {
     lang?: string;
   };
 }
 
-export default function Home({ searchParams }: PageProps) {
-  const lang = searchParams?.lang === 'mr' ? 'mr' : 'en';
+export default async function Home({ searchParams }: PageProps) {
+  const params = await Promise.resolve(searchParams);
+  const lang = params?.lang === 'mr' ? 'mr' : 'en';
 
   return (
     <>

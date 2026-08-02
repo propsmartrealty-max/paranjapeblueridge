@@ -119,6 +119,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://paranjapeblueridge.com',
     languages: {
+      'x-default': 'https://paranjapeblueridge.com',
       'en-IN': 'https://paranjapeblueridge.com',
       'mr-IN': 'https://paranjapeblueridge.com/mr',
     },

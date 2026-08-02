@@ -17,6 +17,7 @@ interface EnquiryModalProps {
 
 export default function EnquiryModal({ isOpen, onClose, initialInterest }: EnquiryModalProps) {
   const [step, setStep] = useState(1);
+  const [countryCode, setCountryCode] = useState('+91');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -39,14 +40,22 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
     e.preventDefault();
     setError(null);
     
-    // 10-digit Indian phone validation
-    const phoneRegex = /^[6-9]\d{9}$/;
     const cleanPhone = formData.phone.replace(/[\s\-\(\)\+]/g, '');
-    const mobileOnly = cleanPhone.length > 10 ? cleanPhone.slice(-10) : cleanPhone;
 
-    if (!phoneRegex.test(mobileOnly)) {
-      setError("Please enter a valid 10-digit mobile number.");
-      return;
+    if (countryCode === '+91') {
+      // Strict 10-digit Indian mobile validation
+      const indianRegex = /^[6-9]\d{9}$/;
+      const mobileOnly = cleanPhone.length > 10 ? cleanPhone.slice(-10) : cleanPhone;
+      if (!indianRegex.test(mobileOnly)) {
+        setError("Please enter a valid 10-digit Indian mobile number.");
+        return;
+      }
+    } else {
+      // International: allow 7-15 digits (E.164 standard)
+      if (!/^\d{7,15}$/.test(cleanPhone)) {
+        setError("Please enter a valid phone number (digits only, no spaces).");
+        return;
+      }
     }
 
     startTransition(() => {
@@ -90,7 +99,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
 
     const leadPayload = {
       name: sanitize(formData.name),
-      phone: sanitize(formData.phone),
+      phone: sanitize(`${countryCode} ${formData.phone}`),
       email: sanitize(formData.email),
       bhk: sanitize(formData.bhk),
       budget: sanitize(formData.budget),
@@ -106,7 +115,14 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
 
     // ── Channel 2: Sovereign Vault (Always executes first) ──
     try {
-      const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
+      let existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
+      // DPDP Act: 24-hour TTL data minimization
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      existingLeads = existingLeads.filter((lead: any) => {
+        const leadTime = new Date(lead.timestamp).getTime();
+        return (now - leadTime) < ONE_DAY;
+      });
       existingLeads.push(leadPayload);
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {
@@ -225,6 +241,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         type="text" 
                         required 
                         maxLength={50}
+                        autoComplete="name"
                         pattern="^[A-Za-z\s.'-]+$"
                         title="Only alphabets, spaces, dots, hyphens and apostrophes are allowed."
                         value={formData.name}
@@ -235,28 +252,46 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
                     
                     <div className="space-y-2">
-                      <label htmlFor="enquiry-phone" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Phone</label>
-                      <input 
-                        id="enquiry-phone"
-                        type="tel" 
-                        required 
-                        maxLength={15}
-                        pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
-                        title="Please enter a valid phone number."
-                        value={formData.phone}
-                        onChange={e => setFormData({...formData, phone: e.target.value})}
-                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
-                        placeholder="+91"
-                      />
+                      <label htmlFor="enquiry-phone" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">
+                        Phone {countryCode !== '+91' && <span className="text-gold/60 font-normal normal-case tracking-normal ml-1">(NRI)</span>}
+                      </label>
+                      <div className="flex gap-2">
+                        <select
+                          id="enquiry-country-code"
+                          value={countryCode}
+                          onChange={e => setCountryCode(e.target.value)}
+                          aria-label="Country code"
+                          className="px-3 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none text-sm font-bold shrink-0"
+                        >
+                          <option value="+91">🇮🇳 +91</option>
+                          <option value="+971">🇦🇪 +971</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+65">🇸🇬 +65</option>
+                          <option value="+61">🇦🇺 +61</option>
+                          <option value="+1-CA">🇨🇦 +1</option>
+                        </select>
+                        <input 
+                          id="enquiry-phone"
+                          type="tel" 
+                          required 
+                          maxLength={15}
+                          autoComplete="tel-national"
+                          value={formData.phone}
+                          onChange={e => setFormData({...formData, phone: e.target.value})}
+                          className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                          placeholder={countryCode === '+91' ? '9876543210' : 'Your number'}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email</label>
+                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email <span className="text-gold/50 font-normal normal-case tracking-normal">(optional)</span></label>
                       <input 
                         id="enquiry-email"
                         type="email" 
-                        required 
                         maxLength={100}
+                        autoComplete="email"
                         value={formData.email}
                         onChange={e => setFormData({...formData, email: e.target.value})}
                         className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"

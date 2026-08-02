@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQSection() {
   const { t } = useLanguage();
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0);
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
   const faqs = [
     {
@@ -25,12 +25,39 @@ export default function FAQSection() {
     {
       q: t("Does Blue Ridge have a school inside?", "ब्लू रिजच्या आत शाळा आहे का?"),
       a: t("Yes, the township features the Blue Ridge Public School (ICSE), ensuring your children have top-tier education within walking distance.", "हो, या टाऊनशिपमध्ये ब्लू रिज पब्लिक स्कूल (ICSE) आहे, ज्यामुळे तुमच्या मुलांना चालण्याच्या अंतरावर उच्च दर्जाचे शिक्षण मिळेल.")
+    },
+    {
+      q: t("Can NRIs buy property at Paranjape Blue Ridge?", "NRI परंजपे ब्लू रिजमध्ये मालमत्ता खरेदी करू शकतात का?"),
+      a: t("Yes. NRIs, PIOs, and OCIs can purchase residential property in India under FEMA regulations without RBI approval. Blue Ridge is MahaRERA certified and bank-approved (SBI, HDFC, ICICI). Our dedicated NRI desk handles documentation end-to-end and 100% remote purchase is possible.", "होय. FEMA नियमांतर्गत RBI परवानगीशिवाय NRI, PIO आणि OCI भारतात मालमत्ता खरेदी करू शकतात. ब्लू रिज महारेरा प्रमाणित आहे.")
+    },
+    {
+      q: t("What is the MahaRERA registration number for Blue Ridge?", "ब्लू रिजचा MahaRERA नोंदणी क्रमांक काय आहे?"),
+      a: t("Promenade: P52100055581 | The Altius: P52100078116 | Ridges 41: P52100000054. All clusters are fully MahaRERA certified and compliant. Verify at maharera.maharerait.gov.in.", "प्रोमेनेड: P52100055581 | द आल्टियस: P52100078116 | रिजेस ४१: P52100000054. सर्व क्लस्टर्स महारेरा प्रमाणित आहेत.")
     }
   ];
 
+  // FAQPage JSON-LD schema — injected as a script tag alongside the component
+  // This enables Google's FAQ rich results (accordion dropdowns in SERPs)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
 
   return (
     <section id="faq" className="py-20 bg-navy-light/30 border-t border-white/5">
+      {/* FAQPage JSON-LD Schema — required for Google rich result eligibility */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       <div className="container">
         <div className="text-center mb-16">
@@ -41,8 +68,10 @@ export default function FAQSection() {
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
             <div key={i} className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
-              <button 
+              <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.03] transition-colors"
               >
                 <span className="text-warm-white font-bold text-sm">{faq.q}</span>
@@ -52,6 +81,7 @@ export default function FAQSection() {
               <AnimatePresence>
                 {openIndex === i && (
                   <motion.div
+                    id={`faq-answer-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

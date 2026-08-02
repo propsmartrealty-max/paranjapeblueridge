@@ -45,6 +45,7 @@ export async function generateMetadata({
     alternates: { 
       canonical,
       languages: {
+        'x-default': `${SITE_URL}/${englishSlug}/${params.config}`,
         'en-IN': `${SITE_URL}/${englishSlug}/${params.config}`,
         'mr-IN': `${SITE_URL}/mr-${englishSlug}/${params.config}`
       }

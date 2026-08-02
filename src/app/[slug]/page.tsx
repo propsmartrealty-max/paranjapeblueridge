@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       alternates: {
         canonical: `${SITE_URL}/mr-hinjewadi-micro-market`,
         languages: {
+          'x-default': SITE_URL,
           'en-IN': `${SITE_URL}/hinjewadi-micro-market`,
           'mr-IN': `${SITE_URL}/mr-hinjewadi-micro-market`,
         },
@@ -116,12 +117,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
-        ...(hasAlternate ? {
-          languages: {
+        languages: {
+          'x-default': SITE_URL,
+          ...(hasAlternate ? {
             'en-IN': isMr ? `${SITE_URL}/${altSlug}` : `${SITE_URL}/${slug}`,
             'mr-IN': isMr ? `${SITE_URL}/${slug}` : `${SITE_URL}/${altSlug}`,
-          }
-        } : {}),
+          } : {}),
+        },
       },
       openGraph: {
         title,
@@ -178,6 +180,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       alternates: {
         canonical: `${SITE_URL}/${slug}`,
         languages: {
+          'x-default': SITE_URL,
           'en-IN': `${SITE_URL}/${cleanEnSlug}`,
           'mr-IN': `${SITE_URL}/${cleanMrSlug}`,
         },

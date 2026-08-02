@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { generatePseoUrls } from '../src/data/seo-matrix';
 import { projects, articles } from '../src/data/master-data';
 

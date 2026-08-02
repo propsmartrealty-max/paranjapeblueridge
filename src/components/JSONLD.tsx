@@ -33,7 +33,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       const vsLabel = title.split('vs')[1]?.trim() || (isMarathi ? 'इतर टाउनशिप्स' : 'other townships');
       return [
         { 
-          q: t(`Why choose Blue Ridge over ${vsLabel}?`, `${vsLabel} ऐवजी嚮 ब्लू रिज का निवडावे?`), 
+          q: t(`Why choose Blue Ridge over ${vsLabel}?`, `${vsLabel} ऐवजी ब्लू रिज का निवडावे?`), 
           a: t('Blue Ridge offers a 138-acre ready integrated ecosystem with ICSE school, 9-hole golf course, private boat club, and walk-to-work SEZ — a complete lifestyle no competitor can match.', 'ब्लू रिज एक १३८ एकरची तयार एकात्मिक परिसंस्था प्रदान करते ज्यामध्ये आयसीएसई शाळा, ९-होल गोल्फ कोर्स, खाजगी बोट क्लब आणि वॉक-टू-वर्क एसईझेड समाविष्ट आहे — जे इतर कोणताही स्पर्धक देऊ शकत नाही.') 
         },
         { 
@@ -96,7 +96,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       return [
         { 
           q: t('How do I book a site visit to Blue Ridge Hinjewadi?', 'मी ब्लू रिज हिंजवडीच्या साईट व्हिजिटसाठी बुकिंग कसे करू?'), 
-          a: t('Call +91-20-67210000 or WhatsApp +91-7744009295. We offer 7-day slots including weekends. Sales Gallery at Blue Ridge Township, Phase 1, Hinjewadi, Pune - 411057. Open 9 AM-8 PM.', '+९१-२०-६७२१०००० वर कॉल करा किंवा व्हॉट्सॲप +९१-७७४४००९२९५ करा. आम्ही शनिवार-रविवारसह ७ दिवस बुकिंग देतो. सेल्स गॅलरी:夾 ब्लू रिज टाउनशिप, फेज १, हिंजवडी, पुणे - ४११०५७. वेळ सकाळी ९ ते रात्री ८.') 
+          a: t('Call +91-20-67210000 or WhatsApp +91-7744009295. We offer 7-day slots including weekends. Sales Gallery at Blue Ridge Township, Phase 1, Hinjewadi, Pune - 411057. Open 9 AM-8 PM.', '+९१-२०-६७२१०००० वर कॉल करा किंवा व्हॉट्सॲप +९१-७७४४००९२९५ करा. आम्ही शनिवार-रविवारसह ७ दिवस बुकिंग देतो. सेल्स गॅलरी: ब्लू रिज टाउनशिप, फेज १, हिंजवडी, पुणे - ४११०५७. वेळ सकाळी ९ ते रात्री ८.') 
         },
         { 
           q: t('Is there a virtual tour of Blue Ridge available?', 'ब्लू रिजचा व्हर्च्युअल टूर उपलब्ध आहे का?'), 
@@ -137,6 +137,35 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
           a: t('Yes. Hinjewadi Phase 1 offers zero-commute access to major IT hubs (Infosys, TCS) and features massive integrated townships like Blue Ridge that provide unmatched luxury amenities.', 'होय. हिंजवडी फेज १ प्रमुख आयटी कंपन्यांच्या जवळ प्रवासाचा वेळ वाचवते आणि ब्लू रिज सारख्या भव्य टाउनशिप्स येथे अतुलनीय लक्झरी सुविधा देतात.') 
         }
       ];
+    case 'duplex-simplex':
+      return [
+        { 
+          q: t(`What makes duplex and simplex apartments at Blue Ridge unique?`, `ब्लू रिज येथील ड्युप्लेक्स आणि सिम्प्लेक्स अपार्टमेंट्सचे वैशिष्ट्य काय आहे?`), 
+          a: t(`Duplex and simplex apartments at Blue Ridge offer double-height ceiling voids, floor-to-ceiling glass facades, private sky terraces, and complete vertical floor separation for multi-generational families.`, `ब्लू रिज येथील ड्युप्लेक्स आणि सिम्प्लेक्स अपार्टमेंट्स डबल-हाइट सिलिंग, फ्लोअर-टू-सिलिंग काचेच्या खिडक्या, खाजगी स्काय टेरेस आणि संयुक्त कुटुंबांसाठी उत्कृष्ट लेआउट प्रदान करतात.`) 
+        },
+        { 
+          q: t(`What configurations of duplex apartments are available?`, `ड्युप्लेक्स अपार्टमेंटचे कोणते प्रकार उपलब्ध आहेत?`), 
+          a: t(`Blue Ridge features 3 BHK, 4 BHK, and 5 BHK ultra-luxury duplexes and penthouses with carpet areas ranging from 1,600 sq ft to 2,800 sq ft as per RERA specifications.`, `ब्लू रिजमध्ये रेराच्या निकषांनुसार १६०० चौ. फूट ते २८०० चौ. फूट कारपेट एरिया असलेले ३ बीएचके, ४ बीएचके आणि ५ बीएचके अति-लक्झरी ड्युप्लेक्स आणि पेंटहाउस उपलब्ध आहेत.`) 
+        }
+      ];
+    case 'pune-micro-market':
+      return [
+        { 
+          q: t(`What are the property appreciation trends in ${title}?`, `${title} मध्ये मालमत्ता मूल्यांकनाचे ट्रेंड कसे आहेत?`), 
+          a: t(`The West Pune micro-market corridor has delivered 10-12% average annual capital growth. Proximity to Metro Line 3 and Rajiv Gandhi Infotech Park continues to drive prime demand.`, `पश्चिम पुणे मायक्रो-मार्केट कॉरिडॉरने सरासरी १०-१२% वार्षिक भांडवली वाढ दिली आहे. मेट्रो लाईन ३ आणि राजीव गांधी इन्फोटेक पार्कच्या जवळीकतेमुळे मागणी सातत्याने वाढत आहे.`) 
+        },
+        { 
+          q: t(`Why invest in luxury property near ${title}?`, `${title} जवळ लक्झरी प्रॉपर्टीमध्ये गुंतवणूक का करावी?`), 
+          a: t(`High rental yields (4-5%), steady corporate tenant demand from IT multinational executives, and rapid infrastructure expansion make it Pune's top real estate investment hub.`, `उच्च रेंटल यील्ड (४-५%), आयटी मल्टीनॅशनल एक्झिक्युटिव्हकडून सातत्यपूर्ण मागणी आणि जलद पायाभूत सुविधांमुळे हे पुण्यातील सर्वोच्च रिअल इस्टेट गुंतवणूक केंद्र बनले आहे.`) 
+        }
+      ];
+    case 'luxury-ecosystem':
+      return [
+        { 
+          q: t(`What eco-friendly and township infrastructure features are in Blue Ridge?`, `ब्लू रिजमध्ये कोणत्या इको-फ्रेंडली आणि टाउनशिप सुविधा आहेत?`), 
+          a: t(`Blue Ridge is a 138-acre township with captive STPs, solar water heating, rain water harvesting, 9-hole golf course, Blue Ridge Public School, and a private boat club on the Mula river.`, `ब्लू रिज ही १३८ एकरची टाउनशिप आहे ज्यामध्ये एसटीपी, सौर जल तापन, पर्जन्य जल संचयन, ९-होल गोल्फ कोर्स, ब्लू रिज पब्लिक स्कूल आणि मुळा नदीवर खाजगी बोट क्लब कार्यरत आहे.`) 
+        }
+      ];
     case 'transactions':
       return [
         { 
@@ -157,6 +186,25 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
         { 
           q: t(`Where is the project ${title} located?`, `हा प्रकल्प ${title} कुठे स्थित आहे?`), 
           a: t('The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, social infrastructure, and high investment potential.', 'हा प्रकल्प ${title} पुण्याच्या मुख्य विकास क्षेत्रात स्थित आहे, जो उत्तम कनेक्टिव्हिटी, सामाजिक पायाभूत सुविधा आणि उच्च परताव्याची क्षमता देतो.') 
+        }
+      ];
+    case 'nri':
+      return [
+        {
+          q: t('Can NRIs buy property in India at Paranjape Blue Ridge?', 'NRI (अनिवासी भारतीय) परंजपे ब्लू रिजमध्ये मालमत्ता खरेदी करू शकतात का?'),
+          a: t('Yes. NRIs, PIOs, and OCIs can purchase residential property in India under FEMA regulations without RBI approval. Blue Ridge is MahaRERA certified and bank-approved (SBI, HDFC, ICICI). Funds can be remitted via NRE or NRO accounts. Our dedicated NRI desk handles documentation end-to-end.', 'होय. FEMA नियमांतर्गत RBI च्या परवानगीशिवाय NRI, PIO आणि OCI भारतात निवासी मालमत्ता खरेदी करू शकतात. ब्लू रिज महारेरा प्रमाणित आणि बँक-मान्यताप्राप्त (SBI, HDFC, ICICI) आहे.')
+        },
+        {
+          q: t('What is the ROI for NRI investment in Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडीमध्ये NRI गुंतवणुकीवर परतावा (ROI) किती आहे?'),
+          a: t('Blue Ridge delivers 4-5% annual rental yield and 12% capital appreciation. A 3 BHK purchased at ₹1.65 Cr in 2023 is now valued at ₹2.1 Cr. With Metro Line 3 (800m away) opening by 2027, NRI investors can expect an additional 15-20% appreciation. Rental income is repatriable via NRO account.', 'ब्लू रिज ४-५% वार्षिक भाड्याचे उत्पन्न आणि १२% भांडवली वाढ देते.')
+        },
+        {
+          q: t('How can I buy a flat in Blue Ridge from the USA/UAE/UK without visiting India?', 'मी भारतात न येता USA/UAE/UK मधून ब्लू रिजमध्ये फ्लॅट कसा खरेदी करू शकतो?'),
+          a: t('100% remote purchase is possible. We offer: (1) 360° virtual tours via WhatsApp, (2) video-call with the sales team, (3) Power of Attorney executed at your nearest Indian Consulate for document signing. Payment via wire transfer to our designated bank account. Our NRI desk closes deals for buyers across USA, UAE, UK, Singapore, Canada, and Australia.', 'भारतात न येता खरेदी शक्य आहे. आम्ही व्हर्च्युअल टूर, व्हिडिओ कॉल आणि पॉवर ऑफ अटर्नीद्वारे संपूर्ण प्रक्रिया पूर्ण करतो.')
+        },
+        {
+          q: t('Is NRI home loan available for Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडीसाठी NRI गृहकर्ज उपलब्ध आहे का?'),
+          a: t('Yes. SBI, HDFC, ICICI, Axis and Kotak offer NRI home loans for Blue Ridge at competitive rates (8.5-9.5%). Loan eligibility up to 80% of property value based on foreign income. Repayment via NRE/NRO/FCNR accounts permitted under FEMA. Our team provides end-to-end loan assistance including documentation.', 'होय. SBI, HDFC, ICICI, Axis आणि Kotak ब्लू रिजसाठी NRI गृहकर्ज देतात.')
         }
       ];
     default:
@@ -479,13 +527,14 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   // VideoObject removed — fake contentUrl triggers GSC structured data errors.
 
   // --- Open House / Site Visit Event Schema ---
+  const currentYear = new Date().getFullYear();
   const announcementSchema = {
     "@type": "Event",
     "@id": `${SITE_URL}/${slug}#launch-event`,
     "name": "Paranjape Blue Ridge Open House & Site Visit — Hinjewadi Pune",
     "description": "Visit the Paranjape Blue Ridge sales gallery and experience India's finest integrated township. Book a guided site tour of the 138-acre campus, golf course, boat club, and luxury show flats.",
-    "startDate": "2026-01-01T09:00:00+05:30",
-    "endDate": "2026-12-31T20:00:00+05:30",
+    "startDate": `${currentYear}-01-01T09:00:00+05:30`,
+    "endDate": `${currentYear}-12-31T20:00:00+05:30`,
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
@@ -629,7 +678,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "about": { "@id": `${SITE_URL}/${slug}#place` },
     "mainEntity": { "@id": `${SITE_URL}/${slug}#business` },
     "primaryImageOfPage": { "@id": `${SITE_URL}/#listing` },
-    "inLanguage": "en-IN",
+    "inLanguage": isMarathi ? "mr-IN" : "en-IN",
     "dateModified": new Date().toISOString().split('T')[0],
     "speakable": {
       "@type": "SpeakableSpecification",

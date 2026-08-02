@@ -42,5 +42,5 @@ export function getAllPosts() {
     const slug = fileName.replace(/\.mdx?$/, '');
     const post = getPostBySlug(slug);
     return post;
-  }).filter(Boolean);
+  }).filter((post): post is NonNullable<ReturnType<typeof getPostBySlug>> => post !== null);
 }

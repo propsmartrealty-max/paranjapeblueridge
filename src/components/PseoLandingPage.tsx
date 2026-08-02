@@ -14,6 +14,10 @@ import SiloLinks from '@/components/SiloLinks';
 import LanguageInitializer from '@/components/LanguageInitializer';
 import EnquiryModalAutoPopup from '@/components/EnquiryModalAutoPopup';
 import DynamicFreshness from '@/components/DynamicFreshness';
+import RoiCalculator from '@/components/RoiCalculator';
+import ContextualWhatsappCTA from '@/components/ContextualWhatsappCTA';
+import MahaReraBadge from '@/components/MahaReraBadge';
+import ProximityMatrix from '@/components/ProximityMatrix';
 
 interface PseoLandingPageProps {
   pageData: {
@@ -29,6 +33,8 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
   // Determine benefits based on silo
   const getBenefits = (silo: string) => {
     switch(silo) {
+      case 'nri':
+        return ['FEMA Compliant Investment', 'Remote Purchase Possible', 'NRI Desk Support', 'Repatriable Rental Income'];
       case 'investor':
         return ['High Rental Yield', 'Strong Capital Appreciation', 'Premium Tenant Profile', 'Zero Maintenance Headaches'];
       case 'corporate':
@@ -37,24 +43,34 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
       case 'infra-guide':
         return ['Future-Proof Connectivity', 'Metro Station Access', 'Highway Proximity', 'Appreciating Asset'];
       case 'ecosystem':
+      case 'luxury-ecosystem':
         return ['Private Boat Club', 'ICSE School Inside', '9-Hole Golf Course', '138 Acre Mega Township'];
       case 'competitor':
       case 'battleground':
         return ['138-Acre Mega Township', 'Ready Possession Clusters', 'Golf Course & Boat Club', 'Blue Ridge Public School'];
       case 'paranjape-schemes':
-        return ['Brand Credibility', 'Premium Quality', 'Strategic Location', 'MahaRERA Certified'];
+      case 'branded':
+        return ['Brand Credibility', 'Transparent Pricing', 'Strategic Location', 'MahaRERA Certified'];
+      case 'duplex-simplex':
+        return ['Double-Height Ceilings', 'Vertical Living Privacy', 'Private Sky Balconies', 'Ultra-Spacious Layouts'];
+      case 'pune-micro-market':
+      case 'pune-macro':
+        return ['Strategic IT Corridor Linkage', 'Metro Line 3 Connectivity', 'Top-Tier Rental Yield', 'High Capital Growth'];
       default:
         return ['High Rental Yield', 'Walk to Work', 'Premium Amenities', 'Capital Appreciation'];
     }
   };
 
   const getParagraph = (silo: string) => {
+    if (silo === 'nri') return `For NRI investors across USA, UAE, UK, Singapore, Canada, and Australia, Paranjape Blue Ridge is the definitive choice in Indian real estate. With FEMA-compliant acquisition, MahaRERA-certified title, and a dedicated NRI desk, you can complete your purchase 100% remotely. Our clients currently earn 4-5% rental yields, and with Metro Line 3 arriving at 800m in 2027, the capital appreciation story is just beginning. Searching for "${pageData.intent.toLowerCase()}" ends here.`;
     if (silo === 'investor') return `For discerning investors seeking ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge stands as Hinjewadi's crown jewel. With a proven track record of 4-5% rental yields and consistent capital appreciation, this is the definitive choice for NRIs and HNIs looking to secure wealth in Pune's IT corridor.`;
     if (silo === 'corporate') return `Maximize your work-life balance with luxury living near your office. When searching for ${pageData.intent.toLowerCase()}, Blue Ridge eliminates the daily commute fatigue, placing you right at the nexus of Pune's massive corporate ecosystem.`;
     if (silo === 'infrastructure' || silo === 'infra-guide') return `Location and connectivity dictate real estate value. By securing ${pageData.title.toLowerCase()}, you leverage the upcoming Metro Line 3 and expressway access to guarantee your asset remains future-proofed and highly connected.`;
-    if (silo === 'ecosystem') return `True luxury is an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school, private boat club, and professional golf course within the gates, your lifestyle is elevated beyond just an apartment.`;
+    if (silo === 'ecosystem' || silo === 'luxury-ecosystem') return `True luxury is an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school inside campus, a private riverfront boat club, and a professional 9-hole golf course within the gates, your family lifestyle is elevated beyond standard apartments.`;
     if (silo === 'battleground') return `When evaluating ${pageData.title.toLowerCase()}, the contrast is clear. While many competitors offer standalone buildings, Blue Ridge provides a 138-acre ready integrated ecosystem. From the 9-hole golf course to the inside-campus school, our "Township First" approach offers a lifestyle scale that other projects in the vicinity simply cannot replicate.`;
-    if (silo === 'paranjape-schemes') return `Looking for detailed information on ${pageData.intent}? Paranjape Schemes (Construction) Ltd is one of Pune's most trusted real estate developers, with over 40 years of building quality townships, luxury residences, and senior living homes. Discover the pricing, layouts, and reviews for ${pageData.intent} today.`;
+    if (silo === 'paranjape-schemes' || silo === 'branded') return `Looking for official pricing, floor plans, and verified details for ${pageData.intent}? As the flagship 138-acre township by Paranjape Schemes (Construction) Ltd, Blue Ridge Hinjewadi offers complete transparency, MahaRERA compliance, and ready-to-move as well as ongoing luxury inventory tailored to your expectations.`;
+    if (silo === 'duplex-simplex') return `Elevate your lifestyle with multi-level architectural luxury. When searching for ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge delivers exceptional vertical living with double-height ceiling voids, expansive sky balconies, and uncompromised family privacy. Situated within Pune's premier 138-acre township, our duplex and simplex residences combine suburban serenity with high-tech urban convenience.`;
+    if (silo === 'pune-micro-market' || silo === 'pune-macro') return `Navigating the real estate landscape of ${pageData.title.toLowerCase()} requires authentic market intelligence. Paranjape Blue Ridge stands as the anchor development across West Pune's growth corridor, offering immediate proximity to Rajiv Gandhi Infotech Park, direct access to Metro Line 3, and unmatched capital appreciation. Discover why buyers targeting ${pageData.intent.toLowerCase()} choose Blue Ridge.`;
     
     return `Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for ${pageData.intent.toLowerCase()}, this 138-acre township offers an unparalleled ecosystem. From proximity to major IT hubs to a private 9-hole golf course and river-facing promenades, every aspect of ${pageData.type.toLowerCase()} living is elevated to global standards.`;
   };
@@ -91,7 +107,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
             <Shield size={14} />
             Exclusive Premium Inventory
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
+          <h1 id="speakable-title" className="text-5xl md:text-7xl font-serif text-warm-white mb-6 capitalize leading-tight">
             <span className="text-gilded">
               {pageData.intent}
             </span>
@@ -102,7 +118,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
              </div>
              <span className="text-[10px] text-warm-white font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 rounded-full border border-gold/20">Google Verified Inventory</span>
           </div>
-          <p className="text-xl text-text-light max-w-2xl leading-relaxed">
+          <p id="speakable-summary" className="text-xl text-text-light max-w-2xl leading-relaxed">
             Discover the finest {pageData.type.toLowerCase()}s tailored to your lifestyle. 
             Experience unparalleled luxury at Paranjape Blue Ridge, the most successful integrated township.
           </p>
@@ -180,28 +196,49 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
       {/* DYNAMIC CONTENT BLOCK FOR EXTREME SEO */}
       <div className="container max-w-4xl mx-auto px-4">
         <DynamicFreshness slug={pageData.slug} />
+        {/* OFFICIAL MAHARERA VERIFICATION TRUST BADGE */}
+        <MahaReraBadge />
+        {/* HYPER-LOCAL PROXIMITY & COMMUTE MATRIX */}
+        <ProximityMatrix />
+        {/* INTERACTIVE FINANCIAL & ROI CALCULATOR */}
+        <RoiCalculator title={pageData.title} />
       </div>
       <DynamicContentBlock silo={pageData.silo} title={pageData.intent} />
 
       {/* RELATED SEARCHES MESH FOR PAGERANK SCULPTING */}
       <RelatedSearchesMesh currentSlug={pageData.slug} silo={pageData.silo} />
 
+      {/* CONTEXT-AWARE FLOATING WHATSAPP CTA */}
+      <ContextualWhatsappCTA title={pageData.title} intent={pageData.intent} silo={pageData.silo} />
+
       {/* FOOTER CTA */}
       <section className="bg-gold py-20">
          <div className="container flex flex-col md:flex-row justify-between items-center gap-10 text-navy">
             <div>
-                <h2 className="text-5xl font-serif mb-4">Secure your <span className="italic font-normal">Sovereign Unit</span></h2>
-                <p className="font-bold uppercase text-[10px] tracking-[4px]">Request Private Site Visit to Blue Ridge</p>
+                <h2 className="text-5xl font-serif mb-4">
+                  {pageData.silo === 'nri' ? 'Book Your ' : 'Secure your '}
+                  <span className="italic font-normal">
+                    {pageData.silo === 'nri' ? 'Virtual Tour' : 'Sovereign Unit'}
+                  </span>
+                </h2>
+                <p className="font-bold uppercase text-[10px] tracking-[4px]">
+                  {pageData.silo === 'nri'
+                    ? 'Schedule a Private 360° Tour From Abroad — NRI Desk Available'
+                    : 'Request Private Site Visit to Blue Ridge'}
+                </p>
             </div>
             <div className="flex gap-4">
-                <a 
-                  href="https://wa.me/917744009295?text=Hello%2C%0A%0AI%20am%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APlease%20share%20the%20following%3A%0A%E2%9C%85%20Available%20inventory%20%26%20floor%20plans%0A%E2%9C%85%20Updated%20price%20list%0A%E2%9C%85%20Site%20visit%20schedule%0A%0AKindly%20call%20me%20back%20at%20your%20earliest%20convenience.%0A%0AThank%20you."
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={pageData.silo === 'nri'
+                    ? `https://wa.me/917744009295?text=Hello%2C%0A%0AI%20am%20an%20NRI%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APage%3A%20${encodeURIComponent(pageData.slug)}%0A%0APlease%20share%3A%0A%E2%9C%85%20Virtual%20360%C2%B0%20Tour%20link%0A%E2%9C%85%20NRI%20pricing%20%26%20floor%20plans%0A%E2%9C%85%20FEMA%20%26%20home%20loan%20details%0A%0AThank%20you.`
+                    : `https://wa.me/917744009295?text=Hello%2C%0A%0AI%20am%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APage%3A%20${encodeURIComponent(pageData.slug)}%0A%0APlease%20share%20the%20following%3A%0A%E2%9C%85%20Available%20inventory%20%26%20floor%20plans%0A%E2%9C%85%20Updated%20price%20list%0A%E2%9C%85%20Site%20visit%20schedule%0A%0AThank%20you.`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 bg-emerald-500 text-white px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/20"
                 >
                   <MessageCircle size={18} />
-                  WhatsApp Enquiry
+                  {pageData.silo === 'nri' ? 'Book Virtual Tour' : 'WhatsApp Enquiry'}
                 </a>
             </div>
          </div>

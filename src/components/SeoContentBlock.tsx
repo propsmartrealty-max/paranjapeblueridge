@@ -62,6 +62,13 @@ function getSiloFAQs(silo: string, title: string) {
         { q: 'Is Blue Ridge a gated community?', a: 'Yes. Blue Ridge is a fully gated 138-acre township with CCTV surveillance, video door phones, intercom systems, and 24/7 manned security checkpoints at all entry points.' },
         { q: 'Are pets allowed at Blue Ridge Hinjewadi?', a: 'Yes. Blue Ridge has a dedicated pet park within the township. Most residential towers are pet-friendly with separate pet entry/exit protocols.' },
       ];
+    case 'nri':
+      return [
+        { q: 'Can NRIs buy property at Paranjape Blue Ridge?', a: 'Yes. NRIs, PIOs, and OCIs can purchase residential property in India under FEMA regulations without RBI approval. Blue Ridge is MahaRERA certified and bank-approved by SBI, HDFC, ICICI, Axis, and Kotak. Funds can be remitted via NRE or NRO accounts.' },
+        { q: `What is the ROI for NRI investment in Blue Ridge Hinjewadi?`, a: 'Blue Ridge delivers 4-5% annual rental yield and 12%+ capital appreciation. A 3 BHK at ₹1.65 Cr (2023) is now ₹2.1 Cr+. Metro Line 3 at 800m will add 15-20% further appreciation by 2027. Rental income is repatriable via NRO account under FEMA.' },
+        { q: 'Can I buy a flat in Blue Ridge from USA/UAE/UK without visiting India?', a: 'Yes — 100% remote purchase is possible. Our NRI desk offers 360° WhatsApp virtual tours, video calls with the sales team, and Power of Attorney arrangement at your nearest Indian Consulate. Wire transfer payment accepted. Deals closed for buyers in USA, UAE, UK, Singapore, Canada, and Australia.' },
+        { q: 'Is NRI home loan available for Blue Ridge Hinjewadi?', a: 'Yes. SBI, HDFC, ICICI, Axis, and Kotak offer NRI home loans for Blue Ridge at 8.5-9.5% p.a. Eligibility up to 80% of property value based on foreign income proof. EMI repayment via NRE/NRO/FCNR accounts permitted under FEMA. Our team provides end-to-end loan documentation support.' },
+      ];
     default:
       return [
         { q: `What amenities are available at ${title}?`, a: '9-hole golf course, private boat club on Mula river, Blue Ridge Public School (ICSE), pet park, gymnasium, infinity pool, and 24/7 security with multi-tier access control.' },

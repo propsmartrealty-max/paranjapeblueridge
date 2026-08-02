@@ -1,5 +1,11 @@
 "use client";
 
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Page Not Found — Paranjape Blue Ridge',
+  robots: { index: false, follow: true },
+};
+
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import { useState } from 'react';

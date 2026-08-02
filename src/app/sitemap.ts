@@ -31,28 +31,28 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 1.0,
-        alternates: { languages: { 'en': baseUrl, 'mr': `${baseUrl}/mr` } }
+        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
       },
       {
         url: `${baseUrl}/mr`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 1.0,
-        alternates: { languages: { 'en': baseUrl, 'mr': `${baseUrl}/mr` } }
+        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
       },
       {
         url: `${baseUrl}/hinjewadi-micro-market`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'en': `${baseUrl}/hinjewadi-micro-market`, 'mr': `${baseUrl}/mr-hinjewadi-micro-market` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
       },
       {
         url: `${baseUrl}/mr-hinjewadi-micro-market`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'en': `${baseUrl}/hinjewadi-micro-market`, 'mr': `${baseUrl}/mr-hinjewadi-micro-market` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
       }
     ];
 
@@ -63,14 +63,14 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'en': `${baseUrl}/${p.slug}`, 'mr': `${baseUrl}/mr-${p.slug}` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
       },
       {
         url: `${baseUrl}/mr-${p.slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'en': `${baseUrl}/${p.slug}`, 'mr': `${baseUrl}/mr-${p.slug}` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
       }
     ]);
 
@@ -130,7 +130,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
 
       let priority = 0.7;
-      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune'];
+      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri'];
       const lowIntentSilos = ['competitor', 'battleground'];
       if (highIntentSilos.includes(u.silo)) {
         priority = 0.85;
@@ -146,8 +146,9 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         ...(hasAlternate ? {
           alternates: {
             languages: {
-              'en': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
-              'mr': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
+              'x-default': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
+              'en-IN': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
+              'mr-IN': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
             }
           }
         } : {})

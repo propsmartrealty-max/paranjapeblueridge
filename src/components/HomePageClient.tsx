@@ -92,7 +92,14 @@ export default function HomePageClient() {
 
     // Sovereign Vault (local backup)
     try {
-      const existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
+      let existingLeads = JSON.parse(localStorage.getItem('ks_leads') || '[]');
+      // DPDP Act: 24-hour TTL data minimization
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      existingLeads = existingLeads.filter((lead: any) => {
+        const leadTime = new Date(lead.timestamp).getTime();
+        return (now - leadTime) < ONE_DAY;
+      });
       existingLeads.push(leadPayload);
       localStorage.setItem('ks_leads', JSON.stringify(existingLeads));
     } catch (err) {}

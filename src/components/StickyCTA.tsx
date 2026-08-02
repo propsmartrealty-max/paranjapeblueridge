@@ -12,15 +12,12 @@ export default function StickyCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after 300px scroll
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      // Show after 150px scroll (reduced from 300px for earlier CTA visibility)
+      setIsVisible(window.scrollY > 150);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // passive: true allows browser to scroll on GPU thread without waiting for JS
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

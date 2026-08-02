@@ -25,7 +25,7 @@ const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 const SITE_URL_ENCODED = encodeURIComponent(SITE_URL + '/');
 const KEY_FILE = path.join(__dirname, 'google-service-account.json');
 const INDEXNOW_KEY = '37ed22dc3eab4b13b1cd3f21975e533c';
@@ -180,7 +180,7 @@ async function channel3_indexNow(allUrls) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json; charset=utf-8' },
           body: JSON.stringify({
-            host: 'www.paranjapeblueridge.com',
+            host: 'paranjapeblueridge.com',
             key: INDEXNOW_KEY,
             keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
             urlList: batch,

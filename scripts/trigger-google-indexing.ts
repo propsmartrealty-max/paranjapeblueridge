@@ -5,7 +5,7 @@ import { generatePseoUrls } from '../src/data/seo-matrix';
 import { projects, articles } from '../src/data/master-data';
 import { getAllPosts } from '../src/utils/mdxUtils';
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 const CACHE_FILE = path.join(process.cwd(), '.google-index-cache.json');
 const MAX_URLS_PER_RUN = 190;
 const REFRESH_DAYS = 30; // Resubmit after 30 days
