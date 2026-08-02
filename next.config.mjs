@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   images: {
     minimumCacheTTL: 31536000,
     formats: ['image/avif', 'image/webp'],
@@ -40,6 +43,10 @@ const nextConfig = {
     },
     {
       source: '/assets/images/:all*(svg|jpg|jpeg|png|webp|avif)',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+    },
+    {
+      source: '/_next/static/:path*',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     }];
   },
