@@ -12,6 +12,7 @@ export async function GET(req: NextRequest) {
     const subtitle = searchParams.get('subtitle') || searchParams.get('config') || searchParams.get('intent') || '138-Acre Integrated Township in Hinjewadi Phase 1, Pune';
     const highlight = searchParams.get('highlight'); // e.g., "Starting ₹1.2 Cr"
     const type = searchParams.get('type') || 'Sovereign Portal'; // 'Project', 'Insight', 'Floor Plan'
+    const isNri = searchParams.get('nri') === 'true';
 
     // Deep Midnight Luxury Palette
     const background = 'linear-gradient(135deg, #040a14 0%, #0d1f38 100%)';
@@ -41,20 +42,39 @@ export async function GET(req: NextRequest) {
               Paranjape Schemes
             </div>
             
-            <div
-              style={{
-                padding: '10px 24px',
-                background: 'rgba(223, 177, 91, 0.1)',
-                border: `1px solid ${goldAccent}`,
-                borderRadius: '50px',
-                color: goldAccent,
-                fontSize: 22,
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-              }}
-            >
-              {type}
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+              {isNri && (
+                <div
+                  style={{
+                    padding: '10px 20px',
+                    background: 'rgba(16, 185, 129, 0.15)',
+                    border: `1px solid ${emeraldAccent}`,
+                    borderRadius: '50px',
+                    color: emeraldAccent,
+                    fontSize: 20,
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                  }}
+                >
+                  🌐 NRI Global Desk
+                </div>
+              )}
+              <div
+                style={{
+                  padding: '10px 24px',
+                  background: 'rgba(223, 177, 91, 0.1)',
+                  border: `1px solid ${goldAccent}`,
+                  borderRadius: '50px',
+                  color: goldAccent,
+                  fontSize: 22,
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px',
+                }}
+              >
+                {type}
+              </div>
             </div>
           </div>
 
