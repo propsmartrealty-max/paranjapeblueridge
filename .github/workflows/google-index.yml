@@ -40,7 +40,7 @@ jobs:
       - name: Ping Google WebSub
         run: |
           echo "📡 Pinging Google WebSub to ingest RSS feed..."
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST -d "hub.mode=publish" -d "hub.url=https://www.paranjapeblueridge.com/feed.xml" https://pubsubhubbub.appspot.com)
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST -d "hub.mode=publish" -d "hub.url=https://paranjapeblueridge.com/feed.xml" https://pubsubhubbub.appspot.com)
           if [ "$RESPONSE" -eq 204 ]; then
             echo "✅ Google WebSub successfully accepted the ping."
           else
@@ -50,8 +50,8 @@ jobs:
       - name: Ping Global Webmaster Sitemaps (Google, Bing, Yandex)
         run: |
           echo "🌍 Pinging traditional sitemaps across the entire web..."
-          curl -s "https://www.google.com/ping?sitemap=https://www.paranjapeblueridge.com/sitemap.xml" > /dev/null
-          curl -s "https://www.bing.com/ping?sitemap=https://www.paranjapeblueridge.com/sitemap.xml" > /dev/null
+          curl -s "https://www.google.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null
+          curl -s "https://www.bing.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null
           echo "✅ Sitemap pings dispatched to Global Search Engines."
 
       - name: Trigger IndexNow Sweep (Bing/Yahoo)

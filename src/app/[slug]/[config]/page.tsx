@@ -67,8 +67,11 @@ export default function ConfigPage({ params }: { params: { slug: string; config:
 
   return (
     <>
-      {/* Server-rendered SEO hidden content for Googlebot first-wave indexing */}
-      <div className="container mx-auto px-6 py-12 mt-20 border-t border-white/10 text-xs text-text-light/50 space-y-4 prose prose-invert max-w-none prose-a:text-gold hover:prose-a:text-gold-light">
+      {/* Client-side interactive page — identical UI as before */}
+      <ConfigPageClient />
+      
+      {/* Server-rendered SEO text block for Googlebot first-wave indexing, moved to bottom */}
+      <div className="container mx-auto px-6 py-12 border-t border-white/10 text-xs text-text-light/50 space-y-4 [&_a]:text-gold hover:[&_a]:text-gold-light [&_a]:underline">
         <h1>{configuration.title} in {project.name} — Paranjape Blue Ridge Hinjewadi Phase 1</h1>
         <p>
           {configuration.title} at {project.name}, Paranjape Blue Ridge, Hinjewadi Phase 1, Pune.
@@ -84,8 +87,6 @@ export default function ConfigPage({ params }: { params: { slug: string; config:
           Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park, Pune – 411057.
         </p>
       </div>
-      {/* Client-side interactive page — identical UI as before */}
-      <ConfigPageClient />
     </>
   );
 }

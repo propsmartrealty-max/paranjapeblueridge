@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from 'next/font/google';
 import { Suspense } from 'react';
-import { headers } from 'next/headers';
+import SpeculationRules from "@/components/SpeculationRules";
 import { LanguageProvider } from "@/context/LanguageContext";
 import JSONLD from "@/components/JSONLD";
 import SeoHead from "@/components/SeoHead";
@@ -26,8 +26,6 @@ const playfair = Playfair_Display({
   display: 'swap',
   variable: '--font-playfair',
 });
-
-import SpeculationRules from "@/components/SpeculationRules";
 
 export const viewport: Viewport = {
   themeColor: '#0a192f',
@@ -157,14 +155,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
-  const country = headersList.get('x-user-country') || 'IN';
-  const pathname = headersList.get('x-pathname') || '';
-  const isMarathi = pathname.startsWith('/mr-') || pathname.includes('/mr-');
-  const lang = isMarathi ? 'mr' : 'en';
-
   return (
-    <html lang={lang} className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
@@ -186,9 +178,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://vercel.live" />
         {/* RSS feed discovery */}
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
-        <SeoHead pathname={pathname} />
+        <SeoHead pathname="/" />
       </head>
-      <body className="antialiased" data-country={country}>
+      <body className="antialiased" data-country="IN">
         <LanguageProvider>
           <AtmosphereProvider>
             <Suspense fallback={null}>

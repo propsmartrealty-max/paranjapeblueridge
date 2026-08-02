@@ -22,9 +22,9 @@ export default function SlugLayout({
     <>
       {/* Per-page structured data — WebPage schema is inside JSONLD.tsx @graph, no duplicate needed here */}
       <JSONLD pathname={`/${params.slug}`} />
+      {children}
       {/* Server-rendered SEO content block — H1, FAQs, internal links visible to Google on first crawl */}
       <SeoContentBlock slug={params.slug} />
-      {children}
     </>
   );
 }

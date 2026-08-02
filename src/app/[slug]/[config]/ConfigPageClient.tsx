@@ -23,8 +23,6 @@ export default function ConfigPageClient() {
   const configuration = project.configurations?.find(c => c.slug === config);
   if (!configuration) return notFound();
 
-  if (!hasMounted) return <div className="bg-navy h-screen"></div>;
-
   return (
     <main className="min-h-screen bg-navy text-text">
       <Navbar />

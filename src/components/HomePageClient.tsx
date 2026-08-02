@@ -142,8 +142,6 @@ export default function HomePageClient() {
   const { intent } = useBuyerIntent();
   const { atmosphere } = useAtmosphere();
 
-  if (!hasMounted) return <div className="bg-[var(--bg)] h-screen w-full"></div>;
-
   return (
     <main 
       style={{ backgroundColor: 'var(--bg)' }}
@@ -180,7 +178,6 @@ export default function HomePageClient() {
                 : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
             </span>
             <h1 className="text-[2.8rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] font-serif text-warm-white leading-[0.95] sm:leading-[0.9] tracking-tighter mb-6 sm:mb-10">
-              <span className="sr-only">Paranjape Blue Ridge Hinjewadi Phase 1 - Premium 2, 3 & 4 BHK Ready Possession Flats</span>
               <span className="block text-[0.85rem] sm:text-[1.2rem] md:text-[1.8rem] font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-gold mb-3 sm:mb-6" style={{ fontFamily: 'var(--font-sans)' }} aria-hidden="true">
                 Paranjape Blue Ridge Megatownship
               </span>
