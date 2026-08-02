@@ -20,6 +20,11 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 
     if (href === '/hinjewadi-micro-market') return '/mr-hinjewadi-micro-market';
 
+    const excludedPrefixes = ['/insights', '/blog', '/sovereign-vault', '/content', '/brochure', '/api', '/html-sitemap'];
+    if (excludedPrefixes.some(prefix => href.startsWith(prefix))) {
+      return href;
+    }
+
     if (href.startsWith('/')) {
       return `/mr-${href.substring(1)}`;
     }

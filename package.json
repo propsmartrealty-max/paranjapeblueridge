@@ -5,16 +5,14 @@
   "scripts": {
     "dev": "next dev -p 3005",
     "build": "npx tsx scripts/verify-schemas.ts && NODE_OPTIONS='--max-old-space-size=8192' next build",
-    "postbuild": "tsx scripts/generateSitemap.ts && tsx scripts/generateContentSitemap.ts && npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
+    "postbuild": "npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
     "start": "next start",
     "lint": "next lint",
     "lhci:collect": "lhci collect",
     "lhci:assert": "lhci assert",
     "lhci:upload": "lhci upload",
     "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
-    "test": "jest",
-    "sitemap": "tsx scripts/generateSitemap.ts",
-    "content": "tsx scripts/generateContentSitemap.ts"
+    "test": "jest"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.3",

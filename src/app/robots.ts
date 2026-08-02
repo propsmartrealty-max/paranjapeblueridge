@@ -52,7 +52,6 @@ export default function robots(): MetadataRoute.Robots {
           '/api/', 
           '/_next/cache/', 
           '/sovereign-vault/',
-          '/*?*', // Block all query parameters from indexing (UTMs, etc.) to prevent duplicate content
         ],
         crawlDelay: 2, // Slow down generic scrapers to protect server resources
       },
