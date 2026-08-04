@@ -13,18 +13,27 @@ const REFRESH_DAYS = 30; // Resubmit after 30 days
 async function runGoogleIndexing() {
   console.log("🚀 Starting Google Indexing API Intelligent State Machine...");
   
-  const serviceAccountJsonStr = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-  if (!serviceAccountJsonStr) {
-    console.error("⚠️ GOOGLE_SERVICE_ACCOUNT_JSON not found in environment. Skipping Indexing API.");
-    process.exit(0); // Graceful exit
+  let credentials;
+  const localCredPath = path.join(process.cwd(), 'scripts/google-service-account.json');
+
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    try {
+      credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+    } catch (e) {
+      console.error("❌ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON env var.");
+    }
+  } else if (fs.existsSync(localCredPath)) {
+    try {
+      credentials = JSON.parse(fs.readFileSync(localCredPath, 'utf-8'));
+      console.log("🔑 Using credentials from scripts/google-service-account.json");
+    } catch (e) {
+      console.error("❌ Failed to parse scripts/google-service-account.json.");
+    }
   }
 
-  let credentials;
-  try {
-    credentials = JSON.parse(serviceAccountJsonStr);
-  } catch (e) {
-    console.error("❌ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON. Invalid JSON.");
-    process.exit(1);
+  if (!credentials) {
+    console.error("⚠️ Google Service Account credentials not found. Skipping Google Indexing API.");
+    process.exit(0);
   }
 
   const jwtClient = new google.auth.JWT({
