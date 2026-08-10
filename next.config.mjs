@@ -17,7 +17,7 @@ const nextConfig = {
     }],
   },
   staticPageGenerationTimeout: 300,
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   trailingSlash: false,
   async redirects() {
     return [{
