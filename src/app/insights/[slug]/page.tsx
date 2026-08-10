@@ -52,6 +52,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     description: article.excerpt,
     alternates: {
       canonical: `https://paranjapeblueridge.com/insights/${article.slug}`,
+      languages: {
+        'x-default': `https://paranjapeblueridge.com/insights/${article.slug}`,
+        'en-IN': `https://paranjapeblueridge.com/insights/${article.slug}`,
+        'mr-IN': `https://paranjapeblueridge.com/insights/${article.slug}`,
+      }
     },
     openGraph: {
       title: article.title,

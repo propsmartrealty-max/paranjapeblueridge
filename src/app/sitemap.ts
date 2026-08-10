@@ -81,6 +81,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}/${c.slug}`, 'en-IN': `${baseUrl}/${p.slug}/${c.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}/${c.slug}` } }
       }))
     );
 
@@ -89,6 +90,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
+      alternates: { languages: { 'x-default': `${baseUrl}/brochure/${p.slug}`, 'en-IN': `${baseUrl}/brochure/${p.slug}`, 'mr-IN': `${baseUrl}/brochure/${p.slug}` } }
     }));
 
     return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls];
@@ -101,6 +103,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(a.dateISO),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
+      alternates: { languages: { 'x-default': `${baseUrl}/insights/${a.slug}`, 'en-IN': `${baseUrl}/insights/${a.slug}`, 'mr-IN': `${baseUrl}/insights/${a.slug}` } }
     }));
 
     const mdxPosts = getAllPosts();
@@ -109,6 +112,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(post.meta?.dateISO || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
+      alternates: { languages: { 'x-default': `${baseUrl}/insights/${post.slug}`, 'en-IN': `${baseUrl}/insights/${post.slug}`, 'mr-IN': `${baseUrl}/insights/${post.slug}` } }
     }));
 
     return [...articleUrls, ...mdxUrls];

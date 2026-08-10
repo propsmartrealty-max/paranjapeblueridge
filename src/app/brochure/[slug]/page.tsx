@@ -28,6 +28,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical,
+      languages: {
+        'x-default': canonical,
+        'en-IN': canonical,
+        'mr-IN': canonical,
+      }
     },
     openGraph: {
       title,
