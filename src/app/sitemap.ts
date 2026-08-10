@@ -31,28 +31,28 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 1.0,
-        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
+        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'en-US': baseUrl, 'en-GB': baseUrl, 'en-AE': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
       },
       {
         url: `${baseUrl}/mr`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 1.0,
-        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
+        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'en-US': baseUrl, 'en-GB': baseUrl, 'en-AE': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
       },
       {
         url: `${baseUrl}/hinjewadi-micro-market`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'en-US': `${baseUrl}/hinjewadi-micro-market`, 'en-GB': `${baseUrl}/hinjewadi-micro-market`, 'en-AE': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
       },
       {
         url: `${baseUrl}/mr-hinjewadi-micro-market`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'en-US': `${baseUrl}/hinjewadi-micro-market`, 'en-GB': `${baseUrl}/hinjewadi-micro-market`, 'en-AE': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
       }
     ];
 
@@ -63,14 +63,14 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'en-US': `${baseUrl}/${p.slug}`, 'en-GB': `${baseUrl}/${p.slug}`, 'en-AE': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
       },
       {
         url: `${baseUrl}/mr-${p.slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'en-US': `${baseUrl}/${p.slug}`, 'en-GB': `${baseUrl}/${p.slug}`, 'en-AE': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
       }
     ]);
 
@@ -81,7 +81,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}/${c.slug}`, 'en-IN': `${baseUrl}/${p.slug}/${c.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}/${c.slug}` } }
+        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}/${c.slug}`, 'en-IN': `${baseUrl}/${p.slug}/${c.slug}`, 'en-US': `${baseUrl}/${p.slug}/${c.slug}`, 'en-GB': `${baseUrl}/${p.slug}/${c.slug}`, 'en-AE': `${baseUrl}/${p.slug}/${c.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}/${c.slug}` } }
       }))
     );
 
@@ -90,7 +90,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
-      alternates: { languages: { 'x-default': `${baseUrl}/brochure/${p.slug}`, 'en-IN': `${baseUrl}/brochure/${p.slug}`, 'mr-IN': `${baseUrl}/brochure/${p.slug}` } }
+      alternates: { languages: { 'x-default': `${baseUrl}/brochure/${p.slug}`, 'en-IN': `${baseUrl}/brochure/${p.slug}`, 'en-US': `${baseUrl}/brochure/${p.slug}`, 'en-GB': `${baseUrl}/brochure/${p.slug}`, 'en-AE': `${baseUrl}/brochure/${p.slug}`, 'mr-IN': `${baseUrl}/brochure/${p.slug}` } }
     }));
 
     return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls];
@@ -103,7 +103,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(a.dateISO),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-      alternates: { languages: { 'x-default': `${baseUrl}/insights/${a.slug}`, 'en-IN': `${baseUrl}/insights/${a.slug}`, 'mr-IN': `${baseUrl}/insights/${a.slug}` } }
+      alternates: { languages: { 'x-default': `${baseUrl}/insights/${a.slug}`, 'en-IN': `${baseUrl}/insights/${a.slug}`, 'en-US': `${baseUrl}/insights/${a.slug}`, 'en-GB': `${baseUrl}/insights/${a.slug}`, 'en-AE': `${baseUrl}/insights/${a.slug}`, 'mr-IN': `${baseUrl}/insights/${a.slug}` } }
     }));
 
     const mdxPosts = getAllPosts();
@@ -112,7 +112,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date(post.meta?.dateISO || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-      alternates: { languages: { 'x-default': `${baseUrl}/insights/${post.slug}`, 'en-IN': `${baseUrl}/insights/${post.slug}`, 'mr-IN': `${baseUrl}/insights/${post.slug}` } }
+      alternates: { languages: { 'x-default': `${baseUrl}/insights/${post.slug}`, 'en-IN': `${baseUrl}/insights/${post.slug}`, 'en-US': `${baseUrl}/insights/${post.slug}`, 'en-GB': `${baseUrl}/insights/${post.slug}`, 'en-AE': `${baseUrl}/insights/${post.slug}`, 'mr-IN': `${baseUrl}/insights/${post.slug}` } }
     }));
 
     return [...articleUrls, ...mdxUrls];

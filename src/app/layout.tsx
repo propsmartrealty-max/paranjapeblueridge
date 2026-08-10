@@ -121,6 +121,9 @@ export const metadata: Metadata = {
     languages: {
       'x-default': 'https://paranjapeblueridge.com',
       'en-IN': 'https://paranjapeblueridge.com',
+      'en-US': 'https://paranjapeblueridge.com',
+      'en-GB': 'https://paranjapeblueridge.com',
+      'en-AE': 'https://paranjapeblueridge.com',
       'mr-IN': 'https://paranjapeblueridge.com/mr',
     },
   },
@@ -162,6 +165,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `if (window.location.pathname.startsWith('/mr')) document.documentElement.lang = 'mr-IN';` }} />
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
+        {/* Google Fonts preconnect for 100/100 Lighthouse performance score */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         {/* Google Analytics & Tag Manager preconnect */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
@@ -197,11 +205,6 @@ export default function RootLayout({
                 <PulseNotifications />
                 <ExitIntentPopup />
                 <FloatingWhatsApp />
-        {/* Google Fonts preconnect for 100/100 Lighthouse performance score */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         {/* Resource Preconnects for Core Web Vitals (LCP/INP) optimization */}
         <script
           dangerouslySetInnerHTML={{

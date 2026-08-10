@@ -502,11 +502,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "priceRange": "₹97L - ₹2.65Cr",
     "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
     "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
-      "geoRadius": "5000" // 5km radius dominance
-    },
+    "areaServed": [
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
+        "geoRadius": "5000"
+      },
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Country", "name": "United Arab Emirates" },
+      { "@type": "Country", "name": "United Kingdom" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Phase 1, Hinjewadi",
@@ -612,14 +617,28 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
     "priceRange": "₹97L - ₹2.65Cr",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
-      "priceCurrency": "INR",
-      "minPrice": "9700000",
-      "maxPrice": "26500000"
-    },
+    "priceSpecification": [
+      {
+        "@type": "PriceSpecification",
+        "priceCurrency": "INR",
+        "minPrice": "9700000",
+        "maxPrice": "26500000"
+      },
+      {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "minPrice": "115000",
+        "maxPrice": "315000"
+      },
+      {
+        "@type": "PriceSpecification",
+        "priceCurrency": "AED",
+        "minPrice": "422000",
+        "maxPrice": "1150000"
+      }
+    ],
     "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
-    "paymentAccepted": "Cash, Credit Card, Cheque, Wire Transfer",
+    "paymentAccepted": "Cash, Credit Card, Cheque, Wire Transfer, International Remittance (USD, GBP, AED)",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": t("Blue Ridge Township, Phase 1, Hinjewadi, Rajiv Gandhi Infotech Park", "ब्लू रिज टाउनशिप, फेज १, हिंजवडी, Rajiv Gandhi Infotech Park"),
@@ -629,11 +648,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "addressCountry": "IN"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": geoVal.latitude, "longitude": geoVal.longitude },
-    "areaServed": {
-      "@type": "City",
-      "name": t("Pune", "पुणे"),
-      "sameAs": "https://en.wikipedia.org/wiki/Pune"
-    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": t("Pune", "पुणे"),
+        "sameAs": "https://en.wikipedia.org/wiki/Pune"
+      },
+      { "@type": "Country", "name": "USA" },
+      { "@type": "Country", "name": "UAE" },
+      { "@type": "Country", "name": "UK" }
+    ],
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
