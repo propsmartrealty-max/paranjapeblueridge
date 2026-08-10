@@ -451,13 +451,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "@type": "City",
       "name": "Pune",
       "sameAs": "https://en.wikipedia.org/wiki/Pune"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "2150"
-    },
-    "review": nestedReviews
+    }
   };
 
   let regionName = "Hinjewadi Phase 1";
@@ -549,12 +543,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "addressCountry": "IN"
       }
     },
+    "image": [
+      `${SITE_URL}/assets/images/township-night.png`
+    ],
     "organizer": { "@id": `${SITE_URL}/#organization` },
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
+      "priceValidUntil": `${currentYear}-12-31`,
       "url": `${SITE_URL}/blue-ridge-hinjewadi-site-visit`
     }
   };
@@ -641,6 +639,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "ratingValue": "4.8",
         "reviewCount": "2150"
     },
+    "review": nestedReviews,
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "09:00", "closes": "20:00" }
     ]
