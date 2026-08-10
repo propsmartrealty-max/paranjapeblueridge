@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const KEY_FILE = path.join(__dirname, 'google-service-account.json');
-const SITE_URL = 'https://www.paranjapeblueridge.com/';
+const SITE_URL = 'https://paranjapeblueridge.com/';
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 async function getAuthClient() {

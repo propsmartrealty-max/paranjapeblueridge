@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://www.paranjapeblueridge.com';
+const SITE_URL = 'https://paranjapeblueridge.com';
 const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
 
 // IndexNow key — also needs to be served at /{key}.txt on the site
@@ -86,7 +86,7 @@ async function submitIndexNow(urls) {
   console.log(`   Submitting ${urls.length} deep page URLs...`);
 
   const payload = {
-    host: 'www.paranjapeblueridge.com',
+    host: 'paranjapeblueridge.com',
     key: INDEXNOW_KEY,
     keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
     urlList: urls.slice(0, 10000) // IndexNow supports up to 10k
@@ -143,7 +143,7 @@ async function main() {
   console.log('');
   console.log('  💡 For fastest Google indexing, you MUST:');
   console.log('     1. Open Google Search Console');
-  console.log('     2. Submit https://www.paranjapeblueridge.com/sitemap.xml inside the "Sitemaps" tab.');
+  console.log('     2. Submit https://paranjapeblueridge.com/sitemap.xml inside the "Sitemaps" tab.');
   console.log('     3. Or add the Service Account email as an "Owner" in GSC to use the advanced API script.');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 }

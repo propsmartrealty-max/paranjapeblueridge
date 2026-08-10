@@ -53,7 +53,7 @@ function testSchemaMetadata() {
 }
 
 function testAbsoluteUrlFormats() {
-  const SITE_URL = 'https://www.paranjapeblueridge.com';
+  const SITE_URL = 'https://paranjapeblueridge.com';
   
   projects.forEach(p => {
     p.configurations.forEach(c => {

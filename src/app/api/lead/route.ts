@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     // ── Strict CSRF Origin Defense ──
     const origin = request.headers.get('origin');
     const isLocal = origin === 'http://localhost:3005' || origin === 'http://localhost:3000';
-    const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://www.paranjapeblueridge.com';
+    const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://paranjapeblueridge.com';
     
     // In production, reject cross-origin requests
     if (process.env.NODE_ENV === 'production') {
