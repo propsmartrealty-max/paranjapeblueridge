@@ -47,7 +47,7 @@ ${urls.map(u => {
   
   if (u.alternates?.languages) {
     const alts = Object.entries(u.alternates.languages)
-      .map(([lang, href]) => `\n    <xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}" />`)
+      .map(([lang, href]) => `\n    <xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href || '')}" />`)
       .join('');
     urlXml += alts;
   }
