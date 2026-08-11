@@ -101,16 +101,7 @@ export default function Navbar() {
                 <AtmosphereToggle />
                 <LanguageToggle />
             </div>
-            <a 
-              href="https://wa.me/917744009295?text=Hello%2C%0A%0AI%20am%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APlease%20share%20the%20following%3A%0A%E2%9C%85%20Available%20inventory%20%26%20floor%20plans%0A%E2%9C%85%20Updated%20price%20list%0A%E2%9C%85%20Site%20visit%20schedule%0A%0AKindly%20call%20me%20back%20at%20your%20earliest%20convenience.%0A%0AThank%20you."
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-white/5 border border-white/10 overflow-hidden hover:scale-110 transition-all duration-300 shadow-xl"
-              title="Chat on WhatsApp"
-              aria-label="Chat on WhatsApp"
-            >
-              <Image src="/assets/images/whatsapp-icon.png" alt="Contact Paranjape Blue Ridge Hinjewadi Sales via WhatsApp" width={32} height={32} className="w-full h-full object-contain p-1" />
-            </a>
+
             <button 
               onClick={() => handleScrollTo('enquiry')}
               className="hidden md:flex bg-gradient-to-br from-gold to-gold-light text-navy px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg cursor-pointer border-none"
@@ -171,16 +162,7 @@ export default function Navbar() {
                    <LanguageToggle />
                    <AtmosphereToggle />
                 </div>
-                <a 
-                    href="https://wa.me/917744009295?text=Hello%2C%0A%0AI%20am%20interested%20in%20*Paranjape%20Blue%20Ridge%20Township*%2C%20Hinjewadi%20Phase%201%2C%20Pune.%0A%0APlease%20share%20the%20following%3A%0A%E2%9C%85%20Available%20inventory%20%26%20floor%20plans%0A%E2%9C%85%20Updated%20price%20list%0A%E2%9C%85%20Site%20visit%20schedule%0A%0AKindly%20call%20me%20back%20at%20your%20earliest%20convenience.%0A%0AThank%20you."
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-2xl text-emerald-400 text-xl font-bold hover:bg-emerald-500 hover:text-white transition-all"
-                    aria-label="Connect on WhatsApp"
-                >
-                    <MessageCircle className="w-6 h-6 fill-current/20" size={24} />
-                    Connect on WhatsApp
-                </a>
+
                 <button 
                     onClick={() => handleScrollTo('enquiry')} 
                     className="block w-full bg-gold text-navy text-center py-5 rounded-2xl font-bold uppercase tracking-widest cursor-pointer border-none"
