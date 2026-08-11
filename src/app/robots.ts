@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
           'DuckDuckBot'
         ],
         allow: '/',
-        disallow: ['/api/', '/sovereign-vault/'],
+        disallow: ['/api/'],
       },
       // 2. Block Competitor SEO Tools to protect the 6600+ Programmatic SEO Matrix
       {
@@ -66,8 +66,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/', 
-          '/_next/cache/', 
-          '/sovereign-vault/',
+          '/_next/cache/'
         ],
         crawlDelay: 1, // Reduced to 1 to ensure legit standard bots aren't overly throttled
       },
