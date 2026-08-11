@@ -436,7 +436,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
 
   const realEstateAgentSchema = {
-    "@type": "RealEstateAgent",
+    "@type": "LocalBusiness",
     "@id": `${SITE_URL}/${slug}#business`,
     "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
       ? t(`Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`, `परंजपे ब्लू रिज - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
@@ -816,11 +816,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
           "price": String(config.priceValue || 9500000),
           "availability": "https://schema.org/InStock"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "2150"
-        }
+        ...(pathname === `/${projectData.slug}/${config.slug}` || pathname === `/mr/${projectData.slug}/${config.slug}` ? {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "2150"
+          }
+        } : {})
       });
     });
   }
@@ -846,11 +848,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "availability": "https://schema.org/InStock",
         "url": `${SITE_URL}/${pseoData.slug}`
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "2150"
-      }
+      ...(pathname === `/${pseoData.slug}` || pathname === `/mr/${pseoData.slug}` ? {
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "2150"
+        }
+      } : {})
     });
 
     // ItemList schema representing available projects on this configuration/category page
