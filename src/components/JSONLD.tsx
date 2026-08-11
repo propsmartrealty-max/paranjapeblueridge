@@ -472,7 +472,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "maxPrice": "1150000"
       }
     ],
-    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
+    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Maharashtra+411057/@18.5776944,73.7342787,1760m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bc2bbe4d114d579:0xfec1d303cfb8941a!8m2!3d18.5786825!4d73.7370331!16s%2Fg%2F11g6jqsr1q?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D",
     "paymentAccepted": "Cash, Credit Card, Cheque, Wire Transfer, International Remittance (USD, GBP, AED)",
     "address": {
       "@type": "PostalAddress",
@@ -582,7 +582,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "@type": "GeoShape",
       "polygon": "18.5786,73.7370 18.5801,73.7395 18.5765,73.7420 18.5740,73.7380 18.5786,73.7370"
     },
-    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z",
+    "hasMap": "https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Maharashtra+411057/@18.5776944,73.7342787,1760m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bc2bbe4d114d579:0xfec1d303cfb8941a!8m2!3d18.5786825!4d73.7370331!16s%2Fg%2F11g6jqsr1q?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D",
     "subjectOf": {
       "@type": "3DModel",
       "name": "Paranjape Blue Ridge 360 Degree Virtual Show Flat Walkthrough",

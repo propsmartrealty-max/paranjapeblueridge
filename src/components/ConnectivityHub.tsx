@@ -18,7 +18,7 @@ export default function ConnectivityHub() {
         </div>
         <div className="flex gap-4">
             <a 
-                href="https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Hinjawadi+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Hinjavadi,+Maharashtra+411057/@18.5786825,73.7370331,17z" 
+                href="https://www.google.com/maps/place/Blue+Ridge,+Phase+1,+Rajiv+Gandhi+Infotech+Park,+Hinjawadi,+Maharashtra+411057/@18.5776944,73.7342787,1760m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bc2bbe4d114d579:0xfec1d303cfb8941a!8m2!3d18.5786825!4d73.7370331!16s%2Fg%2F11g6jqsr1q?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-text-light hover:text-gold transition-all"
