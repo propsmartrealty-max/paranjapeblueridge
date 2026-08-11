@@ -1,6 +1,22 @@
 import { getSitemapUrls, generateSitemaps } from '@/data/sitemap-logic';
 import { NextResponse } from 'next/server';
 
+export const dynamicParams = false;
+export const revalidate = 86400;
+
+function escapeXml(unsafe: string) {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   // Extract "0" from "0.xml"
   const rawId = params.id.replace('.xml', '');
@@ -19,7 +35,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.map(u => {
-  let urlXml = `  <url>\n    <loc>${u.url}</loc>`;
+  let urlXml = `  <url>\n    <loc>${escapeXml(u.url)}</loc>`;
   
   if (u.lastModified) {
     const d = u.lastModified instanceof Date ? u.lastModified : new Date(u.lastModified);
@@ -31,7 +47,7 @@ ${urls.map(u => {
   
   if (u.alternates?.languages) {
     const alts = Object.entries(u.alternates.languages)
-      .map(([lang, href]) => `\n    <xhtml:link rel="alternate" hreflang="${lang}" href="${href}" />`)
+      .map(([lang, href]) => `\n    <xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}" />`)
       .join('');
     urlXml += alts;
   }
