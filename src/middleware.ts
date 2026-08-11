@@ -61,7 +61,7 @@ export function middleware(req: NextRequest) {
   // ── 2. WAF Rate Limiting: Block IP addresses exceeding 120 req/min ───────────
   // Whitelist verified search engine crawlers — they should NEVER be rate-limited
   const isVerifiedCrawler =
-    userAgent.includes('Googlebot') ||
+    userAgent.includes('Google') ||
     userAgent.includes('Bingbot') ||
     userAgent.includes('vercel-edge-functions');
 
