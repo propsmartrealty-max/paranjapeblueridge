@@ -1357,9 +1357,9 @@ export function generatePseoUrls() {
 
   const mappedUrls = urls.map(u => ({
     ...u,
-    slug: u.slug.endsWith('-paranjape-blue-ridge-township-hinjewadi') 
+    slug: u.slug.endsWith('-paranjape-blue-ridge-hinjewadi') 
       ? u.slug 
-      : `${u.slug}-paranjape-blue-ridge-township-hinjewadi`
+      : `${u.slug}-paranjape-blue-ridge-hinjewadi`
   }));
 
   const uniqueUrlsMap = new Map();

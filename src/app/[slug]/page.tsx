@@ -241,7 +241,7 @@ export default function ProjectSilo({ params, searchParams }: PageProps) {
   const pseoData = allUrls.find(u => u.slug === slug);
 
   if (!project && !pseoData) {
-    const potentialNewSlug = `${slug}-paranjape-blue-ridge-township-hinjewadi`;
+    const potentialNewSlug = `${slug}-paranjape-blue-ridge-hinjewadi`;
     const newPseoData = allUrls.find(u => u.slug === potentialNewSlug);
     if (newPseoData) {
       permanentRedirect(`/${potentialNewSlug}`);

@@ -159,7 +159,7 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    slug: "why-blue-ridge-hinjewadi-best-investment-2026",
+    slug: "paranjape-blue-ridge-hinjewadi-why-best-investment-2026",
     title: "Why Blue Ridge Hinjewadi is the Best Investment in 2026",
     date: "April 2026",
     dateISO: "2026-04-15T10:00:00+05:30",
@@ -177,7 +177,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "living-138-acre-grand-life-paranjape-blue-ridge",
+    slug: "paranjape-blue-ridge-hinjewadi-living-138-acre-grand-life",
     title: "Living the 138-Acre Grand Life at Paranjape Blue Ridge",
     date: "March 2026",
     dateISO: "2026-03-20T10:00:00+05:30",
@@ -195,7 +195,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "ridges-41-new-benchmark-high-rise-living-hinjewadi",
+    slug: "paranjape-blue-ridge-hinjewadi-ridges-41-new-benchmark-high-rise-living-hinjewadi",
     title: "The Ridges 41: A New Benchmark for High-Rise Living in Hinjewadi",
     date: "May 2026",
     dateISO: "2026-05-01T10:00:00+05:30",
@@ -213,7 +213,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "hinjewadi-metro-line-3-impact-blue-ridge-property",
+    slug: "paranjape-blue-ridge-hinjewadi-metro-line-3-impact-blue-ridge-property",
     title: "Hinjewadi Metro Line 3: Impact on Blue Ridge Property Values",
     date: "April 2026",
     dateISO: "2026-04-28T10:00:00+05:30",
@@ -231,7 +231,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "blue-ridge-public-school-admission-facilities-guide",
+    slug: "paranjape-blue-ridge-hinjewadi-blue-ridge-public-school-admission-facilities-guide",
     title: "Blue Ridge Public School: Complete Admission & Facilities Guide 2026",
     date: "February 2026",
     dateISO: "2026-02-10T10:00:00+05:30",
@@ -249,7 +249,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "hinjewadi-real-estate-price-trends-2026",
+    slug: "paranjape-blue-ridge-hinjewadi-real-estate-price-trends-2026",
     title: "Hinjewadi Real Estate Price Trends 2026: Full Market Analysis",
     date: "June 2026",
     dateISO: "2026-06-01T10:00:00+05:30",
@@ -267,7 +267,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "2-bhk-flats-hinjewadi-price-list-guide-2026",
+    slug: "paranjape-blue-ridge-hinjewadi-2-bhk-flats-hinjewadi-price-list-guide-2026",
     title: "2 BHK Flats in Hinjewadi: Complete Price List, Comparison & Buyer Guide (2026)",
     date: "May 2026",
     dateISO: "2026-05-20T10:00:00+05:30",
@@ -284,7 +284,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "ready-possession-flats-hinjewadi-phase-1-guide",
+    slug: "paranjape-blue-ridge-hinjewadi-ready-possession-flats-hinjewadi-phase-1-guide",
     title: "Ready Possession Flats in Hinjewadi Phase 1: What to Buy in 2026",
     date: "May 2026",
     dateISO: "2026-05-10T10:00:00+05:30",
@@ -301,7 +301,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "hinjewadi-rental-yield-analysis-2026",
+    slug: "paranjape-blue-ridge-hinjewadi-rental-yield-analysis-2026",
     title: "Hinjewadi Rental Yield Analysis 2026: Blue Ridge vs Baner vs Wakad",
     date: "April 2026",
     dateISO: "2026-04-10T10:00:00+05:30",
@@ -318,7 +318,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "nri-investment-property-pune-hinjewadi-guide",
+    slug: "paranjape-blue-ridge-hinjewadi-nri-investment-property-pune-hinjewadi-guide",
     title: "NRI Investment in Pune Real Estate: Why Blue Ridge Hinjewadi is the #1 Choice (2026)",
     date: "March 2026",
     dateISO: "2026-03-05T10:00:00+05:30",
@@ -335,7 +335,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "corporate-housing-hinjewadi-it-professionals-guide",
+    slug: "paranjape-blue-ridge-hinjewadi-corporate-housing-hinjewadi-it-professionals-guide",
     title: "Best Corporate Housing in Hinjewadi for IT Professionals: 2026 Complete Guide",
     date: "February 2026",
     dateISO: "2026-02-20T10:00:00+05:30",
@@ -352,7 +352,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "paranjape-blue-ridge-resale-value-analysis",
+    slug: "paranjape-blue-ridge-hinjewadi-resale-value-analysis",
     title: "Paranjape Blue Ridge Resale Value: Tower-Wise Price Analysis & Future Outlook",
     date: "June 2026",
     dateISO: "2026-06-03T10:00:00+05:30",
@@ -369,7 +369,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: "home-loan-blue-ridge-hinjewadi-guide",
+    slug: "paranjape-blue-ridge-hinjewadi-home-loan-blue-ridge-hinjewadi-guide",
     title: "Home Loan for Paranjape Blue Ridge Hinjewadi: Complete Step-by-Step Guide 2026",
     date: "January 2026",
     dateISO: "2026-01-15T10:00:00+05:30",
