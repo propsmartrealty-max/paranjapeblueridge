@@ -12,6 +12,9 @@ export async function GET() {
 ${sitemaps.map(s => `  <sitemap>
     <loc>https://paranjapeblueridge.com/sitemap/${s.id}.xml</loc>
   </sitemap>`).join('\n')}
+  <sitemap>
+    <loc>https://paranjapeblueridge.com/sitemap-images.xml</loc>
+  </sitemap>
 </sitemapindex>`;
 
   return new NextResponse(xml, {
