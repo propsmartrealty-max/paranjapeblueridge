@@ -28,16 +28,7 @@ const nextConfig = {
     }];
   },
   async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap-index',
-      },
-      {
-        source: '/sitemap/:id',
-        destination: '/api/sitemap/:id',
-      }
-    ];
+    return [];
   },
   async headers() {
     return [{
