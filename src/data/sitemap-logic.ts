@@ -6,6 +6,8 @@ import { getAllPosts } from '@/utils/mdxUtils';
 const baseUrl = 'https://paranjapeblueridge.com';
 const staticPublishedDate = new Date('2026-08-10T00:00:00.000Z');
 
+type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+
 export async function generateSitemaps() {
   // We split the massive sitemap into logical silos for Googlebot
   const pseoUrlsCount = generatePseoUrls().length;
@@ -24,163 +26,127 @@ export async function generateSitemaps() {
 }
 
 export async function getSitemapUrls({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
-  if (id === 0) {
-    // 1. Core Static URLs
-    const staticUrls = [
-      {
-        url: baseUrl,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'daily' as const,
-        priority: 1.0,
-        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'en-US': baseUrl, 'en-GB': baseUrl, 'en-AE': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
-      },
-      {
-        url: `${baseUrl}/mr`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'daily' as const,
-        priority: 1.0,
-        alternates: { languages: { 'x-default': baseUrl, 'en-IN': baseUrl, 'en-US': baseUrl, 'en-GB': baseUrl, 'en-AE': baseUrl, 'mr-IN': `${baseUrl}/mr` } }
-      },
-      {
-        url: `${baseUrl}/hinjewadi-micro-market`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'en-US': `${baseUrl}/hinjewadi-micro-market`, 'en-GB': `${baseUrl}/hinjewadi-micro-market`, 'en-AE': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
-      },
-      {
-        url: `${baseUrl}/mr-hinjewadi-micro-market`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/hinjewadi-micro-market`, 'en-IN': `${baseUrl}/hinjewadi-micro-market`, 'en-US': `${baseUrl}/hinjewadi-micro-market`, 'en-GB': `${baseUrl}/hinjewadi-micro-market`, 'en-AE': `${baseUrl}/hinjewadi-micro-market`, 'mr-IN': `${baseUrl}/mr-hinjewadi-micro-market` } }
-      },
-      {
-        url: `${baseUrl}/insights`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'daily' as const,
-        priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/insights`, 'en-IN': `${baseUrl}/insights`, 'en-US': `${baseUrl}/insights`, 'en-GB': `${baseUrl}/insights`, 'en-AE': `${baseUrl}/insights`, 'mr-IN': `${baseUrl}/insights` } }
-      },
-      {
-        url: `${baseUrl}/sovereign-vault`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-        alternates: { languages: { 'x-default': `${baseUrl}/sovereign-vault`, 'en-IN': `${baseUrl}/sovereign-vault`, 'en-US': `${baseUrl}/sovereign-vault`, 'en-GB': `${baseUrl}/sovereign-vault`, 'en-AE': `${baseUrl}/sovereign-vault`, 'mr-IN': `${baseUrl}/sovereign-vault` } }
-      },
-      {
-        url: `${baseUrl}/html-sitemap`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-        alternates: { languages: { 'x-default': `${baseUrl}/html-sitemap`, 'en-IN': `${baseUrl}/html-sitemap`, 'en-US': `${baseUrl}/html-sitemap`, 'en-GB': `${baseUrl}/html-sitemap`, 'en-AE': `${baseUrl}/html-sitemap`, 'mr-IN': `${baseUrl}/html-sitemap` } }
-      }
-    ];
-
-    // 2. Project URLs
-    const projectUrls = projects.flatMap(p => [
-      {
-        url: `${baseUrl}/${p.slug}`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'en-US': `${baseUrl}/${p.slug}`, 'en-GB': `${baseUrl}/${p.slug}`, 'en-AE': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
-      },
-      {
-        url: `${baseUrl}/mr-${p.slug}`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.9,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}`, 'en-IN': `${baseUrl}/${p.slug}`, 'en-US': `${baseUrl}/${p.slug}`, 'en-GB': `${baseUrl}/${p.slug}`, 'en-AE': `${baseUrl}/${p.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}` } }
-      }
-    ]);
-
-    // 3. Configurations & Brochures
-    const configUrls = projects.flatMap(p => 
-      (p.configurations || []).map(c => ({
-        url: `${baseUrl}/${p.slug}/${c.slug}`,
-        lastModified: staticPublishedDate,
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-        alternates: { languages: { 'x-default': `${baseUrl}/${p.slug}/${c.slug}`, 'en-IN': `${baseUrl}/${p.slug}/${c.slug}`, 'en-US': `${baseUrl}/${p.slug}/${c.slug}`, 'en-GB': `${baseUrl}/${p.slug}/${c.slug}`, 'en-AE': `${baseUrl}/${p.slug}/${c.slug}`, 'mr-IN': `${baseUrl}/mr-${p.slug}/${c.slug}` } }
-      }))
-    );
-
-    const brochureUrls = projects.map(p => ({
-      url: `${baseUrl}/brochure/${p.slug}`,
-      lastModified: staticPublishedDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-      alternates: { languages: { 'x-default': `${baseUrl}/brochure/${p.slug}`, 'en-IN': `${baseUrl}/brochure/${p.slug}`, 'en-US': `${baseUrl}/brochure/${p.slug}`, 'en-GB': `${baseUrl}/brochure/${p.slug}`, 'en-AE': `${baseUrl}/brochure/${p.slug}`, 'mr-IN': `${baseUrl}/brochure/${p.slug}` } }
-    }));
-
-    return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls];
-  }
-
-  if (id === 1) {
-    // 4. Articles and Insights
-    const articleUrls = articles.map(a => ({
-      url: `${baseUrl}/insights/${a.slug}`,
-      lastModified: new Date(a.dateISO),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-      alternates: { languages: { 'x-default': `${baseUrl}/insights/${a.slug}`, 'en-IN': `${baseUrl}/insights/${a.slug}`, 'en-US': `${baseUrl}/insights/${a.slug}`, 'en-GB': `${baseUrl}/insights/${a.slug}`, 'en-AE': `${baseUrl}/insights/${a.slug}`, 'mr-IN': `${baseUrl}/insights/${a.slug}` } }
-    }));
-
-    const mdxPosts = getAllPosts();
-    const mdxUrls = mdxPosts.map(post => ({
-      url: `${baseUrl}/insights/${post.slug}`,
-      lastModified: new Date(post.meta?.dateISO || staticPublishedDate),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-      alternates: { languages: { 'x-default': `${baseUrl}/insights/${post.slug}`, 'en-IN': `${baseUrl}/insights/${post.slug}`, 'en-US': `${baseUrl}/insights/${post.slug}`, 'en-GB': `${baseUrl}/insights/${post.slug}`, 'en-AE': `${baseUrl}/insights/${post.slug}`, 'mr-IN': `${baseUrl}/insights/${post.slug}` } }
-    }));
-
-    return [...articleUrls, ...mdxUrls];
-  }
-
-  if (id >= 2) {
-    // 5. Programmatic SEO Matrix Splitting
-    const pseoUrlsData = generatePseoUrls();
-    const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
-    
-    // Chunk URLs based on the id index
-    const chunkSize = 1100;
-    const chunkIndex = id - 2;
-    const chunkData = pseoUrlsData.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
-
-    return chunkData.map(u => {
-      const isMr = u.slug.startsWith('mr-');
-      const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
-      const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
-
-      let priority = 0.7;
-      const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri', 'duplex-simplex', 'pune-micro-market', 'luxury-ecosystem', 'branded', 'investor', 'corporate'];
-      const lowIntentSilos = ['competitor', 'battleground'];
-      if (highIntentSilos.includes(u.silo)) {
-        priority = 0.85;
-      } else if (lowIntentSilos.includes(u.silo)) {
-        priority = 0.6;
-      }
-
-      return {
-        url: `${baseUrl}/${u.slug}`,
-        lastModified: pseoPublishedDate,
-        changeFrequency: 'monthly' as const,
-        priority,
-        ...(hasAlternate ? {
-          alternates: {
-            languages: {
-              'x-default': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
-              'en-IN': isMr ? `${baseUrl}/${altSlug}` : `${baseUrl}/${u.slug}`,
-              'mr-IN': isMr ? `${baseUrl}/${u.slug}` : `${baseUrl}/${altSlug}`,
-            }
-          }
-        } : {})
-      };
-    });
-  }
-
+  if (id === 0) return getCoreAndProjectUrls();
+  if (id === 1) return getInsightsUrls();
+  if (id >= 2) return getPseoUrlsChunk(id - 2);
+  
   return [];
+}
+
+/**
+ * Helper to construct a neat, DRY URL entry with all required language alternates.
+ */
+function buildUrlEntry(
+  slug: string, 
+  lastModified: Date,
+  changeFrequency: ChangeFreq,
+  priority: number,
+  hasMarathi: boolean = true,
+  omitAlternates: boolean = false
+): MetadataRoute.Sitemap[0] {
+  const currentUrl = `${baseUrl}${slug ? `/${slug}` : ''}`;
+
+  if (omitAlternates) {
+    return {
+      url: currentUrl,
+      lastModified,
+      changeFrequency,
+      priority
+    };
+  }
+
+  const isMr = slug === 'mr' || slug.startsWith('mr-');
+  
+  const standardSlug = slug === 'mr' ? '' : (isMr ? slug.replace(/^mr-/, '') : slug);
+  const marathiSlug = hasMarathi 
+    ? (slug === '' ? 'mr' : (isMr ? slug : `mr-${slug}`))
+    : standardSlug;
+  
+  const standardUrl = `${baseUrl}${standardSlug ? `/${standardSlug}` : ''}`;
+  const marathiUrl = `${baseUrl}${marathiSlug ? `/${marathiSlug}` : ''}`;
+
+  return {
+    url: currentUrl,
+    lastModified,
+    changeFrequency,
+    priority,
+    alternates: {
+      languages: {
+        'x-default': standardUrl,
+        'en-IN': standardUrl,
+        'en-US': standardUrl,
+        'en-GB': standardUrl,
+        'en-AE': standardUrl,
+        'mr-IN': marathiUrl
+      }
+    }
+  };
+}
+
+function getCoreAndProjectUrls(): MetadataRoute.Sitemap {
+  const staticUrls = [
+    buildUrlEntry('', staticPublishedDate, 'daily', 1.0),
+    buildUrlEntry('mr', staticPublishedDate, 'daily', 1.0),
+    buildUrlEntry('hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
+    buildUrlEntry('mr-hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
+    buildUrlEntry('insights', staticPublishedDate, 'daily', 0.9, false),
+    buildUrlEntry('sovereign-vault', staticPublishedDate, 'weekly', 0.8, false),
+    buildUrlEntry('html-sitemap', staticPublishedDate, 'weekly', 0.7, false),
+  ];
+
+  const projectUrls = projects.flatMap(p => [
+    buildUrlEntry(p.slug, staticPublishedDate, 'weekly', 0.9),
+    buildUrlEntry(`mr-${p.slug}`, staticPublishedDate, 'weekly', 0.9)
+  ]);
+
+  const configUrls = projects.flatMap(p => 
+    (p.configurations || []).map(c => 
+      buildUrlEntry(`${p.slug}/${c.slug}`, staticPublishedDate, 'weekly', 0.8)
+    )
+  );
+
+  const brochureUrls = projects.map(p => 
+    buildUrlEntry(`brochure/${p.slug}`, staticPublishedDate, 'monthly', 0.6, false)
+  );
+
+  return [...staticUrls, ...projectUrls, ...configUrls, ...brochureUrls];
+}
+
+function getInsightsUrls(): MetadataRoute.Sitemap {
+  const articleUrls = articles.map(a => 
+    buildUrlEntry(`insights/${a.slug}`, new Date(a.dateISO), 'weekly', 0.8, false)
+  );
+
+  const mdxPosts = getAllPosts();
+  const mdxUrls = mdxPosts.map(post => 
+    buildUrlEntry(`insights/${post.slug}`, new Date(post.meta?.dateISO || staticPublishedDate), 'weekly', 0.8, false)
+  );
+
+  return [...articleUrls, ...mdxUrls];
+}
+
+function getPseoUrlsChunk(chunkIndex: number): MetadataRoute.Sitemap {
+  const pseoUrlsData = generatePseoUrls();
+  const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
+  
+  const chunkSize = 1100;
+  const chunkData = pseoUrlsData.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
+
+  const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri', 'duplex-simplex', 'pune-micro-market', 'luxury-ecosystem', 'branded', 'investor', 'corporate'];
+  const lowIntentSilos = ['competitor', 'battleground'];
+
+  return chunkData.map(u => {
+    const isMr = u.slug.startsWith('mr-');
+    const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
+    const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
+
+    let priority = 0.7;
+    if (highIntentSilos.includes(u.silo)) {
+      priority = 0.85;
+    } else if (lowIntentSilos.includes(u.silo)) {
+      priority = 0.6;
+    }
+
+    return buildUrlEntry(u.slug, pseoPublishedDate, 'monthly', priority, hasAlternate, !hasAlternate);
+  });
 }
