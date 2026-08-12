@@ -40,15 +40,8 @@ function checkRateLimit(ip: string): boolean {
 
 // Extremely aggressive bots that drain crawl budget or scrape proprietary data
 export function middleware(req: NextRequest) {
-  // ── 0. Edge Canonical Host Redirect (www -> non-www) ─────────────────────────
-  const host = req.headers.get('x-forwarded-host') || req.headers.get('host') || req.nextUrl.hostname || '';
-  if (host.startsWith('www.')) {
-    const canonicalHost = host.replace(/^www\./, '');
-    const url = req.nextUrl.clone();
-    url.hostname = canonicalHost;
-    url.protocol = 'https:';
-    return NextResponse.redirect(url, { status: 301 });
-  }
+  // ── 0. Edge Canonical Host Redirect ─────────────────────────
+  // (Removed: Vercel Dashboard handles apex -> www redirects natively)
 
   const userAgent = req.headers.get('user-agent') || '';
 

@@ -20,12 +20,7 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   trailingSlash: false,
   async redirects() {
-    return [{
-      source: '/:path*',
-      has: [{ type: 'host', value: 'www.paranjapeblueridge.com' }],
-      destination: 'https://paranjapeblueridge.com/:path*',
-      permanent: true,
-    }];
+    return [];
   },
   async rewrites() {
     return [];
