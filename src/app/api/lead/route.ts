@@ -16,8 +16,8 @@ const rateLimitMap = new Map<string, number>();
 
 function sanitize(str: any, maxLen: number = 200): string {
   if (typeof str !== 'string') return '';
-  // Strip dangerous characters to prevent NoSQL/XSS injections
-  return str.replace(/[<>{}$]/g, '').trim().slice(0, maxLen);
+  // Strip all HTML tags to prevent XSS injections
+  return str.replace(/<[^>]*>?/gm, '').trim().slice(0, maxLen);
 }
 
 export async function POST(request: NextRequest) {
@@ -25,9 +25,9 @@ export async function POST(request: NextRequest) {
     // ── Strict CSRF Origin Defense ──
     const origin = request.headers.get('origin');
     const isLocal = origin === 'http://localhost:3005' || origin === 'http://localhost:3000';
-    const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://paranjapeblueridge.com';
+    const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://www.paranjapeblueridge.com';
     
-    // In production, reject cross-origin requests
+    // In production, reject cross-origin requests and requests without an Origin header (e.g. cURL)
     if (process.env.NODE_ENV === 'production') {
       if (!origin || !isProd) {
         return NextResponse.json({ success: false, error: 'Forbidden: Invalid Origin' }, { status: 403 });
@@ -42,7 +42,12 @@ export async function POST(request: NextRequest) {
     if (rawText.length > 5000) {
       return NextResponse.json({ success: false, error: 'Payload Too Large' }, { status: 413 });
     }
-    const body = JSON.parse(rawText);
+    let body;
+    try {
+      body = JSON.parse(rawText);
+    } catch (e) {
+      return NextResponse.json({ success: false, error: 'Invalid JSON payload' }, { status: 400 });
+    }
 
     // ── Honeypot check ──
     if (body.bot_field) {
@@ -64,8 +69,10 @@ export async function POST(request: NextRequest) {
     }
     rateLimitMap.set(ip, Date.now());
 
-    // Cleanup old entries every 100 requests
-    if (rateLimitMap.size > 500) {
+    // Aggressive cleanup to prevent Map memory exhaustion DoS
+    if (rateLimitMap.size > 2000) {
+      rateLimitMap.clear(); // Emergency wipe if under volumetric attack
+    } else if (rateLimitMap.size > 500) {
       const cutoff = Date.now() - 120_000;
       rateLimitMap.forEach((val, key) => {
         if (val < cutoff) rateLimitMap.delete(key);
