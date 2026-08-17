@@ -20,7 +20,19 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   trailingSlash: false,
   async redirects() {
-    return [];
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.paranjapeblueridge.com',
+          },
+        ],
+        destination: 'https://paranjapeblueridge.com/:path*',
+        permanent: true,
+      },
+    ];
   },
   async rewrites() {
     return [];
@@ -29,7 +41,6 @@ const nextConfig = {
     return [{
       source: '/(.*)',
       headers: [
-        { key: 'Link', value: '<https://paranjapeblueridge.com>; rel="canonical"' },
         { key: 'X-DNS-Prefetch-Control', value: 'on' },
         { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
         { key: 'X-XSS-Protection', value: '1; mode=block' },
