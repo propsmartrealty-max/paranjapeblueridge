@@ -515,7 +515,9 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
-        "reviewCount": "2150"
+        "reviewCount": "2150",
+        "bestRating": "5",
+        "worstRating": "1"
     },
     "review": nestedReviews,
     "openingHoursSpecification": [
