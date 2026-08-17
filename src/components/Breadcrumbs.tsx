@@ -35,14 +35,14 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
     <nav aria-label="Breadcrumb" className="mb-10">
       <ol className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light">
         <li className="flex items-center">
-          <Link href={getLocalizedHref('/')} className="hover:text-gold transition-colors flex items-center gap-1.5">
-            <Home size={10} />
+          <Link href={getLocalizedHref('/')} aria-label={t('Navigate to Home', 'मुख्यपृष्ठावर जा')} className="hover:text-gold transition-colors flex items-center gap-1.5">
+            <Home size={10} aria-hidden="true" />
             {t('Home', 'होम')}
           </Link>
         </li>
         {items.map((item, idx) => (
           <li key={idx} className="flex items-center gap-2">
-            <ChevronRight size={10} className="opacity-30" />
+            <ChevronRight size={10} className="opacity-30" aria-hidden="true" />
             <Link 
               href={getLocalizedHref(item.href)} 
               aria-current={idx === items.length - 1 ? 'page' : undefined}

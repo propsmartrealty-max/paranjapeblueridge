@@ -26,6 +26,19 @@ function testPseoUrls() {
     throw new Error(`Verification Failed: Invalid slug formats: ${invalidSlugs.slice(0, 3).map(u => u.slug).join(', ')}`);
   }
   console.log('✅ All dynamic slugs conform to canonical URL format.');
+
+  // Check for trailing slashes
+  const trailingSlashes = urls.filter(u => u.slug.endsWith('/'));
+  if (trailingSlashes.length > 0) {
+    throw new Error(`Verification Failed: URLs contain trailing slashes: ${trailingSlashes.slice(0, 3).map(u => u.slug).join(', ')}`);
+  }
+  console.log('✅ Zero trailing slashes detected in dynamic routes.');
+
+  // Check Title Lengths (Google truncates after ~65 chars)
+  const overLengthTitles = urls.filter(u => u.title.length > 80); // Allowing up to 80 for padding, but >80 is definitely an error
+  if (overLengthTitles.length > 0) {
+    console.warn(`⚠️ Warning: ${overLengthTitles.length} PSEO titles exceed 80 characters. Example: ${overLengthTitles[0].title}`);
+  }
 }
 
 function testSchemaMetadata() {

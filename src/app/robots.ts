@@ -75,7 +75,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/cache/'],
+        disallow: ['/api/', '/_next/', '/private/'],
         crawlDelay: 1,
       },
     ],

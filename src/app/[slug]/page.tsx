@@ -19,6 +19,9 @@ interface PageProps {
   };
 }
 
+export const revalidate = 2592000; // 30 days
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const projectSlugs = projects.map(p => ({ slug: p.slug }));
   const mrProjectSlugs = projects.map(p => ({ slug: `mr-${p.slug}` }));

@@ -842,10 +842,11 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       },
       "brand": { "@type": "Brand", "name": "Paranjape Schemes" },
       "offers": {
-        "@type": "Offer",
+        "@type": "AggregateOffer",
         "priceCurrency": "INR",
-        "price": "9500000",
-        "availability": "https://schema.org/InStock",
+        "lowPrice": "9760000",
+        "highPrice": "26500000",
+        "offerCount": "120",
         "url": `${SITE_URL}/${pseoData.slug}`
       },
       ...(pathname === `/${pseoData.slug}` || pathname === `/mr/${pseoData.slug}` ? {
