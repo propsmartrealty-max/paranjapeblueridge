@@ -1,0 +1,26 @@
+name: Evergreen SEO Freshness Loop
+
+on:
+  schedule:
+    # Run at 00:00 every Monday (Midnight UTC)
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+    # Allow manual triggering from the GitHub UI
+
+jobs:
+  trigger-vercel-rebuild:
+    name: Trigger Vercel Rebuild
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Webhook to Vercel
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            echo "Error: VERCEL_DEPLOY_HOOK_URL secret is not set."
+            exit 1
+          fi
+          
+          # Trigger the Vercel Deploy Hook
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+          
+          echo "Vercel rebuild triggered successfully."
+          echo "The Vercel postbuild script will automatically ping IndexNow (Bing/Yandex) with the newly updated sitemap dates."

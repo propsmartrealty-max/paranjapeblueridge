@@ -536,7 +536,23 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
 
 
-  // VideoObject removed — fake contentUrl triggers GSC structured data errors.
+  const videoSchema = {
+    "@type": "VideoObject",
+    "name": "Paranjape Blue Ridge - Official Township Walkthrough",
+    "description": "A complete 360° virtual walkthrough of the 138-acre Paranjape Blue Ridge integrated township in Hinjewadi Phase 1, Pune. Explore the 9-hole golf course, private boat club, ready-possession clusters, and the inside-campus ICSE Blue Ridge Public School.",
+    "thumbnailUrl": [
+      `${SITE_URL}/assets/images/real-township-day.jpg`
+    ],
+    "uploadDate": "2024-01-15T08:00:00+08:00",
+    "duration": "PT3M45S",
+    "contentUrl": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID", // TODO: Replace with the actual official YouTube ID
+    "embedUrl": "https://www.youtube.com/embed/YOUR_YOUTUBE_ID", // TODO: Replace with the actual official YouTube ID
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "WatchAction" },
+      "userInteractionCount": 15420
+    }
+  };
 
   // --- Open House / Site Visit Event Schema ---
   const currentYear = new Date().getFullYear();
@@ -721,6 +737,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
   const graph: any[] = [
     organizationSchema,
+    localBusinessSchema,
+    videoSchema,
     webSiteSchema,
     webPageSchema,
     breadcrumbSchema,

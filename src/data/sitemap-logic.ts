@@ -4,7 +4,7 @@ import { generatePseoUrls } from '@/data/seo-matrix';
 import { getAllPosts } from '@/utils/mdxUtils';
 
 const baseUrl = 'https://paranjapeblueridge.com';
-const staticPublishedDate = new Date('2026-08-10T00:00:00.000Z');
+const staticPublishedDate = new Date();
 
 type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 
