@@ -384,6 +384,51 @@ export const articles: Article[] = [
       "Documentation checklist for Blue Ridge home loan: (1) Salary slips — last 3 months. (2) Form 16 or ITR — last 2 years. (3) Bank statements — last 6 months. (4) PAN card and Aadhaar. (5) Blue Ridge allotment letter. (6) MahaRERA registration certificate (provided by Blue Ridge sales team). (7) Sale agreement. (8) Property valuation report (arranged by bank). Most lenders pre-approve Blue Ridge projects, reducing processing time to 7–10 working days.",
       "Tax benefits on home loan: Under Section 24(b), interest paid on home loan is deductible up to ₹2 lakh/year for self-occupied property. Under Section 80C, principal repayment is deductible up to ₹1.5 lakh/year. For under-construction properties like Ridges 41, pre-EMI interest paid during construction is deductible in 5 equal installments from the year of possession. Contact Blue Ridge sales team for a personalized tax benefit calculation and loan pre-approval assistance."
     ]
+  },
+  {
+    slug: "pune-real-estate-market-analysis-2026",
+    title: "Pune Real Estate Market Analysis 2026: Why West Pune is Booming",
+    date: "August 2026",
+    dateISO: "2026-08-10T10:00:00+05:30",
+    excerpt: "An in-depth look at the infrastructure developments driving capital appreciation in Baner, Mahalunge, and Hinjewadi.",
+    category: "Market Report",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/township-investment-aerial.png",
+    content: [
+      "The Pune Real Estate Market in 2026 has witnessed unprecedented growth, particularly in the western corridors encompassing Baner, Mahalunge, and Hinjewadi. This boom is fueled by robust IT infrastructure, with Hinjewadi Phase 1 remaining the epicenter of employment generation.",
+      "A significant trend is the shift from standalone buildings to integrated township living. Buyers are increasingly searching for comprehensive ecosystems. This is why a 2 BHK in Hinjewadi within a township like Paranjape Blue Ridge commands a 15% premium over standalone projects in Wakad or Tathawade.",
+      "The Mahalunge-Hinjewadi bridge and the upcoming Metro Line 3 have virtually merged these micro-markets. Consequently, the demand for a 3 BHK in Mahalunge or a 4 BHK in Baner is frequently cross-shopped with premium offerings in Hinjewadi, as buyers prioritize lifestyle and connectivity over municipal boundaries."
+    ]
+  },
+  {
+    slug: "hinjewadi-vs-mahalunge-investment",
+    title: "Hinjewadi vs Mahalunge: Where Should You Buy a 3 BHK?",
+    date: "August 2026",
+    dateISO: "2026-08-05T10:00:00+05:30",
+    excerpt: "Comparing the two hottest micro-markets for IT professionals looking for premium township living.",
+    category: "Investment Guide",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/township-aerial-night.jpg",
+    content: [
+      "For IT professionals evaluating where to purchase a 3 BHK, the decision often boils down to Hinjewadi versus Mahalunge. Both are premium residential destinations, but they offer distinct advantages.",
+      "Mahalunge is rapidly developing as a residential hub, often marketed as the 'new Baner'. It offers excellent connectivity to the Mumbai-Bengaluru highway. However, the core employment hubs remain in Hinjewadi. Therefore, buying a 3 BHK in Mahalunge means a daily commute across the bridge.",
+      "In contrast, investing in a 3 BHK in Hinjewadi Phase 1, particularly within an established 138-acre township like Paranjape Blue Ridge, offers a 'walk-to-work' lifestyle. You gain access to an operational ICSE school, a 9-hole golf course, and zero commute time to major tech parks. When evaluating ROI and rental yield, the mature infrastructure of Hinjewadi consistently outpaces the developing phases of Mahalunge."
+    ]
+  },
+  {
+    slug: "why-buy-4-bhk-baner-when-you-can-get-duplex-hinjewadi",
+    title: "Why Buy a 4 BHK in Baner When You Can Get a Skyduplex in Hinjewadi?",
+    date: "July 2026",
+    dateISO: "2026-07-28T10:00:00+05:30",
+    excerpt: "Analyzing the price-per-square-foot dynamics and lifestyle upgrades of integrated townships over standalone buildings.",
+    category: "Lifestyle",
+    author: "Sovereign Research Desk",
+    image: "/assets/images/altius-hero.png",
+    content: [
+      "The luxury real estate market in Pune is experiencing a paradigm shift. Traditionally, wealthy buyers gravitated towards a 4 BHK in Baner. However, land scarcity in Baner has led to dense, standalone developments with limited amenities.",
+      "At the same price point, buyers are now discovering they can upgrade to an ultra-luxury Duplex in Pune or a stunning Skyduplex in Hinjewadi. Projects like The Altius at Paranjape Blue Ridge offer double-height ceilings, private terraces, and panoramic river views that standalone buildings in Baner simply cannot accommodate.",
+      "Furthermore, choosing a premium Duplex or Simplex in Hinjewadi places you within a 138-acre integrated township. You aren't just buying an apartment; you are investing in a 9-hole golf course, a private boat club, and a fully realized community ecosystem, offering a lifestyle that far exceeds what a standard 4 BHK in Baner can provide."
+    ]
   }
 ];
 

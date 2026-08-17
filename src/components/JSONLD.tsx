@@ -436,7 +436,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
 
   const realEstateAgentSchema = {
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "RealEstateAgent", "Residence"],
     "@id": `${SITE_URL}/${slug}#business`,
     "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
       ? t(`Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`, `परंजपे ब्लू रिज - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
@@ -487,6 +487,14 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "latitude": 18.5786825,
       "longitude": 73.7370331
     },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "20:00"
+      }
+    ],
     "areaServed": [
       {
         "@type": "GeoCircle",
@@ -849,7 +857,8 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "lowPrice": "9760000",
         "highPrice": "26500000",
         "offerCount": "120",
-        "url": `${SITE_URL}/${pseoData.slug}`
+        "url": `${SITE_URL}/${pseoData.slug}`,
+        "availability": "https://schema.org/InStock"
       },
       ...(pathname === `/${pseoData.slug}` || pathname === `/mr/${pseoData.slug}` ? {
         "aggregateRating": {

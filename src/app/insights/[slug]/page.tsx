@@ -193,30 +193,15 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   "datePublished": article.dateISO,
                   "dateModified": article.dateISO,
                   "inLanguage": "en-IN",
-                  "author": {
-                    "@type": "Person",
-                    "name": article.author,
-                    "url": "https://paranjapeblueridge.com",
-                    "sameAs": [
-                      "https://paranjapeblueridge.com",
-                      "https://www.pscl.in"
-                    ]
-                  },
-                  "publisher": {
-                    "@type": "Organization",
-                    "name": "Paranjape Schemes (Construction) Ltd.",
-                    "url": "https://paranjapeblueridge.com",
-                    "logo": {
-                      "@type": "ImageObject",
-                      "url": "https://paranjapeblueridge.com/assets/images/paranjape-logo.svg",
-                      "width": 300,
-                      "height": 60
-                    },
-                    "sameAs": [
-                      "https://www.pscl.in",
-                      "https://en.wikipedia.org/wiki/Paranjape_Schemes"
-                    ]
-                  },
+                  "author": { "@id": "https://paranjapeblueridge.com/#organization" },
+                  "publisher": { "@id": "https://paranjapeblueridge.com/#organization" },
+                  "about": [
+                    { "@type": "Place", "name": "Pune", "sameAs": "https://www.wikidata.org/wiki/Q1538" },
+                    { "@type": "Place", "name": "Hinjawadi", "sameAs": "https://www.wikidata.org/wiki/Q5766258" }
+                  ],
+                  "mentions": [
+                    { "@type": "Thing", "name": "Real Estate", "sameAs": "https://www.wikidata.org/wiki/Q646243" }
+                  ],
                   "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": `https://paranjapeblueridge.com/insights/${article.slug}`

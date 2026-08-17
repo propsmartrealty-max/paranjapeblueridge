@@ -16,7 +16,12 @@ export default function SpeculationRules() {
     ...projects.map(p => `/${p.slug}`),
     ...projects.map(p => `/mr-${p.slug}`),
     ...projects.flatMap(p => (p.configurations || []).map(c => `/${p.slug}/${c.slug}`)),
-    ...articles.map(a => `/insights/${a.slug}`)
+    ...articles.map(a => `/insights/${a.slug}`),
+    "/explore/hinjewadi",
+    "/explore/wakad",
+    "/explore/baner",
+    "/explore/balewadi",
+    "/explore/pune-city"
   ];
 
   const rules = {

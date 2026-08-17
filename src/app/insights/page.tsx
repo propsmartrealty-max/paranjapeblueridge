@@ -112,7 +112,15 @@ export default function InsightsIndexPage() {
       description: a.excerpt,
       url: `${SITE_URL}/insights/${a.slug}`,
       datePublished: a.dateISO,
-      author: { '@type': 'Person', name: a.author },
+      author: { '@id': 'https://paranjapeblueridge.com/#organization' },
+      publisher: { '@id': 'https://paranjapeblueridge.com/#organization' },
+      about: [
+        { '@type': 'Place', name: 'Pune', sameAs: 'https://www.wikidata.org/wiki/Q1538' },
+        { '@type': 'Place', name: 'Hinjawadi', sameAs: 'https://www.wikidata.org/wiki/Q5766258' }
+      ],
+      mentions: [
+        { '@type': 'Thing', name: 'Real Estate', sameAs: 'https://www.wikidata.org/wiki/Q646243' }
+      ]
     })),
   };
 
