@@ -7,25 +7,20 @@ import { projects, articles } from '@/data/master-data';
 import { getAllPosts } from '@/utils/mdxUtils';
 
 export const metadata: Metadata = {
-  title: 'Complete Property Sitemap | Paranjape Blue Ridge',
-  description: 'Explore the complete directory of all configurations, locations, and premium real estate properties at Paranjape Blue Ridge Hinjewadi, Pune.',
+  title: 'Pune Real Estate Directory | Paranjape Blue Ridge',
+  description: 'Explore the definitive master directory of over 94,000 premium real estate properties, configurations, and insights across the entire Pune market.',
   alternates: {
-    canonical: 'https://paranjapeblueridge.com/html-sitemap',
+    canonical: 'https://paranjapeblueridge.com/directory',
   }
 };
 
-export default function HTMLSitemap() {
+export default function DirectoryHub() {
   const pseoUrls = generatePseoUrls();
   const mdxPosts = getAllPosts();
-
-  // Group PSEO URLs by Silo
-  const groupedPseo = pseoUrls.reduce((acc, curr) => {
-    if (!acc[curr.silo]) {
-      acc[curr.silo] = [];
-    }
-    acc[curr.silo].push(curr);
-    return acc;
-  }, {} as Record<string, Array<{ slug: string; title: string; intent: string; type: string; silo: string }>>);
+  
+  const CHUNK_SIZE = 1000;
+  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
+  const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
 
   return (
     <main className="min-h-screen bg-navy text-text">
@@ -33,9 +28,9 @@ export default function HTMLSitemap() {
 
       <section className="pt-32 pb-20 bg-navy">
         <div className="container mx-auto max-w-7xl px-4">
-          <h1 className="text-4xl md:text-5xl font-serif text-warm-white mb-6">Property Sitemap</h1>
+          <h1 className="text-4xl md:text-5xl font-serif text-warm-white mb-6">Pune Real Estate Directory</h1>
           <p className="text-text-light text-lg mb-12 max-w-3xl">
-            A complete directory of all premium real estate offerings, configurations, and insights at Paranjape Blue Ridge.
+            A comprehensive, structured index of over {pseoUrls.length.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
           </p>
 
           <div className="space-y-16">
@@ -69,27 +64,30 @@ export default function HTMLSitemap() {
               </div>
             </div>
 
-            {/* 3. Programmatic SEO Categories (The 2000+ variants) */}
+            {/* 3. Paginated Directory Indices */}
             <div>
-              <h2 className="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2">Targeted Search Categories</h2>
+              <h2 className="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2">Complete Property Index</h2>
+              <p className="text-sm text-text-light mb-6">
+                Navigate our extensive database of properties, categorized into structured blocks for easy browsing.
+              </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {(Object.entries(groupedPseo) as [string, Array<{ slug: string; title: string; intent: string; type: string; silo: string }>][]).map(([silo, items]) => (
-                  <div key={silo} className="flex flex-col">
-                    <h3 className="text-lg font-bold text-warm-white mb-4 capitalize tracking-wide">
-                      {silo.replace(/-/g, ' ')}
-                    </h3>
-                    <ul className="space-y-2 max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-gold/20 scrollbar-track-transparent">
-                      {items.map((item) => (
-                        <li key={item.slug}>
-                          <Link href={`/${item.slug}`} className="text-xs text-text-light hover:text-gold transition-colors block py-1">
-                            {item.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                {chunksArray.map((pageNum) => {
+                  const startRange = ((pageNum - 1) * CHUNK_SIZE) + 1;
+                  const endRange = Math.min(pageNum * CHUNK_SIZE, pseoUrls.length);
+                  return (
+                    <Link 
+                      key={pageNum} 
+                      href={`/directory/${pageNum}`} 
+                      className="bg-white/5 border border-white/10 hover:border-gold/50 hover:bg-gold/10 transition-all rounded-lg p-4 text-center group"
+                    >
+                      <h3 className="text-gold font-bold mb-1 group-hover:text-warm-white transition-colors">Part {pageNum}</h3>
+                      <p className="text-[10px] text-text-light uppercase tracking-widest">
+                        {startRange.toLocaleString()} - {endRange.toLocaleString()}
+                      </p>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
 
