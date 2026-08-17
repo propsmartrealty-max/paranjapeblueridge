@@ -1410,12 +1410,11 @@ export function generatePseoUrls() {
     });
   });
 
-  // B. Paranjape Portfolio Hijack (Project x Config x Intent x Top Markets) -> 11 * 7 * 8 * 15 = 9,240
-  const topMarkets = microMarkets.slice(20, 35); // Focus on West Pune
+  // B. Paranjape Portfolio Hijack (Project x Config x Intent x ALL Pune Markets) -> 11 * 7 * 8 * 59 = 36,344
   paranjapeAll.forEach(project => {
     configs.forEach(config => {
       intents.forEach(intent => {
-        topMarkets.forEach(market => {
+        microMarkets.forEach(market => {
           const phrase = `${intent} ${config} at ${project} near ${market}`;
           urls.push({
             slug: slugify(phrase),
@@ -1429,11 +1428,11 @@ export function generatePseoUrls() {
     });
   });
 
-  // C. Competitor Battleground Expansion (Competitor x Config x Intent x Top Markets) -> 15 * 7 * 8 * 15 = 12,600
+  // C. Competitor Battleground Expansion (Competitor x Config x Intent x ALL Pune Markets) -> 15 * 7 * 8 * 59 = 49,560
   competitorsAll.forEach(competitor => {
     configs.forEach(config => {
       intents.forEach(intent => {
-        topMarkets.forEach(market => {
+        microMarkets.forEach(market => {
           const phrase = `Paranjape Blue Ridge vs ${competitor} ${config} ${intent} near ${market}`;
           urls.push({
             slug: slugify(phrase),
