@@ -13,10 +13,10 @@ export async function GET() {
       "@type": "DataFeedItem",
       "dateCreated": now,
       "item": {
-        "@type": "SingleFamilyResidence",
+        "@type": ["RealEstateListing", "Apartment"],
         "@id": `${baseUrl}/${project.slug}/${config.slug}#property`,
         "name": `${config.title} - ${project.name} at Paranjape Blue Ridge Hinjewadi`,
-        "description": `${config.title} with ${config.carpetArea} sq ft carpet area in ${project.name}, Paranjape Blue Ridge 138-acre township, Hinjewadi Phase 1, Pune.`,
+        "description": `${config.title} with ${config.carpetArea} sq ft carpet area in ${project.name}, Paranjape Blue Ridge 138-acre township, Hinjewadi Phase 1, Pune. Explore 2BHK, 3BHK, 4BHK, Duplex in Hinjewadi, Mahalunge and Baner corridors.`,
         "url": `${baseUrl}/${project.slug}/${config.slug}`,
         "image": `${baseUrl}/assets/images/real-township-day.jpg`,
         "numberOfRooms": config.title.includes('2 BHK') ? 2 : config.title.includes('3 BHK') ? 3 : config.title.includes('4 BHK') ? 4 : 5,

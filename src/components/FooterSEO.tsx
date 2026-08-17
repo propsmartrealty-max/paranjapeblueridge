@@ -2,21 +2,23 @@ import React from 'react';
 import { longTailUrls } from '@/data/seo-matrix';
 
 export default function FooterSEO() {
-  const displayedLinks = longTailUrls.slice(0, 8);
+  // Randomly select 60 keywords per SSG build for massive PageRank sculpting across the PSEO matrix
+  const shuffled = [...longTailUrls].sort(() => 0.5 - Math.random());
+  const displayedLinks = shuffled.slice(0, 60);
 
   return (
     <footer className="bg-[var(--bg)] border-t border-gold/10 pt-10 pb-6 px-4 rounded-xl backdrop-blur-md">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row justify-between items-start text-sm text-text-light/70 mb-6">
-          <p className="max-w-md mb-4 md:mb-0">
-            Paranjape Blue Ridge – Premium township in Pune's IT corridor offering luxury living, integrated amenities, and strategic proximity to major tech hubs.
+        <div className="flex flex-col text-sm text-text-light/70 mb-6">
+          <p className="max-w-2xl mb-8">
+            Paranjape Blue Ridge – Premium 138-acre integrated township in Pune's IT corridor. Explore luxury 2BHK, 3BHK, 4BHK, 5BHK, Duplex, and Simplex configurations across Hinjewadi, Mahalunge, Baner, and Wakad corridors. High ROI investment property with walk-to-work IT Park proximity.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             {displayedLinks.map((url) => (
               <a
                 key={url.slug}
                 href={`/${url.slug}`}
-                className="text-text-light/40 hover:text-gold transition-colors text-xs"
+                className="text-text-light/30 hover:text-gold transition-colors text-[10px] uppercase tracking-wider"
               >
                 {url.title}
               </a>
