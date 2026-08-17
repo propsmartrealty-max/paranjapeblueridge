@@ -1522,13 +1522,41 @@ export function generatePseoUrls() {
 
   const mappedUrls = urls.map(u => ({
     ...u,
-    slug: u.slug.endsWith('-paranjape-blue-ridge-hinjewadi') 
+    slug: u.slug.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') 
       ? u.slug 
-      : `${u.slug}-paranjape-blue-ridge-hinjewadi`
+      : u.slug.endsWith('-paranjape-blue-ridge-hinjewadi')
+        ? u.slug.replace('-paranjape-blue-ridge-hinjewadi', '-paranjape-schemes-blue-ridge-hinjewadi')
+        : `${u.slug}-paranjape-schemes-blue-ridge-hinjewadi`
   }));
 
   const uniqueUrlsMap = new Map();
   mappedUrls.forEach(u => {
+    // 1. Hard-enforce the brand in the title
+    if (!u.title.includes("Paranjape Schemes Blue Ridge Hinjewadi")) {
+        if (u.title.includes("Paranjape Blue Ridge Township")) {
+            u.title = u.title.replace("Paranjape Blue Ridge Township", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else if (u.title.includes("Paranjape Blue Ridge")) {
+            u.title = u.title.replace("Paranjape Blue Ridge", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else if (u.title.includes("Blue Ridge Hinjewadi")) {
+            u.title = u.title.replace("Blue Ridge Hinjewadi", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else {
+            u.title = `${u.title} — Paranjape Schemes Blue Ridge Hinjewadi`;
+        }
+    }
+
+    // 2. Hard-enforce the brand in the intent (H1)
+    if (!u.intent.includes("Paranjape Schemes Blue Ridge Hinjewadi")) {
+        if (u.intent.includes("Paranjape Blue Ridge Township")) {
+            u.intent = u.intent.replace("Paranjape Blue Ridge Township", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else if (u.intent.includes("Paranjape Blue Ridge")) {
+            u.intent = u.intent.replace("Paranjape Blue Ridge", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else if (u.intent.includes("Blue Ridge Hinjewadi")) {
+            u.intent = u.intent.replace("Blue Ridge Hinjewadi", "Paranjape Schemes Blue Ridge Hinjewadi");
+        } else {
+            u.intent = `${u.intent} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
+        }
+    }
+
     if (!uniqueUrlsMap.has(u.slug)) {
       uniqueUrlsMap.set(u.slug, u);
     }
