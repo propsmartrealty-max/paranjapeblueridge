@@ -435,13 +435,18 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   }
 
 
+  const businessName = projectData 
+    ? t(`${projectData.name} - Official Sales Gallery`, `${projectData.name} - अधिकृत सेल्स गॅलरी`)
+    : slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
+      ? t(`Paranjape Schemes - Local Real Estate Gallery (${regionName} Region)`, `परंजपे स्कीम्स - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
+      : t("Paranjape Schemes - Sovereign Sales Gallery", "परंजपे स्कीम्स - सोव्हरेन सेल्स गॅलरी");
+
   const realEstateAgentSchema = {
     "@type": ["LocalBusiness", "RealEstateAgent", "Residence"],
     "@id": `${SITE_URL}/${slug}#business`,
-    "name": slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
-      ? t(`Paranjape Blue Ridge - Local Real Estate Gallery (${regionName} Region)`, `परंजपे ब्लू रिज - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
-      : t("Paranjape Blue Ridge - Sovereign Sales Gallery", "परंजपे ब्लू रिज - सोव्हरेन सेल्स गॅलरी"),
-    "alternateName": ["Blue Ridge Township", "Paranjape Blue Ridge Hinjewadi", "Paranjape Schemes Hinjewadi"],
+    "name": businessName,
+    "parentOrganization": { "@id": `${SITE_URL}/#organization` },
+    "alternateName": ["Paranjape Schemes Pune", "Paranjape Projects", projectData?.name || "Blue Ridge Township"],
     "description": t("Pune's premier 138-acre integrated township offering premium 2, 3, 4 & 5 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.", "राजीव गांधी इन्फोटेक पार्क जवळ हिंजवडी फेज १ मध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके लक्झरी अपार्टमेंट्स देणारा पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प. सुविधांमध्ये ९-होल गोल्फ कोर्स, खाजगी बोट क्लब, आयसीएसई शाळा आणि पुणे मेट्रो लाईन ३ कनेक्टिव्हिटी समाविष्ट आहे."),
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
@@ -528,9 +533,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "worstRating": "1"
     },
     "review": nestedReviews,
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "09:00", "closes": "20:00" }
-    ],
     "sameAs": trustBridges
   };
 
@@ -545,8 +547,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ],
     "uploadDate": "2024-01-15T08:00:00+08:00",
     "duration": "PT3M45S",
-    "contentUrl": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID", // TODO: Replace with the actual official YouTube ID
-    "embedUrl": "https://www.youtube.com/embed/YOUR_YOUTUBE_ID", // TODO: Replace with the actual official YouTube ID
+
     "interactionStatistic": {
       "@type": "InteractionCounter",
       "interactionType": { "@type": "WatchAction" },
@@ -737,7 +738,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
 
   const graph: any[] = [
     organizationSchema,
-    localBusinessSchema,
+    realEstateAgentSchema,
     videoSchema,
     webSiteSchema,
     webPageSchema,

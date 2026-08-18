@@ -36,7 +36,12 @@ export const seoMatrix = {
     { slug: 'walk-to-work-apartments', name: 'Walk-to-Work Apartments', type: 'Apartment' },
     { slug: 'it-park-facing-flats', name: 'IT Park Facing Flats', type: 'Apartment' },
     { slug: 'township-apartments', name: 'Township Apartments', type: 'Apartment' },
-    { slug: 'ready-possession-luxury-flats', name: 'Ready Possession Luxury Flats', type: 'Apartment' }
+    { slug: 'ready-possession-luxury-flats', name: 'Ready Possession Luxury Flats', type: 'Apartment' },
+    { slug: 'senior-living-homes', name: 'Senior Living Homes', type: 'Apartment' },
+    { slug: 'senior-citizen-apartments', name: 'Senior Citizen Apartments', type: 'Apartment' },
+    { slug: 'luxury-villas', name: 'Luxury Villas', type: 'Villa' },
+    { slug: 'nature-townships', name: 'Nature Townships', type: 'Township' },
+    { slug: 'ultra-luxury-penthouses', name: 'Ultra Luxury Penthouses', type: 'Penthouse' }
   ],
   locations: [
     { slug: 'hinjewadi-phase-1', name: 'Hinjewadi Phase 1' },
@@ -52,7 +57,11 @@ export const seoMatrix = {
     { slug: 'mahalunge', name: 'Mahalunge' },
     { slug: 'pimpri-chinchwad', name: 'Pimpri Chinchwad' },
     { slug: 'maan-road', name: 'Maan Road' },
-    { slug: 'mumbai-bangalore-highway', name: 'Mumbai Bangalore Highway' }
+    { slug: 'mumbai-bangalore-highway', name: 'Mumbai Bangalore Highway' },
+    { slug: 'bhugaon', name: 'Bhugaon' },
+    { slug: 'model-colony', name: 'Model Colony' },
+    { slug: 'kothrud', name: 'Kothrud' },
+    { slug: 'bavdhan', name: 'Bavdhan' }
   ],
   techParks: [
     { slug: 'near-embassy-tech-zone', name: 'near Embassy Tech Zone' },
