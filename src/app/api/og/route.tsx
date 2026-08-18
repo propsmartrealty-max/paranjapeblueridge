@@ -11,8 +11,10 @@ export async function GET(req: NextRequest) {
     const title = searchParams.get('title') || 'Paranjape Blue Ridge';
     const subtitle = searchParams.get('subtitle') || searchParams.get('config') || searchParams.get('intent') || '138-Acre Integrated Township in Hinjewadi Phase 1, Pune';
     const highlight = searchParams.get('highlight'); // e.g., "Starting ₹1.2 Cr"
-    const type = searchParams.get('type') || 'Sovereign Portal'; // 'Project', 'Insight', 'Floor Plan'
+    const type = searchParams.get('type') || 'Sovereign Portal'; // 'Project', 'Insight', 'Floor Plan', 'Market Data'
     const isNri = searchParams.get('nri') === 'true';
+    const roiData = searchParams.get('roi'); // e.g. "9.8%"
+    const appreciationData = searchParams.get('appreciation'); // e.g. "12%"
 
     // Deep Midnight Luxury Palette
     const background = 'linear-gradient(135deg, #040a14 0%, #0d1f38 100%)';
@@ -112,6 +114,17 @@ export async function GET(req: NextRequest) {
                   {highlight}
                 </span>
               </div>
+            ) : type === 'Market Data' ? (
+              <div style={{ display: 'flex', fontSize: 32, color: 'rgba(248, 250, 252, 0.9)', gap: '40px' }}>
+                 <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span style={{ fontSize: 16, color: 'rgba(248, 250, 252, 0.5)', textTransform: 'uppercase', letterSpacing: '2px' }}>Avg Rental Yield</span>
+                    <span style={{ color: emeraldAccent, fontWeight: 700, fontSize: 48 }}>{roiData || '4.5%'}</span>
+                 </div>
+                 <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <span style={{ fontSize: 16, color: 'rgba(248, 250, 252, 0.5)', textTransform: 'uppercase', letterSpacing: '2px' }}>YOY Appreciation</span>
+                    <span style={{ color: goldAccent, fontWeight: 700, fontSize: 48 }}>{appreciationData || '11.2%'}</span>
+                 </div>
+              </div> 
             ) : (
               <div style={{ display: 'flex', fontSize: 24, color: 'rgba(248, 250, 252, 0.7)', gap: '20px' }}>
                  <span style={{ color: emeraldAccent }}>✦ 138-Acre Township</span>
