@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Shield, CheckCircle2, MessageCircle, Star } from 'lucide-react';
 import FAQSection from '@/components/FAQSection';
+import { parseSpintax, spunParagraphs } from '@/lib/spintax';
+import { getDynamicContext } from '@/lib/dynamic-context';
 import dynamic from 'next/dynamic';
 const InteractiveFloorPlans = dynamic(() => import('@/components/InteractiveFloorPlans'), { ssr: false });
 import PuneMarketReport from '@/components/PuneMarketReport';
@@ -67,18 +69,23 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
     }
   };
 
-  const getParagraph = (silo: string) => {
-    if (silo === 'nri') return `For NRI investors across USA, UAE, UK, Singapore, Canada, and Australia, Paranjape Blue Ridge is the definitive choice in Indian real estate. With FEMA-compliant acquisition, MahaRERA-certified title, and a dedicated NRI desk, you can complete your purchase 100% remotely. Our clients currently earn 4-5% rental yields, and with Metro Line 3 arriving at 800m in 2027, the capital appreciation story is just beginning. Searching for "${pageData.intent.toLowerCase()}" ends here.`;
-    if (silo === 'investor') return `For discerning investors seeking ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge stands as Hinjewadi's crown jewel. With a proven track record of 4-5% rental yields and consistent capital appreciation, this is the definitive choice for NRIs and HNIs looking to secure wealth in Pune's IT corridor.`;
-    if (silo === 'corporate') return `Maximize your work-life balance with luxury living near your office. When searching for ${pageData.intent.toLowerCase()}, Blue Ridge eliminates the daily commute fatigue, placing you right at the nexus of Pune's massive corporate ecosystem.`;
-    if (silo === 'infrastructure' || silo === 'infra-guide') return `Location and connectivity dictate real estate value. By securing ${pageData.title.toLowerCase()}, you leverage the upcoming Metro Line 3 and expressway access to guarantee your asset remains future-proofed and highly connected.`;
-    if (silo === 'ecosystem' || silo === 'luxury-ecosystem') return `True luxury is an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school inside campus, a private riverfront boat club, and a professional 9-hole golf course within the gates, your family lifestyle is elevated beyond standard apartments.`;
-    if (silo === 'battleground') return `When evaluating ${pageData.title.toLowerCase()}, the contrast is clear. While many competitors offer standalone buildings, Blue Ridge provides a 138-acre ready integrated ecosystem. From the 9-hole golf course to the inside-campus school, our "Township First" approach offers a lifestyle scale that other projects in the vicinity simply cannot replicate.`;
-    if (silo === 'paranjape-schemes' || silo === 'branded') return `Looking for official pricing, floor plans, and verified details for ${pageData.intent}? As the flagship 138-acre township by Paranjape Schemes (Construction) Ltd, Blue Ridge Hinjewadi offers complete transparency, MahaRERA compliance, and ready-to-move as well as ongoing luxury inventory tailored to your expectations.`;
-    if (silo === 'duplex-simplex') return `Elevate your lifestyle with multi-level architectural luxury. When searching for ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge delivers exceptional vertical living with double-height ceiling voids, expansive sky balconies, and uncompromised family privacy. Situated within Pune's premier 138-acre township, our duplex and simplex residences combine suburban serenity with high-tech urban convenience.`;
-    if (silo === 'pune-micro-market' || silo === 'pune-macro') return `Navigating the real estate landscape of ${pageData.title.toLowerCase()} requires authentic market intelligence. Paranjape Blue Ridge stands as the anchor development across West Pune's growth corridor, offering immediate proximity to Rajiv Gandhi Infotech Park, direct access to Metro Line 3, and unmatched capital appreciation. Discover why buyers targeting ${pageData.intent.toLowerCase()} choose Blue Ridge.`;
+  const getParagraph = (silo: string, slug: string) => {
+    const context = getDynamicContext(slug);
     
-    return `Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for ${pageData.intent.toLowerCase()}, this 138-acre township offers an unparalleled ecosystem. From proximity to major IT hubs to a private 9-hole golf course and river-facing promenades, every aspect of ${pageData.type.toLowerCase()} living is elevated to global standards.`;
+    let base = '';
+    if (silo === 'nri') base = `{For|Attention} NRI {investors|buyers} across {USA, UAE, UK, Singapore, Canada, and Australia|the globe|international borders}, Paranjape Blue Ridge is the {definitive|premier|ultimate} choice in Indian real estate. With {FEMA-compliant acquisition|hassle-free compliance}, {MahaRERA-certified title|verified clear title}, and a dedicated NRI desk, you can {complete|execute} your purchase 100% remotely. {Our clients currently earn 4-5% rental yields|Enjoy robust 4-5% rental returns}, and with Metro Line 3 arriving at 800m in 2027, the capital appreciation story is just beginning. Searching for "${pageData.intent.toLowerCase()}" ends here.`;
+    else if (silo === 'investor') base = `{For discerning investors|For smart property buyers} seeking ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge stands as Hinjewadi's {crown jewel|premier investment destination}. With a proven track record of 4-5% rental yields and {consistent|strong|exceptional} capital appreciation, this is the definitive choice for NRIs and HNIs looking to secure wealth in Pune's IT corridor.`;
+    else if (silo === 'corporate') base = `{Maximize|Enhance} your work-life balance with luxury living near your office. When searching for ${pageData.intent.toLowerCase()}, Blue Ridge {eliminates|bypasses} the daily commute fatigue, placing you right at the {nexus|heart} of Pune's massive corporate ecosystem.`;
+    else if (silo === 'infrastructure' || silo === 'infra-guide') base = `Location and connectivity {dictate|drive} real estate value. By securing ${pageData.title.toLowerCase()}, you leverage the {upcoming|highly anticipated} Metro Line 3 and expressway access to {guarantee|ensure} your asset remains {future-proofed|highly connected}.`;
+    else if (silo === 'ecosystem' || silo === 'luxury-ecosystem') base = `{True luxury is|Premium living means} an integrated ecosystem. Searching for ${pageData.intent.toLowerCase()} leads you directly to Blue Ridge's 138-acre masterplan. With an ICSE school inside campus, a private riverfront boat club, and a professional 9-hole golf course within the gates, your family lifestyle is elevated {beyond standard apartments|to global standards}.`;
+    else if (silo === 'battleground') base = `{When evaluating|When comparing} ${pageData.title.toLowerCase()}, the contrast is clear. While many competitors offer standalone buildings, Blue Ridge provides a 138-acre ready integrated ecosystem. From the 9-hole golf course to the inside-campus school, our "Township First" approach offers a lifestyle scale that other projects in the vicinity simply {cannot replicate|fail to match}.`;
+    else if (silo === 'paranjape-schemes' || silo === 'branded') base = `{Looking for|Searching for} official pricing, floor plans, and verified details for ${pageData.intent}? As the {flagship|premium} 138-acre township by Paranjape Schemes (Construction) Ltd, Blue Ridge Hinjewadi offers {complete transparency|absolute clarity}, MahaRERA compliance, and ready-to-move as well as ongoing luxury inventory tailored to your expectations.`;
+    else if (silo === 'duplex-simplex') base = `{Elevate|Transform} your lifestyle with multi-level architectural luxury. When searching for ${pageData.intent.toLowerCase()}, Paranjape Blue Ridge delivers exceptional vertical living with double-height ceiling voids, expansive sky balconies, and uncompromised family privacy. Situated within Pune's premier 138-acre township, our duplex and simplex residences combine suburban serenity with high-tech urban convenience.`;
+    else if (silo === 'pune-micro-market' || silo === 'pune-macro') base = `{Navigating|Understanding} the real estate landscape of ${pageData.title.toLowerCase()} requires authentic market intelligence. Paranjape Blue Ridge stands as the {anchor|primary} development across West Pune's growth corridor, offering immediate proximity to Rajiv Gandhi Infotech Park, direct access to Metro Line 3, and unmatched capital appreciation. Discover why buyers targeting ${pageData.intent.toLowerCase()} choose Blue Ridge.`;
+    else base = `Paranjape Blue Ridge stands as a landmark of modern urban planning. When searching for ${pageData.intent.toLowerCase()}, this 138-acre township offers an {unparalleled|exceptional} ecosystem. From proximity to major IT hubs to a private 9-hole golf course and river-facing promenades, every aspect of ${pageData.type.toLowerCase()} living is elevated to global standards.`;
+    
+    // Parse spintax and inject contextual knowledge graph data
+    return parseSpintax(base, slug) + " " + context;
   };
 
   return (
@@ -180,7 +187,7 @@ export default function PseoLandingPage({ pageData }: PseoLandingPageProps) {
                 Why Invest in {pageData.title}?
             </h2>
             <p className="text-text-light leading-relaxed mb-12">
-                {getParagraph(pageData.silo)}
+                {getParagraph(pageData.silo, pageData.slug)}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
                 {getBenefits(pageData.silo).map((benefit, i) => (
