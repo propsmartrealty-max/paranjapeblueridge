@@ -547,6 +547,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ],
     "uploadDate": "2024-01-15T08:00:00+08:00",
     "duration": "PT3M45S",
+    "embedUrl": "https://www.youtube.com/embed/_VlWDJunSW8",
 
     "interactionStatistic": {
       "@type": "InteractionCounter",
