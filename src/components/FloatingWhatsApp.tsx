@@ -31,7 +31,15 @@ export default function FloatingWhatsApp() {
 
   if (!isVisible) return null;
 
-  const defaultMessage = `Hello, I am interested in Paranjape Blue Ridge Township, Hinjewadi Phase 1, Pune.\n\nPlease share:\n- Available inventory & floor plans\n- Updated price list\n- Site visit schedule`;
+  // Generate a highly contextual WhatsApp message based on the page the user is currently on
+  let contextSnippet = "Paranjape Blue Ridge Township, Hinjewadi Phase 1, Pune";
+  if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+    // Attempt to make the slug human readable
+    const path = window.location.pathname.replace(/^\//, '').replace(/-/g, ' ');
+    contextSnippet = `the '${path}' property at Paranjape Blue Ridge`;
+  }
+
+  const defaultMessage = `Hello, I am looking at ${contextSnippet} on your website right now.\n\nPlease share:\n- Available inventory & floor plans\n- Updated price list\n- Site visit schedule`;
 
   const whatsappUrl = `https://wa.me/917744009295?text=${encodeURIComponent(defaultMessage)}`;
 

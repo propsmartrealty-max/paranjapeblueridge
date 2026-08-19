@@ -17,10 +17,39 @@ export default function SiteVisitBooking() {
     '04:00 PM - 06:00 PM',
   ];
 
-  const handleBooking = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
-    setBooked(true);
+    
+    setIsSubmitting(true);
+    try {
+      const source = typeof window !== 'undefined' ? window.location.pathname : 'site_visit_booking';
+      const utmData = typeof window !== 'undefined' ? localStorage.getItem('sovereign-utms') : null;
+      const utms = utmData ? JSON.parse(utmData) : {};
+
+      const payload = {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        intent: `${visitType === 'in_person' ? 'In-Person Visit' : 'Virtual Walkthrough'} on ${selectedDate} at ${selectedSlot}`,
+        source: source,
+        ...utms
+      };
+
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+    } catch (error) {
+      console.error("Lead submission failed:", error);
+    } finally {
+      setIsSubmitting(false);
+      setBooked(true);
+    }
   };
 
   return (
@@ -138,10 +167,11 @@ export default function SiteVisitBooking() {
 
             <button
               type="submit"
-              className="w-full py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className={`w-full py-4 font-bold rounded-xl text-xs uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2 ${isSubmitting ? 'bg-gold/50 text-navy/50 cursor-not-allowed' : 'bg-gold hover:bg-gold-light text-navy'}`}
             >
-              Confirm Appointment Now
-              <ArrowRight size={16} />
+              {isSubmitting ? 'Confirming...' : 'Confirm Appointment Now'}
+              {!isSubmitting && <ArrowRight size={16} />}
             </button>
           </div>
         </form>
