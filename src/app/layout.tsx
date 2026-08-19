@@ -14,6 +14,7 @@ import { TrackingProvider } from "@/components/TrackingProvider";
 import { AtmosphereProvider } from "@/context/AtmosphereContext";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { WebVitalsReporter } from '@/components/WebVitalsReporter';
+import ParanjapeEcosystemInjector from '@/components/ParanjapeEcosystemInjector';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -197,6 +198,7 @@ export default function RootLayout({
                 </div>
                 <div className="architect-grid"></div>
                 {children}
+                <ParanjapeEcosystemInjector />
                 <StickyCTA />
                 <PulseNotifications />
                 <ExitIntentPopup />
