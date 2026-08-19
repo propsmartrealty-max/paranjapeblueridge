@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { longTailUrls } from '@/data/seo-matrix';
 import { projects, articles } from '@/data/master-data';
 import { getAllPosts } from '@/utils/mdxUtils';
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function DirectoryHub() {
-  const pseoUrls = generatePseoUrls();
+  const pseoUrls = longTailUrls;
   const mdxPosts = getAllPosts();
   
   const CHUNK_SIZE = 1000;

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { longTailUrls } from '@/data/seo-matrix';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 
 const CHUNK_SIZE = 1000;
@@ -17,19 +17,19 @@ interface PageProps {
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  // We can pre-render the first few pages, but the rest will be rendered on-demand at the edge
-  return [
-    { page: '1' },
-    { page: '2' },
-    { page: '3' },
-  ];
+  const pseoUrls = longTailUrls;
+  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
+  
+  return Array.from({ length: totalChunks }, (_, i) => ({
+    page: (i + 1).toString(),
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const pageNum = parseInt(params.page, 10);
   if (isNaN(pageNum) || pageNum < 1) return {};
 
-  const pseoUrls = generatePseoUrls();
+  const pseoUrls = longTailUrls;
   const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
 
   if (pageNum > totalChunks) return {};
@@ -49,7 +49,7 @@ export default function DirectoryChunkPage({ params }: PageProps) {
     notFound();
   }
 
-  const pseoUrls = generatePseoUrls();
+  const pseoUrls = longTailUrls;
   const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
 
   if (pageNum > totalChunks) {

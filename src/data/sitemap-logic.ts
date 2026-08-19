@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { projects, articles } from '@/data/master-data';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { longTailUrls } from '@/data/seo-matrix';
 import { getAllPosts } from '@/utils/mdxUtils';
 
 const baseUrl = 'https://paranjapeblueridge.com';
@@ -10,7 +10,7 @@ type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly
 
 export async function generateSitemaps() {
   // We split the massive sitemap into logical silos for Googlebot
-  const pseoUrlsCount = generatePseoUrls().length;
+  const pseoUrlsCount = longTailUrls.length;
   const pseoChunks = Math.ceil(pseoUrlsCount / 1100);
 
   const sitemaps = [
@@ -126,7 +126,7 @@ function getInsightsUrls(): MetadataRoute.Sitemap {
 }
 
 function getPseoUrlsChunk(chunkIndex: number): MetadataRoute.Sitemap {
-  const pseoUrlsData = generatePseoUrls();
+  const pseoUrlsData = longTailUrls;
   const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
   
   const chunkSize = 1100;

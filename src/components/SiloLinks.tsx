@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { longTailUrls } from '@/data/seo-matrix';
 import { ChevronRight, Zap } from 'lucide-react';
 
 interface SiloLinksProps {
@@ -20,7 +20,7 @@ function hashString(str: string): number {
 }
 
 export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
-  const allUrls = generatePseoUrls();
+  const allUrls = longTailUrls;
   const seed = hashString(currentSlug);
 
   // --- PageRank Sculpting Engine ---
