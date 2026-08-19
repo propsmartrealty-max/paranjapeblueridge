@@ -81,7 +81,8 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       'https://paranjapeblueridge.com/sitemap.xml',
-      'https://paranjapeblueridge.com/sitemap-images.xml'
+      'https://paranjapeblueridge.com/sitemap-images.xml',
+      'https://paranjapeblueridge.com/sitemap-news.xml'
     ],
     host: 'https://paranjapeblueridge.com',
   };
