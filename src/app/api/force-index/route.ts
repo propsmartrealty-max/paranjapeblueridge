@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { generateSitemaps } from '@/data/sitemap-logic';
 
-export const runtime = 'edge';
-
 const DOMAIN = 'paranjapeblueridge.com';
 const SITE_URL = `https://${DOMAIN}`;
 const INDEXNOW_KEY = '8f8b8849b3c4456ea7eaef1b4279eaeb';
