@@ -5,9 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Map, Info, Compass, ArrowRight, Ruler, IndianRupee } from 'lucide-react';
 import { projects } from '@/data/master-data';
 import Link from 'next/link';
+import { useCurrency } from '@/context/CurrencyContext';
 
 export default function InteractiveMasterPlan() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const { formatPrice, currency } = useCurrency();
 
   // Hardcoded abstract coordinates for the visual map
   const coordinates = {
@@ -95,8 +97,11 @@ export default function InteractiveMasterPlan() {
                         <span className="text-sm font-medium text-warm-white">{project.carpetArea.split(' ')[0]} Sq.Ft</span>
                       </div>
                       <div>
-                        <span className="flex items-center gap-1.5 text-[10px] text-text-light/60 uppercase tracking-wider mb-1"><IndianRupee size={10} /> Starts At</span>
-                        <span className="text-sm font-medium text-warm-white">{project.price.split(' ')[1]}</span>
+                        <span className="flex items-center gap-1.5 text-[10px] text-text-light/60 uppercase tracking-wider mb-1">
+                          {currency.code === 'INR' ? <IndianRupee size={10} /> : <span className="font-serif leading-none text-[10px]">{currency.symbol}</span>} 
+                          Starts At
+                        </span>
+                        <span className="text-sm font-medium text-warm-white">{formatPrice(project.priceValue).replace(currency.symbol, '')}</span>
                       </div>
                     </div>
 

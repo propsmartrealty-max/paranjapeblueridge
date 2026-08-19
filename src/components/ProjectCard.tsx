@@ -7,6 +7,7 @@ import { Ruler, IndianRupee, Building2, Calendar, CheckCircle2, ShieldCheck, Tag
 import { Project } from '@/data/master-data';
 import BlueprintExplorer from './BlueprintExplorer';
 import { blurDataURLs } from '@/utils/blurData';
+import { useCurrency } from '@/context/CurrencyContext';
 
 interface ProjectCardProps {
   project: Project;
@@ -16,6 +17,7 @@ interface ProjectCardProps {
 const MotionImage = motion(Image);
 
 export default function ProjectCard({ project, reverse }: ProjectCardProps) {
+  const { formatPrice, currency } = useCurrency();
   // Extract unique BHK configurations for tags
   const bhkTypes = Array.from(new Set(project.configurations.map(c => `${c.numberOfRooms} BHK`)));
 
@@ -86,9 +88,13 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
             <span className="block text-base sm:text-lg font-serif text-warm-white">{project.carpetArea.split(' ')[0]}</span>
             <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Sq.Ft Carpet</span>
           </div>
-          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group">
-            <IndianRupee className="text-gold/60 group-hover:text-gold mb-2" size={16} />
-            <span className="block text-base sm:text-lg font-serif text-warm-white">{project.price.split(' ')[1]}</span>
+          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group relative overflow-hidden">
+            {currency.code !== 'INR' && <div className="absolute top-0 right-0 bg-emerald-500/20 text-emerald-400 font-bold text-[8px] px-1.5 py-0.5 rounded-bl-md z-10">{currency.code}</div>}
+            <div className={`mb-2 ${currency.code !== 'INR' ? 'text-emerald-400' : 'text-gold/60 group-hover:text-gold'}`}>
+              <IndianRupee size={16} className={currency.code !== 'INR' ? 'hidden' : 'block'} />
+              <span className={`font-serif text-lg leading-none ${currency.code !== 'INR' ? 'block' : 'hidden'}`}>{currency.symbol}</span>
+            </div>
+            <span className="block text-base sm:text-lg font-serif text-warm-white">{formatPrice(project.priceValue).replace(currency.symbol, '')}</span>
             <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Starting Price</span>
           </div>
           <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group">

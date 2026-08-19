@@ -155,11 +155,17 @@ export const metadata: Metadata = {
   },
 };
 
+import { headers } from 'next/headers';
+import { CurrencyProvider } from '@/context/CurrencyContext';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const userCountry = headersList.get('x-user-country') || 'IN';
+  
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
@@ -184,7 +190,8 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
         <SeoHead pathname="/" />
       </head>
-      <body className="antialiased bg-ambient-orbs" data-country="IN">
+      <body className="antialiased bg-ambient-orbs" data-country={userCountry}>
+        <CurrencyProvider initialCountry={userCountry}>
         <LanguageProvider>
           <AtmosphereProvider>
             <Suspense fallback={null}>
@@ -223,6 +230,7 @@ export default function RootLayout({
             </Suspense>
           </AtmosphereProvider>
         </LanguageProvider>
+        </CurrencyProvider>
         {process.env.NEXT_PUBLIC_GA_ID && process.env.NEXT_PUBLIC_GA_ID !== "G-XXXXXXXXXX" && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
