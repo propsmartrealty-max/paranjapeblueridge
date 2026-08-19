@@ -31,6 +31,7 @@ const IntelligenceHub = dynamic(() => import('@/components/IntelligenceHub'));
 const ConnectivityHub = dynamic(() => import('@/components/ConnectivityHub'));
 const BlogSection = dynamic(() => import('@/components/BlogSection'));
 const InventoryMatrix = dynamic(() => import('@/components/InventoryMatrix'));
+const InteractiveMasterPlan = dynamic(() => import('@/components/InteractiveMasterPlan'));
 
 export default function HomePageClient() {
   const { t } = useLanguage();
@@ -285,37 +286,8 @@ export default function HomePageClient() {
         {/* TOWNSHIP EXPERIENCE SECTION */}
         <TownshipExperience />
 
-        {/* MASTER TOWNSHIP LAYOUT */}
-        <section id="master-layout" className="py-12 sm:py-24 border-t border-gold/10">
-          <div className="text-center mb-8 sm:mb-16">
-            <span className="text-gold font-bold tracking-[3px] sm:tracking-[6px] uppercase text-[8px] sm:text-[10px] block mb-2 sm:mb-4">Sovereign Blueprint</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white">Master <span className="italic font-normal text-gilded">Township Layout</span></h2>
-            <p className="text-[var(--text)] mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-4 sm:px-0">
-              Every amenity, every cluster, every green corridor — meticulously planned across 138 acres of Hinjewadi's most coveted address.
-            </p>
-          </div>
-          {/* White bg ensures map labels are crisp — no overlay darkening */}
-          <div className="rounded-xl sm:rounded-[2rem] overflow-hidden border-2 border-gold/30 shadow-[0_15px_40px_rgba(0,0,0,0.4)] sm:shadow-[0_30px_80px_rgba(0,0,0,0.4)] bg-white">
-            <Image
-              src="/assets/images/real-master-layout.jpg"
-              alt="Official approved Paranjape Blue Ridge Township Master Layout Plan - Premium 2, 3 & 4 BHK Flats in Hinjewadi Phase 1 Pune"
-              width={1920}
-              height={1080}
-              sizes="(max-width: 768px) 100vw, 80vw"
-              placeholder="blur"
-              blurDataURL={blurDataURLs.lightGray}
-              className="w-full h-auto block"
-            />
-          </div>
-          <div className="flex justify-center mt-10">
-            <button
-              onClick={() => document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-10 py-4 bg-gold text-navy font-bold text-[11px] uppercase tracking-widest rounded-full hover:bg-gold-light transition-all shadow-lg shadow-gold/30 border-none cursor-pointer"
-            >
-              Request Full Brochure
-            </button>
-          </div>
-        </section>
+        {/* MASTER TOWNSHIP LAYOUT (INTERACTIVE SVG ENGINE) */}
+        <InteractiveMasterPlan />
 
         {/* GOOGLE ECOSYSTEM INTEGRATION */}
         <GoogleEcosystem />
