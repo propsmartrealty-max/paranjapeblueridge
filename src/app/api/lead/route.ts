@@ -181,6 +181,8 @@ export async function POST(request: NextRequest) {
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
+            Origin: 'https://paranjapeblueridge.com',
+            Referer: 'https://paranjapeblueridge.com/',
           },
           body: JSON.stringify({
             name: leadPayload.name,
