@@ -1,5 +1,5 @@
 export const runtime = 'edge';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getCuratedPseoLinks } from '@/data/seo-matrix';
 
 export async function GET() {
   const SITE_URL = 'https://paranjapeblueridge.com'; // Use production domain
@@ -12,7 +12,7 @@ export async function GET() {
     <description>Premium Real Estate Inventory at Paranjape Blue Ridge, Hinjewadi Phase 1, Pune</description>
 `;
 
-  const pseoPages = generatePseoUrls();
+  const pseoPages = getCuratedPseoLinks(60);
 
   pseoPages.forEach(page => {
     // Generate a pseudo-ID

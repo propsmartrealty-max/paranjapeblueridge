@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { projects, articles } from '@/data/master-data';
-import { longTailUrls } from '@/data/seo-matrix';
+import { getPseoTotalCount, generatePseoChunk } from '@/data/seo-matrix';
 import { getAllPosts } from '@/utils/mdxUtils';
 
 const baseUrl = 'https://paranjapeblueridge.com';
@@ -10,7 +10,7 @@ type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly
 
 export async function generateSitemaps() {
   // We split the massive sitemap into logical silos for Googlebot
-  const pseoUrlsCount = longTailUrls.length;
+  const pseoUrlsCount = getPseoTotalCount();
   const pseoChunks = Math.ceil(pseoUrlsCount / 1100);
 
   const sitemaps = [
@@ -126,20 +126,14 @@ function getInsightsUrls(): MetadataRoute.Sitemap {
 }
 
 function getPseoUrlsChunk(chunkIndex: number): MetadataRoute.Sitemap {
-  const pseoUrlsData = longTailUrls;
   const pseoPublishedDate = new Date('2026-04-01T00:00:00+05:30');
-  
   const chunkSize = 1100;
-  const chunkData = pseoUrlsData.slice(chunkIndex * chunkSize, (chunkIndex + 1) * chunkSize);
+  const chunkData = generatePseoChunk(chunkIndex, chunkSize);
 
   const highIntentSilos = ['price-list', 'floor-plan', 'site-visit', 'calculators', 'transactions', 'luxury-pune', 'nri', 'duplex-simplex', 'pune-micro-market', 'luxury-ecosystem', 'branded', 'investor', 'corporate'];
   const lowIntentSilos = ['competitor', 'battleground'];
 
   return chunkData.map(u => {
-    const isMr = u.slug.startsWith('mr-');
-    const altSlug = isMr ? u.slug.replace(/^mr-/, '') : `mr-${u.slug}`;
-    const hasAlternate = pseoUrlsData.some(item => item.slug === altSlug);
-
     let priority = 0.7;
     if (highIntentSilos.includes(u.silo)) {
       priority = 0.85;
@@ -147,6 +141,6 @@ function getPseoUrlsChunk(chunkIndex: number): MetadataRoute.Sitemap {
       priority = 0.6;
     }
 
-    return buildUrlEntry(u.slug, pseoPublishedDate, 'monthly', priority, hasAlternate, !hasAlternate);
+    return buildUrlEntry(u.slug, pseoPublishedDate, 'monthly', priority, false, true);
   });
 }

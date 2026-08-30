@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { longTailUrls } from '@/data/seo-matrix';
+import { getRelatedPseoLinks } from '@/data/seo-matrix';
 import { ChevronRight, Zap } from 'lucide-react';
 
 interface SiloLinksProps {
@@ -8,38 +8,8 @@ interface SiloLinksProps {
   silo: string;
 }
 
-// Deterministic hash for stable link ordering (no Math.random which causes hydration mismatch)
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash |= 0;
-  }
-  return Math.abs(hash);
-}
-
 export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
-  const allUrls = longTailUrls;
-  const seed = hashString(currentSlug);
-
-  // --- PageRank Sculpting Engine ---
-  // High-value conversion targets that MUST receive link juice from every PSEO page.
-  const highValueTargets = [
-    'paranjape-blue-ridge-altius-hinjewadi-pune/4-bhk-flats-1633',
-    'paranjape-blue-ridge-promenade-hinjewadi-pune/3-bhk-flats-1316'
-  ];
-
-  const sculptedLinks = allUrls.filter(u => highValueTargets.includes(u.slug) && u.slug !== currentSlug);
-  
-  const related = allUrls
-    .filter(u => u.silo === silo && u.slug !== currentSlug && !highValueTargets.includes(u.slug))
-    // Deterministic shuffle based on current page slug — stable across server/client renders
-    .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
-    .slice(0, 6 - sculptedLinks.length);
-
-  // Merge the sculpted links with the dynamically related links
-  const finalLinks = [...sculptedLinks, ...related].sort((a, b) => (hashString(a.slug + seed) % 10) - (hashString(b.slug + seed) % 10));
+  const finalLinks = getRelatedPseoLinks(currentSlug, silo, 6);
 
   if (finalLinks.length === 0) return null;
 

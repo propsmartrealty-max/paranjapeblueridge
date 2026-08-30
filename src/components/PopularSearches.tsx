@@ -1,26 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import { generatePseoUrls } from '@/data/seo-matrix';
-import { LayoutGrid, TrendingUp, Cpu, Landmark, Languages, Building2 } from 'lucide-react';
+import { getPopularSearchSections, getPseoTotalCount } from '@/data/seo-matrix';
+import { LayoutGrid, TrendingUp, Cpu, Landmark, Building2, Trees } from 'lucide-react';
 
 export default function PopularSearches() {
-  const allUrls = generatePseoUrls();
-  
-  const techLinks = allUrls.filter(u => u.silo === 'corporate').slice(0, 12);
-  const investorLinks = allUrls.filter(u => u.silo === 'investor').slice(0, 12);
-  const battleLinks = allUrls.filter(u => u.silo === 'battleground').slice(0, 8);
-  const infraLinks = allUrls.filter(u => u.silo === 'infrastructure' || u.silo === 'infra-guide').slice(0, 8);
-  const regionalLinks = allUrls.filter(u => u.silo === 'regional-mr').slice(0, 12);
-  const brandLinks = allUrls.filter(u => u.silo === 'paranjape-schemes').slice(0, 12);
+  const sectionsData = getPopularSearchSections();
+  const totalCount = getPseoTotalCount();
 
-  const sections = [
-    { title: 'Tech Hub Proximity', icon: Cpu, links: techLinks },
-    { title: 'Investor Intelligence', icon: TrendingUp, links: investorLinks },
-    { title: 'Project Comparisons', icon: LayoutGrid, links: battleLinks },
-    { title: 'Infra & Guides', icon: Landmark, links: infraLinks },
-    { title: 'प्रादेशिक रिअल इस्टेट', icon: Languages, links: regionalLinks },
-    { title: 'Paranjape Schemes', icon: Building2, links: brandLinks },
-  ];
+  const icons = [Cpu, TrendingUp, LayoutGrid, Landmark, Trees, Building2];
+
+  const sections = sectionsData.map((s, idx) => ({
+    ...s,
+    icon: icons[idx % icons.length]
+  }));
 
   return (
     <nav aria-label="Sovereign Market Hub" className="bg-navy-dark py-32 border-t border-gold/10">
@@ -56,7 +48,7 @@ export default function PopularSearches() {
 
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
            <p className="text-[10px] text-text-light uppercase tracking-widest font-medium">
-             Total Indexed Sovereign Nodes: <span className="text-gold">{allUrls.length}+ High-Intent Paths</span>
+             Total Indexed Sovereign Nodes: <span className="text-gold">{totalCount.toLocaleString()}+ High-Intent Paths</span>
            </p>
            <div className="flex gap-4">
               <div className="bg-gold/10 text-gold text-[8px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gold/20">

@@ -3,7 +3,7 @@ import React from 'react';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { Metadata } from 'next';
 import { projects } from '@/data/master-data';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getPseoBySlug } from '@/data/seo-matrix';
 import PseoLandingPage from '@/components/PseoLandingPage';
 import SlugPageClient from '@/components/SlugPageClient';
 import LanguageInitializer from '@/components/LanguageInitializer';
@@ -74,9 +74,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const isMrProject = slug.startsWith('mr-') && projects.some(p => `mr-${p.slug}` === slug);
   const projectSlug = isMrProject ? slug.replace(/^mr-/, '') : slug;
 
-  const allUrls = generatePseoUrls();
-  const pseoData = allUrls.find(u => u.slug === slug);
   const project = projects.find(p => p.slug === projectSlug);
+  const pseoData = !project ? getPseoBySlug(slug) : null;
 
   // Resolve location name for geo tags
   const geoPlacename = slug.includes('hinjewadi') ? 'Hinjewadi, Pune, Maharashtra'
@@ -117,7 +116,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const finalDescription = isMr ? `परंजपे ब्लू रिज हिंजवडी पुणे - ${pseoData.intent}. १३८ एकरची एकात्मिक टाउनशिप, ९-होल गोल्फ कोर्स, मुळा नदीवर बोट क्लब, आयसीएसई शाळा आणि वॉक-टू-वर्क आयटी पार्क. महारेरा नोंदणीकृत.` : baseDescription;
 
     const altSlug = isMr ? slug.replace(/^mr-/, '') : `mr-${slug}`;
-    const hasAlternate = allUrls.some(item => item.slug === altSlug);
+    const hasAlternate = !!getPseoBySlug(altSlug);
 
     return {
       title: finalTitle,
@@ -241,15 +240,9 @@ export default function ProjectSilo({ params, searchParams }: PageProps) {
   const projectSlug = isMrProject ? slug.replace(/^mr-/, '') : slug;
 
   const project = projects.find(p => p.slug === projectSlug);
-  const allUrls = generatePseoUrls();
-  const pseoData = allUrls.find(u => u.slug === slug);
+  const pseoData = !project ? getPseoBySlug(slug) : null;
 
   if (!project && !pseoData) {
-    const potentialNewSlug = `${slug}-paranjape-blue-ridge-hinjewadi`;
-    const newPseoData = allUrls.find(u => u.slug === potentialNewSlug);
-    if (newPseoData) {
-      permanentRedirect(`/${potentialNewSlug}`);
-    }
     return notFound();
   }
 

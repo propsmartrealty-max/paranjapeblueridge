@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-import { longTailUrls } from '@/data/seo-matrix';
+import { getPseoTotalCount, generatePseoChunk } from '@/data/seo-matrix';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 
 const CHUNK_SIZE = 1000;
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageNum = parseInt(params.page, 10);
   if (isNaN(pageNum) || pageNum < 1) return {};
 
-  const pseoUrls = longTailUrls;
-  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
+  const totalCount = getPseoTotalCount();
+  const totalChunks = Math.ceil(totalCount / CHUNK_SIZE);
 
   if (pageNum > totalChunks) return {};
 
@@ -39,15 +39,15 @@ export default function DirectoryChunkPage({ params }: PageProps) {
     notFound();
   }
 
-  const pseoUrls = longTailUrls;
-  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
+  const totalCount = getPseoTotalCount();
+  const totalChunks = Math.ceil(totalCount / CHUNK_SIZE);
 
   if (pageNum > totalChunks) {
     notFound();
   }
 
   const startIndex = (pageNum - 1) * CHUNK_SIZE;
-  const chunk = pseoUrls.slice(startIndex, startIndex + CHUNK_SIZE);
+  const chunk = generatePseoChunk(pageNum - 1, CHUNK_SIZE);
 
   return (
     <main className="min-h-screen bg-navy text-text">
@@ -62,7 +62,7 @@ export default function DirectoryChunkPage({ params }: PageProps) {
                 Property Index <span className="text-gold">— Part {pageNum}</span>
               </h1>
               <p className="text-text-light">
-                Showing entries {(startIndex + 1).toLocaleString()} to {(startIndex + chunk.length).toLocaleString()} of {pseoUrls.length.toLocaleString()}
+                Showing entries {(startIndex + 1).toLocaleString()} to {(startIndex + chunk.length).toLocaleString()} of {totalCount.toLocaleString()}
               </p>
             </div>
             

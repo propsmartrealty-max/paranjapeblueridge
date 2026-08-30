@@ -1,5 +1,5 @@
 import React from 'react';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getPseoBySlug } from '@/data/seo-matrix';
 import { projects } from '@/data/master-data';
 
 const SITE_URL = 'https://paranjapeblueridge.com';
@@ -228,8 +228,7 @@ interface JSONLDProps {
 
 export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const slug = pathname.replace(/^\//, '');
-  const allUrls = generatePseoUrls();
-  const pseoData = allUrls.find(u => u.slug === slug);
+  const pseoData = getPseoBySlug(slug);
   const projectData = projects.find(p => p.slug === slug);
 
   const isMarathi = slug.startsWith('mr-') || pathname.includes('lang=mr');
@@ -332,7 +331,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     }
 
     // 3. Check if it's a PSEO page
-    const pseo = allUrls.find(u => u.slug === matchSegment || u.slug === segment);
+    const pseo = getPseoBySlug(matchSegment) || getPseoBySlug(segment);
     if (pseo) {
       breadcrumbItems.push({ name: pseo.title, url: `${SITE_URL}${accumulatedPath}` });
       return;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getRelatedPseoLinks } from '@/data/seo-matrix';
 import { projects } from '@/data/master-data';
 import { ArrowRight, Building2, MapPin, TrendingUp } from 'lucide-react';
 
@@ -13,12 +13,8 @@ export default function SemanticRecommender({
   silo: string;
   isMr?: boolean;
 }) {
-  const allUrls = generatePseoUrls();
-  
   // 1. Get 3 relevant programmatic insights from the same silo (Internal Link Clustering)
-  const relatedInsights = allUrls
-    .filter(u => u.silo === silo && u.slug !== currentSlug && (isMr ? u.slug.startsWith('mr-') : !u.slug.startsWith('mr-')))
-    .slice(0, 3);
+  const relatedInsights = getRelatedPseoLinks(currentSlug, silo, 3);
 
   // 2. Recommend high-converting core project pages based on intent
   let recommendedProjects = projects.slice(0, 2); // Default

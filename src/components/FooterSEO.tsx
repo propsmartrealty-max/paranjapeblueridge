@@ -1,11 +1,9 @@
 import React from 'react';
-import { longTailUrls } from '@/data/seo-matrix';
+import { getCuratedPseoLinks } from '@/data/seo-matrix';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 export default function FooterSEO() {
-  // Randomly select 60 keywords per SSG build for massive PageRank sculpting across the PSEO matrix
-  const shuffled = [...longTailUrls].sort(() => 0.5 - Math.random());
-  const displayedLinks = shuffled.slice(0, 60);
+  const displayedLinks = getCuratedPseoLinks(60);
 
   return (
     <footer className="bg-[var(--bg)] border-t border-gold/10 pt-10 pb-6 px-4 rounded-xl backdrop-blur-md">

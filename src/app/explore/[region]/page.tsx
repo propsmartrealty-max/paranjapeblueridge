@@ -1,7 +1,7 @@
 export const runtime = 'edge';
 import React from 'react';
 import Link from 'next/link';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getRegionPseoLinks } from '@/data/seo-matrix';
 import Navbar from '@/components/Navbar';
 import FooterSEO from '@/components/FooterSEO';
 import { notFound } from 'next/navigation';
@@ -27,12 +27,7 @@ export default function ExploreRegionHub({ params }: PageProps) {
     return notFound();
   }
 
-  const allUrls = generatePseoUrls();
-  const regionUrls = allUrls.filter(u => {
-    if (region === 'pune-city') return u.slug.includes('pune') && !u.slug.includes('hinjewadi') && !u.slug.includes('wakad');
-    return u.slug.includes(region);
-  });
-
+  const regionUrls = getRegionPseoLinks(region, 100);
   const formattedRegion = region.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
   return (
@@ -50,7 +45,7 @@ export default function ExploreRegionHub({ params }: PageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {regionUrls.slice(0, 1000).map((u, i) => (
+          {regionUrls.map((u, i) => (
             <Link 
               key={u.slug + i} 
               href={`/${u.slug}`}
@@ -61,12 +56,6 @@ export default function ExploreRegionHub({ params }: PageProps) {
             </Link>
           ))}
         </div>
-        
-        {regionUrls.length > 1000 && (
-          <div className="mt-12 text-center text-text-light italic">
-            Displaying top 1,000 highly ranked configurations out of {regionUrls.length} total permutations. Use our global directory for comprehensive access.
-          </div>
-        )}
       </section>
 
       <FooterSEO />

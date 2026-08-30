@@ -1,3 +1,11 @@
+export interface PseoUrl {
+  slug: string;
+  title: string;
+  intent: string;
+  type: string;
+  silo: string;
+}
+
 export const seoMatrix = {
   configurations: [
     { slug: '1-bhk-flats', name: '1 BHK Flats', type: 'Apartment' },
@@ -807,10 +815,10 @@ export const seoMatrix = {
   ]
 };
 
+export const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
 export function generatePseoUrls() {
   const urls: { slug: string; title: string; intent: string; type: string; silo: string }[] = [];
-  
-  const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   seoMatrix.exactMatches.forEach(phrase => {
     urls.push({
@@ -1582,8 +1590,237 @@ export function generatePseoUrls() {
   });
 
   return Array.from(uniqueUrlsMap.values());
-
 }
 
-export const longTailUrls = generatePseoUrls();
+export function getPseoTotalCount(): number {
+  return 153380;
+}
+
+export function getPseoBySlug(slug: string): PseoUrl | null {
+  if (!slug) return null;
+  const isMr = slug.startsWith('mr-');
+  const normalizedSlug = isMr ? slug.replace(/^mr-/, '') : slug;
+  
+  const baseSlug = normalizedSlug
+    .replace(/-paranjape-schemes-blue-ridge-hinjewadi$/, '')
+    .replace(/-paranjape-blue-ridge-hinjewadi$/, '');
+
+  const acronyms: Record<string, string> = {
+    'bhk': 'BHK', 'it': 'IT', 'roi': 'ROI', 'nri': 'NRI', 'icse': 'ICSE',
+    'rera': 'RERA', 'maharera': 'MahaRERA', 'sez': 'SEZ', 'vs': 'vs', 'gst': 'GST',
+    'pune': 'Pune', 'hinjewadi': 'Hinjewadi', 'wakad': 'Wakad', 'baner': 'Baner',
+    'balewadi': 'Balewadi', 'mahalunge': 'Mahalunge', 'paranjape': 'Paranjape',
+    'blueridge': 'Blue Ridge', 'pscl': 'PSCL', 'tcs': 'TCS', 'wipro': 'Wipro',
+    'infosys': 'Infosys'
+  };
+
+  const words = baseSlug.split('-').map(w => {
+    const lower = w.toLowerCase();
+    return acronyms[lower] || (w.charAt(0).toUpperCase() + w.slice(1));
+  });
+  
+  let title = words.join(' ');
+  const fullBrand = ' — Paranjape Schemes Blue Ridge Hinjewadi';
+  const shortBrand = ' | Paranjape Blue Ridge';
+  const miniBrand = ' | Blue Ridge';
+  
+  if (!title.includes('Paranjape')) {
+    if (title.length + fullBrand.length <= 65) {
+      title = `${title}${fullBrand}`;
+    } else if (title.length + shortBrand.length <= 65) {
+      title = `${title}${shortBrand}`;
+    } else if (title.length + miniBrand.length <= 65) {
+      title = `${title}${miniBrand}`;
+    }
+  }
+
+  let silo = 'pune-dominance';
+  const lowerBase = baseSlug.toLowerCase();
+  if (lowerBase.includes('vs') || lowerBase.includes('competitor') || lowerBase.includes('compare')) silo = 'battleground';
+  else if (lowerBase.includes('price') || lowerBase.includes('cost') || lowerBase.includes('rate')) silo = 'price-list';
+  else if (lowerBase.includes('floor-plan') || lowerBase.includes('carpet-area') || lowerBase.includes('layout')) silo = 'floor-plan';
+  else if (lowerBase.includes('metro') || lowerBase.includes('expressway') || lowerBase.includes('bridge') || lowerBase.includes('highway') || lowerBase.includes('road')) silo = 'infrastructure';
+  else if (lowerBase.includes('invest') || lowerBase.includes('rental-yield') || lowerBase.includes('roi') || lowerBase.includes('nri')) silo = 'investor';
+  else if (lowerBase.includes('infosys') || lowerBase.includes('wipro') || lowerBase.includes('tcs') || lowerBase.includes('it-park') || lowerBase.includes('corporate') || lowerBase.includes('tech-zone')) silo = 'corporate';
+  else if (lowerBase.includes('golf') || lowerBase.includes('boat-club') || lowerBase.includes('school') || lowerBase.includes('amenit') || lowerBase.includes('pool') || lowerBase.includes('gym')) silo = 'amenities';
+  else if (lowerBase.includes('duplex') || lowerBase.includes('simplex') || lowerBase.includes('penthouse')) silo = 'duplex-simplex';
+  else if (lowerBase.includes('luxury') || lowerBase.includes('villa')) silo = 'luxury-pune';
+  else if (isMr) silo = 'regional-mr';
+
+  let type = 'Apartment';
+  if (lowerBase.includes('duplex')) type = 'Duplex';
+  else if (lowerBase.includes('penthouse')) type = 'Penthouse';
+  else if (lowerBase.includes('villa')) type = 'Villa';
+  else if (lowerBase.includes('smart-home')) type = 'Smart Home';
+
+  const intent = `${title} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
+
+  return {
+    slug,
+    title,
+    intent,
+    type,
+    silo
+  };
+}
+
+export function getCuratedPseoLinks(count: number = 60): PseoUrl[] {
+  const curatedPhrases = [
+    { phrase: "2 BHK Flats in Hinjewadi Phase 1", silo: "corporate", type: "Apartment" },
+    { phrase: "3 BHK Flats in Hinjewadi Phase 1", silo: "corporate", type: "Apartment" },
+    { phrase: "4 BHK Luxury Homes in Hinjewadi Phase 1", silo: "luxury-pune", type: "Apartment" },
+    { phrase: "Blue Ridge vs Life Republic", silo: "battleground", type: "Township" },
+    { phrase: "Blue Ridge vs Megapolis", silo: "battleground", type: "Township" },
+    { phrase: "Blue Ridge vs Lodha Belmondo", silo: "battleground", type: "Township" },
+    { phrase: "Blue Ridge vs VTP Blue Waters", silo: "battleground", type: "Township" },
+    { phrase: "High Rental Yield Properties in Hinjewadi Phase 1", silo: "investor", type: "Investment" },
+    { phrase: "Best ROI Real Estate Investment Pune", silo: "investor", type: "Investment" },
+    { phrase: "NRI Property Buying Guide Pune", silo: "investor", type: "NRI Desk" },
+    { phrase: "Flats near Infosys Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
+    { phrase: "Flats near TCS Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
+    { phrase: "Flats near Wipro Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
+    { phrase: "Hinjewadi Metro Line 3 Impact and Stations", silo: "infrastructure", type: "Transit" },
+    { phrase: "Blue Ridge Public School ICSE Hinjewadi", silo: "amenities", type: "Education" },
+    { phrase: "Flats with Golf Course in Pune", silo: "amenities", type: "Golf Living" },
+    { phrase: "Apartments with Private Boat Club Pune", silo: "amenities", type: "Riverfront" },
+    { phrase: "Promenade Residences Blue Ridge 3 BHK", silo: "clusters", type: "Promenade" },
+    { phrase: "The Altius Blue Ridge 4 BHK and 5 BHK", silo: "clusters", type: "Altius" },
+    { phrase: "Ridges 41 Blue Ridge 2 BHK Smart Homes", silo: "clusters", type: "Ridges 41" },
+    { phrase: "2 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
+    { phrase: "3 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
+    { phrase: "4 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
+    { phrase: "2 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
+    { phrase: "3 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
+    { phrase: "4 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
+    { phrase: "Mahalunge Hinjewadi Bridge Connectivity", silo: "infrastructure", type: "Corridor" },
+    { phrase: "Pune Mumbai Expressway Access Hinjewadi", silo: "infrastructure", type: "Expressway" },
+    { phrase: "Paranjape Blue Ridge Site Visit Booking", silo: "site-visit", type: "Site Visit" },
+    { phrase: "Paranjape Blue Ridge Virtual Tour and Walkthrough", silo: "site-visit", type: "Virtual Tour" },
+    { phrase: "Paranjape Blue Ridge Resale Flats and Inventory", silo: "transactions", type: "Resale" },
+    { phrase: "Ready Possession Flats in Hinjewadi 2026", silo: "amenities", type: "Ready Possession" },
+    { phrase: "Luxury Duplex Apartments in Hinjewadi Pune", silo: "duplex-simplex", type: "Duplex" },
+    { phrase: "Ultra Luxury Penthouses in Pune West", silo: "duplex-simplex", type: "Penthouse" },
+    { phrase: "2 BHK Flats in Wakad Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "3 BHK Flats in Baner Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "4 BHK Luxury Flats in Balewadi Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "Buy 2 BHK Flats in Mahalunge Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "Buy 3 BHK Flats in Bavdhan Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "Buy 2 BHK Flats in Aundh Pune", silo: "pune-dominance", type: "Apartment" },
+    { phrase: "Walk to Work Flats Hinjewadi Phase 1", silo: "corporate", type: "Walk-to-Work" },
+    { phrase: "Mivan Construction Projects in Hinjewadi", silo: "features", type: "MiVAN" },
+    { phrase: "River Facing Luxury Apartments Pune", silo: "amenities", type: "Riverfront" },
+    { phrase: "Gated Community Townships in Pune West", silo: "pune-dominance", type: "Township" },
+    { phrase: "Pet Friendly Apartments Hinjewadi Pune", silo: "amenities", type: "Pet Friendly" },
+    { phrase: "Corporate Rental Housing Hinjewadi Phase 1", silo: "investor", type: "Corporate Rental" },
+    { phrase: "Under Construction 3 BHK Luxury Homes near Hinjewadi", silo: "pune-dominance", type: "Under Construction" },
+    { phrase: "Ready Possession 2 BHK Smart Homes Hinjewadi", silo: "pune-dominance", type: "Ready Possession" },
+    { phrase: "Blue Ridge Hinjewadi Resale Price Per Sqft", silo: "price-list", type: "Price Sheet" },
+    { phrase: "List of IT Companies in Hinjewadi Phase 1", silo: "corporate", type: "IT Directory" },
+    { phrase: "Mula River Rejuvenation Impact Blue Ridge", silo: "infrastructure", type: "Eco Riverfront" },
+    { phrase: "Paranjape Blue Ridge Cost Sheet and All Inclusive Price", silo: "price-list", type: "Price Sheet" },
+    { phrase: "Private 9 Hole Golf Course Township Pune", silo: "amenities", type: "Golf Living" },
+    { phrase: "Safety and 24x7 Security Blue Ridge Hinjewadi", silo: "amenities", type: "Security" },
+    { phrase: "Buy Flat in Pune from Dubai UAE NRI Desk", silo: "investor", type: "NRI Desk" },
+    { phrase: "Buy Pune Property from USA NRI Desk", silo: "investor", type: "NRI Desk" },
+    { phrase: "Best Investment in Hinjewadi Real Estate 2026", silo: "investor", type: "Investment" },
+    { phrase: "Pre Launch Offers Hinjewadi Phase 1 Flats", silo: "investor", type: "Pre-Launch" },
+    { phrase: "Paranjape Schemes Construction Ltd Projects Pune", silo: "branded", type: "Developer Profile" },
+    { phrase: "Paranjape Athashri Senior Living Homes Pune", silo: "branded", type: "Senior Living" }
+  ];
+
+  return curatedPhrases.slice(0, count).map(item => {
+    const slug = `${slugify(item.phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
+    const title = `${item.phrase} | Paranjape Blue Ridge`;
+    const intent = `${item.phrase} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
+    return {
+      slug,
+      title,
+      intent,
+      type: item.type,
+      silo: item.silo
+    };
+  });
+}
+
+export function getPopularSearchSections() {
+  const all = getCuratedPseoLinks(60);
+  return [
+    { title: 'Tech Hub Proximity', links: all.filter(u => u.silo === 'corporate').slice(0, 10) },
+    { title: 'Investor Intelligence', links: all.filter(u => u.silo === 'investor').slice(0, 10) },
+    { title: 'Project Comparisons', links: all.filter(u => u.silo === 'battleground').slice(0, 8) },
+    { title: 'Infra & Guides', links: all.filter(u => u.silo === 'infrastructure').slice(0, 8) },
+    { title: 'Amenity & Lifestyle', links: all.filter(u => u.silo === 'amenities').slice(0, 10) },
+    { title: 'Paranjape Schemes', links: all.filter(u => u.silo === 'branded' || u.silo === 'clusters').slice(0, 10) },
+  ];
+}
+
+export function getRelatedPseoLinks(currentSlug: string, silo: string, count: number = 6): PseoUrl[] {
+  const curated = getCuratedPseoLinks(60);
+  const sameSilo = curated.filter(u => u.silo === silo && u.slug !== currentSlug);
+  const others = curated.filter(u => u.silo !== silo && u.slug !== currentSlug);
+  return [...sameSilo, ...others].slice(0, count);
+}
+
+export function getRegionPseoLinks(region: string, count: number = 100): PseoUrl[] {
+  const curated = getCuratedPseoLinks(60);
+  return curated.filter(u => u.slug.includes(region) || u.title.toLowerCase().includes(region.replace(/-/g, ' '))).slice(0, count);
+}
+
+export function generatePseoChunk(chunkIndex: number, chunkSize: number = 1000): PseoUrl[] {
+  const start = chunkIndex * chunkSize;
+  const end = start + chunkSize;
+  
+  // Fast generator for chunk ranges
+  const configs = ["2 BHK Flats", "3 BHK Apartments", "4 BHK Luxury Homes", "5 BHK Villas", "Penthouse", "Duplex", "Smart Homes"];
+  const microMarkets = [
+    "Hinjewadi Phase 1", "Hinjewadi Phase 2", "Hinjewadi Phase 3", "Wakad", "Baner", "Balewadi",
+    "Mahalunge", "Aundh", "Bavdhan", "Pashan", "Kothrud", "Shivajinagar", "Kharadi", "Viman Nagar",
+    "Hadapsar", "Magarpatta", "Koregaon Park", "Kalyani Nagar", "Pimple Saudagar", "Pimple Nilakh",
+    "Tathawade", "Punawale", "Ravet", "Maan Road", "Model Colony", "Erandwane", "Prabhat Road",
+    "NIBM Road", "Undri", "Dhanori", "Lohegaon", "Moshi", "Chinchwad", "Pimpri", "Nigdi"
+  ];
+  const intents = ["Buy", "Price of", "Luxury", "Premium", "Resale", "Ready Possession", "Under Construction", "Invest in", "Floor Plan for", "Reviews of"];
+  const features = ["near Metro Station", "near Infosys", "with Golf Course", "with Boat Club", "near Wipro", "Walk to Work", "Mivan Construction", "River Facing"];
+
+  const chunk: PseoUrl[] = [];
+  let index = 0;
+
+  for (const intent of intents) {
+    for (const config of configs) {
+      for (const market of microMarkets) {
+        for (const feature of features) {
+          if (index >= start && index < end) {
+            const phrase = `${intent} ${config} in ${market} ${feature} Pune`;
+            const slug = `${slugify(phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
+            const title = `${phrase} | Paranjape Blue Ridge`;
+            const itemIntent = `${phrase} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
+            
+            let silo = 'pune-dominance';
+            if (feature.includes('Metro')) silo = 'infrastructure';
+            else if (feature.includes('Infosys') || feature.includes('Wipro') || feature.includes('Work')) silo = 'corporate';
+            else if (feature.includes('Golf') || feature.includes('Boat') || feature.includes('River')) silo = 'amenities';
+            else if (intent.includes('Price')) silo = 'price-list';
+            else if (intent.includes('Floor')) silo = 'floor-plan';
+            else if (intent.includes('Invest')) silo = 'investor';
+
+            chunk.push({
+              slug,
+              title,
+              intent: itemIntent,
+              type: config.includes('BHK') ? 'Apartment' : config,
+              silo
+            });
+          }
+          index++;
+          if (index >= end) return chunk;
+        }
+      }
+    }
+  }
+
+  return chunk;
+}
+
+export const longTailUrls: PseoUrl[] = getCuratedPseoLinks(60);
+
 

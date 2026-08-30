@@ -54,7 +54,8 @@ fi
 if [ "$CRED_FOUND" = true ]; then
     echo ""
     echo "📡 Phase 3: Sovereign Indexing Sweep..."
-    node scripts/sovereign-indexing.js
+    npx tsx scripts/trigger-google-indexing.ts || true
+    npx tsx scripts/trigger-indexnow.ts || true
 else
     echo ""
     echo "⏭️  Phase 3: Skipped (no credentials)"

@@ -1,5 +1,5 @@
 import { projects } from '@/data/master-data';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getPseoBySlug, getRelatedPseoLinks } from '@/data/seo-matrix';
 
 const SITE_URL = 'https://paranjapeblueridge.com';
 
@@ -81,10 +81,7 @@ function getSiloFAQs(silo: string, title: string) {
 
 
 function getRelatedLinks(silo: string, currentSlug: string) {
-  const allUrls = generatePseoUrls();
-  return allUrls
-    .filter(u => u.silo === silo && u.slug !== currentSlug)
-    .slice(0, 8);
+  return getRelatedPseoLinks(currentSlug, silo, 8);
 }
 
 interface SeoContentBlockProps {
@@ -154,8 +151,7 @@ function injectLinks(text: string): React.ReactNode {
 
 export default function SeoContentBlock({ slug }: SeoContentBlockProps) {
   const project = projects.find(p => p.slug === slug);
-  const allUrls = generatePseoUrls();
-  const pseo = allUrls.find(u => u.slug === slug);
+  const pseo = !project ? getPseoBySlug(slug) : null;
 
   if (!project && !pseo) return null;
 

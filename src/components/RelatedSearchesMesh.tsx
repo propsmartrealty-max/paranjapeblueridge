@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { generatePseoUrls } from '@/data/seo-matrix';
+import { getRelatedPseoLinks } from '@/data/seo-matrix';
 import { Link2 } from 'lucide-react';
 
 interface RelatedSearchesMeshProps {
@@ -8,43 +8,8 @@ interface RelatedSearchesMeshProps {
   silo: string;
 }
 
-// Deterministic hash for stable link ordering (no Math.random which causes hydration mismatch)
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash |= 0;
-  }
-  return Math.abs(hash);
-}
-
 export default function RelatedSearchesMesh({ currentSlug, silo }: RelatedSearchesMeshProps) {
-  const allUrls = generatePseoUrls();
-  const seed = hashString(currentSlug);
-  
-  // 1. Same silo, different pages — deterministic shuffle
-  const sameSiloPages = allUrls
-    .filter(u => u.silo === silo && u.slug !== currentSlug)
-    .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
-    .slice(0, 6);
-
-  // 2. Macro pages (pune-macro, west-pune-macro) — deterministic shuffle
-  const macroPages = allUrls
-    .filter(u => (u.silo === 'pune-macro' || u.silo === 'west-pune-macro') && u.slug !== currentSlug)
-    .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
-    .slice(0, 4);
-
-  // 3. Cross-silo links for topic authority spreading — pull from different silos
-  const crossSiloTargets = ['investor', 'infrastructure', 'buyer-intent', 'paranjape-schemes'].filter(s => s !== silo);
-  const crossSiloLinks = crossSiloTargets.flatMap(targetSilo =>
-    allUrls
-      .filter(u => u.silo === targetSilo && u.slug !== currentSlug)
-      .sort((a, b) => (hashString(a.slug + seed) % 100) - (hashString(b.slug + seed) % 100))
-      .slice(0, 1)
-  );
-
-  const relatedLinks = [...sameSiloPages, ...macroPages, ...crossSiloLinks];
+  const relatedLinks = getRelatedPseoLinks(currentSlug, silo, 10);
 
   if (relatedLinks.length === 0) return null;
 

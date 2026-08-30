@@ -3,24 +3,24 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
-import { longTailUrls } from '@/data/seo-matrix';
+import { getPseoTotalCount } from '@/data/seo-matrix';
 import { projects, articles } from '@/data/master-data';
 import { getAllPosts } from '@/utils/mdxUtils';
 
 export const metadata: Metadata = {
   title: 'Pune Real Estate Directory | Paranjape Blue Ridge',
-  description: 'Explore the definitive master directory of over 94,000 premium real estate properties, configurations, and insights across the entire Pune market.',
+  description: 'Explore the definitive master directory of over 150,000 premium real estate properties, configurations, and insights across the entire Pune market.',
   alternates: {
     canonical: 'https://paranjapeblueridge.com/directory',
   }
 };
 
 export default function DirectoryHub() {
-  const pseoUrls = longTailUrls;
+  const totalCount = getPseoTotalCount();
   const mdxPosts = getAllPosts();
   
   const CHUNK_SIZE = 1000;
-  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
+  const totalChunks = Math.ceil(totalCount / CHUNK_SIZE);
   const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
 
   return (
@@ -31,7 +31,7 @@ export default function DirectoryHub() {
         <div className="container mx-auto max-w-7xl px-4">
           <h1 className="text-4xl md:text-5xl font-serif text-warm-white mb-6">Pune Real Estate Directory</h1>
           <p className="text-text-light text-lg mb-12 max-w-3xl">
-            A comprehensive, structured index of over {pseoUrls.length.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
+            A comprehensive, structured index of over {totalCount.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
           </p>
 
           <div className="space-y-16">
@@ -75,7 +75,7 @@ export default function DirectoryHub() {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                 {chunksArray.map((pageNum) => {
                   const startRange = ((pageNum - 1) * CHUNK_SIZE) + 1;
-                  const endRange = Math.min(pageNum * CHUNK_SIZE, pseoUrls.length);
+                  const endRange = Math.min(pageNum * CHUNK_SIZE, totalCount);
                   return (
                     <Link 
                       key={pageNum} 
