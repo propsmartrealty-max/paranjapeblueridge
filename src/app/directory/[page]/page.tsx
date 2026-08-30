@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -12,17 +13,6 @@ interface PageProps {
   params: {
     page: string;
   };
-}
-
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const pseoUrls = longTailUrls;
-  const totalChunks = Math.ceil(pseoUrls.length / CHUNK_SIZE);
-  
-  return Array.from({ length: totalChunks }, (_, i) => ({
-    page: (i + 1).toString(),
-  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { Metadata } from 'next';
 import { projects } from '@/data/master-data';
 import { notFound } from 'next/navigation';

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { articles } from '@/data/master-data';
 import { getAllPosts } from '@/utils/mdxUtils';
 

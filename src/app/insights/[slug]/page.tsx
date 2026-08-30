@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -6,9 +7,8 @@ import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArticleModalWrapper from '@/components/ArticleModalWrapper';
 import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
-import Link from 'next/link';
-import { getPostBySlug, getAllPosts } from '@/utils/mdxUtils';
-import ReactMarkdown from 'react-markdown';
+import MarkdownContent from '@/components/MarkdownContent';
+import { getPostBySlug } from '@/utils/mdxUtils';
 import SemanticRecommender from '@/components/SemanticRecommender';
 
 interface ArticlePageProps {
@@ -17,38 +17,25 @@ interface ArticlePageProps {
   };
 }
 
-export async function generateStaticParams() {
-  const mdxPosts = getAllPosts();
-  const mdxSlugs = mdxPosts.map((p) => ({ slug: p?.slug || '' }));
-  
-  const staticSlugs = articles.map((article) => ({
-    slug: article.slug,
-  }));
-
-  // Combine and deduplicate
-  const allSlugs = [...mdxSlugs, ...staticSlugs].filter(
-    (v, i, a) => a.findIndex((t) => t.slug === v.slug) === i && v.slug !== ''
-  );
-  return allSlugs;
-}
-
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const mdxPost = getPostBySlug(params.slug);
   const article = mdxPost ? {
-    title: mdxPost.meta.title,
-    excerpt: mdxPost.meta.excerpt,
+    title: mdxPost.meta.title || 'Insight',
+    excerpt: mdxPost.meta.excerpt || mdxPost.meta.description || '',
     slug: mdxPost.slug,
-    category: mdxPost.meta.category,
-    dateISO: mdxPost.meta.dateISO,
-    author: mdxPost.meta.author
+    category: mdxPost.meta.category || 'Real Estate',
+    dateISO: mdxPost.meta.dateISO || new Date().toISOString(),
+    author: mdxPost.meta.author || 'Paranjape Schemes Insights'
   } : articles.find((a) => a.slug === params.slug);
 
   if (!article) return {};
 
-  const dynamicOgUrl = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
+  const titleStr = article.title || 'Insight';
+  const categoryStr = article.category || 'Real Estate';
+  const dynamicOgUrl = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(titleStr)}&config=${encodeURIComponent(categoryStr)}`;
 
   return {
-    title: `${article.title} | Paranjape Blue Ridge Hinjewadi`,
+    title: `${titleStr} | Paranjape Blue Ridge Hinjewadi`,
     description: article.excerpt,
     alternates: {
       canonical: `https://paranjapeblueridge.com/insights/${article.slug}`,
@@ -59,7 +46,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       }
     },
     openGraph: {
-      title: article.title,
+      title: titleStr,
       description: article.excerpt,
       url: `https://paranjapeblueridge.com/insights/${article.slug}`,
       images: [
@@ -67,17 +54,17 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
           url: dynamicOgUrl,
           width: 1200,
           height: 630,
-          alt: article.title,
+          alt: titleStr,
         },
       ],
       type: 'article',
       publishedTime: article.dateISO,
-      authors: [article.author],
+      authors: [article.author || 'Paranjape Schemes Insights'],
       siteName: 'Paranjape Blue Ridge Sovereign Portal',
     },
     twitter: {
       card: 'summary_large_image',
-      title: article.title,
+      title: titleStr,
       description: article.excerpt,
       images: [dynamicOgUrl],
     },
@@ -89,13 +76,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const staticArticle = articles.find((a) => a.slug === params.slug);
   
   const article = mdxPost ? {
-    title: mdxPost.meta.title,
-    excerpt: mdxPost.meta.excerpt,
+    title: mdxPost.meta.title || 'Insight',
+    excerpt: mdxPost.meta.excerpt || mdxPost.meta.description || '',
     slug: mdxPost.slug,
-    category: mdxPost.meta.category,
-    dateISO: mdxPost.meta.dateISO,
-    date: mdxPost.meta.date,
-    author: mdxPost.meta.author,
+    category: mdxPost.meta.category || 'Real Estate',
+    dateISO: mdxPost.meta.dateISO || new Date().toISOString(),
+    date: mdxPost.meta.date || (mdxPost.meta.dateISO ? new Date(mdxPost.meta.dateISO).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Recent'),
+    author: mdxPost.meta.author || 'Paranjape Schemes Insights',
     content: mdxPost.content,
     isMdx: true
   } : staticArticle ? {
@@ -104,6 +91,10 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   } : null;
 
   if (!article) return notFound();
+
+  const titleStr = article.title || 'Insight';
+  const categoryStr = article.category || 'Real Estate';
+  const dynamicOgUrl = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(titleStr)}&config=${encodeURIComponent(categoryStr)}`;
 
   const readTime = article.isMdx 
     ? Math.ceil((article.content as string).split(' ').length / 200)
@@ -123,18 +114,18 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           <Breadcrumbs
             items={[
               { label: 'Insights', href: '/#blogs' },
-              { label: article.title, href: `/insights/${article.slug}` }
+              { label: titleStr, href: `/insights/${article.slug}` }
             ]}
           />
 
           <div className="flex items-center gap-4 mt-8 mb-6">
             <span className="bg-gold text-navy text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-              {article.category}
+              {categoryStr}
             </span>
           </div>
 
           <h1 id="speakable-title" className="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-white leading-tight mb-8">
-            {article.title}
+            {titleStr}
           </h1>
 
           <div className="flex flex-wrap items-center gap-6 text-text-light text-sm">
@@ -158,7 +149,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       <article className="container max-w-4xl mx-auto pb-24">
         <div className="prose prose-invert prose-lg max-w-none prose-a:text-gold hover:prose-a:text-gold-light prose-img:rounded-2xl">
           {article.isMdx ? (
-            <ReactMarkdown>{article.content as string}</ReactMarkdown>
+            <MarkdownContent content={article.content as string} />
           ) : (
             (article.content as string[]).map((paragraph, i) => (
               <p
@@ -176,7 +167,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         <ArticleModalWrapper />
 
         {/* SEMANTIC RECOMMENDER */}
-        <SemanticRecommender currentSlug={article.slug} silo={article.category ? (article.category as string).toLowerCase().replace(/\s+/g, '-') : 'news'} />
+        <SemanticRecommender currentSlug={article.slug} silo={categoryStr.toLowerCase().replace(/\s+/g, '-')} />
 
         {/* JSON-LD Article Schema (server-rendered dynamic graph) */}
         <script
@@ -188,7 +179,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 {
                   "@type": "NewsArticle",
                   "@id": `https://paranjapeblueridge.com/insights/${article.slug}#article`,
-                  "headline": article.title,
+                  "headline": titleStr,
                   "description": article.excerpt,
                   "datePublished": article.dateISO,
                   "dateModified": article.dateISO,
@@ -209,13 +200,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   "image": [
                     {
                       "@type": "ImageObject",
-                      "url": `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`,
+                      "url": dynamicOgUrl,
                       "width": 1200,
                       "height": 630
                     }
                   ],
-                  "articleSection": article.category,
-                  "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", article.category, "Blue Ridge Pune"],
+                  "articleSection": categoryStr,
+                  "keywords": ["Paranjape Blue Ridge", "Hinjewadi real estate", categoryStr, "Blue Ridge Pune"],
                   "articleBody": article.isMdx ? (article.content as string).slice(0, 500) : (article.content as string[]).join(" ").slice(0, 500),
                   "wordCount": article.isMdx ? (article.content as string).split(/\s+/).filter(Boolean).length : (article.content as string[]).join(" ").split(/\s+/).filter(Boolean).length,
                   "isPartOf": {

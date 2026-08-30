@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { MetadataRoute } from 'next';
 import { generateSitemaps as getChunks, getSitemapUrls } from '@/data/sitemap-logic';
 

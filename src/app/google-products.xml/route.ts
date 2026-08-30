@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { generatePseoUrls } from '@/data/seo-matrix';
 
 export async function GET() {
