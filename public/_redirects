@@ -1,0 +1,4 @@
+# Cloudflare Pages Direct Edge Canonical Redirects
+https://www.paranjapeblueridge.com/* https://paranjapeblueridge.com/:splat 301!
+http://www.paranjapeblueridge.com/* https://paranjapeblueridge.com/:splat 301!
+http://paranjapeblueridge.com/* https://paranjapeblueridge.com/:splat 301!
