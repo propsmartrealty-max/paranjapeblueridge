@@ -3,7 +3,14 @@ import path from 'path';
 import { renderMdx } from '@/components/MDXRenderer';
 import { MDXRenderer } from '@/components/MDXRenderer';
 
-export const dynamic = 'force-dynamic';
+export async function generateStaticParams() {
+  const contentDir = path.join(process.cwd(), 'content', 'blog');
+  if (!fs.existsSync(contentDir)) return [];
+  const files = fs.readdirSync(contentDir).filter(f => f.endsWith('.mdx'));
+  return files.map(f => ({
+    slug: f.replace(/\.mdx$/, ''),
+  }));
+}
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const { slug } = params;

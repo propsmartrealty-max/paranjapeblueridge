@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
+
 
 export default async function ContentHub() {
   const pillarsDir = path.join(process.cwd(), 'content', 'pillars');
