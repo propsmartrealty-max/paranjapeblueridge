@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3005",
+    "pages:build": "npx @cloudflare/next-on-pages@1",
     "build": "rm -rf .next/cache && npx tsx scripts/verify-schemas.ts && NODE_OPTIONS='--max-old-space-size=8192' next build",
     "postbuild": "npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
     "start": "next start",
