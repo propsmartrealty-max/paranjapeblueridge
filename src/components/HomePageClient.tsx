@@ -187,7 +187,7 @@ export default function HomePageClient() {
           />
           <div 
             className="absolute inset-0 transition-colors duration-1000" 
-            style={{ background: `linear-gradient(to right, var(--bg) 0%, rgba(4,10,22,0.75) 45%, transparent 100%)` }}
+            style={{ background: `linear-gradient(to right, var(--bg) 0%, var(--bg) 35%, transparent 100%)`, opacity: atmosphere === 'night' ? 0.9 : 0.85 }}
           ></div>
         </motion.div>
         

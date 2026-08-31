@@ -13,24 +13,22 @@ interface AtmosphereContextType {
 const AtmosphereContext = createContext<AtmosphereContextType | undefined>(undefined);
 
 export function AtmosphereProvider({ children }: { children: React.ReactNode }) {
-  const [atmosphere, setAtmosphere] = useState<Atmosphere>('night');
+  const [atmosphere, setAtmosphere] = useState<Atmosphere>('morning');
 
   useEffect(() => {
-    // Detect time of day for initial atmosphere
-    const hour = new Date().getHours();
-    const initialAtmosphere = (hour >= 6 && hour < 18) ? 'morning' : 'night';
-    
-    // Check local storage for manual override
+    // Check local storage for manual override, default to morning (Beige Theme)
     const saved = localStorage.getItem('sovereign-atmosphere') as Atmosphere;
-    setAtmosphere(saved || initialAtmosphere);
+    setAtmosphere(saved || 'morning');
   }, []);
 
   useEffect(() => {
     const root = document.documentElement;
-    if (atmosphere === 'morning') {
-      root.classList.add('light-atmosphere');
-    } else {
+    if (atmosphere === 'night') {
+      root.classList.add('dark-atmosphere');
       root.classList.remove('light-atmosphere');
+    } else {
+      root.classList.remove('dark-atmosphere');
+      root.classList.add('light-atmosphere');
     }
     localStorage.setItem('sovereign-atmosphere', atmosphere);
   }, [atmosphere]);

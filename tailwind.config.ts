@@ -9,15 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: "#0f172a", // Slate 900
-        "navy-light": "#1e293b", // Slate 800
+        navy: "var(--navy-card)",
+        "navy-light": "var(--bg-light)",
         royal: "#1e3a5f",
-        gold: "#d4a853",
-        "gold-light": "#e8c87a",
-        brass: "#b8860b",
-        text: "#c8cdd3",
-        "text-light": "#8b95a2",
-        "warm-white": "#f8f6f3",
+        gold: "var(--gold)",
+        "gold-light": "var(--gold-light)",
+        brass: "var(--gold-dark)",
+        text: "var(--text)",
+        "text-light": "var(--text-muted)",
+        "warm-white": "var(--warm-white)",
+        beige: "#f6f3eb",
+        "beige-light": "#faf8f3",
+        "beige-dark": "#ede7db",
+        "sand-stone": "#d8cfbc",
       },
       fontFamily: {
         serif: ["Playfair Display", "serif"],

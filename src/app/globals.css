@@ -3,7 +3,23 @@
 @tailwind utilities;
 
 :root {
-  /* Deep Midnight Ultra-Dark High Contrast Palette */
+  /* Ultra-Luxury Sovereign Royal Beige & Champagne Gold Palette (Default) */
+  --bg: #f6f3eb;
+  --bg-light: #faf8f3;
+  --navy-card: #ffffff;
+  --navy-border: rgba(184, 134, 11, 0.22);
+  --gold: #b8860b;
+  --gold-light: #dfb15b;
+  --gold-dark: #8c6700;
+  --emerald-glow: #059669;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --warm-white: #0f172a;
+  --glass-border: rgba(184, 134, 11, 0.25);
+  --grid-opacity: 0.06;
+}
+
+.dark-atmosphere {
   --bg: #040a14;
   --bg-light: #0a1628;
   --navy-card: #0d1f38;
@@ -20,19 +36,19 @@
 }
 
 .light-atmosphere {
-  --bg: #fdfbf7;
-  --bg-light: #f5f2ed;
+  --bg: #f6f3eb;
+  --bg-light: #faf8f3;
   --navy-card: #ffffff;
-  --navy-border: rgba(166, 124, 0, 0.15);
-  --gold: #a67c00;
+  --navy-border: rgba(184, 134, 11, 0.22);
+  --gold: #b8860b;
   --gold-light: #dfb15b;
-  --gold-dark: #8b6500;
+  --gold-dark: #8c6700;
   --emerald-glow: #059669;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --warm-white: #000000;
-  --glass-border: rgba(166, 124, 0, 0.12);
-  --grid-opacity: 0.05;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --warm-white: #0f172a;
+  --glass-border: rgba(184, 134, 11, 0.25);
+  --grid-opacity: 0.06;
 }
 
 @layer base {
@@ -116,15 +132,15 @@
 @layer utilities {
   /* Dynamic Shimmer Metallic Gold Text */
   .text-gilded {
-    background: linear-gradient(135deg, #fff7d6 0%, #dfb15b 45%, #b8860b 80%, #fff7d6 100%);
+    background: linear-gradient(135deg, #8c6700 0%, #b8860b 45%, #dfb15b 80%, #8c6700 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: sheenText 6s linear infinite;
   }
   
-  .light-atmosphere .text-gilded {
-    background: linear-gradient(135deg, #b8860b 0%, #a67c00 50%, #8b6500 100%);
+  .dark-atmosphere .text-gilded {
+    background: linear-gradient(135deg, #fff7d6 0%, #dfb15b 45%, #b8860b 80%, #fff7d6 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -132,54 +148,77 @@
 
   /* Ultra-Modern Glassmorphism Panel */
   .glass-panel {
-    background: rgba(13, 31, 56, 0.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(223, 177, 91, 0.25);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(184, 134, 11, 0.22);
+    box-shadow: 0 15px 35px -5px rgba(120, 90, 40, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .glass-panel:hover {
-    border-color: rgba(223, 177, 91, 0.5);
-    box-shadow: 0 25px 60px rgba(223, 177, 91, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(184, 134, 11, 0.45);
+    box-shadow: 0 20px 45px -5px rgba(184, 134, 11, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
     transform: translateY(-3px);
+  }
+
+  .dark-atmosphere .glass-panel {
+    background: rgba(13, 31, 56, 0.65);
+    border-color: rgba(223, 177, 91, 0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   /* Ultra-Advanced Liquid Glassmorphism & Water Flow System */
   .liquid-glass-dock {
-    background: rgba(4, 10, 22, 0.72);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(32px) saturate(210%);
     -webkit-backdrop-filter: blur(32px) saturate(210%);
+    border: 1px solid rgba(184, 134, 11, 0.25);
+    box-shadow: 0 20px 40px -10px rgba(120, 90, 40, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  .dark-atmosphere .liquid-glass-dock {
+    background: rgba(4, 10, 22, 0.72);
     border: 1px solid rgba(223, 177, 91, 0.28);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2), 0 0 30px rgba(56, 189, 248, 0.08);
   }
 
-  .light-atmosphere .liquid-glass-dock {
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(166, 124, 0, 0.2);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+  .water-flow-indicator {
+    background: linear-gradient(135deg, rgba(223, 177, 91, 0.3) 0%, rgba(247, 227, 173, 0.4) 100%);
+    border: 1px solid rgba(184, 134, 11, 0.4);
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
   }
 
-  .water-flow-indicator {
+  .dark-atmosphere .water-flow-indicator {
     background: linear-gradient(135deg, rgba(223, 177, 91, 0.24) 0%, rgba(56, 189, 248, 0.18) 100%);
     border: 1px solid rgba(223, 177, 91, 0.45);
     box-shadow: 0 4px 20px rgba(56, 189, 248, 0.18), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
   }
 
   .ultra-glass-card {
-    background: linear-gradient(145deg, rgba(13, 31, 56, 0.72) 0%, rgba(4, 10, 22, 0.85) 100%);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(223, 177, 91, 0.22);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(184, 134, 11, 0.22);
+    box-shadow: 0 20px 45px -10px rgba(120, 90, 40, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .ultra-glass-card:hover {
+    border-color: rgba(184, 134, 11, 0.55);
+    box-shadow: 0 25px 55px -10px rgba(184, 134, 11, 0.18), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-4px);
+  }
+
+  .dark-atmosphere .ultra-glass-card {
+    background: linear-gradient(145deg, rgba(13, 31, 56, 0.72) 0%, rgba(4, 10, 22, 0.85) 100%);
+    border: 1px solid rgba(223, 177, 91, 0.22);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .dark-atmosphere .ultra-glass-card:hover {
     border-color: rgba(223, 177, 91, 0.55);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(223, 177, 91, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    transform: translateY(-4px);
   }
 
   .liquid-glow-aqua {

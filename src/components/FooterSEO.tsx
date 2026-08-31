@@ -59,7 +59,7 @@ export default function FooterSEO() {
                 <a
                   key={url.slug}
                   href={`/${url.slug}`}
-                  className="text-text-light/30 hover:text-gold transition-colors text-[9px] uppercase tracking-wider"
+                  className="text-text-muted/80 hover:text-gold transition-colors text-[9px] uppercase tracking-wider"
                 >
                   {url.title}
                 </a>
@@ -70,17 +70,17 @@ export default function FooterSEO() {
         </div>
 
         {/* Absolute bottom SEO string & Sitemap Link */}
-        <div className="pt-6 border-t border-gold/10 flex flex-col sm:flex-row justify-between items-center text-[9px] text-text-light/30 gap-4">
+        <div className="pt-6 border-t border-gold/10 flex flex-col sm:flex-row justify-between items-center text-[9px] text-text-muted gap-4">
           <p className="text-center sm:text-left">
             Ranked #1 for: Paranjape Blue Ridge | Paranjape Blue Ridge Hinjewadi | Pune Real Estate Market | 3BHK Mahalunge | 2BHK Hinjewadi | 4BHK Baner
           </p>
           <div className="flex gap-4 shrink-0 flex-wrap justify-center">
             <a href="/explore/hinjewadi" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Hinjewadi Hub</a>
-            <span className="text-white/20">|</span>
+            <span className="text-gold/30">|</span>
             <a href="/explore/wakad" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Wakad Hub</a>
-            <span className="text-white/20">|</span>
+            <span className="text-gold/30">|</span>
             <a href="/explore/baner" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Baner Hub</a>
-            <span className="text-white/20">|</span>
+            <span className="text-gold/30">|</span>
             <a href="/directory" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Global Directory</a>
           </div>
         </div>
