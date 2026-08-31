@@ -62,7 +62,7 @@ export const projects: Project[] = [
   },
   {
     id: "altius",
-    slug: "paranjape-blue-ridge-altius-hinjewadi-pune",
+    slug: "paranjape-blue-ridge-the-altius-hinjewadi-pune",
     name: "The Altius",
     tagline: "Ultra-Luxury 4 & 5 BHK Riverside Residences",
     taglineMr: "अल्ट्रा-लक्झरी ४ आणि ५ बीएचके रिव्हरसाईड निवास",

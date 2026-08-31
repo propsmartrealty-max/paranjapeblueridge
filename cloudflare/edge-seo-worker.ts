@@ -36,6 +36,7 @@ const EDGE_REDIRECTS: Record<string, string> = {
   '/promenade': '/paranjape-blue-ridge-promenade-hinjewadi-pune',
   '/altius': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
   '/the-altius': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/paranjape-blue-ridge-altius-hinjewadi-pune': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
   '/41-ridge': '/paranjape-blue-ridge-41-hinjewadi-pune',
   '/41ridge': '/paranjape-blue-ridge-41-hinjewadi-pune',
   '/ridges41': '/paranjape-blue-ridge-41-hinjewadi-pune',
