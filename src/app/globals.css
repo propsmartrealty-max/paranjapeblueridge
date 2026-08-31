@@ -54,20 +54,22 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: var(--font-inter), 'Google Sans Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
   body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Google Sans Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    @apply tracking-tight;
+    font-family: var(--font-google-sans), 'Google Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 700;
   }
 }
 

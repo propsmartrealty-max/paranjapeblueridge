@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import { Suspense } from 'react';
 import SpeculationRules from "@/components/SpeculationRules";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -22,10 +22,11 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const playfair = Playfair_Display({
+const googleSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-playfair',
+  variable: '--font-google-sans',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const viewport: Viewport = {
@@ -170,7 +171,7 @@ export default function RootLayout({
   const userCountry = headersList.get('x-user-country') || 'IN';
   
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${googleSans.variable} scroll-smooth`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: `if (window.location.pathname.startsWith('/mr')) document.documentElement.lang = 'mr-IN';` }} />
         {/* Google Consent Mode v2 Initialization (Mandatory for Google Ads & GA4 Compliance) */}

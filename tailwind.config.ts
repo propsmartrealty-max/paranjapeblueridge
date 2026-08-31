@@ -24,8 +24,9 @@ const config: Config = {
         "sand-stone": "#d8cfbc",
       },
       fontFamily: {
-        serif: ["Playfair Display", "serif"],
-        sans: ["Inter", "sans-serif"],
+        serif: ["var(--font-google-sans)", "Plus Jakarta Sans", "Google Sans", "sans-serif"],
+        sans: ["var(--font-inter)", "Google Sans Text", "Inter", "sans-serif"],
+        display: ["var(--font-google-sans)", "Plus Jakarta Sans", "Google Sans", "sans-serif"],
         outfit: ["Outfit", "sans-serif"],
       },
       backgroundImage: {
