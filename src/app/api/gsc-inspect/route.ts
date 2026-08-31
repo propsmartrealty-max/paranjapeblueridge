@@ -1,8 +1,6 @@
-export const runtime = 'nodejs';
+export const runtime = 'edge';
+
 import { NextRequest, NextResponse } from 'next/server';
-import { google } from 'googleapis';
-import fs from 'fs';
-import path from 'path';
 
 const SITE_URL = 'https://paranjapeblueridge.com';
 
@@ -15,26 +13,84 @@ function getCredentials() {
       console.error('Failed to parse GCP service account env var:', e);
     }
   }
-
-  const localPath = path.join(process.cwd(), 'scripts/google-service-account.json');
-  if (fs.existsSync(localPath)) {
-    try {
-      return JSON.parse(fs.readFileSync(localPath, 'utf-8'));
-    } catch (e) {
-      console.error('Failed to read local service account file:', e);
-    }
-  }
-
-  const altPath = path.join(process.cwd(), 'credentials/service_account.json');
-  if (fs.existsSync(altPath)) {
-    try {
-      return JSON.parse(fs.readFileSync(altPath, 'utf-8'));
-    } catch (e) {
-      console.error('Failed to read alt service account file:', e);
-    }
-  }
-
   return null;
+}
+
+// Convert PEM private key to CryptoKey for Web Crypto API (Edge Runtime)
+async function importPrivateKey(pem: string): Promise<CryptoKey> {
+  const cleanPem = pem
+    .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+    .replace(/-----END PRIVATE KEY-----/g, '')
+    .replace(/[\r\n\s]/g, '');
+
+  const decoded = atob(cleanPem);
+  const binaryKey = new Uint8Array(decoded.length);
+  for (let i = 0; i < decoded.length; i++) {
+    binaryKey[i] = decoded.charCodeAt(i);
+  }
+
+  return crypto.subtle.importKey(
+    'pkcs8',
+    binaryKey.buffer,
+    {
+      name: 'RSASSA-PKCS1-v1_5',
+      hash: 'SHA-256',
+    },
+    false,
+    ['sign']
+  );
+}
+
+// Generate Google OAuth2 Access Token using Web Crypto API on Edge
+async function getGoogleAccessToken(clientEmail: string, privateKeyPem: string): Promise<string> {
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: 'RS256', typ: 'JWT' };
+  const claimSet = {
+    iss: clientEmail,
+    scope: 'https://www.googleapis.com/auth/webmasters.readonly https://www.googleapis.com/auth/indexing',
+    aud: 'https://oauth2.googleapis.com/token',
+    exp: now + 3600,
+    iat: now,
+  };
+
+  const base64UrlEncode = (obj: any) => {
+    const jsonStr = typeof obj === 'string' ? obj : JSON.stringify(obj);
+    return btoa(jsonStr).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  };
+
+  const unsignedToken = `${base64UrlEncode(header)}.${base64UrlEncode(claimSet)}`;
+  const privateKey = await importPrivateKey(privateKeyPem);
+  const signature = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5',
+    privateKey,
+    new TextEncoder().encode(unsignedToken)
+  );
+
+  const signatureBytes = new Uint8Array(signature);
+  let binaryString = '';
+  for (let i = 0; i < signatureBytes.length; i++) {
+    binaryString += String.fromCharCode(signatureBytes[i]);
+  }
+
+  const signatureBase64Url = btoa(binaryString)
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
+
+  const signedJwt = `${unsignedToken}.${signatureBase64Url}`;
+
+  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${signedJwt}`,
+  });
+
+  const tokenData = await tokenRes.json();
+  if (!tokenData.access_token) {
+    throw new Error(`Google Auth Failed: ${JSON.stringify(tokenData)}`);
+  }
+
+  return tokenData.access_token;
 }
 
 export async function POST(req: NextRequest) {
@@ -48,38 +104,32 @@ export async function POST(req: NextRequest) {
     }
 
     const credentials = getCredentials();
-    if (!credentials) {
+    if (!credentials || !credentials.client_email || !credentials.private_key) {
       return NextResponse.json({
         success: false,
-        error: 'Google Service Account credentials not found in environment.',
-        diagnostic: 'Set GCP_SERVICE_ACCOUNT or add scripts/google-service-account.json'
+        error: 'Google Service Account credentials not configured.',
+        diagnostic: 'Set GCP_SERVICE_ACCOUNT environment secret in Cloudflare Dashboard.'
       }, { status: 404 });
     }
 
-    const auth = new google.auth.JWT({
-      email: credentials.client_email,
-      key: credentials.private_key,
-      scopes: [
-        'https://www.googleapis.com/auth/webmasters',
-        'https://www.googleapis.com/auth/webmasters.readonly',
-        'https://www.googleapis.com/auth/indexing'
-      ],
-    });
+    const accessToken = await getGoogleAccessToken(credentials.client_email, credentials.private_key);
 
-    const searchconsole = google.searchconsole({ version: 'v1', auth });
-
-    // Target clean URL
     const targetUrl = url.startsWith('http') ? url : `${SITE_URL}${url.startsWith('/') ? url : `/${url}`}`;
 
-    const inspectRes = await searchconsole.urlInspection.index.inspect({
-      requestBody: {
+    const inspectRes = await fetch('https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         inspectionUrl: targetUrl,
         siteUrl: SITE_URL,
-      }
+      }),
     });
 
-    const result = inspectRes.data.inspectionResult;
-    const indexStatus = result?.indexStatusResult;
+    const data = await inspectRes.json();
+    const indexStatus = data?.inspectionResult?.indexStatusResult;
 
     return NextResponse.json({
       success: true,
@@ -89,15 +139,14 @@ export async function POST(req: NextRequest) {
       crawledAs: indexStatus?.crawledAs || 'Googlebot Desktop/Mobile',
       lastCrawlTime: indexStatus?.lastCrawlTime || 'Recently Processed',
       indexingState: indexStatus?.indexingState || 'INDEXING_ALLOWED',
-      raw: inspectRes.data
+      raw: data,
     });
 
   } catch (error: any) {
-    console.error('[GSC URL Inspection Error]:', error?.message || error);
+    console.error('[GSC Edge URL Inspection Error]:', error?.message || error);
     return NextResponse.json({
       success: false,
-      error: error?.message || 'Failed to inspect URL with Google Search Console API',
-      code: error?.code || 500
+      error: error?.message || 'Failed to inspect URL with Google Search Console API on Edge',
     }, { status: 500 });
   }
 }
