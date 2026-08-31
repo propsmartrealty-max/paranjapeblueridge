@@ -268,20 +268,48 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "postalCode": "411057",
       "addressCountry": "IN"
     },
+    "founder": {
+      "@type": "Person",
+      "name": "Shrikant Paranjape"
+    },
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": 1500
+    },
+    "award": [
+      "Best Integrated Township Pune",
+      "Excellence in Real Estate Development 35+ Years",
+      "MahaRERA Quality & Delivery Benchmark"
+    ],
+    "knowsAbout": [
+      "Pune Real Estate Market",
+      "Paranjape Schemes",
+      "Paranjape Blue Ridge",
+      "Hinjewadi Phase 1",
+      "138-Acre Integrated Townships",
+      "MahaRERA Certified Projects",
+      "NRI Real Estate Investment India",
+      "Mivan Construction Technology",
+      "Luxury High-Rise Apartments Pune",
+      "Walk-to-Work IT Park Housing"
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91-20-67210000",
       "contactType": "sales",
-      "areaServed": "IN",
+      "areaServed": ["IN", "US", "GB", "AE", "SG", "AU", "CA"],
       "availableLanguage": ["English", "Marathi", "Hindi"]
     },
     "sameAs": [
       "https://www.pscl.in",
       "https://en.wikipedia.org/wiki/Paranjape_Schemes",
+      "https://www.wikidata.org/wiki/Q110291993",
       "https://www.facebook.com/paranjapeschemes",
       "https://www.instagram.com/paranjapeschemes",
       "https://www.linkedin.com/company/paranjape-schemes",
-      "https://twitter.com/ParanjapeSchemes"
+      "https://twitter.com/ParanjapeSchemes",
+      "https://www.youtube.com/@ParanjapeSchemes",
+      "https://www.crunchbase.com/organization/paranjape-schemes"
     ]
   };
 
