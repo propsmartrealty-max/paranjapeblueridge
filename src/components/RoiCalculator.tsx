@@ -41,14 +41,14 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
   };
 
   return (
-    <div className="bg-navy-light/90 border border-gold/30 rounded-2xl p-6 md:p-8 backdrop-blur-xl shadow-2xl my-12 text-text">
-      <div className="flex items-center gap-3 mb-6 border-b border-gold/20 pb-4">
-        <div className="p-3 bg-gold/10 rounded-xl border border-gold/30 text-gold">
+    <div className="ultra-glass-card border border-gold/20 rounded-[2rem] p-6 md:p-8 shadow-2xl my-12 text-text">
+      <div className="flex items-center gap-3 mb-6 border-b border-gold/15 pb-4">
+        <div className="p-3 bg-gold/10 rounded-xl border border-gold/25 text-gold">
           <Calculator size={24} />
         </div>
         <div>
-          <h3 className="text-2xl font-serif text-warm-white">Interactive Investment & ROI Calculator</h3>
-          <p className="text-sm text-text-muted">Simulate rental yields, capital growth, and home loan EMI for {title}</p>
+          <h3 className="text-2xl font-serif text-warm-white font-bold">Interactive Investment & ROI Calculator</h3>
+          <p className="text-xs sm:text-sm text-text-muted">Simulate rental yields, capital growth, and home loan EMI for {title}</p>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={250000}
               value={propertyPrice}
               onChange={(e) => setPropertyPrice(Number(e.target.value))}
-              className="w-full h-2 bg-navy rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2 bg-gold/15 rounded-lg appearance-none cursor-pointer accent-gold"
             />
             <div className="flex justify-between text-xs text-text-muted mt-1">
               <span>₹75 Lakh</span>
@@ -95,7 +95,7 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={0.1}
               value={rentalYield}
               onChange={(e) => setRentalYield(Number(e.target.value))}
-              className="w-full h-2 bg-navy rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2 bg-gold/15 rounded-lg appearance-none cursor-pointer accent-gold"
             />
             <div className="flex justify-between text-xs text-text-muted mt-1">
               <span>3.5% (Conservative)</span>
@@ -119,7 +119,7 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={5}
               value={loanRatio}
               onChange={(e) => setLoanRatio(Number(e.target.value))}
-              className="w-full h-2 bg-navy rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2 bg-gold/15 rounded-lg appearance-none cursor-pointer accent-gold"
             />
             <div className="flex justify-between text-xs text-text-muted mt-1">
               <span>0% (Self-Funded)</span>
@@ -143,7 +143,7 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={0.5}
               value={appreciationRate}
               onChange={(e) => setAppreciationRate(Number(e.target.value))}
-              className="w-full h-2 bg-navy rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2 bg-gold/15 rounded-lg appearance-none cursor-pointer accent-gold"
             />
             <div className="flex justify-between text-xs text-text-muted mt-1">
               <span>7.0%</span>
@@ -154,28 +154,28 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
 
         {/* Output Calculation Cards */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-          <div className="bg-navy/80 border border-gold/20 rounded-xl p-5 space-y-4">
+          <div className="bg-gold/5 border border-gold/20 rounded-2xl p-5 space-y-4 shadow-inner">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-text-muted">Est. Monthly Rental Income</span>
-              <span className="text-xl font-bold text-emerald-400 font-mono">₹{monthlyRentalIncome.toLocaleString('en-IN')} / mo</span>
+              <span className="text-xs sm:text-sm text-text-muted">Est. Monthly Rental Income</span>
+              <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">₹{monthlyRentalIncome.toLocaleString('en-IN')} / mo</span>
             </div>
-            <div className="flex justify-between items-center border-t border-navy-light pt-3">
-              <span className="text-sm text-text-muted">Est. Monthly Loan EMI (20 Yrs @ 8.5%)</span>
-              <span className="text-xl font-bold text-warm-white font-mono">₹{monthlyEmi.toLocaleString('en-IN')} / mo</span>
+            <div className="flex justify-between items-center border-t border-gold/15 pt-3">
+              <span className="text-xs sm:text-sm text-text-muted">Est. Monthly Loan EMI (20 Yrs @ 8.5%)</span>
+              <span className="text-lg sm:text-xl font-bold text-warm-white font-mono">₹{monthlyEmi.toLocaleString('en-IN')} / mo</span>
             </div>
-            <div className="flex justify-between items-center border-t border-navy-light pt-3">
-              <span className="text-sm text-text-muted">Est. Property Value in 5 Years</span>
-              <span className="text-xl font-bold text-gold font-mono">{formatCurrency(estimatedValueIn5Years)}</span>
+            <div className="flex justify-between items-center border-t border-gold/15 pt-3">
+              <span className="text-xs sm:text-sm text-text-muted">Est. Property Value in 5 Years</span>
+              <span className="text-lg sm:text-xl font-bold text-gold font-mono">{formatCurrency(estimatedValueIn5Years)}</span>
             </div>
-            <div className="flex justify-between items-center border-t border-navy-light pt-3">
-              <span className="text-sm text-text-muted">Estimated 5-Year Capital Gain</span>
-              <span className="text-xl font-bold text-emerald-400 font-mono">+{formatCurrency(capitalGain5Years)}</span>
+            <div className="flex justify-between items-center border-t border-gold/15 pt-3">
+              <span className="text-xs sm:text-sm text-text-muted">Estimated 5-Year Capital Gain</span>
+              <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">+{formatCurrency(capitalGain5Years)}</span>
             </div>
           </div>
 
           <a 
             href="#enquiry-modal" 
-            className="w-full py-4 bg-gradient-to-r from-gold to-gold-light text-navy font-bold rounded-xl text-center flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-lg shadow-gold/10"
+            className="w-full py-4 bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold rounded-2xl text-center flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-xl hover:shadow-gold/30 text-xs sm:text-sm uppercase tracking-wider"
           >
             Request Official Cost Sheet & Payment Plan
             <ArrowRight size={18} />
