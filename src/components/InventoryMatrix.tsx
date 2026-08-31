@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, ShieldCheck, TrendingDown } from 'lucide-react';
+import { Clock, ShieldCheck, TrendingDown, Flame, ArrowRight } from 'lucide-react';
 import EnquiryModal from './EnquiryModal';
 
 const inventoryData = [
-  { id: 'promenade', name: 'Promenade Residences', config: '3 BHK', total: 120, available: 4, demand: 'High' },
-  { id: 'altius', name: 'The Altius', config: '4 BHK', total: 80, available: 2, demand: 'Very High' },
-  { id: 'ridge41', name: 'Ridge 41', config: '2 BHK', total: 200, available: 12, demand: 'Steady' },
+  { id: 'promenade', name: 'Promenade Residences', config: '3 & 4 BHK', total: 120, available: 4, demand: 'High', tower: '41 Storey Riverfront' },
+  { id: 'altius', name: 'The Altius', config: '4 & 5 BHK', total: 80, available: 2, demand: 'Very High', tower: 'Golf Course Facing' },
+  { id: 'ridge41', name: 'Ridges 41', config: '2 & 3 BHK', total: 200, available: 12, demand: 'Steady', tower: 'MiVAN Smart Homes' },
 ];
 
 export default function InventoryMatrix() {
@@ -37,84 +37,102 @@ export default function InventoryMatrix() {
 
   return (
     <>
-      <section className="py-20 bg-[var(--bg)] border-y border-gold/10 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialInterest={selectedUnit} />
 
+      <section className="py-16 sm:py-24 relative overflow-hidden" id="inventory-status">
         <div className="container relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">Live Inventory Status</span>
-              </div>
-              <h2 className="text-5xl font-serif text-warm-white">Sovereign <span className="italic font-normal text-gilded">Flash-Lock</span></h2>
-              <p className="text-text-light mt-4 max-w-xl">
-                High-velocity sales phase active. Secure your configuration with a 48-hour sovereign hold before prices appreciate.
-              </p>
-            </div>
-            <div className="bg-white/5 border border-gold/20 p-4 rounded-2xl flex items-center gap-4">
-              <Clock className="text-gold" size={24} />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden"
+          >
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-6">
               <div>
-                <span className="block text-[10px] text-text-light uppercase tracking-widest mb-1">Price Lock Expires In</span>
-                <span className="text-2xl font-mono text-warm-white font-bold tracking-wider">{formatTime(timeLeft)}</span>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  <span className="gilded-pill text-[9px]">Live Inventory Status</span>
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-serif text-warm-white font-bold mt-2">
+                  Sovereign <span className="italic font-normal text-gilded">Flash-Lock</span>
+                </h2>
+                <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl leading-relaxed">
+                  High-velocity allocation window. Lock in your preferred tower configuration with a 48-hour price freeze before quarterly revision.
+                </p>
+              </div>
+              
+              <div className="p-4 sm:p-5 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/5 border border-gold/30 rounded-2xl sm:rounded-3xl flex items-center gap-4 shadow-md shrink-0">
+                <div className="w-12 h-12 bg-gold/20 rounded-2xl flex items-center justify-center text-gold">
+                  <Clock size={24} />
+                </div>
+                <div>
+                  <span className="block text-[9px] text-text-muted uppercase tracking-widest font-semibold mb-0.5">Price Freeze Closes In</span>
+                  <span className="text-xl sm:text-2xl font-mono text-gold font-bold tracking-wider">{formatTime(timeLeft)}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {inventoryData.map((item, idx) => (
-              <motion.div 
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white/5 border border-gold/10 p-8 rounded-3xl relative overflow-hidden group hover:border-gold/30 transition-all"
-              >
-                {item.available <= 5 && (
-                  <div className="absolute top-4 right-4 bg-red-500/10 text-red-500 border border-red-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                    <TrendingDown size={12} /> Selling Fast
-                  </div>
-                )}
-                
-                <h3 className="text-2xl font-serif text-warm-white mb-2">{item.name}</h3>
-                <span className="text-gold font-bold text-sm">{item.config} Premium Residences</span>
-                
-                <div className="mt-8 mb-8">
-                  <div className="flex justify-between items-end mb-2">
-                    <span className="text-text-light text-xs uppercase tracking-widest">Available Units</span>
-                    <span className="text-4xl font-serif text-warm-white">{item.available}<span className="text-lg text-text-light">/{item.total}</span></span>
-                  </div>
-                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${(item.available / item.total) * 100}%` }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                      className={`h-full ${item.available <= 5 ? 'bg-red-500' : 'bg-gold'}`}
-                    ></motion.div>
-                  </div>
-                </div>
-
-                <button 
-                  onClick={() => handleReserve(item.name)}
-                  className="w-full flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold text-gold hover:text-navy border border-gold/20 hover:border-gold py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest transition-all"
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {inventoryData.map((item, idx) => (
+                <motion.div 
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  whileHover={{ y: -6 }}
+                  className="p-6 sm:p-8 bg-gradient-to-b from-white/90 to-white/60 dark:from-slate-800/80 dark:to-slate-900/80 border border-gold/25 rounded-3xl relative overflow-hidden group shadow-lg hover:shadow-2xl hover:border-gold/60 transition-all flex flex-col justify-between"
                 >
-                  <ShieldCheck size={16} />
-                  Initiate Sovereign Hold
-                </button>
-              </motion.div>
-            ))}
-          </div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
+
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-gold bg-gold/10 px-2.5 py-1 rounded-full border border-gold/20">
+                        {item.tower}
+                      </span>
+                      {item.available <= 5 && (
+                        <span className="bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/25 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                          <Flame size={10} /> Fast Selling
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-xl sm:text-2xl font-serif text-warm-white font-bold mb-1">{item.name}</h3>
+                    <span className="text-gold font-bold text-xs sm:text-sm">{item.config} Premium Residences</span>
+                    
+                    <div className="mt-6 mb-6 p-4 bg-gold/5 rounded-2xl border border-gold/15">
+                      <div className="flex justify-between items-end mb-2">
+                        <span className="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Available Units</span>
+                        <span className="text-2xl sm:text-3xl font-serif text-warm-white font-bold">
+                          {item.available}
+                          <span className="text-sm text-text-muted font-normal"> / {item.total}</span>
+                        </span>
+                      </div>
+                      <div className="w-full h-2 bg-gold/15 rounded-full overflow-hidden p-0.5">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${(item.available / item.total) * 100}%` }}
+                          transition={{ duration: 1.2, ease: "easeOut" }}
+                          className={`h-full rounded-full ${item.available <= 5 ? 'bg-gradient-to-r from-red-500 to-amber-500' : 'bg-gradient-to-r from-gold to-gold-light'}`}
+                        ></motion.div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button 
+                    onClick={() => handleReserve(`${item.name} (${item.config})`)}
+                    className="w-full bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-3.5 rounded-2xl text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>Reserve Unit Hold</span>
+                    <ArrowRight size={14} />
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
-
-      <EnquiryModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        initialInterest={selectedUnit}
-      />
     </>
   );
 }

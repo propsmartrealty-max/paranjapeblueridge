@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Ruler, IndianRupee, Building2, Calendar, CheckCircle2, ShieldCheck, Tag } from 'lucide-react';
+import { Ruler, IndianRupee, Building2, Calendar, CheckCircle2, ShieldCheck, Tag, ArrowRight } from 'lucide-react';
 import { Project } from '@/data/master-data';
 import BlueprintExplorer from './BlueprintExplorer';
 import { blurDataURLs } from '@/utils/blurData';
@@ -18,129 +18,136 @@ const MotionImage = motion(Image);
 
 export default function ProjectCard({ project, reverse }: ProjectCardProps) {
   const { formatPrice, currency } = useCurrency();
-  // Extract unique BHK configurations for tags
   const bhkTypes = Array.from(new Set(project.configurations.map(c => `${c.numberOfRooms} BHK`)));
 
   return (
-    <div id={project.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-24 sm:mb-40 ${reverse ? 'direction-rtl' : ''}`}>
-      
-      {/* Visual / Image Section */}
-      <motion.div 
-        initial={{ x: reverse ? 100 : -100, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className={`relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-gold/10 group ${reverse ? 'lg:order-2' : ''}`}
-      >
-        <MotionImage 
-          src={project.id === 'promenade' ? '/assets/images/real-township-day-2.jpg' : 
-               project.id === 'altius' ? '/assets/images/real-altius-view.jpg' : 
-               '/assets/images/ridges41-property.jpg'} 
-          alt={`Paranjape Blue Ridge ${project.name} - Luxury ${bhkTypes.join(', ')} Apartments in Hinjewadi Phase 1`}
-          width={800}
-          height={600}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          placeholder="blur"
-          blurDataURL={project.id === 'altius' ? blurDataURLs.darkGray : blurDataURLs.lightSkyBlue}
-          className="w-full h-auto min-h-[400px] object-cover transition-transform duration-1000 group-hover:scale-110"
-        />
+    <motion.div 
+      id={project.id} 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7 }}
+      className="ultra-glass-card border border-gold/25 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-10 shadow-2xl mb-16 relative overflow-hidden group"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none group-hover:bg-gold/15 transition-all duration-700"></div>
 
-        {/* Blueprint Simulation Layer */}
-        <motion.div 
-          initial={{ opacity: 1 }}
-          whileInView={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-          className="absolute inset-0 bg-gold/20 backdrop-invert grayscale brightness-150 mix-blend-overlay pointer-events-none"
-        ></motion.div>
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#02050A] via-[#02050A]/40 to-transparent opacity-90"></div>
-
-        {/* Configurations Badge Overlay */}
-        <div className="absolute top-6 left-6 flex gap-2 flex-wrap max-w-[80%]">
-          {bhkTypes.map((bhk, idx) => (
-            <span key={idx} className="bg-black/60 backdrop-blur-md border border-gold/30 text-gold text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full flex items-center gap-1.5">
-              <Tag size={10} /> {bhk}
-            </span>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Data / Content Section */}
-      <motion.div 
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        className="flex flex-col gap-5 sm:gap-6"
-      >
-        <span className="text-gold font-bold tracking-[3px] sm:tracking-[5px] uppercase text-[10px] sm:text-xs">
-          {project.tagline}
-        </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-white leading-tight">
-          {project.name.split(' ')[0]} <span className="italic font-normal text-gilded">{project.name.split(' ').slice(1).join(' ')}</span>
-        </h2>
-        <p className="text-text-light/80 text-sm sm:text-base leading-relaxed text-justify">
-          {project.description}
-        </p>
+      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 ${reverse ? 'direction-rtl' : ''}`}>
         
-        {/* Advanced 4-Grid Data Matrix */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-2">
-          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
-            <Ruler className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
-            <span className="block text-base sm:text-lg font-serif text-warm-white">{project.carpetArea.split(' ')[0]}</span>
-            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Sq.Ft Carpet</span>
-          </div>
-          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group relative overflow-hidden">
-            {currency.code !== 'INR' && <div className="absolute top-0 right-0 bg-emerald-500/20 text-emerald-400 font-bold text-[8px] px-1.5 py-0.5 rounded-bl-md z-10">{currency.code}</div>}
-            <div className={`mb-2 ${currency.code !== 'INR' ? 'text-emerald-400' : 'text-gold/70 group-hover:text-gold transition-colors'}`}>
-              <IndianRupee size={18} className={currency.code !== 'INR' ? 'hidden' : 'block'} />
-              <span className={`font-serif text-lg leading-none ${currency.code !== 'INR' ? 'block' : 'hidden'}`}>{currency.symbol}</span>
-            </div>
-            <span className="block text-base sm:text-lg font-serif text-warm-white">{formatPrice(project.priceValue).replace(currency.symbol, '')}</span>
-            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Starting Price</span>
-          </div>
-          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
-            <Calendar className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
-            <span className="block text-base sm:text-lg font-serif text-warm-white whitespace-nowrap overflow-hidden text-ellipsis" title={project.possession}>{project.possession}</span>
-            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Possession</span>
-          </div>
-          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
-            <Building2 className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
-            <span className="block text-base sm:text-lg font-serif text-warm-white">{project.storeys} Levels</span>
-            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Tower Height</span>
-          </div>
-        </div>
+        {/* Visual / Image Section (5 cols) */}
+        <div className={`lg:col-span-5 relative rounded-3xl overflow-hidden shadow-xl border border-gold/20 group/img ${reverse ? 'lg:order-2' : ''}`}>
+          <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden">
+            <MotionImage 
+              src={project.id === 'promenade' ? '/assets/images/real-township-day-2.jpg' : 
+                   project.id === 'altius' ? '/assets/images/real-altius-view.jpg' : 
+                   '/assets/images/ridges41-property.jpg'} 
+              alt={`Paranjape Blue Ridge ${project.name} - Luxury ${bhkTypes.join(', ')} Apartments in Hinjewadi Phase 1`}
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              placeholder="blur"
+              blurDataURL={project.id === 'altius' ? blurDataURLs.darkGray : blurDataURLs.lightSkyBlue}
+              className="object-cover transition-transform duration-1000 group-hover/img:scale-108"
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-        {/* USPs & RERA */}
-        <div className="flex flex-col gap-4 mt-2 ultra-glass-card p-5 sm:p-6 rounded-2xl">
-            <div className="flex items-center justify-between border-b border-gold/15 pb-3">
-              <h4 className="text-warm-white font-bold text-xs uppercase tracking-widest">Premium Architectural USPs</h4>
-              <div className="flex items-center gap-1.5 bg-navy/60 px-3 py-1 rounded-full border border-gold/30 shadow-inner" title="MahaRERA Registered">
-                <ShieldCheck size={13} className="text-emerald-400" />
-                <span className="text-[10px] text-gold font-mono font-bold">{project.reraNumber}</span>
+            {/* BHK Badges Overlay */}
+            <div className="absolute top-4 left-4 flex gap-1.5 flex-wrap max-w-[85%] z-10">
+              {bhkTypes.map((bhk, idx) => (
+                <span key={idx} className="bg-black/70 backdrop-blur-md border border-gold/40 text-gold text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+                  <Tag size={10} /> {bhk}
+                </span>
+              ))}
+            </div>
+
+            {/* MahaRERA badge on image */}
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-10">
+              <div className="flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-gold/30 text-gold text-[9px] font-mono font-bold shadow-md">
+                <ShieldCheck size={12} className="text-emerald-400" />
+                <span>MahaRERA: {project.reraNumber}</span>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {project.usp.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-text-light">
-                        <CheckCircle2 size={14} className="text-gold mt-0.5 shrink-0" />
-                        <span className="text-xs leading-relaxed">{item}</span>
-                    </div>
-                ))}
-            </div>
+          </div>
         </div>
 
-        {/* Action Controls */}
-        <div className="mt-4 flex flex-col sm:flex-row gap-3">
+        {/* Data / Content Section (7 cols) */}
+        <div className={`lg:col-span-7 flex flex-col gap-4 sm:gap-5 ${reverse ? 'lg:order-1 direction-ltr' : ''}`}>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="gilded-pill text-[9px]">
+              {project.tagline}
+            </span>
+            <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+              ● Official Inventory
+            </span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-warm-white font-bold leading-tight">
+            {project.name.split(' ')[0]} <span className="italic font-normal text-gilded">{project.name.split(' ').slice(1).join(' ')}</span>
+          </h2>
+          
+          <p className="text-text-muted text-xs sm:text-sm md:text-base leading-relaxed text-justify">
+            {project.description}
+          </p>
+          
+          {/* 4-Grid Elevated Data Matrix */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 my-1">
+            <div className="p-3.5 bg-white/70 dark:bg-slate-900/60 rounded-2xl border border-gold/20 shadow-sm hover:border-gold/50 transition-all group/tile">
+              <Ruler className="text-gold mb-1.5 group-hover/tile:scale-110 transition-transform" size={16} />
+              <span className="block text-sm sm:text-base font-serif text-warm-white font-bold">{project.carpetArea.split(' ')[0]}</span>
+              <span className="text-[8px] sm:text-[9px] text-text-muted uppercase tracking-wider font-semibold">Sq.Ft Carpet</span>
+            </div>
+            
+            <div className="p-3.5 bg-white/70 dark:bg-slate-900/60 rounded-2xl border border-gold/20 shadow-sm hover:border-gold/50 transition-all group/tile relative overflow-hidden">
+              {currency.code !== 'INR' && <div className="absolute top-0 right-0 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold text-[8px] px-1.5 py-0.5 rounded-bl-md z-10">{currency.code}</div>}
+              <div className={`mb-1.5 ${currency.code !== 'INR' ? 'text-emerald-500' : 'text-gold group-hover/tile:scale-110 transition-transform'}`}>
+                <IndianRupee size={16} className={currency.code !== 'INR' ? 'hidden' : 'block'} />
+                <span className={`font-serif text-sm leading-none ${currency.code !== 'INR' ? 'block' : 'hidden'}`}>{currency.symbol}</span>
+              </div>
+              <span className="block text-sm sm:text-base font-serif text-warm-white font-bold">{formatPrice(project.priceValue).replace(currency.symbol, '')}</span>
+              <span className="text-[8px] sm:text-[9px] text-text-muted uppercase tracking-wider font-semibold">Starting Price</span>
+            </div>
+
+            <div className="p-3.5 bg-white/70 dark:bg-slate-900/60 rounded-2xl border border-gold/20 shadow-sm hover:border-gold/50 transition-all group/tile">
+              <Calendar className="text-gold mb-1.5 group-hover/tile:scale-110 transition-transform" size={16} />
+              <span className="block text-sm sm:text-base font-serif text-warm-white font-bold truncate" title={project.possession}>{project.possession}</span>
+              <span className="text-[8px] sm:text-[9px] text-text-muted uppercase tracking-wider font-semibold">Possession</span>
+            </div>
+
+            <div className="p-3.5 bg-white/70 dark:bg-slate-900/60 rounded-2xl border border-gold/20 shadow-sm hover:border-gold/50 transition-all group/tile">
+              <Building2 className="text-gold mb-1.5 group-hover/tile:scale-110 transition-transform" size={16} />
+              <span className="block text-sm sm:text-base font-serif text-warm-white font-bold">{project.storeys} Levels</span>
+              <span className="text-[8px] sm:text-[9px] text-text-muted uppercase tracking-wider font-semibold">Tower Height</span>
+            </div>
+          </div>
+
+          {/* USPs List */}
+          <div className="p-4 bg-gold/5 rounded-2xl border border-gold/15">
+            <h4 className="text-warm-white font-bold text-[10px] uppercase tracking-widest mb-2.5">Key Architectural USPs</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {project.usp.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-2 text-text-muted">
+                  <CheckCircle2 size={13} className="text-gold mt-0.5 shrink-0" />
+                  <span className="text-xs leading-relaxed text-warm-white/90">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Action Controls */}
+          <div className="flex flex-col sm:flex-row gap-3 pt-1">
             <div className="flex-1">
               <BlueprintExplorer projectId={project.id} projectName={project.name} />
             </div>
             <a 
               href={`/${project.slug}`}
-              className="flex-1 px-6 py-3.5 bg-gradient-to-r from-gold/10 via-gold/20 to-gold/10 hover:from-gold hover:to-gold-light hover:text-navy text-gold text-xs font-bold uppercase tracking-widest border border-gold/40 hover:border-gold transition-all duration-300 flex items-center justify-center gap-2 rounded-full text-center shadow-lg"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-gold via-gold-light to-gold text-navy text-xs font-bold uppercase tracking-widest rounded-2xl text-center shadow-lg hover:shadow-gold/30 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
             >
               <span>Explore Unit Plans</span>
+              <ArrowRight size={14} />
             </a>
+          </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }

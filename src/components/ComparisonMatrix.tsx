@@ -2,86 +2,138 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, Shield, Zap, TrainFront, Ship } from 'lucide-react';
+import { Check, X, Shield, Zap, TrainFront, Ship, Award } from 'lucide-react';
 
 const comparisonData = [
   { feature: "9-Hole Professional Golf Course", br: true, lr: false, am: true },
-  { feature: "Private 1.5 KM Boat Club", br: true, lr: false, am: false },
-  { feature: "Walking distance to Metro Line 3", br: true, lr: false, am: false },
+  { feature: "Private 1.5 KM Boat Club on Mula River", br: true, lr: false, am: false },
+  { feature: "Walking Distance to Pune Metro Line 3", br: true, lr: false, am: false },
   { feature: "Captive 220/22KVA Power Substation", br: true, lr: false, am: true },
-  { feature: "ICSE Public School inside Township", br: true, lr: true, am: true },
-  { feature: "Direct Mula River Frontage", br: true, lr: false, am: false },
+  { feature: "ICSE Public School inside Township Campus", br: true, lr: true, am: true },
+  { feature: "Direct Mula Riverfront Balconies", br: true, lr: false, am: false },
+  { feature: "41-Storey Monolithic MiVAN Engineering", br: true, lr: false, am: false },
 ];
 
 export default function ComparisonMatrix() {
   return (
-    <section className="py-32">
-      <div className="text-center mb-20">
-        <span className="text-gold font-bold tracking-[6px] uppercase text-xs">Sovereign Benchmark</span>
-        <h2 className="text-5xl font-serif text-warm-white mt-4">Township <span className="italic font-normal text-gold">Comparison</span></h2>
+    <section className="py-24" id="comparison">
+      <div className="text-center mb-16">
+        <span className="gilded-pill mb-4">Sovereign Benchmark</span>
+        <h2 className="text-3xl sm:text-5xl font-serif text-warm-white mt-4 font-bold">
+          Township <span className="italic font-normal text-gilded">Comparison</span>
+        </h2>
+        <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl mx-auto">
+          Objective feature analysis across West Pune's major integrated developments
+        </p>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="p-8 text-left bg-white/5 border border-white/10 rounded-tl-3xl">
-                <span className="text-[10px] text-text-light uppercase tracking-widest">Feature / Asset</span>
-              </th>
-              <th className="p-8 bg-gold/10 border border-gold/30">
-                <span className="text-gold font-bold text-lg font-serif">Blue Ridge</span>
-                <span className="block text-[8px] uppercase tracking-widest mt-1">West Pune Master</span>
-              </th>
-              <th className="p-8 bg-white/5 border border-white/10">
-                <span className="text-text-light font-bold text-sm">Life Republic</span>
-                <span className="block text-[8px] uppercase tracking-widest mt-1">Major Hub</span>
-              </th>
-              <th className="p-8 bg-white/5 border border-white/10 rounded-tr-3xl">
-                <span className="text-text-light font-bold text-sm">Amanora</span>
-                <span className="block text-[8px] uppercase tracking-widest mt-1">East Pune Master</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {comparisonData.map((row, idx) => (
-              <motion.tr 
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.05 }}
-                viewport={{ once: true }}
-                className="hover:bg-white/[0.02] transition-colors"
-              >
-                <td className="p-8 border border-white/10 text-sm font-bold text-warm-white">{row.feature}</td>
-                <td className="p-8 border border-white/10 text-center">
-                  {row.br ? <Check className="text-gold mx-auto" size={20} /> : <X className="text-white/10 mx-auto" size={20} />}
-                </td>
-                <td className="p-8 border border-white/10 text-center">
-                  {row.lr ? <Check className="text-text-light mx-auto" size={16} /> : <X className="text-white/10 mx-auto" size={16} />}
-                </td>
-                <td className="p-8 border border-white/10 text-center">
-                  {row.am ? <Check className="text-text-light mx-auto" size={16} /> : <X className="text-white/10 mx-auto" size={16} />}
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-10 shadow-2xl relative overflow-hidden"
+      >
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-gold/20">
+                <th className="p-4 sm:p-6 text-left">
+                  <span className="text-[10px] sm:text-xs text-text-muted uppercase tracking-widest font-bold">Feature / Asset</span>
+                </th>
+                <th className="p-4 sm:p-6 bg-gradient-to-b from-gold/15 to-gold/5 border-x border-gold/30 rounded-t-2xl relative">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold via-gold-light to-gold text-navy text-[8px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                    ★ Undisputed #1
+                  </div>
+                  <span className="text-gold font-bold text-base sm:text-xl font-serif block">Blue Ridge</span>
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-text-muted mt-0.5 block">Hinjewadi Phase 1</span>
+                </th>
+                <th className="p-4 sm:p-6 text-center">
+                  <span className="text-warm-white font-bold text-xs sm:text-sm block">Life Republic</span>
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-text-muted mt-0.5 block">Marunji</span>
+                </th>
+                <th className="p-4 sm:p-6 text-center">
+                  <span className="text-warm-white font-bold text-xs sm:text-sm block">Amanora</span>
+                  <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-text-muted mt-0.5 block">Hadapsar</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gold/10">
+              {comparisonData.map((row, idx) => (
+                <motion.tr 
+                  key={idx}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: idx * 0.04 }}
+                  viewport={{ once: true }}
+                  className="hover:bg-gold/5 transition-colors group"
+                >
+                  <td className="p-4 sm:p-6 text-xs sm:text-sm font-semibold text-warm-white flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold/50"></span>
+                    {row.feature}
+                  </td>
+                  
+                  {/* Blue Ridge Highlight Column */}
+                  <td className="p-4 sm:p-6 bg-gold/5 border-x border-gold/20 text-center">
+                    {row.br ? (
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-gold via-gold-light to-gold flex items-center justify-center mx-auto text-navy shadow-md">
+                        <Check size={16} strokeWidth={3} />
+                      </div>
+                    ) : (
+                      <X className="text-text-muted mx-auto opacity-40" size={18} />
+                    )}
+                  </td>
 
-      <div className="mt-12 p-10 bg-navy-light rounded-3xl border border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="flex items-center gap-6">
-            <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold">
-                <TrainFront size={32} />
+                  {/* Life Republic */}
+                  <td className="p-4 sm:p-6 text-center">
+                    {row.lr ? (
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/20">
+                        <Check size={14} strokeWidth={2.5} />
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 rounded-full bg-red-500/5 text-red-400 flex items-center justify-center mx-auto">
+                        <X size={14} />
+                      </div>
+                    )}
+                  </td>
+
+                  {/* Amanora */}
+                  <td className="p-4 sm:p-6 text-center">
+                    {row.am ? (
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/20">
+                        <Check size={14} strokeWidth={2.5} />
+                      </div>
+                    ) : (
+                      <div className="w-6 h-6 rounded-full bg-red-500/5 text-red-400 flex items-center justify-center mx-auto">
+                        <X size={14} />
+                      </div>
+                    )}
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* TRANSIT EDGE BANNER */}
+        <div className="mt-8 p-6 sm:p-8 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 rounded-2xl sm:rounded-3xl border border-gold/25 flex flex-col md:flex-row items-center justify-between gap-6 shadow-inner">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="w-14 h-14 bg-gradient-to-tr from-gold to-gold-light rounded-2xl flex items-center justify-center text-navy shadow-lg shrink-0">
+              <TrainFront size={28} />
             </div>
             <div>
-                <h4 className="text-xl font-serif text-warm-white">The Transit Edge</h4>
-                <p className="text-text-light text-xs mt-1">Blue Ridge is the ONLY township with a dedicated Metro Station within walking distance.</p>
+              <h4 className="text-lg sm:text-xl font-serif text-warm-white font-bold">The Strategic Transit Advantage</h4>
+              <p className="text-text-muted text-xs sm:text-sm mt-0.5 leading-relaxed">Paranjape Blue Ridge is the ONLY integrated township with a dedicated elevated Metro station within 800 meters.</p>
             </div>
-        </div>
-        <a href="#enquiry" className="bg-gold text-navy px-10 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-all">
+          </div>
+          <a 
+            href="#enquiry" 
+            className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-8 py-3.5 rounded-full font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-all shadow-xl hover:shadow-gold/30 shrink-0 text-center"
+          >
             Secure Priority Unit
-        </a>
-      </div>
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }

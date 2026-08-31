@@ -237,7 +237,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-name" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
                       <input 
                         id="enquiry-name"
@@ -249,14 +249,14 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         title="Only alphabets, spaces, dots, hyphens and apostrophes are allowed."
                         value={formData.name}
                         onChange={e => setFormData({...formData, name: e.target.value})}
-                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium placeholder:text-text-muted/60"
                         placeholder="Enter your name"
                       />
                     </div>
                     
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-phone" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">
-                        Phone {countryCode !== '+91' && <span className="text-gold/60 font-normal normal-case tracking-normal ml-1">(NRI)</span>}
+                        Phone {countryCode !== '+91' && <span className="text-gold font-normal normal-case tracking-normal ml-1">(NRI)</span>}
                       </label>
                       <div className="flex gap-2">
                         <select
@@ -264,7 +264,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                           value={countryCode}
                           onChange={e => setCountryCode(e.target.value)}
                           aria-label="Country code"
-                          className="px-3 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none text-sm font-bold shrink-0"
+                          className="px-3 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none text-xs font-bold shrink-0 cursor-pointer"
                         >
                           <option value="+91">🇮🇳 +91</option>
                           <option value="+971">🇦🇪 +971</option>
@@ -282,14 +282,14 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                           autoComplete="tel-national"
                           value={formData.phone}
                           onChange={e => setFormData({...formData, phone: e.target.value})}
-                          className="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
-                          placeholder={countryCode === '+91' ? '9876543210' : 'Your number'}
+                          className="flex-1 px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium placeholder:text-text-muted/60"
+                          placeholder={countryCode === '+91' ? '9876543210' : 'Your phone number'}
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email <span className="text-gold/50 font-normal normal-case tracking-normal">(optional)</span></label>
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email <span className="text-gold/60 font-normal normal-case tracking-normal">(optional)</span></label>
                       <input 
                         id="enquiry-email"
                         type="email" 
@@ -297,14 +297,14 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         autoComplete="email"
                         value={formData.email}
                         onChange={e => setFormData({...formData, email: e.target.value})}
-                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium placeholder:text-text-muted/60"
                         placeholder="name@email.com"
                       />
                     </div>
 
                     <button 
                       type="submit" 
-                      className="w-full bg-gold text-navy font-bold py-5 rounded-2xl mt-4 hover:scale-[1.02] transition-all uppercase text-xs tracking-widest shadow-xl shadow-gold/20"
+                      className="w-full bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-4 rounded-2xl mt-4 hover:scale-[1.02] active:scale-95 transition-all uppercase text-xs tracking-widest shadow-xl hover:shadow-gold/30"
                     >
                       Next: Choose Configuration
                     </button>
@@ -318,31 +318,31 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     onSubmit={(e) => { e.preventDefault(); startTransition(() => setStep(3)); }}
                     className="space-y-6"
                   >
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-bhk" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
                       <select 
                         id="enquiry-bhk"
                         required
                         value={formData.bhk}
                         onChange={e => setFormData({...formData, bhk: e.target.value})}
-                        className="w-full px-6 py-4 bg-navy-light border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium cursor-pointer"
                       >
                         <option value="">Select BHK</option>
-                        <option value="2BHK">2 BHK Apartment</option>
-                        <option value="3BHK">3 BHK Apartment</option>
-                        <option value="4BHK">4 BHK Elite</option>
-                        <option value="5BHK">5 BHK Sky Villa</option>
+                        <option value="2BHK">2 BHK Apartment (Ridges 41)</option>
+                        <option value="3BHK">3 BHK Luxury (Promenade)</option>
+                        <option value="4BHK">4 BHK Riverside (The Altius)</option>
+                        <option value="5BHK">5 BHK Sky Penthouse</option>
                       </select>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-budget" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
                       <select 
                         id="enquiry-budget"
                         required
                         value={formData.budget}
                         onChange={e => setFormData({...formData, budget: e.target.value})}
-                        className="w-full px-6 py-4 bg-navy-light border border-white/10 rounded-2xl text-warm-white focus:border-gold outline-none"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium cursor-pointer"
                       >
                         <option value="">Select Range</option>
                         <option value="80L - 1Cr">₹80L - ₹1 Cr</option>
@@ -356,13 +356,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="button" 
                          onClick={() => startTransition(() => setStep(1))}
-                         className="py-4 border border-white/10 text-text-light rounded-2xl text-[10px] font-bold uppercase tracking-widest"
+                         className="py-3.5 border border-gold/30 text-text-muted hover:text-warm-white rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-colors"
                        >
                          Back
                        </button>
                        <button 
                          type="submit" 
-                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest"
+                         className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest shadow-lg hover:shadow-gold/25 transition-all"
                        >
                          Next: Schedule Visit
                        </button>
@@ -377,7 +377,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     onSubmit={handleSubmit} 
                     className="space-y-6"
                   >
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-date" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Visit Date (Optional)</label>
                       <input 
                         id="enquiry-date"
@@ -385,18 +385,18 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         min={new Date().toISOString().split('T')[0]}
                         value={formData.visitDate}
                         onChange={e => setFormData({...formData, visitDate: e.target.value})}
-                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none [color-scheme:dark]"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium"
                       />
                     </div>
                     
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       <label htmlFor="enquiry-time" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Time (Optional)</label>
                       <input 
                         id="enquiry-time"
                         type="time"
                         value={formData.visitTime}
                         onChange={e => setFormData({...formData, visitTime: e.target.value})}
-                        className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-warm-white focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none [color-scheme:dark]"
+                        className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium"
                       />
                     </div>
 

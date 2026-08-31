@@ -270,8 +270,8 @@ export default function HomePageClient() {
       <InventoryMatrix />
 
       {/* TRUST SYMBOLS */}
-      <section className="py-6 sm:py-8 border-y border-gold/15 bg-navy/60 backdrop-blur-xl overflow-x-auto">
-        <div className="container flex flex-wrap justify-center sm:justify-between items-center gap-6 opacity-90">
+      <section className="py-6 sm:py-8 border-y border-gold/25 ultra-glass-card backdrop-blur-2xl overflow-x-auto">
+        <div className="container flex flex-wrap justify-center sm:justify-between items-center gap-6 opacity-95">
           <div className="flex items-center gap-2.5">
              <ShieldCheck className="text-gold" size={18} />
              <span className="text-[10px] uppercase font-bold tracking-[2px] text-warm-white">MahaRERA Certified Township</span>
@@ -294,20 +294,33 @@ export default function HomePageClient() {
         {/* MARKET ANALYSIS SECTION */}
         <MarketAnalysis />
 
+        <div className="section-divider" />
+
         {/* INVESTMENT MATRIX SECTION */}
         <InvestmentMatrix />
+
+        <div className="section-divider" />
 
         {/* INTERACTIVE ROI CALCULATOR SECTION */}
         <RoiCalculator initialPrice={12500000} title="Paranjape Blue Ridge" />
 
+        <div className="section-divider" />
+
         {/* COMPARISON MATRIX SECTION */}
         <ComparisonMatrix />
 
+        <div className="section-divider" />
+
         {/* PROJECT SHOWCASE SECTION */}
-        <section aria-labelledby="architecture-title" className="py-20">
-          <div className="text-center mb-16 sm:mb-32">
-            <span className="text-gold font-bold tracking-[4px] sm:tracking-[6px] uppercase text-[10px] sm:text-xs">The Architecture</span>
-            <h2 id="architecture-title" className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 sm:mt-4">Residential <span className="italic font-normal text-gilded">Volumes</span></h2>
+        <section aria-labelledby="architecture-title" className="py-16 sm:py-24" id="projects">
+          <div className="text-center mb-16 sm:mb-24">
+            <span className="gilded-pill mb-3">The Architecture</span>
+            <h2 id="architecture-title" className="text-3xl sm:text-4xl md:text-6xl font-serif text-warm-white mt-3 font-bold">
+              Residential <span className="italic font-normal text-gilded">Volumes</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl mx-auto">
+              Three sovereign residential enclaves engineered for walk-to-work IT park proximity and riverside living
+            </p>
           </div>
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} reverse={i % 2 !== 0} />
