@@ -53,8 +53,8 @@ export default function robots(): MetadataRoute.Robots {
       // 1. Explicit Googlebot Ecosystem & Search Engine Rules (Maximum Allowance & Speed)
       {
         userAgent: SEARCH_ENGINE_BOTS,
-        allow: '/',
-        disallow: ['/api/'],
+        allow: ['/', '/api/google-data-feed', '/api/google-places-sync', '/township.kml', '/nri-investment', '/construction-updates'],
+        disallow: ['/api/lead', '/api/force-index', '/api/gsc-inspect', '/sovereign-vault', '/private/'],
       },
       // 2. Block Competitor SEO Tools to protect the Programmatic SEO Matrix
       {
@@ -76,7 +76,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/private/'],
+        disallow: ['/api/', '/_next/', '/private/', '/sovereign-vault'],
         crawlDelay: 1,
       },
     ],

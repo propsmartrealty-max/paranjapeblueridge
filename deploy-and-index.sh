@@ -26,6 +26,9 @@ CRED_FOUND=false
 if [ -n "$GCP_SERVICE_ACCOUNT" ]; then
     echo "   ✅ Credentials: GCP_SERVICE_ACCOUNT env var"
     CRED_FOUND=true
+elif [ -n "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+    echo "   ✅ Credentials: GOOGLE_SERVICE_ACCOUNT_JSON env var"
+    CRED_FOUND=true
 elif [ -f "scripts/google-service-account.json" ]; then
     echo "   ✅ Credentials: scripts/google-service-account.json"
     CRED_FOUND=true
@@ -60,6 +63,11 @@ else
     echo ""
     echo "⏭️  Phase 3: Skipped (no credentials)"
 fi
+
+# ── Phase 4: Cloudflare Edge Cache Purge ──
+echo ""
+echo "⚡ Phase 4: Cloudflare Edge Cache Invalidation..."
+npx tsx scripts/cloudflare-purge-cache.ts || true
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

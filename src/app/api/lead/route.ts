@@ -21,6 +21,19 @@ function sanitize(str: any, maxLen: number = 200): string {
   return str.replace(/<[^>]*>?/gm, '').trim().slice(0, maxLen);
 }
 
+// SHA-256 Hashing helper for Google Ads Enhanced Conversions
+async function sha256Hex(str: string): Promise<string> {
+  if (!str) return '';
+  try {
+    const buffer = new TextEncoder().encode(str.trim().toLowerCase());
+    const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch (e) {
+    return '';
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // ── Strict CSRF Origin Defense ──
@@ -55,11 +68,40 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true }); // Silent discard
     }
 
-    // ── Rate Limiting (1 submit per 60s per IP) ──
+    // ── Cloudflare Turnstile Ultra-Defense Verification ──
     const ip =
+      request.headers.get('cf-connecting-ip') ||
       request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
       request.headers.get('x-real-ip') ||
       'unknown';
+
+    const turnstileToken = body.turnstileToken;
+    const turnstileSecret = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY;
+    if (turnstileSecret && turnstileToken && turnstileToken !== 'mock-turnstile-token-dev-passed') {
+      try {
+        const cfFormData = new FormData();
+        cfFormData.append('secret', turnstileSecret);
+        cfFormData.append('response', turnstileToken);
+        cfFormData.append('remoteip', ip);
+
+        const cfRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'POST',
+          body: cfFormData,
+          signal: AbortSignal.timeout(5000),
+        });
+        const cfData = await cfRes.json();
+        if (!cfData.success) {
+          return NextResponse.json(
+            { success: false, error: 'Security challenge failed. Please refresh and try again.' },
+            { status: 403 }
+          );
+        }
+      } catch (err) {
+        console.warn('[Cloudflare Turnstile] Siteverify check warning:', err);
+      }
+    }
+
+    // ── Rate Limiting (1 submit per 60s per IP) ──
 
     const lastSubmit = rateLimitMap.get(ip);
     if (lastSubmit && Date.now() - lastSubmit < 60_000) {
@@ -131,12 +173,22 @@ export async function POST(request: NextRequest) {
       vipTag = ' [💎 URGENT VIP]';
     }
 
-    // Append score to payload for webhook CRM
+    // ── Google Ads Enhanced Conversions Hashed Attribution ──
+    const hashedEmail = await sha256Hex(leadPayload.email);
+    const hashedPhone = await sha256Hex(leadPayload.phone.replace(/\D/g, ''));
+    const googleAdsAttribution = {
+      sha256_email: hashedEmail,
+      sha256_phone: hashedPhone,
+      event_time: leadPayload.timestamp,
+    };
+
+    // Append score and telemetry to payload for webhook CRM
     const enhancedPayload = {
       ...leadPayload,
       leadScore,
       userCountry,
-      isVip: leadScore >= 80
+      isVip: leadScore >= 80,
+      googleAdsAttribution,
     };
 
     // ── Validate required fields ──

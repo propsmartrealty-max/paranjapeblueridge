@@ -913,6 +913,10 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     graph.push({
       "@type": "FAQPage",
       "@id": `${SITE_URL}/${pseoData.slug}#faq`,
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2", ".faq-answer", "p"]
+      },
       "mainEntity": faqs.map(f => ({
         "@type": "Question",
         "name": f.q,
@@ -926,6 +930,10 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     graph.push({
       "@type": "FAQPage",
       "@id": `${SITE_URL}/#faq`,
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2", ".faq-answer", "p"]
+      },
       "mainEntity": [
         {
           "@type": "Question",

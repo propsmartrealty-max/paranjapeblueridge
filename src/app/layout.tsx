@@ -170,6 +170,25 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: `if (window.location.pathname.startsWith('/mr')) document.documentElement.lang = 'mr-IN';` }} />
+        {/* Google Consent Mode v2 Initialization (Mandatory for Google Ads & GA4 Compliance) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'analytics_storage': 'granted',
+                'functionality_storage': 'granted',
+                'personalization_storage': 'granted',
+                'security_storage': 'granted',
+                'wait_for_update': 500
+              });
+            `,
+          }}
+        />
         <link rel="dns-prefetch" href="https://www.pscl.in" />
         <link rel="preconnect" href="https://www.pscl.in" crossOrigin="anonymous" />
         {/* Google Fonts are automatically preconnected and optimized via next/font/google */}
@@ -183,6 +202,14 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
+        {/* Google Ads & DoubleClick preconnect */}
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://www.googleadservices.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googleadservices.com" />
+        {/* Cloudflare Turnstile preconnect */}
+        <link rel="preconnect" href="https://challenges.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://challenges.cloudflare.com" />
         {/* Vercel edge network preconnect */}
         <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vercel.live" />
@@ -236,6 +263,13 @@ export default function RootLayout({
         )}
         {process.env.NEXT_PUBLIC_GTM_ID && process.env.NEXT_PUBLIC_GTM_ID !== "GTM-XXXXXXX" && (
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
+        {process.env.NEXT_PUBLIC_GOOGLE_ADS_ID && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}', { 'allow_enhanced_conversions': true });`
+            }}
+          />
         )}
         <WebVitalsReporter />
       </body>

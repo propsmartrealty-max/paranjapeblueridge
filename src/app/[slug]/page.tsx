@@ -86,7 +86,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : 'Hinjewadi, Pune, Maharashtra';
 
   if (pseoData) {
-    const title = `${pseoData.title} | Paranjape Blue Ridge Hinjewadi Pune`;
+    const rawTitle = pseoData.title;
+    const title = rawTitle.includes('Paranjape') || rawTitle.includes('Blue Ridge')
+      ? rawTitle
+      : `${rawTitle} | Paranjape Blue Ridge`;
     // Silo-specific descriptions for uniqueness — avoids near-duplicate meta across 1500+ pages
     const siloDescriptions: Record<string, string> = {
       'corporate': `${pseoData.intent} at Paranjape Blue Ridge — Hinjewadi's only 138-acre walk-to-work township. Zero commute to Infosys, Wipro & TCS. 2, 3 & 4 BHK flats. MahaRERA certified.`,
@@ -112,7 +115,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const baseDescription = siloDescriptions[pseoData.silo] || `Find ${pseoData.intent} at Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1. Premium 2, 3 & 4 BHK flats. Golf course, boat club, ICSE school. MahaRERA registered. Call +91-20-67210000.`;
 
     const isMr = slug.startsWith('mr-');
-    const finalTitle = isMr ? `${pseoData.title} | परंजपे ब्लू रिज हिंजवडी पुणे` : title;
+    const finalTitle = isMr
+      ? (rawTitle.includes('परंजपे') || rawTitle.includes('ब्लू रिज') ? rawTitle : `${rawTitle} | परंजपे् ब्लू रिज`)
+      : title;
     const finalDescription = isMr ? `परंजपे ब्लू रिज हिंजवडी पुणे - ${pseoData.intent}. १३८ एकरची एकात्मिक टाउनशिप, ९-होल गोल्फ कोर्स, मुळा नदीवर बोट क्लब, आयसीएसई शाळा आणि वॉक-टू-वर्क आयटी पार्क. महारेरा नोंदणीकृत.` : baseDescription;
 
     const altSlug = isMr ? slug.replace(/^mr-/, '') : `mr-${slug}`;

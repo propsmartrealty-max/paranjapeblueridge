@@ -43,6 +43,9 @@ export default function GoogleEcosystem() {
                   <span className="text-2xl font-serif text-warm-white">4.8</span>
                   <span className="text-[10px] text-text-light uppercase tracking-widest">(2,150+ Reviews)</span>
                </div>
+               <span className="text-[9px] font-mono text-gold/60 border border-gold/20 px-2.5 py-1 rounded-md">
+                 Place ID: ChIJedUU0eS7wjsRGpS7wwPTwf4
+               </span>
             </div>
             
             <div className="pt-8 grid grid-cols-2 gap-4">
@@ -62,7 +65,7 @@ export default function GoogleEcosystem() {
                 className="flex items-center justify-center gap-3 bg-gold text-navy py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-xl shadow-gold/20"
                >
                  <ExternalLink size={16} />
-                 View Listing
+                 View & Review
                </a>
             </div>
           </div>

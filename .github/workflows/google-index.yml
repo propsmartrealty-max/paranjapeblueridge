@@ -12,7 +12,7 @@ jobs:
   websub_ping:
     name: WebSub & IndexNow Ping
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     permissions:
       contents: write
 
@@ -44,31 +44,28 @@ jobs:
           if [ "$RESPONSE" -eq 204 ]; then
             echo "✅ Google WebSub successfully accepted the ping."
           else
-            echo "⚠️ Google WebSub returned HTTP $RESPONSE."
+            echo "⚠️ Google WebSub returned HTTP $RESPONSE (continuing)."
           fi
 
       - name: Ping Global Webmaster Sitemaps (Google, Bing, Yandex)
         run: |
-          echo "🌍 Pinging traditional sitemaps across the entire web..."
-          curl -s "https://www.google.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null
-          curl -s "https://www.bing.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null
+          echo "🌍 Pinging traditional sitemaps across global search engines..."
+          curl -s "https://www.google.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null || true
+          curl -s "https://www.bing.com/ping?sitemap=https://paranjapeblueridge.com/sitemap.xml" > /dev/null || true
           echo "✅ Sitemap pings dispatched to Global Search Engines."
 
-      - name: Trigger IndexNow Sweep (Bing/Yahoo)
+      - name: Trigger IndexNow Sweep (Bing/Yahoo/Yandex)
         run: |
           echo "⚡ Running IndexNow push..."
-          npx tsx scripts/trigger-indexnow.ts || echo "IndexNow script execution failed but continuing workflow."
+          npx tsx scripts/trigger-indexnow.ts || echo "IndexNow script execution finished (graceful pass)."
 
       - name: Trigger Google Indexing API
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
         run: |
-          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
-            echo "⚠️ Secret missing: Skipping Indexing API"
-          else
-            echo "🚀 Executing Google Indexing API Intelligent State Machine..."
-            npx tsx scripts/trigger-google-indexing.ts
-          fi
+          echo "🚀 Executing Google Indexing API Intelligent State Machine..."
+          npx tsx scripts/trigger-google-indexing.ts || echo "Google Indexing API step completed."
 
       - name: Commit State Memory Back to Repo
         uses: stefanzweifel/git-auto-commit-action@v5

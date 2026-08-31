@@ -15,7 +15,8 @@ import { useAtmosphere } from '@/context/AtmosphereContext';
 import { useBuyerIntent } from '@/components/TrackingProvider';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
-import { Mail, MapPin, ShieldCheck, Award } from 'lucide-react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Mail, MapPin, ShieldCheck, Award, Search } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import DOMPurify from 'dompurify';
@@ -32,11 +33,24 @@ const ConnectivityHub = dynamic(() => import('@/components/ConnectivityHub'));
 const BlogSection = dynamic(() => import('@/components/BlogSection'));
 const InventoryMatrix = dynamic(() => import('@/components/InventoryMatrix'));
 const InteractiveMasterPlan = dynamic(() => import('@/components/InteractiveMasterPlan'));
+const RoiCalculator = dynamic(() => import('@/components/RoiCalculator'));
+const TownshipVirtualTour = dynamic(() => import('@/components/TownshipVirtualTour'));
 
 export default function HomePageClient() {
   const { t } = useLanguage();
   const hasMounted = useHasMounted();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const googleSearchQuery = searchParams?.get('s') || searchParams?.get('q') || '';
+
+  useEffect(() => {
+    if (googleSearchQuery) {
+      const targetElement = document.getElementById('projects') || document.getElementById('inventory');
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [googleSearchQuery]);
   
   // Inline form state
   const [formData, setFormData] = useState({
@@ -159,7 +173,7 @@ export default function HomePageClient() {
       <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* HERO SECTION */}
-      <section ref={heroRef} className="relative h-screen flex items-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[92vh] flex items-center overflow-hidden pt-28 pb-16">
         <motion.div style={{ scale: imageScale }} className="absolute inset-0 z-0">
           <Image 
             src={atmosphere === 'night' ? "/assets/images/real-township-night.jpg" : "/assets/images/real-township-day.jpg"} 
@@ -167,51 +181,86 @@ export default function HomePageClient() {
             priority
             placeholder="blur"
             blurDataURL={atmosphere === 'night' ? blurDataURLs.darkNavy : blurDataURLs.lightSkyBlue}
-            className="object-cover transition-all duration-1000 opacity-80" 
+            className="object-cover transition-all duration-1000 opacity-70" 
             alt="Actual photograph of Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township Premium Apartments"
             sizes="100vw"
           />
           <div 
             className="absolute inset-0 transition-colors duration-1000" 
-            style={{ background: `linear-gradient(to right, var(--bg) 0%, transparent 100%)` }}
+            style={{ background: `linear-gradient(to right, var(--bg) 0%, rgba(4,10,22,0.75) 45%, transparent 100%)` }}
           ></div>
         </motion.div>
         
-        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container relative z-10 pt-20">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-2 sm:gap-3 text-gold font-bold tracking-[4px] sm:tracking-[8px] uppercase text-[8px] sm:text-[10px] mb-4 sm:mb-8">
-              <span className="w-6 sm:w-10 h-[1px] bg-gold"></span>
-              {intent === 'investor' 
-                ? t('High-Yield Investment Legacy', 'उच्च-उत्पन्न गुंतवणूक वारसा') 
-                : t('The 138-Acre Sovereign Legacy', '१३८ एकर सोव्हरेन वारसा')}
-            </span>
-            <h1 className="text-[2.8rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] font-serif text-warm-white leading-[0.95] sm:leading-[0.9] tracking-tighter mb-6 sm:mb-10">
-              <span className="block text-[0.85rem] sm:text-[1.2rem] md:text-[1.8rem] font-bold tracking-[0.15em] sm:tracking-[0.3em] uppercase text-gold mb-3 sm:mb-6" style={{ fontFamily: 'var(--font-sans)' }} aria-hidden="true">
-                Paranjape Blue Ridge Megatownship
-              </span>
-              <span className="text-gilded block mb-1 sm:mb-2" aria-hidden="true">
-                {intent === 'investor' ? t('Capital', 'कॅपिटल') : t('Zenith of', 'सर्वोच्च')}
-              </span>
-              <span className="italic font-normal" aria-hidden="true">
-                {intent === 'investor' ? t('Appreciation', 'अप्रीशिएशन') : t('Integrated Living', 'इंटिग्रेटेड लिविंग')}
-              </span>
-            </h1>
-            <p className="text-sm sm:text-base md:text-xl text-text-light max-w-2xl leading-relaxed mb-8 sm:mb-12">
-              {t("Welcome to Paranjape Blue Ridge Riverside Township—Pune's most celebrated integrated township. A future-ready ecosystem crafted for the elite IT workforce offering Blue Ridge Premium Homes in Hinjewadi Phase 1.", "परंजपे ब्लू रिजमध्ये आपले स्वागत आहे—पुण्यातील सर्वात प्रसिद्ध इंटिग्रेटेड टाऊनशिप. हिंजवडी फेज १ मधील एलिट आयटी कर्मचाऱ्यांसाठी तयार केलेली भविष्यातील इकोसिस्टम.")}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
-              <button 
-                onClick={() => document.getElementById('market')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="bg-gold text-navy px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:scale-105 transition-all shadow-2xl gold-glow text-center border-none cursor-pointer"
-              >
-                {t('Analyze Market', 'मार्केट विश्लेषण')}
-              </button>
-              <button 
-                onClick={() => document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="bg-white/5 backdrop-blur-xl border border-white/10 text-warm-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white/10 transition-all text-center cursor-pointer"
-              >
-                {t('Experience Township', 'टाऊनशिप अनुभव')}
-              </button>
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-8 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-dock border border-gold/30 text-gold font-bold tracking-[4px] uppercase text-[9px] mb-6">
+                <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                <span>{intent === 'investor' 
+                  ? t('High-Yield Investment Legacy', 'उच्च-उत्पन्न गुंतवणूक वारसा') 
+                  : t('138-Acre Riverfront Township Legacy', '१३८ एकर रिव्हरफ्रंट टाउनशिप वारसा')}</span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-warm-white leading-[1.05] tracking-tight mb-6">
+                <span className="block text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-gold/90 mb-3 font-sans" aria-hidden="true">
+                  Paranjape Blue Ridge Hinjewadi
+                </span>
+                <span className="text-gilded block mb-1">
+                  {intent === 'investor' ? t('Capital Growth & Yield', 'भांडवली वाढ आणि परतावा') : t('Zenith of Integrated', 'एकात्मिक जीवनशैलीचे')}
+                </span>
+                <span className="italic font-normal">
+                  {intent === 'investor' ? t('Prestige Living', 'प्रतिष्ठित जीवनमान') : t('Riverside Living', 'रिव्हरफ्रंट निवास')}
+                </span>
+              </h1>
+
+              <p className="text-sm sm:text-base md:text-lg text-text-light max-w-2xl leading-relaxed mb-8">
+                {t("Experience Pune's iconic 138-acre self-sufficient township in Hinjewadi Phase 1. Discover ultra-luxury high-rise residences at Promenade, The Altius, and Ridges 41 with an ICSE school, 9-hole golf course, private boat club, and walk-to-work SEZ.", "हिंजवडी फेज १ मधील पुण्याच्या प्रतिष्ठित १३८ एकरच्या टाउनशिपचा अनुभव घ्या. प्रॉमनेड, अल्टियस आणि रिजेस ४१ मधील आलिशान घरे, आयसीएसई शाळा, गोल्फ कोर्स आणि बोट क्लबसह.")}
+              </p>
+
+              <div className="flex flex-wrap gap-4 items-center">
+                <button 
+                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} 
+                  className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-8 sm:px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl hover:shadow-gold/30 text-center border-none cursor-pointer btn-sheen"
+                >
+                  {t('Explore Residences', 'निवासस्थाने पहा')}
+                </button>
+                <button 
+                  onClick={() => document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' })} 
+                  className="ultra-glass-card border border-gold/30 text-warm-white hover:text-gold px-8 sm:px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:border-gold transition-all text-center cursor-pointer"
+                >
+                  {t('Township Amenities', 'टाऊनशिप सुविधा')}
+                </button>
+              </div>
+            </div>
+
+            {/* FLOATING GLASS STATS COLUMN */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Total Scale</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-gold/10 text-gold font-bold font-mono">138 Acres</span>
+                </div>
+                <div className="text-xl font-serif text-warm-white font-bold">Self-Sufficient Gated Ecosystem</div>
+                <div className="text-xs text-text-muted mt-1">3,000+ Happy Families Currently Residing</div>
+              </div>
+
+              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Strategic Transit</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold font-mono">800 Meters</span>
+                </div>
+                <div className="text-xl font-serif text-warm-white font-bold">Upcoming Metro Line 3</div>
+                <div className="text-xs text-text-muted mt-1">Direct connectivity to Shivajinagar CBD</div>
+              </div>
+
+              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Rental Yield</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-gold/10 text-gold font-bold font-mono">4-5% Annual</span>
+                </div>
+                <div className="text-xl font-serif text-warm-white font-bold">Walk-to-Work Tech Hub</div>
+                <div className="text-xs text-text-muted mt-1">Infosys, Wipro, TCS within 2 km radius</div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -221,22 +270,22 @@ export default function HomePageClient() {
       <InventoryMatrix />
 
       {/* TRUST SYMBOLS */}
-      <section className="py-6 sm:py-10 border-y border-gold/10 bg-[var(--bg)] overflow-x-auto">
-        <div className="container flex flex-wrap justify-center sm:justify-between items-center gap-4 sm:gap-3 opacity-60 grayscale group hover:grayscale-0 transition-all">
-          <div className="flex items-center gap-2 sm:gap-3">
-             <ShieldCheck className="text-gold" size={16} />
-             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">MahaRERA Certified</span>
+      <section className="py-6 sm:py-8 border-y border-gold/15 bg-navy/60 backdrop-blur-xl overflow-x-auto">
+        <div className="container flex flex-wrap justify-center sm:justify-between items-center gap-6 opacity-90">
+          <div className="flex items-center gap-2.5">
+             <ShieldCheck className="text-gold" size={18} />
+             <span className="text-[10px] uppercase font-bold tracking-[2px] text-warm-white">MahaRERA Certified Township</span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3">
-             <Award className="text-gold" size={16} />
-             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">Best Township 2024</span>
+          <div className="flex items-center gap-2.5">
+             <Award className="text-gold" size={18} />
+             <span className="text-[10px] uppercase font-bold tracking-[2px] text-warm-white">35+ Years PSCL Legacy</span>
           </div>
           <div className="hidden sm:flex items-center gap-3 font-serif italic text-xl md:text-2xl text-gilded">
              Paranjape Schemes
           </div>
-          <div className="flex items-center gap-2 sm:gap-3">
-             <MapPin className="text-gold" size={16} />
-             <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-[2px] sm:tracking-[3px]">Hinjewadi Phase 1</span>
+          <div className="flex items-center gap-2.5">
+             <MapPin className="text-gold" size={18} />
+             <span className="text-[10px] uppercase font-bold tracking-[2px] text-warm-white">Hinjewadi Phase 1, Pune</span>
           </div>
         </div>
       </section>
@@ -247,6 +296,9 @@ export default function HomePageClient() {
 
         {/* INVESTMENT MATRIX SECTION */}
         <InvestmentMatrix />
+
+        {/* INTERACTIVE ROI CALCULATOR SECTION */}
+        <RoiCalculator initialPrice={12500000} title="Paranjape Blue Ridge" />
 
         {/* COMPARISON MATRIX SECTION */}
         <ComparisonMatrix />
@@ -285,6 +337,9 @@ export default function HomePageClient() {
 
         {/* TOWNSHIP EXPERIENCE SECTION */}
         <TownshipExperience />
+
+        {/* TOWNSHIP VIRTUAL TOUR & 4K DRONE SHOWCASE (WITH VIDEOOBJECT SCHEMA) */}
+        <TownshipVirtualTour />
 
         {/* MASTER TOWNSHIP LAYOUT (INTERACTIVE SVG ENGINE) */}
         <InteractiveMasterPlan />

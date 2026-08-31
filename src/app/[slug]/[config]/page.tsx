@@ -38,7 +38,7 @@ export async function generateMetadata({
     ? `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}.`
     : `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}. Download floor plan or book a site visit.`;
     
-  const canonical = `${SITE_URL}/${englishSlug}/${params.config}`;
+  const canonical = `${SITE_URL}/${params.slug}/${params.config}`;
 
   return {
     title,

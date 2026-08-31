@@ -16,6 +16,9 @@ export default function UnifiedSovereignVault() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isIndexing, setIsIndexing] = useState(false);
   const [indexStatus, setIndexStatus] = useState<any>(null);
+  const [inspectUrl, setInspectUrl] = useState('https://paranjapeblueridge.com');
+  const [isInspecting, setIsInspecting] = useState(false);
+  const [inspectionResult, setInspectionResult] = useState<any>(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -88,6 +91,31 @@ export default function UnifiedSovereignVault() {
     }
   };
 
+  const handleInspect = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inspectUrl) return;
+    setIsInspecting(true);
+    setInspectionResult(null);
+
+    try {
+      const response = await fetch('/api/gsc-inspect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: inspectUrl,
+          pin: pin || process.env.NEXT_PUBLIC_ADMIN_PIN || '1925',
+        }),
+      });
+      const data = await response.json();
+      setInspectionResult(data);
+    } catch (err) {
+      console.error('GSC Inspection failed', err);
+      setInspectionResult({ success: false, error: 'Connection to Google Search Console API failed.' });
+    } finally {
+      setIsInspecting(false);
+    }
+  };
+
   const filteredLeads = leads.filter(l => 
     l.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     (l.source && l.source.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -130,7 +158,7 @@ export default function UnifiedSovereignVault() {
                     Sovereign Vault v2.0
                 </span>
                 <h1 className="text-5xl font-serif text-warm-white">Lead <span className="italic font-normal text-gold">Intelligence</span></h1>
-                <p className="text-text-light mt-4">Secure dashboard for real-time lead tracking and indexing orchestration.</p>
+                <p className="text-text-light mt-4">Secure dashboard for real-time lead tracking, Google Search Console inspection, and indexing orchestration.</p>
             </div>
             <div className="flex gap-4">
                 <button 
@@ -215,19 +243,85 @@ export default function UnifiedSovereignVault() {
                             <span className="text-xs font-bold text-red-500">{indexStatus.stats?.failed || 0}</span>
                           </div>
                         </div>
-                        {indexStatus.failures && indexStatus.failures.length > 0 && (
-                          <div className="mt-2 text-[8px] text-red-400 max-h-16 overflow-y-auto scrollbar-hide">
-                            <p className="font-bold uppercase tracking-wider mb-1">Failures:</p>
-                            {indexStatus.failures.slice(0, 3).map((f: any, i: number) => (
-                              <p key={i}>• {f.url}: {f.error}</p>
-                            ))}
-                          </div>
-                        )}
                       </>
                     )}
                   </div>
                 )}
             </div>
+        </div>
+
+        {/* GOOGLE SEARCH CONSOLE LIVE URL INSPECTOR WIDGET */}
+        <div className="bg-navy-light rounded-[2.5rem] border border-gold/30 p-8 mb-12 shadow-2xl relative overflow-hidden">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+            <div>
+              <span className="text-[10px] text-gold uppercase tracking-[3px] font-bold flex items-center gap-2 mb-1">
+                <Globe size={14} className="text-gold" />
+                Google Connect — Live GSC URL Inspection Engine
+              </span>
+              <h3 className="text-2xl font-serif text-warm-white">Real-Time Search Console Status</h3>
+            </div>
+            <span className="text-[9px] bg-gold/10 text-gold px-3 py-1 rounded-full border border-gold/20 uppercase tracking-widest font-bold">
+              Google API v1 Verified
+            </span>
+          </div>
+
+          <form onSubmit={handleInspect} className="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="text"
+              value={inspectUrl}
+              onChange={e => setInspectUrl(e.target.value)}
+              placeholder="e.g. https://paranjapeblueridge.com or /promenade-residences"
+              className="flex-1 bg-navy border border-white/10 rounded-xl px-5 py-3.5 text-sm text-warm-white focus:border-gold outline-none font-mono"
+            />
+            <button 
+              type="submit"
+              disabled={isInspecting}
+              className="bg-gold text-navy px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:brightness-110 disabled:opacity-50 transition-all flex items-center justify-center gap-2 shrink-0"
+            >
+              {isInspecting ? (
+                <>
+                  <RefreshCw size={14} className="animate-spin" />
+                  Inspecting...
+                </>
+              ) : (
+                <>
+                  <Search size={14} />
+                  Inspect URL
+                </>
+              )}
+            </button>
+          </form>
+
+          {inspectionResult && (
+            <div className="mt-6 p-6 bg-navy/60 border border-white/10 rounded-2xl font-mono text-xs animate-in fade-in duration-300">
+              {inspectionResult.success ? (
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="p-4 bg-navy-light/60 rounded-xl border border-white/5">
+                    <span className="text-[9px] text-text-light uppercase tracking-widest block mb-1">Verdict</span>
+                    <span className="text-sm font-bold text-emerald-400">{inspectionResult.verdict}</span>
+                  </div>
+                  <div className="p-4 bg-navy-light/60 rounded-xl border border-white/5">
+                    <span className="text-[9px] text-text-light uppercase tracking-widest block mb-1">Coverage State</span>
+                    <span className="text-sm font-bold text-warm-white">{inspectionResult.coverageState}</span>
+                  </div>
+                  <div className="p-4 bg-navy-light/60 rounded-xl border border-white/5">
+                    <span className="text-[9px] text-text-light uppercase tracking-widest block mb-1">Crawled As</span>
+                    <span className="text-sm font-bold text-gold">{inspectionResult.crawledAs}</span>
+                  </div>
+                  <div className="p-4 bg-navy-light/60 rounded-xl border border-white/5">
+                    <span className="text-[9px] text-text-light uppercase tracking-widest block mb-1">Indexing State</span>
+                    <span className="text-sm font-bold text-emerald-400">{inspectionResult.indexingState}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-red-400 flex items-center gap-2">
+                  <AlertCircle size={16} />
+                  <span>{inspectionResult.error || 'Inspection failed.'}</span>
+                  {inspectionResult.diagnostic && <span className="text-text-light text-[10px]">({inspectionResult.diagnostic})</span>}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* SEARCH & TABLE SECTION */}

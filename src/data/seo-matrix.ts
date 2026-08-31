@@ -817,6 +817,44 @@ export const seoMatrix = {
 
 export const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
+export function optimizeTitleLength(rawTitle: string): string {
+  if (rawTitle.length <= 70) return rawTitle;
+  
+  let t = rawTitle;
+  t = t.replace(/Under Construction/g, "New");
+  t = t.replace(/Ready Possession/g, "Ready");
+  t = t.replace(/Apartments/g, "Flats");
+  t = t.replace(/Luxury Homes/g, "Flats");
+  t = t.replace(/Premium Residences/g, "Flats");
+  t = t.replace(/Compare Paranjape Blue Ridge vs/g, "Blue Ridge vs");
+  t = t.replace(/Paranjape Blue Ridge vs/g, "Blue Ridge vs");
+  t = t.replace(/Paranjape Schemes Blue Ridge/g, "Paranjape Blue Ridge");
+  t = t.replace(/Investment ROI for/g, "ROI on");
+  t = t.replace(/Luxury Review of/g, "Review:");
+  t = t.replace(/Best Price for/g, "Best Price:");
+  t = t.replace(/NRI Guide to/g, "NRI Guide:");
+  t = t.replace(/Top Rated/g, "Top");
+  t = t.replace(/ — Paranjape Schemes Blue Ridge Hinjewadi/g, " | Blue Ridge");
+  t = t.replace(/ — Paranjape Blue Ridge Hinjewadi/g, " | Blue Ridge");
+  
+  if (t.length > 70) {
+    t = t.replace(/ in Pune West/g, " Pune");
+    t = t.replace(/ at Paranjape /g, " at ");
+    t = t.replace(/ near /g, " - ");
+    t = t.replace(/ connecting /g, "-");
+    t = t.replace(/ between /g, "-");
+    t = t.replace(/ and /g, "-");
+    t = t.replace(/ Pune/g, "");
+  }
+
+  if (t.length > 70) {
+    const lastSpace = t.lastIndexOf(" ", 68);
+    t = (lastSpace > 30 ? t.slice(0, lastSpace) : t.slice(0, 68)).trim();
+  }
+  
+  return t;
+}
+
 export function generatePseoUrls() {
   const urls: { slug: string; title: string; intent: string; type: string; silo: string }[] = [];
 
@@ -1553,6 +1591,7 @@ export function generatePseoUrls() {
   // Grand total: ~19k (base) + 35k + 17k + 31k = ~102,000 URLs!
 
 
+
   const mappedUrls = urls.map(u => ({
     ...u,
     slug: u.slug.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') 
@@ -1578,6 +1617,8 @@ export function generatePseoUrls() {
         u.title = `${u.title}${miniBrand}`;
       }
     }
+
+    u.title = optimizeTitleLength(u.title);
 
     // 2. Hard-enforce the brand in the intent (H1)
     if (!u.intent.includes("Paranjape")) {
@@ -1633,6 +1674,8 @@ export function getPseoBySlug(slug: string): PseoUrl | null {
       title = `${title}${miniBrand}`;
     }
   }
+
+  title = optimizeTitleLength(title);
 
   let silo = 'pune-dominance';
   const lowerBase = baseSlug.toLowerCase();
@@ -1792,7 +1835,8 @@ export function generatePseoChunk(chunkIndex: number, chunkSize: number = 1000):
           if (index >= start && index < end) {
             const phrase = `${intent} ${config} in ${market} ${feature} Pune`;
             const slug = `${slugify(phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
-            const title = `${phrase} | Paranjape Blue Ridge`;
+            const rawTitle = `${phrase} | Paranjape Blue Ridge`;
+            const title = optimizeTitleLength(rawTitle);
             const itemIntent = `${phrase} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
             
             let silo = 'pune-dominance';

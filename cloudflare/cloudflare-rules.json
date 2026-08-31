@@ -1,0 +1,68 @@
+{
+  "zone": "paranjapeblueridge.com",
+  "version": "2.0.0",
+  "description": "Cloudflare Ultra Advanced SEO & Security Ruleset for Paranjape Blue Ridge",
+  "cache_rules": [
+    {
+      "name": "Sovereign Edge Cache Everything (PSEO & Static)",
+      "description": "Caches all HTML, sitemaps, feeds and assets globally with 30-day edge TTL, bypassing on admin vault session.",
+      "expression": "(http.host eq \"paranjapeblueridge.com\") and not (http.request.uri.path contains \"/sovereign-vault\") and not (http.request.uri.path contains \"/api/\")",
+      "action": {
+        "cache": true,
+        "edge_ttl": { "mode": "override_origin", "default": 2592000 },
+        "browser_ttl": { "mode": "respect_origin" },
+        "serve_stale": { "disable_stale_while_error": false, "disable_stale_while_updating": false }
+      }
+    },
+    {
+      "name": "Bypass Cache for Admin Sovereign Vault & APIs",
+      "expression": "(http.request.uri.path contains \"/sovereign-vault\") or (http.request.uri.path contains \"/api/\") or (http.cookie contains \"sovereign_admin\")",
+      "action": {
+        "cache": false
+      }
+    }
+  ],
+  "transform_rules": [
+    {
+      "name": "Edge SEO Trailing Slash & Lowercase Normalization",
+      "description": "Strips trailing slashes and forces lowercase paths for pristine canonical indexing.",
+      "expression": "(http.request.uri.path ne \"/\") and (ends_with(http.request.uri.path, \"/\"))",
+      "action": {
+        "type": "rewrite",
+        "uri": {
+          "path": { "value": "regex_replace(http.request.uri.path, \"/+\$\", \"\")" }
+        }
+      }
+    },
+    {
+      "name": "Strip Marketing Query Parameters for Cache Hits",
+      "description": "Removes fbclid, gclid, and utm parameters before cache lookup while preserving analytics logging.",
+      "expression": "http.request.uri.query contains \"fbclid\" or http.request.uri.query contains \"gclid\"",
+      "action": {
+        "type": "rewrite"
+      }
+    }
+  ],
+  "waf_rules": [
+    {
+      "name": "Crawl Budget Defense: Block Unverified Bad Bots",
+      "expression": "(http.user_agent contains \"AhrefsBot\" or http.user_agent contains \"SemrushBot\" or http.user_agent contains \"DotBot\" or http.user_agent contains \"MJ12bot\") and not cf.client.bot",
+      "action": "block"
+    },
+    {
+      "name": "Whitelist Verified Search Engine Bots",
+      "expression": "cf.client.bot and (http.user_agent contains \"Googlebot\" or http.user_agent contains \"Bingbot\" or http.user_agent contains \"DuckDuckBot\" or http.user_agent contains \"YandexBot\")",
+      "action": "skip"
+    }
+  ],
+  "speed_settings": {
+    "early_hints": "on",
+    "http3": "on",
+    "zero_rtt": "on",
+    "polish": "lossy",
+    "mirage": "on",
+    "brotli": "on",
+    "rocket_loader": "off",
+    "crawler_hints": "on"
+  }
+}

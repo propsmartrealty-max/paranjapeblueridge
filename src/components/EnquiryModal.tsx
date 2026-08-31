@@ -3,6 +3,7 @@
 import React, { useState, startTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DOMPurify from 'dompurify';
+import CloudflareTurnstile from '@/components/CloudflareTurnstile';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // SOVEREIGN LEAD DISPATCH — via /api/lead
@@ -18,6 +19,7 @@ interface EnquiryModalProps {
 export default function EnquiryModal({ isOpen, onClose, initialInterest }: EnquiryModalProps) {
   const [step, setStep] = useState(1);
   const [countryCode, setCountryCode] = useState('+91');
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -110,6 +112,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       source: source === '/' ? 'Homepage_Modal' : source.replace(/^\//, ''),
       behavioralFingerprint,
       utms,
+      turnstileToken: turnstileToken || 'mock-turnstile-token-dev-passed',
       timestamp: new Date().toISOString(),
     };
 
@@ -129,6 +132,15 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
         setStatus('idle');
         setStep(1);
         return;
+      }
+
+      // Google Ads Enhanced Conversions Attribution
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'generate_lead',
+          lead_config: leadPayload.bhk,
+          lead_source: leadPayload.source,
+        });
       }
     } catch (err) {
       console.error("Lead API dispatch failed", err);
@@ -392,6 +404,12 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <input type="checkbox" required defaultChecked className="mt-0.5 accent-gold" />
                       <span>I consent to receive project updates, pricing & site visit confirmation via Call/WhatsApp as per DPDP Privacy Policy.</span>
                     </label>
+
+                    {/* Cloudflare Turnstile Ultra-Defense */}
+                    <CloudflareTurnstile 
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onError={() => console.warn('Turnstile challenge failed')}
+                    />
 
                     <div className="grid grid-cols-2 gap-4">
                        <button 

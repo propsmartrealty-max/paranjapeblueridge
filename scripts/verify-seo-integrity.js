@@ -18,16 +18,23 @@ if (fs.existsSync(robotsPath)) {
   }
 }
 
-// 2. Verify sitemap.ts
+// 2. Verify sitemap.ts & sitemap-logic.ts
 const sitemapPath = path.join(rootDir, 'src/app/sitemap.ts');
-if (fs.existsSync(sitemapPath)) {
-  const content = fs.readFileSync(sitemapPath, 'utf8');
-  if (content.includes('generatePseoUrls') && content.includes('0.85')) {
+const sitemapLogicPath = path.join(rootDir, 'src/data/sitemap-logic.ts');
+const sitemapLogicExists = fs.existsSync(sitemapLogicPath);
+const sitemapExists = fs.existsSync(sitemapPath);
+
+if (sitemapExists && sitemapLogicExists) {
+  const content = fs.readFileSync(sitemapLogicPath, 'utf8') + fs.readFileSync(sitemapPath, 'utf8');
+  if (content.includes('0.85') && (content.includes('generateSitemaps') || content.includes('generatePseoUrls') || content.includes('generatePseoChunk'))) {
     console.log("✅ [Sitemap Audit]: Partitioned with high-intent priority scoring (0.85)!");
   } else {
     console.warn("⚠️ [Sitemap Audit]: Missing PSEO priority scoring.");
     pass = false;
   }
+} else {
+  console.warn("⚠️ [Sitemap Audit]: Missing sitemap files.");
+  pass = false;
 }
 
 // 3. Verify llm.txt

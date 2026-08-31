@@ -13,23 +13,38 @@ const REFRESH_DAYS = 30; // Resubmit after 30 days
 async function runGoogleIndexing() {
   console.log("🚀 Starting Google Indexing API Intelligent State Machine...");
   
-  let credentials;
-  const localCredPath = path.join(process.cwd(), 'scripts/google-service-account.json');
+  function getCredentials() {
+    const rawEnv = process.env.GCP_SERVICE_ACCOUNT || process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    if (rawEnv) {
+      try {
+        return typeof rawEnv === 'string' ? JSON.parse(rawEnv) : rawEnv;
+      } catch (e) {
+        console.error('❌ Failed to parse GCP/Google service account env var:', e);
+      }
+    }
 
-  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
-    try {
-      credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
-    } catch (e) {
-      console.error("❌ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON env var.");
+    const localPath = path.join(process.cwd(), 'scripts/google-service-account.json');
+    if (fs.existsSync(localPath)) {
+      try {
+        return JSON.parse(fs.readFileSync(localPath, 'utf-8'));
+      } catch (e) {
+        console.error('❌ Failed to read scripts/google-service-account.json:', e);
+      }
     }
-  } else if (fs.existsSync(localCredPath)) {
-    try {
-      credentials = JSON.parse(fs.readFileSync(localCredPath, 'utf-8'));
-      console.log("🔑 Using credentials from scripts/google-service-account.json");
-    } catch (e) {
-      console.error("❌ Failed to parse scripts/google-service-account.json.");
+
+    const altPath = path.join(process.cwd(), 'credentials/service_account.json');
+    if (fs.existsSync(altPath)) {
+      try {
+        return JSON.parse(fs.readFileSync(altPath, 'utf-8'));
+      } catch (e) {
+        console.error('❌ Failed to read credentials/service_account.json:', e);
+      }
     }
+
+    return null;
   }
+
+  const credentials = getCredentials();
 
   if (!credentials) {
     console.error("⚠️ Google Service Account credentials not found. Skipping Google Indexing API.");
@@ -39,7 +54,10 @@ async function runGoogleIndexing() {
   const jwtClient = new google.auth.JWT({
     email: credentials.client_email,
     key: credentials.private_key,
-    scopes: ['https://www.googleapis.com/auth/indexing'],
+    scopes: [
+      'https://www.googleapis.com/auth/indexing',
+      'https://www.googleapis.com/auth/webmasters.readonly'
+    ],
   });
 
   const indexing = google.indexing({

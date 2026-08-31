@@ -83,46 +83,46 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
         
         {/* Advanced 4-Grid Data Matrix */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-2">
-          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group">
-            <Ruler className="text-gold/60 group-hover:text-gold mb-2" size={16} />
+          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
+            <Ruler className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
             <span className="block text-base sm:text-lg font-serif text-warm-white">{project.carpetArea.split(' ')[0]}</span>
-            <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Sq.Ft Carpet</span>
+            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Sq.Ft Carpet</span>
           </div>
-          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group relative overflow-hidden">
+          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group relative overflow-hidden">
             {currency.code !== 'INR' && <div className="absolute top-0 right-0 bg-emerald-500/20 text-emerald-400 font-bold text-[8px] px-1.5 py-0.5 rounded-bl-md z-10">{currency.code}</div>}
-            <div className={`mb-2 ${currency.code !== 'INR' ? 'text-emerald-400' : 'text-gold/60 group-hover:text-gold'}`}>
-              <IndianRupee size={16} className={currency.code !== 'INR' ? 'hidden' : 'block'} />
+            <div className={`mb-2 ${currency.code !== 'INR' ? 'text-emerald-400' : 'text-gold/70 group-hover:text-gold transition-colors'}`}>
+              <IndianRupee size={18} className={currency.code !== 'INR' ? 'hidden' : 'block'} />
               <span className={`font-serif text-lg leading-none ${currency.code !== 'INR' ? 'block' : 'hidden'}`}>{currency.symbol}</span>
             </div>
             <span className="block text-base sm:text-lg font-serif text-warm-white">{formatPrice(project.priceValue).replace(currency.symbol, '')}</span>
-            <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Starting Price</span>
+            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Starting Price</span>
           </div>
-          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group">
-            <Calendar className="text-gold/60 group-hover:text-gold mb-2" size={16} />
+          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
+            <Calendar className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
             <span className="block text-base sm:text-lg font-serif text-warm-white whitespace-nowrap overflow-hidden text-ellipsis" title={project.possession}>{project.possession}</span>
-            <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Possession</span>
+            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Possession</span>
           </div>
-          <div className="bg-[#050A14] p-4 rounded-xl border border-white/5 hover:border-gold/30 transition-colors group">
-            <Building2 className="text-gold/60 group-hover:text-gold mb-2" size={16} />
+          <div className="ultra-glass-card p-4 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group">
+            <Building2 className="text-gold/70 group-hover:text-gold mb-2 transition-colors" size={18} />
             <span className="block text-base sm:text-lg font-serif text-warm-white">{project.storeys} Levels</span>
-            <span className="text-[9px] text-text-light/50 uppercase tracking-widest">Tower Height</span>
+            <span className="text-[9px] text-text-light/70 uppercase tracking-widest font-sans">Tower Height</span>
           </div>
         </div>
 
         {/* USPs & RERA */}
-        <div className="flex flex-col gap-4 mt-4 bg-white/[0.02] border border-white/5 p-5 rounded-2xl">
-            <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-1">
-              <h4 className="text-warm-white font-bold text-xs uppercase tracking-widest">Premium USPs</h4>
-              <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1 rounded-full border border-gold/10" title="MahaRERA Registered">
-                <ShieldCheck size={12} className="text-green-500" />
-                <span className="text-[9px] text-text-light font-mono">{project.reraNumber}</span>
+        <div className="flex flex-col gap-4 mt-2 ultra-glass-card p-5 sm:p-6 rounded-2xl">
+            <div className="flex items-center justify-between border-b border-gold/15 pb-3">
+              <h4 className="text-warm-white font-bold text-xs uppercase tracking-widest">Premium Architectural USPs</h4>
+              <div className="flex items-center gap-1.5 bg-navy/60 px-3 py-1 rounded-full border border-gold/30 shadow-inner" title="MahaRERA Registered">
+                <ShieldCheck size={13} className="text-emerald-400" />
+                <span className="text-[10px] text-gold font-mono font-bold">{project.reraNumber}</span>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 {project.usp.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-text-light/80">
+                    <div key={idx} className="flex items-start gap-2.5 text-text-light">
                         <CheckCircle2 size={14} className="text-gold mt-0.5 shrink-0" />
-                        <span className="text-[11px] leading-tight">{item}</span>
+                        <span className="text-xs leading-relaxed">{item}</span>
                     </div>
                 ))}
             </div>
@@ -135,9 +135,9 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
             </div>
             <a 
               href={`/${project.slug}`}
-              className="flex-1 px-6 py-4 bg-transparent border border-gold text-gold text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition-all flex items-center justify-center gap-3 rounded-full text-center"
+              className="flex-1 px-6 py-3.5 bg-gradient-to-r from-gold/10 via-gold/20 to-gold/10 hover:from-gold hover:to-gold-light hover:text-navy text-gold text-xs font-bold uppercase tracking-widest border border-gold/40 hover:border-gold transition-all duration-300 flex items-center justify-center gap-2 rounded-full text-center shadow-lg"
             >
-              Explore Deep Data
+              <span>Explore Unit Plans</span>
             </a>
         </div>
       </motion.div>

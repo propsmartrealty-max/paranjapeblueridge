@@ -11,8 +11,12 @@ export default function SpeculationRules() {
   const prerenderUrls = [
     "/",
     "/mr",
+    "/nri-investment",
+    "/construction-updates",
     "/hinjewadi-micro-market",
     "/mr-hinjewadi-micro-market",
+    "/html-sitemap",
+    "/directory",
     ...projects.map(p => `/${p.slug}`),
     ...projects.map(p => `/mr-${p.slug}`),
     ...projects.flatMap(p => (p.configurations || []).map(c => `/${p.slug}/${c.slug}`)),

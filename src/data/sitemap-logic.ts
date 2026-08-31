@@ -87,9 +87,12 @@ function getCoreAndProjectUrls(): MetadataRoute.Sitemap {
   const staticUrls = [
     buildUrlEntry('', staticPublishedDate, 'daily', 1.0),
     buildUrlEntry('mr', staticPublishedDate, 'daily', 1.0),
+    buildUrlEntry('nri-investment', staticPublishedDate, 'daily', 0.95, false),
+    buildUrlEntry('construction-updates', staticPublishedDate, 'weekly', 0.9, false),
     buildUrlEntry('hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
     buildUrlEntry('mr-hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
     buildUrlEntry('insights', staticPublishedDate, 'daily', 0.9, false),
+    buildUrlEntry('directory', staticPublishedDate, 'weekly', 0.8, false),
     buildUrlEntry('sovereign-vault', staticPublishedDate, 'weekly', 0.8, false),
     buildUrlEntry('html-sitemap', staticPublishedDate, 'weekly', 0.7, false),
   ];

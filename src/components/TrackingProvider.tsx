@@ -81,6 +81,19 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
 
+    // --- GA4 Real Estate Item Tracking ---
+    if (typeof window !== 'undefined' && path !== '/') {
+      const cleanSlug = path.replace(/^\//, '').replace(/^mr-/, '');
+      if (['promenade-residences', 'the-altius', 'the-groves', 'ridges-41', 'orion-blue-ridge'].includes(cleanSlug)) {
+        trackRealEstateEvent('view_item', {
+          item_id: cleanSlug,
+          item_name: cleanSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+          item_category: 'Real Estate Luxury Apartment',
+          location_id: 'Hinjewadi_Phase_1_Pune'
+        });
+      }
+    }
+
     return () => {
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
@@ -95,3 +108,24 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 }
 
 export const useBuyerIntent = () => useContext(TrackingContext);
+
+/**
+ * Standardized Google Analytics 4 & Google Ads Real Estate E-Commerce Event Tracker
+ */
+export function trackRealEstateEvent(
+  eventName: 'view_item_list' | 'view_item' | 'select_item' | 'begin_checkout' | 'generate_lead',
+  params?: Record<string, any>
+) {
+  if (typeof window === 'undefined') return;
+  try {
+    if ((window as any).gtag) {
+      (window as any).gtag('event', eventName, params);
+    }
+    if ((window as any).dataLayer) {
+      (window as any).dataLayer.push({ event: eventName, ...params });
+    }
+  } catch (e) {
+    // Graceful pass
+  }
+}
+
