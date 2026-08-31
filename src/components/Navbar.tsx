@@ -176,7 +176,7 @@ export default function Navbar() {
 
             <button 
               onClick={() => handleScrollTo('enquiry')}
-              className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg hover:shadow-gold/30 cursor-pointer border-none flex items-center gap-1.5 font-sans"
+              className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg hover:shadow-gold/30 cursor-pointer border-none flex items-center gap-1.5 font-sans btn-sheen"
               aria-label="Open Priority Enquiry"
             >
               <Sparkles size={12} className="fill-navy" />

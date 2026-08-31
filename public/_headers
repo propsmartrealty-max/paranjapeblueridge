@@ -4,37 +4,70 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Permissions-Policy: camera=(), microphone=(), geolocation=(self), payment=(), usb=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), payment=(), usb=(), display-capture=()
   X-DNS-Prefetch-Control: on
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Cross-Origin-Resource-Policy: same-origin
+  X-Download-Options: noopen
+  X-Permitted-Cross-Domain-Policies: none
+  Origin-Agent-Cluster: ?1
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://maps.googleapis.com https://maps.gstatic.com https://*.google.com https://*.googleapis.com; frame-src 'self' https://challenges.cloudflare.com https://www.google.com https://www.youtube.com https://youtube.com; connect-src 'self' https://challenges.cloudflare.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://script.google.com https://formsubmit.co https://api.indexnow.org https://www.bing.com https://maps.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'self' https://challenges.cloudflare.com https://formsubmit.co; frame-ancestors 'self'; upgrade-insecure-requests;
+  Cloudflare-CDN-Cache-Control: max-age=86400, stale-while-revalidate=86400, stale-if-error=604800
+  CDN-Cache-Control: max-age=86400, stale-while-revalidate=86400
+  Surrogate-Control: max-age=86400, stale-while-revalidate=86400
+  Cache-Tag: blueridge-core,blueridge-pages
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+  Cloudflare-CDN-Cache-Control: max-age=31536000
+  CDN-Cache-Control: max-age=31536000
+  Cache-Tag: blueridge-static,blueridge-assets
 
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+  Cloudflare-CDN-Cache-Control: max-age=31536000
+  CDN-Cache-Control: max-age=31536000
+  Cache-Tag: blueridge-static,blueridge-next
 
 /manifest.json
   Content-Type: application/manifest+json; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cloudflare-CDN-Cache-Control: max-age=86400, stale-while-revalidate=604800
+  Cache-Tag: blueridge-pwa,blueridge-manifest
 
 /robots.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
+  Cache-Tag: blueridge-discovery,blueridge-robots
 
 /sitemap*.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
+  Cache-Tag: blueridge-discovery,blueridge-sitemaps
+  X-Robots-Tag: noindex, follow
 
 /feed.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
+  Cache-Tag: blueridge-discovery,blueridge-feed
 
 /google-products*.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
+  Cache-Tag: blueridge-discovery,blueridge-google-feed
 
 /llm.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
+  Cache-Tag: blueridge-discovery,blueridge-ai-context
+
+/api/og*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
+  Cache-Tag: blueridge-og,blueridge-images

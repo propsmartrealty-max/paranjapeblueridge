@@ -107,14 +107,15 @@ export default function TownshipVirtualTour() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="ultra-glass-card border border-gold/25 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden"
+          className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden hud-frame"
         >
+          <div className="luminous-line-gold absolute top-0 left-0 right-0 opacity-40"></div>
           <div className="text-center mb-12">
             <span className="gilded-pill mb-3">High-Definition Visual Intelligence</span>
             <h2 className="text-3xl sm:text-5xl font-serif text-warm-white font-bold mt-2">
               Township <span className="italic font-normal text-gilded">Virtual Experience</span>
             </h2>
-            <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl mx-auto leading-relaxed font-medium">
               Experience the 138-acre lifestyle, amenities, and architecture of Paranjape Blue Ridge in cinematic detail.
             </p>
           </div>
@@ -129,8 +130,8 @@ export default function TownshipVirtualTour() {
                   onClick={() => setActiveTab(tab)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-gold via-gold-light to-gold text-navy border-gold shadow-lg shadow-gold/30 scale-105'
-                      : 'bg-white/70 dark:bg-slate-900/60 hover:bg-gold/10 text-text-muted border-gold/20 hover:border-gold/40'
+                      ? 'bg-gradient-to-r from-gold via-gold-light to-gold text-navy border-gold shadow-lg shadow-gold/30 scale-105 btn-sheen'
+                      : 'bg-white/80 dark:bg-slate-900/70 hover:bg-gold/10 text-text-muted border-gold/25 hover:border-gold/50'
                   }`}
                 >
                   <span className={isActive ? 'text-navy' : 'text-gold'}>{tab.icon}</span>
@@ -141,7 +142,7 @@ export default function TownshipVirtualTour() {
           </div>
 
           {/* Showcase Player Frame */}
-          <div className="bg-gradient-to-b from-white/90 to-white/60 dark:from-slate-800/80 dark:to-slate-900/80 border border-gold/30 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
+          <div className="bg-gradient-to-b from-white/95 to-white/70 dark:from-slate-800/90 dark:to-slate-900/90 border border-gold/35 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
             {/* Visual Showcase Panel (8 cols) */}
             <div className="lg:col-span-8 relative aspect-video sm:min-h-[420px] group overflow-hidden">
               <Image
@@ -156,7 +157,7 @@ export default function TownshipVirtualTour() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-gold/30 text-gold text-[10px] uppercase font-bold tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-gold/40 text-gold text-[10px] uppercase font-bold tracking-wider font-mono">
                   {activeTab.category}
                 </span>
               </div>
@@ -164,7 +165,7 @@ export default function TownshipVirtualTour() {
               {/* Glowing Play Trigger Button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gold/40 animate-ping"></div>
+                  <div className="absolute inset-0 rounded-full bg-gold/50 animate-ping"></div>
                   <a
                     href="https://wa.me/917744009295?text=Hello%20Sovereign%20Desk,%20I%20would%20like%20to%20request%20a%20private%20virtual%203D%20tour%20of%20Paranjape%20Blue%20Ridge."
                     target="_blank"
@@ -179,22 +180,22 @@ export default function TownshipVirtualTour() {
 
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
                 <span className="font-serif font-bold text-sm sm:text-base">{activeTab.title}</span>
-                <span className="text-[9px] text-gold uppercase tracking-widest bg-black/70 px-2.5 py-1 rounded-full border border-gold/30 font-mono">
+                <span className="text-[9px] text-gold uppercase tracking-widest bg-black/80 px-2.5 py-1 rounded-full border border-gold/40 font-mono font-bold">
                   4K Cinematic
                 </span>
               </div>
             </div>
 
             {/* Content Details Panel (4 cols) */}
-            <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between bg-gold/5 border-t lg:border-t-0 lg:border-l border-gold/20">
+            <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between bg-gold/5 border-t lg:border-t-0 lg:border-l border-gold/25">
               <div>
-                <span className="text-[10px] text-gold uppercase tracking-widest font-bold block mb-1">Interactive Feature</span>
+                <span className="text-[10px] text-gold uppercase tracking-widest font-bold block mb-1 font-mono">Interactive Feature</span>
                 <h3 className="text-xl font-serif text-warm-white font-bold mb-3">{activeTab.title}</h3>
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-6">{activeTab.description}</p>
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-6 font-medium">{activeTab.description}</p>
                 
                 <div className="space-y-2.5">
                   {activeTab.specs.map((spec, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-xs text-warm-white/90">
+                    <div key={idx} className="flex items-center gap-2.5 text-xs text-warm-white">
                       <CheckCircle2 size={14} className="text-gold shrink-0" />
                       <span className="font-medium">{spec}</span>
                     </div>
@@ -204,13 +205,14 @@ export default function TownshipVirtualTour() {
 
               <a
                 href="#enquiry"
-                className="mt-8 w-full py-3.5 bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold rounded-2xl text-center text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2"
+                className="mt-8 w-full py-4 bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold rounded-2xl text-center text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2 btn-sheen"
               >
                 <span>Book Live Video Walkthrough</span>
                 <ArrowRight size={14} />
               </a>
             </div>
           </div>
+          <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-40"></div>
         </motion.div>
       </div>
     </section>

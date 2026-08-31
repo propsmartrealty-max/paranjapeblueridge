@@ -28,7 +28,8 @@ export default function CurrencySwitcher() {
             <button
               key={curr.code}
               onClick={() => setCurrency(curr.code)}
-              className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-all whitespace-nowrap ${
+              aria-label={`Switch display currency to ${curr.code}`}
+              className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer ${
                 currency.code === curr.code
                   ? 'bg-gold text-navy shadow-md font-bold'
                   : 'text-text-muted hover:text-warm-white'

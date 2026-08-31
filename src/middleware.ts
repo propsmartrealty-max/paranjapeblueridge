@@ -70,14 +70,28 @@ export function middleware(req: NextRequest) {
   }
 
   // ── 2. Malicious Exploit & Probe Defense ───────────────────────────────────
-  // Block vulnerability scanners probing for WordPress, PHP, .env, .git, etc.
-  const maliciousPatterns = [
-    '/wp-admin', '/wp-login', '/wp-content', '/xmlrpc.php', '/phpmyadmin',
+  // Block vulnerability scanners, directory traversal, and exploit probes
+  const maliciousPathPatterns = [
+    '/wp-admin', '/wp-login', '/wp-content', '/wp-includes', '/xmlrpc.php', '/phpmyadmin',
     '/.env', '/.git', '/.aws', '/config.json', '/eval-stdin.php', '/autodiscover',
-    '/actuator', '/solr', '/cgi-bin'
+    '/actuator', '/solr', '/cgi-bin', '/telescope', '/phpunit', '/server-status',
+    '/vendor/composer', '/debug/default/view', '/.ds_store', '/etc/passwd', '/proc/self'
   ];
-  if (maliciousPatterns.some(p => pathname.toLowerCase().startsWith(p) || pathname.toLowerCase().includes(p))) {
+  const lowerPath = pathname.toLowerCase();
+  if (maliciousPathPatterns.some(p => lowerPath.startsWith(p) || lowerPath.includes(p)) || lowerPath.includes('..') || lowerPath.includes('%2e%2e')) {
     return new NextResponse('Access Denied: Security Violation.', { status: 403 });
+  }
+
+  // ── 2b. Query String Attack Injection Defense ──────────────────────────────
+  const queryString = req.nextUrl.search.toLowerCase();
+  if (queryString) {
+    const maliciousQueryPatterns = [
+      '<script', '%3cscript', 'javascript:', 'union%20select', 'union+select',
+      'concat(', 'eval(', 'base64_decode', '${jndi:', '<!entity', 'document.cookie'
+    ];
+    if (maliciousQueryPatterns.some(p => queryString.includes(p))) {
+      return new NextResponse('Access Denied: Malicious Query Signature Detected.', { status: 403 });
+    }
   }
 
   // ── 3. Crawl Budget Defense: Block aggressive useless scraping bots ──────────
@@ -115,21 +129,42 @@ export function middleware(req: NextRequest) {
   }
 
   // ── 5. Cloudflare / Edge NRI Geo Detection ──────────────────────────────────
-  // Extract geographical data from Cloudflare ('cf-ipcountry') or Vercel Edge.
+  // Extract comprehensive geographical data from Cloudflare ('cf-ipcountry', 'cf-ipcity', etc.) or Vercel Edge.
   const country =
     req.headers.get('cf-ipcountry') ||
     req.headers.get('x-vercel-ip-country') ||
     req.geo?.country ||
     'IN';
+  
+  const city = req.headers.get('cf-ipcity') || req.geo?.city || '';
+  const region = req.headers.get('cf-region') || req.geo?.region || '';
+  const timezone = req.headers.get('cf-timezone') || '';
+  const cfRay = req.headers.get('cf-ray') || '';
 
   // Define high-value NRI hubs (USA, UAE, UK, Singapore, Australia, Canada)
   const isNRIHub = ['US', 'AE', 'GB', 'SG', 'AU', 'CA'].includes(country);
 
+  // Dynamic Cache-Tag assignment for granular Cloudflare Edge Purging
+  let cacheTag = 'blueridge-core';
+  if (pathname === '/') {
+    cacheTag = 'blueridge-core,blueridge-home';
+  } else if (pathname.includes('promenade') || pathname.includes('altius') || pathname.includes('41')) {
+    cacheTag = 'blueridge-core,blueridge-cluster';
+  } else if (pathname.includes('insights') || pathname.includes('blog')) {
+    cacheTag = 'blueridge-core,blueridge-insights';
+  } else if (pathname.includes('directory') || pathname.includes('flats') || pathname.includes('bhk')) {
+    cacheTag = 'blueridge-core,blueridge-pseo';
+  }
+
   // Clone the request headers and inject custom tracking data
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-user-country', country);
+  requestHeaders.set('x-user-city', city);
+  requestHeaders.set('x-user-region', region);
+  requestHeaders.set('x-user-timezone', timezone);
   requestHeaders.set('x-is-nri-traffic', isNRIHub ? 'true' : 'false');
   requestHeaders.set('x-pathname', pathname);
+  if (cfRay) requestHeaders.set('x-cf-ray', cfRay);
 
   const response = NextResponse.next({
     request: {
@@ -137,7 +172,7 @@ export function middleware(req: NextRequest) {
     },
   });
 
-  // ── 6. Global Hardened Security Headers ────────────────────────────────────
+  // ── 6. Global Enterprise Cloudflare & Security Headers ─────────────────────
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'SAMEORIGIN');
   response.headers.set('X-XSS-Protection', '1; mode=block');
@@ -145,17 +180,45 @@ export function middleware(req: NextRequest) {
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
   response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
+  response.headers.set('X-Download-Options', 'noopen');
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
+  response.headers.set('Origin-Agent-Cluster', '?1');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self), payment=(), usb=(), display-capture=()');
   response.headers.set('X-DNS-Prefetch-Control', 'on');
   response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
 
-  // Advanced Edge Preloading: HTTP 103 Early Hints for LCP Image
-  response.headers.set('Link', '</assets/images/township-night.png>; rel=preload; as=image; fetchpriority=high');
+  // Enterprise Content Security Policy
+  const cspHeader = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com https://www.google.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "img-src 'self' data: blob: https: https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://maps.googleapis.com https://maps.gstatic.com https://*.google.com https://*.googleapis.com",
+    "frame-src 'self' https://challenges.cloudflare.com https://www.google.com https://www.youtube.com https://youtube.com",
+    "connect-src 'self' https://challenges.cloudflare.com https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://script.google.com https://formsubmit.co https://api.indexnow.org https://www.bing.com https://maps.googleapis.com",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self' https://challenges.cloudflare.com https://formsubmit.co",
+    "frame-ancestors 'self'",
+    "upgrade-insecure-requests"
+  ].join('; ');
+  response.headers.set('Content-Security-Policy', cspHeader);
 
-  // Edge telemetry verification headers
+  // Cloudflare Edge Cache & Cache-Tag directives
+  response.headers.set('Cloudflare-CDN-Cache-Control', 'max-age=86400, stale-while-revalidate=86400, stale-if-error=604800');
+  response.headers.set('CDN-Cache-Control', 'max-age=86400, stale-while-revalidate=86400');
+  response.headers.set('Surrogate-Control', 'max-age=86400, stale-while-revalidate=86400');
+  response.headers.set('Cache-Tag', cacheTag);
+
+  // Advanced Edge Preloading: HTTP 103 Early Hints for LCP Hero Assets
+  response.headers.set('Link', '</assets/images/real-township-day.jpg>; rel=preload; as=image; fetchpriority=high, </assets/images/blue-ridge-logo.png>; rel=preload; as=image');
+
+  // Enterprise telemetry verification headers
   response.headers.set('x-edge-canonical-host', 'paranjapeblueridge.com');
   response.headers.set('x-edge-geo-country', country);
+  response.headers.set('x-edge-geo-city', city || 'Unknown');
   response.headers.set('x-edge-waf-status', isVerifiedCrawler ? 'Whitelisted' : 'Protected');
+  response.headers.set('x-edge-cache-tag', cacheTag);
 
   return response;
 }

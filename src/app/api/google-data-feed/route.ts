@@ -73,6 +73,8 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/ld+json; charset=utf-8',
       'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
+      'Cloudflare-CDN-Cache-Control': 'max-age=86400, stale-while-revalidate=43200',
+      'Cache-Tag': 'blueridge-google-feed,blueridge-inventory',
       'X-Content-Type-Options': 'nosniff',
     },
   });

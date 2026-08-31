@@ -46,28 +46,29 @@ export default function InventoryMatrix() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden"
+            className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden hud-frame"
           >
+            <div className="luminous-line-gold absolute top-0 left-0 right-0 opacity-40"></div>
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-6">
               <div>
                 <div className="flex items-center gap-2.5 mb-3">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
                   <span className="gilded-pill text-[9px]">Live Inventory Status</span>
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-serif text-warm-white font-bold mt-2">
                   Sovereign <span className="italic font-normal text-gilded">Flash-Lock</span>
                 </h2>
-                <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl leading-relaxed">
+                <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl leading-relaxed font-medium">
                   High-velocity allocation window. Lock in your preferred tower configuration with a 48-hour price freeze before quarterly revision.
                 </p>
               </div>
               
               <div className="p-4 sm:p-5 bg-gradient-to-r from-gold/15 via-gold/10 to-gold/5 border border-gold/30 rounded-2xl sm:rounded-3xl flex items-center gap-4 shadow-md shrink-0">
-                <div className="w-12 h-12 bg-gold/20 rounded-2xl flex items-center justify-center text-gold">
+                <div className="w-12 h-12 bg-gold/20 rounded-2xl flex items-center justify-center text-gold border border-gold/25">
                   <Clock size={24} />
                 </div>
                 <div>
-                  <span className="block text-[9px] text-text-muted uppercase tracking-widest font-semibold mb-0.5">Price Freeze Closes In</span>
+                  <span className="block text-[9px] text-text-muted uppercase tracking-widest font-bold mb-0.5 font-mono">Price Freeze Closes In</span>
                   <span className="text-xl sm:text-2xl font-mono text-gold font-bold tracking-wider">{formatTime(timeLeft)}</span>
                 </div>
               </div>
@@ -82,34 +83,34 @@ export default function InventoryMatrix() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                   whileHover={{ y: -6 }}
-                  className="p-6 sm:p-8 bg-gradient-to-b from-white/90 to-white/60 dark:from-slate-800/80 dark:to-slate-900/80 border border-gold/25 rounded-3xl relative overflow-hidden group shadow-lg hover:shadow-2xl hover:border-gold/60 transition-all flex flex-col justify-between"
+                  className="p-6 sm:p-8 bg-gradient-to-b from-white/95 to-white/70 dark:from-slate-800/90 dark:to-slate-900/90 border border-gold/25 rounded-3xl relative overflow-hidden group shadow-lg hover:shadow-2xl hover:border-gold/60 transition-all flex flex-col justify-between"
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
 
                   <div>
                     <div className="flex justify-between items-start mb-4">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-gold bg-gold/10 px-2.5 py-1 rounded-full border border-gold/20">
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-gold bg-gold/10 px-2.5 py-1 rounded-full border border-gold/25 font-mono">
                         {item.tower}
                       </span>
                       {item.available <= 5 && (
-                        <span className="bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/25 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                        <span className="bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 font-mono">
                           <Flame size={10} /> Fast Selling
                         </span>
                       )}
                     </div>
                     
                     <h3 className="text-xl sm:text-2xl font-serif text-warm-white font-bold mb-1">{item.name}</h3>
-                    <span className="text-gold font-bold text-xs sm:text-sm">{item.config} Premium Residences</span>
+                    <span className="text-gold font-bold text-xs sm:text-sm font-sans">{item.config} Premium Residences</span>
                     
-                    <div className="mt-6 mb-6 p-4 bg-gold/5 rounded-2xl border border-gold/15">
+                    <div className="mt-6 mb-6 p-4 bg-gold/5 rounded-2xl border border-gold/20 shadow-inner">
                       <div className="flex justify-between items-end mb-2">
-                        <span className="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Available Units</span>
+                        <span className="text-text-muted text-[10px] uppercase tracking-wider font-bold font-mono">Available Units</span>
                         <span className="text-2xl sm:text-3xl font-serif text-warm-white font-bold">
                           {item.available}
                           <span className="text-sm text-text-muted font-normal"> / {item.total}</span>
                         </span>
                       </div>
-                      <div className="w-full h-2 bg-gold/15 rounded-full overflow-hidden p-0.5">
+                      <div className="w-full h-2.5 bg-gold/20 rounded-full overflow-hidden p-0.5 border border-gold/25">
                         <motion.div 
                           initial={{ width: 0 }}
                           whileInView={{ width: `${(item.available / item.total) * 100}%` }}
@@ -122,7 +123,7 @@ export default function InventoryMatrix() {
 
                   <button 
                     onClick={() => handleReserve(`${item.name} (${item.config})`)}
-                    className="w-full bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-3.5 rounded-2xl text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-4 rounded-2xl text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2 cursor-pointer btn-sheen"
                   >
                     <span>Reserve Unit Hold</span>
                     <ArrowRight size={14} />
@@ -130,6 +131,7 @@ export default function InventoryMatrix() {
                 </motion.div>
               ))}
             </div>
+            <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-40"></div>
           </motion.div>
         </div>
       </section>

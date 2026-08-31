@@ -385,45 +385,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   };
 
   // --- Real Estate & Business Schemas ---
-
-  // Resident Reviews — Diversified ratings to match 4.8/5 aggregate (Google quality signal)
-  const nestedReviews = [
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Rahul Sharma", "sameAs": "https://www.google.com/maps" },
-      "datePublished": "2026-03-15",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-      "reviewBody": "Living at Paranjape Blue Ridge for 3 years now. The walk-to-work from my flat to the Infosys campus takes under 10 minutes. The 9-hole golf course is world-class and the Blue Ridge Public School has been excellent for my kids. Best investment decision I made in Pune."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Priya Menon" },
-      "datePublished": "2026-01-20",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-      "reviewBody": "The Altius at Blue Ridge is simply stunning. River-facing 4 BHK with a private lift lobby and golf course views. Security is top-notch and the boat club is a weekend highlight for the family. Paranjape has delivered quality that no other township in Hinjewadi can match."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Vikram Nair" },
-      "datePublished": "2025-11-10",
-      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-      "reviewBody": "As an NRI investor, I chose Blue Ridge Ridges 41 for its rental yield potential. Currently earning 4.8% annual yield from my 2 BHK. The township infrastructure, ICSE school inside, and Metro Line 3 proximity will drive further appreciation. Highly recommend for NRI property investment in Pune."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Anita Kulkarni" },
-      "datePublished": "2025-09-22",
-      "reviewRating": { "@type": "Rating", "ratingValue": "4", "bestRating": "5", "worstRating": "1" },
-      "reviewBody": "My 3 BHK in Promenade Residences has been largely great. River-facing balcony view is breathtaking and I work at Wipro nearby. Traffic during peak hours on the Hinjewadi bridge can be slow, but Blue Ridge's walk-to-work option means I often skip it entirely. Overall very happy with the township."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Suresh Patil" },
-      "datePublished": "2025-12-05",
-      "reviewRating": { "@type": "Rating", "ratingValue": "4", "bestRating": "5", "worstRating": "1" },
-      "reviewBody": "Bought a 4 BHK in The Altius in 2023 at ₹1.80 Cr. Current resale value is already ₹2.4 Cr. Maintenance charges could be lower for a property of this size, but the quality of infrastructure and the school inside the campus absolutely justifies it. Strong appreciation story."
-    }
-  ];
   let regionName = "Hinjewadi Phase 1";
   let postalCodeVal = "411057";
   let geoVal = { latitude: 18.5786825, longitude: 73.7370331 };
@@ -552,14 +513,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       { "@type": "LocationFeatureSpecification", "name": "Pune Metro Line 3 Connectivity (800m)", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "MahaRERA Certified", "value": true }
     ],
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "2150",
-        "bestRating": "5",
-        "worstRating": "1"
-    },
-    "review": nestedReviews,
     "sameAs": trustBridges
   };
 
@@ -866,20 +819,13 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "description": `Premium ${config.title} with world-class amenities at Paranjape Blue Ridge Hinjewadi.`,
         "sku": `${projectData.id}-${config.slug}`,
         "brand": { "@type": "Brand", "name": "Paranjape Schemes" },
-        "offers": {
+        offers: {
           "@type": "Offer",
           "url": `${SITE_URL}/${projectData.slug}/${config.slug}`,
           "priceCurrency": "INR",
           "price": String(config.priceValue || 9500000),
           "availability": "https://schema.org/InStock"
-        },
-        ...(pathname === `/${projectData.slug}/${config.slug}` || pathname === `/mr/${projectData.slug}/${config.slug}` ? {
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "2150"
-          }
-        } : {})
+        }
       });
     });
   }
@@ -906,14 +852,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "offerCount": "120",
         "url": `${SITE_URL}/${pseoData.slug}`,
         "availability": "https://schema.org/InStock"
-      },
-      ...(pathname === `/${pseoData.slug}` || pathname === `/mr/${pseoData.slug}` ? {
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "2150"
-        }
-      } : {})
+      }
     });
 
     // ItemList schema representing available projects on this configuration/category page

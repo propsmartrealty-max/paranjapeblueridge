@@ -146,6 +146,12 @@ export async function GET(req: NextRequest) {
       {
         width: 1200,
         height: 630,
+        headers: {
+          'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400',
+          'Cloudflare-CDN-Cache-Control': 'max-age=604800, stale-while-revalidate=86400',
+          'Cache-Tag': 'blueridge-og,blueridge-images',
+          'X-Content-Type-Options': 'nosniff',
+        },
       }
     );
   } catch (e: any) {

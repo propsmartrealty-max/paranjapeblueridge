@@ -216,9 +216,29 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://challenges.cloudflare.com" />
         {/* Vercel edge network preconnect */}
         <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://vercel.live" />
         <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
         <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchPriority="high" />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  source: 'list',
+                  urls: [
+                    '/paranjape-blue-ridge-promenade-hinjewadi-pune',
+                    '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+                    '/paranjape-blue-ridge-41-hinjewadi-pune',
+                    '/directory',
+                    '/insights',
+                    '/hinjewadi-micro-market'
+                  ],
+                  eagerness: 'moderate'
+                }
+              ]
+            })
+          }}
+        />
         <SeoHead pathname="/" />
       </head>
       <body className="antialiased bg-ambient-orbs" data-country={userCountry}>

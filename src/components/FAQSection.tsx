@@ -61,18 +61,18 @@ export default function FAQSection() {
 
       <div className="container">
         <div className="text-center mb-16">
-          <span className="text-gold font-bold tracking-[6px] uppercase text-[10px]">{t('Questions & Answers', 'प्रश्न आणि उत्तरे')}</span>
-          <h2 className="text-5xl font-serif text-warm-white mt-4">{t('Sovereign', 'सोव्हरेन')} <span className="italic font-normal text-gilded">{t('Insights', 'इन्साईट्स')}</span></h2>
+          <span className="gilded-pill mb-3">{t('Questions & Answers', 'प्रश्न आणि उत्तरे')}</span>
+          <h2 className="text-3xl sm:text-5xl font-serif text-warm-white mt-4 font-bold">{t('Sovereign', 'सोव्हरेन')} <span className="italic font-normal text-gilded">{t('Insights', 'इन्साईट्स')}</span></h2>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="ultra-glass-card rounded-2xl overflow-hidden border border-gold/20">
+            <div key={i} className="ultra-glass-card rounded-2xl overflow-hidden border border-gold/25 hover:border-gold/50 transition-all shadow-md">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 aria-expanded={openIndex === i}
                 aria-controls={`faq-answer-${i}`}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-gold/5 transition-colors"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-gold/5 transition-colors cursor-pointer"
               >
                 <span className="text-warm-white font-bold text-sm sm:text-base">{faq.q}</span>
                 {openIndex === i ? <Minus className="text-gold shrink-0 ml-4" size={18} /> : <Plus className="text-gold shrink-0 ml-4" size={18} />}
@@ -87,7 +87,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-text-light text-sm sm:text-base leading-relaxed border-t border-gold/10">
+                    <div className="p-6 pt-0 text-text-muted text-sm leading-relaxed border-t border-gold/15 font-medium">
                       {faq.a}
                     </div>
                   </motion.div>

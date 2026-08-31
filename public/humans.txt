@@ -1,0 +1,10 @@
+/* TEAM */
+  Developer: Paranjape Blue Ridge Digital Engineering Team
+  Contact: digital@pscl.in
+  From: Pune, Maharashtra, India
+
+/* SITE */
+  Standards: HTML5, CSS3, ES2024, Schema.org, Google Search Essentials, RFC 9116
+  Components: React 18, Next.js App Router, Tailwind CSS, Framer Motion
+  Infrastructure: Cloudflare Edge Network, Google Cloud Platform, Google Consent Mode v2
+  Typography: Plus Jakarta Sans, Inter (via next/font/google)
