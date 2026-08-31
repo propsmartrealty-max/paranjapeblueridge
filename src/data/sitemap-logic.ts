@@ -77,6 +77,9 @@ function buildUrlEntry(
         'en-US': standardUrl,
         'en-GB': standardUrl,
         'en-AE': standardUrl,
+        'en-SG': standardUrl,
+        'en-AU': standardUrl,
+        'en-CA': standardUrl,
         'mr-IN': marathiUrl
       }
     }
