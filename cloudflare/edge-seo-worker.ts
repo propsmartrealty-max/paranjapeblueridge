@@ -190,7 +190,7 @@ export default {
       responseHeaders.set('X-Crawler-Hints', 'IndexNow-RealTime-Emit');
     }
     
-    responseHeaders.set('Link', '</assets/images/township-night.png>; rel=preload; as=image; fetchpriority=high');
+    responseHeaders.set('Link', '</assets/images/real-township-day.jpg>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect');
 
     return new Response(transformedResponse.body, {
       status: transformedResponse.status,
