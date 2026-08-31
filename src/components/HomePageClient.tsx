@@ -218,15 +218,18 @@ export default function HomePageClient() {
               </p>
 
               <div className="flex flex-wrap gap-4 items-center">
-                <button 
-                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} 
-                  className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-8 sm:px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl hover:shadow-gold/30 text-center border-none cursor-pointer btn-sheen"
-                >
-                  {t('Explore Residences', 'निवासस्थाने पहा')}
-                </button>
+                <div className="glass-conic-border">
+                  <button 
+                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} 
+                    className="glass-conic-border-inner bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-8 sm:px-10 py-4 font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-2xl hover:shadow-gold/40 text-center border-none cursor-pointer btn-sheen flex items-center gap-2"
+                  >
+                    <span>{t('Explore Residences', 'निवासस्थाने पहा')}</span>
+                    <span className="text-sm">→</span>
+                  </button>
+                </div>
                 <button 
                   onClick={() => document.getElementById('amenities')?.scrollIntoView({ behavior: 'smooth' })} 
-                  className="ultra-glass-card border border-gold/30 text-warm-white hover:text-gold px-8 sm:px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:border-gold transition-all text-center cursor-pointer"
+                  className="ultra-glass-card glass-shimmer-card border border-gold/30 text-warm-white hover:text-gold px-8 sm:px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:border-gold hover:scale-105 transition-all text-center cursor-pointer shadow-lg"
                 >
                   {t('Township Amenities', 'टाऊनशिप सुविधा')}
                 </button>
@@ -235,32 +238,59 @@ export default function HomePageClient() {
 
             {/* FLOATING GLASS STATS COLUMN */}
             <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Total Scale</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-gold/10 text-gold font-bold font-mono">138 Acres</span>
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ scale: 1.03, y: -6 }}
+                className="ultra-glass-card glass-shimmer-card p-5 rounded-2xl border border-gold/30 shadow-2xl backdrop-blur-2xl relative overflow-hidden"
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Total Scale</span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-gold/15 text-gold font-bold font-mono border border-gold/25">138 Acres</span>
                 </div>
-                <div className="text-xl font-serif text-warm-white font-bold">Self-Sufficient Gated Ecosystem</div>
-                <div className="text-xs text-text-muted mt-1">3,000+ Happy Families Currently Residing</div>
-              </div>
+                <div className="text-lg sm:text-xl font-serif text-warm-white font-bold">Self-Sufficient Ecosystem</div>
+                <div className="text-xs text-text-muted mt-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>3,000+ Happy Families Residing</span>
+                </div>
+              </motion.div>
 
-              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Strategic Transit</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold font-mono">800 Meters</span>
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.35 }}
+                whileHover={{ scale: 1.03, y: -6 }}
+                className="ultra-glass-card glass-shimmer-card p-5 rounded-2xl border border-gold/30 shadow-2xl backdrop-blur-2xl relative overflow-hidden"
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Strategic Transit</span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold font-mono border border-emerald-500/30">800 Meters</span>
                 </div>
-                <div className="text-xl font-serif text-warm-white font-bold">Upcoming Metro Line 3</div>
-                <div className="text-xs text-text-muted mt-1">Direct connectivity to Shivajinagar CBD</div>
-              </div>
+                <div className="text-lg sm:text-xl font-serif text-warm-white font-bold">Metro Line 3 Station</div>
+                <div className="text-xs text-text-muted mt-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                  <span>Direct link to Shivajinagar CBD</span>
+                </div>
+              </motion.div>
 
-              <div className="ultra-glass-card p-5 rounded-2xl border border-gold/25 shadow-2xl backdrop-blur-2xl">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase tracking-widest text-text-light font-bold">Rental Yield</span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-gold/10 text-gold font-bold font-mono">4-5% Annual</span>
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                whileHover={{ scale: 1.03, y: -6 }}
+                className="ultra-glass-card glass-shimmer-card p-5 rounded-2xl border border-gold/30 shadow-2xl backdrop-blur-2xl relative overflow-hidden"
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Rental Yield</span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-gold/15 text-gold font-bold font-mono border border-gold/25">4.8% - 5.5%</span>
                 </div>
-                <div className="text-xl font-serif text-warm-white font-bold">Walk-to-Work Tech Hub</div>
-                <div className="text-xs text-text-muted mt-1">Infosys, Wipro, TCS within 2 km radius</div>
-              </div>
+                <div className="text-lg sm:text-xl font-serif text-warm-white font-bold">Walk-to-Work Tech Hub</div>
+                <div className="text-xs text-text-muted mt-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                  <span>Infosys, Wipro, TCS within 2 km</span>
+                </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>

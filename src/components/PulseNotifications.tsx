@@ -53,17 +53,17 @@ export default function PulseNotifications() {
             initial={{ opacity: 0, x: -50, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -50, scale: 0.9 }}
-            className="bg-navy/80 backdrop-blur-2xl border border-white/10 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4"
+            className="ultra-glass-card border border-gold/30 px-5 py-3.5 rounded-2xl shadow-2xl backdrop-blur-2xl flex items-center gap-3.5 pointer-events-auto"
           >
-            <div className={`w-8 h-8 rounded-full bg-white/5 flex items-center justify-center ${currentEvents[index].color}`}>
+            <div className={`w-8 h-8 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center ${currentEvents[index].color}`}>
               {currentEvents[index].icon}
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] text-text-light font-bold uppercase tracking-widest">Sovereign Pulse</span>
+              <span className="text-[9px] text-gold font-bold uppercase tracking-widest">Sovereign Pulse</span>
               <span className="text-xs text-warm-white font-medium">{currentEvents[index].text}</span>
             </div>
             {/* Blinking dot */}
-            <div className="ml-2 w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <div className="ml-1.5 w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
           </motion.div>
         )}
       </AnimatePresence>

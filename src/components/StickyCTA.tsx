@@ -47,12 +47,12 @@ export default function StickyCTA() {
       <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialInterest={initialInterest} />
       
       <div className={`fixed bottom-0 left-0 w-full z-[90] lg:hidden transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-        <div className="bg-navy/80 backdrop-blur-2xl border-t border-gold/30 p-4 flex gap-4">
+        <div className="ultra-glass-card backdrop-blur-3xl border-t border-gold/30 p-3.5 flex gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.15)]">
           
           <a 
             href="tel:+917744009295"
             aria-label="Call Sales Team"
-            className="flex-1 flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-warm-white py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all"
+            className="flex-1 flex items-center justify-center gap-2 bg-white/70 dark:bg-slate-900/70 border border-gold/25 text-warm-white py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all shadow-sm"
           >
             <Phone size={14} className="text-gold" />
             Call Now
@@ -61,7 +61,7 @@ export default function StickyCTA() {
           <button 
             onClick={() => setIsModalOpen(true)}
             aria-label={ctaText}
-            className="flex-1 flex items-center justify-center gap-3 bg-gold text-navy py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-gold/20 active:scale-95 transition-all"
+            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-gold via-gold-light to-gold text-navy py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-gold/30 active:scale-95 transition-all font-sans"
           >
             {ctaIcon}
             {ctaText}
@@ -72,9 +72,9 @@ export default function StickyCTA() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            className="w-14 flex items-center justify-center bg-emerald-500 text-white rounded-2xl active:scale-95 transition-all shadow-lg shadow-emerald-500/20"
+            className="w-12 flex items-center justify-center bg-gradient-to-tr from-emerald-600 to-emerald-400 text-white rounded-2xl active:scale-95 transition-all shadow-lg shadow-emerald-500/25"
           >
-            <MessageCircle size={20} />
+            <MessageCircle size={18} />
           </a>
 
         </div>
