@@ -15,6 +15,7 @@ interface Props {
   pathname?: string;
   ogImage?: string;
   lang?: string;
+  noindex?: boolean;
   projectData?: any;
   pseoData?: any;
 }
@@ -25,6 +26,7 @@ const {
   pathname = "/",
   ogImage = "https://paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal",
   lang = "en",
+  noindex = false,
   projectData,
   pseoData
 } = Astro.props;
@@ -39,7 +41,7 @@ const canonicalUrl = new URL(pathname, Astro.site).href.replace(/\/$/, '') || 'h
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" type="image/png" href="/favicon.png" />
