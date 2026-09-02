@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, Sparkles, Send } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/hooks/useNav';
 
 export default function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);

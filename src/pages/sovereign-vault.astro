@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UnifiedSovereignVault from '../app/sovereign-vault/page';
+
+export const prerender = false;
+---
+
+<Layout
+  title="Sovereign Vault | Paranjape Blue Ridge Administration"
+  description="Internal administrative portal and lead security vault for Paranjape Blue Ridge."
+  pathname="/sovereign-vault"
+>
+  <UnifiedSovereignVault client:only="react" />
+</Layout>

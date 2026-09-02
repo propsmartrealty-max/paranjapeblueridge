@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, Calendar, Download } from 'lucide-react';
 import EnquiryModal from './EnquiryModal';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/hooks/useNav';
 
 export default function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);

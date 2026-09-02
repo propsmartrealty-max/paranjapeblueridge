@@ -15,7 +15,7 @@ import { useAtmosphere } from '@/context/AtmosphereContext';
 import { useBuyerIntent } from '@/components/TrackingProvider';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { projects } from '@/data/master-data';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from '@/hooks/useNav';
 import { Mail, MapPin, ShieldCheck, Award, Search } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';

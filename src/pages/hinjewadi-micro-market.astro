@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InvestmentMatrix from '../components/InvestmentMatrix';
+import ConnectivityHub from '../components/ConnectivityHub';
+
+export const prerender = true;
+---
+
+<Layout
+  title="Hinjewadi Phase 1 Micro-Market Guide | Paranjape Blue Ridge"
+  description="Comprehensive guide to Hinjewadi Phase 1 real estate, investment yields, Metro Line 3 impact, and living at Paranjape Blue Ridge Pune."
+  pathname="/hinjewadi-micro-market"
+>
+  <div class="container mx-auto px-4 pt-24 pb-12">
+    <!-- Hero Section -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold mb-6 tracking-widest uppercase">
+        Real Estate Intelligence
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-warm-white mb-6 leading-tight font-bold">
+        Hinjewadi Phase 1 <span class="italic font-normal text-gilded">Micro-Market Guide</span>
+      </h1>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
+        A deep data-backed analysis into West Pune's economic engine: rental yields, capital appreciation, infrastructure catalysts, and why Paranjape Blue Ridge remains the definitive address.
+      </p>
+    </div>
+
+    <!-- Macro Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20">
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-gold mb-2">Annual Rental Yield</h3>
+        <div class="text-4xl font-serif font-bold text-warm-white mb-2">4.5% - 5.2%</div>
+        <p class="text-xs text-text-muted leading-relaxed">Driven by 400,000+ IT workforce within a 3km radius at Rajiv Gandhi Infotech Park.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-gold mb-2">5-Year Appreciation</h3>
+        <div class="text-4xl font-serif font-bold text-warm-white mb-2">12.8% YoY</div>
+        <p class="text-xs text-text-muted leading-relaxed">Consistent capital growth outpacing average Pune residential macro markets.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-gold mb-2">Metro Line 3 Catalyst</h3>
+        <div class="text-4xl font-serif font-bold text-warm-white mb-2">800m</div>
+        <p class="text-xs text-text-muted leading-relaxed">Walking distance to upcoming Megapolis Circle & Hinjewadi Phase 1 Metro Stations.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Hubs -->
+    <div class="space-y-16">
+      <ConnectivityHub client:visible />
+      <InvestmentMatrix client:visible />
+    </div>
+  </div>
+</Layout>

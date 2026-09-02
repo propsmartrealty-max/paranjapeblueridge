@@ -7,9 +7,7 @@ import { projects } from '@/data/master-data';
 import LanguageToggle from './LanguageToggle';
 import AtmosphereToggle from './AtmosphereToggle';
 import { useLanguage } from '@/context/LanguageContext';
-import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useRouter, usePathname } from '@/hooks/useNav';
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -21,10 +19,12 @@ export default function Navbar() {
 
   const handleScrollTo = (hashId: string) => {
     setIsOpen(false);
-    if (pathname !== '/') {
-      router.push(`/#${hashId}`);
-    } else {
-      document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname !== '/' && window.location.pathname !== '/mr') {
+        window.location.href = `/#${hashId}`;
+      } else {
+        document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -58,32 +58,45 @@ export default function Navbar() {
     },
     {
       id: 'nri',
-      label: 'NRI Hub',
-      labelMr: 'एनआरआय हब',
+      label: 'NRI Desk',
+      labelMr: 'अनिवासी भारतीय',
       href: '/nri-investment',
       type: 'link'
     },
     {
-      id: 'township',
-      label: 'Township',
-      labelMr: 'टाऊनशिप',
-      action: () => handleScrollTo('amenities'),
-      type: 'action'
-    },
-    {
       id: 'insights',
       label: 'Insights',
-      labelMr: 'इन्साईट्स',
-      action: () => handleScrollTo('market'),
+      labelMr: 'संशोधन',
+      href: '/insights',
+      type: 'link'
+    },
+    {
+      id: 'directory',
+      label: 'Directory',
+      labelMr: 'डिरेक्टरी',
+      href: '/directory',
+      type: 'link'
+    },
+    {
+      id: 'experience',
+      label: 'Township',
+      labelMr: 'टाउनशिप',
+      action: () => handleScrollTo('experience'),
       type: 'action'
     },
     {
-      id: 'area-guide',
-      label: 'Area Guide',
-      labelMr: 'एरिया गाइड',
-      href: '/hinjewadi-micro-market',
-      type: 'link',
-      highlight: true
+      id: 'roi',
+      label: 'Yield',
+      labelMr: 'परतावा',
+      action: () => handleScrollTo('roi'),
+      type: 'action'
+    },
+    {
+      id: 'contact',
+      label: 'Location',
+      labelMr: 'स्थान',
+      action: () => handleScrollTo('contact'),
+      type: 'action'
     }
   ];
 
@@ -100,18 +113,17 @@ export default function Navbar() {
           }`}
         >
           {/* LOGO & BRAND EMBLEM */}
-          <Link 
+          <a 
             href="/" 
-            className="flex items-center gap-3.5 pr-4 border-r border-gold/15 group" 
+            className="flex items-center gap-3.5 pr-4 border-r border-gold/15 group no-underline" 
             aria-label="Blue Ridge Sovereign Homepage"
           >
             <div className="relative w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30 group-hover:border-gold transition-colors">
-              <Image 
+              <img 
                 src="/assets/images/blue-ridge-logo.png" 
                 alt="Paranjape Blue Ridge Crest" 
-                width={22}
-                height={22}
-                priority
+                width="22"
+                height="22"
                 className="w-5 h-auto object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
@@ -119,7 +131,7 @@ export default function Navbar() {
               <span className="font-serif font-bold text-xs tracking-[2px] text-warm-white group-hover:text-gold transition-colors">BLUE RIDGE</span>
               <span className="text-[8px] text-gilded font-bold tracking-[3px] uppercase">Sovereign</span>
             </div>
-          </Link>
+          </a>
 
           {/* FLUID WATER FLOW NAVIGATION BAR (DESKTOP) */}
           <ul 
@@ -133,16 +145,16 @@ export default function Navbar() {
               return (
                 <li key={item.id} className="relative z-10">
                   {item.type === 'link' ? (
-                    <Link
+                    <a
                       href={item.href!}
                       onMouseEnter={() => setHoveredIndex(idx)}
-                      className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 ${
-                        item.highlight ? 'text-gold' : isCurrent ? 'text-gold' : 'text-warm-white/80 hover:text-warm-white'
+                      className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 no-underline ${
+                        isCurrent ? 'text-gold' : 'text-warm-white/80 hover:text-warm-white'
                       }`}
                       aria-label={`Go to ${item.label}`}
                     >
                       {t(item.label, item.labelMr)}
-                    </Link>
+                    </a>
                   ) : (
                     <button
                       onClick={item.action}
@@ -205,11 +217,11 @@ export default function Navbar() {
           >
             <div className="flex items-center justify-between pb-6 border-b border-gold/20">
               <div className="flex items-center gap-3">
-                <Image 
+                <img 
                   src="/assets/images/blue-ridge-logo.png" 
                   alt="Paranjape Blue Ridge Crest" 
-                  width={28}
-                  height={28}
+                  width="28"
+                  height="28"
                   className="w-7 h-auto"
                 />
                 <span className="font-serif font-bold text-lg text-warm-white">PARANJAPE BLUE RIDGE</span>
@@ -233,13 +245,13 @@ export default function Navbar() {
                   transition={{ delay: idx * 0.05 + 0.1 }}
                 >
                   {item.type === 'link' ? (
-                    <Link 
+                    <a 
                       href={item.href!} 
                       onClick={() => setIsOpen(false)}
-                      className="text-2xl sm:text-3xl font-serif text-warm-white hover:text-gold transition-colors block py-2 border-b border-white/5"
+                      className="text-2xl sm:text-3xl font-serif text-warm-white hover:text-gold transition-colors block py-2 border-b border-white/5 no-underline"
                     >
                       {t(item.label, item.labelMr)}
-                    </Link>
+                    </a>
                   ) : (
                     <button
                       onClick={item.action}

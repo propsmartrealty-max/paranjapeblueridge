@@ -8,6 +8,7 @@
   X-DNS-Prefetch-Control: on
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Cross-Origin-Resource-Policy: same-origin
+  Timing-Allow-Origin: *
   X-Download-Options: noopen
   X-Permitted-Cross-Domain-Policies: none
   Origin-Agent-Cluster: ?1
@@ -18,17 +19,17 @@
   Surrogate-Control: max-age=86400, stale-while-revalidate=86400
   Cache-Tag: blueridge-core,blueridge-pages
 
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  Cloudflare-CDN-Cache-Control: max-age=31536000
+  CDN-Cache-Control: max-age=31536000
+  Cache-Tag: blueridge-static,blueridge-astro-bundles
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   Cloudflare-CDN-Cache-Control: max-age=31536000
   CDN-Cache-Control: max-age=31536000
   Cache-Tag: blueridge-static,blueridge-assets
-
-/_next/static/*
-  Cache-Control: public, max-age=31536000, immutable
-  Cloudflare-CDN-Cache-Control: max-age=31536000
-  CDN-Cache-Control: max-age=31536000
-  Cache-Tag: blueridge-static,blueridge-next
 
 /manifest.json
   Content-Type: application/manifest+json; charset=utf-8

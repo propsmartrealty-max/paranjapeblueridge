@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NriCostEstimator from '../components/NriCostEstimator';
+import RoiCalculator from '../components/RoiCalculator';
+import FAQSection from '../components/FAQSection';
+
+export const prerender = true;
+---
+
+<Layout
+  title="NRI Real Estate Investment in Pune | Paranjape Blue Ridge"
+  description="The premier NRI property investment destination in Pune. 4.8%-5.2% rental yields in Hinjewadi Phase 1, NRE/NRO repatriation, FEMA compliance, and POA support."
+  pathname="/nri-investment"
+>
+  <div class="container mx-auto px-4 pt-24 pb-16">
+    <!-- Hero Banner -->
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold mb-6 tracking-widest uppercase font-mono">
+        Global Investment Desk
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-warm-white mb-6 leading-tight font-bold">
+        NRI Real Estate Investment <span class="italic font-normal text-gilded">Concierge</span>
+      </h1>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
+        Dedicated end-to-end investment services for Non-Resident Indians across USA, UAE, UK, Singapore, Australia, and Canada investing in Paranjape Blue Ridge Hinjewadi, Pune.
+      </p>
+    </div>
+
+    <!-- Core Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-lg font-serif font-bold text-warm-white mb-2">FEMA & RBI Compliance</h3>
+        <p class="text-xs text-text-muted leading-relaxed">Complete guidance on 100% legal acquisition, NRE/NRO accounts, and hassle-free USD repatriation under Form 15CA/15CB.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-lg font-serif font-bold text-warm-white mb-2">Embassy POA Assistance</h3>
+        <p class="text-xs text-text-muted leading-relaxed">Execute purchase, agreement registration, and tenant management without needing to travel to India in person.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-navy-light/40 border border-gold/20 backdrop-blur-md">
+        <h3 class="text-lg font-serif font-bold text-warm-white mb-2">Turnkey Rental Management</h3>
+        <p class="text-xs text-text-muted leading-relaxed">Dedicated property leasing to blue-chip IT executives at Infosys, Wipro, and TCS with guaranteed rental yields.</p>
+      </div>
+    </div>
+
+    <!-- Calculators -->
+    <div class="space-y-16 max-w-6xl mx-auto">
+      <NriCostEstimator client:visible />
+      <RoiCalculator client:visible />
+      <FAQSection client:visible />
+    </div>
+  </div>
+</Layout>

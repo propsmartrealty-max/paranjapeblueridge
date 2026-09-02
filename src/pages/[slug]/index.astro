@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/master-data';
+import { getPseoBySlug } from '../../data/seo-matrix';
+import SlugPageClient from '../../components/SlugPageClient';
+import PseoLandingPage from '../../components/PseoLandingPage';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+const isMarathi = slug.startsWith('mr-');
+const cleanSlug = isMarathi ? slug.replace(/^mr-/, '') : slug;
+
+const projectData = projects.find(p => p.slug === cleanSlug || p.id === cleanSlug);
+const pseoData = !projectData ? getPseoBySlug(slug) : null;
+
+if (!projectData && !pseoData) {
+  return Astro.redirect('/404');
+}
+
+const title = projectData 
+  ? isMarathi ? `${projectData.name} | परंजपे ब्लू रिज हिंजवडी` : `${projectData.name} | Paranjape Blue Ridge Hinjewadi`
+  : pseoData?.title || 'Paranjape Blue Ridge';
+
+const description = projectData
+  ? projectData.description
+  : pseoData?.description || 'Luxury residences at Paranjape Blue Ridge Hinjewadi Phase 1, Pune.';
+
+const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(title)}&type=Sovereign%20Portal`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  pathname={`/${slug}`}
+  ogImage={ogImage}
+  lang={isMarathi ? 'mr' : 'en'}
+  projectData={projectData}
+  pseoData={pseoData}
+>
+  {projectData ? (
+    <SlugPageClient project={projectData} client:load />
+  ) : pseoData ? (
+    <PseoLandingPage data={pseoData} client:load />
+  ) : null}
+</Layout>

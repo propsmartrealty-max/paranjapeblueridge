@@ -75,7 +75,15 @@ export function CurrencyProvider({ children, initialCountry = 'IN' }: { children
 export function useCurrency() {
   const context = useContext(CurrencyContext);
   if (context === undefined) {
-    throw new Error('useCurrency must be used within a CurrencyProvider');
+    return {
+      currency: CURRENCIES['INR'],
+      setCurrency: () => {},
+      formatPrice: (priceInr: number) => {
+        if (!priceInr) return 'Price on Request';
+        const cr = priceInr / 10000000;
+        return `₹ ${cr.toFixed(2)} Cr`;
+      },
+    };
   }
   return context;
 }

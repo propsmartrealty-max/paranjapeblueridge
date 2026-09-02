@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/hooks/useNav';
 import { projects } from '@/data/master-data';
 
 export default function LanguageToggle() {

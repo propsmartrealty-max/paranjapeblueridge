@@ -47,7 +47,11 @@ export function AtmosphereProvider({ children }: { children: React.ReactNode }) 
 export function useAtmosphere() {
   const context = useContext(AtmosphereContext);
   if (context === undefined) {
-    throw new Error('useAtmosphere must be used within an AtmosphereProvider');
+    return {
+      atmosphere: 'morning' as Atmosphere,
+      setAtmosphere: () => {},
+      toggleAtmosphere: () => {},
+    };
   }
   return context;
 }

@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/master-data';
+import ConfigPageClient from '../../app/[slug]/[config]/ConfigPageClient';
+
+const { slug, config } = Astro.params;
+
+if (!slug || !config) {
+  return Astro.redirect('/404');
+}
+
+const isMarathi = slug.startsWith('mr-');
+const englishSlug = isMarathi ? slug.replace(/^mr-/, '') : slug;
+
+const project = projects.find(p => p.slug === englishSlug);
+const configuration = project?.configurations?.find(c => c.slug === config);
+
+if (!project || !configuration) {
+  return Astro.redirect('/404');
+}
+
+const title = isMarathi 
+  ? `${configuration.title} in ${project.name} | परांजपे ब्लू रिज हिंजवडी — ${configuration.price || project.price}`
+  : `${configuration.title} in ${project.name} | Paranjape Blue Ridge Hinjewadi — ${configuration.price || project.price}`;
+  
+const description = isMarathi
+  ? `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}.`
+  : `Official ${configuration.title} details at ${project.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration.carpetArea || project.carpetArea}. Price: ${configuration.price || project.price}. MahaRERA: ${project.reraNumber}. Download floor plan or book a site visit.`;
+
+const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(configuration.title)}&config=${encodeURIComponent(project.name)}`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  pathname={`/${slug}/${config}`}
+  ogImage={ogImage}
+  lang={isMarathi ? 'mr' : 'en'}
+  projectData={project}
+>
+  <ConfigPageClient project={project} config={configuration} client:load />
+</Layout>

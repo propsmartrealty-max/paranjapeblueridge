@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomePageClient from '../components/HomePageClient';
+
+export const prerender = true;
+---
+
+<Layout
+  title="Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune"
+  description="Paranjape Blue Ridge is Hinjewadi's premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access."
+  pathname="/"
+  ogImage="https://paranjapeblueridge.com/assets/images/township-night.png"
+  lang="en"
+>
+  <HomePageClient client:load />
+
+  <!-- Homepage-only Speakable SEO context -->
+  <div class="container mx-auto px-6 py-12 border-t border-white/10 text-xs text-text-light/50 space-y-4 [&_a]:text-gold hover:[&_a]:text-gold-light [&_a]:underline">
+    <h2 id="speakable-title" class="text-sm font-bold text-warm-white">Paranjape Blue Ridge Hinjewadi — Premium 2, 3, 4 & 5 BHK Flats in Pune's 138-Acre Township</h2>
+    <p id="speakable-summary" class="leading-relaxed">
+      Welcome to Paranjape Blue Ridge Pune, Pune's celebrated 138-acre integrated township located in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Recognized as the top destination for Paranjape Blue Ridge apartments for sale and rent. Offering premium 2 BHK, 3 BHK, 4 BHK and 5 BHK luxury flats with a walk-to-work lifestyle. Home to Promenade, The Altius, and Ridges 41, it features a private 9-hole golf course, Blue Ridge Public School (ICSE) inside the township, private boat club on Mula river, and direct access to Infosys, Wipro, and TCS campuses.
+    </p>
+    <ul class="space-y-1">
+      <li><a href="/paranjape-blue-ridge-promenade-hinjewadi-pune">Promenade Residences — 3 & 4 BHK River-Facing Flats from ₹1.65 Cr</a></li>
+      <li><a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune">The Altius — 4 & 5 BHK Ultra-Luxury Riverside Residences from ₹1.80 Cr</a></li>
+      <li><a href="/paranjape-blue-ridge-41-hinjewadi-pune">Ridges 41 — 2 BHK Smart MiVAN Residences from ₹97.60 L</a></li>
+      <li><a href="/hinjewadi-micro-market">Hinjewadi Phase 1 Infrastructure & Metro Line 3 Connectivity Guide</a></li>
+      <li><a href="/nri-investment">NRI Investment Concierge Desk — Tax & Legal Support</a></li>
+    </ul>
+  </div>
+</Layout>

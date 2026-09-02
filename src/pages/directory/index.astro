@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPseoTotalCount } from '../../data/seo-matrix';
+import { projects, articles } from '../../data/master-data';
+import { getAllPosts } from '../../utils/mdxUtils';
+
+export const prerender = true;
+
+const totalCount = getPseoTotalCount();
+const mdxPosts = getAllPosts();
+
+const CHUNK_SIZE = 1000;
+const totalChunks = Math.ceil(totalCount / CHUNK_SIZE);
+const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
+---
+
+<Layout
+  title="Pune Real Estate Directory | Paranjape Blue Ridge"
+  description="Explore the definitive master directory of over 150,000 premium real estate properties, configurations, and insights across the entire Pune market."
+  pathname="/directory"
+>
+  <section class="pt-24 pb-20 container mx-auto max-w-7xl px-4">
+    <h1 class="text-4xl md:text-5xl font-serif text-warm-white mb-6 font-bold">Pune Real Estate Directory</h1>
+    <p class="text-text-muted text-lg mb-12 max-w-3xl">
+      A comprehensive, structured index of over {totalCount.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
+    </p>
+
+    <div class="space-y-16">
+      <!-- Core Projects -->
+      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
+        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Core Residential Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projects.map((project) => (
+            <a href={`/${project.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm font-medium">
+              {project.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Insights & Articles -->
+      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
+        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Real Estate Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {articles.map((article) => (
+            <a href={`/insights/${article.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm">
+              {article.title}
+            </a>
+          ))}
+          {mdxPosts.map((post) => (
+            <a href={`/insights/${post.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm">
+              {post.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Programmatic Partitions -->
+      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
+        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Programmatic Location & Configuration Partitions</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
+          {chunksArray.map((chunkNum) => (
+            <a href={`/directory/${chunkNum}`} class="p-3 bg-white/5 border border-white/10 rounded-xl text-center text-xs font-mono text-warm-white hover:border-gold hover:text-gold transition-all">
+              Partition {chunkNum}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

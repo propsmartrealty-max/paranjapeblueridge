@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar } from 'lucide-react';
 import { useExitIntent } from '@/hooks/useExitIntent';
 import EnquiryModal from './EnquiryModal';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/hooks/useNav';
 
 export default function ExitIntentPopup() {
   const isExitIntentTriggered = useExitIntent(300); // 300ms delay

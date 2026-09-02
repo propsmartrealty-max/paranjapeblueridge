@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+const constructionTowers = [
+  {
+    name: "Promenade Residences",
+    slug: "paranjape-blue-ridge-promenade-hinjewadi-pune",
+    tagline: "41-Storey Luxury Riverfront Tower",
+    rera: "P52100055581",
+    possession: "September 2029",
+    progress: 38,
+    status: "Superstructure RCC In-Progress",
+    image: "/assets/images/promenade-hero.png",
+    milestones: [
+      { name: "Deep Foundation & Piling", status: "completed", date: "Q1 2025" },
+      { name: "Double-Height Podium Level", status: "completed", date: "Q3 2025" },
+      { name: "MiVAN Superstructure (Floors 1-15)", status: "in-progress", date: "Active" },
+      { name: "Upper Storeys & Rooftop Amenities", status: "upcoming", date: "2027" },
+      { name: "Internal Luxury Finishes & Fitouts", status: "upcoming", date: "2028" },
+      { name: "Final Handover & Possession", status: "upcoming", date: "Sept 2029" }
+    ]
+  },
+  {
+    name: "Ridges 41",
+    slug: "paranjape-blue-ridge-41-hinjewadi-pune",
+    tagline: "41-Storey Monolithic MiVAN Smart Residences",
+    rera: "P52100000054",
+    possession: "December 2028",
+    progress: 54,
+    status: "MiVAN Casting on Level 22",
+    image: "/assets/images/ridges-41.png",
+    milestones: [
+      { name: "Excavation & Raft Foundation", status: "completed", date: "Q2 2024" },
+      { name: "6-Level Dedicated Parking Podium", status: "completed", date: "Q4 2024" },
+      { name: "MiVAN Monolithic Slab Casting (L1-22)", status: "in-progress", date: "Active" },
+      { name: "Flooring, Glazing & Plumbing", status: "in-progress", date: "Active" },
+      { name: "Elevator & DG Backup Commissioning", status: "upcoming", date: "2027" },
+      { name: "Handover & Resident Moving-In", status: "upcoming", date: "Dec 2028" }
+    ]
+  },
+  {
+    name: "The Altius Riverside",
+    slug: "paranjape-blue-ridge-the-altius-hinjewadi-pune",
+    tagline: "Ultra-Luxury Golf & River Facing Tower",
+    rera: "P52100078116",
+    possession: "December 2029",
+    progress: 25,
+    status: "Podium & Structural RCC Stage",
+    image: "/assets/images/altius-riverside.png",
+    milestones: [
+      { name: "Geo-Technical Piling & Shoring", status: "completed", date: "Q4 2024" },
+      { name: "Basement & Podium RCC Structure", status: "in-progress", date: "Active" },
+      { name: "Panoramic Lift Lobby Core Casting", status: "in-progress", date: "Active" },
+      { name: "MiVAN Superstructure Erection", status: "upcoming", date: "2027" },
+      { name: "Private Deck & Sky Lounge Fitouts", status: "upcoming", date: "2028" },
+      { name: "VIP Handover & Possession", status: "upcoming", date: "Dec 2029" }
+    ]
+  }
+];
+---
+
+<Layout
+  title="Live Construction Updates & RERA Milestones | Paranjape Blue Ridge"
+  description="Track real-time construction progress and MahaRERA milestones for Promenade Residences, The Altius, and Ridges 41 at Paranjape Blue Ridge Hinjewadi Phase 1, Pune."
+  pathname="/construction-updates"
+>
+  <div class="container mx-auto px-4 pt-24 pb-16">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-semibold mb-6 tracking-widest uppercase font-mono">
+        RERA Audit & Structural Engineering
+      </div>
+      <h1 class="text-4xl md:text-5xl font-serif text-warm-white mb-6 leading-tight font-bold">
+        Live Construction <span class="italic font-normal text-gilded">Milestones</span>
+      </h1>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
+        Complete transparency: track monthly structural milestones, MiVAN shuttering progress, and MahaRERA audit reports for Blue Ridge clusters.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {constructionTowers.map((tower) => (
+        <div class="ultra-glass-card rounded-3xl border border-gold/20 overflow-hidden flex flex-col justify-between p-6 sm:p-8">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="text-[9px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-gold/10 text-gold border border-gold/30">
+                RERA: {tower.rera}
+              </span>
+              <span class="text-xs font-mono text-emerald-400 font-bold">
+                {tower.progress}% Complete
+              </span>
+            </div>
+
+            <h2 class="text-2xl font-serif font-bold text-warm-white mb-1">{tower.name}</h2>
+            <p class="text-xs text-text-muted mb-6">{tower.tagline}</p>
+
+            <div class="space-y-3 mb-8">
+              {tower.milestones.map((m) => (
+                <div class="flex items-center justify-between text-xs p-2.5 rounded-xl bg-white/5 border border-white/5">
+                  <span class={m.status === 'completed' ? 'text-emerald-400 font-medium' : m.status === 'in-progress' ? 'text-gold font-bold' : 'text-text-muted'}>
+                    {m.status === 'completed' ? '✓' : m.status === 'in-progress' ? '▶' : '○'} {m.name}
+                  </span>
+                  <span class="text-[10px] text-text-muted font-mono">{m.date}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <a href={`/${tower.slug}`} class="block text-center py-3 rounded-2xl bg-gold/10 text-gold hover:bg-gold hover:text-navy transition-all font-bold text-xs uppercase tracking-widest">
+            View Tower Details &rarr;
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

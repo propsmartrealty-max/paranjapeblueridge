@@ -1,0 +1,175 @@
+---
+import '../app/globals.css';
+import Navbar from '../components/Navbar';
+import FooterSEO from '../components/FooterSEO';
+import StickyCTA from '../components/StickyCTA';
+import PulseNotifications from '../components/PulseNotifications';
+import ExitIntentPopup from '../components/ExitIntentPopup';
+import FloatingWhatsApp from '../components/FloatingWhatsApp';
+import ParanjapeEcosystemInjector from '../components/ParanjapeEcosystemInjector';
+import JSONLD from '../components/JSONLD';
+
+interface Props {
+  title?: string;
+  description?: string;
+  pathname?: string;
+  ogImage?: string;
+  lang?: string;
+  projectData?: any;
+  pseoData?: any;
+}
+
+const {
+  title = "Paranjape Blue Ridge Hinjewadi | Premium 2, 3, 4 & 5 BHK Integrated Township in Pune",
+  description = "Paranjape Blue Ridge is Hinjewadi's premier 138-acre integrated township. Explore luxury 2, 3 & 4 BHK apartments with golf course, boat club, and walk-to-work IT park access.",
+  pathname = "/",
+  ogImage = "https://paranjapeblueridge.com/api/og?title=Paranjape%20Blue%20Ridge&type=Sovereign%20Portal",
+  lang = "en",
+  projectData,
+  pseoData
+} = Astro.props;
+
+const canonicalUrl = new URL(pathname, Astro.site).href.replace(/\/$/, '') || 'https://paranjapeblueridge.com';
+---
+
+<!DOCTYPE html>
+<html lang={lang === 'mr' ? 'mr-IN' : 'en'} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <meta name="theme-color" content="#040a14" />
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="zmv23601-d-KkNZ1p3VNswXKvfW57A68g_hVf1WUqFg" />
+    <meta name="google-site-verification" content="mYpEs9cTU_oB6wg8oUlgOZ4u_hbDolVa9HyUMjZqSW4" />
+
+    <!-- Hreflang Multi-Regional Links -->
+    <link rel="alternate" hreflang="x-default" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-IN" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-US" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-GB" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-AE" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-SG" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-AU" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="en-CA" href="https://paranjapeblueridge.com" />
+    <link rel="alternate" hreflang="mr-IN" href="https://paranjapeblueridge.com/mr" />
+
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Paranjape Blue Ridge Sovereign Portal" />
+    <meta property="og:locale" content={lang === 'mr' ? 'mr_IN' : 'en_IN'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ParanjapeSchemes" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Performance & Preconnect Directives -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://challenges.cloudflare.com" />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+    <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
+    <link rel="preload" as="image" href="/assets/images/real-township-day.jpg" fetchpriority="high" />
+
+    <!-- Google Fonts (Plus Jakarta Sans & Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Google Consent Mode v2 Initialization -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'functionality_storage': 'granted',
+        'personalization_storage': 'granted',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
+      gtag('set', 'ads_data_redaction', false);
+      gtag('set', 'url_passthrough', true);
+    </script>
+
+    <!-- Google Tag Manager / GA4 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-1K4L6XG27P"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1K4L6XG27P', {
+        allow_enhanced_conversions: true,
+        transport_type: 'beacon'
+      });
+    </script>
+
+    <!-- Chromium Speculation Rules for 0.0s Instant Pre-rendering -->
+    <script type="speculationrules" is:inline>
+      {
+        "prerender": [
+          {
+            "source": "list",
+            "urls": [
+              "/paranjape-blue-ridge-promenade-hinjewadi-pune",
+              "/paranjape-blue-ridge-the-altius-hinjewadi-pune",
+              "/paranjape-blue-ridge-41-hinjewadi-pune",
+              "/directory",
+              "/insights",
+              "/hinjewadi-micro-market"
+            ],
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Schema.org JSON-LD Structured Data Engine -->
+    <JSONLD pathname={pathname} projectData={projectData} pseoData={pseoData} />
+  </head>
+  <body class="antialiased bg-ambient-orbs text-warm-white bg-[#040a14] min-h-screen flex flex-col">
+    <!-- Top MahaRERA Bar -->
+    <div class="fixed top-0 left-0 right-0 z-[100] bg-[var(--bg)]/80 text-text-light/80 text-[9px] sm:text-[10px] py-1.5 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 border-b border-gold/10 font-medium tracking-[2px] uppercase backdrop-blur-md">
+      <span><strong class="text-gilded">MahaRERA Registration Numbers:</strong></span>
+      <span class="hidden sm:inline">Promenade: P52100055581</span>
+      <span class="hidden sm:inline">Altius: P52100078116</span>
+      <span class="hidden sm:inline">Ridge 41: P52100000054</span>
+      <span class="sm:hidden">P52100055581 | P52100078116 | P52100000054</span>
+    </div>
+
+    <div class="architect-grid"></div>
+
+    <Navbar client:load />
+
+    <main class="flex-grow pt-8">
+      <slot />
+    </main>
+
+    <ParanjapeEcosystemInjector />
+    <FooterSEO client:visible />
+    <StickyCTA client:load />
+    <PulseNotifications client:idle />
+    <ExitIntentPopup client:idle />
+    <FloatingWhatsApp client:idle />
+  </body>
+</html>
