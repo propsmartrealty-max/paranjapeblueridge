@@ -1,37 +1,36 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { articles, projects } from '../../data/master-data';
-import { getPostBySlug } from '../../utils/mdxUtils';
+import { getPostBySlug, getAllPosts } from '../../utils/mdxUtils';
+
+export function getStaticPaths() {
+  const mdxPosts = getAllPosts();
+  const mdxSlugs = mdxPosts.map(p => ({ params: { slug: p.slug } }));
+  const articleSlugs = articles.map(a => ({ params: { slug: a.slug } }));
+  return [...mdxSlugs, ...articleSlugs];
+}
 
 const { slug } = Astro.params;
 
-if (!slug) {
-  return Astro.redirect('/insights');
-}
-
-const mdxPost = getPostBySlug(slug);
-const staticArticle = articles.find(a => a.slug === slug);
-
-if (!mdxPost && !staticArticle) {
-  return Astro.redirect('/insights');
-}
+const mdxPost = slug ? getPostBySlug(slug) : null;
+const staticArticle = slug ? articles.find(a => a.slug === slug) : null;
 
 const article = mdxPost ? {
-  title: mdxPost.meta.title || 'Insight',
-  excerpt: mdxPost.meta.excerpt || mdxPost.meta.description || '',
+  title: mdxPost.meta?.title || 'Insight',
+  excerpt: mdxPost.meta?.excerpt || mdxPost.meta?.description || '',
   slug: mdxPost.slug,
   content: mdxPost.content,
-  category: mdxPost.meta.category || 'Real Estate Intelligence',
-  dateISO: mdxPost.meta.dateISO || '2026-01-01',
-  author: mdxPost.meta.author || 'Paranjape Research Team',
+  category: mdxPost.meta?.category || 'Real Estate Intelligence',
+  dateISO: mdxPost.meta?.dateISO || '2026-01-01',
+  author: mdxPost.meta?.author || 'Paranjape Research Team',
 } : {
-  title: staticArticle.title,
-  excerpt: staticArticle.excerpt,
-  slug: staticArticle.slug,
-  content: staticArticle.content || staticArticle.excerpt,
-  category: staticArticle.category || 'Investment Analysis',
-  dateISO: staticArticle.dateISO || '2026-01-01',
-  author: staticArticle.author || 'Paranjape Insights',
+  title: staticArticle?.title || 'Insight',
+  excerpt: staticArticle?.excerpt || '',
+  slug: staticArticle?.slug || '',
+  content: Array.isArray(staticArticle?.content) ? staticArticle?.content.join('\n\n') : (staticArticle?.content || staticArticle?.excerpt || ''),
+  category: staticArticle?.category || 'Investment Analysis',
+  dateISO: staticArticle?.dateISO || '2026-01-01',
+  author: staticArticle?.author || 'Paranjape Insights',
 };
 
 const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(article.title)}&config=${encodeURIComponent(article.category)}`;
@@ -75,7 +74,7 @@ const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponen
       <p class="text-xs text-text-muted mb-6 max-w-lg mx-auto">138-Acre Integrated Township in Hinjewadi Phase 1 with 9-hole golf course, ICSE school, and luxury 2, 3 & 4 BHK residences.</p>
       <div class="flex flex-wrap justify-center gap-4">
         {projects.map((p) => (
-          <a href={`/${p.slug}`} class="px-5 py-2.5 rounded-full bg-navy text-warm-white border border-gold/30 text-xs font-bold hover:bg-gold hover:text-navy transition-all">
+          <a href={`/${p.slug}`} class="px-5 py-2.5 rounded-full bg-navy text-warm-white border border-gold/30 text-xs font-bold hover:bg-gold hover:text-navy transition-all no-underline">
             {p.name} &rarr;
           </a>
         ))}

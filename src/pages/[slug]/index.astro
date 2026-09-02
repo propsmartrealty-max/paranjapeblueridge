@@ -1,25 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { projects } from '../../data/master-data';
-import { getPseoBySlug } from '../../data/seo-matrix';
+import { getPseoBySlug, curatedPseoUrls } from '../../data/seo-matrix';
 import SlugPageClient from '../../components/SlugPageClient';
 import PseoLandingPage from '../../components/PseoLandingPage';
 
+export function getStaticPaths() {
+  const projectPaths = projects.map(p => ({ params: { slug: p.slug } }));
+  const mrProjectPaths = projects.map(p => ({ params: { slug: `mr-${p.slug}` } }));
+  const pseoPaths = curatedPseoUrls.map(p => ({ params: { slug: p.slug } }));
+
+  return [
+    ...projectPaths,
+    ...mrProjectPaths,
+    ...pseoPaths
+  ];
+}
+
 const { slug } = Astro.params;
 
-if (!slug) {
-  return Astro.redirect('/404');
-}
-
-const isMarathi = slug.startsWith('mr-');
-const cleanSlug = isMarathi ? slug.replace(/^mr-/, '') : slug;
+const isMarathi = slug?.startsWith('mr-');
+const cleanSlug = isMarathi ? slug?.replace(/^mr-/, '') : slug;
 
 const projectData = projects.find(p => p.slug === cleanSlug || p.id === cleanSlug);
-const pseoData = !projectData ? getPseoBySlug(slug) : null;
-
-if (!projectData && !pseoData) {
-  return Astro.redirect('/404');
-}
+const pseoData = !projectData && slug ? getPseoBySlug(slug) : null;
 
 const title = projectData 
   ? isMarathi ? `${projectData.name} | परंजपे ब्लू रिज हिंजवडी` : `${projectData.name} | Paranjape Blue Ridge Hinjewadi`

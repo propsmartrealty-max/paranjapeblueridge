@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://paranjapeblueridge.com',
-  output: 'server',
+  output: 'static',
   adapter: cloudflare({
     imageService: 'passthrough',
   }),

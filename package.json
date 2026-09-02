@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev --port 3005",
     "pages:build": "npm run build",
-    "build": "node scripts/build-posts.js && npx tsx scripts/verify-schemas.ts && ASTRO_TELEMETRY_DISABLED=1 WRANGLER_LOG=none astro build",
+    "build": "node scripts/build-posts.js && npx tsx scripts/verify-schemas.ts && ASTRO_TELEMETRY_DISABLED=1 WRANGLER_LOG=none astro build && (cp -r dist/client/* dist/ 2>/dev/null || true) && (mkdir -p .vercel/output/static && cp -r dist/client/* .vercel/output/static/ 2>/dev/null || true)",
     "postbuild": "npx tsx scripts/trigger-indexnow.ts || echo 'IndexNow skipped'",
     "preview": "astro preview",
     "start": "astro preview",

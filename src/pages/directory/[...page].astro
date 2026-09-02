@@ -2,16 +2,21 @@
 import Layout from '../../layouts/Layout.astro';
 import { getPseoTotalCount, generatePseoChunk } from '../../data/seo-matrix';
 
+export function getStaticPaths() {
+  const CHUNK_SIZE = 1000;
+  const totalCount = getPseoTotalCount();
+  const totalChunks = Math.max(1, Math.ceil(totalCount / CHUNK_SIZE));
+  return Array.from({ length: totalChunks }, (_, i) => ({
+    params: { page: String(i + 1) }
+  }));
+}
+
 const { page } = Astro.params;
 
 const pageNum = parseInt(page || '1', 10);
 const CHUNK_SIZE = 1000;
 const totalCount = getPseoTotalCount();
-const totalChunks = Math.ceil(totalCount / CHUNK_SIZE);
-
-if (isNaN(pageNum) || pageNum < 1 || pageNum > totalChunks) {
-  return Astro.redirect('/directory');
-}
+const totalChunks = Math.max(1, Math.ceil(totalCount / CHUNK_SIZE));
 
 const chunk = generatePseoChunk(pageNum - 1, CHUNK_SIZE);
 const title = `Pune Real Estate Directory - Part ${pageNum} | Paranjape Blue Ridge`;
@@ -58,7 +63,7 @@ const description = `Explore part ${pageNum} of the master directory of premium 
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {chunk.map((item) => (
-        <a href={`/${item.slug}`} class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/40 hover:bg-gold/5 transition-all block group">
+        <a href={`/${item.slug}`} class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/40 hover:bg-gold/5 transition-all block group no-underline">
           <h3 class="text-xs font-bold text-warm-white group-hover:text-gold transition-colors line-clamp-2">
             {item.title}
           </h3>
