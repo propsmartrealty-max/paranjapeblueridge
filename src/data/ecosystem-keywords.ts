@@ -1,103 +1,78 @@
-// Comprehensive SEO Taxonomy for Paranjape Schemes Ecosystem
-// Extracted from Master Keyword Architecture
+// Comprehensive Master SEO Taxonomy for Paranjape Blue Ridge Hinjewadi Ecosystem
+// 100% Curated for Search Intent Dominance
 
 export const ecosystemCategories = [
   {
-    title: "Core Corporate",
+    title: "Paranjape Blue Ridge Flagship Clusters",
     keywords: [
-      "Paranjape Schemes", "Paranjape Schemes Construction Ltd", "PSCL", "Paranjape developer",
-      "Paranjape builders", "Paranjape real estate", "Paranjape properties", "Paranjape construction",
-      "Paranjape Pune", "Paranjape Mumbai", "Paranjape Bangalore", "Paranjape Nashik",
-      "Paranjape projects", "Paranjape new projects", "Paranjape upcoming projects",
-      "Paranjape reviews", "Paranjape RERA", "Paranjape price", "Paranjape brochure"
+      "Paranjape Blue Ridge", "Blue Ridge Hinjewadi", "Blue Ridge Township Pune",
+      "Promenade Residences Blue Ridge", "Promenade 3 BHK River Facing", "Promenade 4 BHK Luxury",
+      "The Altius Blue Ridge", "The Altius 4 BHK Golf View", "The Altius 5 BHK Sky Duplex",
+      "The Altius Riverside Hinjewadi", "Ridges 41 Blue Ridge", "Ridges 41 2 BHK Smart Homes",
+      "Ridges 41 41 Storey Tower", "Blue Ridge Tower 1 to 26", "Blue Ridge Orion",
+      "Blue Ridge The Groves", "Blue Ridge Resale Flats", "Blue Ridge Ready Possession Flats"
     ]
   },
   {
-    title: "Business & Industry",
+    title: "Walk-to-Work IT Park Ecosystem",
     keywords: [
-      "real estate developer Pune", "property developer Pune", "residential developer Pune",
-      "commercial developer Pune", "township developer Pune", "luxury real estate Pune",
-      "affordable housing Pune", "premium apartments Pune", "integrated township developer",
-      "mixed use development", "SEZ developer", "hospitality developer", "senior housing developer",
-      "redevelopment developer"
+      "Flats near Infosys Hinjewadi Phase 1", "Flats near Wipro Hinjewadi", "Flats near TCS Hinjewadi",
+      "Flats near Cognizant Hinjewadi", "Flats near Tech Mahindra Hinjewadi", "Flats near Embassy TechZone",
+      "Flats near Qubix Business Park", "Blue Ridge SEZ Office Park", "Walk to Work Hinjewadi Phase 1",
+      "Rajiv Gandhi Infotech Park Residences", "Corporate Rentals Hinjewadi Phase 1",
+      "Executive Housing near Quadron Business Park", "IT Professional Apartments Pune"
     ]
   },
   {
-    title: "Residential Ecosystem",
+    title: "Township Amenities & Lifestyle",
     keywords: [
-      "residential projects Pune", "new flats Pune", "ready possession flats Pune",
-      "under construction flats Pune", "1 BHK Paranjape", "2 BHK Paranjape", "3 BHK Paranjape",
-      "4 BHK Paranjape", "5 BHK Paranjape", "duplex apartments", "villas Pune", "premium homes",
-      "gated community Pune", "lifestyle apartments"
+      "Blue Ridge Public School ICSE Hinjewadi", "9 Hole Professional Golf Course Pune",
+      "Blue Ridge Golf Academy", "Private Boat Club and Marina Blue Ridge", "Mula River Kayaking Pune",
+      "Blue Ridge Sports Arena", "Olympic Swimming Pool Hinjewadi", "Township Clubhouse and Spa",
+      "Gated Community 24x7 Security Blue Ridge", "Pet Friendly Township Pune", "Eco-Friendly Township Mula River"
     ]
   },
   {
-    title: "Townships (Blue Ridge & Forest Trails)",
+    title: "Infrastructure & Transit Catalysts",
     keywords: [
-      "Paranjape integrated township", "Blue Ridge Pune", "Blue Ridge Hinjewadi", "Blue Ridge township",
-      "Blue Ridge apartments", "Blue Ridge SEZ", "Blue Ridge golf course", "Forest Trails Pune",
-      "Forest Trails Bhugaon", "Forest Trails villas", "integrated township Pune", "township near Hinjewadi"
+      "Pune Metro Line 3 Blue Ridge Station", "Flats near Hinjewadi Metro Station",
+      "Mahalunge Hinjewadi Bridge Connectivity", "Balewadi to Hinjewadi River Bridge",
+      "Mumbai-Pune Expressway 10 Min Access", "Maan Road Hinjewadi Phase 1",
+      "Hinjewadi-Wakad Link Road", "Baner Balewadi High Street 10 Min Connectivity"
     ]
   },
   {
-    title: "Athashri & Senior Living",
+    title: "Configurations & Pricing Sheets",
     keywords: [
-      "Paranjape Athashri", "Athashri senior living", "Athashri Pune", "Athashri Vadodara",
-      "senior living Pune", "senior citizen homes Pune", "retirement homes Pune",
-      "assisted living Pune", "senior citizen apartments", "active senior living",
-      "independent senior living", "senior care community"
+      "2 BHK Price List Blue Ridge Hinjewadi", "3 BHK Price List Promenade Hinjewadi",
+      "4 BHK Price List The Altius Hinjewadi", "5 BHK Luxury Penthouse Price Pune",
+      "Blue Ridge Cost Sheet and Payment Plan", "Blue Ridge Carpet Area Floor Plans PDF",
+      "Mivan Construction Apartments Hinjewadi", "River Facing Flats Price List Pune"
     ]
   },
   {
-    title: "Aastha & Assisted Living",
+    title: "Investor Intelligence & NRI Global Desk",
     keywords: [
-      "Aastha Paranjape", "Aastha assisted living", "elderly care", "senior healthcare Pune",
-      "assisted senior housing", "elderly support services", "senior care facilities"
+      "Rental Yield in Hinjewadi Phase 1 (4.8% - 5.2%)", "Capital Appreciation Blue Ridge Pune",
+      "NRI Property Investment Guide Pune", "Buy Property in Pune from Dubai UAE",
+      "Buy Property in Pune from USA Canada NRI Desk", "FEMA Repatriation NRE NRO Real Estate",
+      "Pre-Launch Offers Hinjewadi Phase 1", "Best ROI Real Estate Investment Pune West"
     ]
   },
   {
-    title: "Swaniketan & Inclusive Housing",
+    title: "Township Battleground Comparisons",
     keywords: [
-      "Paranjape Swaniketan", "Swaniketan Pune", "inclusive housing", "accessible housing",
-      "disability-friendly housing", "differently abled housing", "special needs housing",
-      "caregiver-supported housing", "barrier-free homes", "PSPD Paranjape"
+      "Blue Ridge vs Life Republic", "Blue Ridge vs Megapolis Hinjewadi", "Blue Ridge vs Godrej Hinjewadi",
+      "Blue Ridge vs VTP Blue Waters Mahalunge", "Blue Ridge vs Lodha Belmondo",
+      "Blue Ridge vs Kohinoor Central Park", "Best Integrated Township in Hinjewadi Pune"
     ]
   },
   {
-    title: "Commercial & SEZ",
+    title: "Paranjape Schemes Developer Heritage",
     keywords: [
-      "Paranjape commercial projects", "commercial property Pune", "Paranjape office spaces",
-      "IT office Pune", "commercial investment Pune", "Trident Business Park Wakad",
-      "Trident Towers", "Xion Mall", "Blue Ridge SEZ", "IT SEZ Pune", "Hinjewadi SEZ",
-      "corporate office space Pune"
-    ]
-  },
-  {
-    title: "Sustainability & Community",
-    keywords: [
-      "Paranjape sustainable living", "green buildings Pune", "eco-friendly homes Pune",
-      "sustainable township", "energy efficient homes", "rainwater harvesting",
-      "community living", "integrated community", "self-sustaining community"
-    ]
-  },
-  {
-    title: "Redevelopment & Hospitality",
-    keywords: [
-      "Paranjape redevelopment Pune", "society redevelopment Pune", "old building redevelopment",
-      "redevelopment developer Pune", "Paranjape hospitality", "Paranjape resort",
-      "luxury resort Pune"
-    ]
-  },
-  {
-    title: "Project Portfolio",
-    keywords: [
-      "The Altius", "Trident Towers", "Rivolo Residences", "Orion", "Highgardens",
-      "The Canopy", "The Cove", "Aspire", "Happiness Hub", "Opulus", "Misty Greens",
-      "Ridges 41", "Sahil", "Shrivega", "Swaniketan", "Athena", "Everglades",
-      "Broadway", "Gloria Grand", "Richmond Park", "Kaleidoscope", "Madhukosh", "Wind Fields"
+      "Paranjape Schemes Construction Ltd", "PSCL Pune Projects", "Paranjape Athashri Senior Living",
+      "Paranjape Swaniketan Special Needs Housing", "Paranjape Forest Trails Bhugaon",
+      "Paranjape Trident Towers Wakad", "Paranjape Highgardens", "Paranjape Rivolo", "Paranjape Opulus"
     ]
   }
 ];
-
-// Flat array for JSON-LD schema injection
-export const globalEcosystemKeywords = ecosystemCategories.flatMap(c => c.keywords);
