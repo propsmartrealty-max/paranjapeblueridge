@@ -2,23 +2,28 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, Menu, X, MessageCircle, Sparkles, Compass } from 'lucide-react';
-import { projects } from '@/data/master-data';
+import { Phone, MessageCircle, Sparkles, ChevronDown, Building2, MapPin, Compass, Award, ExternalLink, Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
-import AtmosphereToggle from './AtmosphereToggle';
+import CurrencyHeaderToggle from './CurrencyHeaderToggle';
 import { useLanguage } from '@/context/LanguageContext';
-import { useRouter, usePathname } from '@/hooks/useNav';
+import { usePathname } from '@/hooks/useNav';
 
 export default function Navbar() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const router = useRouter();
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleScrollTo = (hashId: string) => {
     setIsOpen(false);
+    setActiveDropdown(null);
     if (typeof window !== 'undefined') {
       if (window.location.pathname !== '/' && window.location.pathname !== '/mr') {
         window.location.href = `/#${hashId}`;
@@ -28,177 +33,181 @@ export default function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
+  const projectLinks = [
     {
-      id: 'promenade',
-      label: 'Promenade',
-      labelMr: 'प्रॉमनेड',
-      href: '/paranjape-blue-ridge-promenade-hinjewadi-pune',
-      type: 'link'
+      name: "Promenade Residences",
+      nameMr: "प्रॉमनेड रेसिडेन्सेस",
+      config: "3 & 4 BHK Riverfront",
+      price: "₹1.65 Cr*",
+      href: "/paranjape-blue-ridge-promenade-hinjewadi-pune",
+      badge: "Tallest Tower"
     },
     {
-      id: 'altius',
-      label: 'Altius',
-      labelMr: 'अल्टियस',
-      href: '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
-      type: 'link'
+      name: "The Altius Riverside",
+      nameMr: "द अल्टियस रिव्हरसाईड",
+      config: "4 & 5 BHK Golf-View",
+      price: "₹1.80 Cr*",
+      href: "/paranjape-blue-ridge-the-altius-hinjewadi-pune",
+      badge: "Ultra-Luxury"
     },
     {
-      id: 'ridge41',
-      label: '41 Ridge',
-      labelMr: '४१ रिज',
-      href: '/paranjape-blue-ridge-41-hinjewadi-pune',
-      type: 'link'
-    },
-    {
-      id: 'nri',
-      label: 'NRI Desk',
-      labelMr: 'अनिवासी भारतीय',
-      href: '/nri-investment',
-      type: 'link'
-    },
-    {
-      id: 'insights',
-      label: 'Insights',
-      labelMr: 'संशोधन',
-      href: '/insights',
-      type: 'link'
-    },
-    {
-      id: 'directory',
-      label: 'Directory',
-      labelMr: 'डिरेक्टरी',
-      href: '/directory',
-      type: 'link'
-    },
-    {
-      id: 'experience',
-      label: 'Township',
-      labelMr: 'टाउनशिप',
-      action: () => handleScrollTo('experience'),
-      type: 'action'
-    },
-    {
-      id: 'roi',
-      label: 'Yield',
-      labelMr: 'परतावा',
-      action: () => handleScrollTo('roi'),
-      type: 'action'
-    },
-    {
-      id: 'contact',
-      label: 'Location',
-      labelMr: 'स्थान',
-      action: () => handleScrollTo('contact'),
-      type: 'action'
+      name: "Ridges 41",
+      nameMr: "रिजेस ४१",
+      config: "2 BHK Smart Residences",
+      price: "₹97.60 L*",
+      href: "/paranjape-blue-ridge-41-hinjewadi-pune",
+      badge: "Smart Living"
     }
   ];
 
   return (
     <>
-      <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
         <motion.nav 
-          initial={{ y: -80, opacity: 0 }}
+          initial={{ y: -60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           aria-label="Main Navigation"
-          className={`pointer-events-auto flex items-center justify-between gap-4 sm:gap-6 px-5 sm:px-7 py-2.5 rounded-full transition-all duration-500 shadow-2xl liquid-glass-dock ${
-            scrolled ? 'scale-95 shadow-[0_20px_60px_rgba(0,0,0,0.8)] border-gold/40' : 'scale-100'
+          className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full transition-all duration-500 shadow-2xl ultra-glass-card ${
+            scrolled ? 'scale-[0.98] border-gold/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'border-gold/20'
           }`}
         >
-          {/* LOGO & BRAND EMBLEM */}
+          {/* LOGO & BRAND CREST */}
           <a 
             href="/" 
-            className="flex items-center gap-3.5 pr-4 border-r border-gold/15 group no-underline" 
-            aria-label="Blue Ridge Sovereign Homepage"
+            className="flex items-center gap-3 pr-3 sm:pr-5 border-r border-gold/20 group no-underline shrink-0" 
+            aria-label="Paranjape Blue Ridge Homepage"
           >
-            <div className="relative w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30 group-hover:border-gold transition-colors">
+            <div className="relative w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center border border-gold/40 group-hover:border-gold transition-colors shadow-md">
               <img 
-                src="/assets/images/blue-ridge-logo.png" 
+                src="/assets/images/blue-ridge-crest.svg" 
                 alt="Paranjape Blue Ridge Crest" 
-                width="22"
-                height="22"
-                className="w-5 h-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                width="28"
+                height="28"
+                className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
             <div className="flex flex-col text-left">
-              <span className="font-serif font-bold text-xs tracking-[2px] text-warm-white group-hover:text-gold transition-colors">BLUE RIDGE</span>
-              <span className="text-[8px] text-gilded font-bold tracking-[3px] uppercase">Sovereign</span>
+              <span className="font-serif font-bold text-xs sm:text-sm tracking-[1.5px] text-warm-white group-hover:text-gold transition-colors leading-tight">
+                PARANJAPE BLUE RIDGE
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-gold font-mono font-bold tracking-[2px] uppercase leading-tight">
+                Hinjewadi Phase 1 • Pune
+              </span>
             </div>
           </a>
 
-          {/* FLUID WATER FLOW NAVIGATION BAR (DESKTOP) */}
-          <ul 
-            className="hidden xl:flex gap-1 items-center list-none p-1 m-0 relative rounded-full"
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            {navItems.map((item, idx) => {
-              const isHovered = hoveredIndex === idx;
-              const isCurrent = item.href && (pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/'));
+          {/* DESKTOP NAVIGATION ITEMS */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {/* Residences Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('residences')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button
+                className="px-3.5 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none"
+                aria-label="View Residences"
+              >
+                <span>{t('Residences', 'निवासस्थाने')}</span>
+                <ChevronDown size={13} className={`text-gold transition-transform ${activeDropdown === 'residences' ? 'rotate-180' : ''}`} />
+              </button>
 
-              return (
-                <li key={item.id} className="relative z-10">
-                  {item.type === 'link' ? (
+              {activeDropdown === 'residences' && (
+                <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl ultra-glass-card p-3 shadow-2xl border border-gold/30 z-50">
+                  <div className="text-[10px] font-mono text-gold font-bold px-3 py-1 uppercase tracking-wider border-b border-white/10 mb-2">
+                    Flagship Clusters
+                  </div>
+                  {projectLinks.map((p, idx) => (
                     <a
-                      href={item.href!}
-                      onMouseEnter={() => setHoveredIndex(idx)}
-                      className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors flex items-center gap-1.5 no-underline ${
-                        isCurrent ? 'text-gold' : 'text-warm-white/80 hover:text-warm-white'
-                      }`}
-                      aria-label={`Go to ${item.label}`}
+                      key={idx}
+                      href={p.href}
+                      className="flex flex-col p-2.5 rounded-xl hover:bg-gold/10 transition-all border border-transparent hover:border-gold/20 no-underline group"
                     >
-                      {t(item.label, item.labelMr)}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-warm-white group-hover:text-gold transition-colors">
+                          {t(p.name, p.nameMr)}
+                        </span>
+                        <span className="text-[9px] font-mono font-bold text-navy bg-gold px-1.5 py-0.5 rounded">
+                          {p.badge}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between mt-1 text-[11px] text-text-muted">
+                        <span>{p.config}</span>
+                        <span className="font-mono text-gold font-bold">{p.price}</span>
+                      </div>
                     </a>
-                  ) : (
-                    <button
-                      onClick={item.action}
-                      onMouseEnter={() => setHoveredIndex(idx)}
-                      className="relative px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/80 hover:text-warm-white transition-colors cursor-pointer bg-transparent border-none"
-                      aria-label={`Scroll to ${item.label}`}
-                    >
-                      {t(item.label, item.labelMr)}
-                    </button>
-                  )}
+                  ))}
+                </div>
+              )}
+            </div>
 
-                  {/* FLUID WATER FLOW LIQUID PILL SELECTOR */}
-                  {isHovered && (
-                    <motion.div
-                      layoutId="water-flow-pill"
-                      className="absolute inset-0 rounded-full water-flow-indicator -z-10"
-                      transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                    />
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+            {/* Direct Links */}
+            <button
+              onClick={() => handleScrollTo('township')}
+              className="px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors cursor-pointer bg-transparent border-none"
+            >
+              {t('Township', 'टाउनशिप')}
+            </button>
 
-          {/* RIGHT ACTION DOCK */}
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2.5">
-              <AtmosphereToggle />
+            <a
+              href="/hinjewadi-micro-market"
+              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
+                pathname === '/hinjewadi-micro-market' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
+              }`}
+            >
+              {t('Market & Metro', 'मार्केट व मेट्रो')}
+            </a>
+
+            <a
+              href="/nri-investment"
+              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
+                pathname === '/nri-investment' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
+              }`}
+            >
+              {t('NRI Desk', 'अनिवासी भारतीय')}
+            </a>
+
+            <a
+              href="/construction-updates"
+              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
+                pathname === '/construction-updates' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
+              }`}
+            >
+              {t('Construction', 'बांधकाम प्रगती')}
+            </a>
+
+            <a
+              href="/insights"
+              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
+                pathname.startsWith('/insights') ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
+              }`}
+            >
+              {t('Insights', 'संशोधन')}
+            </a>
+          </div>
+
+          {/* RIGHT ACTION DOCK: CONTROLS & CTA */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden md:flex items-center gap-2">
+              <CurrencyHeaderToggle />
               <LanguageToggle />
             </div>
 
             <button 
               onClick={() => handleScrollTo('enquiry')}
-              className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg hover:shadow-gold/30 cursor-pointer border-none flex items-center gap-1.5 font-sans btn-sheen"
-              aria-label="Open Priority Enquiry"
+              className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-4 sm:px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider hover:scale-105 transition-all shadow-lg hover:shadow-gold/30 cursor-pointer border-none flex items-center gap-1.5 font-sans whitespace-nowrap"
+              aria-label="Enquire Now"
             >
               <Sparkles size={12} className="fill-navy" />
-              <span>{t('Enquire', 'चौकशी करा')}</span>
+              <span>{t('Enquire Now', 'चौकशी करा')}</span>
             </button>
             
+            {/* Mobile Menu Hamburger */}
             <button 
               aria-label="Toggle Menu"
               onClick={() => setIsOpen(!isOpen)}
-              className="xl:hidden w-10 h-10 flex items-center justify-center text-warm-white bg-white/5 hover:bg-gold/10 rounded-full border border-gold/20 transition-colors"
+              className="lg:hidden p-2 rounded-full bg-white/5 border border-gold/30 text-gold hover:bg-gold/10 transition-colors cursor-pointer"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -206,77 +215,97 @@ export default function Navbar() {
         </motion.nav>
       </header>
 
-      {/* MOBILE FULL-SCREEN LIQUID GLASS DRAWER */}
+      {/* MOBILE EXPANDED MENU */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(32px)' }}
-            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            className="fixed inset-0 z-[60] bg-navy/95 backdrop-blur-3xl flex flex-col p-8 pt-24 xl:hidden"
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 top-20 z-40 bg-navy/95 backdrop-blur-2xl p-6 overflow-y-auto lg:hidden flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between pb-6 border-b border-gold/20">
-              <div className="flex items-center gap-3">
-                <img 
-                  src="/assets/images/blue-ridge-logo.png" 
-                  alt="Paranjape Blue Ridge Crest" 
-                  width="28"
-                  height="28"
-                  className="w-7 h-auto"
-                />
-                <span className="font-serif font-bold text-lg text-warm-white">PARANJAPE BLUE RIDGE</span>
+            <div className="space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-gold/20">
+                <CurrencyHeaderToggle />
+                <LanguageToggle />
               </div>
 
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="w-10 h-10 bg-white/5 border border-gold/20 rounded-full flex items-center justify-center text-gold hover:scale-105 transition-transform"
-                aria-label="Close menu"
-              >
-                <X size={20} />
-              </button>
+              <div className="space-y-3">
+                <div className="text-xs font-mono font-bold text-gold uppercase tracking-widest">
+                  {t('Residences', 'निवासस्थाने')}
+                </div>
+                {projectLinks.map((p, idx) => (
+                  <a
+                    key={idx}
+                    href={p.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 hover:border-gold text-warm-white no-underline"
+                  >
+                    <div>
+                      <div className="text-sm font-bold text-warm-white">{t(p.name, p.nameMr)}</div>
+                      <div className="text-xs text-text-muted">{p.config}</div>
+                    </div>
+                    <span className="text-xs font-mono text-gold font-bold">{p.price}</span>
+                  </a>
+                ))}
+              </div>
+
+              <div className="space-y-2 pt-2 border-t border-white/10">
+                <a 
+                  href="/hinjewadi-micro-market"
+                  onClick={() => setIsOpen(false)}
+                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
+                >
+                  {t('Hinjewadi Market & Metro Line 3', 'हिंजवडी मार्केट व मेट्रो लाईन ३')}
+                </a>
+                <a 
+                  href="/nri-investment"
+                  onClick={() => setIsOpen(false)}
+                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
+                >
+                  {t('Global NRI Investment Desk', 'अनिवासी भारतीय गुंतवणूक डेस्क')}
+                </a>
+                <a 
+                  href="/construction-updates"
+                  onClick={() => setIsOpen(false)}
+                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
+                >
+                  {t('Live Construction Updates', 'थेट बांधकाम प्रगती')}
+                </a>
+                <a 
+                  href="/insights"
+                  onClick={() => setIsOpen(false)}
+                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
+                >
+                  {t('Research & Market Insights', 'संशोधन व बाजारपेठ विश्लेषण')}
+                </a>
+                <a 
+                  href="/directory"
+                  onClick={() => setIsOpen(false)}
+                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
+                >
+                  {t('Master Directory', 'मास्टर डिरेक्टरी')}
+                </a>
+              </div>
             </div>
 
-            <ul className="space-y-4 list-none p-0 mt-8 overflow-y-auto">
-              {navItems.map((item, idx) => (
-                <motion.li
-                  key={item.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 + 0.1 }}
-                >
-                  {item.type === 'link' ? (
-                    <a 
-                      href={item.href!} 
-                      onClick={() => setIsOpen(false)}
-                      className="text-2xl sm:text-3xl font-serif text-warm-white hover:text-gold transition-colors block py-2 border-b border-white/5 no-underline"
-                    >
-                      {t(item.label, item.labelMr)}
-                    </a>
-                  ) : (
-                    <button
-                      onClick={item.action}
-                      className="text-2xl sm:text-3xl font-serif text-warm-white hover:text-gold transition-colors block py-2 border-b border-white/5 w-full text-left bg-transparent border-none cursor-pointer"
-                    >
-                      {t(item.label, item.labelMr)}
-                    </button>
-                  )}
-                </motion.li>
-              ))}
-            </ul>
-
-            <div className="mt-auto space-y-4 pt-6 border-t border-gold/20">
-              <div className="flex items-center justify-between">
-                <LanguageToggle />
-                <AtmosphereToggle />
-              </div>
-
-              <button 
-                onClick={() => handleScrollTo('enquiry')} 
-                className="block w-full bg-gradient-to-r from-gold via-gold-light to-gold text-navy text-center py-4 rounded-xl font-bold uppercase tracking-widest text-xs cursor-pointer border-none shadow-xl"
-                aria-label="Open Enquiry Form"
+            <div className="pt-6 border-t border-gold/20 flex flex-col gap-3">
+              <a 
+                href="tel:+912067210000"
+                className="flex items-center justify-center gap-2 bg-white/10 text-warm-white py-3.5 rounded-full font-bold uppercase text-xs tracking-widest no-underline"
               >
-                {t('Enquire Priority Access', 'प्राधान्य चौकशी करा')}
-              </button>
+                <Phone size={14} className="text-gold" />
+                +91 20 6721 0000
+              </a>
+              <a 
+                href="https://wa.me/917744009295?text=Hello%2C%20I%20am%20interested%20in%20Paranjape%20Blue%20Ridge%20Township."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-emerald-500 text-white py-3.5 rounded-full font-bold uppercase text-xs tracking-widest no-underline shadow-lg"
+              >
+                <MessageCircle size={16} />
+                WhatsApp Sales Desk
+              </a>
             </div>
           </motion.div>
         )}
