@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, Sparkles, ChevronDown, Building2, MapPin, Compass, Award, ExternalLink, Menu, X } from 'lucide-react';
+import { Phone, MessageCircle, Sparkles, ChevronDown, Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
 import CurrencyHeaderToggle from './CurrencyHeaderToggle';
 import { useLanguage } from '@/context/LanguageContext';
@@ -68,32 +68,35 @@ export default function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           aria-label="Main Navigation"
-          className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full transition-all duration-500 shadow-2xl ultra-glass-card ${
+          className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2 rounded-full transition-all duration-500 shadow-2xl ultra-glass-card ${
             scrolled ? 'scale-[0.98] border-gold/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'border-gold/20'
           }`}
         >
-          {/* LOGO & BRAND CREST */}
+          {/* ACCURATELY ALIGNED DUAL LOGO LOCKUP: PARANJAPE + BLUE RIDGE */}
           <a 
             href="/" 
-            className="flex items-center gap-3 pr-3 sm:pr-5 border-r border-gold/20 group no-underline shrink-0" 
+            className="flex items-center gap-2 sm:gap-3 pr-2 sm:pr-4 border-r border-gold/25 group no-underline shrink-0" 
             aria-label="Paranjape Blue Ridge Homepage"
           >
-            <div className="relative w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center border border-gold/40 group-hover:border-gold transition-colors shadow-md">
+            {/* 1. Official Paranjape Developer Logo */}
+            <div className="bg-white/95 hover:bg-white px-2.5 py-1 rounded-lg border border-gold/30 shadow-sm flex items-center justify-center transition-all">
               <img 
-                src="/assets/images/blue-ridge-crest.svg" 
-                alt="Paranjape Blue Ridge Crest" 
-                width="28"
-                height="28"
-                className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                src="/assets/images/paranjape-official-logo.png" 
+                alt="Paranjape Schemes - The Spirit of New India" 
+                className="h-6 sm:h-7 w-auto object-contain max-w-[120px] sm:max-w-[140px]"
               />
             </div>
-            <div className="flex flex-col text-left">
-              <span className="font-serif font-bold text-xs sm:text-sm tracking-[1.5px] text-warm-white group-hover:text-gold transition-colors leading-tight">
-                PARANJAPE BLUE RIDGE
-              </span>
-              <span className="text-[8px] sm:text-[9px] text-gold font-mono font-bold tracking-[2px] uppercase leading-tight">
-                Hinjewadi Phase 1 • Pune
-              </span>
+
+            {/* Elegant Golden Divider */}
+            <div className="h-7 w-[1px] bg-gradient-to-b from-transparent via-gold/50 to-transparent hidden xs:block"></div>
+
+            {/* 2. Official Blue Ridge Township Logo */}
+            <div className="bg-white/95 hover:bg-white px-2.5 py-1 rounded-lg border border-gold/30 shadow-sm flex items-center justify-center transition-all">
+              <img 
+                src="/assets/images/blue-ridge-official-logo.png" 
+                alt="Blue Ridge - Be a world citizen" 
+                className="h-6 sm:h-7 w-auto object-contain max-w-[90px] sm:max-w-[110px]"
+              />
             </div>
           </a>
 
@@ -106,7 +109,7 @@ export default function Navbar() {
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button
-                className="px-3.5 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none"
+                className="px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none"
                 aria-label="View Residences"
               >
                 <span>{t('Residences', 'निवासस्थाने')}</span>
@@ -142,7 +145,7 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Direct Links */}
+            {/* Direct Navigation Links */}
             <button
               onClick={() => handleScrollTo('township')}
               className="px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors cursor-pointer bg-transparent border-none"
