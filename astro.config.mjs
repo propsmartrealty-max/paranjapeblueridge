@@ -8,6 +8,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://paranjapeblueridge.com',
   output: 'static',
+  trailingSlash: 'ignore',
+  build: {
+    format: 'directory'
+  },
   adapter: cloudflare({
     imageService: 'passthrough',
   }),
