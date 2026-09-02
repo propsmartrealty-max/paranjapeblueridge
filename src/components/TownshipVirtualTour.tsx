@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Eye, Compass, Waves, Trees, School, Building, CheckCircle2, ArrowRight } from 'lucide-react';
-import { blurDataURLs } from '@/utils/blurData';
 
 interface TourTab {
   id: string;
@@ -24,9 +22,9 @@ const tourTabs: TourTab[] = [
     category: 'Master Township',
     icon: <Compass size={16} />,
     image: '/assets/images/real-township-day.jpg',
-    videoDuration: 'PT3M45S',
+    videoDuration: '3m 45s',
     description: 'High-altitude panoramic flyover showcasing the 138-acre master layout, captive substation, IT SEZ, and direct proximity to Rajiv Gandhi Infotech Park Phase 1.',
-    specs: ['138 Acres Total Area', '3,000+ Resident Families', '220/22 KVA Substation', 'Walk-to-Work Proximity']
+    specs: ['138 Acres Total Area', '3,500+ Resident Families', '220/22 KVA Substation', 'Walk-to-Work Proximity']
   },
   {
     id: 'golf-course',
@@ -34,7 +32,7 @@ const tourTabs: TourTab[] = [
     category: 'Recreation',
     icon: <Trees size={16} />,
     image: '/assets/images/amenity-golf.png',
-    videoDuration: 'PT2M30S',
+    videoDuration: '2m 30s',
     description: 'Walkthrough of Pune’s only residential 9-hole executive golf course with floodlit driving ranges, professional coaching, and lush greens.',
     specs: ['9-Hole Executive Course', 'Floodlit Driving Range', 'PGA Certified Coaching', 'Private Clubhouse']
   },
@@ -44,7 +42,7 @@ const tourTabs: TourTab[] = [
     category: 'Waterfront',
     icon: <Waves size={16} />,
     image: '/assets/images/amenity-boat-club.png',
-    videoDuration: 'PT2M15S',
+    videoDuration: '2m 15s',
     description: 'Exclusive riverside tour of Pune’s first private residential boat club featuring kayaking, rowing docks, and waterfront dining promenades.',
     specs: ['Private River Access', 'Kayaking & Rowing Fleet', 'Riverside Promenade', 'Sunset Dining Lounge']
   },
@@ -54,7 +52,7 @@ const tourTabs: TourTab[] = [
     category: 'Education',
     icon: <School size={16} />,
     image: '/assets/images/school-modern-education.png',
-    videoDuration: 'PT3M10S',
+    videoDuration: '3m 10s',
     description: 'Explore the in-campus ICSE-affiliated institution offering world-class academics, athletic grounds, and zero-commute safety for children.',
     specs: ['ICSE Affiliated', 'Pre-Primary to Grade 12', 'Full-Sized Sports Field', 'Zero-Traffic Walkway']
   },
@@ -63,8 +61,8 @@ const tourTabs: TourTab[] = [
     title: 'Promenade Residences Model Suites',
     category: 'Architecture',
     icon: <Building size={16} />,
-    image: '/assets/images/promenade-facade-sunset.png',
-    videoDuration: 'PT4M20S',
+    image: '/assets/images/promenade-hero.png',
+    videoDuration: '4m 20s',
     description: 'Interior architectural walkthrough of luxury 2, 3, and 4 BHK river-facing residences in Hinjewadi’s tallest residential tower.',
     specs: ['Tallest Tower in Phase 1', 'MahaRERA: P52100055581', 'Monolithic MiVAN RCC', '3-Side Open Ventilation']
   }
@@ -73,147 +71,113 @@ const tourTabs: TourTab[] = [
 export default function TownshipVirtualTour() {
   const [activeTab, setActiveTab] = useState<TourTab>(tourTabs[0]);
 
-  // VideoObject Schema for Google Rich Video Snippets
-  const videoSchema = {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": `${activeTab.title} - Paranjape Blue Ridge Hinjewadi`,
-    "description": activeTab.description,
-    "thumbnailUrl": `https://paranjapeblueridge.com${activeTab.image}`,
-    "uploadDate": "2026-01-15T08:00:00+05:30",
-    "duration": activeTab.videoDuration,
-    "contentUrl": "https://paranjapeblueridge.com/assets/images/real-township-day.jpg",
-    "embedUrl": `https://paranjapeblueridge.com/#${activeTab.id}`,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Paranjape Schemes (Construction) Ltd.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://paranjapeblueridge.com/assets/images/blue-ridge-logo.png"
-      }
-    }
-  };
-
   return (
-    <section className="py-24 relative overflow-hidden" id="virtual-tour">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
-      />
+    <section className="py-12 sm:py-20 relative overflow-hidden" id="virtual-tour">
+      <div className="text-center mb-12">
+        <span className="text-xs font-mono font-bold text-gold uppercase tracking-[4px] px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 inline-block mb-3">
+          Virtual Experience Center
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-serif text-warm-white font-bold mt-2">
+          4K Cinematic <span className="text-gilded">Township Tour</span>
+        </h2>
+        <p className="text-sm text-text-muted mt-3 max-w-xl mx-auto font-sans">
+          Explore the 138-acre riverfront ecosystem from drone flyovers to interior model suites.
+        </p>
+      </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-12 shadow-2xl relative overflow-hidden hud-frame"
-        >
-          <div className="luminous-line-gold absolute top-0 left-0 right-0 opacity-40"></div>
-          <div className="text-center mb-12">
-            <span className="gilded-pill mb-3">High-Definition Visual Intelligence</span>
-            <h2 className="text-3xl sm:text-5xl font-serif text-warm-white font-bold mt-2">
-              Township <span className="italic font-normal text-gilded">Virtual Experience</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-text-muted mt-3 max-w-xl mx-auto leading-relaxed font-medium">
-              Experience the 138-acre lifestyle, amenities, and architecture of Paranjape Blue Ridge in cinematic detail.
+      {/* Tabs Navigation */}
+      <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
+        {tourTabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab)}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer border ${
+              activeTab.id === tab.id
+                ? 'bg-gold text-navy border-gold shadow-lg font-extrabold'
+                : 'bg-navy/80 text-text-muted hover:text-warm-white border-white/10 hover:border-gold/30'
+            }`}
+          >
+            {tab.icon}
+            <span>{tab.title}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Main Tour Showcase Card */}
+      <div className="ultra-glass-card rounded-3xl p-6 sm:p-8 border border-gold/30 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          {/* Video Preview Frame */}
+          <div className="lg:col-span-7 relative rounded-2xl overflow-hidden aspect-video bg-black shadow-2xl border border-gold/30 group">
+            <img 
+              src={activeTab.image} 
+              alt={activeTab.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+            {/* Play Button Trigger */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <a
+                href="https://wa.me/917744009295?text=Hello%2C%20please%20send%20me%20the%204K%20Virtual%20Tour%20video%20for%20Blue%20Ridge%20Township."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 rounded-full bg-gold hover:bg-gold-light text-navy flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all cursor-pointer border-none no-underline"
+                aria-label={`Watch ${activeTab.title}`}
+              >
+                <Play size={24} className="fill-navy translate-x-0.5" />
+              </a>
+            </div>
+
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-warm-white font-mono">
+              <span className="bg-black/70 px-3 py-1 rounded-full border border-white/20">{activeTab.category}</span>
+              <span className="bg-black/70 px-3 py-1 rounded-full border border-white/20">Duration: {activeTab.videoDuration}</span>
+            </div>
+          </div>
+
+          {/* Details Column */}
+          <div className="lg:col-span-5 space-y-5">
+            <div>
+              <span className="text-xs font-mono font-bold text-gold uppercase tracking-wider block">
+                {activeTab.category} Walkthrough
+              </span>
+              <h3 className="text-2xl font-serif text-warm-white font-bold mt-1">
+                {activeTab.title}
+              </h3>
+            </div>
+
+            <p className="text-xs sm:text-sm text-text-muted leading-relaxed font-sans">
+              {activeTab.description}
             </p>
-          </div>
 
-          {/* Tab Selector */}
-          <div className="flex items-center justify-start lg:justify-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
-            {tourTabs.map(tab => {
-              const isActive = tab.id === activeTab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border cursor-pointer ${
-                    isActive
-                      ? 'bg-gradient-to-r from-gold via-gold-light to-gold text-navy border-gold shadow-lg shadow-gold/30 scale-105 btn-sheen'
-                      : 'bg-white/80 dark:bg-slate-900/70 hover:bg-gold/10 text-text-muted border-gold/25 hover:border-gold/50'
-                  }`}
-                >
-                  <span className={isActive ? 'text-navy' : 'text-gold'}>{tab.icon}</span>
-                  <span>{tab.title}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Showcase Player Frame */}
-          <div className="bg-gradient-to-b from-white/95 to-white/70 dark:from-slate-800/90 dark:to-slate-900/90 border border-gold/35 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12">
-            {/* Visual Showcase Panel (8 cols) */}
-            <div className="lg:col-span-8 relative aspect-video sm:min-h-[420px] group overflow-hidden">
-              <Image
-                src={activeTab.image}
-                alt={`${activeTab.title} at Paranjape Blue Ridge Hinjewadi Phase 1`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 66vw"
-                placeholder="blur"
-                blurDataURL={blurDataURLs.darkNavy}
-                className="object-cover transition-transform duration-1000 group-hover:scale-108"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-
-              <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-gold/40 text-gold text-[10px] uppercase font-bold tracking-wider font-mono">
-                  {activeTab.category}
-                </span>
-              </div>
-
-              {/* Glowing Play Trigger Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gold/50 animate-ping"></div>
-                  <a
-                    href="https://wa.me/917744009295?text=Hello%20Sovereign%20Desk,%20I%20would%20like%20to%20request%20a%20private%20virtual%203D%20tour%20of%20Paranjape%20Blue%20Ridge."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-gold to-gold-light text-navy flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-transform group cursor-pointer"
-                    aria-label="Request Live 3D Virtual Tour"
-                  >
-                    <Play size={28} className="ml-1 fill-current" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
-                <span className="font-serif font-bold text-sm sm:text-base">{activeTab.title}</span>
-                <span className="text-[9px] text-gold uppercase tracking-widest bg-black/80 px-2.5 py-1 rounded-full border border-gold/40 font-mono font-bold">
-                  4K Cinematic
-                </span>
+            <div className="space-y-2 pt-2">
+              <span className="text-[10px] font-mono text-gold uppercase font-bold tracking-widest block">
+                Key Highlights
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {activeTab.specs.map((spec, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-xs text-warm-white bg-navy/60 p-2 rounded-xl border border-white/10">
+                    <CheckCircle2 size={13} className="text-gold shrink-0" />
+                    <span className="font-mono">{spec}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Content Details Panel (4 cols) */}
-            <div className="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between bg-gold/5 border-t lg:border-t-0 lg:border-l border-gold/25">
-              <div>
-                <span className="text-[10px] text-gold uppercase tracking-widest font-bold block mb-1 font-mono">Interactive Feature</span>
-                <h3 className="text-xl font-serif text-warm-white font-bold mb-3">{activeTab.title}</h3>
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-6 font-medium">{activeTab.description}</p>
-                
-                <div className="space-y-2.5">
-                  {activeTab.specs.map((spec, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-xs text-warm-white">
-                      <CheckCircle2 size={14} className="text-gold shrink-0" />
-                      <span className="font-medium">{spec}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+            <div className="pt-4 border-t border-gold/20">
               <a
-                href="#enquiry"
-                className="mt-8 w-full py-4 bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold rounded-2xl text-center text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2 btn-sheen"
+                href="https://wa.me/917744009295?text=Hello%2C%20I%20want%20to%20request%20the%20full%204K%20Drone%20Walkthrough."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-gold via-gold-light to-gold text-navy py-3.5 rounded-2xl font-bold uppercase text-xs tracking-widest hover:opacity-95 transition-all no-underline shadow-lg"
               >
-                <span>Book Live Video Walkthrough</span>
+                <span>Request HD Video on WhatsApp</span>
                 <ArrowRight size={14} />
               </a>
             </div>
           </div>
-          <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-40"></div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
