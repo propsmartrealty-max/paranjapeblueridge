@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*"
+  ],
+  "exclude": [
+    "/assets/*",
+    "/_astro/*",
+    "/favicon.png",
+    "/apple-icon.png",
+    "/robots.txt",
+    "/sitemap*.xml",
+    "/manifest.json",
+    "/feed.xml"
+  ]
+}

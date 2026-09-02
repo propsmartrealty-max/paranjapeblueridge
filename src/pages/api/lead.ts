@@ -29,11 +29,12 @@ async function sha256Hex(str: string): Promise<string> {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const origin = request.headers.get('origin');
-    const isLocal = origin?.includes('localhost') || origin?.includes('127.0.0.1');
+    const origin = request.headers.get('origin') || '';
+    const isLocal = origin.includes('localhost') || origin.includes('127.0.0.1');
+    const isStaging = origin.endsWith('.pages.dev') || origin.endsWith('.workers.dev') || origin.includes('preview');
     const isProd = origin === 'https://paranjapeblueridge.com' || origin === 'https://www.paranjapeblueridge.com';
 
-    if (process.env.NODE_ENV === 'production' && origin && !isProd) {
+    if (origin && !isProd && !isStaging && !isLocal) {
       return new Response(JSON.stringify({ success: false, error: 'Forbidden: Invalid Origin' }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' },
