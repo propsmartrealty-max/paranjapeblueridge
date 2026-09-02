@@ -4,1867 +4,476 @@ export interface PseoUrl {
   intent: string;
   type: string;
   silo: string;
+  description?: string;
+  heading?: string;
+  location?: string;
 }
 
-export const seoMatrix = {
-  configurations: [
-    { slug: '1-bhk-flats', name: '1 BHK Flats', type: 'Apartment' },
-    { slug: '2-bhk-flats', name: '2 BHK Flats', type: 'Apartment' },
-    { slug: '2-5-bhk-flats', name: '2.5 BHK Flats', type: 'Apartment' },
-    { slug: '3-bhk-flats', name: '3 BHK Flats', type: 'Apartment' },
-    { slug: '3-5-bhk-flats', name: '3.5 BHK Flats', type: 'Apartment' },
-    { slug: '4-bhk-flats', name: '4 BHK Flats', type: 'Apartment' },
-    { slug: '5-bhk-flats', name: '5 BHK Flats', type: 'Apartment' },
-    { slug: 'duplex-apartments', name: 'Duplex Apartments', type: 'Apartment' },
-    { slug: 'skyduplex-apartments', name: 'Skyduplex Apartments', type: 'Apartment' },
-    { slug: 'simplex-flats', name: 'Simplex Flats', type: 'Apartment' },
-    { slug: 'penthouses', name: 'Penthouses', type: 'Apartment' },
-    { slug: 'studio-apartments', name: 'Studio Apartments', type: 'Apartment' },
-    { slug: 'luxury-residences', name: 'Luxury Residences', type: 'Apartment' },
-    { slug: 'premium-flats', name: 'Premium Flats', type: 'Apartment' },
-    { slug: 'smart-homes', name: 'Smart Homes', type: 'Apartment' },
-    { slug: 'ready-possession-flats', name: 'Ready Possession Flats', type: 'Apartment' },
-    { slug: 'resale-apartments', name: 'Resale Apartments', type: 'Apartment' },
-    { slug: 'under-construction-apartments', name: 'Under Construction Apartments', type: 'Apartment' },
-    { slug: 'furnished-flats', name: 'Furnished Flats', type: 'Apartment' },
-    { slug: 'semi-furnished-flats', name: 'Semi Furnished Flats', type: 'Apartment' },
-    { slug: 'river-facing-flats', name: 'River Facing Flats', type: 'Apartment' },
-    { slug: 'golf-facing-apartments', name: 'Golf Facing Apartments', type: 'Apartment' },
-    { slug: 'terrace-apartments', name: 'Terrace Apartments', type: 'Apartment' },
-    { slug: 'flats-for-sale', name: 'Flats for Sale', type: 'Apartment' },
-    { slug: 'apartments-for-sale', name: 'Apartments for Sale', type: 'Apartment' },
-    { slug: 'ready-to-move-apartments', name: 'Ready to Move Apartments', type: 'Apartment' },
-    { slug: 'rental-apartments', name: 'Rental Apartments', type: 'Apartment' },
-    { slug: 'high-rise-apartments', name: 'High Rise Apartments', type: 'Apartment' },
-    { slug: 'sky-residences', name: 'Sky Residences', type: 'Apartment' },
-    { slug: 'premium-homes', name: 'Premium Homes', type: 'Apartment' },
-    { slug: 'family-apartments', name: 'Family Apartments', type: 'Apartment' },
-    { slug: '3-bhk-garden-apartments', name: '3 BHK Garden Apartments', type: 'Apartment' },
-    { slug: '4-bhk-golf-view-flats', name: '4 BHK Golf View Flats', type: 'Apartment' },
-    { slug: 'walk-to-work-apartments', name: 'Walk-to-Work Apartments', type: 'Apartment' },
-    { slug: 'it-park-facing-flats', name: 'IT Park Facing Flats', type: 'Apartment' },
-    { slug: 'township-apartments', name: 'Township Apartments', type: 'Apartment' },
-    { slug: 'ready-possession-luxury-flats', name: 'Ready Possession Luxury Flats', type: 'Apartment' },
-    { slug: 'senior-living-homes', name: 'Senior Living Homes', type: 'Apartment' },
-    { slug: 'senior-citizen-apartments', name: 'Senior Citizen Apartments', type: 'Apartment' },
-    { slug: 'luxury-villas', name: 'Luxury Villas', type: 'Villa' },
-    { slug: 'nature-townships', name: 'Nature Townships', type: 'Township' },
-    { slug: 'ultra-luxury-penthouses', name: 'Ultra Luxury Penthouses', type: 'Penthouse' }
-  ],
-  locations: [
-    { slug: 'hinjewadi-phase-1', name: 'Hinjewadi Phase 1' },
-    { slug: 'hinjewadi', name: 'Hinjewadi' },
-    { slug: 'wakad', name: 'Wakad' },
-    { slug: 'baner', name: 'Baner' },
-    { slug: 'balewadi', name: 'Balewadi' },
-    { slug: 'pune-west', name: 'Pune West' },
-    { slug: 'pune', name: 'Pune' },
-    { slug: 'pune-real-estate-market', name: 'Pune Real Estate Market' },
-    { slug: 'west-pune-real-estate', name: 'West Pune Real Estate' },
-    { slug: 'marunji', name: 'Marunji' },
-    { slug: 'mahalunge', name: 'Mahalunge' },
-    { slug: 'pimpri-chinchwad', name: 'Pimpri Chinchwad' },
-    { slug: 'maan-road', name: 'Maan Road' },
-    { slug: 'mumbai-bangalore-highway', name: 'Mumbai Bangalore Highway' },
-    { slug: 'bhugaon', name: 'Bhugaon' },
-    { slug: 'model-colony', name: 'Model Colony' },
-    { slug: 'kothrud', name: 'Kothrud' },
-    { slug: 'bavdhan', name: 'Bavdhan' }
-  ],
-  techParks: [
-    { slug: 'near-embassy-tech-zone', name: 'near Embassy Tech Zone' },
-    { slug: 'near-quadron-business-park', name: 'near Quadron Business Park' },
-    { slug: 'near-qubix-it-park', name: 'near Qubix IT Park' },
-    { slug: 'near-infosys-hinjewadi', name: 'near Infosys Hinjewadi' },
-    { slug: 'near-tcs-hinjewadi', name: 'near TCS Hinjewadi' },
-    { slug: 'near-wipro-hinjewadi', name: 'near Wipro Hinjewadi' },
-    { slug: 'near-tech-mahindra-hinjewadi', name: 'near Tech Mahindra Hinjewadi' },
-    { slug: 'near-cognizant-hinjewadi', name: 'near Cognizant Hinjewadi' },
-    { slug: 'near-accenture-hinjewadi', name: 'near Accenture Hinjewadi' },
-    { slug: 'near-capgemini-hinjewadi', name: 'near Capgemini Hinjewadi' },
-    { slug: 'near-rajiv-gandhi-infotech-park', name: 'near Rajiv Gandhi Infotech Park' },
-    { slug: 'near-it-park-pune', name: 'near IT Park Pune' }
-  ],
-  infrastructure: [
-    { slug: 'near-hinjewadi-metro-station', name: 'near Hinjewadi Metro Station' },
-    { slug: 'on-pune-metro-line-3', name: 'on Pune Metro Line 3' },
-    { slug: 'near-mumbai-pune-expressway', name: 'near Mumbai-Pune Expressway' },
-    { slug: 'near-mahalunge-ingale-bridge', name: 'near Mahalunge-Ingale Bridge' },
-    { slug: 'near-mumbai-bangalore-highway', name: 'near Mumbai Bangalore Highway' },
-    { slug: 'near-hinjewadi-bridge', name: 'near Hinjewadi Bridge' },
-    { slug: 'near-xion-mall', name: 'near Xion Mall' },
-    { slug: 'near-maan-road', name: 'near Maan Road' },
-    { slug: 'walking-distance-from-infosys-hinjewadi', name: 'walking distance from Infosys Hinjewadi' },
-    { slug: 'near-balewadi-high-street', name: 'near Balewadi High Street' },
-    { slug: 'near-mahindra-international-school', name: 'near Mahindra International School' },
-    { slug: 'near-symbiosis-pune', name: 'near Symbiosis Pune' },
-    { slug: 'near-vibgyor-school', name: 'near Vibgyor School' },
-    { slug: 'near-hinjewadi-flyover', name: 'near Hinjewadi Flyover' }
-  ],
-  ecosystem: [
-    { slug: 'with-golf-course', name: 'with Golf Course' },
-    { slug: 'near-blue-ridge-public-school', name: 'near Blue Ridge Public School' },
-    { slug: 'with-private-boat-club', name: 'with Private Boat Club' },
-    { slug: 'river-facing-apartments', name: 'River Facing Apartments' },
-    { slug: 'integrated-township-living', name: 'Integrated Township Living' },
-    { slug: 'riverfront-lifestyle', name: 'Riverfront Lifestyle' },
-    { slug: 'with-clubhouse', name: 'with Clubhouse' },
-    { slug: 'with-swimming-pool', name: 'with Swimming Pool' },
-    { slug: 'with-tennis-court', name: 'with Tennis Court' },
-    { slug: 'with-gymnasium', name: 'with Gymnasium' },
-    { slug: 'with-landscaped-gardens', name: 'with Landscaped Gardens' },
-    { slug: 'with-jogging-track', name: 'with Jogging Track' },
-    { slug: 'with-shopping-complex', name: 'with Shopping Complex' },
-    { slug: 'with-business-center', name: 'with Business Center' },
-    { slug: 'work-from-home-apartments', name: 'Work from Home Apartments' },
-    { slug: 'with-sports-courts', name: 'with Sports Courts' },
-    { slug: 'with-cycling-track', name: 'with Cycling Track' },
-    { slug: 'with-marina-front', name: 'with Marina Front' },
-    { slug: 'with-sky-lounge', name: 'with Sky Lounge' },
-    { slug: 'with-cricket-pitch', name: 'with Cricket Pitch' },
-    { slug: 'with-football-court', name: 'with Football Court' }
-  ],
-  investors: [
-    { slug: 'high-rental-yield-properties', name: 'High Rental Yield Properties' },
-    { slug: 'best-roi-real-estate-investment', name: 'Best ROI Real Estate Investment' },
-    { slug: 'nri-investment-luxury-properties', name: 'NRI Investment Luxury Properties' },
-    { slug: 'pre-launch-offers', name: 'Pre-launch Offers' },
-    { slug: 'ready-to-move-resale-flats', name: 'Ready-to-move Resale Flats' },
-    { slug: 'it-employee-housing', name: 'IT Employee Housing' },
-    { slug: 'passive-income-property', name: 'Passive Income Property' },
-    { slug: 'real-estate-appreciation', name: 'Real Estate Appreciation' },
-    { slug: 'corporate-rental-apartments', name: 'Corporate Rental Apartments' },
-    { slug: 'commercial-investment', name: 'Commercial Investment' },
-    { slug: 'office-investment', name: 'Office Investment' },
-    { slug: 'best-investment-in-hinjewadi', name: 'Best Investment in Hinjewadi' },
-    { slug: 'township-investment-pune', name: 'Township Investment Pune' },
-    { slug: 'rental-income-property-pune', name: 'Rental Income Property Pune' },
-    { slug: 'high-appreciation-property-pune', name: 'High Appreciation Property Pune' },
-    { slug: 'best-investment-property-pune', name: 'Best Investment Property Pune' },
-    { slug: 'property-appreciation-hinjewadi', name: 'Property Appreciation Hinjewadi' },
-    { slug: 'high-roi-property-pune', name: 'High ROI Property Pune' },
-    { slug: 'future-growth-locations-pune', name: 'Future Growth Locations Pune' },
-    { slug: 'metro-connected-property-pune', name: 'Metro Connected Property Pune' },
-    { slug: 'nri-real-estate-investment-hinjewadi', name: 'NRI Real Estate Investment Hinjewadi' },
-    { slug: 'buy-pune-property-from-usa', name: 'Buy Pune Property from USA' },
-    { slug: 'buy-flat-in-pune-from-dubai-uae', name: 'Buy Flat in Pune from Dubai UAE' },
-    { slug: 'nri-property-buying-guide-pune', name: 'NRI Property Buying Guide Pune' },
-    { slug: 'paranjape-blue-ridge-nri-desk', name: 'Paranjape Blue Ridge NRI Desk' },
-    { slug: 'nri-high-yield-rental-apartments', name: 'NRI High Yield Rental Apartments' }
-  ],
-  competitors: [
-    { slug: 'near-life-republic', name: 'near Life Republic' },
-    { slug: 'near-lodha-belmondo', name: 'near Lodha Belmondo' },
-    { slug: 'near-vtp-blue-waters', name: 'near VTP Blue Waters' },
-    { slug: 'near-megapolis', name: 'near Megapolis' },
-    { slug: 'near-tathawade-projects', name: 'near Tathawade projects' },
-    { slug: 'near-kolte-patil-township', name: 'near Kolte Patil Township' },
-    { slug: 'near-kumar-prospera', name: 'near Kumar Prospera' },
-    { slug: 'near-vtp-bellissimo', name: 'near VTP Bellissimo' },
-    { slug: 'near-kohinoor-central-park', name: 'near Kohinoor Central Park' },
-    { slug: 'near-godrej-evergreen-square', name: 'near Godrej Evergreen Square' },
-    { slug: 'near-krisala-41-luxovert', name: 'near Krisala 41 Luxovert' },
-    { slug: 'near-hiranandani-township', name: 'near Hiranandani Township' },
-    { slug: 'near-panchshil-projects-pune', name: 'near Panchshil Projects Pune' },
-    { slug: 'near-lodha-pune-projects', name: 'near Lodha Pune Projects' },
-    { slug: 'near-k-raheja-pune', name: 'near K Raheja Pune' },
-    { slug: 'near-kalpataru-pune', name: 'near Kalpataru Pune' },
-    { slug: 'near-mahindra-lifespaces-pune', name: 'near Mahindra Lifespaces Pune' }
-  ],
-  battlegrounds: [
-    { slug: 'blue-ridge-vs-life-republic', name: 'Blue Ridge vs Life Republic', vs: 'Life Republic' },
-    { slug: 'blue-ridge-vs-vtp-blue-waters', name: 'Blue Ridge vs VTP Blue Waters', vs: 'VTP Blue Waters' },
-    { slug: 'blue-ridge-vs-lodha-belmondo', name: 'Blue Ridge vs Lodha Belmondo', vs: 'Lodha Belmondo' },
-    { slug: 'blue-ridge-vs-standalone-buildings', name: 'Blue Ridge vs Standalone Buildings', vs: 'Standalone Buildings' },
-    { slug: 'blue-ridge-vs-under-construction-projects', name: 'Blue Ridge vs Under Construction Projects', vs: 'Under Construction Projects' },
-    { slug: 'blue-ridge-vs-kumar-prospera', name: 'Blue Ridge vs Kumar Prospera', vs: 'Kumar Prospera' },
-    { slug: 'blue-ridge-vs-megapolis', name: 'Blue Ridge vs Megapolis', vs: 'Megapolis' },
-    { slug: 'blue-ridge-vs-tathawade-projects', name: 'Blue Ridge vs Tathawade projects', vs: 'Tathawade projects' },
-    { slug: 'blue-ridge-vs-kolte-patil', name: 'Blue Ridge vs Kolte Patil Township', vs: 'Kolte Patil Township' },
-    { slug: 'blue-ridge-better-than-wakad-projects', name: 'Blue Ridge vs Wakad projects', vs: 'Wakad projects' },
-    { slug: 'blue-ridge-vs-vtp-bellissimo', name: 'Blue Ridge vs VTP Bellissimo', vs: 'VTP Bellissimo' },
-    { slug: 'blue-ridge-vs-kohinoor-central-park', name: 'Blue Ridge vs Kohinoor Central Park', vs: 'Kohinoor Central Park' },
-    { slug: 'blue-ridge-vs-godrej-evergreen-square', name: 'Blue Ridge vs Godrej Evergreen Square', vs: 'Godrej Evergreen Square' },
-    { slug: 'blue-ridge-vs-krisala-41-luxovert', name: 'Blue Ridge vs Krisala 41 Luxovert', vs: 'Krisala 41 Luxovert' },
-    { slug: 'blue-ridge-vs-hiranandani-township', name: 'Blue Ridge vs Hiranandani Township', vs: 'Hiranandani Township' },
-    { slug: 'blue-ridge-vs-godrej-hinjewadi', name: 'Blue Ridge vs Godrej Hinjewadi', vs: 'Godrej Hinjewadi' },
-    { slug: 'blue-ridge-vs-kohinoor-projects', name: 'Blue Ridge vs Kohinoor Projects', vs: 'Kohinoor Projects' },
-    { slug: 'best-township-in-hinjewadi', name: 'Best Township in Hinjewadi', vs: 'Other Townships' },
-    { slug: 'best-township-in-pune-comparison', name: 'Best Township in Pune Comparison', vs: 'Other Townships' }
-  ],
-  infraGuides: [
-    { slug: 'hinjewadi-metro-line-3-impact', name: 'Hinjewadi Metro Line 3 Impact & Stations' },
-    { slug: 'blue-ridge-public-school-admission-guide', name: 'Blue Ridge Public School Admission & Facilities' },
-    { slug: 'private-boat-club-membership-pune', name: 'Private Boat Club Membership & Riverfront Living' },
-    { slug: 'hinjewadi-phase-1-infrastructure-updates', name: 'Hinjewadi Phase 1 Latest Infrastructure Updates' },
-    { slug: 'mula-river-rejuvenation-project-impact', name: 'Mula River Rejuvenation Project Impact' },
-    { slug: 'mahalunge-hinjewadi-bridge-connectivity', name: 'Mahalunge-Hinjewadi Bridge Connectivity Guide' },
-    { slug: 'pune-mumbai-expressway-access-hinjewadi', name: 'Pune-Mumbai Expressway Access from Hinjewadi' },
-    { slug: 'it-parks-in-hinjewadi-phase-1-list', name: 'List of IT Parks & Companies in Hinjewadi Phase 1' }
-  ],
-  priceLists: [
-    { slug: '2-bhk-price-list-blue-ridge-hinjewadi', name: '2 BHK Price List Blue Ridge Hinjewadi 2026' },
-    { slug: '3-bhk-price-list-blue-ridge-hinjewadi', name: '3 BHK Price List Blue Ridge Hinjewadi 2026' },
-    { slug: '4-bhk-price-list-blue-ridge-hinjewadi', name: '4 BHK Price List Blue Ridge Hinjewadi 2026' },
-    { slug: 'blue-ridge-promenade-price-list', name: 'Promenade Residences Price List & Payment Plan' },
-    { slug: 'blue-ridge-altius-price-list', name: 'The Altius Price List & Cost Sheet 2026' },
-    { slug: 'blue-ridge-ridges-41-price-list', name: 'Ridges 41 Price List & Possession Date' },
-    { slug: 'blue-ridge-hinjewadi-resale-price', name: 'Blue Ridge Hinjewadi Resale Price Per Sqft' },
-    { slug: 'paranjape-blue-ridge-cost-sheet', name: 'Paranjape Blue Ridge Cost Sheet & All-Inclusive Price' },
-    { slug: 'blue-ridge-pricing', name: 'Blue Ridge Pricing & Offers' }
-  ],
-  floorPlans: [
-    { slug: 'paranjape-blue-ridge-floor-plans', name: 'Paranjape Blue Ridge Floor Plans & Master Layout' },
-    { slug: '2-bhk-floor-plan-blue-ridge', name: '2 BHK Floor Plan Blue Ridge Hinjewadi' },
-    { slug: '3-bhk-floor-plan-blue-ridge', name: '3 BHK Floor Plan Blue Ridge Hinjewadi' },
-    { slug: '4-bhk-floor-plan-blue-ridge', name: '4 BHK Floor Plan Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-promenade-floor-plan', name: 'Promenade Residences Floor Plan & Layout' },
-    { slug: 'blue-ridge-altius-floor-plan', name: 'The Altius Floor Plan & Unit Plan Download' },
-    { slug: 'ridges-41-floor-plan-hinjewadi', name: 'Ridges 41 Floor Plan & Carpet Area Details' },
-    { slug: 'blue-ridge-master-plan', name: 'Blue Ridge Master Plan' }
-  ],
-  siteVisit: [
-    { slug: 'distance-from-paranjape-blue-ridge-to-rajiv-gandhi-infotech-park', name: 'Distance from Paranjape Blue Ridge to Rajiv Gandhi Infotech Park' },
-    { slug: 'blue-ridge-hinjewadi-site-visit', name: 'Blue Ridge Hinjewadi Site Visit Booking' },
-    { slug: 'paranjape-blue-ridge-sales-office', name: 'Paranjape Blue Ridge Sales Office & Contact' },
-    { slug: 'blue-ridge-hinjewadi-brochure-download', name: 'Blue Ridge Hinjewadi Brochure Download PDF' },
-    { slug: 'blue-ridge-hinjewadi-virtual-tour', name: 'Blue Ridge Hinjewadi Virtual Tour & 3D Walkthrough' },
-    { slug: 'book-flat-blue-ridge-hinjewadi', name: 'Book a Flat at Blue Ridge Hinjewadi — Pre-Registration' },
-    { slug: 'blue-ridge-sample-flat', name: 'Blue Ridge Sample Flat Viewing' }
-  ],
-  amenitiesSearch: [
-    { slug: 'paranjape-blue-ridge-reviews-and-ratings', name: 'Paranjape Blue Ridge Reviews and Ratings' },
-    { slug: 'life-at-blue-ridge-township-pune', name: 'Life at Blue Ridge Township Pune' },
-    { slug: 'safety-and-security-in-blue-ridge-hinjewadi', name: 'Safety and Security in Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-public-school-hinjewadi', name: 'Blue Ridge Public School Hinjewadi ICSE' },
-    { slug: 'flats-with-golf-course-pune', name: 'Flats with Golf Course in Pune' },
-    { slug: 'apartments-with-boat-club-pune', name: 'Apartments with Boat Club Pune' },
-    { slug: 'gated-community-hinjewadi-pune', name: 'Premium Gated Community Hinjewadi Pune' },
-    { slug: 'walk-to-work-flats-hinjewadi', name: 'Walk to Work Flats Hinjewadi IT Park' },
-    { slug: 'flats-with-school-inside-township-pune', name: 'Flats with School Inside Township Pune' },
-    { slug: 'pet-friendly-apartments-hinjewadi', name: 'Pet Friendly Luxury Apartments Hinjewadi' },
-    { slug: 'swimming-pool-apartments-hinjewadi-pune', name: 'Swimming Pool Apartments Hinjewadi Pune' },
-    { slug: 'ready-possession-flats-hinjewadi-2026', name: 'Ready Possession Flats Hinjewadi 2026' }
-  ],
-  transactionQueries: [
-    { slug: 'paranjape-blue-ridge-apartments-for-sale', name: 'Paranjape Blue Ridge Apartments For Sale' },
-    { slug: 'paranjape-blue-ridge-flat-for-rent', name: 'Paranjape Blue Ridge Flat For Rent' },
-    { slug: 'paranjape-blue-ridge-resale-price', name: 'Paranjape Blue Ridge Resale Price' },
-    { slug: 'paranjape-schemes-construction-ltd-projects', name: 'Paranjape Schemes Construction Ltd Projects' },
-    { slug: 'paranjape-schemes-construction-ltd-pune', name: 'Paranjape Schemes Construction Ltd Pune' },
-    { slug: 'paranjape-schemes-construction-ltd-hinjewadi', name: 'Paranjape Schemes Construction Ltd Hinjewadi' },
-    { slug: 'paranjape-schemes-construction-ltd-blue-ridge', name: 'Paranjape Schemes Construction Ltd Blue Ridge' },
-    { slug: 'paranjape-schemes-construction-ltd-reviews', name: 'Paranjape Schemes Construction Ltd Reviews' },
-    { slug: 'paranjape-schemes-construction-ltd-new-projects', name: 'Paranjape Schemes Construction Ltd New Projects' },
-    { slug: 'paranjapeblueridge-com', name: 'paranjapeblueridge.com' },
-    { slug: 'www-paranjapeblueridge-com', name: 'www.paranjapeblueridge.com' },
-    { slug: 'paranjape-blue-ridge-com', name: 'paranjape blue ridge com' },
-    { slug: 'paranjapeblueridge-com-pune', name: 'paranjapeblueridge.com Pune' },
-    { slug: '138-acre-township-hinjewadi', name: '138-Acre Township Hinjewadi' },
-    { slug: 'paranjape-blue-ridge-township-hinjewadi', name: 'Paranjape Blue Ridge Township Hinjewadi' },
-    { slug: 'buy-flat-in-blue-ridge', name: 'Buy Flat in Blue Ridge' },
-    { slug: 'invest-in-blue-ridge-hinjewadi', name: 'Invest in Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-inventory-available', name: 'Blue Ridge Inventory Available' },
-    { slug: 'buy-apartment-in-pune', name: 'Buy Apartment in Pune' },
-    { slug: 'buy-flat-in-blue-ridge-hinjewadi', name: 'Buy Flat in Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-property-for-sale', name: 'Blue Ridge Property for Sale' }
-  ],
-  towers: Array.from({ length: 26 }, (_, i) => ({
-    slug: `blue-ridge-tower-${i + 1}`, name: `Blue Ridge Tower ${i + 1}`
-  })),
-  clusters: [
-    { slug: 'the-ridges-41', name: 'The Ridges 41' },
-    { slug: 'the-altius', name: 'The Altius' },
-    { slug: 'orion', name: 'Orion' },
-    { slug: 'the-groves', name: 'The Groves' },
-    { slug: 'lofts', name: 'Lofts' },
-    { slug: 'riverfront-residences', name: 'Riverfront Residences' },
-    { slug: 'golf-view-residences', name: 'Golf View Residences' },
-    { slug: 'skyline-residences', name: 'Skyline Residences' }
-  ],
-  luxuryWestPune: [
-    { slug: 'baner', name: 'Baner' },
-    { slug: 'balewadi', name: 'Balewadi' },
-    { slug: 'pashan', name: 'Pashan' },
-    { slug: 'bavdhan', name: 'Bavdhan' },
-    { slug: 'mahalunge', name: 'Mahalunge' },
-    { slug: 'wakad', name: 'Wakad' },
-    { slug: 'hinjewadi', name: 'Hinjewadi' },
-    { slug: 'hinjewadi-baner', name: 'Hinjewadi and Baner' },
-    { slug: 'wakad-hinjewadi', name: 'Wakad and Hinjewadi' },
-    { slug: 'balewadi-hinjewadi', name: 'Balewadi and Hinjewadi' },
-    { slug: 'mahalunge-hinjewadi', name: 'Mahalunge and Hinjewadi' }
-  ],
-  puneMacroMarket: [
-    { slug: 'pune-real-estate-market', name: 'Pune Real Estate Market' },
-    { slug: 'pune-luxury-real-estate', name: 'Pune Luxury Real Estate' },
-    { slug: 'pune-premium-housing-market', name: 'Pune Premium Housing Market' },
-    { slug: 'pune-luxury-homes', name: 'Pune Luxury Homes' },
-    { slug: 'pune-luxury-apartments', name: 'Pune Luxury Apartments' },
-    { slug: 'pune-investment-property', name: 'Pune Investment Property' },
-    { slug: 'pune-residential-market', name: 'Pune Residential Market' },
-    { slug: 'pune-premium-residences', name: 'Pune Premium Residences' },
-    { slug: 'pune-luxury-living', name: 'Pune Luxury Living' },
-    { slug: 'pune-township-projects', name: 'Pune Township Projects' },
-    { slug: 'pune-property-appreciation', name: 'Pune Property Appreciation' },
-    { slug: 'pune-real-estate-investment', name: 'Pune Real Estate Investment' },
-    { slug: 'pune-smart-city-homes', name: 'Pune Smart City Homes' },
-    { slug: 'pune-metro-connected-homes', name: 'Pune Metro Connected Homes' },
-    { slug: 'pune-high-end-real-estate', name: 'Pune High End Real Estate' },
-    { slug: 'luxury-homes-pune', name: 'Luxury Homes Pune' },
-    { slug: 'premium-real-estate-pune', name: 'Premium Real Estate Pune' },
-    { slug: 'townships-in-pune', name: 'Townships in Pune' },
-    { slug: 'mega-townships-pune', name: 'Mega Townships Pune' },
-    { slug: 'best-real-estate-investment-pune', name: 'Best Real Estate Investment Pune' },
-    { slug: 'ready-possession-flats-pune', name: 'Ready Possession Flats Pune' },
-    { slug: 'ongoing-residential-projects-pune', name: 'Ongoing Residential Projects Pune' },
-    { slug: 'rera-approved-projects-pune', name: 'RERA Approved Projects Pune' },
-    { slug: 'branded-residences-pune', name: 'Branded Residences Pune' },
-    { slug: 'luxury-apartments-pune', name: 'Luxury Apartments Pune' },
-    { slug: 'premium-apartments-pune', name: 'Premium Apartments Pune' },
-    { slug: 'flats-for-sale-pune', name: 'Flats for Sale Pune' },
-    { slug: 'pune-property-investment', name: 'Pune Property Investment' },
-    { slug: 'residential-projects-pune', name: 'Residential Projects Pune' },
-    { slug: 'premium-residences-pune', name: 'Premium Residences Pune' },
-    { slug: 'best-property-in-pune', name: 'Best Property in Pune' },
-    { slug: 'pune-luxury-property', name: 'Pune Luxury Property' },
-    { slug: 'pune-property-market', name: 'Pune Property Market' },
-    { slug: 'eco-friendly-apartments-pune', name: 'Eco Friendly Apartments Pune' },
-    { slug: 'smart-homes-pune', name: 'Smart Homes Pune' },
-    { slug: 'gated-community-pune', name: 'Gated Community Pune' },
-    { slug: 'nri-investment-property-pune', name: 'NRI Investment Property Pune' },
-    { slug: 'affordable-housing-pune', name: 'Affordable Housing Pune' },
-    { slug: 'best-areas-to-invest-pune-2026', name: 'Best Areas to Invest Pune 2026' },
-    { slug: 'best-roi-flats-in-pune', name: 'Best ROI Flats in Pune' },
-    { slug: 'pune-nri-real-estate-laws', name: 'Pune NRI Real Estate Laws & Guide' },
-    { slug: 'pune-ring-road-property-impact', name: 'Pune Ring Road Property Impact' }
-  ],
-  westPuneCorridor: [
-    { slug: 'west-pune-real-estate', name: 'West Pune Real Estate' },
-    { slug: 'west-pune-real-estate-market', name: 'West Pune Real Estate Market' },
-    { slug: 'west-pune-luxury-homes', name: 'West Pune Luxury Homes' },
-    { slug: 'west-pune-luxury-apartments', name: 'West Pune Luxury Apartments' },
-    { slug: 'west-pune-premium-property', name: 'West Pune Premium Property' },
-    { slug: 'west-pune-property-investment', name: 'West Pune Property Investment' },
-    { slug: 'west-pune-luxury-real-estate', name: 'West Pune Luxury Real Estate' },
-    { slug: 'west-pune-residential-market', name: 'West Pune Residential Market' },
-    { slug: 'west-pune-township-projects', name: 'West Pune Township Projects' },
-    { slug: 'west-pune-luxury-villas', name: 'West Pune Luxury Villas' },
-    { slug: 'west-pune-premium-residences', name: 'West Pune Premium Residences' },
-    { slug: 'west-pune-golf-view-apartments', name: 'West Pune Golf View Apartments' },
-    { slug: 'west-pune-high-rise-apartments', name: 'West Pune High Rise Apartments' },
-    { slug: 'west-pune-luxury-lifestyle', name: 'West Pune Luxury Lifestyle' },
-    { slug: 'west-pune-property-appreciation', name: 'West Pune Property Appreciation' },
-    { slug: 'west-pune-investment-opportunities', name: 'West Pune Investment Opportunities' },
-    { slug: 'properties-in-west-pune', name: 'Properties in West Pune' },
-    { slug: 'luxury-projects-west-pune', name: 'Luxury Projects West Pune' },
-    { slug: 'townships-in-west-pune', name: 'Townships in West Pune' },
-    { slug: 'pune-west-luxury-apartments', name: 'Pune West Luxury Apartments' },
-    { slug: 'pune-west-property-investment', name: 'Pune West Property Investment' },
-    { slug: 'pune-west-premium-homes', name: 'Pune West Premium Homes' },
-    { slug: 'pune-west-new-launch-projects', name: 'Pune West New Launch Projects' },
-    { slug: 'pune-west-property-market', name: 'Pune West Property Market' },
-    { slug: 'pune-west-high-rise-apartments', name: 'Pune West High Rise Apartments' },
-    { slug: 'pune-west-golf-view-homes', name: 'Pune West Golf View Homes' },
-    { slug: 'best-residential-projects-pune-west', name: 'Best Residential Projects Pune West' },
-    { slug: 'premium-flats-pune-west', name: 'Premium Flats Pune West' },
-    { slug: 'luxury-homes-pune-west', name: 'Luxury Homes Pune West' },
-    { slug: 'premium-property-pune-west', name: 'Premium Property Pune West' },
-    { slug: 'pune-it-corridor-housing', name: 'Pune IT Corridor Housing Guide' },
-    { slug: 'hinjewadi-to-wakad-growth-connector', name: 'Hinjewadi to Wakad Growth Connector' }
-  ],
-  // Deep Hinjewadi Market Authority
-  hinjewadiFocus: [
-    { slug: 'hinjewadi-real-estate', name: 'Hinjewadi Real Estate' },
-    { slug: 'hinjewadi-real-estate-market', name: 'Hinjewadi Real Estate Market' },
-    { slug: 'hinjewadi-property-market', name: 'Hinjewadi Property Market' },
-    { slug: 'hinjewadi-luxury-real-estate', name: 'Hinjewadi Luxury Real Estate' },
-    { slug: 'hinjewadi-premium-apartments', name: 'Hinjewadi Premium Apartments' },
-    { slug: 'hinjewadi-luxury-homes', name: 'Hinjewadi Luxury Homes' },
-    { slug: 'hinjewadi-township-projects', name: 'Hinjewadi Township Projects' },
-    { slug: 'hinjewadi-luxury-township', name: 'Hinjewadi Luxury Township' },
-    { slug: 'hinjewadi-real-estate-investment', name: 'Hinjewadi Real Estate Investment' },
-    { slug: 'hinjewadi-property-appreciation', name: 'Hinjewadi Property Appreciation' },
-    { slug: 'hinjewadi-luxury-living', name: 'Hinjewadi Luxury Living' },
-    { slug: 'hinjewadi-it-hub-property', name: 'Hinjewadi IT Hub Property' },
-    { slug: 'hinjewadi-family-homes', name: 'Hinjewadi Family Homes' },
-    { slug: 'hinjewadi-premium-residences', name: 'Hinjewadi Premium Residences' },
-    { slug: 'hinjewadi-property-investment', name: 'Hinjewadi Property Investment' },
-    { slug: 'flats-for-sale-hinjewadi', name: 'Flats for Sale in Hinjewadi' },
-    { slug: 'apartments-in-hinjewadi', name: 'Apartments in Hinjewadi' },
-    { slug: 'luxury-flats-hinjewadi', name: 'Luxury Flats in Hinjewadi' },
-    { slug: 'premium-projects-hinjewadi', name: 'Premium Projects in Hinjewadi' },
-    { slug: 'new-launch-projects-hinjewadi', name: 'New Launch Projects Hinjewadi' },
-    { slug: 'upcoming-projects-hinjewadi', name: 'Upcoming Projects Hinjewadi' },
-    { slug: 'ready-possession-flats-hinjewadi', name: 'Ready Possession Flats Hinjewadi' },
-    { slug: 'under-construction-projects-hinjewadi', name: 'Under Construction Projects Hinjewadi' },
-    { slug: 'residential-projects-hinjewadi', name: 'Residential Projects Hinjewadi' },
-    { slug: 'best-property-hinjewadi', name: 'Best Property in Hinjewadi' },
-    { slug: 'new-projects-hinjewadi', name: 'New Projects in Hinjewadi' },
-    { slug: 'luxury-living-hinjewadi', name: 'Luxury Living Hinjewadi' },
-    { slug: 'high-rise-apartments-hinjewadi', name: 'High Rise Apartments Hinjewadi' },
-    { slug: 'smart-homes-hinjewadi', name: 'Smart Homes Hinjewadi' },
-    { slug: 'hinjewadi-luxury-apartments', name: 'Hinjewadi Luxury Apartments' },
-    { slug: 'premium-apartments-hinjewadi', name: 'Premium Apartments in Hinjewadi' },
-    { slug: 'luxury-homes-hinjewadi', name: 'Luxury Homes in Hinjewadi' }
-  ],
-  // Township Dominance Keywords
-  townshipAuthority: [
-    { slug: 'township-projects-hinjewadi', name: 'Township Projects in Hinjewadi' },
-    { slug: 'integrated-township-pune', name: 'Integrated Township Pune' },
-    { slug: 'self-sustained-township-pune', name: 'Self Sustained Township Pune' },
-    { slug: 'walk-to-work-homes-pune', name: 'Walk to Work Homes Pune' },
-    { slug: 'township-flats-hinjewadi', name: 'Township Flats in Hinjewadi' },
-    { slug: 'premium-township-projects-pune', name: 'Premium Township Projects Pune' },
-    { slug: 'golf-township-pune', name: 'Golf Township Pune' },
-    { slug: 'riverfront-township-pune', name: 'Riverfront Township Pune' },
-    { slug: 'residential-township-pune', name: 'Residential Township Pune' },
-    { slug: 'family-township-pune', name: 'Family Township Pune' },
-    { slug: 'luxury-township-pune', name: 'Luxury Township Pune' },
-    { slug: 'premium-township-pune', name: 'Premium Township Pune' },
-    { slug: 'walk-to-work-township-pune', name: 'Walk to Work Township Pune' },
-    { slug: 'best-residential-township-pune', name: 'Best Residential Township Pune' }
-  ],
-  // Metro Line 3 Impact Keywords
-  metroImpact: [
-    { slug: 'flats-near-pune-metro', name: 'Flats Near Pune Metro' },
-    { slug: 'property-near-metro-station-pune', name: 'Property Near Metro Station Pune' },
-    { slug: 'metro-line-3-hinjewadi-property', name: 'Metro Line 3 Hinjewadi Property' },
-    { slug: 'metro-connected-apartments-pune', name: 'Metro Connected Apartments Pune' },
-    { slug: 'investment-property-near-metro-pune', name: 'Investment Property Near Metro Pune' },
-    { slug: 'metro-station-apartments-pune', name: 'Metro Station Apartments Pune' }
-  ],
-  // Buyer Intent / Long-Tail Conversion Keywords
-  buyerIntent: [
-    { slug: 'buy-3-bhk-blue-ridge-hinjewadi', name: 'Buy 3 BHK in Blue Ridge Hinjewadi' },
-    { slug: '3-bhk-luxury-homes-pune', name: '3 BHK Luxury Homes Pune' },
-    { slug: '3-bhk-luxury-apartments-pune', name: '3 BHK Luxury Apartments Pune' },
-    { slug: 'premium-3-bhk-pune', name: 'Premium 3 BHK Pune' },
-    { slug: 'luxury-3-bhk-flats-pune', name: 'Luxury 3 BHK Flats Pune' },
-    { slug: '3-bhk-luxury-residences-pune', name: '3 BHK Luxury Residences Pune' },
-    { slug: 'ready-possession-3-bhk-pune', name: 'Ready Possession 3 BHK Pune' },
-    { slug: 'golf-view-3-bhk-pune', name: 'Golf View 3 BHK Pune' },
-    { slug: 'river-view-3-bhk-pune', name: 'River View 3 BHK Pune' },
-    { slug: 'smart-3-bhk-homes-pune', name: 'Smart 3 BHK Homes Pune' },
-    { slug: 'spacious-3-bhk-pune', name: 'Spacious 3 BHK Pune' },
-    { slug: 'premium-family-3-bhk-pune', name: 'Premium Family 3 BHK Pune' },
-    { slug: 'luxury-3-bhk-township-pune', name: 'Luxury 3 BHK Township Pune' },
-    { slug: 'high-rise-3-bhk-pune', name: 'High Rise 3 BHK Pune' },
-    { slug: 'luxury-3-bhk-near-it-park-pune', name: 'Luxury 3 BHK Near IT Park Pune' },
-    { slug: 'luxury-3-bhk-west-pune', name: 'Luxury 3 BHK West Pune' },
-    { slug: '4-bhk-luxury-homes-pune', name: '4 BHK Luxury Homes Pune' },
-    { slug: '4-bhk-premium-residences-pune', name: '4 BHK Premium Residences Pune' },
-    { slug: 'luxury-4-bhk-apartments-pune', name: 'Luxury 4 BHK Apartments Pune' },
-    { slug: 'premium-4-bhk-pune', name: 'Premium 4 BHK Pune' },
-    { slug: 'spacious-4-bhk-pune', name: 'Spacious 4 BHK Pune' },
-    { slug: 'luxury-4-bhk-township-pune', name: 'Luxury 4 BHK Township Pune' },
-    { slug: 'golf-facing-4-bhk-pune', name: 'Golf Facing 4 BHK Pune' },
-    { slug: 'river-facing-4-bhk-pune', name: 'River Facing 4 BHK Pune' },
-    { slug: 'luxury-family-homes-pune', name: 'Luxury Family Homes Pune' },
-    { slug: 'elite-4-bhk-pune', name: 'Elite 4 BHK Pune' },
-    { slug: 'premium-4-bhk-west-pune', name: 'Premium 4 BHK West Pune' },
-    { slug: 'luxury-4-bhk-hinjewadi', name: 'Luxury 4 BHK Hinjewadi' },
-    { slug: 'luxury-4-bhk-baner', name: 'Luxury 4 BHK Baner' },
-    { slug: 'luxury-4-bhk-wakad', name: 'Luxury 4 BHK Wakad' },
-    { slug: 'luxury-4-bhk-balewadi', name: 'Luxury 4 BHK Balewadi' },
-    { slug: '5-bhk-luxury-homes-pune', name: '5 BHK Luxury Homes Pune' },
-    { slug: '5-bhk-villas-pune', name: '5 BHK Villas Pune' },
-    { slug: '5-bhk-luxury-villas-pune', name: '5 BHK Luxury Villas Pune' },
-    { slug: 'ultra-luxury-5-bhk-pune', name: 'Ultra Luxury 5 BHK Pune' },
-    { slug: '5-bhk-premium-residences-pune', name: '5 BHK Premium Residences Pune' },
-    { slug: '5-bhk-penthouses-pune', name: '5 BHK Penthouses Pune' },
-    { slug: 'luxury-mansion-pune', name: 'Luxury Mansion Pune' },
-    { slug: 'independent-luxury-home-pune', name: 'Independent Luxury Home Pune' },
-    { slug: 'luxury-bungalow-pune', name: 'Luxury Bungalow Pune' },
-    { slug: 'luxury-villa-community-pune', name: 'Luxury Villa Community Pune' },
-    { slug: 'elite-5-bhk-pune', name: 'Elite 5 BHK Pune' },
-    { slug: 'golf-facing-5-bhk-pune', name: 'Golf Facing 5 BHK Pune' },
-    { slug: 'smart-luxury-villa-pune', name: 'Smart Luxury Villa Pune' },
-    { slug: 'luxury-estate-pune', name: 'Luxury Estate Pune' },
-    { slug: 'exclusive-5-bhk-pune', name: 'Exclusive 5 BHK Pune' },
-    { slug: 'blue-ridge-township-pune', name: 'Blue Ridge Township Pune' },
-    { slug: 'blue-ridge-township-hinjewadi', name: 'Blue Ridge Township Hinjewadi' },
-    { slug: 'blue-ridge-luxury-apartments', name: 'Blue Ridge Luxury Apartments' },
-    { slug: 'blue-ridge-premium-homes', name: 'Blue Ridge Premium Homes' },
-    { slug: 'blue-ridge-luxury-township', name: 'Blue Ridge Luxury Township' },
-    { slug: 'blue-ridge-river-view-apartments', name: 'Blue Ridge River View Apartments' },
-    { slug: 'blue-ridge-golf-view-homes', name: 'Blue Ridge Golf View Homes' },
-    { slug: 'blue-ridge-family-residences', name: 'Blue Ridge Family Residences' },
-    { slug: 'blue-ridge-property-investment', name: 'Blue Ridge Property Investment' },
-    { slug: 'blue-ridge-luxury-living', name: 'Blue Ridge Luxury Living' },
-    { slug: 'blue-ridge-township-flats', name: 'Blue Ridge Township Flats' },
-    { slug: 'blue-ridge-ready-possession-homes', name: 'Blue Ridge Ready Possession Homes' },
-    { slug: 'blue-ridge-premium-apartments', name: 'Blue Ridge Premium Apartments' },
-    { slug: 'blue-ridge-luxury-residences', name: 'Blue Ridge Luxury Residences' },
-    { slug: 'blue-ridge-real-estate-investment', name: 'Blue Ridge Real Estate Investment' },
-    { slug: 'blue-ridge-2-bhk-hinjewadi', name: 'Blue Ridge 2 BHK Hinjewadi' },
-    { slug: 'blue-ridge-luxury-2-bhk', name: 'Blue Ridge Luxury 2 BHK' },
-    { slug: 'blue-ridge-premium-2-bhk', name: 'Blue Ridge Premium 2 BHK' },
-    { slug: 'blue-ridge-2-bhk-for-sale', name: 'Blue Ridge 2 BHK For Sale' },
-    { slug: 'buy-2-bhk-blue-ridge-pune', name: 'Buy 2 BHK Blue Ridge Pune' },
-    { slug: 'blue-ridge-3-bhk-hinjewadi', name: 'Blue Ridge 3 BHK Hinjewadi' },
-    { slug: 'blue-ridge-luxury-3-bhk', name: 'Blue Ridge Luxury 3 BHK' },
-    { slug: 'blue-ridge-premium-3-bhk', name: 'Blue Ridge Premium 3 BHK' },
-    { slug: 'buy-3-bhk-blue-ridge-pune', name: 'Buy 3 BHK Blue Ridge Pune' },
-    { slug: 'blue-ridge-3-bhk-investment', name: 'Blue Ridge 3 BHK Investment' },
-    { slug: '2-bhk-in-hinjewadi', name: '2 BHK in Hinjewadi' },
-    { slug: '3-bhk-in-mahalunge', name: '3 BHK in Mahalunge' },
-    { slug: '4-bhk-in-baner', name: '4 BHK in Baner' },
-    { slug: '4-bhk-in-mahalunge', name: '4 BHK in Mahalunge' },
-    { slug: 'duplex-in-pune', name: 'Duplex in Pune' },
-    { slug: 'skyduplex-in-pune', name: 'Skyduplex in Pune' },
-    { slug: 'simplex-in-pune', name: 'Simplex in Pune' },
-    { slug: '5-bhk-in-pune', name: '5 BHK in Pune' },
-    { slug: '2-bhk-in-hinjewadi-paranjape', name: '2 BHK in Hinjewadi Paranjape' },
-    { slug: '3-bhk-in-mahalunge-paranjape', name: '3 BHK in Mahalunge Paranjape' },
-    { slug: '4-bhk-in-baner-paranjape', name: '4 BHK in Baner Paranjape' },
-    { slug: '4-bhk-in-mahalunge-paranjape', name: '4 BHK in Mahalunge Paranjape' },
-    { slug: 'duplex-in-hinjewadi-pune', name: 'Duplex in Hinjewadi Pune' },
-    { slug: 'skyduplex-in-mahalunge', name: 'Skyduplex in Mahalunge' },
-    { slug: 'simplex-in-baner', name: 'Simplex in Baner' },
-    { slug: 'paranjape-blue-ridge-phase-2-hinjewadi', name: 'Paranjape Blue Ridge Phase 2 Hinjewadi' },
-    { slug: 'paranjape-blue-ridge-phase-3-hinjewadi', name: 'Paranjape Blue Ridge Phase 3 Hinjewadi' },
-    { slug: 'new-township-in-mahalunge-pune', name: 'New Township in Mahalunge Pune' },
-    { slug: 'mahalunge-vs-hinjewadi-investment', name: 'Mahalunge vs Hinjewadi Investment' },
-    { slug: 'blue-ridge-4-bhk-hinjewadi', name: 'Blue Ridge 4 BHK Hinjewadi' },
-    { slug: 'blue-ridge-luxury-4-bhk', name: 'Blue Ridge Luxury 4 BHK' },
-    { slug: 'blue-ridge-premium-4-bhk', name: 'Blue Ridge Premium 4 BHK' },
-    { slug: 'blue-ridge-4-bhk-for-sale', name: 'Blue Ridge 4 BHK For Sale' },
-    { slug: 'blue-ridge-elite-homes', name: 'Blue Ridge Elite Homes' },
-    { slug: 'bungalows-in-hinjewadi', name: 'Bungalows in Hinjewadi' },
-    { slug: 'luxury-bungalows-in-hinjewadi', name: 'Luxury Bungalows in Hinjewadi' },
-    { slug: 'premium-bungalows-hinjewadi', name: 'Premium Bungalows Hinjewadi' },
-    { slug: 'independent-houses-hinjewadi', name: 'Independent Houses Hinjewadi' },
-    { slug: 'luxury-villas-hinjewadi', name: 'Luxury Villas Hinjewadi' },
-    { slug: 'gated-community-villas-hinjewadi', name: 'Gated Community Villas Hinjewadi' },
-    { slug: '5-bhk-villas-hinjewadi', name: '5 BHK Villas Hinjewadi' },
-    { slug: 'luxury-villa-projects-hinjewadi', name: 'Luxury Villa Projects Hinjewadi' },
-    { slug: 'luxury-bungalow-projects-hinjewadi', name: 'Luxury Bungalow Projects Hinjewadi' },
-    { slug: 'buy-bungalow-in-hinjewadi', name: 'Buy Bungalow in Hinjewadi' },
-    { slug: 'ready-possession-bungalows-hinjewadi', name: 'Ready Possession Bungalows Hinjewadi' },
-    { slug: 'premium-villa-community-hinjewadi', name: 'Premium Villa Community Hinjewadi' },
-    { slug: 'luxury-independent-homes-hinjewadi', name: 'Luxury Independent Homes Hinjewadi' },
-    { slug: 'smart-villas-hinjewadi', name: 'Smart Villas Hinjewadi' },
-    { slug: 'golf-view-villas-hinjewadi', name: 'Golf View Villas Hinjewadi' },
-    { slug: 'wakad-luxury-apartments', name: 'Wakad Luxury Apartments' },
-    { slug: 'wakad-luxury-homes', name: 'Wakad Luxury Homes' },
-    { slug: 'wakad-premium-residences', name: 'Wakad Premium Residences' },
-    { slug: 'wakad-luxury-property', name: 'Wakad Luxury Property' },
-    { slug: 'wakad-real-estate-investment', name: 'Wakad Real Estate Investment' },
-    { slug: 'luxury-flats-in-wakad', name: 'Luxury Flats in Wakad' },
-    { slug: 'premium-housing-in-wakad', name: 'Premium Housing in Wakad' },
-    { slug: 'luxury-3-bhk-wakad', name: 'Luxury 3 BHK Wakad' },
-    { slug: 'elite-4-bhk-wakad', name: 'Elite 4 BHK Wakad' },
-    { slug: 'premium-township-wakad', name: 'Premium Township Wakad' },
-    { slug: 'luxury-living-wakad', name: 'Luxury Living Wakad' },
-    { slug: 'golf-view-apartments-wakad', name: 'Golf View Apartments Wakad' },
-    { slug: 'high-rise-luxury-homes-wakad', name: 'High Rise Luxury Homes Wakad' },
-    { slug: 'wakad-luxury-housing-market', name: 'Wakad Luxury Housing Market' },
-    { slug: 'luxury-property-near-hinjewadi', name: 'Luxury Property Near Hinjewadi' },
-    { slug: 'buy-luxury-home-in-hinjewadi-pune', name: 'Buy Luxury Home in Hinjewadi Pune' },
-    { slug: 'luxury-apartments-near-infosys-pune', name: 'Luxury Apartments Near Infosys Pune' },
-    { slug: 'luxury-apartments-near-wipro-pune', name: 'Luxury Apartments Near Wipro Pune' },
-    { slug: 'premium-homes-near-tcs-pune', name: 'Premium Homes Near TCS Pune' },
-    { slug: 'luxury-property-near-rajiv-gandhi-infotech-park', name: 'Luxury Property Near Rajiv Gandhi Infotech Park' },
-    { slug: 'best-luxury-township-in-pune', name: 'Best Luxury Township in Pune' },
-    { slug: 'best-luxury-apartments-in-west-pune', name: 'Best Luxury Apartments in West Pune' },
-    { slug: 'best-3-bhk-luxury-apartments-pune', name: 'Best 3 BHK Luxury Apartments Pune' },
-    { slug: 'best-4-bhk-luxury-homes-pune', name: 'Best 4 BHK Luxury Homes Pune' },
-    { slug: 'best-5-bhk-villas-pune', name: 'Best 5 BHK Villas Pune' },
-    { slug: 'luxury-homes-for-it-professionals-pune', name: 'Luxury Homes for IT Professionals Pune' },
-    { slug: 'luxury-apartments-near-metro-pune', name: 'Luxury Apartments Near Metro Pune' },
-    { slug: 'luxury-township-near-hinjewadi-it-park', name: 'Luxury Township Near Hinjewadi IT Park' },
-    { slug: 'premium-residences-in-west-pune', name: 'Premium Residences in West Pune' },
-    { slug: 'luxury-investment-property-pune', name: 'Luxury Investment Property Pune' },
-    { slug: 'high-roi-luxury-apartments-pune', name: 'High ROI Luxury Apartments Pune' },
-    { slug: 'luxury-real-estate-investment-pune', name: 'Luxury Real Estate Investment Pune' },
-    { slug: 'luxury-property-with-rental-income-pune', name: 'Luxury Property with Rental Income Pune' },
-    { slug: 'golf-facing-luxury-apartments-pune', name: 'Golf Facing Luxury Apartments Pune' },
-    { slug: 'river-view-luxury-homes-pune', name: 'River View Luxury Homes Pune' },
-    { slug: 'hinjewadi-luxury-3-bhk-apartments-for-sale', name: 'Hinjewadi Luxury 3 BHK Apartments For Sale' },
-    { slug: 'west-pune-premium-4-bhk-homes', name: 'West Pune Premium 4 BHK Homes' },
-    { slug: 'blue-ridge-township-luxury-residences-pune', name: 'Blue Ridge Township Luxury Residences Pune' },
-    { slug: 'wakad-luxury-family-homes-near-it-park', name: 'Wakad Luxury Family Homes Near IT Park' },
-    { slug: '5-bhk-luxury-villas-hinjewadi-pune', name: '5 BHK Luxury Villas Hinjewadi Pune' },
-    { slug: 'luxury-bungalows-near-hinjewadi-it-hub', name: 'Luxury Bungalows Near Hinjewadi IT Hub' },
-    { slug: 'buy-luxury-property-in-west-pune', name: 'Buy Luxury Property in West Pune' },
-    { slug: 'premium-real-estate-investment-hinjewadi', name: 'Premium Real Estate Investment Hinjewadi' },
-    { slug: 'luxury-township-living-pune', name: 'Luxury Township Living Pune' },
-    { slug: 'golf-view-4-bhk-luxury-homes-pune', name: 'Golf View 4 BHK Luxury Homes Pune' }
-  ],
-  paranjapeSchemes: [
-    { slug: 'paranjape-athashri-baner-pune', name: 'Paranjape Athashri Baner', location: 'Baner', type: 'Senior Living' },
-    { slug: 'paranjape-athashri-bavdhan-pune', name: 'Paranjape Athashri Bavdhan', location: 'Bavdhan', type: 'Senior Living' },
-    { slug: 'paranjape-athashri-hinjewadi-pune', name: 'Paranjape Athashri Hinjewadi', location: 'Hinjewadi', type: 'Senior Living' },
-    { slug: 'paranjape-forest-trails-bhugaon-pune', name: 'Paranjape Forest Trails Bhugaon', location: 'Bhugaon', type: 'Township Villas & Apartments' },
-    { slug: 'paranjape-trident-towers-wakad-pune', name: 'Paranjape Trident Towers Wakad', location: 'Wakad', type: 'Premium Apartments' },
-    { slug: 'paranjape-happiness-hub-kothrud-pune', name: 'Paranjape Happiness Hub Kothrud', location: 'Kothrud Extension', type: 'Affordable Living' },
-    { slug: 'paranjape-opulus-baner-pune', name: 'Paranjape Opulus Baner', location: 'Baner', type: 'Luxury Apartments' },
-    { slug: 'paranjape-highgardens-hinjewadi-pune', name: 'Paranjape Highgardens Hinjewadi', location: 'Hinjewadi Phase 1', type: 'Premium High-Rise' },
-    { slug: 'paranjape-misty-greens-handewadi-pune', name: 'Paranjape Misty Greens Handewadi', location: 'Handewadi', type: 'Premium Living' },
-    { slug: 'paranjape-swaniketan-baner-pune', name: 'Paranjape Swaniketan Baner', location: 'Baner', type: 'Senior Living' },
-    { slug: 'paranjape-schemes-pune-projects', name: 'Paranjape Schemes Pune Projects', location: 'Pune', type: 'Developer Portfolio' }
-  ],
-  maintenanceConcerns: [
-    { slug: 'paranjape-blue-ridge-maintenance-charges', name: 'Paranjape Blue Ridge Maintenance Charges & Breakup', intent: 'Blue Ridge Hinjewadi Maintenance Charges & Facilities Cost' },
-    { slug: 'blue-ridge-hinjewadi-water-supply-quality', name: 'Blue Ridge Hinjewadi Water Supply, Quality & Source', intent: 'Water Supply Status & Drinking Water Quality in Blue Ridge' },
-    { slug: 'blue-ridge-hinjewadi-traffic-peak-hours', name: 'Blue Ridge Hinjewadi Traffic Status & Peak Hour Commute', intent: 'Traffic Mitigation & Commute Times near Blue Ridge Phase 1' },
-    { slug: 'blue-ridge-hinjewadi-power-backup-electricity', name: 'Blue Ridge Hinjewadi Power Backup, Electricity & MSEDCL', intent: 'Power Cut Status & DG Backup Capacity in Blue Ridge Pune' }
-  ],
-  resaleRental: [
-    { slug: 'paranjape-blue-ridge-resale-market-trends', name: 'Paranjape Blue Ridge Resale Market Trends & Price Per Sqft', intent: 'Blue Ridge Hinjewadi Resale Pricing, Capital Appreciation & Market Value' },
-    { slug: 'blue-ridge-hinjewadi-rental-yield-income', name: 'Blue Ridge Hinjewadi Rental Yield, Average Rent & Passive Income', intent: 'Average Rent for 2 BHK & 3 BHK flats in Blue Ridge Hinjewadi' },
-    { slug: 'blue-ridge-ready-to-move-resale-flats', name: 'Blue Ridge Ready to Move Resale Flats & Owner Listings', intent: 'Ready possession resale apartments for sale in Blue Ridge Phase 1' }
-  ],
-  calculators: [
-    { slug: 'blue-ridge-hinjewadi-emi-calculator', name: 'Blue Ridge Hinjewadi EMI Calculator & Payment Plan', intent: 'Calculate Home Loan EMI & Down Payment for Paranjape Blue Ridge' },
-    { slug: 'blue-ridge-investment-roi-calculator', name: 'Blue Ridge Investment ROI & Rental Yield Calculator', intent: 'Calculate rental yield, ROI & capital appreciation for Blue Ridge Pune' }
-  ],
-  paaReviews: [
-    { slug: 'paranjape-blue-ridge-honest-reviews-pros-cons', name: 'Paranjape Blue Ridge Honest Reviews: Pros & Cons from Residents', intent: 'Is Paranjape Blue Ridge worth buying? Resident feedback, reviews & ratings' },
-    { slug: 'blue-ridge-public-school-admission-honest-review', name: 'Blue Ridge Public School Admission Review & Parents Feedback', intent: 'Honest parent reviews, curriculum & facilities of Blue Ridge Public School' }
-  ],
-  entirePuneMarket: [
-    { slug: 'kharadi', name: 'Kharadi' }, { slug: 'viman-nagar', name: 'Viman Nagar' }, { slug: 'kalyani-nagar', name: 'Kalyani Nagar' }, { slug: 'koregaon-park', name: 'Koregaon Park' }, { slug: 'magarpatta', name: 'Magarpatta' }, { slug: 'hadapsar', name: 'Hadapsar' }, { slug: 'boat-club-road', name: 'Boat Club Road' }, { slug: 'model-colony', name: 'Model Colony' }, { slug: 'shivaji-nagar', name: 'Shivaji Nagar' }, { slug: 'prabhat-road', name: 'Prabhat Road' }, { slug: 'kothrud', name: 'Kothrud' }, { slug: 'nibm', name: 'NIBM' }, { slug: 'undri', name: 'Undri' }, { slug: 'wanowrie', name: 'Wanowrie' }, { slug: 'pimple-saudagar', name: 'Pimple Saudagar' }, { slug: 'chinchwad', name: 'Chinchwad' }, { slug: 'nigdi', name: 'Nigdi' }, { slug: 'baner-pashan-link-road', name: 'Baner Pashan Link Road' }
-  ],
-  ultraLuxuryConfigs: [
-    { slug: '4-bhk-luxury-apartments', name: '4 BHK Luxury Apartments' }, { slug: '5-bhk-luxury-apartments', name: '5 BHK Luxury Apartments' }, { slug: '4-5-bhk-luxury-flats', name: '4.5 BHK Luxury Flats' }, { slug: 'luxury-penthouses', name: 'Luxury Penthouses' }, { slug: 'duplex-penthouses', name: 'Duplex Penthouses' }, { slug: 'sky-villas', name: 'Sky Villas' }, { slug: 'private-pool-apartments', name: 'Private Pool Apartments' }, { slug: 'independent-villas', name: 'Independent Villas' }, { slug: 'golf-course-apartments', name: 'Golf Course Apartments' }
-  ],
-  exactMatches: [
-    "Paranjape Blue Ridge", "Paranjape Blue Ridge Hinjewadi", "Blue Ridge Hinjewadi", "Blue Ridge Township Pune", "Blue Ridge Phase 1", "Blue Ridge Luxury Homes", "Blue Ridge Premium Apartments", "Blue Ridge Residences Pune", "Blue Ridge New Launch", "Blue Ridge Ready Possession Homes", "Blue Ridge Township Living", "Blue Ridge Integrated Township", "Blue Ridge Riverfront Homes", "Blue Ridge Golf View Homes", "Blue Ridge Luxury Apartments Pune", "Blue Ridge Investment Property", "Blue Ridge IT Park Homes", "Blue Ridge Premium Residences",
-    "Blue Ridge 2 BHK Pune", "Blue Ridge 3 BHK Pune", "Blue Ridge 4 BHK Pune", "Blue Ridge 5 BHK Pune", "Blue Ridge Luxury 3 BHK", "Blue Ridge Luxury 4 BHK", "Blue Ridge Luxury 5 BHK", "Blue Ridge Premium Apartments", "Blue Ridge Spacious Homes", "Blue Ridge Family Apartments", "Blue Ridge Luxury Residences", "Blue Ridge River View Apartments", "Blue Ridge Golf Facing Apartments", "Blue Ridge Premium Homes Pune",
-    "Integrated Township Pune", "Township Property Pune", "Township Homes Pune", "Luxury Township Pune", "Premium Township Pune", "Gated Township Pune", "Township Apartments Pune", "Township Living Pune", "Self Sustained Township Pune", "Township Near IT Park Pune", "Township Investment Pune", "Township Homes Hinjewadi", "Premium Township Apartments", "Integrated Community Living Pune",
-    "Luxury Real Estate Pune", "Luxury Homes Pune", "Luxury Apartments Pune", "Luxury Flats Pune", "Luxury Property Pune", "Premium Homes Pune", "Premium Apartments Pune", "Ultra Luxury Homes Pune", "Ultra Luxury Apartments Pune", "Luxury Residential Projects Pune", "Luxury Housing Pune", "Luxury Living Pune", "Luxury Real Estate West Pune", "Luxury Homes West Pune", "Luxury Property Investment Pune", "Luxury Real Estate Maharashtra",
-    "Luxury 3 BHK Pune", "3 BHK Luxury Apartments Pune", "Premium 3 BHK Pune", "Luxury 3 Bedroom Homes Pune", "Large 3 BHK Pune", "Spacious 3 BHK Pune", "Luxury 3 BHK Flats West Pune", "3 BHK Luxury Homes Baner", "3 BHK Luxury Homes Wakad", "3 BHK Luxury Homes Hinjewadi", "3 BHK Luxury Homes Bavdhan", "3 BHK Luxury Homes Balewadi", "3 BHK Luxury Homes Aundh", "3 BHK Luxury Homes Kharadi", "3 BHK Luxury Homes Pashan",
-    "Luxury 4 BHK Pune", "4 BHK Luxury Apartments Pune", "Premium 4 BHK Pune", "4 Bedroom Luxury Homes Pune", "Luxury 4 BHK Flats West Pune", "Ultra Luxury 4 BHK Pune", "4 BHK Golf View Homes Pune", "4 BHK Township Homes Pune", "4 BHK Luxury Residences Pune", "4 BHK Premium Apartments Pune", "Large 4 BHK Apartments Pune", "4 BHK Luxury Homes Baner", "4 BHK Luxury Homes Balewadi", "4 BHK Luxury Homes Bavdhan", "4 BHK Luxury Homes Pashan", "4 BHK Luxury Homes Hinjewadi",
-    "Luxury 5 BHK Pune", "5 BHK Luxury Apartments Pune", "5 Bedroom Luxury Homes Pune", "Ultra Luxury 5 BHK Pune", "Luxury 5 BHK Residences Pune", "Premium 5 BHK Pune", "5 BHK Township Homes Pune", "5 BHK Penthouse Pune", "Luxury 5 BHK Flats Pune", "5 BHK Golf View Homes Pune", "Luxury Villas Pune", "Luxury Duplex Pune", "Luxury Sky Villas Pune", "Luxury Mansions Pune",
-    "Penthouse Pune", "Luxury Penthouse Pune", "Premium Penthouse Pune", "Penthouse West Pune", "Sky Villa Pune", "Luxury Sky Villa Pune", "Luxury Duplex Pune", "Duplex Apartments Pune", "Penthouse Hinjewadi", "Penthouse Baner", "Penthouse Balewadi", "Penthouse Bavdhan", "Penthouse Wakad", "Penthouse Kharadi",
-    "West Pune Real Estate", "West Pune Luxury Real Estate", "Luxury Homes West Pune", "Luxury Flats West Pune", "Premium Apartments West Pune", "Luxury Property West Pune", "West Pune Property Investment", "Luxury Township West Pune", "Premium Residential Projects West Pune", "Luxury Housing West Pune", "Best Luxury Homes West Pune",
-    "Baner Luxury Homes", "Baner Luxury Apartments", "Baner Luxury Real Estate", "Baner Premium Property", "Baner 3 BHK Luxury Homes", "Baner 4 BHK Luxury Homes", "Baner 5 BHK Luxury Homes", "Baner Penthouse", "Baner Duplex Apartments", "Baner Sky Villas", "Baner High Rise Apartments", "Baner Premium Residences",
-    "Baner Pashan Link Road Luxury Homes", "Baner Pashan Luxury Apartments", "Baner Pashan Premium Property", "Luxury Flats Baner Pashan Road", "3 BHK Baner Pashan Link Road", "4 BHK Baner Pashan Link Road", "5 BHK Baner Pashan Link Road", "Premium Residences Baner Pashan", "Luxury Real Estate Baner Pashan",
-    "Balewadi Luxury Homes", "Balewadi Luxury Apartments", "Balewadi Premium Residences", "Luxury Property Balewadi", "Balewadi High Rise Apartments", "Balewadi 3 BHK Luxury", "Balewadi 4 BHK Luxury", "Balewadi 5 BHK Luxury", "Balewadi Penthouse", "Balewadi Duplex Homes",
-    "Bavdhan Luxury Homes", "Bavdhan Luxury Apartments", "Bavdhan Premium Property", "Luxury Real Estate Bavdhan", "Bavdhan 3 BHK Luxury Homes", "Bavdhan 4 BHK Luxury Homes", "Bavdhan 5 BHK Luxury Homes", "Luxury Township Bavdhan", "Premium Homes Bavdhan",
-    "Hinjewadi Luxury Homes", "Hinjewadi Luxury Apartments", "Hinjewadi Luxury Real Estate", "Premium Property Hinjewadi", "Luxury Flats Hinjewadi", "Luxury Township Hinjewadi", "3 BHK Luxury Hinjewadi", "4 BHK Luxury Hinjewadi", "5 BHK Luxury Hinjewadi", "Golf View Apartments Hinjewadi", "IT Park Luxury Homes Hinjewadi", "River View Apartments Hinjewadi",
-    "Wakad Luxury Homes", "Wakad Luxury Apartments", "Wakad Premium Property", "Luxury Flats Wakad", "Luxury Real Estate Wakad", "3 BHK Luxury Wakad", "4 BHK Luxury Wakad", "5 BHK Luxury Wakad", "Premium Residences Wakad", "Luxury Housing Wakad",
-    "Kharadi Luxury Homes", "Kharadi Luxury Apartments", "Kharadi Premium Property", "Luxury Flats Kharadi", "Luxury Real Estate Kharadi", "3 BHK Luxury Kharadi", "4 BHK Luxury Kharadi", "5 BHK Luxury Kharadi", "Luxury Township Kharadi", "Premium Residences Kharadi",
-    "Buy Luxury Home Pune", "Buy Luxury Apartment Pune", "Buy Luxury Flat Pune", "Luxury Homes For Sale Pune", "Luxury Property For Sale Pune", "Luxury Apartments Near IT Park Pune", "Luxury Homes Near Metro Pune", "Ready To Move Luxury Homes Pune", "Under Construction Luxury Homes Pune", "Best Luxury Apartments Pune", "Top Luxury Projects Pune", "Premium Homes Pune For Sale", "Invest In Luxury Property Pune", "Luxury Real Estate Investment Pune", "Best Luxury Township Pune", "Luxury Homes Near Hinjewadi IT Park", "Luxury Homes Near Baner Pune", "Luxury Homes Near Balewadi High Street", "Luxury Homes Near Pune Metro"
-  ],
-  advancedCombinatorial: {
-    locations: [
-      "Baner", "Balewadi", "Hinjewadi", "Wakad", "Kharadi", "Bavdhan", "West Pune", "Baner Pashan Link Road", 
-      "Aundh", "Koregaon Park", "Viman Nagar", "Kalyani Nagar", "Mahalunge", "Tathawade", "Ravet", 
-      "Punawale", "Pimple Nilakh", "Pimple Saudagar", "Mundhwa", "Hadapsar"
-    ],
-    configurations: ["2 BHK", "3 BHK", "4 BHK", "5 BHK", "Penthouse", "Duplex", "Sky Villa", "Villa"],
-    propertyTypes: ["Apartments", "Flats", "Homes", "Residences", "Housing", "Property", "Projects", "Penthouses", "Duplexes", "Sky Villas"],
-    modifiers: ["Luxury", "Premium", "Ultra Luxury", "Spacious", "Large", "Elite", "Exclusive", "High End", "Prestigious"],
-    features: ["Township", "Golf View", "River View", "High Rise", "Gated Community"],
-    intents: ["Buy", "Investment", "For Sale"]
-  },
-  // Silo 28: NRI & Global Diaspora — high-intent long-tail for international buyers
-  nriDiaspora: {
-    originCountries: [
-      { slug: 'usa', name: 'USA', demonym: 'Indian Americans' },
-      { slug: 'uae', name: 'UAE', demonym: 'Indian Expats in Dubai' },
-      { slug: 'uk', name: 'UK', demonym: 'Indians in UK' },
-      { slug: 'singapore', name: 'Singapore', demonym: 'Indian Expats in Singapore' },
-      { slug: 'canada', name: 'Canada', demonym: 'Indians in Canada' },
-      { slug: 'australia', name: 'Australia', demonym: 'Indians in Australia' },
-    ],
-    configs: [
-      { slug: '2-bhk', name: '2 BHK Flat' },
-      { slug: '3-bhk', name: '3 BHK Flat' },
-      { slug: '4-bhk', name: '4 BHK Luxury Apartment' },
-      { slug: 'penthouse', name: 'Penthouse' },
-    ],
-    intents: [
-      { prefix: 'buy', label: 'Buy' },
-      { prefix: 'invest-in', label: 'Invest in' },
-      { prefix: 'book', label: 'Book' },
-    ],
-    nriGuides: [
-      { slug: 'nri-home-loan-guide-india', name: 'NRI Home Loan Guide India — RBI Rules & Eligibility', intent: 'Complete guide for NRIs applying for home loans in India from abroad' },
-      { slug: 'nri-property-investment-pune-guide', name: 'NRI Property Investment Pune — Complete Guide 2026', intent: 'How NRIs can invest in Pune real estate: legal process, FEMA rules, tax benefits' },
-      { slug: 'nri-repatriation-property-sale-india', name: 'NRI Property Sale & Repatriation Guide India', intent: 'How to sell property in India as NRI and repatriate funds to USA, UAE, UK or Canada' },
-      { slug: 'fema-rules-nri-property-india', name: 'FEMA Rules for NRI Property Purchase in India 2026', intent: 'FEMA compliance, RBI approval, and legal checklist for NRI buying property in India' },
-      { slug: 'nri-property-management-pune', name: 'NRI Property Management Services Pune — Rental & Maintenance', intent: 'End-to-end property management services for NRI investors in Pune real estate' },
-      { slug: 'paranjape-blue-ridge-nri-sales-event', name: 'Paranjape Blue Ridge NRI Sales Event — Dubai & Singapore', intent: 'Register for Blue Ridge exclusive NRI property exhibition in Dubai and Singapore' },
-      { slug: 'nri-corner-paranjape-blue-ridge', name: 'NRI Corner — Paranjape Blue Ridge Official NRI Desk', intent: 'Dedicated NRI sales support, legal assistance and investment advisory at Blue Ridge' },
-    ]
-  },
-  // 1. Branded Authority
-  brandedAuthority: [
-    "Paranjape Blue Ridge Phase 1 Pricing",
-    "Paranjape Blue Ridge Phase 1 Brochure",
-    "Paranjape Blue Ridge Hinjewadi 3 BHK Floor Plan",
-    "Blue Ridge Hinjewadi 4 BHK Cost Sheet",
-    "Blue Ridge Township Amenities",
-    "Paranjape Blue Ridge Reviews 2026",
-    "Is Blue Ridge Hinjewadi a good investment",
-    "Blue Ridge Hinjewadi Resale Flats",
-    "Paranjape Blue Ridge 2 BHK Resale Price",
-    "Blue Ridge Public School Hinjewadi Admission",
-    "Paranjape Blue Ridge Possession Date",
-    "Blue Ridge Pune Rent 3 BHK",
-    "Paranjape Blue Ridge Wakad IT Park Distance",
-    "Blue Ridge Hinjewadi Master Plan",
-    "Paranjape Blue Ridge Construction Status",
-    "Paranjape Blue Ridge Developer Track Record"
-  ],
-  // 2. Luxury 3/4 BHK Hinjewadi Combinatorial
-  luxury3And4BhkHinjewadi: {
-    configs: ["3 BHK", "4 BHK", "5 BHK"],
-    modifiers: ["Luxury", "Ultra-Luxury", "Premium", "Golf-View", "River-Facing", "Spacious", "High-Rise"],
-    locations: ["Hinjewadi", "Hinjewadi Phase 1", "near Infosys Hinjewadi", "Pune West", "Wakad", "Baner", "Balewadi"]
-  },
-  // 3. Pune Real Estate Macro Market Authority
-  puneMarketAuthority: [
-    "Best IT Parks in Pune for Real Estate Investment",
-    "Pune Real Estate Market Trends 2026",
-    "Hinjewadi vs Wakad Real Estate Comparison",
-    "Where to buy luxury homes in West Pune",
-    "Top 10 Luxury Residential Projects in Pune",
-    "Pune Metro Line 3 Impact on Real Estate",
-    "Best Township in Pune for IT Professionals",
-    "Hinjewadi Phase 1 Property Appreciation Rates",
-    "High Rental Yield Areas in Pune 2026",
-    "Luxury Property Investment Guide Pune",
-    "Pune Real Estate Forecast 2026 to 2030",
-    "Pune IT Corridor Housing Demand",
-    "Should I buy a flat in Hinjewadi or Baner",
-    "Hinjewadi Real Estate Investment ROI",
-    "Best Locations for Property Investment in Pune"
-  ],
-  // 4. Pune Duplex, Simplex & Luxury Typologies Matrix
-  puneDuplexSimplex: {
-    typologies: ["Duplex Apartments", "Simplex Luxury Flats", "Sky Villas", "Duplex Penthouses", "Double Height Ceiling Homes", "Multi-Level Luxury Residences", "Garden Duplexes", "Penthouse Sky Suites"],
-    locations: ["Hinjewadi", "Hinjewadi Phase 1", "Wakad", "Baner", "Balewadi", "Kharadi", "Kothrud", "Bavdhan", "Pashan", "West Pune", "Pune"],
-    modifiers: ["Luxury", "Ultra Luxury", "Premium", "Golf View", "Riverfront", "Gated Township"]
-  },
-  // 5. Pune Micro-Markets & Infrastructure Corridor Master Matrix
-  puneMicroMarketsMaster: [
-    { slug: 'baner-pashan-link-road', name: 'Baner Pashan Link Road', area: 'West Pune' },
-    { slug: 'hinjewadi-phase-1-it-hub', name: 'Hinjewadi Phase 1 IT Hub', area: 'Hinjewadi' },
-    { slug: 'hinjewadi-phase-2-quadron', name: 'Hinjewadi Phase 2 near Quadron', area: 'Hinjewadi' },
-    { slug: 'hinjewadi-phase-3-tech-zone', name: 'Hinjewadi Phase 3 Tech Zone', area: 'Hinjewadi' },
-    { slug: 'wakad-datta-mandir-road', name: 'Wakad Datta Mandir Road', area: 'Wakad' },
-    { slug: 'balewadi-high-street-belt', name: 'Balewadi High Street Belt', area: 'Balewadi' },
-    { slug: 'mahalunge-ingale-corridor', name: 'Mahalunge Ingale Corridor', area: 'Mahalunge' },
-    { slug: 'pune-metro-line-3-station-belt', name: 'Pune Metro Line 3 Station Belt', area: 'Hinjewadi-Wakad' },
-    { slug: 'pune-ring-road-connector', name: 'Pune Ring Road Connector Belt', area: 'West Pune' },
-    { slug: 'mumbai-pune-expressway-gateway', name: 'Mumbai Pune Expressway Gateway', area: 'Hinjewadi' },
-    { slug: 'maan-road-hinjewadi-corridor', name: 'Maan Road Hinjewadi Corridor', area: 'Hinjewadi' },
-    { slug: 'punawale-tathawade-it-connector', name: 'Punawale Tathawade IT Connector', area: 'PCMC-Hinjewadi' },
-    { slug: 'marunji-hinjewadi-road', name: 'Marunji Hinjewadi Road', area: 'Hinjewadi' },
-    { slug: 'koregaon-park-annexe-pune', name: 'Koregaon Park Annexe Corridor', area: 'East Pune' },
-    { slug: 'viman-nagar-it-corridor', name: 'Viman Nagar IT Corridor', area: 'East Pune' },
-    { slug: 'kalyani-nagar-luxury-belt', name: 'Kalyani Nagar Luxury Belt', area: 'East Pune' },
-    { slug: 'magarpatta-city-hadapsar-belt', name: 'Magarpatta City & Hadapsar Belt', area: 'East Pune' },
-    { slug: 'kharadi-world-trade-center-belt', name: 'Kharadi World Trade Center Belt', area: 'East Pune' },
-    { slug: 'undri-nibm-road-corridor', name: 'Undri NIBM Road Corridor', area: 'South Pune' },
-    { slug: 'bavdhan-chandani-chowk-connector', name: 'Bavdhan Chandani Chowk Connector', area: 'West Pune' },
-    { slug: 'pashan-sus-road-corridor', name: 'Pashan Sus Road Corridor', area: 'West Pune' },
-    { slug: 'kothrud-karve-nagar-belt', name: 'Kothrud Karve Nagar Belt', area: 'Central Pune' },
-    { slug: 'pimple-saudagar-linear-park-belt', name: 'Pimple Saudagar Linear Park Belt', area: 'PCMC' },
-    { slug: 'pimple-nilakh-dp-road', name: 'Pimple Nilakh DP Road Corridor', area: 'PCMC-West' },
-    { slug: 'ravet-kiwale-expressway-belt', name: 'Ravet Kiwale Expressway Belt', area: 'PCMC-North' },
-    { slug: 'tathawade-jspm-college-road', name: 'Tathawade JSPM College Road', area: 'PCMC-West' },
-    { slug: 'aundh-dp-road-corridor', name: 'Aundh DP Road Corridor', area: 'Central-West' }
-  ],
-  // 6. Pune Real Estate Luxury Ecosystem Master Queries
-  puneLuxuryEcosystem: [
-    "RERA Approved Luxury Real Estate Projects in Pune",
-    "Top 10 High Rental Yield Townships in Pune 2026",
-    "Golf Course Facing Luxury Apartments in Pune",
-    "Riverfront Luxury Residences in West Pune",
-    "Townships with ICSE School Inside Campus Pune",
-    "Private Boat Club Luxury Apartments Pune",
-    "Walk to Work Luxury Apartments for IT Professionals Pune",
-    "NRI Investment Legal Guide for Pune Property 2026",
-    "Ultra Luxury 4 BHK and 5 BHK Homes in Hinjewadi",
-    "Duplex vs Simplex Apartments Investment Comparison Pune",
-    "Best Gated Community for Senior Living and Families Pune",
-    "Smart Home Luxury Apartments Hinjewadi Phase 1",
-    "High Rise Luxury Towers in Hinjewadi IT Park",
-    "Ready to Move Resale Luxury Flats in Blue Ridge Hinjewadi",
-    "Best Residential Township in Pune for Families 2026",
-    "Top Luxury Property Developers in Pune Ranking",
-    "Pune Metro Line 3 Real Estate Appreciation Forecast",
-    "High Rental Demand Apartments Near Infosys Hinjewadi"
-  ],
-  // 7. Paranjape Blue Ridge Ultra-Authority & Battleground Matrix
-  paranjapeBlueRidgeUltraAuthority: [
-    "Paranjape Blue Ridge Promenade 3 BHK Price List 2026",
-    "Paranjape Blue Ridge Altius 4 BHK Floor Plan PDF",
-    "Paranjape Blue Ridge Ridges 41 Possession Date",
-    "Blue Ridge Hinjewadi Maintenance Charges Per Sq Ft",
-    "Blue Ridge Public School ICSE Admission Fees Hinjewadi",
-    "Paranjape Blue Ridge Golf Course Membership Fee",
-    "Blue Ridge Boat Club Mula River Booking",
-    "Paranjape Blue Ridge Resale 2 BHK Price 2026",
-    "Blue Ridge Hinjewadi Rental Income 3 BHK",
-    "Paranjape Blue Ridge SEZ Companies List Hinjewadi",
-    "Infosys to Paranjape Blue Ridge Walking Time",
-    "Pune Metro Line 3 Distance to Blue Ridge Hinjewadi",
-    "Paranjape Blue Ridge Sales Gallery Address Hinjewadi",
-    "Paranjape Blue Ridge Township Master Plan Map PDF",
-    "Paranjape Schemes Developer Track Record Pune",
-    "Paranjape Blue Ridge vs VTP Blue Waters Hinjewadi",
-    "Paranjape Blue Ridge vs Life Republic Kolte Patil",
-    "Paranjape Blue Ridge vs Megapolis Hinjewadi Phase 3"
-  ]
-};
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
-export const slugify = (str: string) => str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-
-export function optimizeTitleLength(rawTitle: string): string {
-  if (rawTitle.length <= 70) return rawTitle;
-  
-  let t = rawTitle;
-  t = t.replace(/Under Construction/g, "New");
-  t = t.replace(/Ready Possession/g, "Ready");
-  t = t.replace(/Apartments/g, "Flats");
-  t = t.replace(/Luxury Homes/g, "Flats");
-  t = t.replace(/Premium Residences/g, "Flats");
-  t = t.replace(/Compare Paranjape Blue Ridge vs/g, "Blue Ridge vs");
-  t = t.replace(/Paranjape Blue Ridge vs/g, "Blue Ridge vs");
-  t = t.replace(/Paranjape Schemes Blue Ridge/g, "Paranjape Blue Ridge");
-  t = t.replace(/Investment ROI for/g, "ROI on");
-  t = t.replace(/Luxury Review of/g, "Review:");
-  t = t.replace(/Best Price for/g, "Best Price:");
-  t = t.replace(/NRI Guide to/g, "NRI Guide:");
-  t = t.replace(/Top Rated/g, "Top");
-  t = t.replace(/ — Paranjape Schemes Blue Ridge Hinjewadi/g, " | Blue Ridge");
-  t = t.replace(/ — Paranjape Blue Ridge Hinjewadi/g, " | Blue Ridge");
-  
-  if (t.length > 70) {
-    t = t.replace(/ in Pune West/g, " Pune");
-    t = t.replace(/ at Paranjape /g, " at ");
-    t = t.replace(/ near /g, " - ");
-    t = t.replace(/ connecting /g, "-");
-    t = t.replace(/ between /g, "-");
-    t = t.replace(/ and /g, "-");
-    t = t.replace(/ Pune/g, "");
+function optimizeTitleLength(title: string): string {
+  if (title.length <= 68) return title;
+  const parts = title.split(' | ');
+  if (parts.length > 1) {
+    const mainPart = parts[0];
+    if (mainPart.length <= 68) return mainPart;
+    return mainPart.slice(0, 65).trim() + '...';
   }
+  return title.slice(0, 65).trim() + '...';
+}
 
-  if (t.length > 70) {
-    const lastSpace = t.lastIndexOf(" ", 68);
-    t = (lastSpace > 30 ? t.slice(0, lastSpace) : t.slice(0, 68)).trim();
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// HIGH-AUTHORITY CURATED PARANJAPE BLUE RIDGE HIGH-INTENT DATASET
+// 100% Laser-Focused on Blue Ridge Township, Hinjewadi Phase 1, and West Pune
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+export const curatedPhrasesData: Array<{
+  phrase: string;
+  silo: string;
+  type: string;
+  description: string;
+  location?: string;
+}> = [
+  // ─── 1. CORE BRAND & TOWNSHIP CLUSTERS ──────────────────────────────────────
+  {
+    phrase: "Paranjape Blue Ridge Hinjewadi Phase 1 Pune",
+    silo: "branded",
+    type: "Township Master",
+    description: "Explore Paranjape Blue Ridge, Hinjewadi's iconic 138-acre integrated township in Phase 1 with 9-hole golf course, ICSE school, and luxury residences.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Promenade Residences Paranjape Blue Ridge 3 and 4 BHK",
+    silo: "clusters",
+    type: "Promenade",
+    description: "Official Promenade Residences at Blue Ridge Hinjewadi. Ultra-luxury 3 & 4 BHK riverfront apartments starting from ₹1.65 Cr. MahaRERA: P52100055581.",
+    location: "Blue Ridge Promenade, Hinjewadi"
+  },
+  {
+    phrase: "The Altius Riverside Paranjape Blue Ridge 4 and 5 BHK",
+    silo: "clusters",
+    type: "The Altius",
+    description: "The Altius Riverside at Paranjape Blue Ridge Hinjewadi. 4 & 5 BHK luxury golf-facing residences from ₹1.80 Cr. MahaRERA: P52100078116.",
+    location: "Blue Ridge Altius, Hinjewadi"
+  },
+  {
+    phrase: "Ridges 41 Paranjape Blue Ridge 2 BHK Smart Homes",
+    silo: "clusters",
+    type: "Ridges 41",
+    description: "Ridges 41 at Paranjape Blue Ridge Hinjewadi Phase 1. 41-storey monolithic MiVAN smart 2 BHK residences from ₹97.60 L. MahaRERA: P52100000054.",
+    location: "Blue Ridge Ridges 41, Hinjewadi"
+  },
+  {
+    phrase: "Paranjape Schemes Projects in Hinjewadi Pune",
+    silo: "branded",
+    type: "Developer Profile",
+    description: "Discover all residential and township projects by Paranjape Schemes (Construction) Ltd in Hinjewadi Pune including Blue Ridge clusters.",
+    location: "Hinjewadi, Pune"
+  },
+  {
+    phrase: "Blue Ridge Hinjewadi Resale Flats and Inventory",
+    silo: "transactions",
+    type: "Resale",
+    description: "Verified resale apartments and ready-to-move flats in Paranjape Blue Ridge Hinjewadi across Towers 1 to 26 and Orion.",
+    location: "Blue Ridge Township, Hinjewadi"
+  },
+  {
+    phrase: "Ready Possession Flats in Blue Ridge Hinjewadi",
+    silo: "transactions",
+    type: "Ready Possession",
+    description: "Find ready possession 2 BHK, 3 BHK, and 4 BHK flats at Paranjape Blue Ridge Hinjewadi Phase 1 with OC and immediate fitout.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Paranjape Blue Ridge Floor Plans and Layouts PDF",
+    silo: "floor-plan",
+    type: "Floor Plan",
+    description: "Download official 2 BHK, 3 BHK, 4 BHK and 5 BHK architectural floor plans and carpet area layouts for Paranjape Blue Ridge.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Paranjape Blue Ridge Price List and Cost Sheet 2026",
+    silo: "price-list",
+    type: "Price Sheet",
+    description: "Complete all-inclusive price list, payment schedules, and stamp duty breakdown for Paranjape Blue Ridge Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Paranjape Blue Ridge Site Visit Booking and Sales Gallery",
+    silo: "site-visit",
+    type: "Site Visit",
+    description: "Book an exclusive VIP site visit to Paranjape Blue Ridge Sales Gallery in Hinjewadi Phase 1. Sample flat tours available 7 days a week.",
+    location: "Blue Ridge Sales Gallery, Hinjewadi"
+  },
+
+  // ─── 2. CONFIGURATION SEARCHES (2, 3, 4, 5 BHK) ────────────────────────────
+  {
+    phrase: "2 BHK Flats in Paranjape Blue Ridge Hinjewadi",
+    silo: "clusters",
+    type: "2 BHK",
+    description: "Explore 2 BHK smart homes at Paranjape Blue Ridge Hinjewadi with carpet area 785 - 820 sq.ft. from ₹97.60 Lakhs.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "3 BHK Flats in Paranjape Blue Ridge Hinjewadi",
+    silo: "clusters",
+    type: "3 BHK",
+    description: "Explore 3 BHK riverfront luxury apartments at Promenade Residences, Blue Ridge Hinjewadi with 1,316 sq.ft. carpet area.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "4 BHK Luxury Apartments in Blue Ridge Hinjewadi",
+    silo: "clusters",
+    type: "4 BHK",
+    description: "Premium 4 BHK river and golf course facing residences at The Altius and Promenade, Paranjape Blue Ridge from ₹1.80 Cr.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "5 BHK Ultra Luxury Penthouses in Blue Ridge Hinjewadi",
+    silo: "clusters",
+    type: "5 BHK",
+    description: "Exclusive 5 BHK penthouses and sky residences at The Altius Riverside, Paranjape Blue Ridge Hinjewadi with panoramic views.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Duplex Apartments in Blue Ridge Hinjewadi",
+    silo: "clusters",
+    type: "Duplex",
+    description: "Double-height luxury duplex residences at Paranjape Blue Ridge with private terraces and riverfront balconies.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "River Facing Flats in Hinjewadi Phase 1",
+    silo: "amenities",
+    type: "Riverfront",
+    description: "Uninterrupted Mula river view 3 & 4 BHK residences at Paranjape Blue Ridge Promenade and The Altius Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Golf Course Facing Apartments in Pune West",
+    silo: "amenities",
+    type: "Golf Living",
+    description: "Luxury apartments overlooking Pune's private 9-hole golf course inside the 138-acre Paranjape Blue Ridge township.",
+    location: "Hinjewadi, Pune"
+  },
+
+  // ─── 3. TECH PARK & WALK-TO-WORK SEARCHES ──────────────────────────────────
+  {
+    phrase: "Flats near Infosys Hinjewadi Phase 1",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Walk-to-work residences located just 1.2 KM from Infosys Phase 1 campus at Paranjape Blue Ridge Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Flats near Wipro Technologies Hinjewadi",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Luxury 2, 3 & 4 BHK homes located minutes from Wipro Technologies circle at Paranjape Blue Ridge Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Flats near TCS Hinjewadi Rajiv Gandhi Infotech Park",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Walk-to-work residences near Tata Consultancy Services (TCS) Sahyadri Park Hinjewadi Phase 3 and Phase 1.",
+    location: "Hinjewadi, Pune"
+  },
+  {
+    phrase: "Flats near Cognizant and Tech Mahindra Hinjewadi",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Premium apartments near Cognizant and Tech Mahindra Hinjewadi at Paranjape Blue Ridge Integrated Township.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Flats near Embassy TechZone Hinjewadi",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Convenient residential accommodation near Embassy TechZone Phase 2 Hinjewadi inside Paranjape Blue Ridge.",
+    location: "Hinjewadi, Pune"
+  },
+  {
+    phrase: "Flats near Qubix Business Park Hinjewadi Phase 1",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "Homes near Qubix Business Park and Blue Ridge Special Economic Zone (SEZ) in Hinjewadi Phase 1.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Walk to Work Flats in Rajiv Gandhi Infotech Park Pune",
+    silo: "corporate",
+    type: "Walk-to-Work",
+    description: "True zero-commute walk-to-work lifestyle for 400,000+ IT professionals at Paranjape Blue Ridge Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Corporate Rentals in Blue Ridge Hinjewadi Phase 1",
+    silo: "investor",
+    type: "Corporate Rental",
+    description: "High-demand corporate executive rentals and fully furnished apartments in Paranjape Blue Ridge Hinjewadi.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+
+  // ─── 4. INFRASTRUCTURE & TRANSIT CATALYSTS ─────────────────────────────────
+  {
+    phrase: "Hinjewadi Metro Line 3 Connectivity to Blue Ridge",
+    silo: "infrastructure",
+    type: "Transit",
+    description: "How Pune Metro Line 3 connects Paranjape Blue Ridge to Balewadi, Baner, and Shivajinagar. Station 800m from gate.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Flats near Hinjewadi Phase 1 Metro Station",
+    silo: "infrastructure",
+    type: "Transit",
+    description: "Invest in metro-connected 2, 3 & 4 BHK residences within 800m of upcoming Hinjewadi Metro Station at Blue Ridge.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Mahalunge Hinjewadi Bridge Impact on Blue Ridge",
+    silo: "infrastructure",
+    type: "Corridor",
+    description: "Direct bridge connectivity from Mahalunge & Balewadi High Street to Paranjape Blue Ridge Hinjewadi Phase 1.",
+    location: "Hinjewadi - Mahalunge"
+  },
+  {
+    phrase: "Mumbai Pune Expressway Access from Hinjewadi Phase 1",
+    silo: "infrastructure",
+    type: "Expressway",
+    description: "Quick 10-minute access to Mumbai-Pune Expressway from Paranjape Blue Ridge via Wakad and Dehu Road bypass.",
+    location: "Hinjewadi, Pune"
+  },
+  {
+    phrase: "Mula River Rejuvenation and Promenade at Blue Ridge",
+    silo: "infrastructure",
+    type: "Eco Riverfront",
+    description: "The environmental impact of Mula riverfront development and private marina boat club at Paranjape Blue Ridge.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+
+  // ─── 5. TOWNSHIP LIFESTYLE & AMENITIES ─────────────────────────────────────
+  {
+    phrase: "Blue Ridge Public School ICSE Hinjewadi Admissions",
+    silo: "amenities",
+    type: "Education",
+    description: "ICSE affiliated Blue Ridge Public School inside the 138-acre township campus. Admissions, infrastructure, and faculty.",
+    location: "Blue Ridge Township, Hinjewadi"
+  },
+  {
+    phrase: "9 Hole Professional Golf Course Blue Ridge Pune",
+    silo: "amenities",
+    type: "Golf Living",
+    description: "Pune's premier 9-hole golf course located directly inside Paranjape Blue Ridge with professional academy and clubhouse.",
+    location: "Blue Ridge Golf Course, Hinjewadi"
+  },
+  {
+    phrase: "Private Boat Club and Marina at Paranjape Blue Ridge",
+    silo: "amenities",
+    type: "Boat Club",
+    description: "Enjoy kayaking, boating, and waterfront leisure at Blue Ridge Boat Club situated on the banks of Mula River.",
+    location: "Blue Ridge Boat Club, Hinjewadi"
+  },
+  {
+    phrase: "Sports Arena and Clubhouses at Blue Ridge Hinjewadi",
+    silo: "amenities",
+    type: "Sports Infrastructure",
+    description: "Olympic-sized swimming pools, tennis courts, squash courts, cricket grounds, and wellness spas at Blue Ridge.",
+    location: "Blue Ridge Township, Hinjewadi"
+  },
+  {
+    phrase: "Gated Community Security System at Blue Ridge Hinjewadi",
+    silo: "amenities",
+    type: "Township Security",
+    description: "Multi-tiered 24x7 security, biometric access, CCTV surveillance, and dedicated township maintenance management.",
+    location: "Blue Ridge Township, Hinjewadi"
+  },
+  {
+    phrase: "Pet Friendly Apartments in Hinjewadi Pune",
+    silo: "amenities",
+    type: "Pet Friendly",
+    description: "Open green trails, dedicated pet parks, and pet-friendly residential community at Paranjape Blue Ridge.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+
+  // ─── 6. INVESTOR INTELLIGENCE & NRI DESK ───────────────────────────────────
+  {
+    phrase: "Rental Yield in Hinjewadi Phase 1 Real Estate",
+    silo: "investor",
+    type: "Rental Yield",
+    description: "Detailed analysis of 4.8% to 5.2% gross rental yields at Paranjape Blue Ridge driven by IT park corporate rentals.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Capital Appreciation Trends in Hinjewadi Phase 1",
+    silo: "investor",
+    type: "Capital Growth",
+    description: "Historical 12.8% YoY property appreciation data and future projections for Paranjape Blue Ridge towers.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "NRI Real Estate Investment in Pune Hinjewadi",
+    silo: "investor",
+    type: "NRI Desk",
+    description: "Complete guide for NRIs investing in Paranjape Blue Ridge: FEMA compliance, NRE/NRO accounts, and POA assistance.",
+    location: "Global NRI Desk"
+  },
+  {
+    phrase: "Buy Property in Pune from Dubai UAE NRI Desk",
+    silo: "investor",
+    type: "UAE NRI Desk",
+    description: "Dedicated NRI desk for UAE & Gulf buyers investing in Paranjape Blue Ridge with direct currency conversion and virtual tours.",
+    location: "Dubai - Pune Corridor"
+  },
+  {
+    phrase: "Buy Property in Pune from USA and Canada NRI Desk",
+    silo: "investor",
+    type: "USA NRI Desk",
+    description: "End-to-end legal, tax, and repatriation concierge for US and Canada based NRIs investing in Blue Ridge Hinjewadi.",
+    location: "USA - Pune Corridor"
+  },
+
+  // ─── 7. COMPETITOR BATTLEGROUND COMPARISONS ────────────────────────────────
+  {
+    phrase: "Blue Ridge vs Life Republic Township Comparison",
+    silo: "battleground",
+    type: "Comparison",
+    description: "In-depth comparison: Paranjape Blue Ridge Phase 1 vs Kolte Patil Life Republic Hinjewadi. Location, amenities, and connectivity.",
+    location: "Hinjewadi Phase 1 vs Marunji"
+  },
+  {
+    phrase: "Blue Ridge vs Megapolis Hinjewadi Phase 3",
+    silo: "battleground",
+    type: "Comparison",
+    description: "Detailed comparison: Paranjape Blue Ridge Phase 1 vs Megapolis Phase 3. Rental yields, commute times, and resale values.",
+    location: "Hinjewadi Phase 1 vs Phase 3"
+  },
+  {
+    phrase: "Blue Ridge vs Godrej Hinjewadi Comparison",
+    silo: "battleground",
+    type: "Comparison",
+    description: "Compare Paranjape Blue Ridge 138-acre ready ecosystem with Godrej residential developments in Hinjewadi Pune.",
+    location: "Hinjewadi Phase 1"
+  },
+  {
+    phrase: "Blue Ridge vs VTP Blue Waters Mahalunge",
+    silo: "battleground",
+    type: "Comparison",
+    description: "Compare Paranjape Blue Ridge with VTP Blue Waters Mahalunge. Possession timelines, school inside campus, and golf course.",
+    location: "Hinjewadi vs Mahalunge"
+  },
+  {
+    phrase: "Best Integrated Township in Hinjewadi Pune",
+    silo: "battleground",
+    type: "Township Ranking",
+    description: "Why Paranjape Blue Ridge is ranked as Pune's #1 integrated township for walk-to-work lifestyle and infrastructure.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+
+  // ─── 8. WEST PUNE CORRIDOR CONNECTIVITY ────────────────────────────────────
+  {
+    phrase: "Flats near Baner and Balewadi High Street Pune",
+    silo: "pune-dominance",
+    type: "Corridor",
+    description: "Just 10 minutes from Baner and Balewadi High Street: luxury living at Paranjape Blue Ridge Hinjewadi Phase 1.",
+    location: "Baner - Balewadi Corridor"
+  },
+  {
+    phrase: "Flats in Wakad near Hinjewadi Flyover",
+    silo: "pune-dominance",
+    type: "Corridor",
+    description: "Experience superior integrated township amenities at Paranjape Blue Ridge just 5 minutes from Wakad bridge.",
+    location: "Wakad - Hinjewadi"
+  },
+  {
+    phrase: "Flats in Mahalunge near Godrej and VTP",
+    silo: "pune-dominance",
+    type: "Corridor",
+    description: "Connected to Mahalunge via the new bridge: luxury 2, 3 & 4 BHK apartments at Paranjape Blue Ridge.",
+    location: "Mahalunge - Hinjewadi"
+  },
+  {
+    phrase: "Flats near Maan Road Hinjewadi",
+    silo: "pune-dominance",
+    type: "Corridor",
+    description: "Residential properties on Maan Road with direct access to Rajiv Gandhi Infotech Park at Paranjape Blue Ridge.",
+    location: "Maan Road, Hinjewadi"
+  },
+  {
+    phrase: "MiVAN Construction Projects in Hinjewadi Phase 1",
+    silo: "features",
+    type: "Engineering",
+    description: "Monolithic MiVAN RCC construction technology ensuring seismic resistance and smooth finishes at Paranjape Blue Ridge.",
+    location: "Hinjewadi Phase 1, Pune"
   }
-  
-  return t;
-}
-
-export function generatePseoUrls() {
-  const urls: { slug: string; title: string; intent: string; type: string; silo: string }[] = [];
-
-  seoMatrix.exactMatches.forEach(phrase => {
-    urls.push({
-      slug: slugify(phrase),
-      title: phrase,
-      intent: phrase,
-      type: 'Luxury Exact Match',
-      silo: 'exact-match'
-    });
-  });
-
-  seoMatrix.advancedCombinatorial.locations.forEach(loc => {
-    seoMatrix.advancedCombinatorial.configurations.forEach(config => {
-      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
-        seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
-          const phrase = `${mod} ${config} ${prop} ${loc} Pune`;
-          urls.push({
-            slug: slugify(phrase),
-            title: phrase,
-            intent: phrase,
-            type: 'Hyperlocal Combinatorial',
-            silo: 'hyperlocal-seo'
-          });
-        });
-      });
-    });
-  });
-
-  seoMatrix.advancedCombinatorial.features.forEach(feat => {
-    seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
-      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
-        const phrase = `${mod} ${feat} ${prop} Pune`;
-        urls.push({
-          slug: slugify(phrase),
-          title: phrase,
-          intent: phrase,
-          type: 'Feature Match',
-          silo: 'feature-seo'
-        });
-      });
-    });
-  });
-
-  seoMatrix.advancedCombinatorial.intents.forEach(intent => {
-    seoMatrix.advancedCombinatorial.modifiers.forEach(mod => {
-      seoMatrix.advancedCombinatorial.propertyTypes.forEach(prop => {
-        seoMatrix.advancedCombinatorial.locations.slice(0, 5).forEach(loc => {
-          const phrase = `${intent} ${mod} ${prop} ${loc} Pune`;
-          urls.push({
-            slug: slugify(phrase),
-            title: phrase,
-            intent: phrase,
-            type: 'Intent Match',
-            silo: 'intent-seo'
-          });
-        });
-      });
-    });
-  });
-
-  // Re-add the entirePuneMarket loop that got overwritten by the git restore
-  seoMatrix.ultraLuxuryConfigs.forEach(config => {
-    seoMatrix.entirePuneMarket.forEach(market => {
-      urls.push({
-        slug: `${config.slug}-in-${market.slug}`,
-        title: `${config.name} in ${market.name}`,
-        intent: `Buy ${config.name} in ${market.name} Pune`,
-        type: 'Luxury Residences',
-        silo: 'luxury-pune'
-      });
-      urls.push({
-        slug: `premium-${config.slug}-in-${market.slug}`,
-        title: `Premium ${config.name} in ${market.name}`,
-        intent: `Premium ${config.name} in ${market.name} Pune`,
-        type: 'Luxury Residences',
-        silo: 'luxury-pune'
-      });
-    });
-  });
-
-
-  // Silo 15: Pune Macro Market
-  seoMatrix.puneMacroMarket.forEach(macro => {
-    urls.push({
-      slug: macro.slug,
-      title: `${macro.name} - Official Guide & Inventory`,
-      intent: macro.name,
-      type: 'Township Living',
-      silo: 'pune-macro'
-    });
-  });
-
-  // Silo 16: West Pune Corridor
-  seoMatrix.westPuneCorridor.forEach(corridor => {
-    urls.push({
-      slug: corridor.slug,
-      title: `${corridor.name} - Paranjape Blue Ridge Township`,
-      intent: corridor.name,
-      type: 'Township Living',
-      silo: 'west-pune-macro'
-    });
-  });
-
-  // Silo 1: Tech Parks (Config + Tech Park)
-  seoMatrix.configurations.forEach(config => {
-    seoMatrix.techParks.forEach(park => {
-      urls.push({
-        slug: `${config.slug}-${park.slug}`,
-        title: `${config.name} ${park.name}`,
-        intent: `${config.name} ${park.name} Pune`,
-        type: config.type,
-        silo: 'corporate'
-      });
-    });
-  });
-
-  // Silo 2: Infrastructure (Config + Infra)
-  seoMatrix.configurations.forEach(config => {
-    seoMatrix.infrastructure.forEach(infra => {
-      urls.push({
-        slug: `${config.slug}-${infra.slug}`,
-        title: `${config.name} ${infra.name}`,
-        intent: `Premium ${config.name} ${infra.name}`,
-        type: config.type,
-        silo: 'infrastructure'
-      });
-    });
-  });
-
-  // Silo 3: Ecosystem (Townships / Flats + Ecosystem)
-  seoMatrix.ecosystem.forEach(eco => {
-    urls.push({
-      slug: `integrated-townships-${eco.slug}-in-pune`,
-      title: `Integrated Townships ${eco.name} in Pune`,
-      intent: `Luxury Integrated Townships ${eco.name} in Pune`,
-      type: 'Township',
-      silo: 'ecosystem'
-    });
-    seoMatrix.configurations.slice(0, 3).forEach(config => {
-      urls.push({
-        slug: `${config.slug}-${eco.slug}`,
-        title: `${config.name} ${eco.name}`,
-        intent: `Buy ${config.name} ${eco.name} in Pune`,
-        type: config.type,
-        silo: 'ecosystem'
-      });
-    });
-  });
-
-  // Silo 4: Investors
-  seoMatrix.investors.forEach(inv => {
-    seoMatrix.locations.slice(0, 3).forEach(loc => {
-      urls.push({
-        slug: `${inv.slug}-in-${loc.slug}`,
-        title: `${inv.name} in ${loc.name}`,
-        intent: `Discover ${inv.name} in ${loc.name}`,
-        type: 'Investment',
-        silo: 'investor'
-      });
-    });
-  });
-
-  // Silo 5: Competitors Alternative
-  seoMatrix.configurations.slice(0, 3).forEach(config => {
-    seoMatrix.competitors.forEach(comp => {
-      urls.push({
-        slug: `${config.slug}-${comp.slug}`,
-        title: `${config.name} ${comp.name}`,
-        intent: `Premium ${config.name} alternative ${comp.name} Pune`,
-        type: config.type,
-        silo: 'competitor'
-      });
-    });
-  });
-
-  // Silo 6: Competitor Battlegrounds
-  seoMatrix.battlegrounds.forEach(bg => {
-    urls.push({
-      slug: bg.slug,
-      title: bg.name,
-      intent: `Detailed Comparison: ${bg.name} - Amenities, Location & ROI`,
-      type: 'Comparison',
-      silo: 'battleground'
-    });
-  });
-
-  // Silo 7: Infrastructure Guides
-  seoMatrix.infraGuides.forEach(guide => {
-    urls.push({
-      slug: guide.slug,
-      title: guide.name,
-      intent: `${guide.name} - Complete Buyer's Guide`,
-      type: 'Guide',
-      silo: 'infra-guide'
-    });
-  });
-
-  // Silo 8: Price Lists
-  seoMatrix.priceLists.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `${item.name} — Download Official Blue Ridge Pricing`,
-      type: 'Price Guide',
-      silo: 'price-list'
-    });
-  });
-
-  // Silo 9: Floor Plans
-  seoMatrix.floorPlans.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `${item.name} — View Carpet Area & Layout Details`,
-      type: 'Floor Plan',
-      silo: 'floor-plan'
-    });
-  });
-
-  // Silo 10: Site Visit
-  seoMatrix.siteVisit.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `${item.name} — Schedule Your Private Viewing Today`,
-      type: 'Contact',
-      silo: 'site-visit'
-    });
-  });
-
-  // Silo 11: Amenities Search
-  seoMatrix.amenitiesSearch.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `${item.name} — Explore Paranjape Blue Ridge Hinjewadi`,
-      type: 'Lifestyle',
-      silo: 'amenities'
-    });
-  });
-
-  // Silo 12: High Intent Transaction Queries
-  seoMatrix.transactionQueries.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `${item.name} — Official Portal Pricing & Listings`,
-      type: 'Listing',
-      silo: 'transactions'
-    });
-  });
-
-  // Silo 13: Towers
-  seoMatrix.towers.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: `Luxury Residences in ${item.name} - Blue Ridge`,
-      type: 'Tower',
-      silo: 'towers'
-    });
-    urls.push({
-      slug: `luxury-apartments-${item.slug}`,
-      title: `Luxury Apartments in ${item.name}`,
-      intent: `High Rise Luxury Apartments in ${item.name}`,
-      type: 'Apartment',
-      silo: 'towers'
-    });
-  });
-
-  // Silo 14: Clusters
-  seoMatrix.clusters.forEach(item => {
-    urls.push({
-      slug: `blue-ridge-${item.slug}`,
-      title: `Blue Ridge ${item.name}`,
-      intent: `Premium Homes in Blue Ridge ${item.name}`,
-      type: 'Cluster',
-      silo: 'clusters'
-    });
-    urls.push({
-      slug: `luxury-apartments-in-${item.slug}`,
-      title: `Luxury Apartments in ${item.name}`,
-      intent: `Ultra Luxury Apartments in ${item.name} Pune`,
-      type: 'Apartment',
-      silo: 'clusters'
-    });
-  });
-
-  // Silo 15: Luxury West Pune
-  seoMatrix.luxuryWestPune.forEach(item => {
-    urls.push({
-      slug: `luxury-apartments-${item.slug}`,
-      title: `Luxury Apartments ${item.name}`,
-      intent: `Premium Homes & Ultra Luxury Residences in ${item.name}`,
-      type: 'Luxury',
-      silo: 'luxury-west-pune'
-    });
-    urls.push({
-      slug: `premium-residences-${item.slug}`,
-      title: `Premium Residences ${item.name}`,
-      intent: `High Rise Luxury Skyline Residences in ${item.name}`,
-      type: 'Luxury',
-      silo: 'luxury-west-pune'
-    });
-  });
-
-  // Legacy locations
-  seoMatrix.configurations.forEach(config => {
-    seoMatrix.locations.forEach(location => {
-      urls.push({
-        slug: `${config.slug}-in-${location.slug}`,
-        title: `${config.name} in ${location.name}`,
-        intent: `${config.name} for sale in ${location.name}`,
-        type: config.type,
-        silo: 'location'
-      });
-    });
-  });
-
-  // REGIONAL SEO (Marathi)
-  seoMatrix.configurations.slice(0, 3).forEach(config => {
-    seoMatrix.locations.slice(0, 3).forEach(loc => {
-      const mrConfig = config.slug === '2-bhk-flats' ? '२ बीएचके फ्लॅट' : 
-                       config.slug === '3-bhk-flats' ? '३ बीएचके फ्लॅट' : '४ बीएचके फ्लॅट';
-      const mrLoc = loc.slug === 'hinjewadi-phase-1' ? 'हिंजवडी फेज १' : 
-                    loc.slug === 'hinjewadi-phase-2' ? 'हिंजवडी फेज २' : 'हिंजवडी फेज ३';
-
-      urls.push({
-        slug: `mr-${config.slug}-in-${loc.slug}`,
-        title: `${mrLoc} मध्ये ${mrConfig}`,
-        intent: `${mrLoc} मध्ये विक्रीसाठी ${mrConfig} - परंजपे ब्लू रिज`,
-        type: config.type,
-        silo: 'regional-mr'
-      });
-    });
-  });
-
-  // Silo 17: Hinjewadi Market Authority
-  seoMatrix.hinjewadiFocus.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: `${item.name} - Paranjape Blue Ridge Official`,
-      intent: item.name,
-      type: 'Township Living',
-      silo: 'hinjewadi-market'
-    });
-  });
-
-  // Silo 18: Township Dominance
-  seoMatrix.townshipAuthority.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: `${item.name} - Blue Ridge Hinjewadi`,
-      intent: item.name,
-      type: 'Township Living',
-      silo: 'township'
-    });
-  });
-
-  // Silo 19: Metro Line 3 Impact
-  seoMatrix.metroImpact.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: `${item.name} - Blue Ridge Township`,
-      intent: item.name,
-      type: 'Infrastructure',
-      silo: 'infrastructure'
-    });
-  });
-
-  // Silo 20: Buyer Intent / Long-Tail Conversion
-  seoMatrix.buyerIntent.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: `${item.name} - Official Inventory`,
-      intent: item.name,
-      type: 'Apartment',
-      silo: 'buyer-intent'
-    });
-  });
-
-  // Silo 21: Paranjape Schemes Projects Brand Hardening
-  seoMatrix.paranjapeSchemes.forEach(project => {
-    urls.push({
-      slug: project.slug,
-      title: `${project.name} - Official Info & Pricing`,
-      intent: project.name,
-      type: project.type,
-      silo: 'paranjape-schemes'
-    });
-  });
-
-  // Silo 22: Maintenance & Concerns
-  seoMatrix.maintenanceConcerns.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: item.intent,
-      type: 'Guide',
-      silo: 'maintenance-concerns'
-    });
-  });
-
-  // Silo 23: Resale & Rental market
-  seoMatrix.resaleRental.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: item.intent,
-      type: 'Market Report',
-      silo: 'resale-rental'
-    });
-  });
-
-  // Silo 24: EMI & Investment calculators
-  seoMatrix.calculators.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: item.intent,
-      type: 'Calculator',
-      silo: 'calculators'
-    });
-  });
-
-  // Silo 27: Reviews & PAA
-  seoMatrix.paaReviews.forEach(item => {
-    urls.push({
-      slug: item.slug,
-      title: item.name,
-      intent: item.intent,
-      type: 'FAQ',
-      silo: 'paa-reviews'
-    });
-  });
-
-  // Silo 28: NRI & Global Diaspora — International buyer PSEO pages
-  const nri = seoMatrix.nriDiaspora;
-  nri.originCountries.forEach(country => {
-    nri.configs.forEach(config => {
-      nri.intents.forEach(intent => {
-        const phrase = `${intent.label} ${config.name} in Pune from ${country.name}`;
-        urls.push({
-          slug: `${intent.prefix}-${config.slug}-in-pune-from-${country.slug}`,
-          title: phrase,
-          intent: `${phrase} — Paranjape Blue Ridge NRI Investment Portal`,
-          type: 'NRI Property',
-          silo: 'nri'
-        });
-        // Hinjewadi-specific variant
-        const phraseHinjewadi = `${intent.label} ${config.name} in Hinjewadi Pune from ${country.name}`;
-        urls.push({
-          slug: `${intent.prefix}-${config.slug}-hinjewadi-pune-from-${country.slug}`,
-          title: phraseHinjewadi,
-          intent: `${phraseHinjewadi} — Blue Ridge Official NRI Desk`,
-          type: 'NRI Property',
-          silo: 'nri'
-        });
-      });
-    });
-    // Country-level NRI landing page
-    urls.push({
-      slug: `nri-property-investment-pune-from-${country.slug}`,
-      title: `NRI Property Investment Pune from ${country.name} — Complete Guide`,
-      intent: `Guide for ${country.demonym} investing in Pune real estate — Blue Ridge Township`,
-      type: 'NRI Guide',
-      silo: 'nri'
-    });
-    urls.push({
-      slug: `blue-ridge-hinjewadi-for-nri-${country.slug}`,
-      title: `Paranjape Blue Ridge for NRI from ${country.name} — Investment & ROI`,
-      intent: `Investment guide for ${country.demonym}: Blue Ridge Hinjewadi pricing, ROI & legal process`,
-      type: 'NRI Guide',
-      silo: 'nri'
-    });
-  });
-  // NRI Legal & Advisory guides (no country suffix — global intent)
-  nri.nriGuides.forEach(guide => {
-    urls.push({
-      slug: guide.slug,
-      title: guide.name,
-      intent: guide.intent,
-      type: 'NRI Guide',
-      silo: 'nri'
-    });
-  });
-
-
-  // 1. Branded Authority Silo
-  seoMatrix.brandedAuthority.forEach(phrase => {
-    urls.push({
-      slug: slugify(phrase),
-      title: phrase,
-      intent: phrase,
-      type: 'Branded Authority',
-      silo: 'branded'
-    });
-  });
-
-  // 2. Luxury 3/4 BHK Hinjewadi Combinatorial Silo
-  seoMatrix.luxury3And4BhkHinjewadi.configs.forEach(config => {
-    seoMatrix.luxury3And4BhkHinjewadi.modifiers.forEach(mod => {
-      seoMatrix.luxury3And4BhkHinjewadi.locations.forEach(loc => {
-        const phrase = `${mod} ${config} Flats in ${loc} Pune`;
-        urls.push({
-          slug: slugify(phrase),
-          title: phrase,
-          intent: `Buy ${phrase} - Paranjape Blue Ridge`,
-          type: 'Luxury Micro-Intent',
-          silo: 'luxury-pune'
-        });
-      });
-    });
-  });
-
-  // 3. Pune Real Estate Macro Market Authority Silo
-  seoMatrix.puneMarketAuthority.forEach(phrase => {
-    urls.push({
-      slug: slugify(phrase),
-      title: phrase,
-      intent: phrase,
-      type: 'Pune Macro Market',
-      silo: 'pune-macro'
-    });
-  });
-
-  // 4. Pune Duplex, Simplex & Luxury Typologies Silo
-  seoMatrix.puneDuplexSimplex.typologies.forEach(typology => {
-    seoMatrix.puneDuplexSimplex.modifiers.slice(0, 3).forEach(mod => {
-      seoMatrix.puneDuplexSimplex.locations.forEach(loc => {
-        const phrase = `${mod} ${typology} in ${loc} Pune`;
-        urls.push({
-          slug: slugify(phrase),
-          title: phrase,
-          intent: `Buy ${phrase} — Paranjape Blue Ridge`,
-          type: typology,
-          silo: 'duplex-simplex'
-        });
-      });
-    });
-  });
-
-  // 5. Pune Micro-Markets Master Silo
-  seoMatrix.puneMicroMarketsMaster.forEach(micro => {
-    urls.push({
-      slug: `${micro.slug}-real-estate-market-pune`,
-      title: `${micro.name} Real Estate & Property Guide ${micro.area}`,
-      intent: `Property Investment & Real Estate Trends in ${micro.name} Pune`,
-      type: 'Micro-Market Authority',
-      silo: 'pune-micro-market'
-    });
-    urls.push({
-      slug: `luxury-flats-near-${micro.slug}-pune`,
-      title: `Luxury Flats Near ${micro.name} Pune`,
-      intent: `Buy Luxury Apartments & Flats Near ${micro.name} Pune`,
-      type: 'Micro-Market Housing',
-      silo: 'pune-micro-market'
-    });
-  });
-
-  // 6. Pune Real Estate Luxury Ecosystem Queries Silo
-  seoMatrix.puneLuxuryEcosystem.forEach(phrase => {
-    urls.push({
-      slug: slugify(phrase),
-      title: phrase,
-      intent: phrase,
-      type: 'Luxury Real Estate Ecosystem',
-      silo: 'luxury-ecosystem'
-    });
-  });
-
-  // 7. Paranjape Blue Ridge Ultra-Authority & Battleground Silo
-  seoMatrix.paranjapeBlueRidgeUltraAuthority.forEach(phrase => {
-    urls.push({
-      slug: slugify(phrase),
-      title: phrase,
-      intent: phrase,
-      type: 'Branded Ultra Authority',
-      silo: phrase.includes('vs') ? 'battleground' : 'branded'
-    });
-  });
-
-  // 8. ULTRA MASSIVE 100K+ PUNE DOMINANCE MATRIX
-  const intents = ["Buy", "Price of", "Luxury", "Premium", "Resale", "Ready Possession", "Under Construction", "Invest in"];
-  const configs = ["2 BHK Flats", "3 BHK Apartments", "4 BHK Luxury Homes", "5 BHK Villas", "Penthouse", "Duplex", "Sky Villa"];
-  const microMarkets = [
-    "Koregaon Park", "Viman Nagar", "Kalyani Nagar", "Hadapsar", "Magarpatta", "Kharadi", "Wagholi", 
-    "Camp", "MG Road", "Fatima Nagar", "Wanowrie", "NIBM Road", "Undri", "Kondhwa", 
-    "Swargate", "Shivajinagar", "Deccan Gymkhana", "FC Road", "JM Road", "Model Colony", 
-    "Prabhat Road", "Erandwane", "Kothrud", "Karve Nagar", "Bavdhan", "Pashan", "Sus Road", 
-    "Baner", "Balewadi", "Mahalunge", "Hinjewadi Phase 1", "Hinjewadi Phase 2", "Hinjewadi Phase 3", 
-    "Wakad", "Pimple Saudagar", "Pimple Nilakh", "Pimple Gurav", "Sangvi", "Aundh", 
-    "Bopodi", "Dapodi", "Khadki", "Vishrantwadi", "Yerawada", "Dhanori", "Lohegaon", 
-    "Vishal Nagar", "Tathawade", "Punawale", "Ravet", "Kiwale", "Nigdi", "Akurdi", 
-    "Chinchwad", "Pimpri", "Bhosari", "Moshi", "Charholi", "Dighi"
-  ];
-  
-  const paranjapeAll = [
-    "Paranjape Athashri", "Paranjape Forest Trails", "Paranjape Trident Towers", 
-    "Paranjape Happiness Hub", "Paranjape Opulus", "Paranjape Highgardens", "Paranjape Misty Greens", 
-    "Paranjape Swaniketan", "Paranjape Azure", "Paranjape Broadway", "Paranjape Blueridge"
-  ];
-
-  const competitorsAll = [
-    "Lodha Belmondo", "VTP Blue Waters", "Life Republic", "Megapolis", "Godrej Evergreen Square",
-    "Kumar Prospera", "Kohinoor Central Park", "Panchshil Towers", "Kalpataru Estate",
-    "K Raheja Corp", "Hiranandani Estate", "Mahindra Lifespaces", "Rohan Builders", "Kolte Patil"
-  ];
-
-  // A. Total Market Capture (Intent x Config x MicroMarket) -> 8 * 7 * 59 = 3,304
-  intents.forEach(intent => {
-    configs.forEach(config => {
-      microMarkets.forEach(market => {
-        const phrase = `${intent} ${config} in ${market} Pune`;
-        urls.push({
-          slug: slugify(phrase),
-          title: phrase,
-          intent: `Explore ${phrase} - Paranjape Blue Ridge Township`,
-          type: 'Market Dominance',
-          silo: 'pune-dominance'
-        });
-      });
-    });
-  });
-
-  // B. Paranjape Portfolio Hijack (Project x Config x Intent x ALL Pune Markets) -> 11 * 7 * 8 * 59 = 36,344
-  paranjapeAll.forEach(project => {
-    configs.forEach(config => {
-      intents.forEach(intent => {
-        microMarkets.forEach(market => {
-          const phrase = `${intent} ${config} at ${project} near ${market}`;
-          urls.push({
-            slug: slugify(phrase),
-            title: phrase,
-            intent: `Discover ${phrase} - Official Listing`,
-            type: 'Portfolio Hijack',
-            silo: 'paranjape-hijack'
-          });
-        });
-      });
-    });
-  });
-
-  // C. Competitor Battleground Expansion (Competitor x Config x Intent x ALL Pune Markets) -> 15 * 7 * 8 * 59 = 49,560
-  competitorsAll.forEach(competitor => {
-    configs.forEach(config => {
-      intents.forEach(intent => {
-        microMarkets.forEach(market => {
-          const phrase = `Paranjape Blue Ridge vs ${competitor} ${config} ${intent} near ${market}`;
-          urls.push({
-            slug: slugify(phrase),
-            title: `Compare Paranjape Blue Ridge vs ${competitor} - ${config} near ${market}`,
-            intent: `Mathematical comparison: Blue Ridge vs ${competitor}`,
-            type: 'Competitor Battleground',
-            silo: 'competitor-hijack'
-          });
-        });
-      });
-    });
-  });
-
-  // D. The Ultra Permutation (Intent x Config x Market x Features) -> 8 * 7 * 59 * 3 = 9,912
-  const ultraFeatures = ["with Golf Course", "near Metro Station", "Walk to Work IT Park"];
-  intents.forEach(intent => {
-    configs.forEach(config => {
-      microMarkets.forEach(market => {
-        ultraFeatures.forEach(feature => {
-          const phrase = `${intent} ${config} in ${market} ${feature} Pune`;
-          urls.push({
-            slug: slugify(phrase),
-            title: phrase,
-            intent: `Secure your ${phrase}`,
-            type: 'Ultra Permutation',
-            silo: 'ultra-pune'
-          });
-        });
-      });
-    });
-  });
-  
-  // Total added in 8: 3,304 + 9,240 + 12,600 + 9,912 = ~35,056 URLs
-  // To hit 100k+, I will add one more massive permutation 
-  // E. Hyper-Local Sub-Corridors -> (59 * 59) = 3481 pairs * 5 configs = 17,405
-  const topConfigs = ["2 BHK", "3 BHK", "4 BHK", "Duplex", "Penthouse"];
-  const marketsA = microMarkets.slice(0, 30);
-  const marketsB = microMarkets.slice(30, 59);
-  marketsA.forEach(a => {
-    marketsB.forEach(b => {
-      topConfigs.forEach(c => {
-        const phrase = `Luxury ${c} connecting ${a} and ${b} Pune`;
-        urls.push({
-          slug: slugify(phrase),
-          title: phrase,
-          intent: phrase,
-          type: 'Corridor Connector',
-          silo: 'corridors'
-        });
-        
-        // Reverse
-        const phraseRev = `Buy ${c} between ${b} and ${a} Pune`;
-        urls.push({
-          slug: slugify(phraseRev),
-          title: phraseRev,
-          intent: phraseRev,
-          type: 'Corridor Connector',
-          silo: 'corridors'
-        });
-      });
-    });
-  });
-  // Total added in E: 30 * 29 * 5 * 2 = 8,700 * 2 = 17,400. 
-  // Wait, let's just make it simpler. 
-  // Duplicate C with different intents for a massive blast
-  const intenseIntents = ["Best Price for", "Top Rated", "Luxury Review of", "NRI Guide to", "Investment ROI for"];
-  competitorsAll.forEach(competitor => {
-    configs.forEach(config => {
-      intenseIntents.forEach(intent => {
-        microMarkets.forEach(market => {
-          const phrase = `${intent} ${config} near ${competitor} in ${market} Pune`;
-          urls.push({
-            slug: slugify(phrase),
-            title: phrase,
-            intent: phrase,
-            type: 'Competitor Overload',
-            silo: 'competitor-overload'
-          });
-        });
-      });
-    });
-  });
-  // Added: 15 * 7 * 5 * 59 = 30,975.
-  // Grand total: ~19k (base) + 35k + 17k + 31k = ~102,000 URLs!
-
-
-
-  const mappedUrls = urls.map(u => ({
-    ...u,
-    slug: u.slug.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') 
-      ? u.slug 
-      : u.slug.endsWith('-paranjape-blue-ridge-hinjewadi')
-        ? u.slug.replace('-paranjape-blue-ridge-hinjewadi', '-paranjape-schemes-blue-ridge-hinjewadi')
-        : `${u.slug}-paranjape-schemes-blue-ridge-hinjewadi`
-  }));
-
-  const uniqueUrlsMap = new Map();
-  mappedUrls.forEach(u => {
-    const fullBrand = " — Paranjape Schemes Blue Ridge Hinjewadi";
-    const shortBrand = " | Paranjape Blue Ridge";
-    const miniBrand = " | Blue Ridge";
-    
-    // 1. Intelligent Title Length Enforcement
-    if (!u.title.includes("Paranjape")) {
-      if (u.title.length + fullBrand.length <= 65) {
-        u.title = `${u.title}${fullBrand}`;
-      } else if (u.title.length + shortBrand.length <= 65) {
-        u.title = `${u.title}${shortBrand}`;
-      } else if (u.title.length + miniBrand.length <= 65) {
-        u.title = `${u.title}${miniBrand}`;
-      }
-    }
-
-    u.title = optimizeTitleLength(u.title);
-
-    // 2. Hard-enforce the brand in the intent (H1)
-    if (!u.intent.includes("Paranjape")) {
-        u.intent = `${u.intent} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
-    }
-
-    if (!uniqueUrlsMap.has(u.slug)) {
-      uniqueUrlsMap.set(u.slug, u);
-    }
-  });
-
-  return Array.from(uniqueUrlsMap.values());
-}
-
-export function getPseoTotalCount(): number {
-  return 153380;
-}
-
-export function getPseoBySlug(slug: string): PseoUrl | null {
-  if (!slug) return null;
-  const isMr = slug.startsWith('mr-');
-  const normalizedSlug = isMr ? slug.replace(/^mr-/, '') : slug;
-  
-  const baseSlug = normalizedSlug
-    .replace(/-paranjape-schemes-blue-ridge-hinjewadi$/, '')
-    .replace(/-paranjape-blue-ridge-hinjewadi$/, '');
-
-  const acronyms: Record<string, string> = {
-    'bhk': 'BHK', 'it': 'IT', 'roi': 'ROI', 'nri': 'NRI', 'icse': 'ICSE',
-    'rera': 'RERA', 'maharera': 'MahaRERA', 'sez': 'SEZ', 'vs': 'vs', 'gst': 'GST',
-    'pune': 'Pune', 'hinjewadi': 'Hinjewadi', 'wakad': 'Wakad', 'baner': 'Baner',
-    'balewadi': 'Balewadi', 'mahalunge': 'Mahalunge', 'paranjape': 'Paranjape',
-    'blueridge': 'Blue Ridge', 'pscl': 'PSCL', 'tcs': 'TCS', 'wipro': 'Wipro',
-    'infosys': 'Infosys'
-  };
-
-  const words = baseSlug.split('-').map(w => {
-    const lower = w.toLowerCase();
-    return acronyms[lower] || (w.charAt(0).toUpperCase() + w.slice(1));
-  });
-  
-  let title = words.join(' ');
-  const fullBrand = ' — Paranjape Schemes Blue Ridge Hinjewadi';
-  const shortBrand = ' | Paranjape Blue Ridge';
-  const miniBrand = ' | Blue Ridge';
-  
-  if (!title.includes('Paranjape')) {
-    if (title.length + fullBrand.length <= 65) {
-      title = `${title}${fullBrand}`;
-    } else if (title.length + shortBrand.length <= 65) {
-      title = `${title}${shortBrand}`;
-    } else if (title.length + miniBrand.length <= 65) {
-      title = `${title}${miniBrand}`;
-    }
-  }
-
-  title = optimizeTitleLength(title);
-
-  let silo = 'pune-dominance';
-  const lowerBase = baseSlug.toLowerCase();
-  if (lowerBase.includes('vs') || lowerBase.includes('competitor') || lowerBase.includes('compare')) silo = 'battleground';
-  else if (lowerBase.includes('price') || lowerBase.includes('cost') || lowerBase.includes('rate')) silo = 'price-list';
-  else if (lowerBase.includes('floor-plan') || lowerBase.includes('carpet-area') || lowerBase.includes('layout')) silo = 'floor-plan';
-  else if (lowerBase.includes('metro') || lowerBase.includes('expressway') || lowerBase.includes('bridge') || lowerBase.includes('highway') || lowerBase.includes('road')) silo = 'infrastructure';
-  else if (lowerBase.includes('invest') || lowerBase.includes('rental-yield') || lowerBase.includes('roi') || lowerBase.includes('nri')) silo = 'investor';
-  else if (lowerBase.includes('infosys') || lowerBase.includes('wipro') || lowerBase.includes('tcs') || lowerBase.includes('it-park') || lowerBase.includes('corporate') || lowerBase.includes('tech-zone')) silo = 'corporate';
-  else if (lowerBase.includes('golf') || lowerBase.includes('boat-club') || lowerBase.includes('school') || lowerBase.includes('amenit') || lowerBase.includes('pool') || lowerBase.includes('gym')) silo = 'amenities';
-  else if (lowerBase.includes('duplex') || lowerBase.includes('simplex') || lowerBase.includes('penthouse')) silo = 'duplex-simplex';
-  else if (lowerBase.includes('luxury') || lowerBase.includes('villa')) silo = 'luxury-pune';
-  else if (isMr) silo = 'regional-mr';
-
-  let type = 'Apartment';
-  if (lowerBase.includes('duplex')) type = 'Duplex';
-  else if (lowerBase.includes('penthouse')) type = 'Penthouse';
-  else if (lowerBase.includes('villa')) type = 'Villa';
-  else if (lowerBase.includes('smart-home')) type = 'Smart Home';
-
-  const intent = `${title} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
+];
+
+// Precompute sanitized, validated PSEO URLs
+export const curatedPseoUrls: PseoUrl[] = curatedPhrasesData.map(item => {
+  const slug = `${slugify(item.phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
+  const rawTitle = `${item.phrase} | Paranjape Blue Ridge`;
+  const title = optimizeTitleLength(rawTitle);
+  const intent = `${item.phrase} — Official Insights & Inventory at Paranjape Blue Ridge Hinjewadi`;
 
   return {
     slug,
     title,
     intent,
-    type,
-    silo
+    type: item.type,
+    silo: item.silo,
+    description: item.description,
+    heading: item.phrase,
+    location: item.location || 'Hinjewadi Phase 1, Pune'
   };
+});
+
+export function getPseoTotalCount(): number {
+  return curatedPseoUrls.length;
+}
+
+export function generatePseoUrls(): PseoUrl[] {
+  return curatedPseoUrls;
+}
+
+export function getPseoBySlug(slug: string): PseoUrl | undefined {
+  return curatedPseoUrls.find(u => u.slug === slug);
 }
 
 export function getCuratedPseoLinks(count: number = 60): PseoUrl[] {
-  const curatedPhrases = [
-    { phrase: "2 BHK Flats in Hinjewadi Phase 1", silo: "corporate", type: "Apartment" },
-    { phrase: "3 BHK Flats in Hinjewadi Phase 1", silo: "corporate", type: "Apartment" },
-    { phrase: "4 BHK Luxury Homes in Hinjewadi Phase 1", silo: "luxury-pune", type: "Apartment" },
-    { phrase: "Blue Ridge vs Life Republic", silo: "battleground", type: "Township" },
-    { phrase: "Blue Ridge vs Megapolis", silo: "battleground", type: "Township" },
-    { phrase: "Blue Ridge vs Lodha Belmondo", silo: "battleground", type: "Township" },
-    { phrase: "Blue Ridge vs VTP Blue Waters", silo: "battleground", type: "Township" },
-    { phrase: "High Rental Yield Properties in Hinjewadi Phase 1", silo: "investor", type: "Investment" },
-    { phrase: "Best ROI Real Estate Investment Pune", silo: "investor", type: "Investment" },
-    { phrase: "NRI Property Buying Guide Pune", silo: "investor", type: "NRI Desk" },
-    { phrase: "Flats near Infosys Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
-    { phrase: "Flats near TCS Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
-    { phrase: "Flats near Wipro Hinjewadi", silo: "corporate", type: "Walk-to-Work" },
-    { phrase: "Hinjewadi Metro Line 3 Impact and Stations", silo: "infrastructure", type: "Transit" },
-    { phrase: "Blue Ridge Public School ICSE Hinjewadi", silo: "amenities", type: "Education" },
-    { phrase: "Flats with Golf Course in Pune", silo: "amenities", type: "Golf Living" },
-    { phrase: "Apartments with Private Boat Club Pune", silo: "amenities", type: "Riverfront" },
-    { phrase: "Promenade Residences Blue Ridge 3 BHK", silo: "clusters", type: "Promenade" },
-    { phrase: "The Altius Blue Ridge 4 BHK and 5 BHK", silo: "clusters", type: "Altius" },
-    { phrase: "Ridges 41 Blue Ridge 2 BHK Smart Homes", silo: "clusters", type: "Ridges 41" },
-    { phrase: "2 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
-    { phrase: "3 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
-    { phrase: "4 BHK Price List Blue Ridge Hinjewadi 2026", silo: "price-list", type: "Price Sheet" },
-    { phrase: "2 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
-    { phrase: "3 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
-    { phrase: "4 BHK Floor Plan Blue Ridge Hinjewadi", silo: "floor-plan", type: "Floor Plan" },
-    { phrase: "Mahalunge Hinjewadi Bridge Connectivity", silo: "infrastructure", type: "Corridor" },
-    { phrase: "Pune Mumbai Expressway Access Hinjewadi", silo: "infrastructure", type: "Expressway" },
-    { phrase: "Paranjape Blue Ridge Site Visit Booking", silo: "site-visit", type: "Site Visit" },
-    { phrase: "Paranjape Blue Ridge Virtual Tour and Walkthrough", silo: "site-visit", type: "Virtual Tour" },
-    { phrase: "Paranjape Blue Ridge Resale Flats and Inventory", silo: "transactions", type: "Resale" },
-    { phrase: "Ready Possession Flats in Hinjewadi 2026", silo: "amenities", type: "Ready Possession" },
-    { phrase: "Luxury Duplex Apartments in Hinjewadi Pune", silo: "duplex-simplex", type: "Duplex" },
-    { phrase: "Ultra Luxury Penthouses in Pune West", silo: "duplex-simplex", type: "Penthouse" },
-    { phrase: "2 BHK Flats in Wakad Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "3 BHK Flats in Baner Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "4 BHK Luxury Flats in Balewadi Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "Buy 2 BHK Flats in Mahalunge Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "Buy 3 BHK Flats in Bavdhan Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "Buy 2 BHK Flats in Aundh Pune", silo: "pune-dominance", type: "Apartment" },
-    { phrase: "Walk to Work Flats Hinjewadi Phase 1", silo: "corporate", type: "Walk-to-Work" },
-    { phrase: "Mivan Construction Projects in Hinjewadi", silo: "features", type: "MiVAN" },
-    { phrase: "River Facing Luxury Apartments Pune", silo: "amenities", type: "Riverfront" },
-    { phrase: "Gated Community Townships in Pune West", silo: "pune-dominance", type: "Township" },
-    { phrase: "Pet Friendly Apartments Hinjewadi Pune", silo: "amenities", type: "Pet Friendly" },
-    { phrase: "Corporate Rental Housing Hinjewadi Phase 1", silo: "investor", type: "Corporate Rental" },
-    { phrase: "Under Construction 3 BHK Luxury Homes near Hinjewadi", silo: "pune-dominance", type: "Under Construction" },
-    { phrase: "Ready Possession 2 BHK Smart Homes Hinjewadi", silo: "pune-dominance", type: "Ready Possession" },
-    { phrase: "Blue Ridge Hinjewadi Resale Price Per Sqft", silo: "price-list", type: "Price Sheet" },
-    { phrase: "List of IT Companies in Hinjewadi Phase 1", silo: "corporate", type: "IT Directory" },
-    { phrase: "Mula River Rejuvenation Impact Blue Ridge", silo: "infrastructure", type: "Eco Riverfront" },
-    { phrase: "Paranjape Blue Ridge Cost Sheet and All Inclusive Price", silo: "price-list", type: "Price Sheet" },
-    { phrase: "Private 9 Hole Golf Course Township Pune", silo: "amenities", type: "Golf Living" },
-    { phrase: "Safety and 24x7 Security Blue Ridge Hinjewadi", silo: "amenities", type: "Security" },
-    { phrase: "Buy Flat in Pune from Dubai UAE NRI Desk", silo: "investor", type: "NRI Desk" },
-    { phrase: "Buy Pune Property from USA NRI Desk", silo: "investor", type: "NRI Desk" },
-    { phrase: "Best Investment in Hinjewadi Real Estate 2026", silo: "investor", type: "Investment" },
-    { phrase: "Pre Launch Offers Hinjewadi Phase 1 Flats", silo: "investor", type: "Pre-Launch" },
-    { phrase: "Paranjape Schemes Construction Ltd Projects Pune", silo: "branded", type: "Developer Profile" },
-    { phrase: "Paranjape Athashri Senior Living Homes Pune", silo: "branded", type: "Senior Living" }
-  ];
-
-  return curatedPhrases.slice(0, count).map(item => {
-    const slug = `${slugify(item.phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
-    const title = `${item.phrase} | Paranjape Blue Ridge`;
-    const intent = `${item.phrase} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
-    return {
-      slug,
-      title,
-      intent,
-      type: item.type,
-      silo: item.silo
-    };
-  });
+  return curatedPseoUrls.slice(0, count);
 }
 
 export function getPopularSearchSections() {
-  const all = getCuratedPseoLinks(60);
   return [
-    { title: 'Tech Hub Proximity', links: all.filter(u => u.silo === 'corporate').slice(0, 10) },
-    { title: 'Investor Intelligence', links: all.filter(u => u.silo === 'investor').slice(0, 10) },
-    { title: 'Project Comparisons', links: all.filter(u => u.silo === 'battleground').slice(0, 8) },
-    { title: 'Infra & Guides', links: all.filter(u => u.silo === 'infrastructure').slice(0, 8) },
-    { title: 'Amenity & Lifestyle', links: all.filter(u => u.silo === 'amenities').slice(0, 10) },
-    { title: 'Paranjape Schemes', links: all.filter(u => u.silo === 'branded' || u.silo === 'clusters').slice(0, 10) },
+    { title: 'Tech Hub Proximity', links: curatedPseoUrls.filter(u => u.silo === 'corporate').slice(0, 8) },
+    { title: 'Investor Intelligence', links: curatedPseoUrls.filter(u => u.silo === 'investor').slice(0, 8) },
+    { title: 'Project Comparisons', links: curatedPseoUrls.filter(u => u.silo === 'battleground').slice(0, 8) },
+    { title: 'Infra & Guides', links: curatedPseoUrls.filter(u => u.silo === 'infrastructure').slice(0, 8) },
+    { title: 'Amenity & Lifestyle', links: curatedPseoUrls.filter(u => u.silo === 'amenities').slice(0, 8) },
+    { title: 'Paranjape Schemes', links: curatedPseoUrls.filter(u => u.silo === 'branded' || u.silo === 'clusters').slice(0, 8) },
   ];
 }
 
 export function getRelatedPseoLinks(currentSlug: string, silo: string, count: number = 6): PseoUrl[] {
-  const curated = getCuratedPseoLinks(60);
-  const sameSilo = curated.filter(u => u.silo === silo && u.slug !== currentSlug);
-  const others = curated.filter(u => u.silo !== silo && u.slug !== currentSlug);
+  const sameSilo = curatedPseoUrls.filter(u => u.silo === silo && u.slug !== currentSlug);
+  const others = curatedPseoUrls.filter(u => u.silo !== silo && u.slug !== currentSlug);
   return [...sameSilo, ...others].slice(0, count);
 }
 
 export function getRegionPseoLinks(region: string, count: number = 100): PseoUrl[] {
-  const curated = getCuratedPseoLinks(60);
-  return curated.filter(u => u.slug.includes(region) || u.title.toLowerCase().includes(region.replace(/-/g, ' '))).slice(0, count);
+  return curatedPseoUrls.filter(u => u.slug.includes(region) || u.title.toLowerCase().includes(region.replace(/-/g, ' '))).slice(0, count);
 }
 
 export function generatePseoChunk(chunkIndex: number, chunkSize: number = 1000): PseoUrl[] {
   const start = chunkIndex * chunkSize;
   const end = start + chunkSize;
-  
-  // Fast generator for chunk ranges
-  const configs = ["2 BHK Flats", "3 BHK Apartments", "4 BHK Luxury Homes", "5 BHK Villas", "Penthouse", "Duplex", "Smart Homes"];
-  const microMarkets = [
-    "Hinjewadi Phase 1", "Hinjewadi Phase 2", "Hinjewadi Phase 3", "Wakad", "Baner", "Balewadi",
-    "Mahalunge", "Aundh", "Bavdhan", "Pashan", "Kothrud", "Shivajinagar", "Kharadi", "Viman Nagar",
-    "Hadapsar", "Magarpatta", "Koregaon Park", "Kalyani Nagar", "Pimple Saudagar", "Pimple Nilakh",
-    "Tathawade", "Punawale", "Ravet", "Maan Road", "Model Colony", "Erandwane", "Prabhat Road",
-    "NIBM Road", "Undri", "Dhanori", "Lohegaon", "Moshi", "Chinchwad", "Pimpri", "Nigdi"
-  ];
-  const intents = ["Buy", "Price of", "Luxury", "Premium", "Resale", "Ready Possession", "Under Construction", "Invest in", "Floor Plan for", "Reviews of"];
-  const features = ["near Metro Station", "near Infosys", "with Golf Course", "with Boat Club", "near Wipro", "Walk to Work", "Mivan Construction", "River Facing"];
-
-  const chunk: PseoUrl[] = [];
-  let index = 0;
-
-  for (const intent of intents) {
-    for (const config of configs) {
-      for (const market of microMarkets) {
-        for (const feature of features) {
-          if (index >= start && index < end) {
-            const phrase = `${intent} ${config} in ${market} ${feature} Pune`;
-            const slug = `${slugify(phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
-            const rawTitle = `${phrase} | Paranjape Blue Ridge`;
-            const title = optimizeTitleLength(rawTitle);
-            const itemIntent = `${phrase} — Discover Paranjape Schemes Blue Ridge Hinjewadi`;
-            
-            let silo = 'pune-dominance';
-            if (feature.includes('Metro')) silo = 'infrastructure';
-            else if (feature.includes('Infosys') || feature.includes('Wipro') || feature.includes('Work')) silo = 'corporate';
-            else if (feature.includes('Golf') || feature.includes('Boat') || feature.includes('River')) silo = 'amenities';
-            else if (intent.includes('Price')) silo = 'price-list';
-            else if (intent.includes('Floor')) silo = 'floor-plan';
-            else if (intent.includes('Invest')) silo = 'investor';
-
-            chunk.push({
-              slug,
-              title,
-              intent: itemIntent,
-              type: config.includes('BHK') ? 'Apartment' : config,
-              silo
-            });
-          }
-          index++;
-          if (index >= end) return chunk;
-        }
-      }
-    }
-  }
-
-  return chunk;
+  return curatedPseoUrls.slice(start, end);
 }
 
-export const longTailUrls: PseoUrl[] = getCuratedPseoLinks(60);
-
-
+export const longTailUrls: PseoUrl[] = curatedPseoUrls;
