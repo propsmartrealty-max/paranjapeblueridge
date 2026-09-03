@@ -84,14 +84,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
         req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
         '127.0.0.1';
 
-      if (!checkRateLimit(clientIp)) {
-        return new Response('Too Many Requests. Rate limit exceeded. Please wait a minute.', {
-          status: 429,
-          headers: {
-            'Retry-After': '60',
-            'Content-Type': 'text/plain'
-          }
-        });
+      // Never rate limit localhost, build-time prerendering, or local development
+      if (clientIp !== '127.0.0.1' && clientIp !== '::1' && clientIp !== 'localhost') {
+        if (!checkRateLimit(clientIp)) {
+          return new Response('Too Many Requests. Rate limit exceeded. Please wait a minute.', {
+            status: 429,
+            headers: {
+              'Retry-After': '60',
+              'Content-Type': 'text/plain'
+            }
+          });
+        }
       }
     }
   }
