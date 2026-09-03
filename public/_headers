@@ -67,6 +67,18 @@
   Cloudflare-CDN-Cache-Control: max-age=3600, stale-while-revalidate=86400
   Cache-Tag: blueridge-discovery,blueridge-ai-context
 
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cloudflare-CDN-Cache-Control: max-age=86400, stale-while-revalidate=604800
+  Cache-Tag: blueridge-ai
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Cloudflare-CDN-Cache-Control: max-age=86400, stale-while-revalidate=604800
+  Cache-Tag: blueridge-ai
+
 /api/og*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
   Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400

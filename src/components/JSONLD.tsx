@@ -430,7 +430,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       : t("Paranjape Schemes - Sovereign Sales Gallery", "परंजपे स्कीम्स - सोव्हरेन सेल्स गॅलरी");
 
   const realEstateAgentSchema = {
-    "@type": ["LocalBusiness", "RealEstateAgent", "Residence"],
+    "@type": ["LocalBusiness", "RealEstateAgent", "Residence", "ApartmentComplex"],
     "@id": `${SITE_URL}/${slug}#business`,
     "name": businessName,
     "parentOrganization": { "@id": `${SITE_URL}/#organization` },
@@ -439,10 +439,11 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
     "image": [
-      `${SITE_URL}/assets/images/paranjape-logo.svg`,
-      `${SITE_URL}/assets/images/township-night.png`,
-      `${SITE_URL}/assets/images/real-township-day.jpg`,
-      `${SITE_URL}/assets/images/master-hero-v4.png`
+      `${SITE_URL}/assets/images/pscl-blue-ridge-aerial-drone.webp`,
+      `${SITE_URL}/assets/images/pscl-blue-ridge-township-skyline.jpg`,
+      `${SITE_URL}/assets/images/pscl-blue-ridge-sez.webp`,
+      `${SITE_URL}/assets/images/pscl-blue-ridge-golf.webp`,
+      `${SITE_URL}/assets/images/pscl-blue-ridge-school.webp`
     ],
     "priceRange": "₹97L - ₹2.65Cr",
     "priceSpecification": [

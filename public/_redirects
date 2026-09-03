@@ -1,6 +1,41 @@
-# Cloudflare Pages Direct Edge Canonical Redirects
+# Cloudflare Pages Direct Edge Canonical 301 Redirects
+# Domain: paranjapeblueridge.com
+
 /home / 301
 /index.html / 301
 /sitemap.xml /sitemap-index.xml 301
 /sitemap /sitemap-index.xml 301
 /feed /feed.xml 301
+/rss /feed.xml 301
+
+# Residential Cluster Aliases
+/promenade /paranjape-blue-ridge-promenade-hinjewadi-pune 301
+/altius /paranjape-blue-ridge-the-altius-hinjewadi-pune 301
+/the-altius /paranjape-blue-ridge-the-altius-hinjewadi-pune 301
+/paranjape-blue-ridge-altius-hinjewadi-pune /paranjape-blue-ridge-the-altius-hinjewadi-pune 301
+/ridges41 /paranjape-blue-ridge-41-hinjewadi-pune 301
+/ridges-41 /paranjape-blue-ridge-41-hinjewadi-pune 301
+/41-ridge /paranjape-blue-ridge-41-hinjewadi-pune 301
+/41ridge /paranjape-blue-ridge-41-hinjewadi-pune 301
+
+# Township Feature Shortcuts
+/sez /#sez 301
+/blue-ridge-sez /#sez 301
+/golf /#golf 301
+/school /#lifestyle 301
+/amenities /#lifestyle 301
+/masterplan /#masterplan 301
+/specifications /#specifications 301
+
+# Conversion & Investor Pages
+/nri /nri-investment 301
+/nri-desk /nri-investment 301
+/construction /construction-updates 301
+/rera /construction-updates 301
+/rera-updates /construction-updates 301
+/brochure /sovereign-vault 301
+/vault /sovereign-vault 301
+/floor-plans /sovereign-vault 301
+/cost-sheet /#enquiry 301
+/contact /#enquiry 301
+/enquiry /#enquiry 301

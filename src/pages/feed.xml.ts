@@ -41,7 +41,7 @@ export const GET: APIRoute = async () => {
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
     <link rel="hub" href="https://pubsubhubbub.appspot.com"/>
     <image>
-      <url>${SITE_URL}/assets/images/township-night.png</url>
+      <url>${SITE_URL}/assets/images/pscl-blue-ridge-aerial-drone.webp</url>
       <title>Paranjape Blue Ridge Hinjewadi</title>
       <link>${SITE_URL}</link>
     </image>

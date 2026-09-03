@@ -3,28 +3,73 @@ import type { APIRoute } from 'astro';
 export const prerender = true;
 
 export const GET: APIRoute = async () => {
-  const robots = `User-agent: *
+  const robots = `# Enterprise Google & Global Search Engine Robots Directive
+# Domain: https://paranjapeblueridge.com
+
+User-agent: *
 Allow: /
+Allow: /_astro/
+Allow: /assets/
+Allow: /assets/images/
+Allow: /assets/logos/
 Disallow: /api/
-Disallow: /sovereign-vault
+Disallow: /admin/
+Disallow: /draft/
 
 User-agent: Googlebot
 Allow: /
-Disallow: /api/
-Disallow: /sovereign-vault
+Allow: /_astro/
+Allow: /assets/
+Allow: /assets/images/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.webp$
 
 User-agent: Googlebot-Image
 Allow: /assets/
-Allow: /
+Allow: /assets/images/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+Allow: /*.webp$
 
 User-agent: Google-InspectionTool
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-Disallow: /api/
+Allow: /_astro/
+Allow: /assets/
+Crawl-delay: 1
+
+User-agent: Applebot
+Allow: /
+Allow: /_astro/
+Allow: /assets/
+
+User-agent: DuckDuckBot
+Allow: /
+Allow: /_astro/
+Allow: /assets/
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 Sitemap: https://paranjapeblueridge.com/sitemap-index.xml
+Sitemap: https://paranjapeblueridge.com/sitemap-0.xml
+Sitemap: https://paranjapeblueridge.com/feed.xml
 `;
 
   return new Response(robots, {
