@@ -69,12 +69,18 @@ export default function Navbar() {
                 src="/assets/logos/paranjape-schemes.png" 
                 alt="Paranjape Schemes Official Logo" 
                 className="h-7 w-auto object-contain"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/images/paranjape-official-logo.png';
+                }}
               />
               <div className="h-4 w-px bg-slate-200"></div>
               <img 
                 src="/assets/logos/blue-ridge.png" 
                 alt="Blue Ridge Township Emblem" 
                 className="h-7 w-auto object-contain"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/images/blue-ridge-official-logo.png';
+                }}
               />
             </div>
             

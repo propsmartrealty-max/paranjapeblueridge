@@ -236,7 +236,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 4,
         carpetArea: "1,858 Sq. Ft.",
         dimensions: "Living: 28'x16' • Master: 18'x15'",
-        planImage2D: "/assets/images/altius-hero.jpg",
+        planImage2D: "/assets/images/floor-plan-4bhk.png",
         downloadUrl: "#enquire"
       },
       {
@@ -244,7 +244,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 5,
         carpetArea: "2,480 Sq. Ft.",
         dimensions: "Living: 34'x18' • Master: 20'x16'",
-        planImage2D: "/assets/images/altius-hero.jpg",
+        planImage2D: "/assets/images/floor-plans/4bhk.png",
         downloadUrl: "#enquire"
       }
     ],
@@ -336,7 +336,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 2,
         carpetArea: "793 Sq. Ft.",
         dimensions: "Living: 18'x12' • Master: 13'x11'",
-        planImage2D: "/assets/images/ridges-hero.jpg",
+        planImage2D: "/assets/images/floor-plans/2bhk.png",
         downloadUrl: "#enquire"
       },
       {
@@ -344,7 +344,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 2,
         carpetArea: "970 Sq. Ft.",
         dimensions: "Living: 20'x13' • Master: 14'x12'",
-        planImage2D: "/assets/images/ridges-hero.jpg",
+        planImage2D: "/assets/images/floor-plans/2bhk.png",
         downloadUrl: "#enquire"
       }
     ],
