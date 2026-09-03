@@ -75,62 +75,6 @@ export const completedParanjapeProjects: CompletedProject[] = [
       "Paranjape Schemes townships in Pune",
       "Luxury bungalows near Kothrud Pune"
     ]
-  },
-  {
-    id: "1-modibaug",
-    slug: "paranjape-1-modibaug-shivajinagar",
-    name: "1 Modibaug",
-    location: "Shivajinagar, Central Pune",
-    category: "Luxury Residences",
-    completionYear: "2016",
-    configuration: "Ultra-Luxury 4 & 5 BHK Palatial Residences",
-    totalAcresOrUnits: "Exclusive Boutique Enclave",
-    heroImage: "/assets/images/promenade-hero.jpg",
-    legacyStory: "1 Modibaug stands as the undisputed benchmark of prime heritage address in Central Pune. Designed for Pune's aristocracy and top industrialists, it combines classic colonial grandeur with ultra-contemporary engineering.",
-    architectureHighlights: [
-      "Rare low-density palatial proportions in Pune's prime diplomatic district",
-      "Double-height air-conditioned entry lobbies with concierge",
-      "Bespoke private temperature-controlled pools and manicured English lawns"
-    ],
-    communityVibe: "Exclusive enclaves inhabited by renowned industrial families, consulates, and high-net-worth business titans.",
-    locationContext: "Shivajinagar, walking distance to Agriculture College, Fergusson College, and University Road.",
-    legacyStatus: "Completed & Delivered",
-    gallery: [
-      "/assets/images/promenade-hero.jpg"
-    ],
-    relatedSearchKeywords: [
-      "1 Modibaug Shivajinagar Pune",
-      "Paranjape luxury flats in Central Pune",
-      "Super luxury apartments in Shivajinagar"
-    ]
-  },
-  {
-    id: "yuthika",
-    slug: "paranjape-yuthika-baner",
-    name: "Yuthika",
-    location: "Baner, Pune",
-    category: "Luxury Residences",
-    completionYear: "2015",
-    configuration: "2, 3 & 4 BHK Contemporary Apartments",
-    totalAcresOrUnits: "750+ Families Residing",
-    heroImage: "/assets/images/altius-hero.jpg",
-    legacyStory: "Yuthika redefined the residential skyline of Baner with its signature landscaped central spine, clubhouse facilities, and walkability to high-street dining.",
-    architectureHighlights: [
-      "Vehicle-free landscaped central podium",
-      "Earthquake resistant aerodynamic tower design",
-      "Proximity to Baner-Balewadi High Street"
-    ],
-    communityVibe: "A dynamic tech executive and entrepreneurial neighborhood.",
-    locationContext: "Baner Road, 5 minutes from Mumbai-Pune Expressway exit.",
-    legacyStatus: "Completed & Delivered",
-    gallery: [
-      "/assets/images/altius-hero.jpg"
-    ],
-    relatedSearchKeywords: [
-      "Paranjape Yuthika Baner",
-      "Flats in Baner Pune",
-      "Paranjape Schemes projects in West Pune"
-    ]
   }
 ];
 

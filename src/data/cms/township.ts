@@ -10,6 +10,57 @@ export interface TownshipPillar {
   highlights: string[];
 }
 
+export interface BlueRidgeSezDetails {
+  name: string;
+  designation: string;
+  totalSpace: string;
+  workforceCount: string;
+  certification: string;
+  occupancyStatus: string;
+  overview: string;
+  tenants: string[];
+  keyAdvantages: { title: string; desc: string }[];
+  impactOnResidents: string;
+}
+
+export const blueRidgeSezData: BlueRidgeSezDetails = {
+  name: "Blue Ridge Special Economic Zone (SEZ)",
+  designation: "Multi-Client IT / ITES Special Economic Zone",
+  totalSpace: "3+ Million Sq. Ft. Grade-A Tech Workspace",
+  workforceCount: "35,000+ IT Professionals Working On-Campus",
+  certification: "LEED Gold Certified Sustainable Green Buildings",
+  occupancyStatus: "Fully Operational Global Enterprise Hub",
+  overview: "An integral cornerstone of the 138-acre masterplan, the Blue Ridge IT/ITES SEZ integrates world-class commercial infrastructure directly alongside premium residential enclaves. Designed to international commercial standards, it enables a true 0-minute commute and powers unmatched residential rental yields in West Pune.",
+  tenants: [
+    "Cognizant Technology Solutions",
+    "Accenture Solutions",
+    "L&T Technology Services (LTTS)",
+    "Persistent Systems",
+    "Cisco Systems Ecosystem",
+    "Tata Technologies Partners",
+    "Global IT & Engineering Consultancies"
+  ],
+  keyAdvantages: [
+    {
+      title: "Zero-Minute Commute ('Walk to Work')",
+      desc: "Residents literally walk 2 to 5 minutes through landscaped avenues to reach world-class offices, eliminating vehicular traffic stress completely."
+    },
+    {
+      title: "Guaranteed High Rental Demand & Yields",
+      desc: "With 35,000+ senior engineers, project managers, and directors working inside the township SEZ, rental occupancy stays consistently above 98% with 4.8% - 5.6% yields."
+    },
+    {
+      title: "LEED Gold Certified Smart Infrastructure",
+      desc: "Intelligent building management systems (IBMS), 100% treated water recycling, energy-efficient HVAC, and multi-tier perimeter biometric security."
+    },
+    {
+      title: "Complete Campus Amenities",
+      desc: "Dedicated food courts, international cafes, multi-level car parking, executive fitness clubs, on-site banking, and ATM facilities."
+    }
+  ],
+  impactOnResidents: "The SEZ transforms Blue Ridge from a mere residential enclave into a self-sustaining, recession-resistant micro-economy where work, family, education, and leisure converge without stepping foot outside the gates."
+};
+
 export const townshipMasterData = {
   name: "Paranjape Blue Ridge",
   location: "Hinjewadi Phase 1, Rajiv Gandhi Infotech Park, Pune 411057",
@@ -20,6 +71,21 @@ export const townshipMasterData = {
   riverFrontage: "Over 1.5 km of Scenic Mula River Promenade",
   developer: "Paranjape Schemes (Construction) Ltd.",
   pillars: [
+    {
+      id: "sez",
+      title: "Blue Ridge IT / ITES SEZ",
+      subtitle: "3M+ Sq. Ft. Integrated Grade-A IT Park",
+      metric: "35,000+",
+      metricLabel: "Daily Tech Workforce",
+      description: "An operational Special Economic Zone inside the township hosting Fortune 500 tech leaders including Cognizant, Accenture, and LTTS, delivering a genuine walk-to-work lifestyle.",
+      iconName: "Building2",
+      image: "/assets/images/real-township-day.jpg",
+      highlights: [
+        "Home to global technology MNCs and 35,000+ IT professionals",
+        "0-minute pedestrian commute from Blue Ridge residential clusters",
+        "Drives premium rental yield of 4.8% to 5.6% year-round"
+      ]
+    },
     {
       id: "golf",
       title: "9-Hole Executive Golf Course",

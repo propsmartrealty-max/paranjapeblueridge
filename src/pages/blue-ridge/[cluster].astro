@@ -28,43 +28,43 @@ const { cluster } = Astro.props;
   pathname={`/blue-ridge/${cluster.slug}`}
   ogImage={cluster.heroImage}
 >
-  <div class="bg-[#060911] text-ivory selection:bg-champagne selection:text-obsidian pt-24 pb-20">
+  <div class="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white pt-24 pb-20">
     
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
          HERO CHAPTER
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <header class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 border-b border-white/[0.06]">
+    <header class="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-20 border-b border-slate-200/80 bg-gradient-to-b from-[#F3F5F8] to-[#FAF9F6]">
       <div class="absolute inset-0 z-0">
         <img
           src={cluster.heroImage}
           alt={cluster.name}
-          class="w-full h-full object-cover scale-105 opacity-40 filter brightness-75"
+          class="w-full h-full object-cover scale-105 opacity-30 filter brightness-105"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#060911] via-[#060911]/80 to-[#060911]/60"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#060911]/90 via-transparent to-[#060911]/90"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#FAF9F6]/90 via-transparent to-[#FAF9F6]/90"></div>
       </div>
 
       <div class="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl text-center flex flex-col items-center">
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill border border-white/10 text-[10px] font-mono uppercase tracking-[0.25em] text-champagne-light mb-6 shadow-glass">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill border border-slate-200 text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] mb-6 shadow-sm">
           <span>A Distinctive Residential Address Within Blue Ridge</span>
         </div>
 
-        <span class="text-xs font-mono uppercase tracking-[0.3em] text-stone-light mb-3 block">
+        <span class="text-xs font-mono uppercase tracking-[0.3em] text-slate-500 mb-3 block font-medium">
           PARANJAPE BLUE RIDGE • {cluster.eyebrow}
         </span>
 
-        <h1 class="text-4xl sm:text-7xl lg:text-8xl font-serif font-normal text-ivory tracking-tight leading-[1.04] mb-6">
+        <h1 class="text-4xl sm:text-7xl lg:text-8xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.04] mb-6">
           {cluster.name}
         </h1>
 
-        <p class="text-base sm:text-xl text-stone-light max-w-2xl mx-auto leading-relaxed font-sans font-light mb-10">
+        <p class="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-sans font-normal mb-10">
           {cluster.tagline}
         </p>
 
         <div class="flex flex-wrap gap-4 justify-center">
           <a
             href="#floor-plans"
-            class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline"
+            class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline shadow-sm"
           >
             Explore Floor Plans
           </a>
@@ -77,22 +77,22 @@ const { cluster } = Astro.props;
         </div>
 
         <!-- Metric strip -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 pt-12 mt-12 border-t border-white/[0.08] w-full max-w-4xl text-left">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 pt-12 mt-12 border-t border-slate-200/80 w-full max-w-4xl text-left">
           <div>
-            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Configuration</span>
-            <span class="text-sm font-medium text-ivory">{cluster.configurations}</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Configuration</span>
+            <span class="text-sm font-semibold text-[#070D1A]">{cluster.configurations}</span>
           </div>
           <div>
-            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Carpet Range</span>
-            <span class="text-sm font-medium text-ivory font-mono">{cluster.carpetAreaRange}</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Carpet Range</span>
+            <span class="text-sm font-semibold text-[#070D1A] font-mono">{cluster.carpetAreaRange}</span>
           </div>
           <div>
-            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Structure</span>
-            <span class="text-sm font-medium text-ivory">{cluster.towerDetails.storeys} Storeys</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Structure</span>
+            <span class="text-sm font-semibold text-[#070D1A]">{cluster.towerDetails.storeys} Storeys</span>
           </div>
           <div>
-            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">MahaRERA</span>
-            <span class="text-sm font-medium text-champagne-light font-mono">{cluster.reraNumber}</span>
+            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">MahaRERA</span>
+            <span class="text-sm font-semibold text-[#B88E3E] font-mono">{cluster.reraNumber}</span>
           </div>
         </div>
       </div>
@@ -105,36 +105,36 @@ const { cluster } = Astro.props;
            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
       <section id="residence" class="space-y-10">
         <div class="max-w-2xl">
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">01 — The Residence</span>
-          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Architectural Concept & Layouts</h2>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">01 — The Residence</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal">Architectural Concept & Layouts</h2>
         </div>
 
-        <p class="text-base sm:text-lg text-stone-light font-sans font-light leading-relaxed max-w-4xl">
+        <p class="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed max-w-4xl">
           {cluster.architecturalStory}
         </p>
 
         <!-- Concept Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cluster.conceptPoints.map((pt, i) => (
-            <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
-              <span class="text-[10px] font-mono text-champagne uppercase tracking-widest block">Core Design Pillar 0{i + 1}</span>
-              <h3 class="text-lg font-serif text-ivory font-medium">{pt.title}</h3>
-              <p class="text-xs text-stone-light leading-relaxed font-sans font-light">{pt.description}</p>
+            <div class="glass-panel p-6 rounded-3xl border border-slate-200/80 bg-white space-y-3 shadow-sm">
+              <span class="text-[10px] font-mono text-[#8F6A24] uppercase tracking-widest block font-semibold">Core Design Pillar 0{i + 1}</span>
+              <h3 class="text-lg font-serif text-[#070D1A] font-medium">{pt.title}</h3>
+              <p class="text-xs text-slate-600 leading-relaxed font-sans font-normal">{pt.description}</p>
             </div>
           ))}
         </div>
 
         <!-- Specifications -->
-        <div class="glass-panel rounded-3xl p-8 border border-white/10 space-y-6">
-          <h3 class="text-xl font-serif text-ivory font-medium">Fine Materiality & Specifications</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-white/[0.08]">
+        <div class="glass-panel rounded-3xl p-8 border border-slate-200/80 bg-white shadow-sm space-y-6">
+          <h3 class="text-xl font-serif text-[#070D1A] font-medium">Fine Materiality & Specifications</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-slate-100">
             {cluster.specifications.map((spec) => (
               <div class="space-y-2">
-                <span class="text-xs font-mono text-champagne uppercase tracking-wider font-semibold block">{spec.category}</span>
-                <ul class="space-y-1.5 text-xs text-stone-light">
+                <span class="text-xs font-mono text-[#8F6A24] uppercase tracking-wider font-semibold block">{spec.category}</span>
+                <ul class="space-y-1.5 text-xs text-slate-600">
                   {spec.details.map((item) => (
                     <li class="flex items-start gap-2">
-                      <CheckCircle2 size={13} class="text-champagne shrink-0 mt-0.5" />
+                      <CheckCircle2 size={13} class="text-[#B88E3E] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -151,32 +151,32 @@ const { cluster } = Astro.props;
       <section id="floor-plans" class="space-y-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div class="max-w-2xl">
-            <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">02 — Floor Plans</span>
-            <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Layouts & Room Dimensions</h2>
+            <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">02 — Floor Plans</span>
+            <h2 class="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal">Layouts & Room Dimensions</h2>
           </div>
-          <a href="#enquiry" class="btn-champagne px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider no-underline">
+          <a href="#enquiry" class="btn-champagne px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider no-underline shadow-sm">
             Download Complete PDF Set
           </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cluster.floorPlans.map((plan, idx) => (
-            <div class="glass-panel rounded-3xl p-5 border border-white/10 hover:border-champagne/40 transition-all flex flex-col justify-between shadow-glass">
+          {cluster.floorPlans.map((plan) => (
+            <div class="glass-panel rounded-3xl p-5 border border-slate-200/80 bg-white hover:border-[#B88E3E]/50 transition-all flex flex-col justify-between shadow-sm">
               <div>
-                <div class="relative h-60 rounded-2xl overflow-hidden bg-obsidian-dark mb-4 border border-white/10">
+                <div class="relative h-60 rounded-2xl overflow-hidden bg-slate-50 mb-4 border border-slate-200/80">
                   <img
                     src={plan.planImage2D}
                     alt={plan.configTitle}
-                    class="w-full h-full object-contain p-4 filter invert opacity-80"
+                    class="w-full h-full object-contain p-4"
                   />
-                  <span class="absolute top-3 left-3 glass-pill px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-wider">
+                  <span class="absolute top-3 left-3 glass-pill px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-wider text-[#070D1A] bg-white">
                     {plan.bhkNumber} Bedroom Layout
                   </span>
                 </div>
 
-                <h3 class="text-lg font-serif text-ivory font-medium mb-1">{plan.configTitle}</h3>
-                <div class="text-xs font-mono text-champagne font-bold mb-3">{plan.carpetArea} Carpet Area</div>
-                <div class="text-xs text-stone-light font-mono pb-4 border-b border-white/[0.08]">{plan.dimensions}</div>
+                <h3 class="text-lg font-serif text-[#070D1A] font-medium mb-1">{plan.configTitle}</h3>
+                <div class="text-xs font-mono text-[#B88E3E] font-bold mb-3">{plan.carpetArea} Carpet Area</div>
+                <div class="text-xs text-slate-500 font-mono pb-4 border-b border-slate-100">{plan.dimensions}</div>
               </div>
 
               <div class="pt-4 flex gap-2">
@@ -197,14 +197,14 @@ const { cluster } = Astro.props;
            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
       <section id="availability" class="space-y-10">
         <div class="max-w-2xl">
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">03 — Verified Availability</span>
-          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Active Inventory Preview</h2>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">03 — Verified Availability</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal">Active Inventory Preview</h2>
         </div>
 
-        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-glass overflow-x-auto">
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-200/80 bg-white shadow-sm overflow-x-auto">
           <table class="w-full text-left text-xs font-sans">
             <thead>
-              <tr class="border-b border-white/10 text-[10px] font-mono uppercase tracking-wider text-stone">
+              <tr class="border-b border-slate-200 text-[10px] font-mono uppercase tracking-wider text-slate-500">
                 <th class="pb-3">Residence Type</th>
                 <th class="pb-3">Carpet Area</th>
                 <th class="pb-3">Floor Range</th>
@@ -213,16 +213,16 @@ const { cluster } = Astro.props;
                 <th class="pb-3 text-right">Status</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/[0.04]">
+            <tbody class="divide-y divide-slate-100">
               {cluster.inventoryPreview.map((item) => (
-                <tr class="hover:bg-white/[0.02] transition-colors">
-                  <td class="py-4 font-medium text-ivory">{item.type}</td>
-                  <td class="py-4 font-mono text-stone-light">{item.carpetArea}</td>
-                  <td class="py-4 text-stone-light">{item.floorRange}</td>
-                  <td class="py-4 text-stone-light">{item.viewOrientation}</td>
-                  <td class="py-4 font-mono text-champagne font-medium">{item.pricingStatus}</td>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="py-4 font-semibold text-[#070D1A]">{item.type}</td>
+                  <td class="py-4 font-mono text-slate-600">{item.carpetArea}</td>
+                  <td class="py-4 text-slate-600">{item.floorRange}</td>
+                  <td class="py-4 text-slate-600">{item.viewOrientation}</td>
+                  <td class="py-4 font-mono text-[#B88E3E] font-semibold">{item.pricingStatus}</td>
                   <td class="py-4 text-right">
-                    <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/[0.05] border border-white/10 text-champagne-light">
+                    <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-slate-100 border border-slate-200 text-slate-700">
                       {item.status}
                     </span>
                   </td>
@@ -230,7 +230,7 @@ const { cluster } = Astro.props;
               ))}
             </tbody>
           </table>
-          <div class="mt-4 pt-4 border-t border-white/[0.08] text-[10px] font-mono text-stone text-right">
+          <div class="mt-4 pt-4 border-t border-slate-100 text-[10px] font-mono text-slate-500 text-right">
             * All inventory availability subject to real-time contract execution and RERA validation.
           </div>
         </div>
@@ -241,21 +241,21 @@ const { cluster } = Astro.props;
            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
       <section id="amenities" class="space-y-10">
         <div class="max-w-2xl">
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">04 & 05 — Dual-Tier Amenities</span>
-          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Cluster Privileges vs. 138-Acre Township</h2>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">04 & 05 — Dual-Tier Amenities</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal">Cluster Privileges vs. 138-Acre Township</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- Cluster Dedicated Tier -->
-          <div class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 shadow-glass">
-            <div class="flex items-center gap-2 text-champagne font-mono text-xs uppercase tracking-widest border-b border-white/[0.08] pb-3">
-              <Sparkles size={16} />
+          <div class="glass-panel p-8 rounded-3xl border border-slate-200/80 bg-white space-y-6 shadow-sm">
+            <div class="flex items-center gap-2 text-[#8F6A24] font-mono text-xs uppercase tracking-widest border-b border-slate-100 pb-3 font-semibold">
+              <Sparkles size={16} class="text-[#B88E3E]" />
               <span>Exclusive to {cluster.name} Residents</span>
             </div>
-            <ul class="space-y-3 text-xs sm:text-sm text-stone-light font-sans">
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-600 font-sans">
               {cluster.clusterAmenities.map((am) => (
                 <li class="flex items-center gap-2.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-champagne shrink-0"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#B88E3E] shrink-0"></span>
                   <span>{am}</span>
                 </li>
               ))}
@@ -263,15 +263,15 @@ const { cluster } = Astro.props;
           </div>
 
           <!-- 138-Acre Township Tier -->
-          <div class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 shadow-glass">
-            <div class="flex items-center gap-2 text-champagne font-mono text-xs uppercase tracking-widest border-b border-white/[0.08] pb-3">
-              <Trees size={16} />
+          <div class="glass-panel p-8 rounded-3xl border border-slate-200/80 bg-white space-y-6 shadow-sm">
+            <div class="flex items-center gap-2 text-[#8F6A24] font-mono text-xs uppercase tracking-widest border-b border-slate-100 pb-3 font-semibold">
+              <Trees size={16} class="text-[#B88E3E]" />
               <span>138-Acre Blue Ridge Master Amenities</span>
             </div>
-            <ul class="space-y-3 text-xs sm:text-sm text-stone-light font-sans">
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-600 font-sans">
               {cluster.townshipAmenities.map((am) => (
                 <li class="flex items-center gap-2.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
                   <span>{am}</span>
                 </li>
               ))}
@@ -285,26 +285,26 @@ const { cluster } = Astro.props;
            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
       <section id="location" class="space-y-10">
         <div class="max-w-2xl">
-          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">06 — Masterplan Position</span>
-          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Location Within Blue Ridge</h2>
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">06 — Masterplan Position</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal">Location Within Blue Ridge</h2>
         </div>
 
-        <div class="glass-panel rounded-3xl p-8 border border-white/10 shadow-glass space-y-6">
+        <div class="glass-panel rounded-3xl p-8 border border-slate-200/80 bg-white shadow-sm space-y-6">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-champagne block">Precinct Designation</span>
-              <div class="text-xl font-serif text-ivory font-medium mt-1">{cluster.masterplanPosition.zone}</div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-[#8F6A24] block font-semibold">Precinct Designation</span>
+              <div class="text-xl font-serif text-[#070D1A] font-semibold mt-1">{cluster.masterplanPosition.zone}</div>
             </div>
-            <div class="glass-pill px-4 py-1.5 rounded-full text-xs font-mono uppercase text-champagne-light">
+            <div class="glass-pill px-4 py-1.5 rounded-full text-xs font-mono uppercase text-[#070D1A] font-bold bg-amber-50 border border-amber-200">
               YOU ARE HERE: {cluster.name}
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.08]">
-            {cluster.masterplanPosition.nearbyKeyPoints.map((point, i) => (
-              <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
-                <Navigation size={16} class="text-champagne shrink-0" />
-                <span class="text-xs text-stone-light">{point}</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+            {cluster.masterplanPosition.nearbyKeyPoints.map((point) => (
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/60 flex items-center gap-3">
+                <Navigation size={16} class="text-[#B88E3E] shrink-0" />
+                <span class="text-xs text-slate-600 font-medium">{point}</span>
               </div>
             ))}
           </div>
@@ -314,17 +314,17 @@ const { cluster } = Astro.props;
       <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
            FINAL CONCIERGE CTA
            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-      <section id="enquiry" class="py-16 text-center glass-panel rounded-3xl p-8 border border-white/10 shadow-glass-elevated">
-        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">Private Viewing</span>
-        <h3 class="text-2xl sm:text-4xl font-serif text-ivory font-medium mb-4">
+      <section id="enquiry" class="py-16 text-center glass-panel rounded-3xl p-8 border border-slate-200/80 bg-white shadow-md">
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-2 font-semibold">Private Viewing</span>
+        <h3 class="text-2xl sm:text-4xl font-serif text-[#070D1A] font-normal mb-4">
           Experience {cluster.name} in Person
         </h3>
-        <p class="text-stone-light text-sm max-w-md mx-auto mb-8 font-sans font-light">
+        <p class="text-slate-600 text-sm max-w-md mx-auto mb-8 font-sans font-normal">
           Reserve an exclusive guided walkthrough of sample residences, golf views, and the river promenade with our senior advisory team.
         </p>
         <a
           href="/#enquiry"
-          class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline inline-block"
+          class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline inline-block shadow-sm"
         >
           Book VIP Site Visit
         </a>

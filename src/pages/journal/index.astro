@@ -13,18 +13,18 @@ const categories = ['All', 'Investment', 'Architecture', 'Living', 'Township', '
   description="Editorial essays, macroeconomic market analysis, and biophilic architectural perspectives on Paranjape Blue Ridge Hinjewadi and Pune West real estate."
   pathname="/journal"
 >
-  <div class="pt-32 pb-24 bg-[#060911] text-ivory">
+  <div class="pt-32 pb-24 bg-[#FAF9F6] text-[#070D1A]">
     <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
       <!-- Header -->
       <div class="max-w-3xl mb-16">
-        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-champagne block mb-3">
+        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-3 font-semibold">
           Editorial Publication
         </span>
-        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-ivory tracking-tight leading-[1.08]">
+        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
           The Blue Ridge <br />
           <span class="italic font-light text-gradient-champagne">Journal.</span>
         </h1>
-        <p class="mt-6 text-base sm:text-lg text-stone-light leading-relaxed font-sans font-light">
+        <p class="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-sans font-normal">
           A collection of essays examining biophilic urban architecture, macroeconomic investment fundamentals, infrastructure convergence, and integrated living in Pune.
         </p>
       </div>
@@ -32,7 +32,7 @@ const categories = ['All', 'Investment', 'Architecture', 'Living', 'Township', '
       <!-- Category Filter Pills -->
       <div class="flex flex-wrap gap-2 mb-12">
         {categories.map((cat) => (
-          <span class="px-4 py-2 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-white/[0.03] border border-white/10 text-stone-light hover:text-ivory hover:border-champagne/40 transition-all cursor-pointer">
+          <span class="px-4 py-2 rounded-full text-xs font-sans font-semibold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-[#070D1A] hover:border-[#B88E3E] transition-all cursor-pointer shadow-sm">
             {cat}
           </span>
         ))}
@@ -41,38 +41,38 @@ const categories = ['All', 'Investment', 'Architecture', 'Living', 'Township', '
       <!-- Articles Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {journalArticles.map((article) => (
-          <article class="glass-panel rounded-3xl p-6 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-glass">
+          <article class="glass-panel rounded-3xl p-6 border border-slate-200/80 bg-white hover:border-[#B88E3E]/50 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md">
             <div>
-              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-stone mb-4">
-                <span class="text-champagne font-semibold">{article.category}</span>
+              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-4">
+                <span class="text-[#8F6A24] font-semibold">{article.category}</span>
                 <span class="flex items-center gap-1"><Clock size={11} /> {article.readingTime}</span>
               </div>
 
-              <h2 class="text-xl font-serif text-ivory font-medium leading-snug group-hover:text-champagne transition-colors mb-4">
+              <h2 class="text-xl font-serif text-[#070D1A] font-medium leading-snug group-hover:text-[#B88E3E] transition-colors mb-4">
                 {article.title}
               </h2>
 
-              <p class="text-xs text-stone-light leading-relaxed font-sans font-light line-clamp-4 mb-6">
+              <p class="text-xs text-slate-600 leading-relaxed font-sans font-normal line-clamp-4 mb-6">
                 {article.excerpt}
               </p>
 
               <!-- Key Takeaways -->
-              <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] mb-6 space-y-1.5">
-                <span class="text-[9px] font-mono text-champagne uppercase tracking-widest block font-semibold">Key Insights</span>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60 mb-6 space-y-1.5">
+                <span class="text-[9px] font-mono text-[#8F6A24] uppercase tracking-widest block font-bold">Key Insights</span>
                 {article.keyTakeaways.map((takeaway) => (
-                  <div class="text-[11px] text-stone-light flex items-center gap-2">
-                    <span class="w-1 h-1 rounded-full bg-champagne shrink-0"></span>
+                  <div class="text-[11px] text-slate-600 flex items-center gap-2">
+                    <span class="w-1 h-1 rounded-full bg-[#B88E3E] shrink-0"></span>
                     <span class="line-clamp-1">{takeaway}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
-              <span class="text-[10px] font-mono text-stone">{article.publishedDate}</span>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-500">{article.publishedDate}</span>
               <a
                 href={`/insights/${article.slug}`}
-                class="text-xs font-sans font-semibold uppercase tracking-wider text-champagne flex items-center gap-1.5 group-hover:translate-x-1 transition-transform no-underline"
+                class="text-xs font-sans font-semibold uppercase tracking-wider text-[#8F6A24] flex items-center gap-1.5 group-hover:translate-x-1 transition-transform no-underline"
               >
                 <span>Read Essay</span>
                 <ArrowRight size={13} />

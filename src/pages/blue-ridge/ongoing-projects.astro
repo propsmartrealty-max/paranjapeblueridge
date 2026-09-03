@@ -11,18 +11,18 @@ export const prerender = true;
   description="Explore current and ongoing residential clusters within Paranjape Blue Ridge Hinjewadi Phase 1: Promenade (3 & 4 BHK), The Altius (4 & 5 BHK), and Ridges 41 (2 BHK)."
   pathname="/blue-ridge/ongoing-projects"
 >
-  <div class="pt-32 pb-24 bg-[#060911] text-ivory">
+  <div class="pt-32 pb-24 bg-[#FAF9F6] text-[#070D1A]">
     <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
       <!-- Editorial Header -->
-      <div className="max-w-3xl mb-16">
-        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-champagne block mb-3">
+      <div class="max-w-3xl mb-16">
+        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-3 font-semibold">
           Residential Developments
         </span>
-        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-ivory tracking-tight leading-[1.08]">
+        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
           Blue Ridge <br />
           <span class="italic font-light text-gradient-champagne">Current Residential Developments</span>
         </h1>
-        <p class="mt-6 text-base sm:text-lg text-stone-light leading-relaxed font-sans font-light">
+        <p class="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-sans font-normal">
           Explore the latest residential communities within Blue Ridge, their configurations, architectural character, amenities and current availability.
         </p>
       </div>
@@ -30,61 +30,61 @@ export const prerender = true;
       <!-- Verified Clusters Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {blueRidgeClusters.map((cluster) => (
-          <article class="glass-panel rounded-3xl p-4 sm:p-6 border border-white/10 hover:border-champagne/40 transition-all duration-500 group flex flex-col justify-between shadow-glass">
+          <article class="glass-panel rounded-3xl p-4 sm:p-6 border border-slate-200/80 bg-white hover:border-[#B88E3E]/50 transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-md">
             <div>
               {/* Image */}
-              <div class="relative h-64 rounded-2xl overflow-hidden bg-obsidian-dark mb-6">
+              <div class="relative h-64 rounded-2xl overflow-hidden bg-slate-100 mb-6">
                 <img
                   src={cluster.heroImage}
                   alt={`${cluster.name} - Paranjape Blue Ridge Hinjewadi`}
-                  class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#060911] via-transparent to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 
                 <div class="absolute top-4 left-4">
-                  <span class="glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-champagne-light">
+                  <span class="glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-[#070D1A] bg-white/95">
                     {cluster.configurations}
                   </span>
                 </div>
 
-                <div class="absolute bottom-4 left-4 right-4">
-                  <div class="text-[10px] font-mono text-champagne uppercase tracking-wider">{cluster.eyebrow}</div>
-                  <h2 class="text-2xl font-serif text-ivory font-medium mt-1">{cluster.name}</h2>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <div class="text-[10px] font-mono text-[#DFC28D] uppercase tracking-wider font-semibold">{cluster.eyebrow}</div>
+                  <h2 class="text-2xl font-serif font-medium mt-1 text-white">{cluster.name}</h2>
                 </div>
               </div>
 
               {/* Description */}
-              <p class="text-xs sm:text-sm text-stone-light leading-relaxed font-sans font-light mb-6">
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans font-normal mb-6">
                 {cluster.architecturalStory}
               </p>
 
               {/* Specs Table */}
-              <div class="space-y-2.5 pt-4 border-t border-white/[0.08] text-xs font-sans mb-6">
-                <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                  <span class="text-stone">Carpet Area:</span>
-                  <span class="text-ivory font-mono">{cluster.carpetAreaRange}</span>
+              <div class="space-y-2.5 pt-4 border-t border-slate-100 text-xs font-sans mb-6">
+                <div class="flex justify-between py-1 border-b border-slate-100">
+                  <span class="text-slate-500">Carpet Area:</span>
+                  <span class="text-[#070D1A] font-mono font-semibold">{cluster.carpetAreaRange}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                  <span class="text-stone">Architecture:</span>
-                  <span class="text-ivory">{cluster.towerDetails.storeys} Storeys ({cluster.towerDetails.structureType})</span>
+                <div class="flex justify-between py-1 border-b border-slate-100">
+                  <span class="text-slate-500">Architecture:</span>
+                  <span class="text-[#070D1A] font-medium">{cluster.towerDetails.storeys} Storeys ({cluster.towerDetails.structureType})</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                  <span class="text-stone">Starting Price:</span>
-                  <span class="text-champagne-light font-mono font-medium">{cluster.isPriceVerified ? cluster.priceStarting : "Upon Request"}</span>
+                <div class="flex justify-between py-1 border-b border-slate-100">
+                  <span class="text-slate-500">Starting Price:</span>
+                  <span class="text-[#B88E3E] font-mono font-semibold">{cluster.isPriceVerified ? cluster.priceStarting : "Upon Request"}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-white/[0.04]">
-                  <span class="text-stone">Possession:</span>
-                  <span class="text-ivory">{cluster.possessionTimeline}</span>
+                <div class="flex justify-between py-1 border-b border-slate-100">
+                  <span class="text-slate-500">Possession:</span>
+                  <span class="text-[#070D1A]">{cluster.possessionTimeline}</span>
                 </div>
                 <div class="flex justify-between py-1">
-                  <span class="text-stone">MahaRERA:</span>
-                  <span class="text-stone-light font-mono text-[11px]">{cluster.reraNumber}</span>
+                  <span class="text-slate-500">MahaRERA:</span>
+                  <span class="text-slate-600 font-mono text-[11px]">{cluster.reraNumber}</span>
                 </div>
               </div>
             </div>
 
             <!-- Actions -->
-            <div class="pt-4 border-t border-white/[0.08] flex gap-3">
+            <div class="pt-4 border-t border-slate-100 flex gap-3">
               <a
                 href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
                 class="flex-1 py-3 px-4 rounded-xl btn-champagne text-center text-xs font-bold uppercase tracking-wider no-underline transition-all"
@@ -92,7 +92,7 @@ export const prerender = true;
                 Explore Cluster
               </a>
               <a
-                href="#enquiry"
+                href="/#enquiry"
                 class="py-3 px-4 rounded-xl btn-glass-outline text-center text-xs font-semibold uppercase tracking-wider no-underline transition-all"
               >
                 Enquire
@@ -103,8 +103,8 @@ export const prerender = true;
       </div>
 
       <!-- Authority SEO Context Block -->
-      <div class="mt-20 p-8 rounded-3xl glass-panel border border-white/10 text-xs text-stone-light space-y-4 font-sans leading-relaxed">
-        <h3 class="text-sm font-bold text-ivory font-serif uppercase tracking-wider">
+      <div class="mt-20 p-8 rounded-3xl glass-panel border border-slate-200/80 bg-white text-xs text-slate-600 space-y-4 font-sans leading-relaxed shadow-sm">
+        <h3 class="text-sm font-bold text-[#070D1A] font-serif uppercase tracking-wider">
           About Paranjape Blue Ridge Residential Communities
         </h3>
         <p>
