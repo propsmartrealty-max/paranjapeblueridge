@@ -47,24 +47,24 @@ export default function StickyCTA() {
       <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} initialInterest={initialInterest} />
       
       <div className={`fixed bottom-0 left-0 w-full z-[90] lg:hidden transition-transform duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-        <div className="ultra-glass-card backdrop-blur-3xl border-t border-gold/30 p-3.5 flex gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.15)]">
+        <div className="bg-white/95 backdrop-blur-2xl border-t border-slate-200 p-3.5 flex gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
           
           <a 
             href="tel:+917744009295"
             aria-label="Call Sales Team"
-            className="flex-1 flex items-center justify-center gap-2 bg-white/70 dark:bg-slate-900/70 border border-gold/25 text-warm-white py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all shadow-sm"
+            className="flex-1 flex items-center justify-center gap-2 bg-slate-100 border border-slate-300 text-[#070D1A] py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all shadow-sm no-underline"
           >
-            <Phone size={14} className="text-gold" />
-            Call Now
+            <Phone size={14} className="text-[#B88E3E]" />
+            <span>Call Now</span>
           </a>
 
           <button 
             onClick={() => setIsModalOpen(true)}
             aria-label={ctaText}
-            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-gold via-gold-light to-gold text-navy py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-gold/30 active:scale-95 transition-all font-sans"
+            className="flex-1 flex items-center justify-center gap-2 btn-champagne text-white py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest cursor-pointer active:scale-95 transition-all font-sans border-none shadow-md"
           >
             {ctaIcon}
-            {ctaText}
+            <span>{ctaText}</span>
           </button>
 
           <a 
@@ -72,7 +72,7 @@ export default function StickyCTA() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"
-            className="w-12 flex items-center justify-center bg-gradient-to-tr from-emerald-600 to-emerald-400 text-white rounded-2xl active:scale-95 transition-all shadow-lg shadow-emerald-500/25"
+            className="w-12 flex items-center justify-center bg-emerald-600 text-white rounded-2xl active:scale-95 transition-all shadow-md"
           >
             <MessageCircle size={18} />
           </a>

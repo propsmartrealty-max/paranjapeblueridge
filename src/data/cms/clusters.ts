@@ -6,22 +6,28 @@ export interface ClusterResidence {
   eyebrow: string;
   heroImage: string;
   gallery: string[];
-  configurations: string; // e.g. "3 & 4 Bedroom Residences"
-  carpetAreaRange: string; // e.g. "1,316 – 1,718 Sq. Ft."
+  configurations: string;
+  carpetAreaRange: string;
   isCarpetVerified: boolean;
-  priceStarting: string; // e.g. "₹1.65 Cr*" or "Available on Private Request"
+  priceStarting: string;
   isPriceVerified: boolean;
-  possessionTimeline: string; // e.g. "September 2029"
+  possessionTimeline: string;
   reraNumber: string;
   isReraVerified: boolean;
   towerDetails: {
     towers: string;
-    storeys: number | string;
+    storeys: number;
     structureType: string;
   };
   architecturalStory: string;
-  conceptPoints: { title: string; description: string }[];
-  specifications: { category: string; details: string[] }[];
+  conceptPoints: {
+    title: string;
+    description: string;
+  }[];
+  specifications: {
+    category: string;
+    details: string[];
+  }[];
   clusterAmenities: string[];
   townshipAmenities: string[];
   floorPlans: {
@@ -30,8 +36,7 @@ export interface ClusterResidence {
     carpetArea: string;
     dimensions: string;
     planImage2D: string;
-    planImage3D?: string;
-    downloadUrl?: string;
+    downloadUrl: string;
   }[];
   inventoryPreview: {
     type: string;
@@ -39,12 +44,12 @@ export interface ClusterResidence {
     floorRange: string;
     viewOrientation: string;
     pricingStatus: string;
-    status: 'Available' | 'Few Units Left' | 'Reserved' | 'Upon Request';
+    status: string;
   }[];
   masterplanPosition: {
     zone: string;
     label: string;
-    coordinates: { x: number; y: number }; // Percentage on SVG masterplan
+    coordinates: { x: number; y: number };
     nearbyKeyPoints: string[];
   };
 }
@@ -56,12 +61,12 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Promenade Residences",
     tagline: "The Benchmark of Riverfront High-Rise Living in Hinjewadi Phase 1",
     eyebrow: "41-Storey Iconic Towers • Mula Riverfront",
-    heroImage: "/assets/images/promenade-hero.jpg",
+    heroImage: "/assets/images/pscl-promenade-residences.png",
     gallery: [
-      "/assets/images/promenade-hero.jpg",
-      "/assets/images/real-township-day.jpg",
-      "/assets/images/promenade-3bhk-1316.jpg",
-      "/assets/images/promenade-4bhk-1633.jpg"
+      "/assets/images/pscl-promenade-residences.png",
+      "/assets/images/pscl-blue-ridge-promenade-canopy.webp",
+      "/assets/images/pscl-blue-ridge-aerial-drone.webp",
+      "/assets/images/pscl-blue-ridge-township-skyline.jpg"
     ],
     configurations: "3 & 4 Bedroom Residences",
     carpetAreaRange: "1,316 – 1,718 Sq. Ft.",
@@ -76,50 +81,66 @@ export const blueRidgeClusters: ClusterResidence[] = [
       storeys: 41,
       structureType: "Monolithic MiVAN Aluminium Formwork"
     },
-    architecturalStory: "Designed around the philosophy of New Urbanism, Promenade Residences is conceived as a vertical riverfront sanctuary. Rising 41 storeys above Hinjewadi Phase 1, its staggered balconies and double-height sky lobbies frame panoramic vistas of the Mula River corridor and the 138-acre Blue Ridge greens.",
+    architecturalStory: "Designed around the philosophy of New Urbanism, Promenade Residences is conceived as a vertical riverfront sanctuary. Rising 41 storeys above Hinjewadi Phase 1, its staggered balconies and double-height sky lobbies frame panoramic vistas of the Mula River corridor, the championship golf course, and the 138-acre Blue Ridge master greens.",
     conceptPoints: [
       {
-        title: "Perpetual Riverfront Elevation",
-        description: "Unobstructed orientations facing the scenic Mula River promenade and manicured township gardens."
+        title: "Double-Height Entrance Lobby & 3-Side Open Layout",
+        description: "Monumental arrival experience leading into extensive residences configured with 3-side open geometry for maximum natural light and cross-ventilation."
       },
       {
-        title: "Double-Height Deck Proportions",
-        description: "Expansive outdoor terraces engineered to serve as private open-air sky lounges with composite acoustic decking."
+        title: "Golf & River-Facing High-Rise Residences",
+        description: "Direct panoramic elevations looking over the 9-hole executive golf course fairway and the tranquil Mula River promenade."
       },
       {
-        title: "Zero-Dead-Space MiVAN Layouts",
-        description: "Cast-in-place structural precision delivering pure geometric carpet areas with no intrusive columns in living zones."
+        title: "Two Walk-In Wardrobes & Master Suites",
+        description: "Primary suites designed with dual walk-in dressing alcoves, private balconies, and monolithic formwork acoustic isolation."
       }
     ],
     specifications: [
       {
-        category: "Living & Dining",
-        details: ["Imported polished vitrified slabs", "Heavy-gauge anodized aluminum acoustic sliding panels", "8-foot engineered wooden main door with digital smart lock"]
+        category: "Flooring & Finishes",
+        details: [
+          "Polished glazed vitrified tiles for living, dining, bedrooms, kitchen & passage",
+          "Glazed vitrified anti-skid tiles for sit-out balconies",
+          "Vitrified tiles with full-body vanity counters in all toilets"
+        ]
       },
       {
-        category: "Master Suites",
-        details: ["Laminated wooden flooring in primary suites", "Attached dressers with cross-ventilation orientation", "Pre-wired VRV / VRF air conditioning conduits"]
+        category: "Kitchen & Reticulated Gas",
+        details: [
+          "Full body vitrified tiles for kitchen & utility platform with single bowl SS sink",
+          "Modular kitchen setup with dedicated chimney exhaust provision",
+          "Reticulated central piped gas system connection"
+        ]
       },
       {
-        category: "Kitchen & Utility",
-        details: ["Parallel quartz counter setup", "Piped reticulated LPG gas connection", "Dedicated utility yard with washing machine & dishwasher provisions"]
+        category: "Doors, Windows & Bathrooms",
+        details: [
+          "Main flush door with dual-side designer laminate and biometric digital lock",
+          "Pre-hung internal flush doors with dual-side laminate finish",
+          "Heavy-gauge anodized aluminium sliding windows with mosquito net",
+          "Vitrified dado tiles in toilets up to lintel level with toughened glass shower partitions"
+        ]
       }
     ],
     clusterAmenities: [
+      "Double-Height Grand Designer Entrance Lobby",
       "Rooftop Sky Lounge & Observatory Deck",
       "Private 25m Temperature-Controlled Lap Pool",
       "Executive Co-working Pods & Boardroom",
       "Private 24-Seater Mini Theatre",
-      "Health Club with Steam & Sauna",
+      "Health Club with Steam, Sauna & Spa",
       "Children's Sensory Soft-Play Arena"
     ],
     townshipAmenities: [
-      "9-Hole Executive Golf Course & Driving Range",
+      "9-Hole Executive Golf Course & The Cliff Clubhouse",
+      "On-Campus 3M+ Sq. Ft. Blue Ridge IT / ITES SEZ",
       "Private Marina & Mula River Boat Club",
-      "Blue Ridge Public School (ICSE Affiliated)",
-      "High Street Boulevard Retail & Fine Dining",
-      "Comprehensive Multi-Sport Athletic Complex",
-      "24/7 Gated Multi-Tier Sovereign Surveillance"
+      "Blue Ridge Public School (ICSE Affiliated Campus)",
+      "High Street Boulevard & Xion Mall Retail",
+      "Swaniketan & Athashri Senior Living Communities",
+      "Comprehensive Multi-Sport Athletic Complex & Tennis Courts",
+      "24/7 Multi-Tier Township Security & Sovereign Surveillance"
     ],
     floorPlans: [
       {
@@ -166,11 +187,12 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "The Altius",
     tagline: "Ultra-Luxury 4 & 5 BHK Sky Mansions & Golfview Penthouses",
     eyebrow: "Flagship Riverside Enclave • Overlooking the 9-Hole Greens",
-    heroImage: "/assets/images/altius-hero.jpg",
+    heroImage: "/assets/images/pscl-blue-ridge-tower-elevation.webp",
     gallery: [
-      "/assets/images/altius-hero.jpg",
-      "/assets/images/real-township-day.jpg",
-      "/assets/images/altius-hero.jpg"
+      "/assets/images/pscl-blue-ridge-tower-elevation.webp",
+      "/assets/images/pscl-blue-ridge-golf.webp",
+      "/assets/images/pscl-blue-ridge-golf-pathway.webp",
+      "/assets/images/pscl-blue-ridge-aerial-drone.webp"
     ],
     configurations: "4 & 5 Bedroom Sky Residences",
     carpetAreaRange: "1,858 – 2,480 Sq. Ft.",
@@ -188,47 +210,61 @@ export const blueRidgeClusters: ClusterResidence[] = [
     architecturalStory: "The Altius represents the pinnacle of luxury residences in Pune West. Positioned directly between the tranquil Mula River and the emerald expanse of the 9-hole executive golf course, each home is treated as a detached vertical estate with private lift access, private foyers, and continuous ribbon glazing.",
     conceptPoints: [
       {
-        title: "Direct Golf & Water Confluence",
+        title: "Direct Golf & River Confluence",
         description: "Unrivaled dual aspect looking over the manicured fairway on one side and the meandering river on the other."
       },
       {
-        title: "Exclusive Private Lift Access",
-        description: "Controlled access biometric elevators opening directly into your dedicated private foyer."
+        title: "Exclusive Private Lift Access & Foyer",
+        description: "Controlled access biometric elevators opening directly into your dedicated private reception foyer."
       },
       {
-        title: "Grand 11-Foot Clear Ceilings",
+        title: "Grand 11-Foot Clear Architectural Ceilings",
         description: "Volumetric architectural grandeur amplifying natural light, airflow, and bespoke interior chandeliers."
       }
     ],
     specifications: [
       {
-        category: "Grand Living",
-        details: ["Full Italian marble flooring across living, dining, and foyer", "11-foot floor-to-ceiling heights", "Schüco German aluminum panoramic glass systems"]
+        category: "Grand Living & Foyers",
+        details: [
+          "Imported Italian marble flooring across living, dining, and entrance foyer",
+          "11-foot floor-to-ceiling clear architectural heights",
+          "Schüco German aluminum panoramic double-glazed acoustic glass systems"
+        ]
       },
       {
-        category: "Master Retreats",
-        details: ["Hardwood Burma teak flooring", "His-and-Hers walk-in walk-through dressing suites", "Kohler / Grohe luxury matte-black bathroom fittings"]
+        category: "Master Retreats & Dressers",
+        details: [
+          "Hardwood Burma teak engineered flooring in master suites",
+          "His-and-Hers walk-in walk-through dressing rooms",
+          "Kohler / Grohe luxury matte-black thermostatic bathroom fixtures"
+        ]
       },
       {
-        category: "Smart Automation",
-        details: ["Integrated KNX smart home lighting and climate automation", "Motorized curtain tracks", "Sovereign video security intercom linked to concierge"]
+        category: "Smart Automation & Utilities",
+        details: [
+          "Integrated KNX smart home lighting, climate, and curtain automation",
+          "Dedicated service core with separate freight elevators and staff quarters",
+          "Central VRV air conditioning conduits with zero outdoor unit clutter"
+        ]
       }
     ],
     clusterAmenities: [
       "Private Golf Club Terrace & Cigar Lounge",
-      "Infinity Edge Water Cascade",
+      "Infinity Edge Water Cascade & Horizon Pool",
       "Private Banquet Salon with Butler Pantry",
       "State-of-the-Art Technogym Fitness Suite",
       "Indoor Squash & Badminton Courts",
-      "Bespoke Spa & Reflexology Pathway"
+      "Bespoke Spa & Reflexology Garden Pathway"
     ],
     townshipAmenities: [
-      "9-Hole Executive Golf Course & Driving Range",
+      "9-Hole Executive Golf Course & The Cliff Clubhouse",
+      "On-Campus 3M+ Sq. Ft. Blue Ridge IT / ITES SEZ",
       "Private Marina & Mula River Boat Club",
-      "Blue Ridge Public School (ICSE Affiliated)",
-      "High Street Boulevard Retail & Fine Dining",
+      "Blue Ridge Public School (ICSE Affiliated Campus)",
+      "High Street Boulevard & Xion Mall Retail",
+      "Swaniketan & Athashri Senior Living Communities",
       "Comprehensive Multi-Sport Athletic Complex",
-      "24/7 Gated Multi-Tier Sovereign Surveillance"
+      "24/7 Multi-Tier Township Security & Sovereign Surveillance"
     ],
     floorPlans: [
       {
@@ -266,11 +302,12 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Ridges 41",
     tagline: "Modern 41-Storey Smart Residences for Global IT Professionals",
     eyebrow: "Walk-to-Work Technology Precinct • Smart 2 BHK Homes",
-    heroImage: "/assets/images/ridges-hero.jpg",
+    heroImage: "/assets/images/pscl-blue-ridge-architecture.webp",
     gallery: [
-      "/assets/images/ridges-hero.jpg",
-      "/assets/images/real-township-day.jpg",
-      "/assets/images/ridges-hero.jpg"
+      "/assets/images/pscl-blue-ridge-architecture.webp",
+      "/assets/images/pscl-blue-ridge-life.webp",
+      "/assets/images/pscl-blue-ridge-boulevard.jpg",
+      "/assets/images/pscl-blue-ridge-sez.webp"
     ],
     configurations: "2 Bedroom Smart Residences",
     carpetAreaRange: "793 – 970 Sq. Ft.",
@@ -285,15 +322,15 @@ export const blueRidgeClusters: ClusterResidence[] = [
       storeys: 41,
       structureType: "Monolithic MiVAN High-Speed Formwork"
     },
-    architecturalStory: "Engineered specifically for ambitious IT executives and discerning new-generation homeowners. Ridges 41 combines high-velocity construction durability with intelligent ergonomic floorplans, dedicated work-from-home zones, and high rental yield capital efficiency in Hinjewadi Phase 1.",
+    architecturalStory: "Engineered specifically for ambitious IT executives and discerning homeowners. Ridges 41 combines high-velocity monolithic durability with intelligent ergonomic floorplans, dedicated work-from-home zones, and high rental yield capital efficiency in Hinjewadi Phase 1.",
     conceptPoints: [
       {
         title: "Optimum Ergonomic Efficiency",
         description: "Every square inch engineered with functional geometry — wide living spans, cross-ventilation, and dedicated home-office alcoves."
       },
       {
-        title: "Walk-to-Work Proximity",
-        description: "Just 400 meters from Infosys, Wipro, and TCS campuses, commanding the highest occupancy and rental yield in West Pune."
+        title: "Walk-to-Work Proximity & High Rental Yield",
+        description: "Just 400 meters from Infosys, Wipro, and TCS campuses, commanding the highest occupancy and rental yields in West Pune."
       },
       {
         title: "6-Level Integrated Podium Parking",
@@ -303,15 +340,27 @@ export const blueRidgeClusters: ClusterResidence[] = [
     specifications: [
       {
         category: "Living & Workspace",
-        details: ["High-durability glazed vitrified tile flooring", "Fiber-optic broadband pre-cabled in all rooms", "Dedicated ergonomic workstation nook"]
+        details: [
+          "Polished glazed vitrified tile flooring across all rooms",
+          "Dedicated ergonomic workstation nook pre-cabled with high-speed fiber internet",
+          "Wide sliding windows for maximum daytime illumination and airflow"
+        ]
       },
       {
-        category: "Bedrooms & Balcony",
-        details: ["Large panoramic sliding windows for maximum daytime illumination", "Spacious covered sit-out balcony with safety railings"]
+        category: "Kitchen & Utility",
+        details: [
+          "Full body vitrified tile platform with single bowl SS sink",
+          "Modular kitchen setup with chimney provision",
+          "Piped reticulated LPG gas connection with gas leak safety detector"
+        ]
       },
       {
-        category: "Green Tech",
-        details: ["Solar water heating integration", "Rainwater harvesting and greywater recycling for landscaped gardens"]
+        category: "Green Tech & Bathrooms",
+        details: [
+          "Solar water heating integration for master bathroom",
+          "Vitrified dado tiles in toilets up to lintel level",
+          "Rainwater harvesting and greywater recycling for podium landscape"
+        ]
       }
     ],
     clusterAmenities: [
@@ -323,12 +372,14 @@ export const blueRidgeClusters: ClusterResidence[] = [
       "Creche & Toddler Play Den"
     ],
     townshipAmenities: [
-      "9-Hole Executive Golf Course & Driving Range",
+      "9-Hole Executive Golf Course & The Cliff Clubhouse",
+      "On-Campus 3M+ Sq. Ft. Blue Ridge IT / ITES SEZ",
       "Private Marina & Mula River Boat Club",
-      "Blue Ridge Public School (ICSE Affiliated)",
-      "High Street Boulevard Retail & Fine Dining",
+      "Blue Ridge Public School (ICSE Affiliated Campus)",
+      "High Street Boulevard & Xion Mall Retail",
+      "Swaniketan & Athashri Senior Living Communities",
       "Comprehensive Multi-Sport Athletic Complex",
-      "24/7 Gated Multi-Tier Sovereign Surveillance"
+      "24/7 Multi-Tier Township Security & Sovereign Surveillance"
     ],
     floorPlans: [
       {
@@ -349,19 +400,15 @@ export const blueRidgeClusters: ClusterResidence[] = [
       }
     ],
     inventoryPreview: [
-      { type: "2 BHK Smart", carpetArea: "793 Sq. Ft.", floorRange: "Levels 5 to 18", viewOrientation: "Internal Podium Greens", pricingStatus: "₹97.60 L*", status: "Available" },
-      { type: "2 BHK Smart Riverview", carpetArea: "793 Sq. Ft.", floorRange: "Levels 19 to 32", viewOrientation: "Mula River Horizon", pricingStatus: "₹1.04 Cr*", status: "Few Units Left" },
-      { type: "2 BHK Executive Deck", carpetArea: "970 Sq. Ft.", floorRange: "Levels 12 to 38", viewOrientation: "Hinjewadi IT Skyline", pricingStatus: "₹1.15 Cr*", status: "Available" }
+      { type: "2 BHK Compact Smart", carpetArea: "793 Sq. Ft.", floorRange: "Levels 05 to 20", viewOrientation: "Township Greens & Boulevard", pricingStatus: "₹97.60 L*", status: "Available" },
+      { type: "2 BHK Executive", carpetArea: "970 Sq. Ft.", floorRange: "Levels 21 to 38", viewOrientation: "Unobstructed Valley View", pricingStatus: "₹1.15 Cr*", status: "Few Units Left" },
+      { type: "2 BHK Sky Corner", carpetArea: "970 Sq. Ft.", floorRange: "Levels 39 to 41", viewOrientation: "360° Tech Valley Skyline", pricingStatus: "₹1.22 Cr*", status: "Few Units Left" }
     ],
     masterplanPosition: {
-      zone: "IT Park Transit Quadrant",
+      zone: "Central Tech Boulevard Precinct",
       label: "Ridges 41 Enclave",
-      coordinates: { x: 68, y: 28 },
-      nearbyKeyPoints: ["Infosys Gate 1 (350m)", "Metro Line 3 Station (800m)", "Blue Ridge High Street (180m)"]
+      coordinates: { x: 45, y: 55 },
+      nearbyKeyPoints: ["Infosys Phase 1 Gate (400m)", "Blue Ridge High Street (200m)", "Sports Complex (180m)"]
     }
   }
 ];
-
-export function getClusterBySlug(slug: string): ClusterResidence | undefined {
-  return blueRidgeClusters.find(c => c.slug === slug || c.id === slug);
-}

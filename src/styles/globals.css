@@ -27,7 +27,8 @@
   --stone: #475569;
   --stone-light: #64748b;
   --stone-muted: #94a3b8;
-  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-subtle: #e2e8f0;
+  --border-visible: #cbd5e1;
   --border-champagne: rgba(184, 142, 62, 0.35);
 
   --gold: #b88e3e;
@@ -67,75 +68,116 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   LUMINOUS CRYSTAL GLASSMORPHISM UTILITIES
+   HIGH-VISIBILITY ARCHITECTURAL SECTION BORDERS & CARDS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* Frosted Alabaster Master Panel */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 35px -10px rgba(11, 19, 37, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+/* Sectional Boundary Line with Precision Architectural Marker */
+.arch-section-divider {
+  position: relative;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-/* Elevated Crystal Card */
+.arch-section-divider::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b88e3e, transparent);
+}
+
+/* Architectural Frame Container */
+.arch-frame {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+}
+
+/* High-Visibility Crisp Card */
+.glass-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel:hover {
+  border-color: #cbd5e1;
+}
+
 .glass-card {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .glass-card:hover {
-  background: #ffffff;
-  border-color: rgba(184, 142, 62, 0.5);
+  border-color: #b88e3e;
+  box-shadow: 0 12px 30px -8px rgba(184, 142, 62, 0.15), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px -8px rgba(11, 19, 37, 0.12), 0 0 25px -8px rgba(184, 142, 62, 0.2);
 }
 
-/* Crisp Glass Pill */
+/* High-Contrast Pill Badge */
 .glass-pill {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(15, 23, 42, 0.09);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
   color: #0b1325;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-/* Primary CTA: Champagne Gold with White Text */
+/* Chapter Numeral Tag */
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 9999px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #8f6a24;
+  font-weight: 700;
+}
+
+/* Primary CTA: Champagne Gold */
 .btn-champagne {
   background: linear-gradient(135deg, #c5a059 0%, #b88e3e 50%, #8f6a24 100%);
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 18px rgba(184, 142, 62, 0.3);
+  box-shadow: 0 4px 14px rgba(184, 142, 62, 0.28);
+  border: 1px solid #8f6a24;
 }
 
 .btn-champagne:hover {
   opacity: 0.96;
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(184, 142, 62, 0.45);
+  box-shadow: 0 6px 20px rgba(184, 142, 62, 0.4);
 }
 
 /* Secondary CTA: Crisp Outline */
 .btn-glass-outline {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 142, 62, 0.45);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
   color: #0b1325;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .btn-glass-outline:hover {
-  background: #ffffff;
+  background: #f8fafc;
   border-color: #b88e3e;
   color: #8f6a24;
 }
@@ -148,14 +190,14 @@
 }
 
 .text-gradient-subtle {
-  background: linear-gradient(180deg, #070d1a 0%, #475569 100%);
+  background: linear-gradient(180deg, #070d1a 0%, #334155 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* Subtle Ambient Glow */
 .ambient-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(184, 142, 62, 0.08) 0%, transparent 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(184, 142, 62, 0.06) 0%, transparent 65%);
 }
 
 /* Hide scrollbar */

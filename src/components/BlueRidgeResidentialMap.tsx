@@ -21,9 +21,9 @@ export default function BlueRidgeResidentialMap() {
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-3 font-semibold">
-            Interactive Township Masterplan
-          </span>
+          <div className="chapter-badge mb-4">
+            <span>06 • Interactive Township Masterplan & Transit</span>
+          </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
             Discover the neighbourhoods <br />
             <span className="italic font-light text-gradient-champagne">of Blue Ridge.</span>
@@ -147,7 +147,7 @@ export default function BlueRidgeResidentialMap() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3 }}
-                className="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-200/80 bg-white shadow-md space-y-6"
+                className="rounded-3xl p-6 sm:p-8 border border-slate-200 bg-white shadow-sm space-y-6"
               >
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8F6A24] block mb-1 font-semibold">

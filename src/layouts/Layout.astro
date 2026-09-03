@@ -3,7 +3,6 @@ import '../styles/globals.css';
 import Navbar from '../components/Navbar';
 import FooterSEO from '../components/FooterSEO';
 import StickyCTA from '../components/StickyCTA';
-import PulseNotifications from '../components/PulseNotifications';
 import ExitIntentPopup from '../components/ExitIntentPopup';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import ParanjapeEcosystemInjector from '../components/ParanjapeEcosystemInjector';
@@ -167,7 +166,6 @@ const canonicalUrl = new URL(pathname, Astro.site).href.replace(/\/$/, '') || 'h
     <ParanjapeEcosystemInjector />
     <FooterSEO client:visible />
     <StickyCTA client:load />
-    <PulseNotifications client:idle />
     <ExitIntentPopup client:idle />
     <FloatingWhatsApp client:idle />
   </body>

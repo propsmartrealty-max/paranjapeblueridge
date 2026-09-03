@@ -1,43 +1,39 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
+import { Plus, Minus, HelpCircle } from 'lucide-react';
 
 export default function FAQSection() {
-  const { t } = useLanguage();
-  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      q: t("Is Paranjape Blue Ridge good for investment?", "परंजपे ब्लू रिज गुंतवणुकीसाठी चांगले आहे का?"),
-      a: t("Yes, Blue Ridge is Hinjewadi's most successful integrated township with high rental yields (4-5%) and consistent capital appreciation due to its proximity to Infosys, Wipro, and the upcoming Metro Line 3.", "हो, ब्लू रिज हे हिंजवडीतील सर्वात यशस्वी टाऊनशिप आहे. इन्फोसिस, विप्रो आणि आगामी मेट्रो लाईन ३ च्या जवळ असल्यामुळे येथे उच्च भाडे उत्पन्न (४-५%) आणि सातत्यपूर्ण भांडवली वाढ मिळते.")
+      q: "Is Paranjape Blue Ridge good for residential end-use and investment?",
+      a: "Yes, Blue Ridge is Hinjewadi's flagship integrated 138-acre township with consistent high gross rental yields (4.8% - 5.6%) and healthy capital appreciation due to the on-site 3M+ sq. ft. IT/ITES SEZ, walk-to-work IT park gates (Infosys, Wipro, TCS), and the upcoming Hinjewadi Metro Line 3 station."
     },
     {
-      q: t("What is the price of a 2 BHK in Blue Ridge Hinjewadi?", "ब्लू रिज हिंजवडीमध्ये २ बीएचकेची किंमत काय आहे?"),
-      a: t("Prices for 2 BHK residences in Ridges 41 start from ₹ 97.60 L onwards. Resale prices in older towers vary based on the cluster and facing.", "रिजेस ४१ मधील २ बीएचके घरांच्या किमती ₹ ९७.६० लाख पासून सुरू होतात. जुन्या टॉवर्समधील पुनर्विक्रीच्या किमती क्लस्टर आणि फेसिंगनुसार बदलतात.")
+      q: "What configurations and starting prices are currently available?",
+      a: "Verified ongoing offerings include 2 BHK Smart Homes in Ridges 41 starting from ₹97.60 L*, 3 & 4 BHK Riverfront Residences in Promenade starting from ₹1.65 Cr*, and 4 & 5 BHK Sky Mansions in The Altius starting from ₹1.80 Cr*."
     },
     {
-      q: t("How far is Blue Ridge from Hinjewadi Phase 1 IT Park?", "ब्लू रिज हिंजवडी फेज १ आयटी पार्कपासून किती दूर आहे?"),
-      a: t("Blue Ridge is located inside Hinjewadi Phase 1, offering a true 'Walk-to-Work' lifestyle. Major campuses like Infosys and Wipro are within 1.5 KM.", "ब्लू रिज हिंजवडी फेज १ च्या आत वसलेले आहे, जे खऱ्या अर्थाने 'वॉक-टू-वर्क' जीवनशैली देते. इन्फोसिस आणि विप्रोसारखे मोठे कॅम्पस १.५ किमी अंतरावर आहेत.")
+      q: "What are the official MahaRERA registration numbers for Blue Ridge clusters?",
+      a: "The active clusters are registered under: Promenade Residences: P52100055581 | The Altius Riverside: P52100078116 | Ridges 41: P52100000054. All statutory documents are verifiable on maharera.mahaonline.gov.in."
     },
     {
-      q: t("Does Blue Ridge have a school inside?", "ब्लू रिजच्या आत शाळा आहे का?"),
-      a: t("Yes, the township features the Blue Ridge Public School (ICSE), ensuring your children have top-tier education within walking distance.", "हो, या टाऊनशिपमध्ये ब्लू रिज पब्लिक स्कूल (ICSE) आहे, ज्यामुळे तुमच्या मुलांना चालण्याच्या अंतरावर उच्च दर्जाचे शिक्षण मिळेल.")
+      q: "How far is Blue Ridge from Rajiv Gandhi Infotech Park & Hinjewadi Metro Line 3?",
+      a: "Blue Ridge is located directly inside Hinjewadi Phase 1. The on-campus Blue Ridge SEZ is a 0-minute walk. Major tech corporate gates (Infosys, Wipro, Cognizant) are within 400 to 900 meters, and the Hinjewadi Phase 1 Metro Line 3 Station is just 800 meters away."
     },
     {
-      q: t("Can NRIs buy property at Paranjape Blue Ridge?", "NRI परंजपे ब्लू रिजमध्ये मालमत्ता खरेदी करू शकतात का?"),
-      a: t("Yes. NRIs, PIOs, and OCIs can purchase residential property in India under FEMA regulations without RBI approval. Blue Ridge is MahaRERA certified and bank-approved (SBI, HDFC, ICICI). Our dedicated NRI desk handles documentation end-to-end and 100% remote purchase is possible.", "होय. FEMA नियमांतर्गत RBI परवानगीशिवाय NRI, PIO आणि OCI भारतात मालमत्ता खरेदी करू शकतात. ब्लू रिज महारेरा प्रमाणित आहे.")
+      q: "What lifestyle and educational amenities exist inside the township perimeter?",
+      a: "Residents have on-site access to the operational ICSE-affiliated Blue Ridge Public School, 9-hole executive golf course & The Cliff clubhouse, private boat club & marina on the Mula River, Xion Mall high-street retail, tennis academies, polyclinics, and 24/7 multi-tier security."
     },
     {
-      q: t("What is the MahaRERA registration number for Blue Ridge?", "ब्लू रिजचा MahaRERA नोंदणी क्रमांक काय आहे?"),
-      a: t("Promenade: P52100055581 | The Altius: P52100078116 | Ridges 41: P52100000054. All clusters are fully MahaRERA certified and compliant. Verify at maharera.maharerait.gov.in.", "प्रोमेनेड: P52100055581 | द आल्टियस: P52100078116 | रिजेस ४१: P52100000054. सर्व क्लस्टर्स महारेरा प्रमाणित आहेत.")
+      q: "Can NRIs invest in Paranjape Blue Ridge remotely?",
+      a: "Yes. NRIs, PIOs, and OCIs can purchase property in Blue Ridge under standard FEMA guidelines without RBI approval. Paranjape provides a specialized NRI advisory desk handling virtual video walkthroughs, end-to-end digital documentation, and remote banking approvals with SBI, HDFC, and ICICI."
     }
   ];
 
-  // FAQPage JSON-LD schema — injected as a script tag alongside the component
-  // This enables Google's FAQ rich results (accordion dropdowns in SERPs)
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -52,30 +48,45 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 border-t border-gold/10">
-      {/* FAQPage JSON-LD Schema — required for Google rich result eligibility */}
+    <section id="faq" className="py-24 sm:py-32 bg-[#FAF9F6] relative overflow-hidden">
+      {/* FAQPage JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="container">
+      <div className="container mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
         <div className="text-center mb-16">
-          <span className="gilded-pill mb-3">{t('Questions & Answers', 'प्रश्न आणि उत्तरे')}</span>
-          <h2 className="text-3xl sm:text-5xl font-serif text-warm-white mt-4 font-bold">{t('Sovereign', 'सोव्हरेन')} <span className="italic font-normal text-gilded">{t('Insights', 'इन्साईट्स')}</span></h2>
+          <div className="chapter-badge mb-4 mx-auto">
+            <HelpCircle size={11} className="text-[#B88E3E]" />
+            <span>09 • Customer FAQ & Advisory</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-bold tracking-tight">
+            Frequently Asked <span className="italic font-light text-gradient-champagne">Questions.</span>
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-sans">
+            Clear answers to help you evaluate configurations, RERA compliance, rental yields, and possession timelines at Blue Ridge.
+          </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="ultra-glass-card rounded-2xl overflow-hidden border border-gold/25 hover:border-gold/50 transition-all shadow-md">
+            <div 
+              key={i} 
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:border-[#B88E3E] transition-all"
+            >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 aria-expanded={openIndex === i}
                 aria-controls={`faq-answer-${i}`}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-gold/5 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50/70 transition-colors cursor-pointer bg-transparent border-none"
               >
-                <span className="text-warm-white font-bold text-sm sm:text-base">{faq.q}</span>
-                {openIndex === i ? <Minus className="text-gold shrink-0 ml-4" size={18} /> : <Plus className="text-gold shrink-0 ml-4" size={18} />}
+                <span className="text-[#070D1A] font-serif font-bold text-base sm:text-lg pr-4">
+                  {faq.q}
+                </span>
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#B88E3E] shrink-0">
+                  {openIndex === i ? <Minus size={16} /> : <Plus size={16} />}
+                </span>
               </button>
               
               <AnimatePresence>
@@ -87,7 +98,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-text-muted text-sm leading-relaxed border-t border-gold/15 font-medium">
+                    <div className="p-6 pt-0 text-slate-600 text-sm leading-relaxed border-t border-slate-100 font-sans font-normal">
                       {faq.a}
                     </div>
                   </motion.div>

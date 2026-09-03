@@ -79,7 +79,7 @@ export const townshipMasterData = {
       metricLabel: "Daily Tech Workforce",
       description: "An operational Special Economic Zone inside the township hosting Fortune 500 tech leaders including Cognizant, Accenture, and LTTS, delivering a genuine walk-to-work lifestyle.",
       iconName: "Building2",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-sez.webp",
       highlights: [
         "Home to global technology MNCs and 35,000+ IT professionals",
         "0-minute pedestrian commute from Blue Ridge residential clusters",
@@ -94,7 +94,7 @@ export const townshipMasterData = {
       metricLabel: "Executive Layout",
       description: "Pune's only integrated township with an operational 9-hole executive golf course, professional putting green, and dedicated driving bays designed to international standards.",
       iconName: "Trees",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-golf.webp",
       highlights: [
         "Professional coaching academy with certified PGA instructors",
         "Fully equipped clubhouse with pro shop and golf lounge",
@@ -109,7 +109,7 @@ export const townshipMasterData = {
       metricLabel: "Active River Promenade",
       description: "Exclusive nautical access with private boat docking slips, paddle boating, kayaking, and sunset riverside boardwalk pavilions.",
       iconName: "Waves",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-promenade-canopy.webp",
       highlights: [
         "Operational kayak and rowing fleet for residents",
         "Riverside amphitheatres and sunset contemplation decks",
@@ -124,7 +124,7 @@ export const townshipMasterData = {
       metricLabel: "Affiliated Campus",
       description: "A prestigious, fully operational co-educational ICSE school located right inside the township gates, eliminating morning school transit stress for parents and children.",
       iconName: "GraduationCap",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-school.webp",
       highlights: [
         "Modern STEM robotics labs and digital smart classrooms",
         "Olympic-sized athletic sports ground and swimming training pool",
@@ -139,7 +139,7 @@ export const townshipMasterData = {
       metricLabel: "To Metro Station",
       description: "Direct walk-to-work pedestrian gates to Infosys, Wipro, TCS, Cognizant, and the upcoming Hinjewadi Phase 1 Metro Line 3 Station, connecting directly to Shivajinagar.",
       iconName: "Train",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-aerial-drone.webp",
       highlights: [
         "5 to 10 minute walk to Rajiv Gandhi Infotech Park Gate 1",
         "Rapid 20-minute transit to Central Pune via Metro Line 3",
@@ -152,12 +152,12 @@ export const townshipMasterData = {
       subtitle: "Every Daily Need Within Walking Reach",
       metric: "3+",
       metricLabel: "Clubhouse Complexes",
-      description: "Sprawling leisure clubhouses with indoor sports, squash courts, temperature-controlled pools, multi-cuisine restaurants, supermarkets, and polyclinics.",
+      description: "Sprawling leisure clubhouses with indoor sports, squash courts, temperature-controlled pools, multi-cuisine restaurants, Xion Mall retail, and polyclinics.",
       iconName: "Building2",
-      image: "/assets/images/real-township-day.jpg",
+      image: "/assets/images/pscl-blue-ridge-xion-mall.jpg",
       highlights: [
         "Multiple fitness suites, badminton courts & tennis academies",
-        "Everyday convenience: supermarkets, pharmacies, cafes & salons",
+        "Everyday convenience: Xion Mall, supermarkets, pharmacies, cafes & salons",
         "Comprehensive 24/7 primary healthcare polyclinic inside township"
       ]
     }

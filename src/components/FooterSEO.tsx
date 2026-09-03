@@ -66,13 +66,15 @@ export default function FooterSEO() {
 
           {/* Column 3: Keyword Matrix Anchor Links */}
           <div className="lg:col-span-1 flex flex-col">
-            <h4 className="text-warm-white text-xs uppercase tracking-widest mb-4 font-bold border-b border-gold/20 pb-2 font-mono">Trending Pune Real Estate</h4>
+            <h4 className="text-[#070D1A] text-xs uppercase tracking-widest mb-4 font-bold border-b border-slate-200 pb-2 font-mono">
+              Trending Pune Real Estate
+            </h4>
             <div className="flex flex-wrap gap-x-3 gap-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
               {displayedLinks.map((url) => (
                 <a
                   key={url.slug}
                   href={`/${url.slug}`}
-                  className="text-text-muted hover:text-gold transition-colors text-[9px] uppercase tracking-wider font-medium"
+                  className="text-slate-600 hover:text-[#B88E3E] transition-colors text-[10px] uppercase tracking-wider font-medium"
                 >
                   {url.title}
                 </a>
@@ -83,18 +85,18 @@ export default function FooterSEO() {
         </div>
 
         {/* Absolute bottom SEO string & Sitemap Link */}
-        <div className="pt-6 border-t border-gold/15 flex flex-col sm:flex-row justify-between items-center text-[9px] text-text-muted gap-4 font-medium">
+        <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-[10px] text-slate-500 gap-4 font-sans">
           <p className="text-center sm:text-left">
-            Ranked #1 for: Paranjape Blue Ridge | Paranjape Blue Ridge Hinjewadi | Pune Real Estate Market | 3BHK Mahalunge | 2BHK Hinjewadi | 4BHK Baner
+            Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • RERA Compliant
           </p>
           <div className="flex gap-4 shrink-0 flex-wrap justify-center font-mono">
-            <a href="/explore/hinjewadi" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Hinjewadi Hub</a>
-            <span className="text-gold/40">|</span>
-            <a href="/explore/wakad" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Wakad Hub</a>
-            <span className="text-gold/40">|</span>
-            <a href="/explore/baner" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Baner Hub</a>
-            <span className="text-gold/40">|</span>
-            <a href="/directory" className="text-gold hover:text-warm-white transition-colors uppercase tracking-widest font-bold">Global Directory</a>
+            <a href="/explore/hinjewadi" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Hinjewadi Hub</a>
+            <span className="text-slate-300">|</span>
+            <a href="/explore/wakad" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Wakad Hub</a>
+            <span className="text-slate-300">|</span>
+            <a href="/explore/baner" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Baner Hub</a>
+            <span className="text-slate-300">|</span>
+            <a href="/directory" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Directory</a>
           </div>
         </div>
 

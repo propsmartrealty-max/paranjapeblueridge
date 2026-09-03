@@ -11,9 +11,9 @@ export default function JournalPreviewSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] block mb-3 font-semibold">
-              Editorial Perspectives
-            </span>
+            <div className="chapter-badge mb-4">
+              <span>08 • The Blue Ridge Journal</span>
+            </div>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
               The Blue Ridge <br />
               <span className="italic font-light text-gradient-champagne">Journal.</span>
@@ -25,7 +25,7 @@ export default function JournalPreviewSection() {
 
           <a
             href="/journal"
-            className="inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-wider uppercase text-[#8F6A24] hover:text-[#B88E3E] no-underline"
+            className="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider uppercase text-[#8F6A24] hover:text-[#B88E3E] no-underline"
           >
             <span>Explore All Essays</span>
             <ArrowRight size={14} />
@@ -37,7 +37,7 @@ export default function JournalPreviewSection() {
           {journalArticles.map((article) => (
             <article
               key={article.id}
-              className="glass-panel rounded-3xl p-6 border border-slate-200/80 bg-white hover:border-[#B88E3E]/40 transition-all duration-300 flex flex-col justify-between group shadow-sm"
+              className="rounded-3xl p-6 border border-slate-200 bg-white hover:border-[#B88E3E] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
             >
               <div>
                 {/* Meta */}
