@@ -30,41 +30,35 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-2xl border-b border-slate-200/90 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.06)] py-3' 
-        : 'bg-white/90 backdrop-blur-xl border-b border-slate-200/60 py-4'
+        ? 'bg-white/95 backdrop-blur-2xl border-b border-slate-200/90 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.06)] py-2.5' 
+        : 'bg-white/90 backdrop-blur-xl border-b border-slate-200/60 py-3.5'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <div className="flex items-center justify-between">
           
           {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-              1. SANITISED SINGLE BRAND IDENTITY LOCKUP
-              Clean, un-repeated brand signature
+              1. PURE UPLOADED IMAGE LOGOS ONLY (ZERO TEXT LOGOS)
+              Both official uploaded developer & township image logos
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-          <a href="/" className="flex items-center gap-3.5 no-underline group">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-50 border border-slate-200/80 p-1 flex items-center justify-center shadow-sm group-hover:border-[#B88E3E]/50 transition-colors">
+          <a href="/" className="flex items-center no-underline group" aria-label="Paranjape Blue Ridge Home">
+            <div className="flex items-center gap-2 sm:gap-3 bg-white py-1.5 px-3 rounded-2xl border border-slate-200/90 shadow-sm group-hover:border-[#B88E3E]/50 transition-colors">
               <img 
-                src="/assets/images/blue-ridge-official-logo.png" 
-                alt="Paranjape Blue Ridge Emblem" 
-                className="w-full h-full object-contain"
+                src="/assets/images/paranjape-official-logo.png" 
+                alt="Paranjape Schemes Official Logo" 
+                className="h-7 sm:h-8 w-auto object-contain"
                 onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = '/assets/images/blue-ridge-logo.png';
+                  (e.currentTarget as HTMLImageElement).src = '/assets/logos/paranjape-schemes.png';
                 }}
               />
-            </div>
-            
-            <div className="flex flex-col text-left">
-              <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-[#070D1A] group-hover:text-[#B88E3E] transition-colors leading-none">
-                PARANJAPE BLUE RIDGE
-              </span>
-              <div className="flex items-center gap-1.5 mt-1">
-                <span className="text-[10px] font-mono tracking-[0.18em] uppercase text-slate-500 font-medium">
-                  138-Acre Township
-                </span>
-                <span className="w-1 h-1 rounded-full bg-[#B88E3E]"></span>
-                <span className="text-[10px] font-mono tracking-[0.14em] uppercase text-slate-500 font-medium">
-                  Hinjewadi Phase 1
-                </span>
-              </div>
+              <div className="h-5 sm:h-6 w-px bg-slate-200"></div>
+              <img 
+                src="/assets/images/blue-ridge-official-logo.png" 
+                alt="Blue Ridge Official Logo" 
+                className="h-7 sm:h-8 w-auto object-contain"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/logos/blue-ridge.png';
+                }}
+              />
             </div>
           </a>
 
@@ -176,10 +170,25 @@ export default function Navbar() {
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          4. SANITISED MOBILE FLYOUT DRAWER
+          4. MOBILE FLYOUT DRAWER WITH PURE IMAGE LOGOS
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200 px-6 py-6 space-y-4 shadow-2xl">
+          {/* Mobile Pure Image Logo Lockup */}
+          <div className="flex items-center gap-2.5 bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 w-fit mb-2">
+            <img 
+              src="/assets/images/paranjape-official-logo.png" 
+              alt="Paranjape Schemes" 
+              className="h-6 w-auto object-contain"
+            />
+            <div className="h-4 w-px bg-slate-300"></div>
+            <img 
+              src="/assets/images/blue-ridge-official-logo.png" 
+              alt="Blue Ridge" 
+              className="h-6 w-auto object-contain"
+            />
+          </div>
+
           <div className="space-y-3 text-xs font-mono uppercase tracking-wider text-slate-700">
             <a href="/#township-story" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
               The 138-Acre Township

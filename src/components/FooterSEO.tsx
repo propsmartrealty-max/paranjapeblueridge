@@ -13,7 +13,19 @@ export default function FooterSEO() {
           
           {/* Column 1: Core SEO Text & Local Business Info */}
           <div className="lg:col-span-1 flex flex-col text-sm text-text-muted">
-            <h3 className="text-gold font-serif text-xl font-bold mb-4">Paranjape Blue Ridge</h3>
+            <div className="flex items-center gap-2.5 bg-white py-1.5 px-3 rounded-xl border border-slate-200/80 w-fit mb-4 shadow-sm">
+              <img 
+                src="/assets/images/paranjape-official-logo.png" 
+                alt="Paranjape Schemes" 
+                className="h-6 w-auto object-contain"
+              />
+              <div className="h-4 w-px bg-slate-200"></div>
+              <img 
+                src="/assets/images/blue-ridge-official-logo.png" 
+                alt="Paranjape Blue Ridge" 
+                className="h-6 w-auto object-contain"
+              />
+            </div>
             <p className="mb-6 leading-relaxed font-medium">
               Pune's premier 138-acre integrated township. Explore luxury 2BHK, 3BHK, 4BHK, 5BHK, Duplex, and Simplex configurations across Hinjewadi, Mahalunge, and Baner corridors.
             </p>
