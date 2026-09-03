@@ -1,0 +1,335 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { blueRidgeClusters, ClusterResidence } from '../../data/cms/clusters';
+import { 
+  ArrowRight, Download, Eye, Sparkles, Building2, Ruler, 
+  ShieldCheck, Trees, Waves, GraduationCap, CheckCircle2, Navigation, Layers
+} from 'lucide-react';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return blueRidgeClusters.map((cluster) => ({
+    params: { cluster: cluster.slug },
+    props: { cluster }
+  }));
+}
+
+interface Props {
+  cluster: ClusterResidence;
+}
+
+const { cluster } = Astro.props;
+---
+
+<Layout
+  title={`${cluster.name} | Paranjape Blue Ridge Hinjewadi Phase 1, Pune`}
+  description={`${cluster.name} at Paranjape Blue Ridge Hinjewadi Phase 1: ${cluster.configurations}, ${cluster.carpetAreaRange}, ${cluster.towerDetails.storeys} storeys. MahaRERA: ${cluster.reraNumber}.`}
+  pathname={`/blue-ridge/${cluster.slug}`}
+  ogImage={cluster.heroImage}
+>
+  <div class="bg-[#060911] text-ivory selection:bg-champagne selection:text-obsidian pt-24 pb-20">
+    
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         HERO CHAPTER
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <header class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20 border-b border-white/[0.06]">
+      <div class="absolute inset-0 z-0">
+        <img
+          src={cluster.heroImage}
+          alt={cluster.name}
+          class="w-full h-full object-cover scale-105 opacity-40 filter brightness-75"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#060911] via-[#060911]/80 to-[#060911]/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#060911]/90 via-transparent to-[#060911]/90"></div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl text-center flex flex-col items-center">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill border border-white/10 text-[10px] font-mono uppercase tracking-[0.25em] text-champagne-light mb-6 shadow-glass">
+          <span>A Distinctive Residential Address Within Blue Ridge</span>
+        </div>
+
+        <span class="text-xs font-mono uppercase tracking-[0.3em] text-stone-light mb-3 block">
+          PARANJAPE BLUE RIDGE • {cluster.eyebrow}
+        </span>
+
+        <h1 class="text-4xl sm:text-7xl lg:text-8xl font-serif font-normal text-ivory tracking-tight leading-[1.04] mb-6">
+          {cluster.name}
+        </h1>
+
+        <p class="text-base sm:text-xl text-stone-light max-w-2xl mx-auto leading-relaxed font-sans font-light mb-10">
+          {cluster.tagline}
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a
+            href="#floor-plans"
+            class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline"
+          >
+            Explore Floor Plans
+          </a>
+          <a
+            href="#availability"
+            class="btn-glass-outline px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest no-underline"
+          >
+            Check Availability
+          </a>
+        </div>
+
+        <!-- Metric strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 pt-12 mt-12 border-t border-white/[0.08] w-full max-w-4xl text-left">
+          <div>
+            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Configuration</span>
+            <span class="text-sm font-medium text-ivory">{cluster.configurations}</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Carpet Range</span>
+            <span class="text-sm font-medium text-ivory font-mono">{cluster.carpetAreaRange}</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">Structure</span>
+            <span class="text-sm font-medium text-ivory">{cluster.towerDetails.storeys} Storeys</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono text-stone uppercase tracking-wider block">MahaRERA</span>
+            <span class="text-sm font-medium text-champagne-light font-mono">{cluster.reraNumber}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-4 sm:px-6 max-w-6xl space-y-28 py-20">
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           01 — THE RESIDENCE
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="residence" class="space-y-10">
+        <div class="max-w-2xl">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">01 — The Residence</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Architectural Concept & Layouts</h2>
+        </div>
+
+        <p class="text-base sm:text-lg text-stone-light font-sans font-light leading-relaxed max-w-4xl">
+          {cluster.architecturalStory}
+        </p>
+
+        <!-- Concept Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {cluster.conceptPoints.map((pt, i) => (
+            <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
+              <span class="text-[10px] font-mono text-champagne uppercase tracking-widest block">Core Design Pillar 0{i + 1}</span>
+              <h3 class="text-lg font-serif text-ivory font-medium">{pt.title}</h3>
+              <p class="text-xs text-stone-light leading-relaxed font-sans font-light">{pt.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Specifications -->
+        <div class="glass-panel rounded-3xl p-8 border border-white/10 space-y-6">
+          <h3 class="text-xl font-serif text-ivory font-medium">Fine Materiality & Specifications</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-white/[0.08]">
+            {cluster.specifications.map((spec) => (
+              <div class="space-y-2">
+                <span class="text-xs font-mono text-champagne uppercase tracking-wider font-semibold block">{spec.category}</span>
+                <ul class="space-y-1.5 text-xs text-stone-light">
+                  {spec.details.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <CheckCircle2 size={13} class="text-champagne shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           02 — FLOOR PLANS (INTERACTIVE VIEWER)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="floor-plans" class="space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="max-w-2xl">
+            <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">02 — Floor Plans</span>
+            <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Layouts & Room Dimensions</h2>
+          </div>
+          <a href="#enquiry" class="btn-champagne px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider no-underline">
+            Download Complete PDF Set
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {cluster.floorPlans.map((plan, idx) => (
+            <div class="glass-panel rounded-3xl p-5 border border-white/10 hover:border-champagne/40 transition-all flex flex-col justify-between shadow-glass">
+              <div>
+                <div class="relative h-60 rounded-2xl overflow-hidden bg-obsidian-dark mb-4 border border-white/10">
+                  <img
+                    src={plan.planImage2D}
+                    alt={plan.configTitle}
+                    class="w-full h-full object-contain p-4 filter invert opacity-80"
+                  />
+                  <span class="absolute top-3 left-3 glass-pill px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-wider">
+                    {plan.bhkNumber} Bedroom Layout
+                  </span>
+                </div>
+
+                <h3 class="text-lg font-serif text-ivory font-medium mb-1">{plan.configTitle}</h3>
+                <div class="text-xs font-mono text-champagne font-bold mb-3">{plan.carpetArea} Carpet Area</div>
+                <div class="text-xs text-stone-light font-mono pb-4 border-b border-white/[0.08]">{plan.dimensions}</div>
+              </div>
+
+              <div class="pt-4 flex gap-2">
+                <a
+                  href="#enquiry"
+                  class="flex-1 py-2.5 rounded-xl btn-champagne text-center text-xs font-bold uppercase tracking-wider no-underline"
+                >
+                  Enquire Plan
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           03 — AVAILABILITY (DYNAMIC CMS-POWERED)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="availability" class="space-y-10">
+        <div class="max-w-2xl">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">03 — Verified Availability</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Active Inventory Preview</h2>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-glass overflow-x-auto">
+          <table class="w-full text-left text-xs font-sans">
+            <thead>
+              <tr class="border-b border-white/10 text-[10px] font-mono uppercase tracking-wider text-stone">
+                <th class="pb-3">Residence Type</th>
+                <th class="pb-3">Carpet Area</th>
+                <th class="pb-3">Floor Range</th>
+                <th class="pb-3">View & Orientation</th>
+                <th class="pb-3">Starting Price</th>
+                <th class="pb-3 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/[0.04]">
+              {cluster.inventoryPreview.map((item) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="py-4 font-medium text-ivory">{item.type}</td>
+                  <td class="py-4 font-mono text-stone-light">{item.carpetArea}</td>
+                  <td class="py-4 text-stone-light">{item.floorRange}</td>
+                  <td class="py-4 text-stone-light">{item.viewOrientation}</td>
+                  <td class="py-4 font-mono text-champagne font-medium">{item.pricingStatus}</td>
+                  <td class="py-4 text-right">
+                    <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/[0.05] border border-white/10 text-champagne-light">
+                      {item.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div class="mt-4 pt-4 border-t border-white/[0.08] text-[10px] font-mono text-stone text-right">
+            * All inventory availability subject to real-time contract execution and RERA validation.
+          </div>
+        </div>
+      </section>
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           04 & 05 — AMENITIES (CLUSTER VS. TOWNSHIP TIER SEPARATION)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="amenities" class="space-y-10">
+        <div class="max-w-2xl">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">04 & 05 — Dual-Tier Amenities</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Cluster Privileges vs. 138-Acre Township</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Cluster Dedicated Tier -->
+          <div class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 shadow-glass">
+            <div class="flex items-center gap-2 text-champagne font-mono text-xs uppercase tracking-widest border-b border-white/[0.08] pb-3">
+              <Sparkles size={16} />
+              <span>Exclusive to {cluster.name} Residents</span>
+            </div>
+            <ul class="space-y-3 text-xs sm:text-sm text-stone-light font-sans">
+              {cluster.clusterAmenities.map((am) => (
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-champagne shrink-0"></span>
+                  <span>{am}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- 138-Acre Township Tier -->
+          <div class="glass-panel p-8 rounded-3xl border border-white/10 space-y-6 shadow-glass">
+            <div class="flex items-center gap-2 text-champagne font-mono text-xs uppercase tracking-widest border-b border-white/[0.08] pb-3">
+              <Trees size={16} />
+              <span>138-Acre Blue Ridge Master Amenities</span>
+            </div>
+            <ul class="space-y-3 text-xs sm:text-sm text-stone-light font-sans">
+              {cluster.townshipAmenities.map((am) => (
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0"></span>
+                  <span>{am}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           06 — LOCATION WITHIN BLUE RIDGE (YOU ARE HERE)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="location" class="space-y-10">
+        <div class="max-w-2xl">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">06 — Masterplan Position</span>
+          <h2 class="text-3xl sm:text-5xl font-serif text-ivory font-normal">Location Within Blue Ridge</h2>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-8 border border-white/10 shadow-glass space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-champagne block">Precinct Designation</span>
+              <div class="text-xl font-serif text-ivory font-medium mt-1">{cluster.masterplanPosition.zone}</div>
+            </div>
+            <div class="glass-pill px-4 py-1.5 rounded-full text-xs font-mono uppercase text-champagne-light">
+              YOU ARE HERE: {cluster.name}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.08]">
+            {cluster.masterplanPosition.nearbyKeyPoints.map((point, i) => (
+              <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+                <Navigation size={16} class="text-champagne shrink-0" />
+                <span class="text-xs text-stone-light">{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           FINAL CONCIERGE CTA
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+      <section id="enquiry" class="py-16 text-center glass-panel rounded-3xl p-8 border border-white/10 shadow-glass-elevated">
+        <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block mb-2">Private Viewing</span>
+        <h3 class="text-2xl sm:text-4xl font-serif text-ivory font-medium mb-4">
+          Experience {cluster.name} in Person
+        </h3>
+        <p class="text-stone-light text-sm max-w-md mx-auto mb-8 font-sans font-light">
+          Reserve an exclusive guided walkthrough of sample residences, golf views, and the river promenade with our senior advisory team.
+        </p>
+        <a
+          href="/#enquiry"
+          class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline inline-block"
+        >
+          Book VIP Site Visit
+        </a>
+      </section>
+
+    </div>
+  </div>
+</Layout>

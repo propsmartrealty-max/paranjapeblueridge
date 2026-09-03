@@ -1,0 +1,156 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { blueRidgeClusters } from '../../data/cms/clusters';
+import { ArrowRight, CheckCircle2, Download, Eye, Trees, Waves } from 'lucide-react';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { config: '2-bhk' },
+      props: {
+        bhkTitle: '2 Bedroom Residences',
+        bhkNumber: 2,
+        slug: '2-bhk',
+        headline: '2 Bedroom Residences at Blue Ridge',
+        tagline: 'Precision-Engineered Smart IT Homes with High Rental Yield',
+        description: 'Explore verified 2 BHK apartments in Paranjape Blue Ridge Hinjewadi Phase 1. Discover floor plans, carpet areas, pricing and walk-to-work proximity to Infosys, Wipro, and TCS.',
+        clusters: blueRidgeClusters.filter(c => c.configurations.includes('2'))
+      }
+    },
+    {
+      params: { config: '3-bhk' },
+      props: {
+        bhkTitle: '3 Bedroom Residences',
+        bhkNumber: 3,
+        slug: '3-bhk',
+        headline: '3 Bedroom Residences at Blue Ridge',
+        tagline: 'River-Facing High-Rise Residences for Growing Families',
+        description: 'Explore verified 3 BHK luxury flats in Paranjape Blue Ridge Hinjewadi. Panoramic river views, private balconies, and 138-acre township amenities.',
+        clusters: blueRidgeClusters.filter(c => c.configurations.includes('3'))
+      }
+    },
+    {
+      params: { config: '4-bhk' },
+      props: {
+        bhkTitle: '4 Bedroom Residences',
+        bhkNumber: 4,
+        slug: '4-bhk',
+        headline: '4 Bedroom Residences at Blue Ridge',
+        tagline: 'Ultra-Luxury Sky Mansions & Golfview Penthouses',
+        description: 'Explore flagship 4 BHK & 5 BHK luxury apartments in Paranjape Blue Ridge. Private lift access, golf course fairway views, and unmatched exclusivity in Pune West.',
+        clusters: blueRidgeClusters.filter(c => c.configurations.includes('4'))
+      }
+    }
+  ];
+}
+
+const { bhkTitle, bhkNumber, slug, headline, tagline, description, clusters } = Astro.props;
+---
+
+<Layout
+  title={`${bhkTitle} in Paranjape Blue Ridge Hinjewadi Phase 1 | Floor Plans & Price`}
+  description={description}
+  pathname={`/blue-ridge/${slug}`}
+>
+  <div class="pt-32 pb-24 bg-[#060911] text-ivory">
+    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <!-- Header -->
+      <div class="max-w-3xl mb-16">
+        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-champagne block mb-3">
+          Configuration Portfolio
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-ivory tracking-tight leading-[1.08]">
+          {bhkTitle} <br />
+          <span class="italic font-light text-gradient-champagne">at Blue Ridge Hinjewadi</span>
+        </h1>
+        <p class="mt-6 text-base sm:text-lg text-stone-light leading-relaxed font-sans font-light">
+          {tagline}
+        </p>
+      </div>
+
+      <!-- Clusters Offering This Configuration -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {clusters.map((cluster) => (
+          <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-champagne/40 transition-all shadow-glass flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase text-champagne-light">
+                  {cluster.name}
+                </span>
+                <span class="text-[10px] font-mono text-stone-light">
+                  MahaRERA: {cluster.reraNumber}
+                </span>
+              </div>
+
+              <h2 class="text-2xl font-serif text-ivory font-medium mb-3">
+                {cluster.eyebrow}
+              </h2>
+
+              <p class="text-xs sm:text-sm text-stone-light leading-relaxed font-sans font-light mb-6">
+                {cluster.architecturalStory}
+              </p>
+
+              <!-- Floor Plan Highlights -->
+              <div class="space-y-2 pt-4 border-t border-white/[0.08] mb-6">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-stone">Verified Specifications</div>
+                <div class="flex justify-between text-xs py-1 border-b border-white/[0.04]">
+                  <span class="text-stone-light">Carpet Range:</span>
+                  <span class="text-ivory font-mono">{cluster.carpetAreaRange}</span>
+                </div>
+                <div class="flex justify-between text-xs py-1 border-b border-white/[0.04]">
+                  <span class="text-stone-light">Starting Price:</span>
+                  <span class="text-champagne-light font-mono">{cluster.isPriceVerified ? cluster.priceStarting : "Upon Request"}</span>
+                </div>
+                <div class="flex justify-between text-xs py-1">
+                  <span class="text-stone-light">Possession Timeline:</span>
+                  <span class="text-ivory">{cluster.possessionTimeline}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-white/[0.08] flex gap-3">
+              <a
+                href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
+                class="flex-1 py-3 rounded-xl btn-champagne text-center text-xs font-bold uppercase tracking-wider no-underline"
+              >
+                View Residence Details
+              </a>
+              <a
+                href="/#enquiry"
+                class="py-3 px-5 rounded-xl btn-glass-outline text-center text-xs font-semibold uppercase tracking-wider no-underline"
+              >
+                Cost Sheet
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Editorial Overview -->
+      <div class="glass-panel rounded-3xl p-8 sm:p-10 border border-white/10 space-y-6">
+        <h3 class="text-2xl font-serif text-ivory font-medium">
+          Why Choose a {bhkTitle} in Paranjape Blue Ridge?
+        </h3>
+        <p class="text-stone-light text-sm leading-relaxed font-sans font-light">
+          Blue Ridge is Pune's flagship 138-acre integrated township, located at the confluence of Hinjewadi Phase 1, the upcoming Metro Line 3, and the Mula River. Investing in a {bhkTitle} here ensures unmatched lifestyle infrastructure: walk to work within Rajiv Gandhi Infotech Park, access to the 9-hole executive golf course, private marina boat club, on-campus ICSE Blue Ridge Public School, and 24/7 gated security.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.08] text-xs text-stone-light">
+          <div class="flex items-center gap-2">
+            <CheckCircle2 size={16} class="text-champagne shrink-0" />
+            <span>High Gross Rental Yield (4.5% - 5.4%)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <CheckCircle2 size={16} class="text-champagne shrink-0" />
+            <span>Direct Pedestrian IT Park Access</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <CheckCircle2 size={16} class="text-champagne shrink-0" />
+            <span>100% MahaRERA Compliant Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,257 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Ultra-Luminous Sovereign Royal Blue Ridge & Champagne Gold Palette */
-  --bg: #070e1b;
-  --bg-light: #0d1b33;
-  --navy-card: #0e203f;
-  --navy-border: rgba(245, 158, 11, 0.35);
-  --gold: #f59e0b;
-  --gold-light: #fbbf24;
-  --gold-dark: #d97706;
-  --emerald-glow: #10b981;
-  --cyan-glow: #06b6d4;
-  --text: #ffffff;
-  --text-light: #e2e8f0;
-  --text-muted: #cbd5e1;
-  --warm-white: #ffffff;
-  --glass-border: rgba(245, 158, 11, 0.35);
-  --grid-opacity: 0.15;
-  --line-glow: rgba(245, 158, 11, 0.7);
-}
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     THE DIGITAL ADDRESS OF BLUE RIDGE
+     LUXURY RESTRAINED PALETTE
+     Obsidian • Warm Ivory • Champagne • Stone
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  --bg: #060911;
+  --bg-dark: #030508;
+  --bg-light: #0d1424;
+  --obsidian-card: #0d1424;
+  --obsidian-elevated: #121b2f;
+  
+  --ivory: #fbf9f5;
+  --ivory-muted: #e2ded4;
+  --ivory-subtle: #c5c0b4;
+  
+  --champagne: #c5a059;
+  --champagne-light: #dfc28d;
+  --champagne-dark: #9e7d3b;
+  --champagne-subtle: rgba(197, 160, 89, 0.15);
+  
+  --stone: #64748b;
+  --stone-light: #94a3b8;
+  --stone-dark: #334155;
+  --stone-muted: #1e293b;
 
-.dark-atmosphere {
-  --bg: #070e1b;
-  --bg-light: #0d1b33;
-  --navy-card: #0e203f;
-  --navy-border: rgba(245, 158, 11, 0.35);
-  --gold: #f59e0b;
-  --gold-light: #fbbf24;
-  --gold-dark: #d97706;
-  --emerald-glow: #10b981;
-  --cyan-glow: #06b6d4;
-  --text: #ffffff;
-  --text-light: #e2e8f0;
-  --text-muted: #cbd5e1;
-  --warm-white: #ffffff;
-  --glass-border: rgba(245, 158, 11, 0.35);
-  --grid-opacity: 0.15;
-  --line-glow: rgba(245, 158, 11, 0.7);
-}
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-champagne: rgba(197, 160, 89, 0.3);
 
-.light-atmosphere {
-  --bg: #0a172e;
-  --bg-light: #102347;
-  --navy-card: #152d59;
-  --navy-border: rgba(245, 158, 11, 0.4);
-  --gold: #f59e0b;
-  --gold-light: #fde68a;
-  --gold-dark: #b45309;
-  --emerald-glow: #059669;
-  --cyan-glow: #0284c7;
-  --text: #ffffff;
-  --text-light: #f1f5f9;
-  --text-muted: #cbd5e1;
-  --warm-white: #ffffff;
-  --glass-border: rgba(245, 158, 11, 0.4);
-  --grid-opacity: 0.18;
-  --line-glow: rgba(245, 158, 11, 0.75);
+  --text: #fbf9f5;
+  --text-muted: #94a3b8;
+  --warm-white: #fbf9f5;
+  --gold: #c5a059;
+  --gold-light: #dfc28d;
+  --navy: #0d1424;
+  --navy-card: #0d1424;
+  --navy-border: rgba(197, 160, 89, 0.25);
+  --navy-light: #121b2f;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-inter), 'Google Sans Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #060911;
+    color: #fbf9f5;
   }
   
   body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--font-inter), 'Google Sans Text', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background-image: 
-      radial-gradient(at 15% 15%, rgba(6, 182, 212, 0.12) 0px, transparent 55%),
-      radial-gradient(at 85% 25%, rgba(245, 158, 11, 0.14) 0px, transparent 55%),
-      radial-gradient(at 50% 85%, rgba(16, 185, 129, 0.12) 0px, transparent 55%);
-    background-attachment: fixed;
-    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: #060911;
+    color: #fbf9f5;
     overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-google-sans), 'Google Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    letter-spacing: -0.025em;
-    font-weight: 700;
+
+  /* Typography Hierarchy */
+  h1, h2, h3, .font-serif, .font-display {
+    font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: #c5a059;
+    color: #060911;
   }
 }
 
-/* Ambient Floating Luminous Orbs */
-.bg-ambient-orbs {
-  position: relative;
-}
-.bg-ambient-orbs::before {
-  content: '';
-  position: absolute;
-  top: -5%;
-  left: 10%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, rgba(7, 14, 27, 0) 70%);
-  filter: blur(100px);
-  pointer-events: none;
-  z-index: 0;
-  animation: floatOrb 18s ease-in-out infinite alternate;
-}
-.bg-ambient-orbs::after {
-  content: '';
-  position: absolute;
-  bottom: 10%;
-  right: 5%;
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(7, 14, 27, 0) 70%);
-  filter: blur(110px);
-  pointer-events: none;
-  z-index: 0;
-  animation: floatOrbReverse 22s ease-in-out infinite alternate;
-}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GLASSMORPHISM & LUXURY UI UTILITIES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(70px, 50px) scale(1.15); }
-  100% { transform: translate(-40px, 90px) scale(0.95); }
-}
-
-@keyframes floatOrbReverse {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-60px, -50px) scale(1.2); }
-  100% { transform: translate(50px, -80px) scale(0.9); }
-}
-
-/* Gilded Golden Text Gradient */
-.text-gilded {
-  background: linear-gradient(135deg, #FFFBEB 0%, #FDE68A 25%, #FBBF24 55%, #F59E0B 80%, #D97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  font-weight: 800;
-  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.3));
-}
-
-.text-sapphire {
-  background: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 40%, #0284C7 80%, #0369A1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-.text-emerald {
-  background: linear-gradient(135deg, #6EE7B7 0%, #34D399 40%, #10B981 80%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-/* Ultra Glassmorphic Luxury Cards with High Contrast */
-.ultra-glass-card {
-  background: rgba(14, 32, 63, 0.75);
+/* Frosted Obsidian Master Panel */
+.glass-panel {
+  background: rgba(13, 20, 36, 0.72);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
 }
 
-.ultra-glass-card:hover {
-  border-color: rgba(245, 158, 11, 0.65);
-  box-shadow: 0 30px 70px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transform: translateY(-4px);
+/* Elevated Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Gold Glowing Pulse Button */
-.btn-gold-glow {
-  background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #D97706 100%);
-  color: #070E1B;
-  font-weight: 800;
-  box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(197, 160, 89, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), 0 0 30px -10px rgba(197, 160, 89, 0.15);
+}
+
+/* Subtle Glass Pill */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fbf9f5;
+}
+
+/* Primary CTA: Champagne Restraint */
+.btn-champagne {
+  background: linear-gradient(135deg, #dfc28d 0%, #c5a059 50%, #9e7d3b 100%);
+  color: #060911;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.25);
+}
+
+.btn-champagne:hover {
+  opacity: 0.94;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(197, 160, 89, 0.4);
+}
+
+/* Secondary CTA: Glass Outline */
+.btn-glass-outline {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  color: #fbf9f5;
   transition: all 0.3s ease;
 }
 
-.btn-gold-glow:hover {
-  background: linear-gradient(135deg, #FDE68A 0%, #FBBF24 50%, #F59E0B 100%);
-  box-shadow: 0 0 45px rgba(245, 158, 11, 0.85);
-  transform: scale(1.03);
+.btn-glass-outline:hover {
+  background: rgba(197, 160, 89, 0.12);
+  border-color: #c5a059;
+  color: #dfc28d;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FLASHY & CREATIVE LUXURY UI/UX ANIMATION ENGINE
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(245, 158, 11, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 45px rgba(245, 158, 11, 0.85), inset 0 0 25px rgba(245, 158, 11, 0.4);
-  }
-}
-
-@keyframes laserBorder {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.laser-glow-border {
-  background: linear-gradient(90deg, #F59E0B, #06B6D4, #10B981, #F59E0B);
-  background-size: 300% 300%;
-  animation: laserBorder 6s linear infinite;
-  padding: 2px;
-  border-radius: 1.5rem;
-}
-
-.laser-glow-border-inner {
-  background: rgba(11, 25, 49, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: calc(1.5rem - 2px);
-}
-
-.pulse-glow-gold {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-@keyframes textShimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.text-shimmer-gold {
-  background: linear-gradient(90deg, #F59E0B 0%, #FFFBEB 30%, #FDE68A 50%, #F59E0B 100%);
-  background-size: 200% auto;
+/* Typography Gradient Accent */
+.text-gradient-champagne {
+  background: linear-gradient(135deg, #fbf9f5 30%, #dfc28d 70%, #c5a059 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textShimmer 4s linear infinite;
 }
 
-.hologram-grid-bg {
-  background-image: radial-gradient(rgba(245, 158, 11, 0.18) 1px, transparent 1px), radial-gradient(rgba(6, 182, 212, 0.12) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: 0 0, 12px 12px;
+.text-gradient-subtle {
+  background: linear-gradient(180deg, #fbf9f5 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Ambient Radial Glow */
+.ambient-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 65%);
 }
-::-webkit-scrollbar-track {
-  background: #070E1B;
+
+/* Horizontal Scroll Hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-::-webkit-scrollbar-thumb {
-  background: #1E3A5F;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #F59E0B;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

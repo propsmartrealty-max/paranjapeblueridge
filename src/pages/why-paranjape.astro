@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ParanjapeLegacySection from '../components/ParanjapeLegacySection';
+import { completedParanjapeProjects } from '../data/cms/legacy-projects';
+import { Award, Building2, CheckCircle2, ShieldCheck, ArrowRight, HeartHandshake, Sparkles } from 'lucide-react';
+
+export const prerender = true;
+---
+
+<Layout
+  title="The Paranjape Story | Built Over Time. Designed For Generations."
+  description="Discover the legacy of Paranjape Schemes (Construction) Ltd. Over three decades of pioneering integrated townships, luxury residences, and architectural landmarks across Pune."
+  pathname="/why-paranjape"
+>
+  <div class="pt-32 pb-24 bg-[#060911] text-ivory">
+    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      
+      <!-- Editorial Header -->
+      <div class="max-w-3xl mb-20">
+        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-champagne block mb-3">
+          The Paranjape Story
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-ivory tracking-tight leading-[1.06]">
+          Built over time. <br />
+          <span class="italic font-light text-gradient-champagne">Designed for generations.</span>
+        </h1>
+        <p class="mt-6 text-base sm:text-xl text-stone-light leading-relaxed font-sans font-light">
+          A development portfolio shaped by over 30 years of integrity, pioneering integrated mega-townships, and crafting generational homes for over 75,000 happy families across Maharashtra.
+        </p>
+      </div>
+
+      <!-- 4 Pillars of Trust -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-24">
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
+          <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/30 text-champagne flex items-center justify-center">
+            <Award size={18} />
+          </div>
+          <h2 class="text-lg font-serif text-ivory font-medium">35+ Years</h2>
+          <p class="text-xs text-stone-light leading-relaxed font-sans font-light">Of proven track record developing iconic landmarks across Pune, Mumbai, and beyond.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
+          <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/30 text-champagne flex items-center justify-center">
+            <Building2 size={18} />
+          </div>
+          <h2 class="text-lg font-serif text-ivory font-medium">20M+ Sq. Ft.</h2>
+          <p class="text-xs text-stone-light leading-relaxed font-sans font-light">Of delivered residential and commercial spaces executed with precision engineering.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
+          <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/30 text-champagne flex items-center justify-center">
+            <HeartHandshake size={18} />
+          </div>
+          <h2 class="text-lg font-serif text-ivory font-medium">75,000+</h2>
+          <p class="text-xs text-stone-light leading-relaxed font-sans font-light">Happy residents thriving in vibrant Paranjape communities across India.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 space-y-3 shadow-glass">
+          <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/30 text-champagne flex items-center justify-center">
+            <ShieldCheck size={18} />
+          </div>
+          <h2 class="text-lg font-serif text-ivory font-medium">100% MahaRERA</h2>
+          <p class="text-xs text-stone-light leading-relaxed font-sans font-light">Absolute legal transparency, clean land titles, and strict statutory compliance.</p>
+        </div>
+      </div>
+
+      <!-- Narrative Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-champagne block">Master Planning Pioneer</span>
+          <h2 class="text-3xl sm:text-4xl font-serif text-ivory font-normal">
+            Pioneering the Integrated Township in Western India
+          </h2>
+          <p class="text-sm sm:text-base text-stone-light leading-relaxed font-sans font-light">
+            When Paranjape Schemes envisioned Blue Ridge in Hinjewadi, the corridor was only beginning its journey as an IT destination. Paranjape recognized that global technology professionals would require a self-sustaining urban sanctuary: walk-to-work offices, on-site ICSE schooling, recreation, and waterfront living within one unified perimeter.
+          </p>
+          <p class="text-sm sm:text-base text-stone-light leading-relaxed font-sans font-light">
+            Today, Blue Ridge (138 acres) and Forest Trails (170 acres in Bhugaon) stand as national benchmarks for responsible, low-density, sustainable township development.
+          </p>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="glass-panel rounded-3xl p-3 border border-white/10 overflow-hidden shadow-glass-elevated">
+            <img 
+              src="/assets/images/real-township-day.jpg" 
+              alt="Paranjape Schemes Pune Legacy" 
+              class="w-full h-80 sm:h-96 object-cover rounded-2xl opacity-90"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed Projects Section -->
+      <ParanjapeLegacySection />
+
+      <!-- Final CTA -->
+      <div class="mt-20 p-10 rounded-3xl glass-panel text-center border border-white/10 max-w-3xl mx-auto shadow-glass-elevated">
+        <h3 class="text-2xl sm:text-3xl font-serif text-ivory font-medium mb-3">
+          Discover Ongoing Developments at Blue Ridge
+        </h3>
+        <p class="text-stone-light text-sm mb-6 font-sans font-light">
+          Explore the current residential clusters in Hinjewadi Phase 1 backed by three decades of Paranjape excellence.
+        </p>
+        <a
+          href="/blue-ridge/ongoing-projects"
+          class="btn-champagne px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest no-underline inline-block"
+        >
+          Explore Blue Ridge Residences
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

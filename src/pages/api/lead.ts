@@ -2,11 +2,11 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
+const NOTIFICATION_EMAIL = 'propsmartrealty@gmail.com';
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${NOTIFICATION_EMAIL}`;
 const WEBHOOK_URL =
   process.env.NEXT_PUBLIC_WEBHOOK_URL ||
   'https://script.google.com/macros/s/AKfycby2dfeDEMYGEo7HIWGTUebqeFYAZBw60AOzbtKHblZZxR2L7-gBbONd3o_u5dalwffq_A/exec';
-
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/propsmartrealty@gmail.com';
 
 const rateLimitMap = new Map<string, number>();
 
@@ -27,7 +27,7 @@ async function sha256Hex(str: string): Promise<string> {
   }
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const origin = request.headers.get('origin') || '';
     const isLocal = origin.includes('localhost') || origin.includes('127.0.0.1');
@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const rawText = await request.text();
-    if (rawText.length > 5000) {
+    if (rawText.length > 10000) {
       return new Response(JSON.stringify({ success: false, error: 'Payload Too Large' }), {
         status: 413,
         headers: { 'Content-Type': 'application/json' },
@@ -99,31 +99,30 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const lastSubmit = rateLimitMap.get(ip);
-    if (lastSubmit && Date.now() - lastSubmit < 60_000) {
-      return new Response(JSON.stringify({ success: false, error: 'Please wait 60 seconds before submitting again.' }), {
+    if (lastSubmit && Date.now() - lastSubmit < 30_000) {
+      return new Response(JSON.stringify({ success: false, error: 'Please wait 30 seconds before submitting again.' }), {
         status: 429,
         headers: { 'Content-Type': 'application/json' },
       });
     }
     rateLimitMap.set(ip, Date.now());
 
+    const chosenConfig = sanitize(body.bhk || body.configuration || body.config || 'General Inquiry', 100);
+    const chosenDate = sanitize(body.visitDate || body.selectedDate || body.date || 'Callback Requested', 50);
+    const chosenTime = sanitize(body.visitTime || body.selectedSlot || body.timeSlot || 'Standard Hours', 50);
+
     const leadPayload = {
       name: sanitize(body.name, 100),
-      phone: sanitize(body.phone, 20),
+      phone: sanitize(body.phone, 25),
       email: sanitize(body.email, 100),
-      bhk: sanitize(body.bhk, 50),
-      budget: sanitize(body.budget, 50),
-      intent: sanitize(body.intent, 200),
-      visitDate: sanitize(body.visitDate, 50),
-      visitTime: sanitize(body.visitTime, 50),
-      message: sanitize(body.message, 1000),
-      source: sanitize(body.source, 100) || 'Website',
+      bhk: chosenConfig,
+      budget: sanitize(body.budget, 50) || 'Standard',
+      intent: sanitize(body.intent, 200) || 'Self Use / Investment',
+      visitDate: chosenDate,
+      visitTime: chosenTime,
+      message: sanitize(body.message, 1000) || 'Requested instant call back / project e-brochure',
+      source: sanitize(body.source, 100) || 'Website Direct Form',
       behavioralFingerprint: sanitize(body.behavioralFingerprint, 500) || 'None',
-      utm_source: sanitize(body.utms?.utm_source, 100),
-      utm_medium: sanitize(body.utms?.utm_medium, 100),
-      utm_campaign: sanitize(body.utms?.utm_campaign, 100),
-      utm_term: sanitize(body.utms?.utm_term, 100),
-      utm_content: sanitize(body.utms?.utm_content, 100),
       timestamp: new Date().toISOString(),
     };
 
@@ -137,48 +136,75 @@ export const POST: APIRoute = async ({ request }) => {
     let leadScore = 50;
     const isNri = request.headers.get('x-is-nri-traffic') === 'true';
     if (isNri) leadScore += 25;
-    if (leadPayload.visitDate) leadScore += 15;
+    if (leadPayload.visitDate && leadPayload.visitDate !== 'Callback Requested') leadScore += 15;
     leadScore = Math.min(leadScore, 99);
 
-    const hashedEmail = await sha256Hex(leadPayload.email);
-    const hashedPhone = await sha256Hex(leadPayload.phone.replace(/\D/g, ''));
-    const googleAdsAttribution = {
-      sha256_email: hashedEmail,
-      sha256_phone: hashedPhone,
-      event_time: leadPayload.timestamp,
+    const userCountry = request.headers.get('x-user-country') || request.headers.get('cf-ipcountry') || 'IN';
+    const edgeColo = request.headers.get('cf-ray') || 'BOM';
+    const leadId = `BR-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+
+    // Clean tabular email structure for propsmartrealty@gmail.com
+    const emailTablePayload = {
+      _subject: `💎 [Paranjape Blue Ridge] New VIP Lead: ${leadPayload.name} (${chosenConfig})`,
+      _template: 'table',
+      _captcha: 'false',
+      Project: 'Paranjape Blue Ridge, Hinjewadi Phase 1, Pune',
+      Buyer_Name: leadPayload.name,
+      Phone_Number: leadPayload.phone,
+      Email_Address: leadPayload.email || 'Not Provided',
+      Configuration: chosenConfig,
+      Budget: leadPayload.budget,
+      Intent: leadPayload.intent,
+      Site_Visit_Date: leadPayload.visitDate,
+      Site_Visit_Slot: leadPayload.visitTime,
+      Inquiry_Source: leadPayload.source,
+      Message: leadPayload.message,
+      Visitor_Country: userCountry,
+      Lead_Score: leadScore,
+      Lead_ID: leadId,
+      Submitted_At: leadPayload.timestamp,
     };
 
-    const enhancedPayload = {
-      ...leadPayload,
-      leadScore,
-      userCountry: request.headers.get('x-user-country') || 'IN',
-      isVip: leadScore >= 80,
-      googleAdsAttribution,
-    };
-
-    // Dual-channel non-blocking delivery
-    try {
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(enhancedPayload),
-      }).catch(e => console.error('Webhook error:', e));
-
+    // Background delivery promise
+    const dispatchPromises = [
+      // 1. Email notification to propsmartrealty@gmail.com
       fetch(FORMSUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(emailTablePayload),
+      }).catch(e => console.error('FormSubmit error:', e)),
+
+      // 2. Google Sheets CRM Webhook
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...enhancedPayload,
-          _subject: `💎 [Paranjape Blue Ridge] New Lead: ${leadPayload.name} (${leadPayload.phone})`,
+          ...leadPayload,
+          leadScore,
+          userCountry,
+          leadId,
         }),
-      }).catch(e => console.error('FormSubmit error:', e));
-    } catch {}
+      }).catch(e => console.error('Webhook error:', e)),
+    ];
+
+    const allSettledPromise = Promise.allSettled(dispatchPromises);
+
+    // Register with waitUntil if Cloudflare runtime is present, otherwise wait with short race
+    const runtime = (locals as any)?.runtime;
+    if (runtime?.waitUntil) {
+      runtime.waitUntil(allSettledPromise);
+    } else {
+      await Promise.race([
+        allSettledPromise,
+        new Promise(resolve => setTimeout(resolve, 1200)),
+      ]);
+    }
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Lead received successfully.',
-        leadId: `BR-${Date.now().toString(36).toUpperCase()}`,
+        message: 'Lead received successfully and forwarded to propsmartrealty@gmail.com.',
+        leadId,
       }),
       {
         status: 200,

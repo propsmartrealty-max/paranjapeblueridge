@@ -2,313 +2,353 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, Sparkles, ChevronDown, Menu, X } from 'lucide-react';
-import LanguageToggle from './LanguageToggle';
-import CurrencyHeaderToggle from './CurrencyHeaderToggle';
+import { ChevronDown, Menu, X, ArrowUpRight, Compass, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePathname } from '@/hooks/useNav';
+import CurrencyHeaderToggle from './CurrencyHeaderToggle';
+import LanguageToggle from './LanguageToggle';
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenEnquiry?: () => void;
+}
+
+export default function Navbar({ onOpenEnquiry }: NavbarProps) {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [residencesDropdown, setResidencesDropdown] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleScrollTo = (hashId: string) => {
+  const handleScrollTo = (id: string) => {
     setIsOpen(false);
-    setActiveDropdown(null);
+    setResidencesDropdown(false);
     if (typeof window !== 'undefined') {
       if (window.location.pathname !== '/' && window.location.pathname !== '/mr') {
-        window.location.href = `/#${hashId}`;
+        window.location.href = `/#${id}`;
       } else {
-        document.getElementById(hashId)?.scrollIntoView({ behavior: 'smooth' });
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     }
   };
 
-  const projectLinks = [
-    {
-      name: "Promenade Residences",
-      nameMr: "प्रॉमनेड रेसिडेन्सेस",
-      config: "3 & 4 BHK Riverfront",
-      price: "₹1.65 Cr*",
-      href: "/paranjape-blue-ridge-promenade-hinjewadi-pune",
-      badge: "Tallest Tower"
-    },
-    {
-      name: "The Altius Riverside",
-      nameMr: "द अल्टियस रिव्हरसाईड",
-      config: "4 & 5 BHK Golf-View",
-      price: "₹1.80 Cr*",
-      href: "/paranjape-blue-ridge-the-altius-hinjewadi-pune",
-      badge: "Ultra-Luxury"
-    },
-    {
-      name: "Ridges 41",
-      nameMr: "रिजेस ४१",
-      config: "2 BHK Smart Residences",
-      price: "₹97.60 L*",
-      href: "/paranjape-blue-ridge-41-hinjewadi-pune",
-      badge: "Smart Living"
+  const handleEnquiryClick = () => {
+    setIsOpen(false);
+    if (onOpenEnquiry) {
+      onOpenEnquiry();
+    } else if (typeof window !== 'undefined') {
+      const modalTrigger = document.querySelector('[data-enquiry-trigger]') as HTMLElement;
+      if (modalTrigger) modalTrigger.click();
+      else handleScrollTo('enquiry');
     }
-  ];
+  };
 
   return (
     <>
-      <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
-        <motion.nav 
-          initial={{ y: -60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          aria-label="Main Navigation"
-          className={`pointer-events-auto w-full max-w-7xl flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2 rounded-full transition-all duration-500 shadow-2xl ultra-glass-card ${
-            scrolled ? 'scale-[0.98] border-gold/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'border-gold/20'
-          }`}
-        >
-          {/* ACCURATELY ALIGNED DUAL LOGO LOCKUP: PARANJAPE + BLUE RIDGE */}
-          <a 
-            href="/" 
-            className="flex items-center gap-2 sm:gap-3 pr-2 sm:pr-4 border-r border-gold/25 group no-underline shrink-0" 
-            aria-label="Paranjape Blue Ridge Homepage"
-          >
-            {/* 1. Official Paranjape Developer Logo */}
-            <div className="bg-white/95 hover:bg-white px-2.5 py-1 rounded-lg border border-gold/30 shadow-sm flex items-center justify-center transition-all">
-              <img 
-                src="/assets/images/paranjape-official-logo.png" 
-                alt="Paranjape Schemes - The Spirit of New India" 
-                className="h-6 sm:h-7 w-auto object-contain max-w-[120px] sm:max-w-[140px]"
-              />
-            </div>
-
-            {/* Elegant Golden Divider */}
-            <div className="h-7 w-[1px] bg-gradient-to-b from-transparent via-gold/50 to-transparent hidden xs:block"></div>
-
-            {/* 2. Official Blue Ridge Township Logo */}
-            <div className="bg-white/95 hover:bg-white px-2.5 py-1 rounded-lg border border-gold/30 shadow-sm flex items-center justify-center transition-all">
-              <img 
-                src="/assets/images/blue-ridge-official-logo.png" 
-                alt="Blue Ridge - Be a world citizen" 
-                className="h-6 sm:h-7 w-auto object-contain max-w-[90px] sm:max-w-[110px]"
-              />
-            </div>
+      <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none transition-all duration-300">
+        {/* Subtle MahaRERA Compliance Micro-Ticker */}
+        <div className="w-full bg-[#030508]/90 border-b border-white/[0.06] py-1 px-4 sm:px-8 flex justify-center sm:justify-end items-center gap-4 text-[9px] font-mono tracking-[0.2em] text-stone-light/80 uppercase pointer-events-auto backdrop-blur-md">
+          <span><strong className="text-champagne">MahaRERA:</strong> Promenade: P52100055581</span>
+          <span className="hidden md:inline">• Altius: P52100078116</span>
+          <span className="hidden md:inline">• Ridges 41: P52100000054</span>
+          <span className="text-stone">|</span>
+          <a href="https://maharera.mahaonline.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-champagne underline">
+            maharera.mahaonline.gov.in
           </a>
+        </div>
 
-          {/* DESKTOP NAVIGATION ITEMS */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {/* Residences Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('residences')}
-              onMouseLeave={() => setActiveDropdown(null)}
+        {/* Master Navigation Bar */}
+        <div className="w-full max-w-7xl px-3 sm:px-6 pt-2 sm:pt-3">
+          <nav
+            aria-label="Master Navigation"
+            className={`pointer-events-auto w-full flex items-center justify-between gap-3 sm:gap-6 px-4 sm:px-6 py-2.5 rounded-full transition-all duration-500 shadow-glass ${
+              scrolled 
+                ? 'bg-[#090e1a]/90 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] py-2' 
+                : 'bg-[#090e1a]/75 backdrop-blur-xl border border-white/[0.08]'
+            }`}
+          >
+            {/* BRAND LOGO LOCKUP */}
+            <a 
+              href="/" 
+              className="flex items-center gap-2.5 sm:gap-3.5 group no-underline shrink-0" 
+              aria-label="Paranjape Blue Ridge - The Digital Address"
             >
+              {/* Paranjape Schemes Insignia Badge */}
+              <div className="bg-white/95 px-2.5 py-1 rounded-md border border-champagne/30 shadow-sm flex items-center justify-center transition-all group-hover:bg-white">
+                <img 
+                  src="/assets/images/paranjape-official-logo.png" 
+                  alt="Paranjape Schemes Pune" 
+                  className="h-5 sm:h-6 w-auto object-contain max-w-[100px] sm:max-w-[125px]"
+                />
+              </div>
+
+              {/* Vertical Elegant Divider */}
+              <div className="h-6 w-[1px] bg-gradient-to-b from-transparent via-champagne/40 to-transparent hidden xs:block"></div>
+
+              {/* Blue Ridge Brandmark */}
+              <div className="bg-white/95 px-2 py-1 rounded-md border border-champagne/30 shadow-sm flex items-center justify-center transition-all group-hover:bg-white">
+                <img 
+                  src="/assets/images/blue-ridge-official-logo.png" 
+                  alt="Blue Ridge Hinjewadi" 
+                  className="h-5 sm:h-6 w-auto object-contain max-w-[80px] sm:max-w-[95px]"
+                />
+              </div>
+            </a>
+
+            {/* DESKTOP ARCHITECTURAL NAVIGATION */}
+            <div className="hidden xl:flex items-center gap-1.5 lg:gap-2">
               <button
-                className="px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none"
-                aria-label="View Residences"
+                onClick={() => handleScrollTo('township-story')}
+                className="px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-ivory/80 hover:text-champagne-light transition-colors bg-transparent border-none cursor-pointer"
               >
-                <span>{t('Residences', 'निवासस्थाने')}</span>
-                <ChevronDown size={13} className={`text-gold transition-transform ${activeDropdown === 'residences' ? 'rotate-180' : ''}`} />
+                Blue Ridge
               </button>
 
-              {activeDropdown === 'residences' && (
-                <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl ultra-glass-card p-3 shadow-2xl border border-gold/30 z-50">
-                  <div className="text-[10px] font-mono text-gold font-bold px-3 py-1 uppercase tracking-wider border-b border-white/10 mb-2">
-                    Flagship Clusters
+              {/* RESIDENCES DROPDOWN */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setResidencesDropdown(true)}
+                onMouseLeave={() => setResidencesDropdown(false)}
+              >
+                <button
+                  className={`px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] transition-colors flex items-center gap-1 bg-transparent border-none cursor-pointer ${
+                    residencesDropdown ? 'text-champagne' : 'text-ivory/80 hover:text-champagne-light'
+                  }`}
+                >
+                  <span>Residences</span>
+                  <ChevronDown size={12} className={`text-champagne transition-transform ${residencesDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {residencesDropdown && (
+                  <div className="absolute top-full left-0 mt-2 w-80 rounded-2xl glass-panel p-4 shadow-glass-elevated border border-white/10 z-50 animate-fadeIn">
+                    <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-champagne pb-2 border-b border-white/[0.08] mb-3">
+                      Residential Portfolio
+                    </div>
+                    
+                    <div className="space-y-1.5">
+                      <a
+                        href="/blue-ridge/ongoing-projects"
+                        className="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/[0.04] transition-all no-underline text-ivory hover:text-champagne group"
+                      >
+                        <div>
+                          <div className="text-xs font-semibold text-ivory group-hover:text-champagne">Currently Available</div>
+                          <div className="text-[10px] text-stone-light">Verified Active Inventory</div>
+                        </div>
+                        <ArrowUpRight size={14} className="text-stone group-hover:text-champagne transition-transform" />
+                      </a>
+
+                      <a
+                        href="/blue-ridge/ongoing-projects"
+                        className="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/[0.04] transition-all no-underline text-ivory hover:text-champagne group"
+                      >
+                        <div>
+                          <div className="text-xs font-semibold text-ivory group-hover:text-champagne">Ongoing Developments</div>
+                          <div className="text-[10px] text-stone-light">High-Rise Iconic Towers</div>
+                        </div>
+                        <ArrowUpRight size={14} className="text-stone group-hover:text-champagne transition-transform" />
+                      </a>
+
+                      <div className="pt-2 border-t border-white/[0.06] space-y-1">
+                        <div className="text-[10px] font-mono text-stone-light uppercase tracking-wider px-2 py-1">
+                          Active Clusters
+                        </div>
+                        <a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" className="block px-2.5 py-1.5 rounded-lg text-xs text-ivory/90 hover:text-champagne hover:bg-white/[0.03] no-underline">
+                          Promenade (3 & 4 BHK Riverfront)
+                        </a>
+                        <a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune" className="block px-2.5 py-1.5 rounded-lg text-xs text-ivory/90 hover:text-champagne hover:bg-white/[0.03] no-underline">
+                          The Altius (4 & 5 BHK Golf Residences)
+                        </a>
+                        <a href="/paranjape-blue-ridge-41-hinjewadi-pune" className="block px-2.5 py-1.5 rounded-lg text-xs text-ivory/90 hover:text-champagne hover:bg-white/[0.03] no-underline">
+                          Ridges 41 (2 BHK Smart Living)
+                        </a>
+                      </div>
+
+                      <div className="pt-2 border-t border-white/[0.06] flex gap-2 text-[11px]">
+                        <button 
+                          onClick={() => handleScrollTo('inventory')} 
+                          className="flex-1 py-1.5 text-center rounded-lg bg-white/[0.04] hover:bg-champagne/10 text-champagne text-[10px] font-mono uppercase tracking-wider border border-champagne/20"
+                        >
+                          Price & Plans
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  {projectLinks.map((p, idx) => (
-                    <a
-                      key={idx}
-                      href={p.href}
-                      className="flex flex-col p-2.5 rounded-xl hover:bg-gold/10 transition-all border border-transparent hover:border-gold/20 no-underline group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-warm-white group-hover:text-gold transition-colors">
-                          {t(p.name, p.nameMr)}
-                        </span>
-                        <span className="text-[9px] font-mono font-bold text-navy bg-gold px-1.5 py-0.5 rounded">
-                          {p.badge}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between mt-1 text-[11px] text-text-muted">
-                        <span>{p.config}</span>
-                        <span className="font-mono text-gold font-bold">{p.price}</span>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              )}
+                )}
+              </div>
+
+              <button
+                onClick={() => handleScrollTo('lifestyle')}
+                className="px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-ivory/80 hover:text-champagne-light transition-colors bg-transparent border-none cursor-pointer"
+              >
+                Lifestyle
+              </button>
+
+              <button
+                onClick={() => handleScrollTo('golf')}
+                className="px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-ivory/80 hover:text-champagne-light transition-colors bg-transparent border-none cursor-pointer"
+              >
+                Golf
+              </button>
+
+              <button
+                onClick={() => handleScrollTo('masterplan')}
+                className="px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-ivory/80 hover:text-champagne-light transition-colors bg-transparent border-none cursor-pointer"
+              >
+                Township
+              </button>
+
+              <a
+                href="/hinjewadi-micro-market"
+                className={`px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] transition-colors no-underline ${
+                  pathname === '/hinjewadi-micro-market' ? 'text-champagne' : 'text-ivory/80 hover:text-champagne-light'
+                }`}
+              >
+                Location
+              </a>
+
+              <a
+                href="/why-paranjape"
+                className={`px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] transition-colors no-underline ${
+                  pathname === '/why-paranjape' ? 'text-champagne' : 'text-ivory/80 hover:text-champagne-light'
+                }`}
+              >
+                The Paranjape Story
+              </a>
+
+              <a
+                href="/journal"
+                className={`px-3 py-1.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] transition-colors no-underline ${
+                  pathname.startsWith('/journal') ? 'text-champagne' : 'text-ivory/80 hover:text-champagne-light'
+                }`}
+              >
+                Journal
+              </a>
             </div>
 
-            {/* Direct Navigation Links */}
-            <button
-              onClick={() => handleScrollTo('township')}
-              className="px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full text-warm-white/90 hover:text-gold transition-colors cursor-pointer bg-transparent border-none"
-            >
-              {t('Township', 'टाउनशिप')}
-            </button>
+            {/* RIGHT: CURRENCY / LANGUAGE & PRIVATE ENQUIRY CTA */}
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="hidden lg:flex items-center gap-1.5">
+                <CurrencyHeaderToggle />
+                <LanguageToggle />
+              </div>
 
-            <a
-              href="/hinjewadi-micro-market"
-              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
-                pathname === '/hinjewadi-micro-market' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
-              }`}
-            >
-              {t('Market & Metro', 'मार्केट व मेट्रो')}
-            </a>
-
-            <a
-              href="/nri-investment"
-              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
-                pathname === '/nri-investment' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
-              }`}
-            >
-              {t('NRI Desk', 'अनिवासी भारतीय')}
-            </a>
-
-            <a
-              href="/construction-updates"
-              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
-                pathname === '/construction-updates' ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
-              }`}
-            >
-              {t('Construction', 'बांधकाम प्रगती')}
-            </a>
-
-            <a
-              href="/insights"
-              className={`px-3 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-colors no-underline ${
-                pathname.startsWith('/insights') ? 'text-gold' : 'text-warm-white/90 hover:text-gold'
-              }`}
-            >
-              {t('Insights', 'संशोधन')}
-            </a>
-          </div>
-
-          {/* RIGHT ACTION DOCK: CONTROLS & CTA */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="hidden md:flex items-center gap-2">
-              <CurrencyHeaderToggle />
-              <LanguageToggle />
+              {/* Ultra-Luxury Restrained Champagne Button */}
+              <button 
+                onClick={handleEnquiryClick}
+                className="btn-champagne px-4 sm:px-6 py-2.5 rounded-full text-[11px] font-sans font-bold tracking-[0.14em] uppercase transition-all shadow-md cursor-pointer border-none flex items-center gap-2 whitespace-nowrap"
+                aria-label="Private Enquiry"
+              >
+                <span>Private Enquiry</span>
+              </button>
+              
+              {/* Mobile Menu Trigger */}
+              <button 
+                aria-label="Toggle Navigation"
+                onClick={() => setIsOpen(!isOpen)}
+                className="xl:hidden p-2 rounded-full bg-white/[0.05] border border-white/10 text-champagne hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                {isOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
             </div>
-
-            <button 
-              onClick={() => handleScrollTo('enquiry')}
-              className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy px-4 sm:px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider hover:scale-105 transition-all shadow-lg hover:shadow-gold/30 cursor-pointer border-none flex items-center gap-1.5 font-sans whitespace-nowrap"
-              aria-label="Enquire Now"
-            >
-              <Sparkles size={12} className="fill-navy" />
-              <span>{t('Enquire Now', 'चौकशी करा')}</span>
-            </button>
-            
-            {/* Mobile Menu Hamburger */}
-            <button 
-              aria-label="Toggle Menu"
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-full bg-white/5 border border-gold/30 text-gold hover:bg-gold/10 transition-colors cursor-pointer"
-            >
-              {isOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </motion.nav>
+          </nav>
+        </div>
       </header>
 
-      {/* MOBILE EXPANDED MENU */}
+      {/* MOBILE FULL-SCREEN GLASS DRAWER */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-20 z-40 bg-navy/95 backdrop-blur-2xl p-6 overflow-y-auto lg:hidden flex flex-col justify-between"
+            className="fixed inset-0 top-16 z-40 bg-[#060911]/98 backdrop-blur-3xl p-6 overflow-y-auto xl:hidden flex flex-col justify-between"
           >
-            <div className="space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-gold/20">
+            <div className="space-y-6 pt-4">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <CurrencyHeaderToggle />
                 <LanguageToggle />
               </div>
 
-              <div className="space-y-3">
-                <div className="text-xs font-mono font-bold text-gold uppercase tracking-widest">
-                  {t('Residences', 'निवासस्थाने')}
+              <div className="space-y-4">
+                <div className="text-[10px] font-mono text-champagne uppercase tracking-[0.2em]">
+                  Township Navigation
                 </div>
-                {projectLinks.map((p, idx) => (
-                  <a
-                    key={idx}
-                    href={p.href}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 hover:border-gold text-warm-white no-underline"
+                
+                <div className="grid grid-cols-1 gap-2">
+                  <button
+                    onClick={() => handleScrollTo('township-story')}
+                    className="text-left px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium"
                   >
-                    <div>
-                      <div className="text-sm font-bold text-warm-white">{t(p.name, p.nameMr)}</div>
-                      <div className="text-xs text-text-muted">{p.config}</div>
-                    </div>
-                    <span className="text-xs font-mono text-gold font-bold">{p.price}</span>
+                    Blue Ridge Township
+                  </button>
+                  <a
+                    href="/blue-ridge/ongoing-projects"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium no-underline block"
+                  >
+                    Residences (All Ongoing Clusters)
                   </a>
-                ))}
-              </div>
-
-              <div className="space-y-2 pt-2 border-t border-white/10">
-                <a 
-                  href="/hinjewadi-micro-market"
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
-                >
-                  {t('Hinjewadi Market & Metro Line 3', 'हिंजवडी मार्केट व मेट्रो लाईन ३')}
-                </a>
-                <a 
-                  href="/nri-investment"
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
-                >
-                  {t('Global NRI Investment Desk', 'अनिवासी भारतीय गुंतवणूक डेस्क')}
-                </a>
-                <a 
-                  href="/construction-updates"
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
-                >
-                  {t('Live Construction Updates', 'थेट बांधकाम प्रगती')}
-                </a>
-                <a 
-                  href="/insights"
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
-                >
-                  {t('Research & Market Insights', 'संशोधन व बाजारपेठ विश्लेषण')}
-                </a>
-                <a 
-                  href="/directory"
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl bg-white/5 text-sm font-bold text-warm-white hover:text-gold no-underline"
-                >
-                  {t('Master Directory', 'मास्टर डिरेक्टरी')}
-                </a>
+                  <button
+                    onClick={() => handleScrollTo('lifestyle')}
+                    className="text-left px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium"
+                  >
+                    Lifestyle & Marina
+                  </button>
+                  <button
+                    onClick={() => handleScrollTo('golf')}
+                    className="text-left px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium"
+                  >
+                    9-Hole Executive Golf Course
+                  </button>
+                  <button
+                    onClick={() => handleScrollTo('masterplan')}
+                    className="text-left px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium"
+                  >
+                    138-Acre Masterplan
+                  </button>
+                  <a
+                    href="/hinjewadi-micro-market"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium no-underline block"
+                  >
+                    Location & Metro Line 3
+                  </a>
+                  <a
+                    href="/why-paranjape"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium no-underline block"
+                  >
+                    The Paranjape Story & Legacy
+                  </a>
+                  <a
+                    href="/journal"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-ivory text-sm font-medium no-underline block"
+                  >
+                    The Blue Ridge Journal
+                  </a>
+                </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-gold/20 flex flex-col gap-3">
-              <a 
-                href="tel:+912067210000"
-                className="flex items-center justify-center gap-2 bg-white/10 text-warm-white py-3.5 rounded-full font-bold uppercase text-xs tracking-widest no-underline"
+            <div className="pt-6 border-t border-white/10 space-y-3">
+              <button
+                onClick={handleEnquiryClick}
+                className="w-full btn-champagne py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer border-none"
               >
-                <Phone size={14} className="text-gold" />
-                +91 20 6721 0000
-              </a>
-              <a 
-                href="https://wa.me/917744009295?text=Hello%2C%20I%20am%20interested%20in%20Paranjape%20Blue%20Ridge%20Township."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-emerald-500 text-white py-3.5 rounded-full font-bold uppercase text-xs tracking-widest no-underline shadow-lg"
-              >
-                <MessageCircle size={16} />
-                WhatsApp Sales Desk
-              </a>
+                Schedule Private Presentation
+              </button>
+              <div className="text-center text-[10px] font-mono text-stone">
+                Paranjape Blue Ridge • Hinjewadi Phase 1, Pune
+              </div>
             </div>
           </motion.div>
         )}

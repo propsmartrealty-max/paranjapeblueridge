@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { journalArticles } from '../../data/cms/journal';
+import { Clock, ArrowRight, BookOpen } from 'lucide-react';
+
+export const prerender = true;
+
+const categories = ['All', 'Investment', 'Architecture', 'Living', 'Township', 'Location', 'Guides'] as const;
+---
+
+<Layout
+  title="The Blue Ridge Journal | Essays on Luxury Architecture, Investment & Township Living"
+  description="Editorial essays, macroeconomic market analysis, and biophilic architectural perspectives on Paranjape Blue Ridge Hinjewadi and Pune West real estate."
+  pathname="/journal"
+>
+  <div class="pt-32 pb-24 bg-[#060911] text-ivory">
+    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <!-- Header -->
+      <div class="max-w-3xl mb-16">
+        <span class="text-[11px] font-mono uppercase tracking-[0.25em] text-champagne block mb-3">
+          Editorial Publication
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-serif font-normal text-ivory tracking-tight leading-[1.08]">
+          The Blue Ridge <br />
+          <span class="italic font-light text-gradient-champagne">Journal.</span>
+        </h1>
+        <p class="mt-6 text-base sm:text-lg text-stone-light leading-relaxed font-sans font-light">
+          A collection of essays examining biophilic urban architecture, macroeconomic investment fundamentals, infrastructure convergence, and integrated living in Pune.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 mb-12">
+        {categories.map((cat) => (
+          <span class="px-4 py-2 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-white/[0.03] border border-white/10 text-stone-light hover:text-ivory hover:border-champagne/40 transition-all cursor-pointer">
+            {cat}
+          </span>
+        ))}
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {journalArticles.map((article) => (
+          <article class="glass-panel rounded-3xl p-6 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-glass">
+            <div>
+              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-stone mb-4">
+                <span class="text-champagne font-semibold">{article.category}</span>
+                <span class="flex items-center gap-1"><Clock size={11} /> {article.readingTime}</span>
+              </div>
+
+              <h2 class="text-xl font-serif text-ivory font-medium leading-snug group-hover:text-champagne transition-colors mb-4">
+                {article.title}
+              </h2>
+
+              <p class="text-xs text-stone-light leading-relaxed font-sans font-light line-clamp-4 mb-6">
+                {article.excerpt}
+              </p>
+
+              <!-- Key Takeaways -->
+              <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] mb-6 space-y-1.5">
+                <span class="text-[9px] font-mono text-champagne uppercase tracking-widest block font-semibold">Key Insights</span>
+                {article.keyTakeaways.map((takeaway) => (
+                  <div class="text-[11px] text-stone-light flex items-center gap-2">
+                    <span class="w-1 h-1 rounded-full bg-champagne shrink-0"></span>
+                    <span class="line-clamp-1">{takeaway}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+              <span class="text-[10px] font-mono text-stone">{article.publishedDate}</span>
+              <a
+                href={`/insights/${article.slug}`}
+                class="text-xs font-sans font-semibold uppercase tracking-wider text-champagne flex items-center gap-1.5 group-hover:translate-x-1 transition-transform no-underline"
+              >
+                <span>Read Essay</span>
+                <ArrowRight size={13} />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
