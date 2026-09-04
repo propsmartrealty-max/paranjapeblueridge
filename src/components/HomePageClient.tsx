@@ -85,13 +85,16 @@ export default function HomePageClient() {
             src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 
             alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township"
             className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
           />
           {/* Luminous Porcelain & Sunlight Gradient Layer for High-Contrast Crisp Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-[#FAF9F6]/85 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F6]/90 via-transparent to-[#FAF9F6]/90"></div>
           
-          {/* Soft Golden Ambient Light */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-champagne/10 blur-[100px] pointer-events-none rounded-full"></div>
+          {/* Soft Golden Ambient Light — clamped to viewport width to prevent horizontal overflow on mobile */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[350px] bg-champagne/10 blur-[100px] pointer-events-none rounded-full overflow-hidden"></div>
         </div>
 
         {/* Master Headline Content */}
@@ -216,6 +219,7 @@ export default function HomePageClient() {
                   src="/assets/images/pscl-blue-ridge-township-skyline.jpg" 
                   alt="Blue Ridge Township Aerial Panorama"
                   className="w-full h-96 object-cover rounded-2xl"
+                  loading="lazy"
                 />
                 <div className="p-6 space-y-4">
                   <div className="grid grid-cols-3 gap-4 text-center border-t border-slate-200/80 pt-4">
@@ -284,6 +288,7 @@ export default function HomePageClient() {
                   src="/assets/images/pscl-blue-ridge-golf.webp" 
                   alt="Blue Ridge 9-Hole Executive Golf Course & Marina"
                   className="w-full h-80 sm:h-96 object-cover rounded-2xl"
+                  loading="lazy"
                 />
               </div>
             </div>

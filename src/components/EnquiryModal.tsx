@@ -239,15 +239,15 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
 
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 text-gold hover:text-warm-white transition-colors z-20"
+          className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-gold hover:text-warm-white transition-colors z-20 rounded-full hover:bg-white/10"
           aria-label="Close Enquiry Modal"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
-        <div className="p-12">
+        <div className="p-8 sm:p-12">
           <div className="mb-10">
-            <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 3</span>
+            <span className="text-gold font-bold tracking-[6px] uppercase text-xs block mb-4">Step {step} of 3</span>
             <h2 className="text-4xl font-serif text-warm-white leading-tight">
               {step === 1 ? 'Priority ' : 'Qualification '}
               <span className="italic font-normal text-gold">{step === 1 ? 'Enquiry' : 'Protocol'}</span>
@@ -260,8 +260,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs font-bold uppercase tracking-widest flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+              <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               {error}
             </div>
           )}
@@ -300,7 +300,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-name" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
+                      <label htmlFor="enquiry-name" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Full Name</label>
                       <input 
                         id="enquiry-name"
                         type="text" 
@@ -317,7 +317,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
                     
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-phone" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">
+                      <label htmlFor="enquiry-phone" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">
                         Phone {countryCode !== '+91' && <span className="text-gold font-normal normal-case tracking-normal ml-1">(NRI)</span>}
                       </label>
                       <div className="flex gap-2">
@@ -351,7 +351,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-email" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Email <span className="text-gold/60 font-normal normal-case tracking-normal">(optional)</span></label>
+                      <label htmlFor="enquiry-email" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Email <span className="text-gold/60 font-normal normal-case tracking-normal">(optional)</span></label>
                       <input 
                         id="enquiry-email"
                         type="email" 
@@ -381,7 +381,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     className="space-y-6"
                   >
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-bhk" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
+                      <label htmlFor="enquiry-bhk" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
                       <select 
                         id="enquiry-bhk"
                         required
@@ -397,7 +397,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-budget" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
+                      <label htmlFor="enquiry-budget" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
                       <select 
                         id="enquiry-budget"
                         required
@@ -417,13 +417,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="button" 
                          onClick={() => startTransition(() => setStep(1))}
-                         className="py-3.5 border border-gold/30 text-text-muted hover:text-warm-white rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-colors"
+                         className="py-3.5 border border-gold/30 text-text-muted hover:text-warm-white rounded-2xl text-xs font-bold uppercase tracking-widest transition-colors"
                        >
                          Back
                        </button>
                        <button 
                          type="submit" 
-                         className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest shadow-lg hover:shadow-gold/25 transition-all"
+                         className="bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold py-3.5 rounded-2xl text-xs uppercase tracking-widest shadow-lg hover:shadow-gold/25 transition-all"
                        >
                          Next: Schedule Visit
                        </button>
@@ -439,7 +439,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     className="space-y-6"
                   >
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-date" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Visit Date (Optional)</label>
+                      <label htmlFor="enquiry-date" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Preferred Visit Date (Optional)</label>
                       <input 
                         id="enquiry-date"
                         type="date"
@@ -451,7 +451,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                     </div>
                     
                     <div className="space-y-1.5">
-                      <label htmlFor="enquiry-time" className="block text-[10px] text-gold uppercase font-bold tracking-widest ml-1">Preferred Time (Optional)</label>
+                      <label htmlFor="enquiry-time" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Preferred Time (Optional)</label>
                       <input 
                         id="enquiry-time"
                         type="time"
@@ -461,7 +461,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       />
                     </div>
 
-                    <label className="flex items-start gap-2 text-[10px] text-text-muted cursor-pointer my-3">
+                    <label className="flex items-start gap-2 text-xs text-text-muted cursor-pointer my-3">
                       <input type="checkbox" required defaultChecked className="mt-0.5 accent-gold" />
                       <span>I consent to receive project updates, pricing & site visit confirmation via Call/WhatsApp as per DPDP Privacy Policy.</span>
                     </label>
@@ -476,14 +476,14 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="button" 
                          onClick={() => startTransition(() => setStep(2))}
-                         className="py-4 border border-white/10 text-text-light rounded-2xl text-[10px] font-bold uppercase tracking-widest"
+                         className="py-4 border border-white/10 text-text-light rounded-2xl text-xs font-bold uppercase tracking-widest"
                        >
                          Back
                        </button>
                        <button 
                          type="submit" 
                          disabled={status === 'submitting'}
-                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-[10px] uppercase tracking-widest disabled:opacity-50 shadow-xl shadow-gold/20"
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-xs uppercase tracking-widest disabled:opacity-50 shadow-xl shadow-gold/20"
                        >
                          {status === 'submitting' ? 'Processing...' : 'Complete Request'}
                        </button>

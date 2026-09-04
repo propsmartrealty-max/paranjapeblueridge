@@ -10,22 +10,29 @@ export default function FloatingWhatsApp() {
   const pathname = usePathname() || '';
 
   useEffect(() => {
+    // Only visible on desktop (lg+). On mobile the StickyCTA bar handles WhatsApp.
+    const isDesktop = () => window.innerWidth >= 1024;
+
     const checkVisibility = () => {
-      // Visible on all screens
-      setIsVisible(true);
+      setIsVisible(isDesktop());
+      // Collapse card if resized to mobile
+      if (!isDesktop()) setIsExpanded(false);
     };
-    
+
     checkVisibility();
     window.addEventListener('resize', checkVisibility);
-    
-    // Auto-expand card after 4 seconds to grab user attention
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 4000);
-    
+
+    // Auto-expand chat card on desktop only — never on mobile (Google Interstitial penalty)
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    if (isDesktop()) {
+      timer = setTimeout(() => {
+        setIsExpanded(true);
+      }, 5000);
+    }
+
     return () => {
       window.removeEventListener('resize', checkVisibility);
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
     };
   }, [pathname]);
 
@@ -60,7 +67,7 @@ export default function FloatingWhatsApp() {
             <button
               aria-label="Close Chat"
               onClick={() => setIsExpanded(false)}
-              className="text-slate-400 hover:text-[#070D1A] transition-colors p-1"
+              className="text-slate-400 hover:text-[#070D1A] transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1"
             >
               <X size={15} />
             </button>

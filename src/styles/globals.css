@@ -191,7 +191,8 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(148, 163, 184, 0.8);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.7rem;
+  /* Minimum 12px (0.75rem) — Google Mobile Usability requires text ≥ 12px */
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: #785415;
@@ -297,4 +298,37 @@
 }
 .text-text-light {
   color: #94a3b8;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GOOGLE MOBILE STANDARDS — GLOBAL FIXES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Remove the ugly blue/grey tap flash on iOS for all interactive elements */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Horizontal scroll carousels — allow native swipe without page scroll interference */
+.carousel-scroll,
+[data-carousel] {
+  touch-action: pan-x;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+/* Prevent overscroll bounce inside modals on iOS */
+.modal-scroll-area {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure body never scrolls horizontally — catches any overflow leaks */
+body {
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 }

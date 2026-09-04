@@ -226,35 +226,35 @@ export default function Navbar() {
             />
           </div>
 
-          <div className="space-y-3 text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
-            <a href="/#township-story" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline">
+          <div className="space-y-1 text-sm font-sans uppercase tracking-wide text-slate-800 font-bold">
+            <a href="/#township-story" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline px-1">
               The 138-Acre Township
             </a>
             
-            <div className="py-2 border-b border-slate-100 space-y-2">
-              <span className="text-[10px] text-[#785415] font-extrabold block">Individual Project Portals:</span>
-              <a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
+            <div className="border-b border-slate-100 space-y-1 py-1">
+              <span className="text-xs text-[#785415] font-extrabold block px-1 pt-1">Individual Project Portals:</span>
+              <a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] pl-3 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
                 • Promenade Residences (3 & 4 BHK)
               </a>
-              <a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
+              <a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] pl-3 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
                 • The Altius Riverside (3 & 4 BHK)
               </a>
-              <a href="/paranjape-blue-ridge-41-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
+              <a href="/paranjape-blue-ridge-41-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] pl-3 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
                 • Ridges 41 Smart Homes (2 & 3 BHK)
               </a>
             </div>
 
-            <a href="/#sez" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#785415] font-extrabold no-underline flex items-center gap-2">
-              <Briefcase size={14} />
+            <a href="/#sez" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#785415] font-extrabold no-underline gap-2 px-1">
+              <Briefcase size={16} />
               <span>Blue Ridge IT / ITES SEZ</span>
             </a>
-            <a href="/#golf" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
+            <a href="/#golf" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
               9-Hole Golf & River Marina
             </a>
-            <a href="/why-paranjape" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
+            <a href="/why-paranjape" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
               The Paranjape Legacy
             </a>
-            <a href="/journal" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
+            <a href="/journal" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
               The Blue Ridge Journal
             </a>
           </div>

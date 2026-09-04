@@ -14,6 +14,11 @@ export default function ExitIntentPopup() {
   const pathname = usePathname() || '';
 
   useEffect(() => {
+    // Never show exit-intent popup on mobile — exit-intent (mouseleave) doesn't work on
+    // touch devices, and a fullscreen overlay on mobile violates Google's Intrusive
+    // Interstitial policy which causes direct mobile ranking penalties.
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
+
     if (isExitIntentTriggered && !isModalOpen) {
       if (typeof window !== 'undefined') {
         const alreadyShown = sessionStorage.getItem('exit_popup_shown');
