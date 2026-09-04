@@ -7,7 +7,7 @@ import EnquiryModal from './EnquiryModal';
 
 const inventoryData = [
   { id: 'promenade', name: 'Promenade Residences', config: '3 & 4 BHK', total: 120, available: 4, demand: 'High', tower: '41 Storey Riverfront' },
-  { id: 'altius', name: 'The Altius', config: '4 & 5 BHK', total: 80, available: 2, demand: 'Very High', tower: 'Golf Course Facing' },
+  { id: 'altius', name: 'The Altius', config: '3 & 4 BHK', total: 80, available: 2, demand: 'Very High', tower: 'Golf Course Facing' },
   { id: 'ridge41', name: 'Ridges 41', config: '2 & 3 BHK', total: 200, available: 12, demand: 'Steady', tower: 'MiVAN Smart Homes' },
 ];
 

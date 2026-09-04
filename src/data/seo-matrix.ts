@@ -56,17 +56,17 @@ export const curatedPhrasesData: Array<{
     location: "Blue Ridge Promenade, Hinjewadi"
   },
   {
-    phrase: "The Altius Riverside Paranjape Blue Ridge 4 and 5 BHK",
+    phrase: "The Altius Riverside Paranjape Blue Ridge 3 and 4 BHK",
     silo: "clusters",
     type: "The Altius",
-    description: "The Altius Riverside at Paranjape Blue Ridge Hinjewadi. 4 & 5 BHK luxury golf-facing residences from ₹1.80 Cr. MahaRERA: P52100078116.",
+    description: "The Altius Riverside at Paranjape Blue Ridge Hinjewadi. 3 & 4 BHK luxury golf-facing residences from ₹1.55 Cr. MahaRERA: P52100078116.",
     location: "Blue Ridge Altius, Hinjewadi"
   },
   {
-    phrase: "Ridges 41 Paranjape Blue Ridge 2 BHK Smart Homes",
+    phrase: "Ridges 41 Paranjape Blue Ridge 2 and 3 BHK Smart Homes",
     silo: "clusters",
     type: "Ridges 41",
-    description: "Ridges 41 at Paranjape Blue Ridge Hinjewadi Phase 1. 41-storey monolithic MiVAN smart 2 BHK residences from ₹97.60 L. MahaRERA: P52100000054.",
+    description: "Ridges 41 at Paranjape Blue Ridge Hinjewadi Phase 1. 41-storey monolithic MiVAN smart 2 & 3 BHK residences from ₹97.60 L. MahaRERA: P52100000054.",
     location: "Blue Ridge Ridges 41, Hinjewadi"
   },
   {
@@ -94,7 +94,7 @@ export const curatedPhrasesData: Array<{
     phrase: "Paranjape Blue Ridge Floor Plans and Layouts PDF",
     silo: "floor-plan",
     type: "Floor Plan",
-    description: "Download official 2 BHK, 3 BHK, 4 BHK and 5 BHK architectural floor plans and carpet area layouts for Paranjape Blue Ridge.",
+    description: "Download official 2 BHK, 3 BHK, and 4 BHK architectural floor plans and carpet area layouts for Paranjape Blue Ridge.",
     location: "Hinjewadi Phase 1, Pune"
   },
   {

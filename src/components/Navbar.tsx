@@ -237,10 +237,10 @@ export default function Navbar() {
                 • Promenade Residences (3 & 4 BHK)
               </a>
               <a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
-                • The Altius Riverside (4 & 5 BHK)
+                • The Altius Riverside (3 & 4 BHK)
               </a>
               <a href="/paranjape-blue-ridge-41-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#785415] no-underline font-semibold">
-                • Ridges 41 Smart Homes (2 BHK)
+                • Ridges 41 Smart Homes (2 & 3 BHK)
               </a>
             </div>
 

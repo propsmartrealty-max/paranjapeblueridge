@@ -21,12 +21,12 @@ export const GET: APIRoute = async () => {
    - Features: 41-storey riverfront tower, private foyer, Mula river views.
 
 2. **The Altius Riverside** (MahaRERA: P52100078116)
-   - Configuration: 4 BHK (2,100 sq.ft.) & 5 BHK Penthouse
-   - Starting Price: ₹1.80 Cr*
+   - Configuration: 3 BHK (1,550 sq.ft.) & 4 BHK (1,858 sq.ft.)
+   - Starting Price: ₹1.55 Cr*
    - Features: River and 9-hole golf course views, private lift lobby, sky lounge.
 
 3. **Ridges 41** (MahaRERA: P52100000054)
-   - Configuration: 2 BHK Smart Homes (785 – 820 sq.ft.)
+   - Configuration: 2 & 3 BHK Smart Homes (793 – 1,180 sq.ft.)
    - Starting Price: ₹97.60 L*
    - Features: Monolithic MiVAN construction, 6-level podium parking, high rental yields (4.8%–5.2%).
 

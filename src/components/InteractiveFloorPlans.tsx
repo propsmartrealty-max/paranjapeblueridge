@@ -11,7 +11,7 @@ const plans = [
     label: 'Promenade 3 BHK (1,316 sq ft)',
     name: 'Promenade 3 BHK River View Classic',
     area: '1,316 Sq. Ft.',
-    image: '/assets/images/promenade-3bhk-1316.jpg',
+    image: '/assets/images/official/promenade-3bhk-plan2.jpg',
     features: ['Direct Mula River Facing Balcony', 'Advanced MiVAN Monolithic Construction', 'Walk-to-Work IT SEZ Access']
   },
   {
@@ -19,24 +19,24 @@ const plans = [
     label: 'Promenade 4 BHK (1,633 sq ft)',
     name: 'Promenade 4 BHK Riverfront Signature',
     area: '1,633 Sq. Ft.',
-    image: '/assets/images/promenade-4bhk-1633.jpg',
+    image: '/assets/images/official/promenade-4bhk-plan3.jpg',
     features: ['Dual Balcony System with River Vistas', 'Spacious Staff Quarters & Utility', '3-Side Open Architectural Cross-Ventilation']
+  },
+  {
+    id: '3bhk-altius',
+    label: 'The Altius 3 BHK (1,550 sq ft)',
+    name: 'The Altius Riverside Sanctuary',
+    area: '1,550 Sq. Ft.',
+    image: '/assets/images/official/altius-4bhk.jpg',
+    features: ['Controlled Access Biometric Elevator Foyer', 'Direct Golf & River Confluence Vistas', 'Imported Italian Marble Living']
   },
   {
     id: '4bhk-altius',
     label: 'The Altius 4 BHK (1,858 sq ft)',
     name: 'The Altius Royal Fairway Residence',
     area: '1,858 Sq. Ft.',
-    image: '/assets/images/official/altius-4bhk.jpg',
-    features: ['Controlled Access Biometric Elevator Foyer', 'Panoramic 9-Hole Golf Course & River Views', 'Imported Italian Marble Flooring']
-  },
-  {
-    id: '5bhk-altius',
-    label: 'The Altius 5 BHK (2,480 sq ft)',
-    name: 'The Altius Sovereign Sky Penthouse',
-    area: '2,480 Sq. Ft.',
     image: '/assets/images/official/altius-5bhk.jpg',
-    features: ['11-Foot Clear Architectural Ceilings', 'Private Golf Club Terrace Deck', 'Dual Walk-In Wardrobes in Master Retreat']
+    features: ['11-Foot Clear Architectural Ceilings', 'Panoramic 9-Hole Golf Course & River Views', 'Burma Teak Flooring in Master Suite']
   },
   {
     id: '2bhk-ridges41',
@@ -48,9 +48,9 @@ const plans = [
   },
   {
     id: '3bhk-ridges41',
-    label: 'Ridges 41 3 BHK (1,250 sq ft)',
-    name: 'Ridges 41 Executive 3 BHK',
-    area: '1,250 Sq. Ft.',
+    label: 'Ridges 41 3 BHK (1,180 sq ft)',
+    name: 'Ridges 41 Signature 3 BHK',
+    area: '1,180 Sq. Ft.',
     image: '/assets/images/official/ridges41-3bhk.jpg',
     features: ['Expansive Living Span with Valley Panorama', 'Dedicated EV Rapid Charging Bay', '6-Level Integrated Automated Podium Parking']
   }

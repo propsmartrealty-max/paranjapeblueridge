@@ -152,23 +152,23 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 3,
         carpetArea: "1,316 Sq. Ft.",
         dimensions: "Living: 22'x14' • Master: 15'x12'",
-        planImage2D: "/assets/images/promenade-3bhk-1316.jpg",
+        planImage2D: "/assets/images/official/promenade-3bhk-plan2.jpg",
         downloadUrl: "#enquire"
       },
       {
-        configTitle: "4 BHK Riverfront Signature (Type 1)",
+        configTitle: "4 BHK Riverfront Signature",
         bhkNumber: 4,
         carpetArea: "1,633 Sq. Ft.",
         dimensions: "Living: 26'x15' • Master: 17'x13'",
-        planImage2D: "/assets/images/promenade-4bhk-1633.jpg",
+        planImage2D: "/assets/images/official/promenade-4bhk-plan3.jpg",
         downloadUrl: "#enquire"
       },
       {
-        configTitle: "4 BHK Royal Sky Mansion (Type 2)",
+        configTitle: "4 BHK Royal Sky Mansion",
         bhkNumber: 4,
         carpetArea: "1,718 Sq. Ft.",
         dimensions: "Living: 28'x16' • Master: 18'x14'",
-        planImage2D: "/assets/images/promenade-4bhk-1718.jpg",
+        planImage2D: "/assets/images/official/promenade-4bhk-plan3.jpg",
         downloadUrl: "#enquire"
       }
     ],
@@ -189,7 +189,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     id: "altius",
     slug: "altius",
     name: "The Altius",
-    tagline: "Ultra-Luxury 4 & 5 BHK Sky Mansions & Golfview Penthouses",
+    tagline: "Ultra-Luxury 3 & 4 BHK Sky Residences & Golfview Suites",
     eyebrow: "Flagship Riverside Enclave • Overlooking the 9-Hole Greens",
     heroImage: "/assets/images/official/altius-elevation-2048.webp",
     gallery: [
@@ -202,10 +202,10 @@ export const blueRidgeClusters: ClusterResidence[] = [
       "/assets/images/official/altius-g4.jpg",
       "/assets/images/pscl-blue-ridge-golf.webp"
     ],
-    configurations: "4 & 5 Bedroom Sky Residences",
-    carpetAreaRange: "1,858 – 2,480 Sq. Ft.",
+    configurations: "3 & 4 Bedroom Riverside Residences",
+    carpetAreaRange: "1,550 – 2,100 Sq. Ft.",
     isCarpetVerified: true,
-    priceStarting: "₹1.80 Cr*",
+    priceStarting: "₹1.55 Cr*",
     isPriceVerified: true,
     possessionTimeline: "December 2027",
     reraNumber: "P52100078116",
@@ -276,26 +276,26 @@ export const blueRidgeClusters: ClusterResidence[] = [
     ],
     floorPlans: [
       {
-        configTitle: "4 BHK Royal Fairway Residence",
-        bhkNumber: 4,
-        carpetArea: "1,858 Sq. Ft.",
-        dimensions: "Living: 28'x16' • Master: 18'x15'",
+        configTitle: "3 BHK Riverside Sanctuary",
+        bhkNumber: 3,
+        carpetArea: "1,550 Sq. Ft.",
+        dimensions: "Living: 24'x15' • Master: 16'x14'",
         planImage2D: "/assets/images/official/altius-4bhk.jpg",
         downloadUrl: "#enquire"
       },
       {
-        configTitle: "5 BHK Sovereign Sky Penthouse",
-        bhkNumber: 5,
-        carpetArea: "2,480 Sq. Ft.",
-        dimensions: "Living: 34'x18' • Master: 20'x16'",
+        configTitle: "4 BHK Royal Fairway Residence",
+        bhkNumber: 4,
+        carpetArea: "1,858 Sq. Ft.",
+        dimensions: "Living: 28'x16' • Master: 18'x15'",
         planImage2D: "/assets/images/official/altius-5bhk.jpg",
         downloadUrl: "#enquire"
       }
     ],
     inventoryPreview: [
-      { type: "4 BHK Fairway View", carpetArea: "1,858 Sq. Ft.", floorRange: "Levels 10 to 20", viewOrientation: "Golf Course Fairway", pricingStatus: "₹1.80 Cr*", status: "Available" },
-      { type: "4 BHK Riverview", carpetArea: "1,858 Sq. Ft.", floorRange: "Levels 21 to 32", viewOrientation: "Mula River Panorama", pricingStatus: "₹1.92 Cr*", status: "Few Units Left" },
-      { type: "5 BHK Sky Penthouse", carpetArea: "2,480 Sq. Ft.", floorRange: "Levels 33 to 36", viewOrientation: "360° Dual Golf & River", pricingStatus: "Available on Private Request", status: "Upon Request" }
+      { type: "3 BHK Riverside Sanctuary", carpetArea: "1,550 Sq. Ft.", floorRange: "Levels 05 to 18", viewOrientation: "Mula River & Fairway", pricingStatus: "₹1.55 Cr*", status: "Available" },
+      { type: "4 BHK Fairway View", carpetArea: "1,858 Sq. Ft.", floorRange: "Levels 19 to 30", viewOrientation: "Golf Course Fairway", pricingStatus: "₹1.80 Cr*", status: "Available" },
+      { type: "4 BHK Sky Residence", carpetArea: "2,100 Sq. Ft.", floorRange: "Levels 31 to 36", viewOrientation: "360° Dual Golf & River", pricingStatus: "₹2.10 Cr*", status: "Few Units Left" }
     ],
     masterplanPosition: {
       zone: "Fairway & Marina Confluence",
@@ -309,7 +309,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     slug: "ridges-41",
     name: "Ridges 41",
     tagline: "Modern 41-Storey Smart Residences for Global IT Professionals",
-    eyebrow: "Walk-to-Work Technology Precinct • Smart 2 BHK Homes",
+    eyebrow: "Walk-to-Work Technology Precinct • Smart 2 & 3 BHK Homes",
     heroImage: "/assets/images/official/ridges41-banner.jpg",
     gallery: [
       "/assets/images/official/ridges41-banner.jpg",
@@ -318,11 +318,10 @@ export const blueRidgeClusters: ClusterResidence[] = [
       "/assets/images/official/ridges41-g2.jpg",
       "/assets/images/official/ridges41-g3.jpg",
       "/assets/images/official/ridges41-g4.jpg",
-      "/assets/images/official/ridges41-p1.jpg",
       "/assets/images/pscl-blue-ridge-sez.webp"
     ],
-    configurations: "2 Bedroom Smart Residences",
-    carpetAreaRange: "793 – 970 Sq. Ft.",
+    configurations: "2 & 3 Bedroom Smart Residences",
+    carpetAreaRange: "793 – 1,180 Sq. Ft.",
     isCarpetVerified: true,
     priceStarting: "₹97.60 L*",
     isPriceVerified: true,
@@ -395,7 +394,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     ],
     floorPlans: [
       {
-        configTitle: "2 BHK Smart Living (Compact)",
+        configTitle: "2 BHK Smart Residence",
         bhkNumber: 2,
         carpetArea: "793 Sq. Ft.",
         dimensions: "Living: 18'x12' • Master: 13'x11'",
@@ -403,18 +402,18 @@ export const blueRidgeClusters: ClusterResidence[] = [
         downloadUrl: "#enquire"
       },
       {
-        configTitle: "2 BHK Executive Suite (Spacious)",
-        bhkNumber: 2,
-        carpetArea: "970 Sq. Ft.",
-        dimensions: "Living: 20'x13' • Master: 14'x12'",
+        configTitle: "3 BHK Signature Residence",
+        bhkNumber: 3,
+        carpetArea: "1,180 Sq. Ft.",
+        dimensions: "Living: 22'x14' • Master: 15'x12'",
         planImage2D: "/assets/images/official/ridges41-3bhk.jpg",
         downloadUrl: "#enquire"
       }
     ],
     inventoryPreview: [
       { type: "2 BHK Compact Smart", carpetArea: "793 Sq. Ft.", floorRange: "Levels 05 to 20", viewOrientation: "Township Greens & Boulevard", pricingStatus: "₹97.60 L*", status: "Available" },
-      { type: "2 BHK Executive", carpetArea: "970 Sq. Ft.", floorRange: "Levels 21 to 38", viewOrientation: "Unobstructed Valley View", pricingStatus: "₹1.15 Cr*", status: "Few Units Left" },
-      { type: "2 BHK Sky Corner", carpetArea: "970 Sq. Ft.", floorRange: "Levels 39 to 41", viewOrientation: "360° Tech Valley Skyline", pricingStatus: "₹1.22 Cr*", status: "Few Units Left" }
+      { type: "2 BHK Executive", carpetArea: "970 Sq. Ft.", floorRange: "Levels 21 to 35", viewOrientation: "Unobstructed Valley View", pricingStatus: "₹1.15 Cr*", status: "Few Units Left" },
+      { type: "3 BHK Signature", carpetArea: "1,180 Sq. Ft.", floorRange: "Levels 36 to 41", viewOrientation: "360° Tech Valley Skyline", pricingStatus: "₹1.35 Cr*", status: "Available" }
     ],
     masterplanPosition: {
       zone: "Central Tech Boulevard Precinct",

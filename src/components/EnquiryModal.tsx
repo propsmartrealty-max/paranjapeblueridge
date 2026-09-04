@@ -328,10 +328,9 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         className="w-full px-5 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none font-medium cursor-pointer"
                       >
                         <option value="">Select BHK</option>
-                        <option value="2BHK">2 BHK Apartment (Ridges 41)</option>
-                        <option value="3BHK">3 BHK Luxury (Promenade)</option>
-                        <option value="4BHK">4 BHK Riverside (The Altius)</option>
-                        <option value="5BHK">5 BHK Sky Penthouse</option>
+                        <option value="2BHK">2 BHK Smart Home (Ridges 41)</option>
+                        <option value="3BHK">3 BHK Luxury (Promenade / Altius / Ridges 41)</option>
+                        <option value="4BHK">4 BHK Luxury (Promenade / The Altius)</option>
                       </select>
                     </div>
 

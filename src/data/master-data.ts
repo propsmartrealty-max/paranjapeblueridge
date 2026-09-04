@@ -58,22 +58,22 @@ export const projects: Project[] = [
     ],
     amenities: ["Expansive Podium Garden", "Dedicated Work-from-Home Pods", "Private Mini Theatre", "Rooftop Infinity Pool in Hinjewadi", "Multipurpose Sports Court"],
     configurations: [
-      { slug: "3-bhk-flats-1316", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स", carpetArea: "1,316 Sq. Ft.", price: "₹ 1.65 Cr*", priceValue: 16500000, numberOfRooms: 3, floorSizeSqFt: 1316, image: "/assets/images/promenade-3bhk-1316.jpg" },
-      { slug: "4-bhk-flats-1633", title: "4 BHK Premium Flats (Type 1)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,633 Sq. Ft.", price: "₹ 2.05 Cr*", priceValue: 20500000, numberOfRooms: 4, floorSizeSqFt: 1633, image: "/assets/images/promenade-4bhk-1633.jpg" },
-      { slug: "4-bhk-flats-1718", title: "4 BHK Premium Flats (Type 2)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,718 Sq. Ft.", price: "₹ 2.15 Cr*", priceValue: 21500000, numberOfRooms: 4, floorSizeSqFt: 1718, image: "/assets/images/promenade-4bhk-1718.jpg" }
+      { slug: "3-bhk-flats-1316", title: "3 BHK Luxury Flats", titleMr: "३ बीएचके लक्झरी फ्लॅट्स", carpetArea: "1,316 Sq. Ft.", price: "₹ 1.65 Cr*", priceValue: 16500000, numberOfRooms: 3, floorSizeSqFt: 1316, image: "/assets/images/official/promenade-3bhk-plan2.jpg" },
+      { slug: "4-bhk-flats-1633", title: "4 BHK Premium Flats (Type 1)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,633 Sq. Ft.", price: "₹ 2.05 Cr*", priceValue: 20500000, numberOfRooms: 4, floorSizeSqFt: 1633, image: "/assets/images/official/promenade-4bhk-plan3.jpg" },
+      { slug: "4-bhk-flats-1718", title: "4 BHK Premium Flats (Type 2)", titleMr: "४ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,718 Sq. Ft.", price: "₹ 2.15 Cr*", priceValue: 21500000, numberOfRooms: 4, floorSizeSqFt: 1718, image: "/assets/images/official/promenade-4bhk-plan3.jpg" }
     ]
   },
   {
     id: "altius",
     slug: "paranjape-blue-ridge-the-altius-hinjewadi-pune",
     name: "The Altius",
-    tagline: "Ultra-Luxury 4 & 5 BHK Riverside Residences",
-    taglineMr: "अल्ट्रा-लक्झरी ४ आणि ५ बीएचके रिव्हरसाईड निवास",
-    description: "The absolute crown jewel of luxury apartments in Pune West. Paranjape The Altius offers iconic Blue Ridge riverfront apartments and exclusive golf view flats with a professional 9-hole golf course serving as your personal backyard. These ultra-luxury 4 BHK and 5 BHK sky residences are meticulously designed for the elite seeking a signature lifestyle, high capital appreciation, and uncompromised privacy in Pune's most successful premium township near Baner, Balewadi, and Wakad.",
-    descriptionMr: "ब्लू रिज लक्झरीचा मुकुट मणी. अल्टियस आपल्या घराच्या बागेत ९-होल प्रोफेशनल गोल्फ कोर्ससह आयकॉनिक रिव्हरफ्रंट निवासस्थान प्रदान करते. हे प्रीमियम ४ बीएचके आणि ५ बीएचके अपार्टमेंट्स पुण्यातील सर्वात यशस्वी टाऊनशिपमध्ये राहू इच्छिणाऱ्या उच्चभ्रू लोकांसाठी आहेत.",
-    carpetArea: "1,858 - 2,480+ Sq. Ft.",
-    price: "₹ 1.80 Cr onwards",
-    priceValue: 18000000,
+    tagline: "Ultra-Luxury 3 & 4 BHK Riverside Residences",
+    taglineMr: "अल्ट्रा-लक्झरी ३ आणि ४ बीएचके रिव्हरसाईड निवास",
+    description: "The absolute crown jewel of luxury apartments in Pune West. Paranjape The Altius offers iconic Blue Ridge riverfront apartments and exclusive golf view flats with a professional 9-hole golf course serving as your personal backyard. These ultra-luxury 3 BHK and 4 BHK sky residences are meticulously designed for the elite seeking a signature lifestyle, high capital appreciation, and uncompromised privacy in Pune's most successful premium township near Baner, Balewadi, and Wakad.",
+    descriptionMr: "ब्लू रिज लक्झरीचा मुकुट मणी. अल्टियस आपल्या घराच्या बागेत ९-होल प्रोफेशनल गोल्फ कोर्ससह आयकॉनिक रिव्हरफ्रंट निवासस्थान प्रदान करते. हे प्रीमियम ३ बीएचके आणि ४ बीएचके अपार्टमेंट्स पुण्यातील सर्वात यशस्वी टाऊनशिपमध्ये राहू इच्छिणाऱ्या उच्चभ्रू लोकांसाठी आहेत.",
+    carpetArea: "1,550 - 2,100 Sq. Ft.",
+    price: "₹ 1.55 Cr onwards",
+    priceValue: 15500000,
     storeys: 36,
     possession: "Ready / Near Ready",
     reraNumber: "P52100078116",
@@ -88,19 +88,19 @@ export const projects: Project[] = [
     ],
     amenities: ["Exclusive Signature Clubhouse", "Direct 9-Hole Golf Course Access", "Rooftop Sky Lounge with Viewing Deck", "24/7 Premium Concierge Service"],
     configurations: [
-      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/official/altius-4bhk.jpg" },
-      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस", carpetArea: "2,480 Sq. Ft.", price: "₹ 2.65 Cr*", priceValue: 26500000, numberOfRooms: 5, floorSizeSqFt: 2480, image: "/assets/images/official/altius-5bhk.jpg" }
+      { slug: "3-bhk-flats", title: "3 BHK Riverside Flats", titleMr: "३ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,550 Sq. Ft.", price: "₹ 1.55 Cr*", priceValue: 15500000, numberOfRooms: 3, floorSizeSqFt: 1550, image: "/assets/images/official/altius-4bhk.jpg" },
+      { slug: "4-bhk-flats", title: "4 BHK Royal Fairway Residences", titleMr: "४ बीएचके रॉयल फेअरवे निवास", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/official/altius-5bhk.jpg" }
     ]
   },
   {
     id: "ridge41",
     slug: "paranjape-blue-ridge-41-hinjewadi-pune",
     name: "Ridges 41",
-    tagline: "High-Rise 2, 3 & 4 BHK Living",
-    taglineMr: "हाय-राईज २, ३ आणि ४ बीएचके लिविंग",
-    description: "Strategically located within the prestigious Ridges cluster at Paranjape Blue Ridge Pune, The Ridges 41 utilizes advanced MiVAN technology to offer modern 2 BHK, 3 BHK, and 4 BHK luxury residences. Featuring 6 levels of dedicated podium parking, it is the ideal smart investment property in Hinjewadi for those seeking high rental yield properties in Pune near Phase 1 offices and the upcoming Pune Metro Line 3. Buy a premium flat in Blue Ridge to secure your future in this self-sufficient, 138-acre gated community.",
-    descriptionMr: "ब्लू रिज हिंजवडीतील प्रतिष्ठित रिजेस क्लस्टरचा भाग, रिजेस ४१ प्रगत मिवान तंत्रज्ञानाचा वापर करून आधुनिक २, ३ आणि ४ बीएचके निवासस्थान प्रदान करते. ६ स्तरांच्या समर्पित पार्किंगसह, हिंजवडी फेज १ आणि २ जवळ उच्च भाड्याने मिळकत शोधणाऱ्यांसाठी हे एक आदर्श गुंतवणूक आहे.",
-    carpetArea: "793 - 1,613 Sq. Ft.",
+    tagline: "High-Rise 2 & 3 BHK Living",
+    taglineMr: "हाय-राईज २ आणि ३ बीएचके लिविंग",
+    description: "Strategically located within the prestigious Ridges cluster at Paranjape Blue Ridge Pune, The Ridges 41 utilizes advanced MiVAN technology to offer modern 2 BHK and 3 BHK luxury residences. Featuring 6 levels of dedicated podium parking, it is the ideal smart investment property in Hinjewadi for those seeking high rental yield properties in Pune near Phase 1 offices and the upcoming Pune Metro Line 3. Buy a premium flat in Blue Ridge to secure your future in this self-sufficient, 138-acre gated community.",
+    descriptionMr: "ब्लू रिज हिंजवडीतील प्रतिष्ठित रिजेस क्लस्टरचा भाग, रिजेस ४१ प्रगत मिवान तंत्रज्ञानाचा वापर करून आधुनिक २ आणि ३ बीएचके निवासस्थान प्रदान करते. ६ स्तरांच्या समर्पित पार्किंगसह, हिंजवडी फेज १ आणि २ जवळ उच्च भाड्याने मिळकत शोधणाऱ्यांसाठी हे एक आदर्श गुंतवणूक आहे.",
+    carpetArea: "793 - 1,180 Sq. Ft.",
     price: "₹ 97.60 L onwards",
     priceValue: 9760000,
     storeys: 41,
@@ -116,9 +116,8 @@ export const projects: Project[] = [
     ],
     amenities: ["Expansive Recreational Podium Level", "Fully Air-Conditioned Multipurpose Hall", "State-of-the-art Gymnasium", "Dedicated Kids Play Area & Creche"],
     configurations: [
-      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "793 - 970 Sq. Ft.", price: "₹ 97.60 L*", priceValue: 9760000, numberOfRooms: 2, floorSizeSqFt: 793, image: "/assets/images/official/ridges41-2bhk.jpg" },
-      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 - 1,275 Sq. Ft.", price: "₹ 1.25 Cr*", priceValue: 12500000, numberOfRooms: 3, floorSizeSqFt: 1250, image: "/assets/images/official/ridges41-3bhk.jpg" },
-      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,592 - 1,613 Sq. Ft.", price: "₹ 1.58 Cr*", priceValue: 15800000, numberOfRooms: 4, floorSizeSqFt: 1592, image: "/assets/images/official/ridges41-4bhk.jpg" }
+      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "793 Sq. Ft.", price: "₹ 97.60 L*", priceValue: 9760000, numberOfRooms: 2, floorSizeSqFt: 793, image: "/assets/images/official/ridges41-2bhk.jpg" },
+      { slug: "3-bhk-flats", title: "3 BHK Signature Residences", titleMr: "३ बीएचके सिग्नेचर निवास", carpetArea: "1,180 Sq. Ft.", price: "₹ 1.35 Cr*", priceValue: 13500000, numberOfRooms: 3, floorSizeSqFt: 1180, image: "/assets/images/official/ridges41-3bhk.jpg" }
     ]
   }
 ];

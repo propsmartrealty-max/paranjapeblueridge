@@ -36,14 +36,14 @@ function getSiloFAQs(silo: string, title: string) {
       ];
     case 'price-list':
       return [
-        { q: `What is the current price of ${title.split('Price')[0].trim()}?`, a: '2 BHK in Ridges 41 starts at ₹97.60 L. 3 BHK in Promenade starts at ₹1.65 Cr. 4 BHK Altius starts at ₹1.80 Cr. 5 BHK penthouses at ₹2.65 Cr. All prices subject to floor rise and GST.' },
+        { q: `What is the current price of ${title.split('Price')[0].trim()}?`, a: '2 BHK in Ridges 41 starts at ₹97.60 L. 3 BHK in Promenade starts at ₹1.65 Cr. 4 BHK Altius starts at ₹1.80 Cr. All prices subject to floor rise and GST.' },
         { q: 'What is the payment plan for Blue Ridge Hinjewadi?', a: 'Blue Ridge offers construction-linked payment plans. Typically: 10% on booking, 80% linked to construction milestones, 10% on possession. Home loans available from all major banks.' },
         { q: 'What is the all-inclusive cost at Blue Ridge?', a: 'All-inclusive cost includes base price, GST (5%), stamp duty (5%), registration (1%), maintenance deposit, and club membership. Contact the sales office for exact cost sheet.' },
         { q: 'Is the price negotiable at Blue Ridge Hinjewadi?', a: 'Blue Ridge is a premium branded township with fixed pricing. However, early-stage bookings and bulk purchases may qualify for preferential allotment. Contact our team for current offers.' },
       ];
     case 'floor-plan':
       return [
-        { q: `What is the carpet area for ${title.split('Floor')[0].trim()} at Blue Ridge?`, a: '2 BHK: 793-970 sq ft | 3 BHK Promenade: 1,316 sq ft | 3 BHK Ridges 41: 1,250-1,275 sq ft | 4 BHK Altius: 1,858 sq ft | 5 BHK: 2,480+ sq ft. All carpet areas per RERA definition.' },
+        { q: `What is the carpet area for ${title.split('Floor')[0].trim()} at Blue Ridge?`, a: '2 BHK: 793-970 sq ft | 3 BHK Promenade: 1,316 sq ft | 3 BHK Ridges 41: 1,180 sq ft | 4 BHK Altius: 1,858 sq ft. All carpet areas per RERA definition.' },
         { q: 'Does Blue Ridge use MiVAN construction for better carpet area?', a: 'Yes. Ridges 41 and Promenade use MiVAN aluminium formwork, resulting in superior wall accuracy and 3-5% more usable carpet area vs conventional construction.' },
         { q: 'How do I download the floor plan for Blue Ridge?', a: 'Request the official floor plan brochure through our enquiry form or WhatsApp +91-7744009295. We will dispatch the complete PDF with all unit configurations within 30 minutes.' },
         { q: 'Are the floor plans RERA compliant?', a: 'Yes. All unit plans at Blue Ridge are exactly as registered with MahaRERA. Promenade: P52100055581, Altius: P52100078116, Ridges 41: P52100000054.' },
@@ -73,7 +73,7 @@ function getSiloFAQs(silo: string, title: string) {
       return [
         { q: `What amenities are available at ${title}?`, a: '9-hole golf course, private boat club on Mula river, Blue Ridge Public School (ICSE), pet park, gymnasium, infinity pool, and 24/7 security with multi-tier access control.' },
         { q: 'Are all Blue Ridge projects RERA registered?', a: 'Yes. Promenade: P52100055581, The Altius: P52100078116, Ridges 41: P52100000054. All MahaRERA certified.' },
-        { q: 'What is the price range at Paranjape Blue Ridge Hinjewadi?', a: '2 BHK from ₹97.60 L (Ridges 41) | 3 BHK from ₹1.25 Cr | 4 BHK from ₹1.58 Cr | 5 BHK Penthouses at ₹2.65 Cr (The Altius).' },
+        { q: 'What is the price range at Paranjape Blue Ridge Hinjewadi?', a: '2 BHK from ₹97.60 L (Ridges 41) | 3 BHK from ₹1.35 Cr | 4 BHK from ₹1.80 Cr (The Altius).' },
         { q: 'Is Blue Ridge a good place to live for families?', a: 'Yes. The ICSE school is inside the township. With 3,000+ families already resident, the community is established with playgrounds, clubs, and 24/7 security.' },
       ];
   }

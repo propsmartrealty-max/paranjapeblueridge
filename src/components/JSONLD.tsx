@@ -71,7 +71,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       return [
         { 
           q: t(`What is the price of ${coreTitle} at Blue Ridge?`, `ब्लू रिजमध्ये ${coreTitle} ची किंमत किती आहे?`), 
-          a: t('2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr | 5 BHK: ₹2.65 Cr. Prices subject to floor rise and applicable taxes.', '२ बीएचके रिजेस ४१: ₹९७.६० लाख पासून | ३ बीएचके प्रोमेनेड: ₹१.६५ कोटी पासून | ४ बीएचके आल्टियस: ₹१.८० कोटी पासून | ५ बीएचके: ₹२.६५ कोटी. किमती मजल्यानुसार आणि लागू करांनुसार बदलू शकतात.') 
+          a: t('2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr. Prices subject to floor rise and applicable taxes.', '२ बीएचके रिजेस ४१: ₹९७.६० लाख पासून | ३ बीएचके प्रोमेनेड: ₹१.६५ कोटी पासून | ४ बीएचके आल्टियस: ₹१.८० कोटी पासून. किमती मजल्यानुसार आणि लागू करांनुसार बदलू शकतात.') 
         },
         { 
           q: t('What is the payment plan at Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडी येथे पेमेंट प्लॅन कसा आहे?'), 
@@ -84,7 +84,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       return [
         { 
           q: t(`What is the carpet area for ${coreTitle}?`, `${coreTitle} साठी कारपेट एरिया किती आहे?`), 
-          a: t('2 BHK: 793-970 sq ft | 3 BHK: 1,250-1,316 sq ft | 4 BHK: 1,592-1,858 sq ft | 5 BHK: 2,480 sq ft. All carpet areas as per RERA registered plans.', '२ बीएचके: ७९३-९७० चौ. फूट | ३ बीएचके: १२५०-१३१६ चौ. फूट | ४ बीएचके: १५९२-१८५८ चौ. फूट | ५ बीएचके: २४८० चौ. फूट. सर्व कारपेट एरिया रेरा (RERA) नोंदणीकृत प्लॅन्सच्या आधारे आहेत.') 
+          a: t('2 BHK: 793-970 sq ft | 3 BHK: 1,180-1,316 sq ft | 4 BHK: 1,633-1,858 sq ft. All carpet areas as per RERA registered plans.', '२ बीएचके: ७९३-९७० चौ. फूट | ३ बीएचके: ११८०-१३१६ चौ. फूट | ४ बीएचके: १६३३-१८५८ चौ. फूट. सर्व कारपेट एरिया रेरा (RERA) नोंदणीकृत प्लॅन्सच्या आधारे आहेत.') 
         },
         { 
           q: t('How do I get the floor plan for Blue Ridge?', 'मला ब्लू रिजचा फ्लोअर प्लॅन कसा मिळू शकतो?'), 
@@ -119,7 +119,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       return [
         { 
           q: t(`What configurations are available in ${title}?`, `${title} मध्ये कोणते पर्याय उपलब्ध आहेत?`), 
-          a: t('Blue Ridge features premium 2, 3, 4, and 5 BHK luxury residences across its massive 138-acre township, including the ultra-premium Ridges 41 and The Altius clusters.', 'ब्लू रिजमध्ये त्याच्या भव्य १३८ एकरच्या टाउनशिपमध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके लक्झरी घरे आहेत, ज्यात अति-प्रीमियम रिजेस ४१ आणि द आल्टियस क्लस्टर्स समाविष्ट आहेत.') 
+          a: t('Blue Ridge features premium 2, 3, and 4 BHK luxury residences across its massive 138-acre township, including Promenade Residences, The Altius and Ridges 41 clusters.', 'ब्लू रिजमध्ये त्याच्या भव्य १३८ एकरच्या टाउनशिपमध्ये प्रीमियम २, ३ आणि ४ बीएचके लक्झरी घरे आहेत, ज्यात प्रोमेनेड रेसिडेन्सेस, द आल्टियस आणि रिजेस ४१ क्लस्टर्स समाविष्ट आहेत.') 
         },
         { 
           q: t(`What are the possession dates for ${title}?`, `${title} साठी ताब्याची तारीख (Possession Date) काय आहे?`), 
@@ -435,7 +435,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "name": businessName,
     "parentOrganization": { "@id": `${SITE_URL}/#organization` },
     "alternateName": ["Paranjape Schemes Pune", "Paranjape Projects", projectData?.name || "Blue Ridge Township"],
-    "description": t("Pune's premier 138-acre integrated township offering premium 2, 3, 4 & 5 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.", "राजीव गांधी इन्फोटेक पार्क जवळ हिंजवडी फेज १ मध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके लक्झरी अपार्टमेंट्स देणारा पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प. सुविधांमध्ये ९-होल गोल्फ कोर्स, खाजगी बोट क्लब, आयसीएसई शाळा आणि पुणे मेट्रो लाईन ३ कनेक्टिव्हिटी समाविष्ट आहे."),
+    "description": t("Pune's premier 138-acre integrated township offering premium 2, 3 & 4 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.", "राजीव गांधी इन्फोटेक पार्क जवळ हिंजवडी फेज १ मध्ये प्रीमियम २, ३ आणि ४ बीएचके लक्झरी अपार्टमेंट्स देणारा पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प. सुविधांमध्ये ९-होल गोल्फ कोर्स, खाजगी बोट क्लब, आयसीएसई शाळा आणि पुणे मेट्रो लाईन ३ कनेक्टिव्हिटी समाविष्ट आहे."),
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",
     "image": [
@@ -579,7 +579,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@type": "Place",
     "@id": `${SITE_URL}/${slug}#place`,
     "name": t("Paranjape Blue Ridge - 138 Acre Mega Township in West Pune", "परंजपे ब्लू रिज - पश्चिम पुण्यातील १३८ एकर मेगा टाउनशिप"),
-    "description": t("Pune's premier real estate destination and luxury township located in the heart of Hinjewadi. Dominating the West Pune real estate market with premium 2, 3, 4, and 5 BHK apartments, a 9-hole golf course, and a massive IT SEZ.", "हिंजवडीच्या मध्यभागी असलेला पुण्याचा प्रमुख रिअल इस्टेट आणि लक्झरी टाउनशिप प्रकल्प. पश्चिम पुण्याच्या रिअल इस्टेट मार्केटमध्ये प्रीमियम २, ३, ४ आणि ५ बीएचके फ्लॅट्स, ९-होल गोल्फ कोर्स आणि भव्य आयटी एसईझेड सह वर्चस्व."),
+    "description": t("Pune's premier real estate destination and luxury township located in the heart of Hinjewadi. Dominating the West Pune real estate market with premium 2, 3, and 4 BHK apartments, a 9-hole golf course, and a massive IT SEZ.", "हिंजवडीच्या मध्यभागी असलेला पुण्याचा प्रमुख रिअल इस्टेट आणि लक्झरी टाउनशिप प्रकल्प. पश्चिम पुण्याच्या रिअल इस्टेट मार्केटमध्ये प्रीमियम २, ३ आणि ४ बीएचके फ्लॅट्स, ९-होल गोल्फ कोर्स आणि भव्य आयटी एसईझेड सह वर्चस्व."),
     "url": `${SITE_URL}/${slug}`,
     "image": `${SITE_URL}/assets/images/township-aerial-night.jpg`,
     "geo": {
@@ -684,7 +684,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "@type": "HowToStep",
         "position": 1,
         "name": t("Choose Your Configuration", "तुमचे कॉन्फिगरेशन निवडा"),
-        "text": t("Browse 2 BHK, 3 BHK, 4 BHK, and 5 BHK options across Ridges 41, Promenade Residences, and The Altius. Prices start from ₹97.60 Lakhs.", "रिजेस ४१, प्रोमेनेड रेसिडेन्सेस आणि द आल्टियस मधील २ बीएचके, ३ बीएचके, ४ बीएचके आणि ५ बीएचके पर्याय पहा. किमती ₹९७.६० लाखांपासून सुरू होतात."),
+        "text": t("Browse 2 BHK, 3 BHK, and 4 BHK options across Ridges 41, Promenade Residences, and The Altius. Prices start from ₹97.60 Lakhs.", "रिजेस ४१, प्रोमेनेड रेसिडेन्सेस आणि द आल्टियस मधील २ बीएचके, ३ बीएचके आणि ४ बीएचके पर्याय पहा. किमती ₹९७.६० लाखांपासून सुरू होतात."),
         "url": `${SITE_URL}/#projects`
       },
       {

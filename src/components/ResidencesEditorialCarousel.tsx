@@ -15,7 +15,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
   const filteredClusters = blueRidgeClusters.filter(c => {
     if (selectedFilter === '2bhk') return c.configurations.includes('2');
     if (selectedFilter === '3bhk') return c.configurations.includes('3');
-    if (selectedFilter === '4bhk') return c.configurations.includes('4') || c.configurations.includes('5');
+    if (selectedFilter === '4bhk') return c.configurations.includes('4');
     return true;
   });
 
@@ -94,7 +94,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
                 : 'glass-pill border border-slate-300 hover:border-[#785415]'
             }`}
           >
-            3 BHK Riverview (from ₹1.65 Cr*)
+            3 BHK Residences (from ₹1.35 Cr*)
           </button>
           <button
             onClick={() => setSelectedFilter('4bhk')}
@@ -104,7 +104,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
                 : 'glass-pill border border-slate-300 hover:border-[#785415]'
             }`}
           >
-            4 & 5 BHK Sky Mansions (from ₹1.80 Cr*)
+            4 BHK Luxury Residences (from ₹1.80 Cr*)
           </button>
         </div>
 
