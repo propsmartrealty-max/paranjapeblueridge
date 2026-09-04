@@ -50,8 +50,11 @@ export const projects: Project[] = [
     geo: { latitude: 18.5912, longitude: 73.7381 },
     usp: ["Exclusive River-facing Balconies with Mula River Views", "Grand Double-height Podium Level", "Tallest Luxury Towers in Hinjewadi Phase 1", "Walk-to-Work IT Hub Proximity"],
     specs: [
-      { title: "Flooring", items: ["Polished Glazed Vitrified Tiles for Living Areas", "Premium Anti-skid Ceramic for Decks & Terraces"] },
-      { title: "Structure", items: ["Advanced MiVAN Aluminium Formwork", "Earthquake Resistant RCC Frame Structure"] }
+      { title: "Flooring", items: ["Polished glazed vitrified tiles for living, dining, bedrooms, kitchen & passage", "Glazed vitrified anti-skid tiles for sit-out balconies", "Vitrified tiles for toilets with full-body vanity counter"] },
+      { title: "Kitchen & Reticulated Gas", items: ["Full-body vitrified platform with single bowl stainless steel sink", "Modular kitchen setup with chimney exhaust provision", "Piped reticulated central gas system connection"] },
+      { title: "Doors, Windows & Dado", items: ["Main flush door with dual-side laminate and biometric digital lock", "Anodized aluminium sliding windows & balcony doors with mosquito net", "Vitrified dado tiles in toilets up to lintel level with glass shower partition"] },
+      { title: "Electrical & Smart Tech", items: ["Concealed copper wiring with modular switches", "TV & USB-C points in living room and all bedrooms", "1 broadband router point & AC electrical points throughout", "1 KVA dedicated DG backup per flat"] },
+      { title: "Structure & Sustainability", items: ["Advanced monolithic MiVAN aluminium formwork", "Earthquake resistant RCC framework", "Solar water heating provision in master toilet"] }
     ],
     amenities: ["Expansive Podium Garden", "Dedicated Work-from-Home Pods", "Private Mini Theatre", "Rooftop Infinity Pool in Hinjewadi", "Multipurpose Sports Court"],
     configurations: [
@@ -77,7 +80,11 @@ export const projects: Project[] = [
     geo: { latitude: 18.5905, longitude: 73.7375 },
     usp: ["Premium Golf-course Facing Residences", "Exclusive Private Lift Lobby per Unit", "Panoramic Riverside Vistas of Mula River", "Ultra-Low Density Elite Living"],
     specs: [
-        { title: "Internal", items: ["Premium Velvet Paint Finish", "Fully Equipped Modular Kitchen with Chimney", "VRV Central Air Conditioning Provision"] }
+      { title: "Grand Living & Foyers", items: ["Imported Italian marble flooring across living, dining, and entrance foyer", "11-foot floor-to-ceiling clear architectural heights", "Schüco German double-glazed acoustic glass sliding systems"] },
+      { title: "Master Suites & Bathrooms", items: ["Hardwood Burma teak engineered wooden flooring in master suites", "His-and-Hers walk-in dressing alcoves", "Kohler / Grohe matte-black thermostatic sanitary fixtures with glass shower enclosure"] },
+      { title: "Gourmet Kitchen", items: ["Full-body vitrified stone utility platform with double bowl SS sink", "Fully equipped modular kitchen with designer chimney", "Piped central reticulated gas line with safety leak detector"] },
+      { title: "Smart Automation & Air Conditioning", items: ["Integrated KNX smart home lighting, climate, and curtain automation", "Central VRV air-conditioning conduits with zero outdoor clutter", "Dedicated service core with private freight elevator"] },
+      { title: "Structure & Power Security", items: ["Advanced high-strength RCC with post-tensioned slabs", "100% DG power backup including air conditioning", "Captive 220/22 KVA township substation backup"] }
     ],
     amenities: ["Exclusive Signature Clubhouse", "Direct 9-Hole Golf Course Access", "Rooftop Sky Lounge with Viewing Deck", "24/7 Premium Concierge Service"],
     configurations: [
@@ -102,7 +109,10 @@ export const projects: Project[] = [
     geo: { latitude: 18.5920, longitude: 73.7390 },
     usp: ["Advanced MiVAN Construction Technology", "6-Level Dedicated Podium Parking", "Integrated High-Rise Township Amenities", "Unmatched Capital Appreciation Potential"],
     specs: [
-        { title: "Tech", items: ["1 KVA Dedicated DG Backup per Flat", "Solar Water Heating Provision", "High-Speed Passenger Elevators"] }
+      { title: "Flooring & Living Spans", items: ["Polished glazed vitrified tile flooring across all rooms", "Dedicated ergonomic work-from-home workstation nook pre-cabled with high-speed fiber", "Wide sliding anodized windows with mosquito net for natural illumination"] },
+      { title: "Kitchen & Gas Provision", items: ["Full-body vitrified platform with single bowl SS sink", "Modular kitchen setup with chimney exhaust provision", "Reticulated piped LPG gas connection with safety detector"] },
+      { title: "Bathrooms & Finishes", items: ["Vitrified dado tiles in toilets up to lintel level", "Gypsum punning with velvet paint finish on internal walls", "Solar water heating provision for master bathroom"] },
+      { title: "Electrical & Parking", items: ["Concealed copper wiring with modular switches and USB-C bedroom points", "1 KVA dedicated DG power backup per flat", "6-level dedicated covered podium parking with automated vehicular circulation"] }
     ],
     amenities: ["Expansive Recreational Podium Level", "Fully Air-Conditioned Multipurpose Hall", "State-of-the-art Gymnasium", "Dedicated Kids Play Area & Creche"],
     configurations: [
@@ -127,8 +137,8 @@ export const corporateMatrix = [
 ];
 
 export const townshipData = {
-  totalArea: "138 Acres Integrated Gated Township",
-  families: "3,000+ Happy Families Currently Residing",
+  totalArea: "138-150 Acres Integrated Gated Township",
+  families: "3,500+ Happy Families Currently Residing",
   amenities: [
     { title: "Blue Ridge Public School", description: "Top-tier ICSE education from pre-primary to high school within the township gates.", icon: "School" },
     { title: "Blue Ridge Boat Club", description: "Pune's first private boat club offering kayaking and riverside dining on the Mula river.", icon: "Ship" },

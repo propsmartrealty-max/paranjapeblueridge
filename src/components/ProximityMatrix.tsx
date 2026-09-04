@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { MapPin, Navigation, Building2, GraduationCap, Hospital, Train, Car, Footprints } from 'lucide-react';
+import { MapPin, Navigation, Building2, GraduationCap, Hospital, Train, Car, Footprints, Hotel, ShoppingBag, Waves, Flag } from 'lucide-react';
 
 interface Landmark {
-  category: 'IT Park' | 'Transit' | 'Education' | 'Healthcare' | 'Shopping';
+  category: 'IT Park' | 'Transit' | 'Education' | 'Healthcare' | 'Hotels' | 'Retail & Leisure';
   name: string;
   distance: string;
   driveTime: string;
@@ -14,32 +14,36 @@ interface Landmark {
 
 export default function ProximityMatrix() {
   const landmarks: Landmark[] = [
+    { category: 'IT Park', name: 'Blue Ridge IT / ITES SEZ', distance: '0.0 KM', driveTime: '0 Mins', walkTime: '2 Mins', icon: Building2 },
     { category: 'IT Park', name: 'Infosys Phase 1 Campus', distance: '1.2 KM', driveTime: '3 Mins', walkTime: '10 Mins', icon: Building2 },
     { category: 'IT Park', name: 'Wipro Technologies Phase 1', distance: '1.5 KM', driveTime: '4 Mins', walkTime: '12 Mins', icon: Building2 },
     { category: 'IT Park', name: 'TCS (Tata Consultancy Services)', distance: '1.8 KM', driveTime: '5 Mins', walkTime: '15 Mins', icon: Building2 },
-    { category: 'IT Park', name: 'Embassy Tech Zone Phase 2', distance: '2.5 KM', driveTime: '6 Mins', icon: Building2 },
-    { category: 'IT Park', name: 'Quadron Business Park', distance: '2.8 KM', driveTime: '7 Mins', icon: Building2 },
-    { category: 'Transit', name: 'Pune Metro Line 3 Station (Hinjewadi)', distance: '800 M', driveTime: '2 Mins', walkTime: '7 Mins', icon: Train },
-    { category: 'Transit', name: 'Mumbai-Bangalore Highway (NH-48)', distance: '3.2 KM', driveTime: '8 Mins', icon: Navigation },
-    { category: 'Education', name: 'Blue Ridge Public School (ICSE)', distance: 'Inside Campus', driveTime: '0 Mins', walkTime: '2 Mins', icon: GraduationCap },
-    { category: 'Education', name: 'Mahindra International School', distance: '2.1 KM', driveTime: '5 Mins', icon: GraduationCap },
-    { category: 'Healthcare', name: 'Ruby Hall Clinic Hinjewadi', distance: '1.5 KM', driveTime: '4 Mins', icon: Hospital },
-    { category: 'Healthcare', name: 'Sanjeevani Hospital', distance: '2.0 KM', driveTime: '5 Mins', icon: Hospital },
+    { category: 'Transit', name: 'Pune Metro Line 3 Station', distance: '800 M', driveTime: '2 Mins', walkTime: '7 Mins', icon: Train },
+    { category: 'Transit', name: 'Mumbai-Pune Expressway (NH-48)', distance: '3.2 KM', driveTime: '6 Mins', icon: Navigation },
+    { category: 'Education', name: 'Blue Ridge Public School (ICSE)', distance: '0.6 KM', driveTime: '1 Min', walkTime: '3 Mins', icon: GraduationCap },
+    { category: 'Education', name: 'Mercedes Benz International School', distance: '1.7 KM', driveTime: '4 Mins', icon: GraduationCap },
+    { category: 'Healthcare', name: 'Ruby Hall Clinic Hinjawadi', distance: '3.1 KM', driveTime: '6 Mins', icon: Hospital },
+    { category: 'Healthcare', name: 'Sanjeevani Hospital', distance: '3.9 KM', driveTime: '8 Mins', icon: Hospital },
+    { category: 'Hotels', name: 'Hyatt Place Hinjawadi', distance: '2.1 KM', driveTime: '5 Mins', icon: Hotel },
+    { category: 'Hotels', name: 'Vivanta Pune Hinjawadi', distance: '2.8 KM', driveTime: '6 Mins', icon: Hotel },
+    { category: 'Retail & Leisure', name: 'Xion Mall & High Street', distance: '2.5 KM', driveTime: '5 Mins', icon: ShoppingBag },
+    { category: 'Retail & Leisure', name: 'Blue Ridge 9-Hole Golf Course', distance: '0.5 KM', driveTime: '1 Min', walkTime: '4 Mins', icon: Flag },
+    { category: 'Retail & Leisure', name: 'Blue Ridge Boat Club & Marina', distance: '0.0 KM', driveTime: '0 Mins', walkTime: '2 Mins', icon: Waves },
   ];
 
   return (
-    <div className="bg-navy-light/70 border border-gold/20 rounded-2xl p-6 md:p-8 backdrop-blur-xl my-10 text-text">
-      <div className="flex items-center justify-between border-b border-gold/20 pb-4 mb-6">
+    <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm my-10 text-[#070D1A]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-gold/10 rounded-xl text-gold border border-gold/30">
+          <div className="p-2.5 bg-amber-50 rounded-xl text-[#B88E3E] border border-amber-200">
             <MapPin size={22} />
           </div>
           <div>
-            <h3 className="text-2xl font-serif text-warm-white">Hyper-Local Proximity & Commute Matrix</h3>
-            <p className="text-xs text-text-muted">Verified travel distances from Paranjape Blue Ridge, Hinjewadi Phase 1</p>
+            <h3 className="text-xl font-serif font-bold text-[#070D1A]">Official Commute & Proximity Matrix</h3>
+            <p className="text-xs text-slate-500 font-sans">Verified travel distances from Paranjape Blue Ridge, Hinjewadi Phase 1</p>
           </div>
         </div>
-        <span className="hidden sm:inline text-xs bg-emerald-500/10 text-emerald-400 font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+        <span className="inline-flex items-center gap-1.5 text-xs bg-amber-50 text-[#8F6A24] font-bold font-mono px-3.5 py-1.5 rounded-full border border-amber-200 self-start sm:self-auto">
           Walk-to-Work SEZ Inside
         </span>
       </div>
@@ -48,26 +52,26 @@ export default function ProximityMatrix() {
         {landmarks.map((lm, i) => {
           const IconComp = lm.icon;
           return (
-            <div key={i} className="bg-navy/80 border border-gold/10 hover:border-gold/30 transition-all rounded-xl p-4 flex flex-col justify-between space-y-3">
+            <div key={i} className="bg-slate-50/70 border border-slate-200 hover:border-[#B88E3E] transition-all rounded-2xl p-4 flex flex-col justify-between space-y-3 shadow-2xs">
               <div className="flex items-start justify-between">
-                <div className="flex items-center gap-2 text-gold">
-                  <IconComp size={18} />
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-text-muted">{lm.category}</span>
+                <div className="flex items-center gap-2 text-[#B88E3E]">
+                  <IconComp size={16} />
+                  <span className="text-[10px] font-mono uppercase font-bold tracking-widest text-slate-500">{lm.category}</span>
                 </div>
-                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">{lm.distance}</span>
+                <span className="text-xs font-mono font-bold text-[#8F6A24] bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">{lm.distance}</span>
               </div>
 
-              <h4 className="text-sm font-semibold text-warm-white line-clamp-1">{lm.name}</h4>
+              <h4 className="text-xs font-sans font-bold text-[#070D1A] line-clamp-1">{lm.name}</h4>
 
-              <div className="flex items-center gap-4 text-xs text-text-muted border-t border-gold/10 pt-2">
+              <div className="flex items-center gap-4 text-xs font-sans text-slate-500 border-t border-slate-200/80 pt-2">
                 <span className="flex items-center gap-1">
-                  <Car size={12} className="text-gold" />
-                  {lm.driveTime}
+                  <Car size={13} className="text-[#B88E3E]" />
+                  <span>{lm.driveTime}</span>
                 </span>
                 {lm.walkTime && (
                   <span className="flex items-center gap-1">
-                    <Footprints size={12} className="text-emerald-400" />
-                    {lm.walkTime}
+                    <Footprints size={13} className="text-emerald-600" />
+                    <span className="text-emerald-700 font-medium">{lm.walkTime}</span>
                   </span>
                 )}
               </div>

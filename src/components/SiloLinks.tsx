@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { getRelatedPseoLinks } from '@/data/seo-matrix';
 import { ChevronRight, Zap } from 'lucide-react';
 
@@ -14,25 +13,25 @@ export default function SiloLinks({ currentSlug, silo }: SiloLinksProps) {
   if (finalLinks.length === 0) return null;
 
   return (
-    <section className="py-20 border-t border-white/5">
-      <div className="flex items-center gap-4 text-gold font-bold tracking-[6px] uppercase text-[10px] mb-8">
-        <Zap size={14} />
-        Related Sovereign Intelligence
+    <section className="py-20 border-t border-slate-200">
+      <div className="flex items-center gap-4 text-[#8F6A24] font-bold tracking-[6px] uppercase text-[10px] mb-8 font-mono">
+        <Zap size={14} className="text-[#B88E3E]" />
+        Related Township Intelligence
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {finalLinks.map((link) => (
-          <Link 
+          <a 
             key={link.slug} 
             href={`/${link.slug}`}
-            className="group p-6 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl transition-all flex items-center justify-between"
+            className="group p-6 bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl transition-all flex items-center justify-between no-underline shadow-xs hover:border-[#B88E3E]"
           >
             <div className="flex flex-col">
-              <span className="text-[8px] text-gold uppercase tracking-widest mb-1">{link.type} Profile</span>
-              <span className="text-sm text-warm-white group-hover:text-gold transition-colors">{link.title}</span>
+              <span className="text-[9px] text-[#8F6A24] font-mono uppercase tracking-widest mb-1 font-bold">{link.type} Profile</span>
+              <span className="text-sm font-sans font-semibold text-[#070D1A] group-hover:text-[#B88E3E] transition-colors">{link.title}</span>
             </div>
-            <ChevronRight className="text-gold/30 group-hover:text-gold group-hover:translate-x-1 transition-all" size={16} />
-          </Link>
+            <ChevronRight className="text-slate-400 group-hover:text-[#B88E3E] group-hover:translate-x-1 transition-all" size={16} />
+          </a>
         ))}
       </div>
     </section>

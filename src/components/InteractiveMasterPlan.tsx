@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Map, Info, Compass, ArrowRight, Ruler, IndianRupee, Layers, Eye } from 'lucide-react';
 import { projects } from '@/data/master-data';
-import Link from 'next/link';
 import { useCurrency } from '@/context/CurrencyContext';
 
 export default function InteractiveMasterPlan() {
@@ -129,13 +128,13 @@ export default function InteractiveMasterPlan() {
                         <span className="px-2 py-0.5 bg-white/10 border border-white/15 text-[8px] rounded-md text-white font-mono">{project.storeys} Levels</span>
                       </div>
 
-                      <Link 
+                      <a 
                         href={`/${project.slug}`} 
-                        className="w-full py-2.5 bg-gradient-to-r from-gold via-gold-light to-gold text-navy text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md hover:shadow-gold/30 hover:scale-[1.02] btn-sheen"
+                        className="w-full py-2.5 bg-gradient-to-r from-[#B88E3E] to-[#96722E] text-white text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-md no-underline hover:brightness-110"
                       >
                         <span>Explore Tower Plans</span>
                         <ArrowRight size={12} />
-                      </Link>
+                      </a>
                     </motion.div>
                   )}
                 </AnimatePresence>

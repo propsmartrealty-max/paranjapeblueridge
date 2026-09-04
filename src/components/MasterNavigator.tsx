@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Map, Info, ArrowUpRight, Navigation } from 'lucide-react';
 import { projects } from '@/data/master-data';
-import Link from 'next/link';
 
 export default function MasterNavigator() {
   const [activeCluster, setActiveCluster] = useState<string | null>(null);
@@ -131,13 +130,13 @@ export default function MasterNavigator() {
                           <span className="block text-[8px] text-text-light uppercase tracking-widest mb-1">Config</span>
                           <span className="text-warm-white font-bold">{activeProject.carpetArea}</span>
                         </div>
-                        <Link 
+                        <a 
                           href={`/${activeProject.slug}`}
-                          className="col-span-2 flex items-center justify-between p-4 bg-gold text-navy rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all"
+                          className="col-span-2 flex items-center justify-between p-4 bg-[#B88E3E] text-white rounded-xl font-bold uppercase text-xs tracking-widest hover:scale-105 transition-all no-underline"
                         >
-                          Explore Volume
+                          Explore Residences
                           <ArrowUpRight size={16} />
-                        </Link>
+                        </a>
                       </div>
                    )}
                 </motion.div>

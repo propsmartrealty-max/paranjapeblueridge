@@ -41,15 +41,14 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
   };
 
   return (
-    <div className="ultra-glass-card border border-gold/30 rounded-[2.5rem] sm:rounded-[3rem] p-6 md:p-10 shadow-2xl my-12 text-text relative overflow-hidden hud-frame">
-      <div className="luminous-line-gold absolute top-0 left-0 right-0 opacity-40"></div>
-      <div className="flex items-center gap-3.5 mb-8 border-b border-gold/20 pb-5">
-        <div className="p-3.5 bg-gold/10 rounded-2xl border border-gold/30 text-gold shadow-sm">
+    <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10 shadow-sm my-12 text-[#070D1A] relative overflow-hidden">
+      <div className="flex items-center gap-3.5 mb-8 border-b border-slate-200 pb-5">
+        <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-[#B88E3E] shadow-2xs">
           <Calculator size={26} />
         </div>
         <div>
-          <h3 className="text-2xl sm:text-3xl font-serif text-warm-white font-bold">Interactive Investment & ROI Calculator</h3>
-          <p className="text-xs sm:text-sm text-text-muted font-medium mt-1">Simulate rental yields, capital growth, and home loan EMI for {title}</p>
+          <h3 className="text-2xl sm:text-3xl font-serif text-[#070D1A] font-bold">Interactive Investment & ROI Calculator</h3>
+          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1 font-sans">Simulate rental yields, capital growth, and home loan EMI for {title}</p>
         </div>
       </div>
 
@@ -57,13 +56,13 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
         {/* Sliders Input Panel */}
         <div className="lg:col-span-7 space-y-6">
           {/* Property Price Slider */}
-          <div className="p-4 bg-white/70 dark:bg-slate-900/70 rounded-2xl border border-gold/20 shadow-sm">
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-bold text-warm-white flex items-center gap-2 font-sans">
-                <DollarSign size={16} className="text-gold" />
+              <label className="text-sm font-bold text-[#070D1A] flex items-center gap-2 font-sans">
+                <DollarSign size={16} className="text-[#B88E3E]" />
                 Property Value
               </label>
-              <span className="text-lg font-bold text-gold font-mono">{formatCurrency(propertyPrice)}</span>
+              <span className="text-lg font-bold text-[#B88E3E] font-mono">{formatCurrency(propertyPrice)}</span>
             </div>
             <input 
               type="range"
@@ -72,22 +71,22 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={250000}
               value={propertyPrice}
               onChange={(e) => setPropertyPrice(Number(e.target.value))}
-              className="w-full h-2.5 bg-gold/20 rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2.5 bg-amber-200/60 rounded-lg appearance-none cursor-pointer accent-[#B88E3E]"
             />
-            <div className="flex justify-between text-xs text-text-muted mt-1.5 font-mono font-medium">
+            <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono font-medium">
               <span>₹75 Lakh</span>
               <span>₹3.5 Cr</span>
             </div>
           </div>
 
           {/* Rental Yield Slider */}
-          <div className="p-4 bg-white/70 dark:bg-slate-900/70 rounded-2xl border border-gold/20 shadow-sm">
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-bold text-warm-white flex items-center gap-2 font-sans">
-                <TrendingUp size={16} className="text-gold" />
+              <label className="text-sm font-bold text-[#070D1A] flex items-center gap-2 font-sans">
+                <TrendingUp size={16} className="text-[#B88E3E]" />
                 Estimated Rental Yield (%)
               </label>
-              <span className="text-lg font-bold text-gold font-mono">{rentalYield.toFixed(1)}% / yr</span>
+              <span className="text-lg font-bold text-[#B88E3E] font-mono">{rentalYield.toFixed(1)}% / yr</span>
             </div>
             <input 
               type="range"
@@ -96,22 +95,22 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={0.1}
               value={rentalYield}
               onChange={(e) => setRentalYield(Number(e.target.value))}
-              className="w-full h-2.5 bg-gold/20 rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2.5 bg-amber-200/60 rounded-lg appearance-none cursor-pointer accent-[#B88E3E]"
             />
-            <div className="flex justify-between text-xs text-text-muted mt-1.5 font-mono font-medium">
+            <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono font-medium">
               <span>3.5% (Conservative)</span>
               <span>6.5% (High Demand)</span>
             </div>
           </div>
 
           {/* Loan Ratio Slider */}
-          <div className="p-4 bg-white/70 dark:bg-slate-900/70 rounded-2xl border border-gold/20 shadow-sm">
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-bold text-warm-white flex items-center gap-2 font-sans">
-                <ShieldCheck size={16} className="text-gold" />
+              <label className="text-sm font-bold text-[#070D1A] flex items-center gap-2 font-sans">
+                <ShieldCheck size={16} className="text-[#B88E3E]" />
                 Home Loan Funding (%)
               </label>
-              <span className="text-lg font-bold text-gold font-mono">{loanRatio}% ({formatCurrency(loanAmount)})</span>
+              <span className="text-lg font-bold text-[#B88E3E] font-mono">{loanRatio}% ({formatCurrency(loanAmount)})</span>
             </div>
             <input 
               type="range"
@@ -120,22 +119,22 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={5}
               value={loanRatio}
               onChange={(e) => setLoanRatio(Number(e.target.value))}
-              className="w-full h-2.5 bg-gold/20 rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2.5 bg-amber-200/60 rounded-lg appearance-none cursor-pointer accent-[#B88E3E]"
             />
-            <div className="flex justify-between text-xs text-text-muted mt-1.5 font-mono font-medium">
+            <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono font-medium">
               <span>0% (Self-Funded)</span>
               <span>80% (Max Loan)</span>
             </div>
           </div>
 
           {/* Appreciation Rate Slider */}
-          <div className="p-4 bg-white/70 dark:bg-slate-900/70 rounded-2xl border border-gold/20 shadow-sm">
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 shadow-2xs">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-bold text-warm-white flex items-center gap-2 font-sans">
-                <TrendingUp size={16} className="text-gold" />
+              <label className="text-sm font-bold text-[#070D1A] flex items-center gap-2 font-sans">
+                <TrendingUp size={16} className="text-[#B88E3E]" />
                 Annual Capital Appreciation (%)
               </label>
-              <span className="text-lg font-bold text-gold font-mono">{appreciationRate.toFixed(1)}% / yr</span>
+              <span className="text-lg font-bold text-[#B88E3E] font-mono">{appreciationRate.toFixed(1)}% / yr</span>
             </div>
             <input 
               type="range"
@@ -144,9 +143,9 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
               step={0.5}
               value={appreciationRate}
               onChange={(e) => setAppreciationRate(Number(e.target.value))}
-              className="w-full h-2.5 bg-gold/20 rounded-lg appearance-none cursor-pointer accent-gold"
+              className="w-full h-2.5 bg-amber-200/60 rounded-lg appearance-none cursor-pointer accent-[#B88E3E]"
             />
-            <div className="flex justify-between text-xs text-text-muted mt-1.5 font-mono font-medium">
+            <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono font-medium">
               <span>7.0%</span>
               <span>15.0% (Metro Line 3 Surge)</span>
             </div>
@@ -155,35 +154,34 @@ export default function RoiCalculator({ initialPrice = 12500000, title = 'Blue R
 
         {/* Output Calculation Cards */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-          <div className="bg-gold/5 border border-gold/25 rounded-3xl p-6 space-y-4 shadow-inner">
+          <div className="bg-amber-50/50 border border-amber-200/80 rounded-3xl p-6 space-y-4 shadow-2xs">
             <div className="flex justify-between items-center">
-              <span className="text-xs sm:text-sm text-text-muted font-medium">Est. Monthly Rental Income</span>
-              <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">₹{monthlyRentalIncome.toLocaleString('en-IN')} / mo</span>
+              <span className="text-xs sm:text-sm text-slate-600 font-medium">Est. Monthly Rental Income</span>
+              <span className="text-lg sm:text-xl font-bold text-emerald-700 font-mono">₹{monthlyRentalIncome.toLocaleString('en-IN')} / mo</span>
             </div>
-            <div className="flex justify-between items-center border-t border-gold/15 pt-3.5">
-              <span className="text-xs sm:text-sm text-text-muted font-medium">Est. Monthly Loan EMI (20 Yrs @ 8.5%)</span>
-              <span className="text-lg sm:text-xl font-bold text-warm-white font-mono">₹{monthlyEmi.toLocaleString('en-IN')} / mo</span>
+            <div className="flex justify-between items-center border-t border-amber-200/60 pt-3.5">
+              <span className="text-xs sm:text-sm text-slate-600 font-medium">Est. Monthly Loan EMI (20 Yrs @ 8.5%)</span>
+              <span className="text-lg sm:text-xl font-bold text-[#070D1A] font-mono">₹{monthlyEmi.toLocaleString('en-IN')} / mo</span>
             </div>
-            <div className="flex justify-between items-center border-t border-gold/15 pt-3.5">
-              <span className="text-xs sm:text-sm text-text-muted font-medium">Est. Property Value in 5 Years</span>
-              <span className="text-lg sm:text-xl font-bold text-gold font-mono">{formatCurrency(estimatedValueIn5Years)}</span>
+            <div className="flex justify-between items-center border-t border-amber-200/60 pt-3.5">
+              <span className="text-xs sm:text-sm text-slate-600 font-medium">Est. Property Value in 5 Years</span>
+              <span className="text-lg sm:text-xl font-bold text-[#B88E3E] font-mono">{formatCurrency(estimatedValueIn5Years)}</span>
             </div>
-            <div className="flex justify-between items-center border-t border-gold/15 pt-3.5">
-              <span className="text-xs sm:text-sm text-text-muted font-medium">Estimated 5-Year Capital Gain</span>
-              <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 font-mono">+{formatCurrency(capitalGain5Years)}</span>
+            <div className="flex justify-between items-center border-t border-amber-200/60 pt-3.5">
+              <span className="text-xs sm:text-sm text-slate-600 font-medium">Estimated 5-Year Capital Gain</span>
+              <span className="text-lg sm:text-xl font-bold text-emerald-700 font-mono">+{formatCurrency(capitalGain5Years)}</span>
             </div>
           </div>
 
           <a 
-            href="#enquiry" 
-            className="w-full py-4 bg-gradient-to-r from-gold via-gold-light to-gold text-navy font-bold rounded-2xl text-center flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all shadow-xl hover:shadow-gold/30 text-xs sm:text-sm uppercase tracking-wider btn-sheen"
+            href="#enquire" 
+            className="w-full py-4 btn-champagne font-bold rounded-2xl text-center flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-95 transition-all shadow-md text-xs sm:text-sm uppercase tracking-wider no-underline"
           >
             <span>Request Official Cost Sheet & Payment Plan</span>
             <ArrowRight size={18} />
           </a>
         </div>
       </div>
-      <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-40"></div>
     </div>
   );
 }

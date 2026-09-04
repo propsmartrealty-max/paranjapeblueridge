@@ -90,7 +90,7 @@ interface SeoContentBlockProps {
 
 const keywordMap = [
   { phrase: 'Promenade Residences', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune' },
-  { phrase: 'The Altius', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-altius-hinjewadi-pune' },
+  { phrase: 'The Altius', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-the-altius-hinjewadi-pune' },
   { phrase: 'Ridges 41', url: 'https://paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune' },
   { phrase: 'Hinjewadi Phase 1', url: 'https://paranjapeblueridge.com/hinjewadi-micro-market' },
   { phrase: '2 BHK flats near Infosys', url: 'https://paranjapeblueridge.com/2-bhk-flats-near-infosys-hinjewadi' },

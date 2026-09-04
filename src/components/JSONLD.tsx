@@ -634,7 +634,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "@type": "SiteNavigationElement",
         "position": 2,
         "name": "The Altius",
-        "url": `${SITE_URL}/paranjape-blue-ridge-altius-hinjewadi-pune`
+        "url": `${SITE_URL}/paranjape-blue-ridge-the-altius-hinjewadi-pune`
       },
       {
         "@type": "SiteNavigationElement",

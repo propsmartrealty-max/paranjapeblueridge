@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { getRelatedPseoLinks } from '@/data/seo-matrix';
 import { projects } from '@/data/master-data';
 import { ArrowRight, Building2, MapPin, TrendingUp } from 'lucide-react';
@@ -20,10 +19,10 @@ export default function SemanticRecommender({
   let recommendedProjects = projects.slice(0, 2); // Default
   if (silo === 'corporate' || silo === 'investor' || silo === 'amenities') {
     // Recommend premium configurations
-    recommendedProjects = projects.filter(p => p.slug === 'altius' || p.slug === 'promenade');
+    recommendedProjects = projects.filter(p => p.id === 'altius' || p.id === 'promenade');
   } else if (silo === 'price-list' || silo === 'floor-plan') {
     // Recommend entry level configurations for price intent
-    recommendedProjects = projects.filter(p => p.slug === 'ridges-41' || p.slug === 'promenade');
+    recommendedProjects = projects.filter(p => p.id === 'ridge41' || p.id === 'promenade');
   }
 
   const t = (en: string, mr: string) => isMr ? mr : en;
@@ -48,10 +47,10 @@ export default function SemanticRecommender({
           {/* Left Column: Direct Project Silos (High Priority PageRank) */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {recommendedProjects.map((project) => (
-              <Link 
+              <a 
                 href={isMr ? `/mr-${project.slug}` : `/${project.slug}`} 
                 key={project.slug}
-                className="group relative bg-dark-card border border-gold/10 rounded-2xl p-6 hover:border-gold/40 transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[220px]"
+                className="group relative bg-dark-card border border-gold/10 rounded-2xl p-6 hover:border-gold/40 transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[220px] no-underline"
               >
                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Building2 size={64} className="text-gold" />
@@ -77,7 +76,7 @@ export default function SemanticRecommender({
                     <ArrowRight size={18} />
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -92,10 +91,10 @@ export default function SemanticRecommender({
             
             <div className="flex flex-col gap-4">
               {relatedInsights.map((insight) => (
-                <Link 
+                <a 
                   href={`/${insight.slug}`} 
                   key={insight.slug}
-                  className="group flex gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors items-center"
+                  className="group flex gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors items-center no-underline"
                 >
                   <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center shrink-0">
                     <MapPin className="text-gold" size={20} />
@@ -108,7 +107,7 @@ export default function SemanticRecommender({
                       {insight.silo.replace('-', ' ')}
                     </span>
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

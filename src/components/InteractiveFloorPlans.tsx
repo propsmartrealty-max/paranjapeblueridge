@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ruler, Box, Download, Sparkles } from 'lucide-react';
 import EnquiryModal from '@/components/EnquiryModal';
@@ -136,14 +135,12 @@ export default function InteractiveFloorPlans() {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="relative bg-white p-6 md:p-10 rounded-[2.5rem] shadow-2xl overflow-hidden border border-gold/20"
               >
-                <div className="relative w-full aspect-[16/10] min-h-[380px]">
-                  <Image 
+                <div className="relative w-full aspect-[16/10] min-h-[380px] flex items-center justify-center">
+                  <img 
                     src={activeTab.image} 
                     alt={`Architectural Floor Plan layout for ${activeTab.name} - Paranjape Blue Ridge Hinjewadi`}
-                    fill
-                    priority
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 55vw"
+                    className="max-h-[420px] w-auto max-w-full object-contain mx-auto"
+                    loading="eager"
                   />
                 </div>
               </motion.div>

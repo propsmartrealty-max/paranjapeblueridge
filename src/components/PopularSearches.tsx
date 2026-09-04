@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { getPopularSearchSections, getPseoTotalCount } from '@/data/seo-matrix';
 import { LayoutGrid, TrendingUp, Cpu, Landmark, Building2, Trees } from 'lucide-react';
 
@@ -32,13 +31,13 @@ export default function PopularSearches() {
               <ul className="space-y-3 list-none p-0 m-0">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
-                    <Link 
+                    <a 
                       href={`/${link.slug}`} 
-                      className="text-[11px] text-text-light hover:text-gold transition-colors block leading-tight"
+                      className="text-[11px] text-slate-600 hover:text-[#B88E3E] transition-colors block leading-tight no-underline"
                       title={link.title}
                     >
                       {link.title}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
