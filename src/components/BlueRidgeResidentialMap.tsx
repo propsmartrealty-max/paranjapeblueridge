@@ -204,7 +204,13 @@ export default function BlueRidgeResidentialMap() {
 
                 {/* Action Button */}
                 <a
-                  href={`/paranjape-blue-ridge-${selectedCluster.slug === 'ridges-41' ? '41' : selectedCluster.slug}-hinjewadi-pune`}
+                  href={
+                    selectedCluster.id === 'ridges-41'
+                      ? '/paranjape-blue-ridge-41-hinjewadi-pune'
+                      : selectedCluster.id === 'altius'
+                      ? '/paranjape-blue-ridge-the-altius-hinjewadi-pune'
+                      : '/paranjape-blue-ridge-promenade-hinjewadi-pune'
+                  }
                   className="w-full py-3.5 rounded-full btn-champagne flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest no-underline transition-all"
                 >
                   <span>Explore {selectedCluster.name}</span>

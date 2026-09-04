@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Building2, Ruler, Calendar, ShieldCheck, MapPin, Download, 
-  Eye, CheckCircle2, ChevronRight, Phone, MessageCircle, Trees, 
+  Eye, CheckCircle2, ChevronRight, ChevronLeft, Phone, MessageCircle, Trees, 
   Waves, Sparkles, Navigation, Layers, Utensils, DoorOpen, Flame,
-  Share2, ArrowRight, Compass, ShieldAlert, Award
+  Share2, ArrowRight, Compass, ShieldAlert, Award, Maximize2, ZoomIn, 
+  ZoomOut, RotateCcw, X, Image as ImageIcon
 } from 'lucide-react';
 import { blueRidgeClusters, ClusterResidence } from '@/data/cms/clusters';
 import EnquiryModal from './EnquiryModal';
@@ -26,10 +28,23 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
     (c.id === 'promenade' && clusterSlug.includes('promenade'))
   ) || blueRidgeClusters[0];
 
-  const [activeTab, setActiveTab] = useState<'floorPlans' | 'specs' | 'amenities' | 'masterplan'>('floorPlans');
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInterest, setModalInterest] = useState(`${cluster.name} Floor Plan & Cost Sheet`);
+
+  // Floor Plan Lightbox Modal State
+  const [isFloorPlanModalOpen, setIsFloorPlanModalOpen] = useState(false);
+  const [floorPlanZoom, setFloorPlanZoom] = useState(1);
+
+  // Master Layout Plan Lightbox State
+  const [isMasterPlanModalOpen, setIsMasterPlanModalOpen] = useState(false);
+  const [masterPlanZoom, setMasterPlanZoom] = useState(1);
+
+  // Photo Gallery Lightbox State
+  const [galleryModalIndex, setGalleryModalIndex] = useState<number | null>(null);
+
+  // Active section for sticky subnav
+  const [activeSection, setActiveSection] = useState('overview');
 
   const handleOpenModal = (interest: string) => {
     setModalInterest(interest);
@@ -38,8 +53,69 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
   const currentPlan = cluster.floorPlans[selectedPlanIndex] || cluster.floorPlans[0];
 
+  // Handle ESC and arrow keys for modals
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsFloorPlanModalOpen(false);
+        setIsMasterPlanModalOpen(false);
+        setGalleryModalIndex(null);
+      }
+      if (galleryModalIndex !== null) {
+        if (e.key === 'ArrowRight') {
+          setGalleryModalIndex((galleryModalIndex + 1) % cluster.gallery.length);
+        } else if (e.key === 'ArrowLeft') {
+          setGalleryModalIndex((galleryModalIndex - 1 + cluster.gallery.length) % cluster.gallery.length);
+        }
+      }
+    };
+
+    if (isFloorPlanModalOpen || isMasterPlanModalOpen || galleryModalIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isFloorPlanModalOpen, isMasterPlanModalOpen, galleryModalIndex, cluster.gallery.length]);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sectionIds = ['overview', 'master-layout', 'floor-plans', 'amenities', 'specifications', 'gallery', 'location'];
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -80;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white min-h-screen pt-24 pb-20">
+    <div className="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white min-h-screen pt-20 pb-20">
       
       {/* Global Inquiry Modal */}
       <EnquiryModal
@@ -49,9 +125,54 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          STICKY SUB-NAVIGATION BAR
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <nav aria-label="Cluster Navigation" className="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all hidden md:block">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center justify-between h-14">
+          <div className="flex items-center gap-2">
+            <span className="font-serif font-bold text-sm text-[#070D1A]">{cluster.name}</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-50 text-[#8F6A24] border border-amber-200 font-semibold">
+              MahaRERA: {cluster.reraNumber}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1 sm:gap-2">
+            {[
+              { id: 'overview', label: 'Overview' },
+              { id: 'master-layout', label: 'Master Layout' },
+              { id: 'floor-plans', label: 'Floor Plans' },
+              { id: 'amenities', label: 'Amenities' },
+              { id: 'specifications', label: 'Specs' },
+              { id: 'gallery', label: 'Gallery' },
+              { id: 'location', label: 'Location' },
+            ].map(item => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`px-3 py-1.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
+                  activeSection === item.id
+                    ? 'bg-[#B88E3E] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-[#070D1A] hover:bg-slate-100'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => handleOpenModal(`${cluster.name} Priority Booking Desk`)}
+            className="btn-champagne px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider cursor-pointer border-none shadow-xs whitespace-nowrap"
+          >
+            Enquire Now
+          </button>
+        </div>
+      </nav>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1. PROJECT HERO SECTION
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <header className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 border-b border-slate-200 arch-section-divider bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6]">
+      <header id="overview" className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 border-b border-slate-200 arch-section-divider bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6]">
         {/* Background Project Canvas */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
@@ -165,12 +286,20 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
             <div className="lg:col-span-7">
-              <div className="rounded-3xl overflow-hidden bg-white p-3 border border-slate-200 shadow-md">
+              <div 
+                className="rounded-3xl overflow-hidden bg-white p-3 border border-slate-200 shadow-md cursor-pointer group/facade relative"
+                onClick={() => setGalleryModalIndex(1)}
+              >
                 <img
                   src={cluster.gallery[1] || cluster.heroImage}
                   alt={`${cluster.name} Architectural Facade`}
-                  className="w-full h-80 sm:h-96 object-cover rounded-2xl"
+                  className="w-full h-80 sm:h-96 object-cover rounded-2xl transition-transform duration-700 group-hover/facade:scale-[1.02]"
                 />
+                <div className="absolute inset-3 bg-black/20 opacity-0 group-hover/facade:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+                  <span className="bg-white/95 text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-lg">
+                    <Maximize2 size={14} className="text-[#B88E3E]" /> View High-Res Photo
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -196,7 +325,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. MASTER LAYOUT & PRECINCT LOCATION
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 bg-white border-b border-slate-200 arch-section-divider">
+      <section id="master-layout" className="py-24 bg-white border-b border-slate-200 arch-section-divider">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="max-w-2xl">
@@ -215,14 +344,23 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
-              <div className="rounded-3xl overflow-hidden bg-slate-50 p-4 border border-slate-200 shadow-md">
+              <div 
+                className="rounded-3xl overflow-hidden bg-slate-50 p-4 border border-slate-200 shadow-md cursor-pointer group/masterplan relative"
+                onClick={() => {
+                  setMasterPlanZoom(1);
+                  setIsMasterPlanModalOpen(true);
+                }}
+              >
                 <img
                   src="/assets/images/master-layout-plan-hq.jpg"
                   alt={`Master Layout Plan showing ${cluster.name} in Paranjape Blue Ridge`}
-                  className="w-full h-auto max-h-[480px] object-contain rounded-2xl mx-auto"
+                  className="w-full h-auto max-h-[480px] object-contain rounded-2xl mx-auto transition-transform duration-500 group-hover/masterplan:scale-[1.01]"
                 />
-                <div className="p-3 text-center text-xs font-mono text-slate-500 border-t border-slate-200 mt-2">
-                  * Official Paranjape Blue Ridge 138-Acre Master Layout Plan • MahaRERA Certified
+                <div className="p-3 text-center text-xs font-mono text-slate-500 border-t border-slate-200 mt-2 flex items-center justify-between">
+                  <span>* Official Paranjape Blue Ridge 138-Acre Master Layout Plan</span>
+                  <span className="text-[#8F6A24] font-bold flex items-center gap-1 group-hover/masterplan:underline">
+                    <Maximize2 size={13} /> Click to Enlarge Blueprint
+                  </span>
                 </div>
               </div>
             </div>
@@ -297,13 +435,25 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-md">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
-              {/* Plan Blueprint Canvas */}
-              <div className="lg:col-span-7 bg-slate-50 p-6 rounded-2xl border border-slate-200 flex items-center justify-center min-h-[380px]">
+              {/* Plan Blueprint Canvas with Click to Enlarge */}
+              <div 
+                className="lg:col-span-7 bg-slate-50 p-6 rounded-2xl border border-slate-200 flex items-center justify-center min-h-[380px] cursor-pointer group/blueprint relative"
+                onClick={() => {
+                  setFloorPlanZoom(1);
+                  setIsFloorPlanModalOpen(true);
+                }}
+              >
                 <img
                   src={currentPlan.planImage2D}
                   alt={`${cluster.name} - ${currentPlan.configTitle}`}
-                  className="max-h-[420px] w-auto max-w-full object-contain"
+                  className="max-h-[420px] w-auto max-w-full object-contain transition-transform duration-500 group-hover/blueprint:scale-[1.02]"
                 />
+                
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/blueprint:opacity-100 transition-opacity flex items-center justify-center rounded-2xl pointer-events-none">
+                  <div className="bg-white/95 text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-xl border border-slate-200">
+                    <Maximize2 size={14} className="text-[#B88E3E]" /> Click to Inspect & Zoom Blueprint
+                  </div>
+                </div>
               </div>
 
               {/* Plan Specifications & Details */}
@@ -346,10 +496,14 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   </button>
 
                   <button
-                    onClick={() => handleOpenModal(`Cost Sheet: ${currentPlan.configTitle} (${cluster.name})`)}
-                    className="flex-1 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#070D1A] border border-slate-300 hover:border-[#B88E3E] text-xs font-bold uppercase tracking-wider cursor-pointer"
+                    onClick={() => {
+                      setFloorPlanZoom(1);
+                      setIsFloorPlanModalOpen(true);
+                    }}
+                    className="flex-1 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#070D1A] border border-slate-300 hover:border-[#B88E3E] text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    Get Cost Breakdown
+                    <Maximize2 size={14} className="text-[#B88E3E]" />
+                    <span>Zoom Blueprint</span>
                   </button>
                 </div>
               </div>
@@ -400,7 +554,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           5. DUAL-TIER AMENITIES (CLUSTER EXCLUSIVE VS. TOWNSHIP)
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 bg-white border-b border-slate-200 arch-section-divider">
+      <section id="amenities" className="py-24 bg-white border-b border-slate-200 arch-section-divider">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="max-w-3xl mb-12">
             <div className="chapter-badge mb-3">
@@ -459,7 +613,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           6. DETAILED TECHNICAL & ARCHITECTURAL SPECIFICATIONS
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 bg-[#FAF9F6] border-b border-slate-200 arch-section-divider">
+      <section id="specifications" className="py-24 bg-[#FAF9F6] border-b border-slate-200 arch-section-divider">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="max-w-3xl mb-12">
             <div className="chapter-badge mb-3">
@@ -516,13 +670,68 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          7. GOOGLE MAPS LOCATION & TRANSIT PROXIMITY
+          7. OFFICIAL ARCHITECTURAL PHOTO GALLERY & VISUAL WALKTHROUGH
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 bg-white border-b border-slate-200 arch-section-divider">
+      <section id="gallery" className="py-24 bg-white border-b border-slate-200 arch-section-divider">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <div className="chapter-badge mb-3">
+                <ImageIcon size={11} className="text-[#B88E3E]" />
+                <span>06 • Authentic Architectural Visuals</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal leading-tight">
+                A Visual Odyssey of <br />
+                <span className="italic font-light text-gradient-champagne">{cluster.name}.</span>
+              </h2>
+              <p className="mt-3 text-xs sm:text-sm text-slate-600">
+                Official architecture, grand canopies, panoramic views, and lifestyle amenities photographed and curated for {cluster.name}.
+              </p>
+            </div>
+
+            <span className="text-xs font-mono text-[#8F6A24] font-bold">
+              {cluster.gallery.length} Official Photographs
+            </span>
+          </div>
+
+          {/* Photo Gallery Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {cluster.gallery.map((imgSrc, idx) => (
+              <div
+                key={idx}
+                onClick={() => setGalleryModalIndex(idx)}
+                className={`relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm cursor-pointer group/photo ${
+                  idx === 0 ? 'col-span-2 row-span-2 min-h-[320px]' : 'h-48'
+                }`}
+              >
+                <img
+                  src={imgSrc}
+                  alt={`${cluster.name} - Official Photograph ${idx + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover/photo:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-end p-4">
+                  <div className="flex items-center justify-between w-full text-white">
+                    <span className="text-[10px] font-mono uppercase tracking-widest font-bold">
+                      Photo 0{idx + 1}
+                    </span>
+                    <Maximize2 size={14} className="text-white" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. GOOGLE MAPS LOCATION & TRANSIT PROXIMITY
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="location" className="py-24 bg-[#FAF9F6] border-b border-slate-200 arch-section-divider">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="max-w-3xl mb-12">
             <div className="chapter-badge mb-3">
-              <span>06 • Location & Strategic Connectivity</span>
+              <span>07 • Location & Strategic Connectivity</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-normal leading-tight">
               Direct Connectivity to <br />
@@ -547,7 +756,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
             {/* Commute Distances Matrix */}
             <div className="lg:col-span-5 space-y-3">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Building2 size={18} className="text-[#B88E3E]" />
                   <span className="text-xs font-bold text-[#070D1A]">Blue Ridge IT SEZ</span>
@@ -555,7 +764,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-bold text-emerald-600">0 Minutes (On-Campus)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Building2 size={18} className="text-[#B88E3E]" />
                   <span className="text-xs font-bold text-[#070D1A]">Infosys / Wipro / TCS Gate</span>
@@ -563,7 +772,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-bold text-[#070D1A]">400m - 900m (5-8 Mins)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#B88E3E]" />
                   <span className="text-xs font-bold text-[#070D1A]">Hinjewadi Metro Line 3</span>
@@ -571,7 +780,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-bold text-[#070D1A]">800 Meters (3 Mins)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#B88E3E]" />
                   <span className="text-xs font-bold text-[#070D1A]">Baner & Balewadi High Street</span>
@@ -579,7 +788,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-bold text-[#070D1A]">10 Mins (Via New Bridge)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#B88E3E]" />
                   <span className="text-xs font-bold text-[#070D1A]">Mumbai-Pune Expressway</span>
@@ -592,7 +801,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          8. PRIVATE VIP CONCIERGE & BOOKING DOCK
+          9. PRIVATE VIP CONCIERGE & BOOKING DOCK
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 bg-gradient-to-b from-[#FAF9F6] to-[#F3F5F8]">
         <div className="container mx-auto px-4 sm:px-6 max-w-3xl text-center">
@@ -628,6 +837,240 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           </div>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          MODAL 1: FLOOR PLAN ZOOM LIGHTBOX
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <AnimatePresence>
+        {isFloorPlanModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col p-4 sm:p-6"
+          >
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 text-white max-w-7xl mx-auto w-full">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#B88E3E] font-bold">Blueprint Inspection</span>
+                <span className="hidden sm:inline text-white/30">|</span>
+                <h4 className="text-sm sm:text-base font-serif font-bold text-white truncate max-w-xs sm:max-w-md">
+                  {currentPlan.configTitle}
+                </h4>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#B88E3E]/20 text-[#DFC28D] text-[10px] font-mono font-bold border border-[#B88E3E]/30">
+                  {currentPlan.carpetArea}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex items-center bg-white/10 rounded-xl p-1 border border-white/15">
+                  <button
+                    onClick={() => setFloorPlanZoom(prev => Math.max(0.75, prev - 0.25))}
+                    aria-label="Zoom Out"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomOut size={16} />
+                  </button>
+                  <span className="px-2 text-xs font-mono font-bold text-white/80">{Math.round(floorPlanZoom * 100)}%</span>
+                  <button
+                    onClick={() => setFloorPlanZoom(prev => Math.min(2.5, prev + 0.25))}
+                    aria-label="Zoom In"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomIn size={16} />
+                  </button>
+                  <button
+                    onClick={() => setFloorPlanZoom(1)}
+                    aria-label="Reset Zoom"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer ml-1"
+                    title="Reset Zoom"
+                  >
+                    <RotateCcw size={14} />
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => {
+                    setIsFloorPlanModalOpen(false);
+                    handleOpenModal(`Download CAD: ${currentPlan.configTitle} (${cluster.name})`);
+                  }}
+                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#B88E3E] text-slate-950 text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all cursor-pointer border-none"
+                >
+                  <Download size={14} />
+                  <span>Download PDF</span>
+                </button>
+
+                <button
+                  onClick={() => setIsFloorPlanModalOpen(false)}
+                  aria-label="Close Lightbox"
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer ml-2"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-auto flex items-center justify-center p-2 sm:p-6 cursor-grab active:cursor-grabbing">
+              <div 
+                className="transition-transform duration-200 ease-out bg-white p-4 sm:p-8 rounded-2xl shadow-2xl max-w-full max-h-full flex items-center justify-center"
+                style={{ transform: `scale(${floorPlanZoom})` }}
+              >
+                <img
+                  src={currentPlan.planImage2D}
+                  alt={`${currentPlan.configTitle} Blueprint`}
+                  className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          MODAL 2: MASTER LAYOUT PLAN LIGHTBOX
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <AnimatePresence>
+        {isMasterPlanModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col p-4 sm:p-6"
+          >
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 text-white max-w-7xl mx-auto w-full">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#B88E3E] font-bold">138-Acre Master Blueprint</span>
+                <span className="hidden sm:inline text-white/30">|</span>
+                <h4 className="text-sm sm:text-base font-serif font-bold text-white">Paranjape Blue Ridge Master Layout</h4>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex items-center bg-white/10 rounded-xl p-1 border border-white/15">
+                  <button
+                    onClick={() => setMasterPlanZoom(prev => Math.max(0.75, prev - 0.25))}
+                    aria-label="Zoom Out"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomOut size={16} />
+                  </button>
+                  <span className="px-2 text-xs font-mono font-bold text-white/80">{Math.round(masterPlanZoom * 100)}%</span>
+                  <button
+                    onClick={() => setMasterPlanZoom(prev => Math.min(2.5, prev + 0.25))}
+                    aria-label="Zoom In"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomIn size={16} />
+                  </button>
+                  <button
+                    onClick={() => setMasterPlanZoom(1)}
+                    aria-label="Reset Zoom"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer ml-1"
+                    title="Reset Zoom"
+                  >
+                    <RotateCcw size={14} />
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => setIsMasterPlanModalOpen(false)}
+                  aria-label="Close Lightbox"
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer ml-2"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-auto flex items-center justify-center p-2 sm:p-6 cursor-grab active:cursor-grabbing">
+              <div 
+                className="transition-transform duration-200 ease-out bg-white p-4 sm:p-8 rounded-2xl shadow-2xl max-w-full max-h-full flex items-center justify-center"
+                style={{ transform: `scale(${masterPlanZoom})` }}
+              >
+                <img
+                  src="/assets/images/master-layout-plan-hq.jpg"
+                  alt="Official Paranjape Blue Ridge 138-Acre Master Layout Plan"
+                  className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          MODAL 3: FULL-SCREEN PHOTO GALLERY LIGHTBOX
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <AnimatePresence>
+        {galleryModalIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col p-4 sm:p-6 select-none"
+          >
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 text-white max-w-7xl mx-auto w-full">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#B88E3E] font-bold">{cluster.name}</span>
+                <span className="text-white/30">|</span>
+                <span className="text-xs font-mono text-white/80">
+                  {galleryModalIndex + 1} / {cluster.gallery.length}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setGalleryModalIndex(null)}
+                  aria-label="Close Photo Lightbox"
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-1 relative flex items-center justify-center p-2 sm:p-8">
+              {/* Previous Photo Button */}
+              <button
+                onClick={() => setGalleryModalIndex((galleryModalIndex - 1 + cluster.gallery.length) % cluster.gallery.length)}
+                aria-label="Previous Photo"
+                className="absolute left-2 sm:left-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer z-10"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              {/* Active Image */}
+              <img
+                src={cluster.gallery[galleryModalIndex]}
+                alt={`${cluster.name} - Photo ${galleryModalIndex + 1}`}
+                className="max-h-[80vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+              />
+
+              {/* Next Photo Button */}
+              <button
+                onClick={() => setGalleryModalIndex((galleryModalIndex + 1) % cluster.gallery.length)}
+                aria-label="Next Photo"
+                className="absolute right-2 sm:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer z-10"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="flex items-center justify-center gap-2 pt-3 border-t border-white/10 overflow-x-auto max-w-4xl mx-auto w-full">
+              {cluster.gallery.map((thumb, tIdx) => (
+                <button
+                  key={tIdx}
+                  onClick={() => setGalleryModalIndex(tIdx)}
+                  className={`w-14 h-10 rounded-lg overflow-hidden border-2 transition-all cursor-pointer flex-shrink-0 ${
+                    galleryModalIndex === tIdx ? 'border-[#B88E3E] scale-105' : 'border-transparent opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img src={thumb} alt="" className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

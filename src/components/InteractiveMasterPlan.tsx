@@ -1,20 +1,46 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Map, Info, Compass, ArrowRight, Ruler, IndianRupee, Layers, Eye } from 'lucide-react';
+import { 
+  Map, Info, Compass, ArrowRight, Ruler, IndianRupee, Layers, 
+  Eye, Maximize2, ZoomIn, ZoomOut, RotateCcw, X, Download
+} from 'lucide-react';
 import { projects } from '@/data/master-data';
 import { useCurrency } from '@/context/CurrencyContext';
 
 export default function InteractiveMasterPlan() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'hybrid' | 'blueprint'>('hybrid');
-  const { formatPrice, currency } = useCurrency();
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const { formatPrice } = useCurrency();
 
   const coordinates = {
     promenade: { top: '38%', left: '46%' },
     altius: { top: '55%', left: '72%' },
     ridges41: { top: '42%', left: '22%' },
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+    };
+    if (isLightboxOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isLightboxOpen]);
+
+  const handleOpenLightbox = () => {
+    setZoomLevel(1);
+    setIsLightboxOpen(true);
   };
 
   return (
@@ -42,26 +68,25 @@ export default function InteractiveMasterPlan() {
                 <button
                   type="button"
                   onClick={() => setViewMode('hybrid')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${viewMode === 'hybrid' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${viewMode === 'hybrid' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
                 >
                   Interactive Beacons
                 </button>
                 <button
                   type="button"
                   onClick={() => setViewMode('blueprint')}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${viewMode === 'blueprint' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${viewMode === 'blueprint' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
                 >
                   Original Blueprint
                 </button>
               </div>
-              <a
-                href="/assets/images/master-layout-plan-hq.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-gold/10 hover:bg-gold/20 border border-gold/30 rounded-2xl text-xs text-gold font-semibold flex items-center justify-center gap-2 transition-all shadow-sm"
+              <button
+                type="button"
+                onClick={handleOpenLightbox}
+                className="px-4 py-2 bg-gold/10 hover:bg-gold/20 border border-gold/30 rounded-2xl text-xs text-gold font-semibold flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
               >
-                <Layers size={14} /> Full Resolution
-              </a>
+                <Layers size={14} /> Inspect Blueprint
+              </button>
             </div>
           </div>
 
@@ -173,6 +198,85 @@ export default function InteractiveMasterPlan() {
           <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-40"></div>
         </motion.div>
       </div>
+
+      {/* Masterplan Blueprint Inspection Lightbox Modal */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col p-4 sm:p-6"
+          >
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 text-white max-w-7xl mx-auto w-full">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#B88E3E] font-bold">138-Acre Master Layout</span>
+                <span className="hidden sm:inline text-white/30">|</span>
+                <h4 className="text-sm sm:text-base font-serif font-bold text-white">Paranjape Blue Ridge Township GIS Blueprint</h4>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="flex items-center bg-white/10 rounded-xl p-1 border border-white/15">
+                  <button
+                    onClick={() => setZoomLevel(prev => Math.max(0.75, prev - 0.25))}
+                    aria-label="Zoom Out"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomOut size={16} />
+                  </button>
+                  <span className="px-2 text-xs font-mono font-bold text-white/80">{Math.round(zoomLevel * 100)}%</span>
+                  <button
+                    onClick={() => setZoomLevel(prev => Math.min(2.5, prev + 0.25))}
+                    aria-label="Zoom In"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+                  >
+                    <ZoomIn size={16} />
+                  </button>
+                  <button
+                    onClick={() => setZoomLevel(1)}
+                    aria-label="Reset Zoom"
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-white/80 hover:text-white transition-all cursor-pointer ml-1"
+                    title="Reset Zoom"
+                  >
+                    <RotateCcw size={14} />
+                  </button>
+                </div>
+
+                <a
+                  href="/assets/images/master-layout-plan-hq.jpg"
+                  download="Paranjape-Blue-Ridge-Master-Layout.jpg"
+                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#B88E3E] text-slate-950 text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all cursor-pointer no-underline"
+                >
+                  <Download size={14} />
+                  <span>Download Blueprint</span>
+                </a>
+
+                <button
+                  onClick={() => setIsLightboxOpen(false)}
+                  aria-label="Close Lightbox"
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer ml-2"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-auto flex items-center justify-center p-2 sm:p-6 cursor-grab active:cursor-grabbing">
+              <div 
+                className="transition-transform duration-200 ease-out bg-black p-2 rounded-2xl shadow-2xl max-w-full max-h-full flex items-center justify-center"
+                style={{ transform: `scale(${zoomLevel})` }}
+              >
+                <img
+                  src="/assets/images/master-layout-plan-hq.jpg"
+                  alt="Paranjape Blue Ridge 138-Acre Official Master Layout Plan"
+                  className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
