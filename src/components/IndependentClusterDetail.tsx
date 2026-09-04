@@ -117,7 +117,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
         <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl text-center flex flex-col items-center">
           
           {/* Breadcrumb & Project Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border-2 border-slate-300 text-[11px] font-mono uppercase tracking-[0.2em] text-[#785415] mb-6 shadow-xs font-bold">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-[11px] font-mono uppercase tracking-[0.2em] text-[#785415] mb-6 shadow-xs font-bold">
             <a href="/" className="hover:text-[#070D1A] no-underline">Blue Ridge</a>
             <span>/</span>
             <span className="text-[#070D1A]">{cluster.name}</span>
@@ -183,7 +183,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="px-3.5 py-1.5 rounded-full text-xs font-sans font-bold bg-white hover:bg-slate-100 text-slate-800 border-2 border-slate-300 hover:border-[#785415] hover:text-[#785415] transition-all cursor-pointer shadow-xs"
+                className="px-3.5 py-1.5 rounded-full text-xs font-sans font-bold glass-pill text-slate-800 hover:border-[#785415] hover:text-[#785415] transition-all cursor-pointer shadow-xs"
               >
                 {item.label}
               </button>
@@ -191,20 +191,20 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           </div>
 
           {/* 4 Essential Real Estate Badges */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t-2 border-slate-200 w-full max-w-4xl text-left">
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t-2 border-slate-200/80 w-full max-w-4xl text-left">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1 min-w-0">
               <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Configuration</span>
               <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.configurations}</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1 min-w-0">
               <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Carpet Area Range</span>
               <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.carpetAreaRange}</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1 min-w-0">
               <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Architecture</span>
               <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.towerDetails.storeys} Storeys ({cluster.towerDetails.towers})</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1 min-w-0">
               <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Offering Price</span>
               <div className="text-sm font-sans font-bold text-[#785415] break-words">{cluster.priceStarting}</div>
             </div>
@@ -239,7 +239,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
             <div className="lg:col-span-7">
               <div 
-                className="rounded-3xl overflow-hidden bg-white p-3 border-2 border-slate-200 shadow-md cursor-pointer group/facade relative"
+                className="rounded-3xl overflow-hidden glass-surface p-3 shadow-md cursor-pointer group/facade relative"
                 onClick={() => setGalleryModalIndex(1)}
               >
                 <img
@@ -248,7 +248,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   className="w-full h-80 sm:h-96 object-cover rounded-2xl transition-transform duration-700 group-hover/facade:scale-[1.02]"
                 />
                 <div className="absolute inset-3 bg-black/20 opacity-0 group-hover/facade:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
-                  <span className="bg-white text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-lg border border-slate-300">
+                  <span className="glass-pill text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-lg">
                     <Maximize2 size={14} className="text-[#785415]" /> View High-Res Photo
                   </span>
                 </div>
@@ -257,7 +257,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
             <div className="lg:col-span-5 space-y-4">
               {cluster.conceptPoints.map((pt, i) => (
-                <div key={i} className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-2">
+                <div key={i} className="glass-card-luxury p-6 rounded-2xl space-y-2">
                   <div className="flex items-center gap-2.5">
                     <span className="w-7 h-7 rounded-lg bg-amber-100 border border-amber-300 text-[#785415] flex items-center justify-center font-mono text-xs font-extrabold">
                       0{i + 1}
@@ -289,7 +289,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="italic font-bold text-[#785415]">138-Acre Masterplan.</span>
               </h2>
             </div>
-            <div className="px-4 py-2 rounded-full bg-slate-100 border-2 border-slate-300 text-xs font-mono text-slate-900 font-bold">
+            <div className="glass-pill px-4 py-2 rounded-full text-xs font-mono text-slate-900 font-bold">
               Precinct: {cluster.masterplanPosition.zone}
             </div>
           </div>
@@ -297,7 +297,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
               <div 
-                className="rounded-3xl overflow-hidden bg-slate-50 p-4 border-2 border-slate-200 shadow-md cursor-pointer group/masterplan relative"
+                className="rounded-3xl overflow-hidden glass-surface p-4 shadow-md cursor-pointer group/masterplan relative"
                 onClick={() => {
                   setMasterPlanZoom(1);
                   setIsMasterPlanModalOpen(true);
@@ -308,7 +308,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   alt={`Master Layout Plan showing ${cluster.name} in Paranjape Blue Ridge`}
                   className="w-full h-auto max-h-[480px] object-contain rounded-2xl mx-auto transition-transform duration-500 group-hover/masterplan:scale-[1.01]"
                 />
-                <div className="p-3 text-center text-xs font-mono text-slate-600 border-t border-slate-200 mt-2 flex items-center justify-between">
+                <div className="p-3 text-center text-xs font-mono text-slate-600 border-t border-slate-200/80 mt-2 flex items-center justify-between">
                   <span className="font-semibold">* Official Paranjape Blue Ridge 138-Acre Master Layout Plan</span>
                   <span className="text-[#785415] font-bold flex items-center gap-1 group-hover/masterplan:underline">
                     <Maximize2 size={13} /> Click to Enlarge Blueprint
@@ -318,7 +318,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
             </div>
 
             <div className="lg:col-span-4 space-y-4">
-              <div className="bg-white p-6 rounded-3xl border-2 border-slate-200 shadow-sm space-y-4">
+              <div className="glass-card-luxury p-6 rounded-3xl space-y-4">
                 <h3 className="text-lg font-serif font-bold text-[#070D1A]">Immediate Precinct Connections</h3>
                 <ul className="space-y-3.5 text-xs sm:text-sm text-slate-800 font-sans">
                   {cluster.masterplanPosition.nearbyKeyPoints.map((kp, idx) => (
@@ -384,12 +384,12 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           </div>
 
           {/* Active Floor Plan Showcase Box */}
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border-2 border-slate-200 shadow-md">
+          <div className="glass-card-luxury p-6 sm:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* Plan Blueprint Canvas with Click to Enlarge */}
               <div 
-                className="lg:col-span-7 bg-slate-50 p-6 rounded-2xl border-2 border-slate-200 flex items-center justify-center min-h-[380px] cursor-pointer group/blueprint relative"
+                className="lg:col-span-7 bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-slate-200/90 shadow-inner flex items-center justify-center min-h-[380px] cursor-pointer group/blueprint relative"
                 onClick={() => {
                   setFloorPlanZoom(1);
                   setIsFloorPlanModalOpen(true);
@@ -402,7 +402,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 />
                 
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/blueprint:opacity-100 transition-opacity flex items-center justify-center rounded-2xl pointer-events-none">
-                  <div className="bg-white text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-xl border-2 border-slate-300">
+                  <div className="glass-pill text-[#070D1A] px-4 py-2 rounded-full text-xs font-mono font-bold flex items-center gap-2 shadow-xl">
                     <Maximize2 size={14} className="text-[#785415]" /> Click to Inspect & Zoom Blueprint
                   </div>
                 </div>
@@ -419,12 +419,12 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   </h3>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-3">
-                  <div className="flex justify-between items-center text-xs font-sans py-1 border-b border-slate-200">
+                <div className="p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/90 shadow-xs space-y-3">
+                  <div className="flex justify-between items-center text-xs font-sans py-1 border-b border-slate-200/80">
                     <span className="text-slate-600 font-bold">RERA Carpet Area:</span>
                     <strong className="text-sm font-mono text-[#070D1A] font-extrabold">{currentPlan.carpetArea}</strong>
                   </div>
-                  <div className="flex justify-between items-center text-xs font-sans py-1 border-b border-slate-200">
+                  <div className="flex justify-between items-center text-xs font-sans py-1 border-b border-slate-200/80">
                     <span className="text-slate-600 font-bold">Spatial Dimensions:</span>
                     <strong className="text-xs font-mono text-[#070D1A] font-extrabold">{currentPlan.dimensions}</strong>
                   </div>
@@ -521,7 +521,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* Cluster Dedicated Amenities Card */}
-            <div className="bg-white p-8 rounded-3xl border-2 border-amber-300 shadow-md space-y-6">
+            <div className="glass-card-luxury p-8 rounded-3xl border-amber-300/80 space-y-6">
               <div className="flex items-center gap-2.5 text-[#785415] font-mono text-xs uppercase tracking-widest border-b-2 border-amber-200 pb-4 font-bold">
                 <Sparkles size={18} className="text-[#785415]" />
                 <span>Exclusive to {cluster.name} Residents</span>
@@ -534,14 +534,14 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   </li>
                 ))}
               </ul>
-              <div className="text-xs font-mono text-slate-600 pt-3 border-t border-slate-200 font-medium">
+              <div className="text-xs font-mono text-slate-600 pt-3 border-t border-slate-200/80 font-medium">
                 * Private RFID keycard and biometric access for residents only.
               </div>
             </div>
 
             {/* 138-Acre Township Master Amenities Card */}
-            <div className="bg-white p-8 rounded-3xl border-2 border-slate-300 shadow-md space-y-6">
-              <div className="flex items-center gap-2.5 text-[#070D1A] font-mono text-xs uppercase tracking-widest border-b-2 border-slate-200 pb-4 font-bold">
+            <div className="glass-card-luxury p-8 rounded-3xl space-y-6">
+              <div className="flex items-center gap-2.5 text-[#070D1A] font-mono text-xs uppercase tracking-widest border-b-2 border-slate-200/80 pb-4 font-bold">
                 <Trees size={18} className="text-emerald-700" />
                 <span>138-Acre Blue Ridge Master Township Facilities</span>
               </div>
@@ -553,7 +553,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                   </li>
                 ))}
               </ul>
-              <div className="text-xs font-mono text-slate-600 pt-3 border-t border-slate-200 font-medium">
+              <div className="text-xs font-mono text-slate-600 pt-3 border-t border-slate-200/80 font-medium">
                 * Fully operational integrated township infrastructure in Hinjewadi Phase 1.
               </div>
             </div>
@@ -579,7 +579,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {cluster.specifications.map((spec, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-3xl border-2 border-slate-200 shadow-sm space-y-4">
+              <div key={idx} className="glass-card-luxury p-6 rounded-3xl space-y-4">
                 <div className="pb-3 border-b-2 border-slate-100 flex items-center justify-between">
                   <h3 className="text-base font-serif font-bold text-[#070D1A]">{spec.category}</h3>
                   <span className="text-[11px] font-mono text-[#785415] font-extrabold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
@@ -599,7 +599,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           </div>
 
           {/* Formwork Assurance Banner */}
-          <div className="p-6 rounded-2xl bg-white border-2 border-slate-300 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-6 rounded-2xl glass-surface flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
               <Award size={32} className="text-[#785415] shrink-0" />
               <div>
@@ -710,7 +710,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
             {/* Commute Distances Matrix */}
             <div className="lg:col-span-5 space-y-3">
-              <div className="p-4 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-between shadow-xs">
+              <div className="p-4 rounded-2xl glass-card-luxury flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Building2 size={18} className="text-[#785415]" />
                   <span className="text-xs font-bold text-[#070D1A]">Blue Ridge IT SEZ</span>
@@ -718,7 +718,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-extrabold text-emerald-700">0 Minutes (On-Campus)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-between shadow-xs">
+              <div className="p-4 rounded-2xl glass-card-luxury flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Building2 size={18} className="text-[#785415]" />
                   <span className="text-xs font-bold text-[#070D1A]">Infosys / Wipro / TCS Gate</span>
@@ -726,7 +726,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-extrabold text-[#070D1A]">400m - 900m (5-8 Mins)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-between shadow-xs">
+              <div className="p-4 rounded-2xl glass-card-luxury flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#785415]" />
                   <span className="text-xs font-bold text-[#070D1A]">Hinjewadi Metro Line 3</span>
@@ -734,7 +734,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-extrabold text-[#070D1A]">800 Meters (3 Mins)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-between shadow-xs">
+              <div className="p-4 rounded-2xl glass-card-luxury flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#785415]" />
                   <span className="text-xs font-bold text-[#070D1A]">Baner & Balewadi High Street</span>
@@ -742,7 +742,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <span className="text-xs font-mono font-extrabold text-[#070D1A]">10 Mins (Via New Bridge)</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-between shadow-xs">
+              <div className="p-4 rounded-2xl glass-card-luxury flex items-center justify-between shadow-xs">
                 <div className="flex items-center gap-3">
                   <Compass size={18} className="text-[#785415]" />
                   <span className="text-xs font-bold text-[#070D1A]">Mumbai-Pune Expressway</span>
@@ -758,36 +758,38 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           9. PRIVATE VIP CONCIERGE & BOOKING DOCK
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 bg-gradient-to-b from-[#FAF9F6] to-[#F3F5F8]">
-        <div className="container mx-auto px-4 sm:px-6 max-w-3xl text-center">
-          <div className="chapter-badge mb-4 mx-auto">
-            <Sparkles size={11} className="text-[#785415]" />
-            <span>Private Advisory Desk</span>
-          </div>
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
+          <div className="glass-card-luxury p-8 sm:p-14 shadow-lg">
+            <div className="chapter-badge mb-4 mx-auto">
+              <Sparkles size={11} className="text-[#785415]" />
+              <span>Private Advisory Desk</span>
+            </div>
 
-          <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-bold mb-4">
-            Schedule a Private Tour of <br />
-            <span className="italic font-bold text-[#785415]">{cluster.name}.</span>
-          </h2>
+            <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-bold mb-4">
+              Schedule a Private Tour of <br />
+              <span className="italic font-bold text-[#785415]">{cluster.name}.</span>
+            </h2>
 
-          <p className="text-slate-700 text-sm sm:text-base max-w-xl mx-auto mb-8 font-sans font-medium">
-            Our specialized residential advisory desk will arrange customized floor-wise cost sheets, sample residence walkthroughs, and verified RERA paperwork.
-          </p>
+            <p className="text-slate-700 text-sm sm:text-base max-w-xl mx-auto mb-8 font-sans font-medium">
+              Our specialized residential advisory desk will arrange customized floor-wise cost sheets, sample residence walkthroughs, and verified RERA paperwork.
+            </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <button
-              onClick={() => handleOpenModal(`VIP Inspection: ${cluster.name}`)}
-              className="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-pointer border-none shadow-md"
-            >
-              Request Site Visit Slot
-            </button>
+            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+              <button
+                onClick={() => handleOpenModal(`VIP Inspection: ${cluster.name}`)}
+                className="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-wider cursor-pointer border-none shadow-md"
+              >
+                Request Site Visit Slot
+              </button>
 
-            <a
-              href="tel:+917744009295"
-              className="px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-[#070D1A] border-2 border-slate-300 hover:border-[#785415] text-xs font-sans font-bold uppercase tracking-wider no-underline flex items-center gap-2 transition-all"
-            >
-              <Phone size={14} className="text-[#785415]" />
-              <span>Call +91 7744009295</span>
-            </a>
+              <a
+                href="tel:+917744009295"
+                className="px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-[#070D1A] border-2 border-slate-300 hover:border-[#785415] text-xs font-sans font-bold uppercase tracking-wider no-underline flex items-center gap-2 transition-all"
+              >
+                <Phone size={14} className="text-[#785415]" />
+                <span>Call +91 7744009295</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -37,7 +37,7 @@ export default function JournalPreviewSection() {
           {journalArticles.map((article) => (
             <article
               key={article.id}
-              className="rounded-3xl p-6 border-2 border-slate-200 bg-white hover:border-[#785415] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
+              className="glass-card-luxury p-6 flex flex-col justify-between group"
             >
               <div>
                 {/* Meta */}

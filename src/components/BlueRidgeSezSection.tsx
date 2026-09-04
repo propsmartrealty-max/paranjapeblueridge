@@ -33,13 +33,13 @@ export default function BlueRidgeSezSection() {
         {/* Authentic PSCL SEZ Hero Card with Metrics */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-center">
           <div className="lg:col-span-7">
-            <div className="rounded-3xl overflow-hidden bg-white p-3 border-2 border-slate-200 shadow-md">
+            <div className="rounded-3xl overflow-hidden glass-surface p-3 shadow-md">
               <img 
                 src="/assets/images/pscl-blue-ridge-sez.webp" 
                 alt="Blue Ridge IT / ITES Special Economic Zone Hinjewadi Phase 1"
                 className="w-full h-80 sm:h-96 object-cover rounded-2xl"
               />
-              <div className="p-4 flex items-center justify-between text-xs font-mono text-slate-700 border-t border-slate-200 mt-2">
+              <div className="p-4 flex items-center justify-between text-xs font-mono text-slate-700 border-t border-slate-200/80 mt-2">
                 <span className="flex items-center gap-1.5 font-bold text-[#070D1A]">
                   <Building2 size={14} className="text-[#785415]" />
                   Operational LEED Gold IT SEZ
@@ -50,25 +50,25 @@ export default function BlueRidgeSezSection() {
           </div>
 
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            <div className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-2">
+            <div className="glass-card-luxury p-6 rounded-2xl space-y-2">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Scale</span>
               <div className="text-2xl sm:text-3xl font-serif text-[#070D1A] font-bold">3M+ Sq. Ft.</div>
               <p className="text-xs text-slate-700 font-medium">Grade-A IT/ITES workspace</p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-2">
+            <div className="glass-card-luxury p-6 rounded-2xl space-y-2">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Workforce</span>
               <div className="text-2xl sm:text-3xl font-serif text-[#785415] font-bold">35,000+</div>
               <p className="text-xs text-slate-700 font-medium">Daily technology workforce</p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-2">
+            <div className="glass-card-luxury p-6 rounded-2xl space-y-2">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Commute</span>
               <div className="text-2xl sm:text-3xl font-serif text-[#070D1A] font-bold">0 Minutes</div>
               <p className="text-xs text-slate-700 font-medium">Zero commute pedestrian living</p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm space-y-2">
+            <div className="glass-card-luxury p-6 rounded-2xl space-y-2">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Gross Yield</span>
               <div className="text-2xl sm:text-3xl font-serif text-[#785415] font-bold">4.8% - 5.6%</div>
               <p className="text-xs text-slate-700 font-medium">Consistent residential yield</p>
@@ -81,9 +81,9 @@ export default function BlueRidgeSezSection() {
           {blueRidgeSezData.keyAdvantages.map((adv, idx) => (
             <div
               key={idx}
-              className="bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300"
+              className="glass-card-luxury p-8 rounded-3xl space-y-3"
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-2">
                 <span className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-[#785415] font-mono text-xs font-bold">
                   0{idx + 1}
                 </span>
@@ -99,8 +99,8 @@ export default function BlueRidgeSezSection() {
         </div>
 
         {/* Global Tech Tenants Banner */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-slate-200 shadow-sm space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+        <div className="glass-surface rounded-3xl p-8 sm:p-10 shadow-sm space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#785415] block mb-1 font-bold">
                 Corporate Footprint
@@ -118,7 +118,7 @@ export default function BlueRidgeSezSection() {
             {blueRidgeSezData.tenants.map((tenant, i) => (
               <div
                 key={i}
-                className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3 hover:bg-white hover:border-[#785415] transition-all"
+                className="p-4 rounded-2xl bg-white/70 backdrop-blur-sm border border-slate-200/80 flex items-center gap-3 hover:bg-white hover:border-[#785415] transition-all shadow-xs"
               >
                 <div className="w-2 h-2 rounded-full bg-[#785415] shrink-0"></div>
                 <span className="text-xs font-sans font-bold text-[#070D1A]">

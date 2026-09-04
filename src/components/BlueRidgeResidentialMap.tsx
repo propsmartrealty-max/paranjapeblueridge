@@ -149,7 +149,7 @@ export default function BlueRidgeResidentialMap() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-3xl p-6 sm:p-8 border-2 border-slate-200 bg-white shadow-md space-y-6"
+                className="glass-card-luxury p-6 sm:p-8 space-y-6"
               >
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#785415] block mb-1 font-bold">
@@ -190,7 +190,7 @@ export default function BlueRidgeResidentialMap() {
                 </div>
 
                 {/* Proximity Within Masterplan */}
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <div className="p-3.5 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/90 shadow-inner space-y-2">
                   <span className="text-[10px] font-mono text-[#785415] uppercase tracking-wider block font-bold">
                     Immediate Proximity
                   </span>

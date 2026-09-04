@@ -89,7 +89,7 @@ export default function TownshipSpecificationsSection() {
             {keyFeatures.map((feat, i) => (
               <div 
                 key={i} 
-                className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 space-y-2 group"
+                className="glass-card-luxury p-6 rounded-2xl space-y-2 group"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono text-[#785415] font-bold">0{i + 1}</span>
@@ -113,9 +113,9 @@ export default function TownshipSpecificationsSection() {
             return (
               <div 
                 key={i} 
-                className="bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 space-y-6"
+                className="glass-card-luxury p-8 rounded-3xl space-y-6"
               >
-                <div className="flex items-center gap-3.5 pb-4 border-b border-slate-200">
+                <div className="flex items-center gap-3.5 pb-4 border-b border-slate-200/80">
                   <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-[#785415] flex items-center justify-center">
                     <Icon size={20} />
                   </div>
@@ -143,7 +143,7 @@ export default function TownshipSpecificationsSection() {
         </div>
 
         {/* Construction Formwork Trust Note */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl glass-surface flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 text-[#070D1A] flex items-center justify-center shrink-0">
               <ShieldCheck size={24} className="text-[#785415]" />

@@ -138,19 +138,19 @@ export default function HomePageClient() {
 
           {/* 4 Architectural Micro-Badges with High-Visibility Borders */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-12 mt-12 border-t border-slate-200 w-full max-w-4xl text-left">
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Scale</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">138 Masterplanned Acres</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Commercial Engine</span>
               <div className="text-sm font-sans font-bold text-[#785415]">3M+ Sq. Ft. IT SEZ</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Leisure</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">9-Hole Golf & Marina</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+            <div className="glass-card-luxury p-4 rounded-2xl space-y-1">
               <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Transit</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">800m to Metro Line 3</div>
             </div>
@@ -200,14 +200,14 @@ export default function HomePageClient() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative rounded-3xl overflow-hidden bg-white p-3 border-2 border-slate-200 shadow-md">
+              <div className="relative rounded-3xl overflow-hidden glass-surface p-3 shadow-md">
                 <img 
                   src="/assets/images/pscl-blue-ridge-township-skyline.jpg" 
                   alt="Blue Ridge Township Aerial Panorama"
                   className="w-full h-96 object-cover rounded-2xl"
                 />
-                <div className="p-6 space-y-4 bg-white">
-                  <div className="grid grid-cols-3 gap-4 text-center border-t border-slate-200 pt-4">
+                <div className="p-6 space-y-4">
+                  <div className="grid grid-cols-3 gap-4 text-center border-t border-slate-200/80 pt-4">
                     <div>
                       <div className="text-2xl font-serif text-[#070D1A] font-bold">138</div>
                       <div className="text-[10px] font-mono text-slate-600 uppercase tracking-wider font-bold">Total Acres</div>
@@ -268,7 +268,7 @@ export default function HomePageClient() {
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden p-3 border-2 border-slate-200 shadow-md bg-white">
+              <div className="rounded-3xl overflow-hidden p-3 glass-surface shadow-md">
                 <img 
                   src="/assets/images/pscl-blue-ridge-golf.webp" 
                   alt="Blue Ridge 9-Hole Executive Golf Course & Marina"
@@ -292,12 +292,12 @@ export default function HomePageClient() {
               </p>
               
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border-2 border-slate-200 shadow-xs">
+                <div className="p-4 rounded-2xl glass-card-luxury space-y-1">
                   <Trees size={20} className="text-[#785415] mb-2" />
                   <div className="text-sm font-serif text-[#070D1A] font-bold">9-Hole Course</div>
                   <div className="text-xs text-slate-600 font-medium">Executive layout & PGA coach</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border-2 border-slate-200 shadow-xs">
+                <div className="p-4 rounded-2xl glass-card-luxury space-y-1">
                   <Waves size={20} className="text-blue-600 mb-2" />
                   <div className="text-sm font-serif text-[#070D1A] font-bold">Private Marina</div>
                   <div className="text-xs text-slate-600 font-medium">Boat club & kayak fleet</div>
@@ -334,25 +334,27 @@ export default function HomePageClient() {
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="enquiry" className="py-24 bg-gradient-to-b from-[#FAF9F6] to-[#F3F5F8] relative">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
-          <div className="chapter-badge mb-4">
-            <Sparkles size={11} className="text-[#785415]" />
-            <span>Private Viewing Concierge</span>
+          <div className="glass-card-luxury p-8 sm:p-14 shadow-lg">
+            <div className="chapter-badge mb-4 mx-auto">
+              <Sparkles size={11} className="text-[#785415]" />
+              <span>Private Viewing Concierge</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] mb-6">
+              Reserve your private viewing <br />
+              <span className="italic font-light text-gradient-champagne">at Blue Ridge Hinjewadi.</span>
+            </h2>
+            <p className="text-slate-700 max-w-xl mx-auto text-base font-sans font-medium mb-8">
+              Our specialized residential advisory desk is at your service for verified floor plans, bespoke site inspections, and customized cost sheets.
+            </p>
+
+            <button
+              onClick={() => handleOpenModal('Private Consultation Request')}
+              className="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-widest cursor-pointer shadow-md"
+            >
+              Connect With Private Advisor
+            </button>
           </div>
-
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] mb-6">
-            Reserve your private viewing <br />
-            <span className="italic font-light text-gradient-champagne">at Blue Ridge Hinjewadi.</span>
-          </h2>
-          <p className="text-slate-700 max-w-xl mx-auto text-base font-sans font-medium mb-8">
-            Our specialized residential advisory desk is at your service for verified floor plans, bespoke site inspections, and customized cost sheets.
-          </p>
-
-          <button
-            onClick={() => handleOpenModal('Private Consultation Request')}
-            className="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-widest cursor-pointer shadow-md"
-          >
-            Connect With Private Advisor
-          </button>
         </div>
       </section>
     </div>

@@ -71,64 +71,112 @@
    HIGH-VISIBILITY ARCHITECTURAL SECTION BORDERS & CARDS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* Sectional Boundary Line with Precision Architectural Marker */
+/* Sectional Boundary Line with Precision Architectural Marker & Center Jewel */
 .arch-section-divider {
   position: relative;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.arch-section-divider::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(203, 213, 225, 0.5) 15%, rgba(120, 84, 21, 0.35) 50%, rgba(203, 213, 225, 0.5) 85%, transparent 100%);
 }
 
 .arch-section-divider::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: -2.5px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #b88e3e, transparent);
+  width: 140px;
+  height: 4px;
+  background: radial-gradient(ellipse at center, rgba(120, 84, 21, 0.45) 0%, rgba(184, 142, 62, 0.2) 45%, transparent 80%);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+/* Frosted Porcelain Glass Surface */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(7, 13, 26, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+}
+
+/* Luxury Frosted Glass Card */
+.glass-card-luxury {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(226, 232, 240, 0.85);
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 36px -8px rgba(7, 13, 26, 0.05), 0 4px 12px -2px rgba(7, 13, 26, 0.03), inset 0 1px 1px rgba(255, 255, 255, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-luxury:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(120, 84, 21, 0.4);
+  box-shadow: 0 20px 45px -10px rgba(120, 84, 21, 0.14), 0 8px 20px -4px rgba(7, 13, 26, 0.05), inset 0 1px 1px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
 }
 
 /* Architectural Frame Container */
 .arch-frame {
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 /* High-Visibility Crisp Card */
 .glass-panel {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .glass-panel:hover {
-  border-color: #cbd5e1;
+  border-color: rgba(120, 84, 21, 0.4);
+  box-shadow: 0 14px 35px -8px rgba(120, 84, 21, 0.12);
 }
 
 .glass-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.25rem;
-  box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 6px 20px -4px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: #b88e3e;
-  box-shadow: 0 12px 30px -8px rgba(184, 142, 62, 0.15), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+  border-color: rgba(120, 84, 21, 0.4);
+  box-shadow: 0 16px 36px -8px rgba(184, 142, 62, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
   transform: translateY(-2px);
 }
 
 /* High-Contrast Pill Badge */
 .glass-pill {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(203, 213, 225, 0.9);
   color: #0b1325;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 /* Chapter Numeral Tag */
@@ -138,15 +186,17 @@
   gap: 0.5rem;
   padding: 0.35rem 0.95rem;
   border-radius: 9999px;
-  background: #ffffff;
-  border: 1px solid #94a3b8;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.8);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: #785415;
   font-weight: 800;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 /* Primary CTA: Champagne Gold */

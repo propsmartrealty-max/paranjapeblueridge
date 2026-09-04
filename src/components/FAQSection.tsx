@@ -73,18 +73,18 @@ export default function FAQSection() {
           {faqs.map((faq, i) => (
             <div 
               key={i} 
-              className="bg-white rounded-2xl overflow-hidden border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all"
+              className="glass-card-luxury overflow-hidden !rounded-2xl shadow-xs"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 aria-expanded={openIndex === i}
                 aria-controls={`faq-answer-${i}`}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50/70 transition-colors cursor-pointer bg-transparent border-none"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-white/40 transition-colors cursor-pointer bg-transparent border-none"
               >
                 <span className="text-[#070D1A] font-serif font-bold text-base sm:text-lg pr-4">
                   {faq.q}
                 </span>
-                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#785415] shrink-0 font-bold">
+                <span className="w-8 h-8 rounded-full bg-slate-100/80 border border-slate-200/80 flex items-center justify-center text-[#785415] shrink-0 font-bold">
                   {openIndex === i ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
               </button>

@@ -35,7 +35,7 @@ export default function ParanjapeLegacySection() {
           {completedParanjapeProjects.map((proj) => (
             <div
               key={proj.id}
-              className="rounded-3xl p-4 sm:p-6 border-2 border-slate-200 bg-white hover:border-[#785415] transition-all duration-300 group shadow-sm hover:shadow-md"
+              className="glass-card-luxury p-4 sm:p-6 group"
             >
               {/* Image */}
               <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-slate-100 mb-6">
@@ -47,7 +47,7 @@ export default function ParanjapeLegacySection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 
                 <div className="absolute top-4 left-4">
-                  <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-[#070D1A] bg-white/90 font-bold">
+                  <span className="glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-[#070D1A] font-bold">
                     {proj.category}
                   </span>
                 </div>
@@ -73,7 +73,7 @@ export default function ParanjapeLegacySection() {
                   {proj.legacyStory}
                 </p>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 font-medium">
+                <div className="p-3.5 rounded-xl bg-white/70 backdrop-blur-md border border-slate-200/90 text-xs text-slate-700 font-medium">
                   <strong className="text-[#070D1A] font-bold">Scale & Milestone: </strong>
                   {proj.totalAcresOrUnits}
                 </div>
