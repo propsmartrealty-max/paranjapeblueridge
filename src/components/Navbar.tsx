@@ -46,26 +46,26 @@ export default function Navbar() {
         : 'bg-white/95 backdrop-blur-xl border-b border-slate-200/60 h-20 flex items-center'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl w-full">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           
           {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
               1. PURE UPLOADED IMAGE LOGOS ONLY (ZERO TEXT LOGOS)
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-          <a href="/" className="flex items-center no-underline group" aria-label="Paranjape Blue Ridge Home">
-            <div className="flex items-center gap-2 sm:gap-3 bg-white py-1.5 px-3 rounded-2xl border-2 border-slate-200 shadow-xs group-hover:border-[#785415]/50 transition-colors">
+          <a href="/" className="flex items-center no-underline group shrink-0" aria-label="Paranjape Blue Ridge Home">
+            <div className="flex items-center gap-2 sm:gap-3 bg-white py-1.5 px-3 rounded-2xl border-2 border-slate-200 shadow-xs group-hover:border-[#785415]/50 transition-colors shrink-0">
               <img 
                 src="/assets/images/paranjape-official-logo.png" 
                 alt="Paranjape Schemes Official Logo" 
-                className="h-7 sm:h-8 w-auto object-contain"
+                className="h-7 sm:h-8 w-auto object-contain shrink-0"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = '/assets/logos/paranjape-schemes.png';
                 }}
               />
-              <div className="h-5 sm:h-6 w-px bg-slate-200"></div>
+              <div className="h-5 sm:h-6 w-px bg-slate-200 shrink-0"></div>
               <img 
                 src="/assets/images/blue-ridge-official-logo.png" 
                 alt="Blue Ridge Official Logo" 
-                className="h-7 sm:h-8 w-auto object-contain"
+                className="h-7 sm:h-8 w-auto object-contain shrink-0"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = '/assets/logos/blue-ridge.png';
                 }}
@@ -74,22 +74,22 @@ export default function Navbar() {
           </a>
 
           {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-              2. STREAMLINED DESKTOP NAVIGATION
+              2. STREAMLINED DESKTOP NAVIGATION (ZERO WRAPPING / ZERO COLLISION)
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12px] font-sans font-bold uppercase tracking-[0.12em]">
-            <a href="/#township-story" className="text-slate-800 hover:text-[#785415] transition-colors no-underline">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 text-[11px] xl:text-[12px] font-sans font-bold uppercase tracking-[0.1em] shrink-0">
+            <a href="/#township-story" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               The Township
             </a>
 
             {/* Residences Dropdown with Hover Bridge & Outside Click */}
             <div 
               ref={dropdownRef}
-              className="relative py-2"
+              className="relative py-2 shrink-0"
               onMouseEnter={() => setIsResidencesDropdownOpen(true)}
               onMouseLeave={() => setIsResidencesDropdownOpen(false)}
             >
               <button 
-                className="flex items-center gap-1.5 text-slate-800 hover:text-[#785415] transition-colors py-1 bg-transparent border-none cursor-pointer uppercase font-bold text-[12px] tracking-[0.12em]"
+                className="flex items-center gap-1.5 text-slate-800 hover:text-[#785415] transition-colors py-1 bg-transparent border-none cursor-pointer uppercase font-bold text-[11px] xl:text-[12px] tracking-[0.1em] whitespace-nowrap"
                 onClick={() => setIsResidencesDropdownOpen(!isResidencesDropdownOpen)}
                 aria-expanded={isResidencesDropdownOpen}
               >
@@ -101,9 +101,10 @@ export default function Navbar() {
               <div className="absolute top-full left-0 right-0 h-3 pointer-events-auto"></div>
 
               {isResidencesDropdownOpen && (
-                <div className="absolute top-[calc(100%+6px)] left-0 w-88 p-3.5 rounded-2xl bg-white border-2 border-slate-300 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] space-y-2 z-[100]">
-                  <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-[#785415] border-b border-slate-200 font-extrabold">
-                    Active Residential Enclaves
+                <div className="absolute top-[calc(100%+8px)] left-0 w-[380px] sm:w-[420px] p-4 rounded-2xl bg-white border-2 border-slate-300 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] space-y-2.5 z-[100] animate-in fade-in zoom-in-95 duration-150">
+                  <div className="px-2 pb-2 text-[10px] font-mono uppercase tracking-widest text-[#785415] border-b border-slate-200 font-extrabold flex items-center justify-between">
+                    <span>Active Residential Enclaves</span>
+                    <span className="text-[9px] text-slate-500 font-normal">Direct Booking</span>
                   </div>
                   {blueRidgeClusters.map((cluster) => {
                     const clusterUrl = cluster.id === 'ridges-41' 
@@ -117,34 +118,39 @@ export default function Navbar() {
                         key={cluster.id}
                         href={clusterUrl}
                         onClick={() => setIsResidencesDropdownOpen(false)}
-                        className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50/80 border border-slate-200 hover:border-amber-300 flex items-center justify-between no-underline group transition-all"
+                        className="p-3.5 rounded-xl bg-slate-50 hover:bg-amber-50/80 border border-slate-200 hover:border-amber-400 flex items-center justify-between gap-3 no-underline group transition-all"
                       >
-                        <div>
-                          <div className="text-sm font-serif font-bold text-[#070D1A] group-hover:text-[#785415] transition-colors">
-                            {cluster.name}
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between gap-2 mb-1">
+                            <span className="text-sm font-serif font-bold text-[#070D1A] group-hover:text-[#785415] transition-colors truncate">
+                              {cluster.name}
+                            </span>
+                            <span className="text-[11px] font-mono text-[#785415] font-bold shrink-0">
+                              {cluster.priceStarting}
+                            </span>
                           </div>
-                          <div className="text-[11px] font-mono text-slate-700 font-semibold">
+                          <div className="text-[11px] font-mono text-slate-600 font-semibold truncate">
                             {cluster.configurations} • {cluster.carpetAreaRange}
                           </div>
                         </div>
-                        <span className="text-sm font-mono text-[#785415] font-extrabold group-hover:translate-x-1 transition-transform">
+                        <span className="w-6 h-6 rounded-full bg-white border border-slate-200 group-hover:border-amber-400 group-hover:bg-[#785415] group-hover:text-white text-[#785415] flex items-center justify-center text-xs font-bold shrink-0 transition-all">
                           →
                         </span>
                       </a>
                     );
                   })}
-                  <div className="pt-2 border-t border-slate-200 grid grid-cols-2 gap-2 text-xs font-mono font-bold">
+                  <div className="pt-2.5 border-t border-slate-200 grid grid-cols-2 gap-2 text-xs font-mono font-bold">
                     <a 
                       href="/blue-ridge/ongoing-projects" 
                       onClick={() => setIsResidencesDropdownOpen(false)}
-                      className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-center no-underline transition-colors"
+                      className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-center no-underline transition-colors truncate"
                     >
-                      All Clusters
+                      All Clusters (3)
                     </a>
                     <a 
                       href="/#masterplan" 
                       onClick={() => setIsResidencesDropdownOpen(false)}
-                      className="p-2.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-[#785415] text-center border border-amber-200 no-underline transition-colors font-extrabold"
+                      className="py-2.5 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 text-[#785415] text-center border border-amber-300 no-underline transition-colors font-extrabold truncate"
                     >
                       Township Map
                     </a>
@@ -153,20 +159,20 @@ export default function Navbar() {
               )}
             </div>
 
-            <a href="/#sez" className="text-slate-800 hover:text-[#785415] transition-colors no-underline flex items-center gap-1.5 font-bold text-[#785415]">
-              <Briefcase size={13} className="text-[#785415]" />
+            <a href="/#sez" className="text-slate-800 hover:text-[#785415] transition-colors no-underline flex items-center gap-1.5 font-bold text-[#785415] whitespace-nowrap shrink-0">
+              <Briefcase size={13} className="text-[#785415] shrink-0" />
               <span>Blue Ridge SEZ</span>
             </a>
 
-            <a href="/#golf" className="text-slate-800 hover:text-[#785415] transition-colors no-underline">
+            <a href="/#golf" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               Golf & Marina
             </a>
 
-            <a href="/why-paranjape" className="text-slate-800 hover:text-[#785415] transition-colors no-underline">
+            <a href="/why-paranjape" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               Legacy
             </a>
 
-            <a href="/journal" className="text-slate-800 hover:text-[#785415] transition-colors no-underline">
+            <a href="/journal" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               Journal
             </a>
           </nav>
@@ -174,15 +180,15 @@ export default function Navbar() {
           {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
               3. RIGHT ACTION & MAHARERA BADGE
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-          <div className="hidden md:flex items-center gap-4">
-            <div className="hidden xl:flex flex-col text-right">
+          <div className="hidden md:flex items-center gap-3 xl:gap-4 shrink-0">
+            <div className="hidden 2xl:flex flex-col text-right shrink-0">
               <span className="text-[9px] font-mono text-slate-600 uppercase tracking-widest font-bold">MahaRERA Registered</span>
               <span className="text-[10px] font-mono text-[#070D1A] font-extrabold">P52100055581 • P52100078116</span>
             </div>
 
             <button
               onClick={openEnquiry}
-              className="btn-champagne px-6 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-[0.14em] cursor-pointer border-none flex items-center gap-2 shadow-sm hover:shadow-md transition-all"
+              className="btn-champagne px-5 xl:px-6 py-2.5 rounded-full text-[11px] xl:text-xs font-sans font-bold uppercase tracking-[0.12em] cursor-pointer border-none flex items-center gap-2 shadow-sm hover:shadow-md transition-all shrink-0 whitespace-nowrap"
             >
               <span>Private Enquiry</span>
               <ArrowRight size={13} />
@@ -206,17 +212,17 @@ export default function Navbar() {
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed top-16 sm:top-20 left-0 right-0 bg-white border-b-2 border-slate-300 px-6 py-6 space-y-4 shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto z-[95]">
-          <div className="flex items-center gap-2.5 bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 w-fit mb-2">
+          <div className="flex items-center gap-2.5 bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 w-fit mb-2 shrink-0">
             <img 
               src="/assets/images/paranjape-official-logo.png" 
               alt="Paranjape Schemes" 
-              className="h-6 w-auto object-contain"
+              className="h-6 w-auto object-contain shrink-0"
             />
-            <div className="h-4 w-px bg-slate-300"></div>
+            <div className="h-4 w-px bg-slate-300 shrink-0"></div>
             <img 
               src="/assets/images/blue-ridge-official-logo.png" 
               alt="Blue Ridge" 
-              className="h-6 w-auto object-contain"
+              className="h-6 w-auto object-contain shrink-0"
             />
           </div>
 
