@@ -86,8 +86,8 @@ export default function Navbar() {
               </button>
 
               {isResidencesDropdownOpen && (
-                <div className="absolute top-full left-0 w-80 p-3 rounded-2xl bg-white/98 backdrop-blur-2xl border border-slate-200/90 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] space-y-1">
-                  <div className="px-3 py-1.5 text-[9px] font-mono uppercase tracking-widest text-[#8F6A24] border-b border-slate-100 font-bold">
+                <div className="absolute top-full left-0 w-84 p-3 rounded-2xl bg-white border-2 border-slate-300 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] space-y-1.5 z-[100]">
+                  <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-[#785415] border-b border-slate-200 font-bold">
                     Active Residential Enclaves
                   </div>
                   {blueRidgeClusters.map((cluster) => {
@@ -101,27 +101,36 @@ export default function Navbar() {
                       <a
                         key={cluster.id}
                         href={clusterUrl}
-                        className="p-2.5 rounded-xl hover:bg-amber-50/60 flex items-center justify-between no-underline group transition-all"
+                        onClick={() => setIsResidencesDropdownOpen(false)}
+                        className="p-3 rounded-xl bg-slate-50 hover:bg-amber-50/80 border border-slate-200 hover:border-amber-300 flex items-center justify-between no-underline group transition-all"
                       >
                         <div>
-                          <div className="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#B88E3E] transition-colors">
+                          <div className="text-sm font-serif font-bold text-[#070D1A] group-hover:text-[#785415] transition-colors">
                             {cluster.name}
                           </div>
-                          <div className="text-[10px] font-mono text-slate-500">
+                          <div className="text-[11px] font-mono text-slate-700 font-medium">
                             {cluster.configurations} • {cluster.carpetAreaRange}
                           </div>
                         </div>
-                        <span className="text-xs font-mono text-[#B88E3E] group-hover:translate-x-1 transition-transform">
+                        <span className="text-sm font-mono text-[#785415] font-bold group-hover:translate-x-1 transition-transform">
                           →
                         </span>
                       </a>
                     );
                   })}
-                  <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-1 text-[10px] font-mono font-semibold">
-                    <a href="/blue-ridge/ongoing-projects" className="p-2 rounded-lg hover:bg-slate-50 text-slate-600 hover:text-[#070D1A] no-underline">
+                  <div className="pt-2 border-t border-slate-200 grid grid-cols-2 gap-2 text-xs font-mono font-bold">
+                    <a 
+                      href="/blue-ridge/ongoing-projects" 
+                      onClick={() => setIsResidencesDropdownOpen(false)}
+                      className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-center no-underline transition-colors"
+                    >
                       All Clusters
                     </a>
-                    <a href="/#masterplan" className="p-2 rounded-lg hover:bg-slate-50 text-slate-600 hover:text-[#070D1A] no-underline">
+                    <a 
+                      href="/#masterplan" 
+                      onClick={() => setIsResidencesDropdownOpen(false)}
+                      className="p-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-[#785415] text-center border border-amber-200 no-underline transition-colors"
+                    >
                       Township Map
                     </a>
                   </div>
