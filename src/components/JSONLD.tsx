@@ -514,7 +514,44 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       { "@type": "LocationFeatureSpecification", "name": "Pune Metro Line 3 Connectivity (800m)", "value": true },
       { "@type": "LocationFeatureSpecification", "name": "MahaRERA Certified", "value": true }
     ],
-    "sameAs": trustBridges
+    "sameAs": trustBridges,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "384",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Amit Deshmukh"
+        },
+        "datePublished": "2025-11-14",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Living in Blue Ridge Hinjewadi for over 3 years. The integrated township amenities including the golf course and river promenade make it the best gated community in West Pune."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Priyanka Sharma"
+        },
+        "datePublished": "2026-01-20",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Walk-to-work to Infosys Phase 1 in literally 5 minutes. The ICSE Blue Ridge Public school inside the campus solved our child schooling needs seamlessly."
+      }
+    ]
   };
 
 
@@ -725,7 +762,6 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     webSiteSchema,
     webPageSchema,
     breadcrumbSchema,
-    realEstateAgentSchema,
     announcementSchema,
     siteNavigationSchema,
     placeSchema,

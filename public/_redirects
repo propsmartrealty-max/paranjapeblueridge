@@ -34,9 +34,13 @@
 /construction /construction-updates 301
 /rera /construction-updates 301
 /rera-updates /construction-updates 301
-/brochure /sovereign-vault 301
+/brochure /#enquiry 301
+/download-brochure /#enquiry 301
 /vault /sovereign-vault 301
-/floor-plans /sovereign-vault 301
+/floor-plans /#residences 301
+/floorplans /#residences 301
+/plans /#residences 301
+/pricing /#residences 301
 /cost-sheet /#enquiry 301
 /contact /#enquiry 301
 /enquiry /#enquiry 301

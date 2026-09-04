@@ -96,7 +96,6 @@ function getCoreAndProjectUrls(): MetadataRoute.Sitemap {
     buildUrlEntry('mr-hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
     buildUrlEntry('insights', staticPublishedDate, 'daily', 0.9, false),
     buildUrlEntry('directory', staticPublishedDate, 'weekly', 0.8, false),
-    buildUrlEntry('sovereign-vault', staticPublishedDate, 'weekly', 0.8, false),
     buildUrlEntry('html-sitemap', staticPublishedDate, 'weekly', 0.7, false),
   ];
 

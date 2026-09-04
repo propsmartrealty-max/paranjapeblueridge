@@ -20,7 +20,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           `https://${HOST}/paranjape-blue-ridge-promenade-hinjewadi-pune`,
           `https://${HOST}/paranjape-blue-ridge-the-altius-hinjewadi-pune`,
           `https://${HOST}/paranjape-blue-ridge-41-hinjewadi-pune`,
-          `https://${HOST}/sovereign-vault`,
+          `https://${HOST}/hinjewadi-micro-market`,
           `https://${HOST}/construction-updates`,
           `https://${HOST}/nri-investment`
         ];
