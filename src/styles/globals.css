@@ -261,3 +261,40 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ENQUIRY MODAL — DARK LUXURY INPUT FIELDS
+   Used in EnquiryModal.tsx (dark #0d1424 background)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.lux-input {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(197, 160, 89, 0.30);
+  color: #fbf9f5;
+  font-weight: 500;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.lux-input::placeholder {
+  color: rgba(148, 163, 184, 0.55);
+}
+
+.lux-input:focus {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: #c5a059;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.18), 0 4px 16px rgba(197, 160, 89, 0.10);
+  outline: none;
+}
+
+.lux-input option {
+  background-color: #0d1424;
+  color: #fbf9f5;
+}
+
+/* Tailwind text-text-muted / text-text-light compat aliases */
+.text-text-muted {
+  color: #94a3b8;
+}
+.text-text-light {
+  color: #94a3b8;
+}

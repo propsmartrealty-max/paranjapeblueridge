@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, startTransition } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DOMPurify from 'dompurify';
 import CloudflareTurnstile from '@/components/CloudflareTurnstile';
@@ -35,6 +35,28 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [error, setError] = useState<string | null>(null);
+
+  // Reset all state every time modal is opened to prevent stale errors
+  useEffect(() => {
+    if (isOpen) {
+      setStep(1);
+      setError(null);
+      setStatus('idle');
+      setCountryCode('+91');
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        bhk: '',
+        budget: '',
+        intent: 'Self Use',
+        visitDate: '',
+        visitTime: '',
+        message: initialInterest ? `Interested in reserving ${initialInterest}` : '',
+        bot_field: ''
+      });
+    }
+  }, [isOpen, initialInterest]);
 
   if (!isOpen) return null;
 
@@ -227,11 +249,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
           <div className="mb-10">
             <span className="text-gold font-bold tracking-[6px] uppercase text-[10px] block mb-4">Step {step} of 3</span>
             <h2 className="text-4xl font-serif text-warm-white leading-tight">
-              {initialInterest ? 'Unit ' : (step === 1 ? 'Priority ' : 'Qualification ')}
-              <span className="italic font-normal text-gold">{initialInterest ? 'Reservation' : (step === 1 ? 'Enquiry' : 'Protocol')}</span>
+              {step === 1 ? 'Priority ' : 'Qualification '}
+              <span className="italic font-normal text-gold">{step === 1 ? 'Enquiry' : 'Protocol'}</span>
             </h2>
             {initialInterest && (
-              <p className="text-gold/80 text-sm mt-2">Holding configuration: <span className="font-bold">{initialInterest}</span></p>
+              <p className="text-gold/80 text-sm mt-2">
+                Enquiry for: <span className="font-bold">{initialInterest.replace('Paranjape Blue Ridge Master Inquiry', 'Paranjape Blue Ridge Township').replace('Township Concierge Enquiry', 'Blue Ridge Township')}</span>
+              </p>
             )}
           </div>
 
