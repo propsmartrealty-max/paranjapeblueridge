@@ -30,15 +30,15 @@ const description = `Explore part ${pageNum} of the master directory of premium 
   noindex={true}
 >
   <section class="pt-24 pb-20 container mx-auto max-w-7xl px-4">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 border-b border-gold/20 pb-6">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 border-b border-slate-200 pb-6">
       <div>
-        <a href="/directory" class="text-xs font-mono text-gold flex items-center gap-2 mb-2 hover:underline">
+        <a href="/directory" class="text-xs font-mono text-[#8F6A24] flex items-center gap-2 mb-2 hover:underline">
           &larr; Back to Directory Hub
         </a>
-        <h1 class="text-3xl md:text-4xl font-serif text-warm-white font-bold">
-          Directory Partition <span class="text-gold font-mono">#{pageNum}</span>
+        <h1 class="text-3xl md:text-4xl font-serif text-[#070D1A] font-normal">
+          Directory Partition <span class="text-[#8F6A24] font-mono font-bold">#{pageNum}</span>
         </h1>
-        <p class="text-xs text-text-muted mt-1 font-mono">
+        <p class="text-xs text-slate-500 mt-1 font-mono">
           Showing {chunk.length} entries of {totalCount.toLocaleString()}
         </p>
       </div>
@@ -46,15 +46,15 @@ const description = `Explore part ${pageNum} of the master directory of premium 
       <!-- Pagination Controls -->
       <div class="flex items-center gap-3 font-mono text-xs">
         {pageNum > 1 && (
-          <a href={`/directory/${pageNum - 1}`} class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-gold text-warm-white transition-all">
+          <a href={`/directory/${pageNum - 1}`} class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-[#B88E3E] text-slate-700 transition-all no-underline shadow-xs">
             &larr; Prev
           </a>
         )}
-        <span class="text-gold font-bold px-3 py-2 bg-gold/10 rounded-xl border border-gold/30">
+        <span class="text-[#8F6A24] font-bold px-3 py-2 bg-amber-50 rounded-xl border border-amber-200">
           Page {pageNum} of {totalChunks}
         </span>
         {pageNum < totalChunks && (
-          <a href={`/directory/${pageNum + 1}`} class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-gold text-warm-white transition-all">
+          <a href={`/directory/${pageNum + 1}`} class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-[#B88E3E] text-slate-700 transition-all no-underline shadow-xs">
             Next &rarr;
           </a>
         )}
@@ -63,11 +63,11 @@ const description = `Explore part ${pageNum} of the master directory of premium 
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {chunk.map((item) => (
-        <a href={`/${item.slug}`} class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/40 hover:bg-gold/5 transition-all block group no-underline">
-          <h3 class="text-xs font-bold text-warm-white group-hover:text-gold transition-colors line-clamp-2">
+        <a href={`/${item.slug}`} class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-[#B88E3E] hover:shadow-sm transition-all block group no-underline">
+          <h3 class="text-xs font-bold text-[#070D1A] group-hover:text-[#8F6A24] transition-colors line-clamp-2">
             {item.title}
           </h3>
-          <span class="text-[10px] text-text-muted mt-1 block font-mono">
+          <span class="text-[10px] text-slate-500 mt-1 block font-mono">
             {item.location}
           </span>
         </a>

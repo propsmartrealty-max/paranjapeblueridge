@@ -12,8 +12,8 @@ export default function SlugPageClient({ project, slug }: SlugPageClientProps) {
   const targetSlug = project?.slug || slug || 'promenade';
 
   return (
-    <main className="min-h-screen bg-[#FAF9F6] text-[#070D1A]">
+    <div className="w-full bg-[#FAF9F6] text-[#070D1A]">
       <IndependentClusterDetail clusterSlug={targetSlug} />
-    </main>
+    </div>
   );
 }

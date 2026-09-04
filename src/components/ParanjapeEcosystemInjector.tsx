@@ -1,11 +1,11 @@
 import React from 'react';
 import { ecosystemCategories } from '@/data/ecosystem-keywords';
+import { ChevronDown, Sparkles } from 'lucide-react';
 
 /**
- * Ultra-Advanced Ecosystem Injector (V3.0 - 100% Google SpamBrain Compliant)
- * Rebuilt to strictly adhere to Google's Helpful Content Update and Webmaster Guidelines.
- * Uses native HTML5 <details> accordions (fully indexed by Google but UX-friendly).
- * Removes all CSS cloaking (opacity hiding) and unnatural link randomization.
+ * Paranjape Ecosystem Master Navigation Component
+ * Adheres strictly to Google's Helpful Content Guidelines and semantic web standards.
+ * Uses native HTML5 <details> with high-contrast, fully crawlable internal links.
  */
 export default function ParanjapeEcosystemInjector() {
   const ecosystemData = {
@@ -32,7 +32,6 @@ export default function ParanjapeEcosystemInjector() {
         { "@type": "Brand", "name": "Trident" }
       ]
     },
-    // Using SiteNavigationElement is the safest way to map a massive taxonomy to Google
     "mainEntity": {
       "@type": "SiteNavigationElement",
       "name": "Global Project Directory",
@@ -44,58 +43,76 @@ export default function ParanjapeEcosystemInjector() {
     }
   };
 
+  const resolveKeywordHref = (keyword: string) => {
+    const k = keyword.toLowerCase();
+    if (k.includes('promenade')) return '/paranjape-blue-ridge-promenade-hinjewadi-pune';
+    if (k.includes('altius')) return '/paranjape-blue-ridge-the-altius-hinjewadi-pune';
+    if (k.includes('ridges 41') || k.includes('41-storey') || k.includes('2 bhk')) return '/paranjape-blue-ridge-41-hinjewadi-pune';
+    if (k.includes('sez') || k.includes('office') || k.includes('infosys') || k.includes('wipro') || k.includes('tcs')) return '/#sez';
+    if (k.includes('golf') || k.includes('boat') || k.includes('marina')) return '/#golf';
+    if (k.includes('school') || k.includes('icse') || k.includes('amenities')) return '/#lifestyle';
+    if (k.includes('metro') || k.includes('bridge') || k.includes('expressway') || k.includes('transit')) return '/hinjewadi-micro-market';
+    if (k.includes('nri') || k.includes('investment') || k.includes('fema')) return '/nri-investment';
+    if (k.includes('rera') || k.includes('construction')) return '/construction-updates';
+    return '/directory';
+  };
+
   return (
-    <div className="w-full bg-[#050B14] border-t border-gold/10 py-12">
-      {/* 1. Strict Knowledge Graph (No deprecated 'keywords' tags, only pure Entities) */}
+    <section className="w-full bg-[#FAF9F6] border-t border-slate-200 py-12 text-[#070D1A]">
+      {/* Schema.org Structured Graph */}
       <script 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ecosystemData) }}
       />
 
-      <div className="container mx-auto max-w-7xl px-4 text-text-light">
-        {/* 2. Standard HTML5 Details Accordion (100% Google Compliant - No CSS Cloaking) */}
-        <details className="group border border-white/10 rounded-xl overflow-hidden bg-[#0A101C]">
-          <summary className="cursor-pointer px-6 py-4 flex items-center justify-between bg-[#0F1724] hover:bg-[#151F30] transition-colors">
-            <div>
-              <h4 className="text-gold text-xs sm:text-sm uppercase tracking-[0.15em] font-bold">
-                Explore the Paranjape Schemes Ecosystem
-              </h4>
-              <p className="text-text-light/60 text-[10px] mt-1">
-                Browse our complete directory of townships, commercial spaces, and residential projects.
-              </p>
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+        <details className="group border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+          <summary className="cursor-pointer px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100/80 transition-colors list-none">
+            <div className="flex items-center gap-3">
+              <Sparkles size={16} className="text-[#B88E3E] shrink-0" />
+              <div>
+                <h4 className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono">
+                  Explore the Paranjape Schemes Ecosystem
+                </h4>
+                <p className="text-slate-500 text-[11px] mt-0.5 font-sans">
+                  Browse complete directory of township clusters, IT SEZ infrastructure, and residential corridors.
+                </p>
+              </div>
             </div>
-            {/* Elegant Plus/Minus Icon for Accordion */}
-            <div className="text-gold/50 group-open:rotate-180 transition-transform duration-300">
-              ▼
+            <div className="text-[#B88E3E] group-open:rotate-180 transition-transform duration-300">
+              <ChevronDown size={18} />
             </div>
           </summary>
           
-          <div className="p-6 md:p-8 bg-[#0A101C] border-t border-white/5">
-            {/* 3. Deep Transactional & Combinatorial Intent Block (Natural Language) */}
-            <div className="mb-10 pb-8 border-b border-white/5">
-              <h5 className="text-warm-white text-xs font-semibold mb-3 uppercase tracking-wider">
-                Our Real Estate Portfolio
+          <div className="p-6 md:p-8 bg-white border-t border-slate-200">
+            {/* Editorial Overview */}
+            <div className="mb-8 pb-6 border-b border-slate-100">
+              <h5 className="text-[#070D1A] text-xs font-bold mb-2 uppercase tracking-wider font-mono">
+                Paranjape Schemes Portfolio Across Pune West
               </h5>
-              <p className="text-[11px] sm:text-[12px] text-text-light/70 leading-relaxed text-justify">
-                Paranjape Schemes Construction Limited (PSCL) is a premier property developer offering a diverse portfolio across Maharashtra. Whether you are looking to buy a <strong>Paranjape Blue Ridge 2 BHK flat for sale in Hinjewadi</strong>, researching the <strong>Blue Ridge 3 BHK apartment price in Pune</strong>, analyzing <strong>Forest Trails villas in Bhugaon</strong>, seeking <strong>Athashri senior citizen homes with healthcare</strong>, or exploring commercial IT SEZ office spaces at <strong>Trident Business Park Wakad</strong> — PSCL delivers unparalleled quality. Our gated communities, walk-to-work integrated townships, and MahaRERA-registered projects ensure high rental yields, prime capital appreciation, and sustainable eco-friendly living across Hinjewadi, Wakad, Baner, Balewadi, and Khed Shivapur. From luxury duplex penthouses in The Altius to inclusive barrier-free housing at Swaniketan, we build ecosystems for every generation.
+              <p className="text-xs text-slate-600 leading-relaxed text-justify font-sans">
+                Paranjape Schemes (Construction) Limited (PSCL) is a premier property developer with over three decades of engineering excellence across Maharashtra. Offering landmark integrated townships like <strong>Paranjape Blue Ridge in Hinjewadi Phase 1</strong>, luxury golf-view penthouses in <strong>The Altius</strong>, riverfront towers in <strong>Promenade Residences</strong>, and smart residences in <strong>Ridges 41</strong>. From captive commercial spaces in the Blue Ridge IT/ITES SEZ to senior living at Athashri, PSCL builds generational ecosystems with full MahaRERA compliance.
               </p>
             </div>
 
-            {/* 4. Structured Semantic Grid (Fully Visible, High Contrast) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
+            {/* Semantic Internal Navigation Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-8">
               {ecosystemCategories.map((category, idx) => (
                 <div key={idx} className="flex flex-col">
-                  <strong className="text-gold/90 text-[11px] uppercase tracking-wider mb-4 border-b border-gold/20 pb-2 inline-block">
+                  <strong className="text-[#8F6A24] text-xs uppercase tracking-wider mb-3 border-b border-slate-100 pb-1.5 inline-block font-mono font-bold">
                     {category.title}
                   </strong>
                   <ul className="flex flex-col gap-2 list-none m-0 p-0">
                     {category.keywords.map((keyword, kIdx) => {
-                      // Safe, predictable URL slug generation
-                      const slug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                      const href = resolveKeywordHref(keyword);
                       
                       return (
-                        <li key={kIdx} className="text-[10.5px] text-text-light/60 leading-snug hover:text-warm-white transition-colors">
-                          <a href={`/explore/${slug}`} title={`Explore ${keyword}`}>
+                        <li key={kIdx} className="text-xs text-slate-600 leading-snug">
+                          <a 
+                            href={href} 
+                            title={`Explore ${keyword}`}
+                            className="text-slate-600 hover:text-[#B88E3E] transition-colors no-underline font-medium"
+                          >
                             {keyword}
                           </a>
                         </li>
@@ -108,6 +125,6 @@ export default function ParanjapeEcosystemInjector() {
           </div>
         </details>
       </div>
-    </div>
+    </section>
   );
 }

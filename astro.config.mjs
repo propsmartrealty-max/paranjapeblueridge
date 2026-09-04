@@ -21,7 +21,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      filter: (page) => !page.includes('/api/'),
+      filter: (page) => !page.includes('/api/') && !page.includes('/404') && !page.includes('/sovereign-vault'),
     }),
   ],
   vite: {

@@ -15,6 +15,8 @@ Allow: /assets/logos/
 Disallow: /api/
 Disallow: /admin/
 Disallow: /draft/
+Disallow: /sovereign-vault
+Disallow: /sovereign-vault/
 
 User-agent: Googlebot
 Allow: /

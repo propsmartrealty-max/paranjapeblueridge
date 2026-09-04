@@ -40,3 +40,10 @@
 /cost-sheet /#enquiry 301
 /contact /#enquiry 301
 /enquiry /#enquiry 301
+
+# Legacy & Explore Redirects
+/llm.txt /llms.txt 301
+/explore/hinjewadi /hinjewadi-micro-market 301
+/explore/wakad /flats-in-wakad-near-hinjewadi-flyover-paranjape-schemes-blue-ridge-hinjewadi 301
+/explore/baner /flats-near-baner-and-balewadi-high-street-pune-paranjape-schemes-blue-ridge-hinjewadi 301
+

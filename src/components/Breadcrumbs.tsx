@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -32,24 +31,24 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-10">
-      <ol className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[4px] text-text-light">
+    <nav aria-label="Breadcrumb" className="mb-6">
+      <ol className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-500 list-none p-0 m-0">
         <li className="flex items-center">
-          <Link href={getLocalizedHref('/')} aria-label={t('Navigate to Home', 'मुख्यपृष्ठावर जा')} className="hover:text-gold transition-colors flex items-center gap-1.5">
-            <Home size={10} aria-hidden="true" />
-            {t('Home', 'होम')}
-          </Link>
+          <a href={getLocalizedHref('/')} aria-label={t('Navigate to Home', 'मुख्यपृष्ठावर जा')} className="hover:text-[#8F6A24] transition-colors flex items-center gap-1.5 no-underline text-slate-500">
+            <Home size={11} aria-hidden="true" />
+            <span>{t('Home', 'होम')}</span>
+          </a>
         </li>
         {items.map((item, idx) => (
           <li key={idx} className="flex items-center gap-2">
-            <ChevronRight size={10} className="opacity-30" aria-hidden="true" />
-            <Link 
+            <ChevronRight size={11} className="text-slate-300 shrink-0" aria-hidden="true" />
+            <a 
               href={getLocalizedHref(item.href)} 
               aria-current={idx === items.length - 1 ? 'page' : undefined}
-              className={`hover:text-gold transition-colors ${idx === items.length - 1 ? 'text-gold' : ''}`}
+              className={`hover:text-[#8F6A24] transition-colors no-underline ${idx === items.length - 1 ? 'text-[#8F6A24] font-bold' : 'text-slate-600'}`}
             >
               {item.label}
-            </Link>
+            </a>
           </li>
         ))}
       </ol>

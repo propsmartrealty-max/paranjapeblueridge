@@ -191,7 +191,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
                     </button>
 
                     <a
-                      href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
+                      href={cluster.id === 'ridges-41' ? '/paranjape-blue-ridge-41-hinjewadi-pune' : cluster.id === 'altius' ? '/paranjape-blue-ridge-the-altius-hinjewadi-pune' : '/paranjape-blue-ridge-promenade-hinjewadi-pune'}
                       className="py-3 px-3 rounded-xl bg-white hover:bg-slate-50 text-[#070D1A] hover:text-[#B88E3E] transition-all text-xs font-sans font-bold tracking-wider uppercase flex items-center justify-center gap-1 no-underline border border-slate-300 hover:border-[#B88E3E]"
                     >
                       <span>Explore</span>

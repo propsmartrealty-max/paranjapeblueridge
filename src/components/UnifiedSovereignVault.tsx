@@ -123,34 +123,33 @@ export default function UnifiedSovereignVault() {
 
   if (!isAuthenticated) {
     return (
-      <main className="min-h-screen bg-navy flex items-center justify-center p-6 text-text">
-        <div className="w-full max-w-md bg-navy-light border border-gold/30 p-12 rounded-[3rem] shadow-2xl text-center">
+      <div className="min-h-screen bg-[#070D1A] flex items-center justify-center p-6 text-slate-100">
+        <div className="w-full max-w-md bg-slate-900 border border-gold/30 p-12 rounded-[3rem] shadow-2xl text-center">
           <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center text-gold mx-auto mb-8">
             <Lock size={24} />
           </div>
-          <h1 className="text-3xl font-serif text-warm-white mb-4">Sovereign <span className="italic font-normal text-gold">Vault</span></h1>
-          <p className="text-text-light text-sm mb-8">Enter access protocol to view lead intelligence.</p>
+          <h1 className="text-3xl font-serif text-white mb-4">Sovereign <span className="italic font-normal text-gold">Vault</span></h1>
+          <p className="text-slate-400 text-sm mb-8">Enter access protocol to view lead intelligence.</p>
           <form onSubmit={handleAuth} className="space-y-6">
             <input 
               type="password" 
               value={pin}
               onChange={e => setPin(e.target.value)}
               placeholder="ENTER PIN"
-              className="w-full bg-navy border border-white/10 rounded-2xl p-4 text-center tracking-[1em] text-gold focus:border-gold outline-none"
+              className="w-full bg-[#070D1A] border border-white/10 rounded-2xl p-4 text-center tracking-[1em] text-gold focus:border-gold outline-none"
             />
-            <button className="w-full bg-gold text-navy font-bold py-4 rounded-xl uppercase text-xs tracking-widest shadow-lg shadow-gold/20">
+            <button className="w-full bg-gold text-slate-950 font-bold py-4 rounded-xl uppercase text-xs tracking-widest shadow-lg shadow-gold/20">
               Access Vault
             </button>
           </form>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-navy text-text pt-24 pb-20">
-      <Navbar />
-      <div className="container">
+    <div className="min-h-screen bg-[#070D1A] text-slate-100 pt-12 pb-20">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
             <div>
                 <span className="flex items-center gap-3 text-gold font-bold tracking-[6px] uppercase text-[10px] mb-4">
@@ -411,6 +410,6 @@ export default function UnifiedSovereignVault() {
             </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

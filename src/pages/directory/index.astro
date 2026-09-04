@@ -20,18 +20,28 @@ const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
   pathname="/directory"
 >
   <section class="pt-24 pb-20 container mx-auto max-w-7xl px-4">
-    <h1 class="text-4xl md:text-5xl font-serif text-warm-white mb-6 font-bold">Pune Real Estate Directory</h1>
-    <p class="text-text-muted text-lg mb-12 max-w-3xl">
-      A comprehensive, structured index of over {totalCount.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
-    </p>
+    <div class="max-w-3xl mb-12">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-[#8F6A24] text-xs font-semibold mb-4 tracking-widest uppercase font-mono">
+        Sovereign Master Index
+      </span>
+      <h1 class="text-4xl md:text-5xl font-serif text-[#070D1A] mb-4 font-normal">
+        Pune Real Estate Directory
+      </h1>
+      <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-sans">
+        A comprehensive, structured index of over {totalCount.toLocaleString()} premium real estate properties, micro-markets, and configurations at Paranjape Blue Ridge Hinjewadi, Pune.
+      </p>
+    </div>
 
-    <div class="space-y-16">
+    <div class="space-y-12">
       <!-- Core Projects -->
-      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
-        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Core Residential Projects</h2>
+      <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-serif text-[#070D1A] mb-6 border-b border-slate-200 pb-3 font-bold flex items-center justify-between">
+          <span>Core Residential Projects</span>
+          <span class="text-xs font-mono text-[#8F6A24]">3 Flagship Enclaves</span>
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project) => (
-            <a href={`/${project.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm font-medium">
+            <a href={`/${project.slug}`} class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#B88E3E] text-slate-800 hover:text-[#8F6A24] transition-all text-sm font-semibold no-underline shadow-xs block">
               {project.name}
             </a>
           ))}
@@ -39,16 +49,19 @@ const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
       </div>
 
       <!-- Insights & Articles -->
-      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
-        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Real Estate Insights</h2>
+      <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-serif text-[#070D1A] mb-6 border-b border-slate-200 pb-3 font-bold flex items-center justify-between">
+          <span>Real Estate Insights & Editorial Intelligence</span>
+          <span class="text-xs font-mono text-[#8F6A24]">Research Papers</span>
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {articles.map((article) => (
-            <a href={`/insights/${article.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm">
+            <a href={`/insights/${article.slug}`} class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#B88E3E] text-slate-700 hover:text-[#8F6A24] transition-all text-xs font-medium no-underline block leading-relaxed">
               {article.title}
             </a>
           ))}
           {mdxPosts.map((post) => (
-            <a href={`/insights/${post.slug}`} class="text-warm-white hover:text-gold transition-colors text-sm">
+            <a href={`/insights/${post.slug}`} class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#B88E3E] text-slate-700 hover:text-[#8F6A24] transition-all text-xs font-medium no-underline block leading-relaxed">
               {post.title}
             </a>
           ))}
@@ -56,11 +69,14 @@ const chunksArray = Array.from({ length: totalChunks }, (_, i) => i + 1);
       </div>
 
       <!-- Programmatic Partitions -->
-      <div class="ultra-glass-card p-8 rounded-3xl border border-gold/20">
-        <h2 class="text-2xl font-serif text-gold mb-6 border-b border-gold/20 pb-2 font-bold">Programmatic Location & Configuration Partitions</h2>
+      <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-serif text-[#070D1A] mb-6 border-b border-slate-200 pb-3 font-bold flex items-center justify-between">
+          <span>Programmatic Location & Configuration Partitions</span>
+          <span class="text-xs font-mono text-slate-500">{totalChunks} Total Pages</span>
+        </h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
           {chunksArray.map((chunkNum) => (
-            <a href={`/directory/${chunkNum}`} class="p-3 bg-white/5 border border-white/10 rounded-xl text-center text-xs font-mono text-warm-white hover:border-gold hover:text-gold transition-all">
+            <a href={`/directory/${chunkNum}`} class="p-3 bg-slate-50 border border-slate-200 hover:border-[#B88E3E] rounded-xl text-center text-xs font-mono text-slate-700 hover:text-[#8F6A24] transition-all no-underline">
               Partition {chunkNum}
             </a>
           ))}

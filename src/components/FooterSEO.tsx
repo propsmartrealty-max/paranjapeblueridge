@@ -90,13 +90,15 @@ export default function FooterSEO() {
             Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • RERA Compliant
           </p>
           <div className="flex gap-4 shrink-0 flex-wrap justify-center font-mono">
-            <a href="/explore/hinjewadi" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Hinjewadi Hub</a>
+            <a href="/hinjewadi-micro-market" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Hinjewadi Guide</a>
             <span className="text-slate-300">|</span>
-            <a href="/explore/wakad" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Wakad Hub</a>
+            <a href="/blue-ridge/ongoing-projects" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Active Clusters</a>
             <span className="text-slate-300">|</span>
-            <a href="/explore/baner" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Baner Hub</a>
+            <a href="/construction-updates" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Construction Status</a>
             <span className="text-slate-300">|</span>
-            <a href="/directory" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold">Directory</a>
+            <a href="/nri-investment" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">NRI Desk</a>
+            <span className="text-slate-300">|</span>
+            <a href="/directory" className="text-[#8F6A24] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Directory</a>
           </div>
         </div>
 

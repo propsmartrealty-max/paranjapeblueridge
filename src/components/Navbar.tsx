@@ -90,25 +90,33 @@ export default function Navbar() {
                   <div className="px-3 py-1.5 text-[9px] font-mono uppercase tracking-widest text-[#8F6A24] border-b border-slate-100 font-bold">
                     Active Residential Enclaves
                   </div>
-                  {blueRidgeClusters.map((cluster) => (
-                    <a
-                      key={cluster.id}
-                      href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
-                      className="p-2.5 rounded-xl hover:bg-amber-50/60 flex items-center justify-between no-underline group transition-all"
-                    >
-                      <div>
-                        <div className="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#B88E3E] transition-colors">
-                          {cluster.name}
+                  {blueRidgeClusters.map((cluster) => {
+                    const clusterUrl = cluster.id === 'ridges-41' 
+                      ? '/paranjape-blue-ridge-41-hinjewadi-pune'
+                      : cluster.id === 'altius'
+                      ? '/paranjape-blue-ridge-the-altius-hinjewadi-pune'
+                      : '/paranjape-blue-ridge-promenade-hinjewadi-pune';
+
+                    return (
+                      <a
+                        key={cluster.id}
+                        href={clusterUrl}
+                        className="p-2.5 rounded-xl hover:bg-amber-50/60 flex items-center justify-between no-underline group transition-all"
+                      >
+                        <div>
+                          <div className="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#B88E3E] transition-colors">
+                            {cluster.name}
+                          </div>
+                          <div className="text-[10px] font-mono text-slate-500">
+                            {cluster.configurations} • {cluster.carpetAreaRange}
+                          </div>
                         </div>
-                        <div className="text-[10px] font-mono text-slate-500">
-                          {cluster.configurations} • {cluster.carpetAreaRange}
-                        </div>
-                      </div>
-                      <span className="text-xs font-mono text-[#B88E3E] group-hover:translate-x-1 transition-transform">
-                        →
-                      </span>
-                    </a>
-                  ))}
+                        <span className="text-xs font-mono text-[#B88E3E] group-hover:translate-x-1 transition-transform">
+                          →
+                        </span>
+                      </a>
+                    );
+                  })}
                   <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-1 text-[10px] font-mono font-semibold">
                     <a href="/blue-ridge/ongoing-projects" className="p-2 rounded-lg hover:bg-slate-50 text-slate-600 hover:text-[#070D1A] no-underline">
                       All Clusters
@@ -193,9 +201,20 @@ export default function Navbar() {
             <a href="/#township-story" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
               The 138-Acre Township
             </a>
-            <a href="/blue-ridge/ongoing-projects" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#070D1A] no-underline font-semibold">
-              Residences (Promenade, Altius, 41)
-            </a>
+            
+            <div className="py-2 border-b border-slate-100 space-y-1.5">
+              <span className="text-[10px] text-[#8F6A24] font-bold block">Individual Project Portals:</span>
+              <a href="/paranjape-blue-ridge-promenade-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#B88E3E] no-underline font-semibold">
+                • Promenade Residences (3 & 4 BHK)
+              </a>
+              <a href="/paranjape-blue-ridge-the-altius-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#B88E3E] no-underline font-semibold">
+                • The Altius Riverside (4 & 5 BHK)
+              </a>
+              <a href="/paranjape-blue-ridge-41-hinjewadi-pune" onClick={() => setIsMobileMenuOpen(false)} className="block py-1 pl-2 text-[#070D1A] hover:text-[#B88E3E] no-underline font-semibold">
+                • Ridges 41 Smart Homes (2 BHK)
+              </a>
+            </div>
+
             <a href="/#sez" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 border-b border-slate-100 text-[#B88E3E] font-bold no-underline flex items-center gap-2">
               <Briefcase size={14} />
               <span>Blue Ridge IT / ITES SEZ</span>

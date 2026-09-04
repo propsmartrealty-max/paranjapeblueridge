@@ -29,7 +29,11 @@ const EDGE_REDIRECTS: Record<string, string> = {
   '/floor-plans': '/sovereign-vault',
   '/sitemap': '/sitemap-index.xml',
   '/sitemap.xml': '/sitemap-index.xml',
-  '/rss': '/feed.xml'
+  '/rss': '/feed.xml',
+  '/llm.txt': '/llms.txt',
+  '/explore/hinjewadi': '/hinjewadi-micro-market',
+  '/explore/wakad': '/flats-in-wakad-near-hinjewadi-flyover-paranjape-schemes-blue-ridge-hinjewadi',
+  '/explore/baner': '/flats-near-baner-and-balewadi-high-street-pune-paranjape-schemes-blue-ridge-hinjewadi'
 };
 
 const VERIFIED_SEARCH_BOTS = [
