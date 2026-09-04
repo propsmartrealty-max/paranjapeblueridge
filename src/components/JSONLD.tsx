@@ -71,7 +71,7 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
       return [
         { 
           q: t(`What is the price of ${coreTitle} at Blue Ridge?`, `ब्लू रिजमध्ये ${coreTitle} ची किंमत किती आहे?`), 
-          a: t('2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | 4 BHK Altius: from ₹1.80 Cr. Prices subject to floor rise and applicable taxes.', '२ बीएचके रिजेस ४१: ₹९७.६० लाख पासून | ३ बीएचके प्रोमेनेड: ₹१.६५ कोटी पासून | ४ बीएचके आल्टियस: ₹१.८० कोटी पासून. किमती मजल्यानुसार आणि लागू करांनुसार बदलू शकतात.') 
+          a: t('2 BHK Ridges 41: from ₹97.60 L | 3 BHK Promenade: from ₹1.65 Cr | The Altius (3 & 4 BHK): from ₹1.80 Cr. Prices subject to floor rise and applicable taxes.', '२ बीएचके रिजेस ४१: ₹९७.६० लाख पासून | ३ बीएचके प्रोमेनेड: ₹१.६५ कोटी पासून | द आल्टियस (३ आणि ४ बीएचके): ₹१.८० कोटी पासून. किमती मजल्यानुसार आणि लागू करांनुसार बदलू शकतात.') 
         },
         { 
           q: t('What is the payment plan at Blue Ridge Hinjewadi?', 'ब्लू रिज हिंजवडी येथे पेमेंट प्लॅन कसा आहे?'), 

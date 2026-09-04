@@ -22,7 +22,7 @@ export const GET: APIRoute = async () => {
 
 2. **The Altius Riverside** (MahaRERA: P52100078116)
    - Configuration: 3 BHK (1,550 sq.ft.) & 4 BHK (1,858 sq.ft.)
-   - Starting Price: ₹1.55 Cr*
+   - Starting Price: ₹1.80 Cr*
    - Features: River and 9-hole golf course views, private lift lobby, sky lounge.
 
 3. **Ridges 41** (MahaRERA: P52100000054)

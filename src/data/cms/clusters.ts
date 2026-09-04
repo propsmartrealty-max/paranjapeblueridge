@@ -205,7 +205,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     configurations: "3 & 4 Bedroom Riverside Residences",
     carpetAreaRange: "1,550 – 2,100 Sq. Ft.",
     isCarpetVerified: true,
-    priceStarting: "₹1.55 Cr*",
+    priceStarting: "₹1.80 Cr*",
     isPriceVerified: true,
     possessionTimeline: "December 2027",
     reraNumber: "P52100078116",
@@ -293,9 +293,9 @@ export const blueRidgeClusters: ClusterResidence[] = [
       }
     ],
     inventoryPreview: [
-      { type: "3 BHK Riverside Sanctuary", carpetArea: "1,550 Sq. Ft.", floorRange: "Levels 05 to 18", viewOrientation: "Mula River & Fairway", pricingStatus: "₹1.55 Cr*", status: "Available" },
-      { type: "4 BHK Fairway View", carpetArea: "1,858 Sq. Ft.", floorRange: "Levels 19 to 30", viewOrientation: "Golf Course Fairway", pricingStatus: "₹1.80 Cr*", status: "Available" },
-      { type: "4 BHK Sky Residence", carpetArea: "2,100 Sq. Ft.", floorRange: "Levels 31 to 36", viewOrientation: "360° Dual Golf & River", pricingStatus: "₹2.10 Cr*", status: "Few Units Left" }
+      { type: "3 BHK Riverside Sanctuary", carpetArea: "1,550 Sq. Ft.", floorRange: "Levels 05 to 18", viewOrientation: "Mula River & Fairway", pricingStatus: "₹1.80 Cr*", status: "Available" },
+      { type: "4 BHK Fairway View", carpetArea: "1,858 Sq. Ft.", floorRange: "Levels 19 to 30", viewOrientation: "Golf Course Fairway", pricingStatus: "₹2.05 Cr*", status: "Available" },
+      { type: "4 BHK Sky Residence", carpetArea: "2,100 Sq. Ft.", floorRange: "Levels 31 to 36", viewOrientation: "360° Dual Golf & River", pricingStatus: "₹2.25 Cr*", status: "Few Units Left" }
     ],
     masterplanPosition: {
       zone: "Fairway & Marina Confluence",

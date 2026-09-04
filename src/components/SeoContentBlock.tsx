@@ -36,7 +36,7 @@ function getSiloFAQs(silo: string, title: string) {
       ];
     case 'price-list':
       return [
-        { q: `What is the current price of ${title.split('Price')[0].trim()}?`, a: '2 BHK in Ridges 41 starts at ₹97.60 L. 3 BHK in Promenade starts at ₹1.65 Cr. 4 BHK Altius starts at ₹1.80 Cr. All prices subject to floor rise and GST.' },
+        { q: `What is the current price of ${title.split('Price')[0].trim()}?`, a: '2 BHK in Ridges 41 starts at ₹97.60 L. 3 BHK in Promenade starts at ₹1.65 Cr. The Altius (3 & 4 BHK) starts at ₹1.80 Cr. All prices subject to floor rise and GST.' },
         { q: 'What is the payment plan for Blue Ridge Hinjewadi?', a: 'Blue Ridge offers construction-linked payment plans. Typically: 10% on booking, 80% linked to construction milestones, 10% on possession. Home loans available from all major banks.' },
         { q: 'What is the all-inclusive cost at Blue Ridge?', a: 'All-inclusive cost includes base price, GST (5%), stamp duty (5%), registration (1%), maintenance deposit, and club membership. Contact the sales office for exact cost sheet.' },
         { q: 'Is the price negotiable at Blue Ridge Hinjewadi?', a: 'Blue Ridge is a premium branded township with fixed pricing. However, early-stage bookings and bulk purchases may qualify for preferential allotment. Contact our team for current offers.' },
@@ -73,7 +73,7 @@ function getSiloFAQs(silo: string, title: string) {
       return [
         { q: `What amenities are available at ${title}?`, a: '9-hole golf course, private boat club on Mula river, Blue Ridge Public School (ICSE), pet park, gymnasium, infinity pool, and 24/7 security with multi-tier access control.' },
         { q: 'Are all Blue Ridge projects RERA registered?', a: 'Yes. Promenade: P52100055581, The Altius: P52100078116, Ridges 41: P52100000054. All MahaRERA certified.' },
-        { q: 'What is the price range at Paranjape Blue Ridge Hinjewadi?', a: '2 BHK from ₹97.60 L (Ridges 41) | 3 BHK from ₹1.35 Cr | 4 BHK from ₹1.80 Cr (The Altius).' },
+        { q: 'What is the price range at Paranjape Blue Ridge Hinjewadi?', a: '2 BHK from ₹97.60 L (Ridges 41) | 3 BHK from ₹1.35 Cr (Ridges 41 / Promenade) | The Altius (3 & 4 BHK) from ₹1.80 Cr.' },
         { q: 'Is Blue Ridge a good place to live for families?', a: 'Yes. The ICSE school is inside the township. With 3,000+ families already resident, the community is established with playgrounds, clubs, and 24/7 security.' },
       ];
   }

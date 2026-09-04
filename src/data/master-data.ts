@@ -72,8 +72,8 @@ export const projects: Project[] = [
     description: "The absolute crown jewel of luxury apartments in Pune West. Paranjape The Altius offers iconic Blue Ridge riverfront apartments and exclusive golf view flats with a professional 9-hole golf course serving as your personal backyard. These ultra-luxury 3 BHK and 4 BHK sky residences are meticulously designed for the elite seeking a signature lifestyle, high capital appreciation, and uncompromised privacy in Pune's most successful premium township near Baner, Balewadi, and Wakad.",
     descriptionMr: "ब्लू रिज लक्झरीचा मुकुट मणी. अल्टियस आपल्या घराच्या बागेत ९-होल प्रोफेशनल गोल्फ कोर्ससह आयकॉनिक रिव्हरफ्रंट निवासस्थान प्रदान करते. हे प्रीमियम ३ बीएचके आणि ४ बीएचके अपार्टमेंट्स पुण्यातील सर्वात यशस्वी टाऊनशिपमध्ये राहू इच्छिणाऱ्या उच्चभ्रू लोकांसाठी आहेत.",
     carpetArea: "1,550 - 2,100 Sq. Ft.",
-    price: "₹ 1.55 Cr onwards",
-    priceValue: 15500000,
+    price: "₹ 1.80 Cr onwards",
+    priceValue: 18000000,
     storeys: 36,
     possession: "Ready / Near Ready",
     reraNumber: "P52100078116",
@@ -88,8 +88,8 @@ export const projects: Project[] = [
     ],
     amenities: ["Exclusive Signature Clubhouse", "Direct 9-Hole Golf Course Access", "Rooftop Sky Lounge with Viewing Deck", "24/7 Premium Concierge Service"],
     configurations: [
-      { slug: "3-bhk-flats", title: "3 BHK Riverside Flats", titleMr: "३ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,550 Sq. Ft.", price: "₹ 1.55 Cr*", priceValue: 15500000, numberOfRooms: 3, floorSizeSqFt: 1550, image: "/assets/images/official/altius-4bhk.jpg" },
-      { slug: "4-bhk-flats", title: "4 BHK Royal Fairway Residences", titleMr: "४ बीएचके रॉयल फेअरवे निवास", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/official/altius-5bhk.jpg" }
+      { slug: "3-bhk-flats", title: "3 BHK Riverside Flats", titleMr: "३ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,550 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 3, floorSizeSqFt: 1550, image: "/assets/images/official/altius-4bhk.jpg" },
+      { slug: "4-bhk-flats", title: "4 BHK Royal Fairway Residences", titleMr: "४ बीएचके रॉयल फेअरवे निवास", carpetArea: "1,858 Sq. Ft.", price: "₹ 2.05 Cr*", priceValue: 20500000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/official/altius-5bhk.jpg" }
     ]
   },
   {

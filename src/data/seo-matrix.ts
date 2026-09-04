@@ -59,7 +59,7 @@ export const curatedPhrasesData: Array<{
     phrase: "The Altius Riverside Paranjape Blue Ridge 3 and 4 BHK",
     silo: "clusters",
     type: "The Altius",
-    description: "The Altius Riverside at Paranjape Blue Ridge Hinjewadi. 3 & 4 BHK luxury golf-facing residences from ₹1.55 Cr. MahaRERA: P52100078116.",
+    description: "The Altius Riverside at Paranjape Blue Ridge Hinjewadi. 3 & 4 BHK luxury golf-facing residences from ₹1.80 Cr. MahaRERA: P52100078116.",
     location: "Blue Ridge Altius, Hinjewadi"
   },
   {
