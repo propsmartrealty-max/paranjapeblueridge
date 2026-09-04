@@ -54,7 +54,7 @@ export default function StickyCTA() {
             aria-label="Call Sales Team"
             className="flex-1 flex items-center justify-center gap-2 bg-slate-100 border border-slate-300 text-[#070D1A] py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all shadow-sm no-underline"
           >
-            <Phone size={14} className="text-[#B88E3E]" />
+            <Phone size={14} className="text-[#785415]" />
             <span>Call Now</span>
           </a>
 

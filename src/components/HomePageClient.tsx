@@ -66,7 +66,7 @@ export default function HomePageClient() {
           1. LUMINOUS LUXURY HERO SECTION
           "PARANJAPE BLUE RIDGE — A CITY WITHIN. A WORLD APART."
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-28 pb-20 bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
+      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-28 sm:pt-32 pb-20 bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
         
         {/* Background Architectural Canvas with Authentic Drone Shot */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -89,24 +89,24 @@ export default function HomePageClient() {
           className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl text-center flex flex-col items-center"
         >
           {/* Eyebrow Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill border border-slate-200 text-[11px] font-mono uppercase tracking-[0.25em] text-[#8F6A24] mb-6 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B88E3E] animate-pulse"></span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill border border-slate-300 text-[11px] font-mono uppercase tracking-[0.25em] text-[#785415] mb-6 shadow-sm font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#785415] animate-pulse"></span>
             <span>The 138-Acre Sovereign Township • Hinjewadi Phase 1, Pune</span>
           </div>
 
           {/* Master Developer Eyebrow */}
-          <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] text-slate-500 mb-4 block font-semibold">
+          <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] text-slate-600 mb-4 block font-extrabold">
             PARANJAPE SCHEMES PRESENTS
           </span>
 
           {/* Signature Headline */}
-          <h1 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.04] mb-6">
+          <h1 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-bold text-[#070D1A] tracking-tight leading-[1.04] mb-6">
             A CITY WITHIN. <br />
             <span className="italic font-light text-gradient-champagne">A WORLD APART.</span>
           </h1>
 
           {/* Narrative Overview */}
-          <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-sans font-normal mb-10">
+          <p className="text-base sm:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-sans font-medium mb-10">
             Pune's landmark 138-acre integrated township in Hinjewadi Phase 1, bringing together residential enclaves, a 3M+ sq. ft. IT/ITES SEZ, championship golf, river promenade, and an ICSE school.
           </p>
 
@@ -121,7 +121,7 @@ export default function HomePageClient() {
 
             <button
               onClick={() => scrollToSection('residences')}
-              className="w-full sm:w-auto btn-glass-outline px-8 py-4 rounded-full text-xs font-sans font-semibold uppercase tracking-[0.16em] cursor-pointer transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto btn-glass-outline px-8 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-[0.16em] cursor-pointer transition-all flex items-center justify-center gap-2"
             >
               <span>Explore Residences</span>
               <ChevronRight size={14} />
@@ -129,29 +129,29 @@ export default function HomePageClient() {
 
             <button
               onClick={() => scrollToSection('sez')}
-              className="w-full sm:w-auto px-6 py-4 rounded-full text-xs font-mono uppercase tracking-wider text-[#8F6A24] bg-amber-50 hover:bg-amber-100/70 border border-amber-200 transition-all flex items-center justify-center gap-2 cursor-pointer font-bold"
+              className="w-full sm:w-auto px-6 py-4 rounded-full text-xs font-mono uppercase tracking-wider text-[#785415] bg-amber-50 hover:bg-amber-100/70 border border-amber-300 transition-all flex items-center justify-center gap-2 cursor-pointer font-bold"
             >
-              <Briefcase size={14} className="text-[#B88E3E]" />
+              <Briefcase size={14} className="text-[#785415]" />
               <span>Blue Ridge SEZ</span>
             </button>
           </div>
 
           {/* 4 Architectural Micro-Badges with High-Visibility Borders */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-12 mt-12 border-t border-slate-200 w-full max-w-4xl text-left">
-            <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block font-semibold">Scale</span>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+              <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Scale</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">138 Masterplanned Acres</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block font-semibold">Commercial Engine</span>
-              <div className="text-sm font-sans font-bold text-[#B88E3E]">3M+ Sq. Ft. IT SEZ</div>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+              <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Commercial Engine</span>
+              <div className="text-sm font-sans font-bold text-[#785415]">3M+ Sq. Ft. IT SEZ</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block font-semibold">Leisure</span>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+              <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Leisure</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">9-Hole Golf & Marina</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block font-semibold">Transit</span>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
+              <span className="text-[10px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Transit</span>
               <div className="text-sm font-sans font-bold text-[#070D1A]">800m to Metro Line 3</div>
             </div>
           </div>
@@ -169,15 +169,15 @@ export default function HomePageClient() {
                 <span>01 • Master Township Concept</span>
               </div>
               
-              <h2 className="text-3xl sm:text-5xl font-serif font-normal text-[#070D1A] leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] leading-tight">
                 Designed on the tenets of <br />
                 <span className="italic font-light text-gradient-champagne">New Urbanism.</span>
               </h2>
               
-              <p className="text-base text-slate-600 leading-relaxed font-sans font-normal">
+              <p className="text-base text-slate-700 leading-relaxed font-sans font-medium">
                 Conceived as western Pune's definitive walk-to-work integrated sanctuary, Paranjape Blue Ridge harmonizes nature and commerce across 138 tranquil acres along the banks of the Mula River.
               </p>
-              <p className="text-sm text-slate-600 leading-relaxed font-sans font-normal">
+              <p className="text-sm text-slate-700 leading-relaxed font-sans font-medium">
                 Today, over 3,500 families thrive within its secure perimeter — enjoying championship golf facilities, an operational ICSE school, river boat club, high-street retail boulevards, and pedestrian proximity to the Rajiv Gandhi Infotech Park.
               </p>
 
@@ -191,34 +191,34 @@ export default function HomePageClient() {
                 </button>
                 <button
                   onClick={() => handleOpenModal('Book VIP Site Visit')}
-                  className="btn-glass-outline px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider cursor-pointer flex items-center gap-2"
+                  className="btn-glass-outline px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center gap-2"
                 >
-                  <Eye size={14} className="text-[#B88E3E]" />
+                  <Eye size={14} className="text-[#785415]" />
                   <span>Book Private Presentation</span>
                 </button>
               </div>
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative rounded-3xl overflow-hidden bg-white p-3 border border-slate-200 shadow-md">
+              <div className="relative rounded-3xl overflow-hidden bg-white p-3 border-2 border-slate-200 shadow-md">
                 <img 
                   src="/assets/images/pscl-blue-ridge-township-skyline.jpg" 
                   alt="Blue Ridge Township Aerial Panorama"
                   className="w-full h-96 object-cover rounded-2xl"
                 />
                 <div className="p-6 space-y-4 bg-white">
-                  <div className="grid grid-cols-3 gap-4 text-center border-t border-slate-100 pt-4">
+                  <div className="grid grid-cols-3 gap-4 text-center border-t border-slate-200 pt-4">
                     <div>
                       <div className="text-2xl font-serif text-[#070D1A] font-bold">138</div>
-                      <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Total Acres</div>
+                      <div className="text-[10px] font-mono text-slate-600 uppercase tracking-wider font-bold">Total Acres</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-serif text-[#B88E3E] font-bold">3,500+</div>
-                      <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Residing Families</div>
+                      <div className="text-2xl font-serif text-[#785415] font-bold">3,500+</div>
+                      <div className="text-[10px] font-mono text-slate-600 uppercase tracking-wider font-bold">Residing Families</div>
                     </div>
                     <div>
                       <div className="text-2xl font-serif text-[#070D1A] font-bold">60%+</div>
-                      <div className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">Open Greens</div>
+                      <div className="text-[10px] font-mono text-slate-600 uppercase tracking-wider font-bold">Open Greens</div>
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export default function HomePageClient() {
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden p-3 border border-slate-200 shadow-md bg-white">
+              <div className="rounded-3xl overflow-hidden p-3 border-2 border-slate-200 shadow-md bg-white">
                 <img 
                   src="/assets/images/pscl-blue-ridge-golf.webp" 
                   alt="Blue Ridge 9-Hole Executive Golf Course & Marina"
@@ -279,28 +279,28 @@ export default function HomePageClient() {
 
             <div className="lg:col-span-6 space-y-6">
               <div className="chapter-badge">
-                <Trees size={11} className="text-[#B88E3E]" />
+                <Trees size={11} className="text-[#785415]" />
                 <span>06 • Leisure & Waterfront Sanctuary</span>
               </div>
 
-              <h2 className="text-3xl sm:text-5xl font-serif font-normal text-[#070D1A] leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] leading-tight">
                 Championship greens <br />
                 <span className="italic font-light text-gradient-champagne">in your backyard.</span>
               </h2>
-              <p className="text-base text-slate-600 leading-relaxed font-sans font-normal">
+              <p className="text-base text-slate-700 leading-relaxed font-sans font-medium">
                 Blue Ridge hosts Pune's premier private 9-hole executive golf course alongside the Mula River waterfront. From morning drives on the fairways to sunset kayaking from the private boat club marina, the township delivers recreational exclusivity that cannot be replicated.
               </p>
               
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-slate-200">
-                  <Trees size={20} className="text-[#B88E3E] mb-2" />
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border-2 border-slate-200 shadow-xs">
+                  <Trees size={20} className="text-[#785415] mb-2" />
                   <div className="text-sm font-serif text-[#070D1A] font-bold">9-Hole Course</div>
-                  <div className="text-xs text-slate-500 font-medium">Executive layout & PGA coach</div>
+                  <div className="text-xs text-slate-600 font-medium">Executive layout & PGA coach</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-slate-200">
-                  <Waves size={20} className="text-blue-500 mb-2" />
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border-2 border-slate-200 shadow-xs">
+                  <Waves size={20} className="text-blue-600 mb-2" />
                   <div className="text-sm font-serif text-[#070D1A] font-bold">Private Marina</div>
-                  <div className="text-xs text-slate-500 font-medium">Boat club & kayak fleet</div>
+                  <div className="text-xs text-slate-600 font-medium">Boat club & kayak fleet</div>
                 </div>
               </div>
             </div>
@@ -335,15 +335,15 @@ export default function HomePageClient() {
       <section id="enquiry" className="py-24 bg-gradient-to-b from-[#FAF9F6] to-[#F3F5F8] relative">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
           <div className="chapter-badge mb-4">
-            <Sparkles size={11} className="text-[#B88E3E]" />
+            <Sparkles size={11} className="text-[#785415]" />
             <span>Private Viewing Concierge</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-serif font-normal text-[#070D1A] mb-6">
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] mb-6">
             Reserve your private viewing <br />
             <span className="italic font-light text-gradient-champagne">at Blue Ridge Hinjewadi.</span>
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto text-base font-sans font-normal mb-8">
+          <p className="text-slate-700 max-w-xl mx-auto text-base font-sans font-medium mb-8">
             Our specialized residential advisory desk is at your service for verified floor plans, bespoke site inspections, and customized cost sheets.
           </p>
 

@@ -44,30 +44,30 @@ export default function FloatingWhatsApp() {
   const whatsappUrl = `https://wa.me/917744009295?text=${encodeURIComponent(defaultMessage)}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[90] flex flex-col items-end gap-3 font-sans">
+    <div className="fixed bottom-6 right-6 z-[90] hidden lg:flex flex-col items-end gap-3 font-sans">
       
-      {/* Luxury Expandable Glass Chat Card */}
+      {/* Luxury Expandable Chat Card */}
       {isExpanded && (
-        <div className="bg-navy-light/95 border border-gold/40 text-warm-white p-5 rounded-2xl rounded-br-none shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl max-w-[310px] animate-in zoom-in-95 origin-bottom-right duration-300">
-          <div className="flex justify-between items-center mb-3 pb-2 border-b border-gold/20">
+        <div className="bg-white border-2 border-slate-200 text-[#070D1A] p-5 rounded-2xl rounded-br-none shadow-2xl max-w-[310px] animate-in zoom-in-95 origin-bottom-right duration-300">
+          <div className="flex justify-between items-center mb-3 pb-2 border-b border-slate-200">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-gold">Blue Ridge Sales Desk</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#785415]">Blue Ridge Sales Desk</span>
             </div>
             <button
               aria-label="Close Chat"
               onClick={() => setIsExpanded(false)}
-              className="text-text-muted hover:text-warm-white transition-colors p-1"
+              className="text-slate-400 hover:text-[#070D1A] transition-colors p-1"
             >
-              <X size={14} />
+              <X size={15} />
             </button>
           </div>
 
-          <p className="text-xs text-text-light leading-relaxed mb-4">
-            Looking for exclusive pricing or 3D floor plans for <strong className="text-warm-white">Paranjape Blue Ridge</strong>? Chat with our relationship manager on WhatsApp now.
+          <p className="text-xs text-slate-700 font-medium leading-relaxed mb-4">
+            Looking for exclusive pricing or 3D floor plans for <strong className="text-[#070D1A] font-bold">Paranjape Blue Ridge</strong>? Chat with our relationship manager on WhatsApp now.
           </p>
 
           <a
@@ -79,7 +79,7 @@ export default function FloatingWhatsApp() {
             <span>Start WhatsApp Chat</span>
             <Send size={14} />
           </a>
-          <span className="text-[9px] text-text-muted text-center block mt-2">⚡ Typical response time: ~2 minutes</span>
+          <span className="text-[10px] text-slate-500 font-medium text-center block mt-2">⚡ Typical response time: ~2 minutes</span>
         </div>
       )}
 

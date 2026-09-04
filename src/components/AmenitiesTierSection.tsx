@@ -88,23 +88,23 @@ export default function AmenitiesTierSection() {
             <div className="chapter-badge mb-4">
               <span>04 • Dual-Tier Lifestyle Ecosystem</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#070D1A] tracking-tight leading-[1.08]">
               The architecture of <br />
               <span className="italic font-light text-gradient-champagne">unrivaled living.</span>
             </h2>
-            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-sans font-normal">
+            <p className="mt-6 text-base sm:text-lg text-slate-700 leading-relaxed font-sans font-medium">
               We make a clear distinction between your immediate cluster amenities and the 138-acre township master facilities.
             </p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex items-center p-1 rounded-full bg-white border border-slate-300 shadow-sm">
+          <div className="flex items-center p-1 rounded-full bg-white border-2 border-slate-300 shadow-sm">
             <button
               onClick={() => setActiveTab('township')}
               className={`px-6 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all border-none cursor-pointer ${
                 activeTab === 'township'
-                  ? 'bg-[#B88E3E] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#070D1A] bg-transparent'
+                  ? 'bg-[#785415] text-white shadow-sm'
+                  : 'text-slate-700 hover:text-[#070D1A] bg-transparent'
               }`}
             >
               138-Acre Master Township
@@ -113,8 +113,8 @@ export default function AmenitiesTierSection() {
               onClick={() => setActiveTab('cluster')}
               className={`px-6 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all border-none cursor-pointer ${
                 activeTab === 'cluster'
-                  ? 'bg-[#B88E3E] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#070D1A] bg-transparent'
+                  ? 'bg-[#785415] text-white shadow-sm'
+                  : 'text-slate-700 hover:text-[#070D1A] bg-transparent'
               }`}
             >
               Cluster-Exclusive Privileges
@@ -130,7 +130,7 @@ export default function AmenitiesTierSection() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:border-[#B88E3E] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+                  className="bg-white rounded-3xl overflow-hidden border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
                 >
                   <div>
                     <div className="relative h-48 overflow-hidden bg-slate-100">
@@ -139,25 +139,25 @@ export default function AmenitiesTierSection() {
                         alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 border border-slate-200 text-[10px] font-mono uppercase tracking-widest text-[#070D1A] font-bold">
+                      <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 border border-slate-300 text-[10px] font-mono uppercase tracking-widest text-[#070D1A] font-bold">
                         {item.category}
                       </div>
                     </div>
 
                     <div className="p-6 space-y-3">
-                      <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-[#B88E3E] flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 text-[#785415] flex items-center justify-center">
                         <Icon size={18} />
                       </div>
                       <h3 className="text-xl font-serif text-[#070D1A] font-bold">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                      <p className="text-xs text-slate-700 leading-relaxed font-sans font-medium">
                         {item.description}
                       </p>
                     </div>
                   </div>
 
-                  <div className="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-[#8F6A24] font-bold">
+                  <div className="px-6 pb-6 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono text-[#785415] font-bold">
                     <span>138-Acre Perimeter</span>
                     <span>Verified Amenity ✓</span>
                   </div>
@@ -171,7 +171,7 @@ export default function AmenitiesTierSection() {
             {clusterAmenities.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:border-[#B88E3E] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+                className="bg-white rounded-3xl overflow-hidden border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
               >
                 <div>
                   <div className="relative h-44 overflow-hidden bg-slate-100">
@@ -180,25 +180,25 @@ export default function AmenitiesTierSection() {
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white/95 border border-slate-200 text-[9px] font-mono uppercase tracking-widest text-[#B88E3E] font-bold">
+                    <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white/95 border border-slate-300 text-[9px] font-mono uppercase tracking-widest text-[#785415] font-bold">
                       Cluster Dedicated
                     </div>
                   </div>
 
                   <div className="p-6 space-y-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold block">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-600 font-bold block">
                       {item.category}
                     </span>
                     <h3 className="text-lg font-serif text-[#070D1A] font-bold">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-700 leading-relaxed font-sans font-medium">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 pt-2 border-t border-slate-100 text-[10px] font-mono text-slate-500">
+                <div className="px-6 pb-6 pt-2 border-t border-slate-200 text-[10px] font-mono text-slate-600 font-medium">
                   Private resident keycard access only
                 </div>
               </div>

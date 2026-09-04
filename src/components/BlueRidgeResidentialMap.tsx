@@ -117,13 +117,15 @@ export default function BlueRidgeResidentialMap() {
                       }`}></span>
                       
                       {/* Interactive Pin Marker */}
-                      <div className={`px-3 py-1.5 rounded-full flex items-center gap-2 border backdrop-blur-xl shadow-md transition-all ${
+                      <div className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 border-2 backdrop-blur-xl shadow-md transition-all ${
                         isSelected 
-                          ? 'bg-[#B88E3E] text-white border-[#B88E3E] font-bold' 
-                          : 'bg-white/95 text-[#070D1A] border-slate-300 hover:border-[#B88E3E]'
+                          ? 'bg-[#785415] text-white border-[#785415] font-bold' 
+                          : 'bg-white text-[#070D1A] border-slate-300 hover:border-[#785415]'
                       }`}>
-                        <Building size={12} className={isSelected ? 'text-white' : 'text-[#B88E3E]'} />
-                        <span className="text-xs font-sans whitespace-nowrap tracking-wide">{cluster.name}</span>
+                        <Building size={12} className={isSelected ? 'text-white' : 'text-[#785415]'} />
+                        <span className={`text-[11px] sm:text-xs font-sans whitespace-nowrap tracking-wide font-bold ${
+                          isSelected ? 'inline' : 'hidden sm:inline'
+                        }`}>{cluster.name}</span>
                       </div>
                     </div>
                   </button>
@@ -147,55 +149,55 @@ export default function BlueRidgeResidentialMap() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-3xl p-6 sm:p-8 border border-slate-200 bg-white shadow-sm space-y-6"
+                className="rounded-3xl p-6 sm:p-8 border-2 border-slate-200 bg-white shadow-md space-y-6"
               >
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#8F6A24] block mb-1 font-semibold">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#785415] block mb-1 font-bold">
                     Selected Residential Cluster
                   </span>
-                  <h3 className="text-2xl font-serif text-[#070D1A] font-medium">
+                  <h3 className="text-2xl font-serif text-[#070D1A] font-bold">
                     {selectedCluster.name}
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1 font-sans">
+                  <p className="text-xs text-slate-700 mt-1 font-sans font-medium">
                     {selectedCluster.eyebrow}
                   </p>
                 </div>
 
                 {/* Spec List */}
-                <div className="space-y-3 pt-4 border-t border-slate-100 text-xs font-sans">
+                <div className="space-y-3 pt-4 border-t border-slate-200 text-xs font-sans">
                   <div className="flex justify-between py-1.5 border-b border-slate-100">
-                    <span className="text-slate-500">Configuration:</span>
-                    <span className="text-[#070D1A] font-semibold">{selectedCluster.configurations}</span>
+                    <span className="text-slate-600 font-medium">Configuration:</span>
+                    <span className="text-[#070D1A] font-bold">{selectedCluster.configurations}</span>
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-slate-100">
-                    <span className="text-slate-500">Carpet Area:</span>
-                    <span className="text-[#070D1A] font-mono font-medium">{selectedCluster.carpetAreaRange}</span>
+                    <span className="text-slate-600 font-medium">Carpet Area:</span>
+                    <span className="text-[#070D1A] font-mono font-bold">{selectedCluster.carpetAreaRange}</span>
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-slate-100">
-                    <span className="text-slate-500">Architecture:</span>
-                    <span className="text-[#070D1A] font-medium">{selectedCluster.towerDetails.storeys} Storeys ({selectedCluster.towerDetails.structureType})</span>
+                    <span className="text-slate-600 font-medium">Architecture:</span>
+                    <span className="text-[#070D1A] font-bold">{selectedCluster.towerDetails.storeys} Storeys ({selectedCluster.towerDetails.structureType})</span>
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-slate-100">
-                    <span className="text-slate-500">Pricing:</span>
-                    <span className="text-[#B88E3E] font-semibold font-mono">
+                    <span className="text-slate-600 font-medium">Pricing:</span>
+                    <span className="text-[#785415] font-bold font-mono">
                       {selectedCluster.isPriceVerified ? selectedCluster.priceStarting : "Upon Request"}
                     </span>
                   </div>
                   <div className="flex justify-between py-1.5">
-                    <span className="text-slate-500">MahaRERA:</span>
-                    <span className="text-slate-600 font-mono text-[11px]">{selectedCluster.reraNumber}</span>
+                    <span className="text-slate-600 font-medium">MahaRERA:</span>
+                    <span className="text-slate-700 font-mono text-[11px] font-semibold">{selectedCluster.reraNumber}</span>
                   </div>
                 </div>
 
                 {/* Proximity Within Masterplan */}
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/60 space-y-2">
-                  <span className="text-[10px] font-mono text-[#8F6A24] uppercase tracking-wider block font-semibold">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-[10px] font-mono text-[#785415] uppercase tracking-wider block font-bold">
                     Immediate Proximity
                   </span>
-                  <ul className="space-y-1 text-xs text-slate-600">
+                  <ul className="space-y-1 text-xs text-slate-700 font-medium">
                     {selectedCluster.masterplanPosition.nearbyKeyPoints.map((point, idx) => (
                       <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#B88E3E]"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#785415]"></span>
                         <span>{point}</span>
                       </li>
                     ))}

@@ -90,7 +90,7 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
   };
 
   return (
-    <div className="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white min-h-screen pt-20 pb-20">
+    <div className="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white min-h-screen pt-28 sm:pt-32 pb-24">
       
       {/* Global Inquiry Modal */}
       <EnquiryModal
@@ -192,21 +192,21 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
 
           {/* 4 Essential Real Estate Badges */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t-2 border-slate-200 w-full max-w-4xl text-left">
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
-              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Configuration</span>
-              <div className="text-sm font-sans font-bold text-[#070D1A]">{cluster.configurations}</div>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Configuration</span>
+              <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.configurations}</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
-              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Carpet Area Range</span>
-              <div className="text-sm font-sans font-bold text-[#070D1A]">{cluster.carpetAreaRange}</div>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Carpet Area Range</span>
+              <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.carpetAreaRange}</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
-              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Architecture</span>
-              <div className="text-sm font-sans font-bold text-[#070D1A]">{cluster.towerDetails.storeys} Storeys ({cluster.towerDetails.towers})</div>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Architecture</span>
+              <div className="text-sm font-sans font-bold text-[#070D1A] break-words">{cluster.towerDetails.storeys} Storeys ({cluster.towerDetails.towers})</div>
             </div>
-            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1">
-              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold">Offering Price</span>
-              <div className="text-sm font-sans font-bold text-[#785415]">{cluster.priceStarting}</div>
+            <div className="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-sm space-y-1 min-w-0">
+              <span className="text-[11px] font-mono text-slate-600 uppercase tracking-wider block font-bold truncate">Offering Price</span>
+              <div className="text-sm font-sans font-bold text-[#785415] break-words">{cluster.priceStarting}</div>
             </div>
           </div>
 

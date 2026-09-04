@@ -157,10 +157,10 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
       {/* Backdrop overlay */}
       <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-xl"
+        className="absolute inset-0 bg-black/70 backdrop-blur-md"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -170,7 +170,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
         role="dialog"
         aria-modal="true"
         aria-labelledby="enquiry-modal-title"
-        className="relative w-full max-w-lg ultra-glass-card border border-gold/30 rounded-[3rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-500"
+        className="relative w-full max-w-lg bg-[#0d1424] border border-amber-400/30 rounded-[2.5rem] shadow-2xl overflow-y-auto max-h-[90vh] animate-in fade-in zoom-in duration-300"
       >
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-gold-light to-gold"></div>
         

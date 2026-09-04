@@ -50,7 +50,7 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
   return (
     <div className="bg-[#FAF9F6] text-[#070D1A] selection:bg-[#B88E3E] selection:text-white min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative min-h-[50vh] flex items-center pt-28 pb-16 overflow-hidden bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
+      <section className="relative min-h-[50vh] flex items-center pt-28 sm:pt-32 pb-16 overflow-hidden bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img 
             src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 

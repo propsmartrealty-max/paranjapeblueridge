@@ -64,24 +64,24 @@ export default function TownshipSpecificationsSection() {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="chapter-badge mb-4">
-            <Sparkles size={11} className="text-[#B88E3E]" />
+            <Sparkles size={11} className="text-[#785415]" />
             <span>05 • Official Paranjape Standards</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#070D1A] tracking-tight leading-[1.08]">
             Interior Details & <br />
             <span className="italic font-light text-gradient-champagne">Architectural Specifications.</span>
           </h2>
 
-          <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-sans font-normal">
+          <p className="mt-6 text-base sm:text-lg text-slate-700 leading-relaxed font-sans font-medium">
             Every Blue Ridge home is built with industrial-grade precision formwork, superior acoustic insulation, and branded finishes verified under Paranjape Schemes' hallmark construction guidelines.
           </p>
         </div>
 
         {/* 8 Key Architectural Features Grid */}
         <div className="mb-20">
-          <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#8F6A24] font-bold mb-6 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#B88E3E]"></span>
+          <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#785415] font-bold mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#785415]"></span>
             <span>Key Architectural Features</span>
           </div>
 
@@ -89,16 +89,16 @@ export default function TownshipSpecificationsSection() {
             {keyFeatures.map((feat, i) => (
               <div 
                 key={i} 
-                className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-[#B88E3E] transition-all duration-300 space-y-2 group"
+                className="bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 space-y-2 group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-[#B88E3E] font-bold">0{i + 1}</span>
-                  <CheckCircle2 size={16} className="text-[#B88E3E] opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <span className="text-[10px] font-mono text-[#785415] font-bold">0{i + 1}</span>
+                  <CheckCircle2 size={16} className="text-[#785415] opacity-80 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h3 className="text-base font-serif font-bold text-[#070D1A] group-hover:text-[#B88E3E] transition-colors">
+                <h3 className="text-base font-serif font-bold text-[#070D1A] group-hover:text-[#785415] transition-colors">
                   {feat.title}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                <p className="text-xs text-slate-700 leading-relaxed font-sans font-medium">
                   {feat.desc}
                 </p>
               </div>
@@ -113,14 +113,14 @@ export default function TownshipSpecificationsSection() {
             return (
               <div 
                 key={i} 
-                className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-[#B88E3E]/60 transition-all duration-300 space-y-6"
+                className="bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all duration-300 space-y-6"
               >
-                <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-[#B88E3E] flex items-center justify-center">
+                <div className="flex items-center gap-3.5 pb-4 border-b border-slate-200">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-[#785415] flex items-center justify-center">
                     <Icon size={20} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#8F6A24] font-bold block">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#785415] font-bold block">
                       Specification 0{i + 1}
                     </span>
                     <h3 className="text-xl font-serif text-[#070D1A] font-bold">
@@ -129,10 +129,10 @@ export default function TownshipSpecificationsSection() {
                   </div>
                 </div>
 
-                <ul className="space-y-3 text-xs sm:text-sm text-slate-600">
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700 font-medium">
                   {cat.items.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[#B88E3E] shrink-0 mt-0.5" />
+                      <CheckCircle2 size={16} className="text-[#785415] shrink-0 mt-0.5" />
                       <span className="leading-relaxed">{item}</span>
                     </li>
                   ))}
@@ -143,16 +143,16 @@ export default function TownshipSpecificationsSection() {
         </div>
 
         {/* Construction Formwork Trust Note */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border-2 border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 text-[#070D1A] flex items-center justify-center shrink-0">
-              <ShieldCheck size={24} className="text-[#B88E3E]" />
+              <ShieldCheck size={24} className="text-[#785415]" />
             </div>
             <div>
               <div className="text-sm font-serif font-bold text-[#070D1A]">
                 Precision Monolithic Formwork Construction
               </div>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-slate-600 mt-0.5 font-medium">
                 Superior thermal comfort, seismic durability, and zero dead space across all towers.
               </div>
             </div>

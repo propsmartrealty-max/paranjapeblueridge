@@ -58,13 +58,13 @@ export default function FAQSection() {
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
         <div className="text-center mb-16">
           <div className="chapter-badge mb-4 mx-auto">
-            <HelpCircle size={11} className="text-[#B88E3E]" />
+            <HelpCircle size={11} className="text-[#785415]" />
             <span>09 • Customer FAQ & Advisory</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-serif text-[#070D1A] font-bold tracking-tight">
             Frequently Asked <span className="italic font-light text-gradient-champagne">Questions.</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-sans">
+          <p className="mt-4 text-sm sm:text-base text-slate-700 max-w-xl mx-auto font-sans font-medium">
             Clear answers to help you evaluate configurations, RERA compliance, rental yields, and possession timelines at Blue Ridge.
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function FAQSection() {
           {faqs.map((faq, i) => (
             <div 
               key={i} 
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:border-[#B88E3E] transition-all"
+              className="bg-white rounded-2xl overflow-hidden border-2 border-slate-200 shadow-sm hover:border-[#785415] transition-all"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -84,7 +84,7 @@ export default function FAQSection() {
                 <span className="text-[#070D1A] font-serif font-bold text-base sm:text-lg pr-4">
                   {faq.q}
                 </span>
-                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#B88E3E] shrink-0">
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#785415] shrink-0 font-bold">
                   {openIndex === i ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
               </button>
@@ -98,7 +98,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-slate-600 text-sm leading-relaxed border-t border-slate-100 font-sans font-normal">
+                    <div className="p-6 pt-0 text-slate-700 text-sm leading-relaxed border-t border-slate-200 font-sans font-medium">
                       {faq.a}
                     </div>
                   </motion.div>

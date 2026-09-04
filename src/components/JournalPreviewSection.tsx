@@ -14,18 +14,18 @@ export default function JournalPreviewSection() {
             <div className="chapter-badge mb-4">
               <span>08 • The Blue Ridge Journal</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-[#070D1A] tracking-tight leading-[1.08]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#070D1A] tracking-tight leading-[1.08]">
               The Blue Ridge <br />
               <span className="italic font-light text-gradient-champagne">Journal.</span>
             </h2>
-            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed font-sans font-normal">
+            <p className="mt-6 text-base sm:text-lg text-slate-700 leading-relaxed font-sans font-medium">
               Essays on luxury biophilic architecture, West Pune macroeconomic trends, infrastructure convergence, and generational living.
             </p>
           </div>
 
           <a
             href="/journal"
-            className="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider uppercase text-[#8F6A24] hover:text-[#B88E3E] no-underline"
+            className="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider uppercase text-[#785415] hover:text-[#5a3e0f] no-underline"
           >
             <span>Explore All Essays</span>
             <ArrowRight size={14} />
@@ -37,29 +37,29 @@ export default function JournalPreviewSection() {
           {journalArticles.map((article) => (
             <article
               key={article.id}
-              className="rounded-3xl p-6 border border-slate-200 bg-white hover:border-[#B88E3E] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
+              className="rounded-3xl p-6 border-2 border-slate-200 bg-white hover:border-[#785415] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
             >
               <div>
                 {/* Meta */}
-                <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-4">
-                  <span className="text-[#8F6A24] font-semibold">{article.category}</span>
+                <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-slate-600 font-medium mb-4">
+                  <span className="text-[#785415] font-bold">{article.category}</span>
                   <span className="flex items-center gap-1"><Clock size={11} /> {article.readingTime}</span>
                 </div>
 
-                <h3 className="text-xl font-serif text-[#070D1A] font-medium leading-snug group-hover:text-[#B88E3E] transition-colors mb-4">
+                <h3 className="text-xl font-serif text-[#070D1A] font-bold leading-snug group-hover:text-[#785415] transition-colors mb-4">
                   {article.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 leading-relaxed font-sans font-normal line-clamp-4 mb-6">
+                <p className="text-xs text-slate-700 leading-relaxed font-sans font-medium line-clamp-4 mb-6">
                   {article.excerpt}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[10px] font-mono text-slate-500">{article.publishedDate}</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-600 font-medium">{article.publishedDate}</span>
                 <a
                   href={`/insights/${article.slug}`}
-                  className="text-xs font-sans font-semibold uppercase tracking-wider text-[#8F6A24] flex items-center gap-1 group-hover:translate-x-1 transition-transform no-underline"
+                  className="text-xs font-sans font-bold uppercase tracking-wider text-[#785415] flex items-center gap-1 group-hover:translate-x-1 transition-transform no-underline"
                 >
                   <span>Read Analysis</span>
                   <ArrowRight size={12} />
