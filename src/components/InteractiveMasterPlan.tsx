@@ -8,6 +8,7 @@ import { useCurrency } from '@/context/CurrencyContext';
 
 export default function InteractiveMasterPlan() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'hybrid' | 'blueprint'>('hybrid');
   const { formatPrice, currency } = useCurrency();
 
   const coordinates = {
@@ -36,32 +37,59 @@ export default function InteractiveMasterPlan() {
                 138-Acre <span className="italic font-normal text-gilded">Master Layout</span>
               </h2>
             </div>
-            <div className="p-4 bg-gold/10 border border-gold/30 rounded-2xl max-w-md shadow-sm">
-              <p className="text-xs sm:text-sm text-text-muted leading-relaxed flex items-center gap-2 font-medium">
-                <Eye size={16} className="text-gold shrink-0" />
-                <span>Interactive topological map. Tap or hover over the glowing radar beacons to inspect live tower specs.</span>
-              </p>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="flex bg-black/60 p-1 rounded-2xl border border-gold/30">
+                <button
+                  type="button"
+                  onClick={() => setViewMode('hybrid')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${viewMode === 'hybrid' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
+                >
+                  Interactive Beacons
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('blueprint')}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${viewMode === 'blueprint' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
+                >
+                  Original Blueprint
+                </button>
+              </div>
+              <a
+                href="/assets/images/master-layout-plan-hq.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gold/10 hover:bg-gold/20 border border-gold/30 rounded-2xl text-xs text-gold font-semibold flex items-center justify-center gap-2 transition-all shadow-sm"
+              >
+                <Layers size={14} /> Full Resolution
+              </a>
             </div>
           </div>
 
           {/* THE INTERACTIVE MAP HUD ENGINE */}
           <div className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-[#02050A] rounded-3xl border border-gold/40 overflow-hidden shadow-2xl group">
             
-            {/* Background Grid & Topology */}
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(223,177,91,0.2) 1px, transparent 0)', backgroundSize: '36px 36px' }}></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
-            
-            {/* GIS River graphic */}
-            <svg className="absolute inset-0 w-full h-full opacity-35 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 500">
-              <path d="M0,320 C200,420 400,220 600,320 C800,420 1000,220 1000,220 L1000,500 L0,500 Z" fill="url(#riverGradient)" />
-              <defs>
-                <linearGradient id="riverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.35" />
-                  <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.35" />
-                </linearGradient>
-              </defs>
-            </svg>
+            {/* Authentic Master Layout Image Layer */}
+            <img 
+              src="/assets/images/master-layout-plan-hq.jpg" 
+              alt="Paranjape Blue Ridge 138-Acre Official Master Layout Plan"
+              className={`absolute inset-0 w-full h-full object-contain md:object-cover object-center transition-all duration-700 ${viewMode === 'blueprint' ? 'opacity-95 contrast-110 filter brightness-105' : 'opacity-40 filter contrast-125 group-hover:opacity-65'}`}
+            />
+            {viewMode === 'hybrid' && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/50 pointer-events-none"></div>
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(223,177,91,0.15) 1px, transparent 0)', backgroundSize: '36px 36px' }}></div>
+                <svg className="absolute inset-0 w-full h-full opacity-35 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 500">
+                  <path d="M0,320 C200,420 400,220 600,320 C800,420 1000,220 1000,220 L1000,500 L0,500 Z" fill="url(#riverGradient)" />
+                  <defs>
+                    <linearGradient id="riverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.35" />
+                      <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.7" />
+                      <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.35" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </>
+            )}
 
             {/* River & Golf HUD markers */}
             <div className="absolute bottom-6 right-6 px-3.5 py-1.5 bg-blue-500/15 border border-blue-400/40 rounded-full text-[9px] text-blue-300 uppercase tracking-widest font-mono pointer-events-none backdrop-blur-md shadow-md">

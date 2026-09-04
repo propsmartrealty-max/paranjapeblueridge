@@ -8,43 +8,51 @@ import EnquiryModal from '@/components/EnquiryModal';
 const plans = [
   {
     id: '3bhk-1316',
-    label: '3 BHK (1,316 sq ft)',
-    name: 'Promenade 3BHK River View',
+    label: 'Promenade 3 BHK (1,316 sq ft)',
+    name: 'Promenade 3 BHK River View Classic',
     area: '1,316 Sq. Ft.',
     image: '/assets/images/promenade-3bhk-1316.jpg',
-    features: ['River Facing Balcony', 'Advanced MiVAN Tech Construction', 'Walk-to-Work IT SEZ Access']
+    features: ['Direct Mula River Facing Balcony', 'Advanced MiVAN Monolithic Construction', 'Walk-to-Work IT SEZ Access']
   },
   {
     id: '4bhk-1633',
-    label: '4 BHK (1,633 sq ft)',
-    name: 'Promenade 4BHK Executive',
+    label: 'Promenade 4 BHK (1,633 sq ft)',
+    name: 'Promenade 4 BHK Riverfront Signature',
     area: '1,633 Sq. Ft.',
     image: '/assets/images/promenade-4bhk-1633.jpg',
-    features: ['Dual Balcony System', 'Spacious Staff Quarter', '360° Skyline Vistas']
+    features: ['Dual Balcony System with River Vistas', 'Spacious Staff Quarters & Utility', '3-Side Open Architectural Cross-Ventilation']
   },
   {
     id: '4bhk-altius',
-    label: 'Altius 4 BHK (2,100 sq ft)',
-    name: 'The Altius Ultra Luxury 4BHK',
-    area: '2,100 Sq. Ft.',
-    image: '/assets/images/promenade-4bhk-1718.jpg',
-    features: ['Private Elevator Foyer', 'Golf Course & Riverside Deck', 'Italian Marble Flooring']
+    label: 'The Altius 4 BHK (1,858 sq ft)',
+    name: 'The Altius Royal Fairway Residence',
+    area: '1,858 Sq. Ft.',
+    image: '/assets/images/official/altius-4bhk.jpg',
+    features: ['Controlled Access Biometric Elevator Foyer', 'Panoramic 9-Hole Golf Course & River Views', 'Imported Italian Marble Flooring']
+  },
+  {
+    id: '5bhk-altius',
+    label: 'The Altius 5 BHK (2,480 sq ft)',
+    name: 'The Altius Sovereign Sky Penthouse',
+    area: '2,480 Sq. Ft.',
+    image: '/assets/images/official/altius-5bhk.jpg',
+    features: ['11-Foot Clear Architectural Ceilings', 'Private Golf Club Terrace Deck', 'Dual Walk-In Wardrobes in Master Retreat']
   },
   {
     id: '2bhk-ridges41',
-    label: 'Ridges 41 2 BHK (785 sq ft)',
-    name: 'Ridges 41 Smart 2BHK',
-    area: '785 Sq. Ft.',
-    image: '/assets/images/promenade-3bhk-1316.jpg',
-    features: ['Smart Automation Ready', 'High-Rise Tower View', 'Optimized Carpet Efficiency']
+    label: 'Ridges 41 2 BHK (793 sq ft)',
+    name: 'Ridges 41 Smart Living 2 BHK',
+    area: '793 Sq. Ft.',
+    image: '/assets/images/official/ridges41-2bhk.jpg',
+    features: ['Ergonomic Work-from-Home Nook', '41-Storey High-Velocity MiVAN Superstructure', '400m from Infosys & Wipro Tech Gates']
   },
   {
     id: '3bhk-ridges41',
-    label: 'Ridges 41 3 BHK (1,150 sq ft)',
-    name: 'Ridges 41 Premium 3BHK',
-    area: '1,150 Sq. Ft.',
-    image: '/assets/images/promenade-4bhk-1633.jpg',
-    features: ['Three Open Balconies', 'Master Suite Walk-in Closet', 'Dedicated Parking Bay']
+    label: 'Ridges 41 3 BHK (1,250 sq ft)',
+    name: 'Ridges 41 Executive 3 BHK',
+    area: '1,250 Sq. Ft.',
+    image: '/assets/images/official/ridges41-3bhk.jpg',
+    features: ['Expansive Living Span with Valley Panorama', 'Dedicated EV Rapid Charging Bay', '6-Level Integrated Automated Podium Parking']
   }
 ];
 

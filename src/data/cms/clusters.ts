@@ -61,12 +61,16 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Promenade Residences",
     tagline: "The Benchmark of Riverfront High-Rise Living in Hinjewadi Phase 1",
     eyebrow: "41-Storey Iconic Towers • Mula Riverfront",
-    heroImage: "/assets/images/pscl-promenade-residences.png",
+    heroImage: "/assets/images/promenade-hero.png",
     gallery: [
-      "/assets/images/pscl-promenade-residences.png",
+      "/assets/images/promenade-hero.png",
+      "/assets/images/official/promenade-about.jpg",
       "/assets/images/pscl-blue-ridge-promenade-canopy.webp",
-      "/assets/images/pscl-blue-ridge-aerial-drone.webp",
-      "/assets/images/pscl-blue-ridge-township-skyline.jpg"
+      "/assets/images/official/promenade-g1.jpg",
+      "/assets/images/official/promenade-g2.jpg",
+      "/assets/images/official/promenade-g3.jpg",
+      "/assets/images/official/promenade-g4.jpg",
+      "/assets/images/pscl-blue-ridge-aerial-drone.webp"
     ],
     configurations: "3 & 4 Bedroom Residences",
     carpetAreaRange: "1,316 – 1,718 Sq. Ft.",
@@ -187,12 +191,16 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "The Altius",
     tagline: "Ultra-Luxury 4 & 5 BHK Sky Mansions & Golfview Penthouses",
     eyebrow: "Flagship Riverside Enclave • Overlooking the 9-Hole Greens",
-    heroImage: "/assets/images/pscl-blue-ridge-tower-elevation.webp",
+    heroImage: "/assets/images/official/altius-elevation-2048.webp",
     gallery: [
-      "/assets/images/pscl-blue-ridge-tower-elevation.webp",
-      "/assets/images/pscl-blue-ridge-golf.webp",
-      "/assets/images/pscl-blue-ridge-golf-pathway.webp",
-      "/assets/images/pscl-blue-ridge-aerial-drone.webp"
+      "/assets/images/official/altius-elevation-2048.webp",
+      "/assets/images/official/altius-banner.jpg",
+      "/assets/images/official/altius-about.jpg",
+      "/assets/images/official/altius-g1.jpg",
+      "/assets/images/official/altius-g2.jpg",
+      "/assets/images/official/altius-g3.jpg",
+      "/assets/images/official/altius-g4.jpg",
+      "/assets/images/pscl-blue-ridge-golf.webp"
     ],
     configurations: "4 & 5 Bedroom Sky Residences",
     carpetAreaRange: "1,858 – 2,480 Sq. Ft.",
@@ -272,7 +280,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 4,
         carpetArea: "1,858 Sq. Ft.",
         dimensions: "Living: 28'x16' • Master: 18'x15'",
-        planImage2D: "/assets/images/floor-plan-4bhk.png",
+        planImage2D: "/assets/images/official/altius-4bhk.jpg",
         downloadUrl: "#enquire"
       },
       {
@@ -280,7 +288,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 5,
         carpetArea: "2,480 Sq. Ft.",
         dimensions: "Living: 34'x18' • Master: 20'x16'",
-        planImage2D: "/assets/images/floor-plans/4bhk.png",
+        planImage2D: "/assets/images/official/altius-5bhk.jpg",
         downloadUrl: "#enquire"
       }
     ],
@@ -302,11 +310,15 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Ridges 41",
     tagline: "Modern 41-Storey Smart Residences for Global IT Professionals",
     eyebrow: "Walk-to-Work Technology Precinct • Smart 2 BHK Homes",
-    heroImage: "/assets/images/pscl-blue-ridge-architecture.webp",
+    heroImage: "/assets/images/official/ridges41-banner.jpg",
     gallery: [
-      "/assets/images/pscl-blue-ridge-architecture.webp",
-      "/assets/images/pscl-blue-ridge-life.webp",
-      "/assets/images/pscl-blue-ridge-boulevard.jpg",
+      "/assets/images/official/ridges41-banner.jpg",
+      "/assets/images/official/ridges41-about.jpg",
+      "/assets/images/official/ridges41-g1.jpg",
+      "/assets/images/official/ridges41-g2.jpg",
+      "/assets/images/official/ridges41-g3.jpg",
+      "/assets/images/official/ridges41-g4.jpg",
+      "/assets/images/official/ridges41-p1.jpg",
       "/assets/images/pscl-blue-ridge-sez.webp"
     ],
     configurations: "2 Bedroom Smart Residences",
@@ -387,7 +399,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 2,
         carpetArea: "793 Sq. Ft.",
         dimensions: "Living: 18'x12' • Master: 13'x11'",
-        planImage2D: "/assets/images/floor-plans/2bhk.png",
+        planImage2D: "/assets/images/official/ridges41-2bhk.jpg",
         downloadUrl: "#enquire"
       },
       {
@@ -395,7 +407,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
         bhkNumber: 2,
         carpetArea: "970 Sq. Ft.",
         dimensions: "Living: 20'x13' • Master: 14'x12'",
-        planImage2D: "/assets/images/floor-plans/2bhk.png",
+        planImage2D: "/assets/images/official/ridges41-3bhk.jpg",
         downloadUrl: "#enquire"
       }
     ],

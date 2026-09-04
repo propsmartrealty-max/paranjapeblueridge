@@ -88,8 +88,8 @@ export const projects: Project[] = [
     ],
     amenities: ["Exclusive Signature Clubhouse", "Direct 9-Hole Golf Course Access", "Rooftop Sky Lounge with Viewing Deck", "24/7 Premium Concierge Service"],
     configurations: [
-      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/floor-plan-4bhk.png" },
-      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस", carpetArea: "2,480 Sq. Ft.", price: "₹ 2.65 Cr*", priceValue: 26500000, numberOfRooms: 5, floorSizeSqFt: 2480, image: "/assets/images/unit-plan-3bhk.png" }
+      { slug: "4-bhk-flats", title: "4 BHK Riverside Flats", titleMr: "४ बीएचके रिव्हरसाईड फ्लॅट्स", carpetArea: "1,858 Sq. Ft.", price: "₹ 1.80 Cr*", priceValue: 18000000, numberOfRooms: 4, floorSizeSqFt: 1858, image: "/assets/images/official/altius-4bhk.jpg" },
+      { slug: "5-bhk-flats", title: "5 BHK Ultra-Luxury Penthouses", titleMr: "५ बीएचके अल्ट्रा-लक्झरी पेंटहाऊस", carpetArea: "2,480 Sq. Ft.", price: "₹ 2.65 Cr*", priceValue: 26500000, numberOfRooms: 5, floorSizeSqFt: 2480, image: "/assets/images/official/altius-5bhk.jpg" }
     ]
   },
   {
@@ -116,9 +116,9 @@ export const projects: Project[] = [
     ],
     amenities: ["Expansive Recreational Podium Level", "Fully Air-Conditioned Multipurpose Hall", "State-of-the-art Gymnasium", "Dedicated Kids Play Area & Creche"],
     configurations: [
-      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "793 - 970 Sq. Ft.", price: "₹ 97.60 L*", priceValue: 9760000, numberOfRooms: 2, floorSizeSqFt: 793, image: "/assets/images/unit-plan-3bhk.png" },
-      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 - 1,275 Sq. Ft.", price: "₹ 1.25 Cr*", priceValue: 12500000, numberOfRooms: 3, floorSizeSqFt: 1250, image: "/assets/images/floor-plan-3bhk.png" },
-      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,592 - 1,613 Sq. Ft.", price: "₹ 1.58 Cr*", priceValue: 15800000, numberOfRooms: 4, floorSizeSqFt: 1592, image: "/assets/images/floor-plan-4bhk.png" }
+      { slug: "2-bhk-flats", title: "2 BHK Smart Homes", titleMr: "२ बीएचके स्मार्ट होम्स", carpetArea: "793 - 970 Sq. Ft.", price: "₹ 97.60 L*", priceValue: 9760000, numberOfRooms: 2, floorSizeSqFt: 793, image: "/assets/images/official/ridges41-2bhk.jpg" },
+      { slug: "3-bhk-flats", title: "3 BHK Premium Flats", titleMr: "३ बीएचके प्रीमियम फ्लॅट्स", carpetArea: "1,250 - 1,275 Sq. Ft.", price: "₹ 1.25 Cr*", priceValue: 12500000, numberOfRooms: 3, floorSizeSqFt: 1250, image: "/assets/images/official/ridges41-3bhk.jpg" },
+      { slug: "4-bhk-flats", title: "4 BHK Spacious Homes", titleMr: "४ बीएचके प्रशस्त घरे", carpetArea: "1,592 - 1,613 Sq. Ft.", price: "₹ 1.58 Cr*", priceValue: 15800000, numberOfRooms: 4, floorSizeSqFt: 1592, image: "/assets/images/official/ridges41-4bhk.jpg" }
     ]
   }
 ];
