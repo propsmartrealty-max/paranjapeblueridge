@@ -37,6 +37,17 @@ export default function HomePageClient() {
     setIsModalOpen(true);
   };
 
+  useEffect(() => {
+    const handleHashCheck = () => {
+      if (typeof window !== 'undefined' && window.location.hash === '#enquiry') {
+        handleOpenModal('Township Concierge Enquiry');
+      }
+    };
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => window.removeEventListener('hashchange', handleHashCheck);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {

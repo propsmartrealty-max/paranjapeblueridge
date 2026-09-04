@@ -33,16 +33,43 @@ export default function SiteVisitBooking() {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
+        bhk: 'VIP Site Visit Booking',
+        visitDate: selectedDate,
+        visitTime: selectedSlot,
         intent: `${visitType === 'in_person' ? 'In-Person Visit' : 'Virtual Walkthrough'} on ${selectedDate} at ${selectedSlot}`,
         source: source,
         ...utms
       };
 
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          throw new Error(`Edge API status: ${response.status}`);
+        }
+      } catch (apiErr) {
+        console.warn("Edge API unavailable, activating direct FormSubmit dispatch to propsmartrealty@gmail.com:", apiErr);
+        await fetch('https://formsubmit.co/ajax/propsmartrealty@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: `💎 [Paranjape Blue Ridge] New Site Visit: ${formData.name} (${selectedDate})`,
+            _template: 'table',
+            _captcha: 'false',
+            Project: 'Paranjape Blue Ridge, Hinjewadi Phase 1, Pune',
+            Name: formData.name,
+            Phone: formData.phone,
+            Email: formData.email || 'Not Provided',
+            Visit_Type: visitType === 'in_person' ? 'In-Person Tour' : 'Virtual 3D Walkthrough',
+            Preferred_Date: selectedDate,
+            Preferred_Slot: selectedSlot,
+            Source: source,
+          }),
+        }).catch(err => console.error("Client fallback error:", err));
+      }
 
     } catch (error) {
       console.error("Lead submission failed:", error);

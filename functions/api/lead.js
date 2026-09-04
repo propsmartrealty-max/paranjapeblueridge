@@ -113,7 +113,7 @@ export async function onRequestPost(context) {
           body: JSON.stringify(emailTablePayload),
         }).catch(err => console.error('FormSubmit Edge Error:', err));
 
-        // 2. Dispatch to Google Sheets CRM Webhook
+        // 2. Dispatch to Google Sheets CRM Webhook (MailApp.sendEmail to propsmartrealty@gmail.com)
         await fetch(crmWebhookUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -133,6 +133,53 @@ export async function onRequestPost(context) {
             timestamp
           }),
         }).catch(err => console.error('CRM Webhook Edge Error:', err));
+
+        // 3. Direct MailChannels Edge Delivery to propsmartrealty@gmail.com
+        await fetch('https://api.mailchannels.net/tx/v1/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            personalizations: [
+              {
+                to: [{ email: NOTIFICATION_EMAIL, name: 'PropSmart Realty' }]
+              }
+            ],
+            from: {
+              email: 'leads@paranjapeblueridge.com',
+              name: 'Paranjape Blue Ridge Concierge'
+            },
+            subject: `💎 [Paranjape Blue Ridge] New VIP Lead: ${name} (${chosenConfig})`,
+            content: [
+              {
+                type: 'text/html',
+                value: `
+                  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #070D1A; color: #FAF9F6; border-radius: 16px; overflow: hidden; border: 1px solid #C5A880;">
+                    <div style="background: linear-gradient(135deg, #131F37 0%, #070D1A 100%); padding: 24px; border-bottom: 2px solid #C5A880;">
+                      <h2 style="margin: 0; color: #C5A880; font-size: 20px; font-weight: 700;">PARANJAPE BLUE RIDGE</h2>
+                      <p style="margin: 4px 0 0; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Cloudflare Edge Lead Alert</p>
+                    </div>
+                    <div style="padding: 24px;">
+                      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B; width: 40%;">Buyer Name</td><td style="padding: 8px 0; color: #FFFFFF; font-weight: 600; border-bottom: 1px solid #1E293B;">${name}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Phone Number</td><td style="padding: 8px 0; border-bottom: 1px solid #1E293B;"><a href="tel:${phone}" style="color: #38BDF8; font-weight: 700;">${phone}</a></td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Email Address</td><td style="padding: 8px 0; border-bottom: 1px solid #1E293B;"><a href="mailto:${email}" style="color: #38BDF8;">${email || 'Not Provided'}</a></td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Configuration</td><td style="padding: 8px 0; color: #C5A880; font-weight: 600; border-bottom: 1px solid #1E293B;">${chosenConfig}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Budget</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${budget}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Intent</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${intent}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Site Visit Date</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${visitDate}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Site Visit Slot</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${visitTime}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Source</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${source}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Message</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${message}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Lead ID</td><td style="padding: 8px 0; color: #94A3B8; font-family: monospace; border-bottom: 1px solid #1E293B;">${leadId}</td></tr>
+                        <tr><td style="padding: 8px 0; color: #94A3B8;">Submission Time</td><td style="padding: 8px 0; color: #94A3B8; font-size: 12px;">${timestamp}</td></tr>
+                      </table>
+                    </div>
+                  </div>
+                `
+              }
+            ]
+          })
+        }).catch(err => console.warn('MailChannels Edge send warning:', err));
       } catch (e) {
         console.error('Edge lead background dispatch failed:', e);
       }

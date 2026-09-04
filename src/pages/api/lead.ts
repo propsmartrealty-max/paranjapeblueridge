@@ -165,16 +165,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       Submitted_At: leadPayload.timestamp,
     };
 
-    // Background delivery promise
+    // Background delivery promise — TRIPLE REDUNDANT DISPATCH TO propsmartrealty@gmail.com
     const dispatchPromises = [
-      // 1. Email notification to propsmartrealty@gmail.com
+      // 1. FormSubmit AJAX email notification to propsmartrealty@gmail.com
       fetch(FORMSUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(emailTablePayload),
       }).catch(e => console.error('FormSubmit error:', e)),
 
-      // 2. Google Sheets CRM Webhook
+      // 2. Google Apps Script Webhook (MailApp.sendEmail to propsmartrealty@gmail.com + Sheets logging)
       fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -185,18 +185,65 @@ export const POST: APIRoute = async ({ request, locals }) => {
           leadId,
         }),
       }).catch(e => console.error('Webhook error:', e)),
+
+      // 3. Direct MailChannels Edge Delivery to propsmartrealty@gmail.com
+      fetch('https://api.mailchannels.net/tx/v1/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          personalizations: [
+            {
+              to: [{ email: NOTIFICATION_EMAIL, name: 'PropSmart Realty' }]
+            }
+          ],
+          from: {
+            email: 'leads@paranjapeblueridge.com',
+            name: 'Paranjape Blue Ridge VIP Desk'
+          },
+          subject: `💎 [Paranjape Blue Ridge] New VIP Lead: ${leadPayload.name} (${chosenConfig})`,
+          content: [
+            {
+              type: 'text/html',
+              value: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #070D1A; color: #FAF9F6; border-radius: 16px; overflow: hidden; border: 1px solid #C5A880;">
+                  <div style="background: linear-gradient(135deg, #131F37 0%, #070D1A 100%); padding: 24px; border-bottom: 2px solid #C5A880;">
+                    <h2 style="margin: 0; color: #C5A880; font-size: 20px; font-weight: 700;">PARANJAPE BLUE RIDGE</h2>
+                    <p style="margin: 4px 0 0; color: #94A3B8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">VIP Lead Intelligence</p>
+                  </div>
+                  <div style="padding: 24px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B; width: 40%;">Buyer Name</td><td style="padding: 8px 0; color: #FFFFFF; font-weight: 600; border-bottom: 1px solid #1E293B;">${leadPayload.name}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Phone Number</td><td style="padding: 8px 0; border-bottom: 1px solid #1E293B;"><a href="tel:${leadPayload.phone}" style="color: #38BDF8; font-weight: 700;">${leadPayload.phone}</a></td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Email Address</td><td style="padding: 8px 0; border-bottom: 1px solid #1E293B;"><a href="mailto:${leadPayload.email}" style="color: #38BDF8;">${leadPayload.email || 'Not Provided'}</a></td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Configuration</td><td style="padding: 8px 0; color: #C5A880; font-weight: 600; border-bottom: 1px solid #1E293B;">${chosenConfig}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Budget</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.budget}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Intent</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.intent}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Site Visit Date</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.visitDate}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Site Visit Slot</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.visitTime}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Source</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.source}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Message</td><td style="padding: 8px 0; color: #FFFFFF; border-bottom: 1px solid #1E293B;">${leadPayload.message}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8; border-bottom: 1px solid #1E293B;">Lead ID</td><td style="padding: 8px 0; color: #94A3B8; font-family: monospace; border-bottom: 1px solid #1E293B;">${leadId}</td></tr>
+                      <tr><td style="padding: 8px 0; color: #94A3B8;">Submission Time</td><td style="padding: 8px 0; color: #94A3B8; font-size: 12px;">${leadPayload.timestamp}</td></tr>
+                    </table>
+                  </div>
+                </div>
+              `
+            }
+          ]
+        })
+      }).catch(e => console.warn('MailChannels error:', e)),
     ];
 
     const allSettledPromise = Promise.allSettled(dispatchPromises);
 
-    // Register with waitUntil if Cloudflare runtime is present, otherwise wait with short race
+    // Register with waitUntil if Cloudflare runtime is present, otherwise wait with 4000ms safety window
     const runtime = (locals as any)?.runtime;
     if (runtime?.waitUntil) {
       runtime.waitUntil(allSettledPromise);
     } else {
       await Promise.race([
         allSettledPromise,
-        new Promise(resolve => setTimeout(resolve, 1200)),
+        new Promise(resolve => setTimeout(resolve, 4000)),
       ]);
     }
 
