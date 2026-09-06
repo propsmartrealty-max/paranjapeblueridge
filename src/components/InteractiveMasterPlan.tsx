@@ -68,6 +68,7 @@ export default function InteractiveMasterPlan() {
                 <button
                   type="button"
                   onClick={() => setViewMode('hybrid')}
+                  aria-label="Switch to Interactive Beacons view"
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${viewMode === 'hybrid' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
                 >
                   Interactive Beacons
@@ -75,6 +76,7 @@ export default function InteractiveMasterPlan() {
                 <button
                   type="button"
                   onClick={() => setViewMode('blueprint')}
+                  aria-label="Switch to Original Blueprint view"
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${viewMode === 'blueprint' ? 'bg-gold text-slate-950 shadow-md font-bold' : 'text-slate-300 hover:text-white'}`}
                 >
                   Original Blueprint
@@ -83,6 +85,7 @@ export default function InteractiveMasterPlan() {
               <button
                 type="button"
                 onClick={handleOpenLightbox}
+                aria-label="Inspect Blueprint in full screen"
                 className="px-4 py-2 bg-gold/10 hover:bg-gold/20 border border-gold/30 rounded-2xl text-xs text-gold font-semibold flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
               >
                 <Layers size={14} /> Inspect Blueprint
@@ -130,9 +133,13 @@ export default function InteractiveMasterPlan() {
                 key={project.id}
                 className="absolute group/node z-20"
                 style={{ top: coordinates[project.id as keyof typeof coordinates]?.top, left: coordinates[project.id as keyof typeof coordinates]?.left }}
+                role="button"
+                tabIndex={0}
+                aria-label={`View details for ${project.name}`}
                 onMouseEnter={() => setActiveProject(project.id)}
                 onMouseLeave={() => setActiveProject(null)}
                 onClick={() => setActiveProject(activeProject === project.id ? null : project.id)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveProject(activeProject === project.id ? null : project.id); }}
               >
                 {/* Radar Beacon Marker */}
                 <div className="relative w-10 h-10 md:w-14 md:h-14 -ml-5 -mt-5 md:-ml-7 md:-mt-7 cursor-pointer">
