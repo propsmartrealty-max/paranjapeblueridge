@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { blueRidgeClusters, ClusterResidence } from '@/data/cms/clusters';
 import EnquiryModal from './EnquiryModal';
+import EmiCalculator from './EmiCalculator';
 
 interface IndependentClusterDetailProps {
   clusterSlug: string;
@@ -751,6 +752,15 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8b. MORTGAGE & EMI CALCULATOR
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="emi-calculator" className="py-20 bg-white border-b border-slate-200 arch-section-divider">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+          <EmiCalculator projectName={cluster.name} />
         </div>
       </section>
 

@@ -33,7 +33,13 @@ const description = projectData
   ? projectData.description
   : pseoData?.description || 'Luxury residences at Paranjape Blue Ridge Hinjewadi Phase 1, Pune.';
 
-const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(title)}&type=Sovereign%20Portal`;
+const ogImage = projectData?.id === 'promenade'
+  ? "https://paranjapeblueridge.com/assets/images/promenade-hero.png"
+  : projectData?.id === 'altius'
+  ? "https://paranjapeblueridge.com/assets/images/altius-hero.png"
+  : projectData?.id === 'ridges-41'
+  ? "https://paranjapeblueridge.com/assets/images/ridges-hero.png"
+  : "https://paranjapeblueridge.com/assets/images/township-night.png";
 ---
 
 <Layout

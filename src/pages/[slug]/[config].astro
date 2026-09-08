@@ -30,7 +30,9 @@ const description = isMarathi
   ? `Official ${configuration?.title} details at ${project?.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration?.carpetArea || project?.carpetArea}. Price: ${configuration?.price || project?.price}. MahaRERA: ${project?.reraNumber}.`
   : `Official ${configuration?.title} details at ${project?.name}, Paranjape Blue Ridge Hinjewadi Phase 1. Carpet area: ${configuration?.carpetArea || project?.carpetArea}. Price: ${configuration?.price || project?.price}. MahaRERA: ${project?.reraNumber}. Download floor plan or book a site visit.`;
 
-const ogImage = `https://paranjapeblueridge.com/api/og?title=${encodeURIComponent(configuration?.title || '')}&config=${encodeURIComponent(project?.name || '')}`;
+const ogImage = configuration?.image
+  ? `https://paranjapeblueridge.com${configuration.image}`
+  : "https://paranjapeblueridge.com/assets/images/township-night.png";
 ---
 
 <Layout

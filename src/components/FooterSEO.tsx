@@ -86,7 +86,7 @@ export default function FooterSEO() {
         {/* Absolute bottom SEO string & Sitemap Link */}
         <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-[10px] text-slate-600 gap-4 font-sans font-medium">
           <p className="text-center sm:text-left">
-            Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • RERA Compliant
+            Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • MahaRERA Certified
           </p>
           <div className="flex gap-4 shrink-0 flex-wrap justify-center font-mono">
             <a href="/hinjewadi-micro-market" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Hinjewadi Guide</a>
@@ -98,6 +98,20 @@ export default function FooterSEO() {
             <a href="/nri-investment" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">NRI Desk</a>
             <span className="text-slate-300">|</span>
             <a href="/directory" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Directory</a>
+          </div>
+        </div>
+
+        {/* MahaRERA Statutory Compliance & Legal Links */}
+        <div className="pt-4 mt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-[10px] text-slate-500 gap-3">
+          <p className="text-center sm:text-left max-w-2xl leading-relaxed">
+            <strong>MahaRERA Registration Details:</strong> Promenade Residences: <strong>P52100055581</strong> | The Altius: <strong>P52100078116</strong> | Ridges 41: <strong>P52100000054</strong>. Project details available at <a href="https://maharera.maharerait.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#785415] underline">maharera.maharerait.gov.in</a>. Managed by authorized channel partner Propsmart Realty. Conceptual images for illustration only.
+          </p>
+          <div className="flex gap-3 shrink-0 font-mono text-[9px] uppercase tracking-wider">
+            <a href="/privacy-policy" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Terms & Conditions</a>
+            <span>•</span>
+            <a href="/disclaimer" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Disclaimer</a>
           </div>
         </div>
 
