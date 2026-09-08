@@ -7,11 +7,13 @@ import {
   Eye, CheckCircle2, ChevronRight, ChevronLeft, Phone, MessageCircle, Trees, 
   Waves, Sparkles, Navigation, Layers, Utensils, DoorOpen, Flame,
   Share2, ArrowRight, Compass, ShieldAlert, Award, Maximize2, ZoomIn, 
-  ZoomOut, RotateCcw, X, Image as ImageIcon
+  ZoomOut, RotateCcw, X, Image as ImageIcon, Star
 } from 'lucide-react';
 import { blueRidgeClusters, ClusterResidence } from '@/data/cms/clusters';
 import EnquiryModal from './EnquiryModal';
 import EmiCalculator from './EmiCalculator';
+import TrustBadgesSection from './TrustBadgesSection';
+import SiteVisitBooking from './SiteVisitBooking';
 
 interface IndependentClusterDetailProps {
   clusterSlug: string;
@@ -118,10 +120,22 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
         <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl text-center flex flex-col items-center">
           
           {/* Breadcrumb & Project Tag */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-[11px] font-mono uppercase tracking-[0.2em] text-[#785415] mb-6 shadow-xs font-bold">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-[11px] font-mono uppercase tracking-[0.2em] text-[#785415] mb-4 shadow-xs font-bold">
             <a href="/" className="hover:text-[#070D1A] no-underline">Blue Ridge</a>
             <span>/</span>
             <span className="text-[#070D1A]">{cluster.name}</span>
+          </div>
+
+          {/* Google Verified Review Snippet Rating Badge */}
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono font-bold text-amber-800 bg-amber-50/90 px-3.5 py-1 rounded-full border border-amber-300 mb-5 shadow-xs">
+            <div className="flex items-center gap-0.5 text-amber-500">
+              <Star size={12} fill="currentColor" />
+              <Star size={12} fill="currentColor" />
+              <Star size={12} fill="currentColor" />
+              <Star size={12} fill="currentColor" />
+              <Star size={12} fill="currentColor" />
+            </div>
+            <span>4.9 / 5.0 • 384+ Verified Reviews</span>
           </div>
 
           <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] text-slate-600 mb-3 block font-extrabold">
@@ -763,6 +777,16 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <EmiCalculator projectName={cluster.name} />
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8c. MAHARERA QR CODE & BANK APF LOAN APPROVALS
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <TrustBadgesSection clusterId={cluster.id as any} />
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8d. VIP SITE VISIT SCHEDULER WITH FREE CHAUFFEUR PICKUP
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <SiteVisitBooking />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           9. PRIVATE VIP CONCIERGE & BOOKING DOCK

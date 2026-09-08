@@ -16,6 +16,10 @@ import ParanjapeLegacySection from './ParanjapeLegacySection';
 import JournalPreviewSection from './JournalPreviewSection';
 import FAQSection from './FAQSection';
 import EnquiryModal from './EnquiryModal';
+import TownshipVirtualTour from './TownshipVirtualTour';
+import TrustBadgesSection from './TrustBadgesSection';
+import ResidentTestimonials from './ResidentTestimonials';
+import SiteVisitBooking from './SiteVisitBooking';
 import { townshipMasterData } from '@/data/cms/township';
 import { blueRidgeClusters } from '@/data/cms/clusters';
 
@@ -244,11 +248,21 @@ export default function HomePageClient() {
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2.5. 4K CINEMATIC TOWNSHIP DRONE TOUR
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <TownshipVirtualTour />
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           3. "FIND YOUR PLACE WITHIN BLUE RIDGE" — RESIDENCES EDITORIAL CAROUSEL
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="border-b border-slate-200 arch-section-divider">
         <ResidencesEditorialCarousel onSelectCluster={(cluster) => handleOpenModal(`Cluster Inquiry: ${cluster.name}`)} />
       </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3.5. MAHARERA STATUTORY COMPLIANCE & BANK APF APPROVALS
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <TrustBadgesSection clusterId="all" />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           4. BLUE RIDGE IT / ITES SEZ (EXTENDED DETAILING)
@@ -323,6 +337,16 @@ export default function HomePageClient() {
           </div>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8.5. VERIFIED RESIDENT TESTIMONIALS & GOOGLE RATINGS
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <ResidentTestimonials />
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8.6. VIP SITE VISIT BOOKING WITH COMPLIMENTARY CHAUFFEUR PICKUP
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <SiteVisitBooking />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           9. THE PARANJAPE LEGACY (AUTHORITY & TRUST LAYER)

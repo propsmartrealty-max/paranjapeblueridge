@@ -88,12 +88,20 @@ export default function FooterSEO() {
           <p className="text-center sm:text-left">
             Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • MahaRERA Certified
           </p>
-          <div className="flex gap-4 shrink-0 flex-wrap justify-center font-mono">
+          <div className="flex gap-3 sm:gap-4 shrink-0 flex-wrap justify-center font-mono">
+            <a href="/blue-ridge-public-school" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">ICSE School</a>
+            <span className="text-slate-300">|</span>
+            <a href="/blue-ridge-golf-course" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">9-Hole Golf</a>
+            <span className="text-slate-300">|</span>
+            <a href="/blue-ridge-boat-club" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Boat Club</a>
+            <span className="text-slate-300">|</span>
+            <a href="/blue-ridge-sez-tech-park" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">IT SEZ</a>
+            <span className="text-slate-300">|</span>
             <a href="/hinjewadi-micro-market" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Hinjewadi Guide</a>
             <span className="text-slate-300">|</span>
             <a href="/blue-ridge/ongoing-projects" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Active Clusters</a>
             <span className="text-slate-300">|</span>
-            <a href="/construction-updates" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Construction Status</a>
+            <a href="/construction-updates" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Construction</a>
             <span className="text-slate-300">|</span>
             <a href="/nri-investment" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">NRI Desk</a>
             <span className="text-slate-300">|</span>

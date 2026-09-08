@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CheckCircle2, Download, MessageSquare, Phone, ArrowRight, ShieldCheck, Home, FileText } from 'lucide-react';
+
+export const prerender = true;
+---
+
+<Layout
+  title="VIP Request Confirmed | Paranjape Blue Ridge Hinjewadi"
+  description="Thank you for connecting with the Paranjape Blue Ridge residential concierge. Your private presentation kit and verified floor plans are ready."
+  pathname="/thank-you"
+>
+  <!-- GA4 & Ads Conversion Script Trigger -->
+  <script is:inline>
+    if (typeof window !== 'undefined') {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', { 'send_to': 'AW-CONVERSION_ID/LABEL' });
+          gtag('event', 'generate_lead', {
+            event_category: 'engagement',
+            event_label: 'vip_lead_submitted'
+          });
+        }
+      } catch (e) {
+        console.warn('Analytics event trigger bypassed:', e);
+      }
+    }
+  </script>
+
+  <div class="min-h-screen bg-gradient-to-b from-[#FAF9F6] via-[#F3F5F8] to-[#FAF9F6] pt-28 sm:pt-36 pb-20">
+    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+      
+      {/* Main Confirmation Card */}
+      <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 sm:p-14 text-center shadow-lg mb-10">
+        
+        {/* Animated Checkmark Badge */}
+        <div class="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto mb-6 shadow-sm">
+          <CheckCircle2 size={42} className="stroke-[2.5]" />
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-[#785415] text-[11px] font-mono font-bold uppercase tracking-widest mb-4">
+          <ShieldCheck size={13} />
+          <span>Priority Advisory Assigned</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] tracking-tight mb-4">
+          Thank You. Your Request <br />
+          <span class="italic font-light text-gradient-champagne">Has Been Confirmed.</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-600 font-sans font-medium max-w-xl mx-auto mb-8 leading-relaxed">
+          A dedicated Senior Relationship Manager from Propsmart Realty (Authorized Paranjape Partner) is preparing your bespoke information kit, floor layouts, and cost sheets.
+        </p>
+
+        {/* Action Buttons: WhatsApp & Direct Call */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <a
+            href="https://wa.me/912067210000?text=Hi%2C%20I%20just%20submitted%20an%20inquiry%20on%20paranjapeblueridge.com.%20Please%20send%20the%20official%20brochures%20and%20cost%20sheet."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-bold text-xs uppercase tracking-wider transition-all shadow-md no-underline"
+          >
+            <MessageSquare size={16} />
+            <span>Connect Instantly on WhatsApp</span>
+          </a>
+
+          <a
+            href="tel:+912067210000"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-sans font-bold text-xs uppercase tracking-wider transition-all shadow-md no-underline"
+          >
+            <Phone size={16} />
+            <span>Call Advisory Desk (+91-20-67210000)</span>
+          </a>
+        </div>
+
+        {/* Immediate Digital Brochure Downloads */}
+        <div class="pt-8 border-t border-slate-200 text-left">
+          <h2 class="text-xs font-mono uppercase tracking-widest text-[#785415] font-extrabold text-center mb-6">
+            Immediate Digital Brochure Downloads
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a
+              href="/assets/images/pscl-blue-ridge-master-brochure.pdf"
+              download
+              class="p-4 rounded-2xl bg-slate-50 hover:bg-amber-50/70 border border-slate-200 hover:border-amber-300 transition-all flex items-center justify-between no-underline group"
+            >
+              <div>
+                <div class="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#785415]">
+                  Promenade Residences
+                </div>
+                <div class="text-[10px] font-mono text-slate-500">PDF • 3 & 4 BHK River Suites</div>
+              </div>
+              <Download size={16} class="text-[#785415] shrink-0" />
+            </a>
+
+            <a
+              href="/assets/images/pscl-blue-ridge-master-brochure.pdf"
+              download
+              class="p-4 rounded-2xl bg-slate-50 hover:bg-amber-50/70 border border-slate-200 hover:border-amber-300 transition-all flex items-center justify-between no-underline group"
+            >
+              <div>
+                <div class="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#785415]">
+                  The Altius Riverside
+                </div>
+                <div class="text-[10px] font-mono text-slate-500">PDF • Golf & Deck Homes</div>
+              </div>
+              <Download size={16} class="text-[#785415] shrink-0" />
+            </a>
+
+            <a
+              href="/assets/images/pscl-blue-ridge-master-brochure.pdf"
+              download
+              class="p-4 rounded-2xl bg-slate-50 hover:bg-amber-50/70 border border-slate-200 hover:border-amber-300 transition-all flex items-center justify-between no-underline group"
+            >
+              <div>
+                <div class="text-xs font-serif font-bold text-[#070D1A] group-hover:text-[#785415]">
+                  Ridges 41 High-Rise
+                </div>
+                <div class="text-[10px] font-mono text-slate-500">PDF • Monolithic Smart Units</div>
+              </div>
+              <Download size={16} class="text-[#785415] shrink-0" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Return Navigation */}
+      <div class="text-center">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#785415] hover:text-[#070D1A] transition-colors no-underline"
+        >
+          <Home size={14} />
+          <span>Return to Paranjape Blue Ridge Homepage</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

@@ -159,13 +159,17 @@ export default function Navbar() {
               )}
             </div>
 
-            <a href="/#sez" className="text-slate-800 hover:text-[#785415] transition-colors no-underline flex items-center gap-1.5 font-bold text-[#785415] whitespace-nowrap shrink-0">
+            <a href="/blue-ridge-sez-tech-park" className="text-slate-800 hover:text-[#785415] transition-colors no-underline flex items-center gap-1.5 font-bold text-[#785415] whitespace-nowrap shrink-0">
               <Briefcase size={13} className="text-[#785415] shrink-0" />
               <span>Blue Ridge SEZ</span>
             </a>
 
-            <a href="/#golf" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
+            <a href="/blue-ridge-golf-course" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               Golf & Marina
+            </a>
+
+            <a href="/blue-ridge-public-school" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
+              ICSE School
             </a>
 
             <a href="/why-paranjape" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
@@ -244,12 +248,18 @@ export default function Navbar() {
               </a>
             </div>
 
-            <a href="/#sez" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#785415] font-extrabold no-underline gap-2 px-1">
+            <a href="/blue-ridge-sez-tech-park" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#785415] font-extrabold no-underline gap-2 px-1">
               <Briefcase size={16} />
               <span>Blue Ridge IT / ITES SEZ</span>
             </a>
-            <a href="/#golf" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
-              9-Hole Golf & River Marina
+            <a href="/blue-ridge-golf-course" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
+              9-Hole Golf & Academy
+            </a>
+            <a href="/blue-ridge-boat-club" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
+              Riverfront Boat Club & Marina
+            </a>
+            <a href="/blue-ridge-public-school" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
+              Blue Ridge Public School (ICSE)
             </a>
             <a href="/why-paranjape" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center min-h-[48px] border-b border-slate-100 text-[#070D1A] no-underline font-semibold px-1">
               The Paranjape Legacy

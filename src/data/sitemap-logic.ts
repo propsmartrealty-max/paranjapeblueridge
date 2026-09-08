@@ -96,6 +96,13 @@ function getCoreAndProjectUrls(): MetadataRoute.Sitemap {
     buildUrlEntry('mr-hinjewadi-micro-market', staticPublishedDate, 'weekly', 0.9),
     buildUrlEntry('insights', staticPublishedDate, 'daily', 0.9, false),
     buildUrlEntry('directory', staticPublishedDate, 'weekly', 0.8, false),
+    buildUrlEntry('blue-ridge-public-school', staticPublishedDate, 'weekly', 0.95, false),
+    buildUrlEntry('blue-ridge-golf-course', staticPublishedDate, 'weekly', 0.95, false),
+    buildUrlEntry('blue-ridge-boat-club', staticPublishedDate, 'weekly', 0.95, false),
+    buildUrlEntry('blue-ridge-sez-tech-park', staticPublishedDate, 'weekly', 0.95, false),
+    buildUrlEntry('privacy-policy', staticPublishedDate, 'monthly', 0.5, false),
+    buildUrlEntry('terms', staticPublishedDate, 'monthly', 0.5, false),
+    buildUrlEntry('disclaimer', staticPublishedDate, 'monthly', 0.5, false),
     buildUrlEntry('html-sitemap', staticPublishedDate, 'weekly', 0.7, false),
   ];
 

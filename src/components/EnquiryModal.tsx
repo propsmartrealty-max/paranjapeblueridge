@@ -213,7 +213,10 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
       setStep(1);
       setFormData({ name: '', phone: '', email: '', bhk: '', budget: '', intent: 'Self Use', visitDate: '', visitTime: '', message: '', bot_field: '' });
       onClose();
-    }, 3000);
+      if (typeof window !== 'undefined') {
+        window.location.href = '/thank-you';
+      }
+    }, 1500);
   };
 
   return (

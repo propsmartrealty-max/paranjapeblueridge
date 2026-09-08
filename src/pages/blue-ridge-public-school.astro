@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { School, CheckCircle2, ShieldCheck, MapPin, Users, Award, BookOpen, Clock, ArrowRight, Download } from 'lucide-react';
+
+export const prerender = true;
+
+const academicHighlights = [
+  { title: "ICSE Curriculum", desc: "Council for the Indian School Certificate Examinations affiliated from Pre-Primary through Grade 12." },
+  { title: "Zero-Commute Campus", desc: "Located completely within the 138-acre gated perimeter, eliminating student travel time and vehicular traffic hazards." },
+  { title: "Sports Infrastructure", desc: "Full-sized football field, cricket training nets, basketball courts, and junior athletic tracks." },
+  { title: "Science & Robotics Labs", desc: "State-of-the-art STEM laboratories, computer research facilities, and multi-lingual digital library." }
+];
+
+const safetyFeatures = [
+  "100% Pedestrian Access via internal township landscaped walkways",
+  "Zero highway crossing or public vehicular interaction",
+  "Full-campus CCTV surveillance with RFID-enabled student access",
+  "Dedicated on-campus infirmary with certified nursing personnel"
+];
+---
+
+<Layout
+  title="Blue Ridge Public School (ICSE) | Inside Paranjape Blue Ridge Hinjewadi"
+  description="Explore Blue Ridge Public School, Pune's premier in-campus ICSE school located inside Paranjape Blue Ridge, Hinjewadi Phase 1. Nursery to Grade 12 with world-class sports and zero-traffic child safety."
+  pathname="/blue-ridge-public-school"
+>
+  <div class="bg-[#FAF9F6] text-[#070D1A] min-h-screen pt-28 sm:pt-36 pb-24">
+    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      
+      {/* Breadcrumb */}
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] font-mono uppercase tracking-wider text-[#785415] mb-8 font-bold shadow-xs">
+        <a href="/" class="hover:text-[#070D1A] no-underline">Blue Ridge</a>
+        <span>/</span>
+        <span class="text-slate-500">Township Ecosystem</span>
+        <span>/</span>
+        <span class="text-[#070D1A]">Blue Ridge Public School</span>
+      </div>
+
+      {/* Hero Section */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="chapter-badge">
+            <School size={12} className="text-[#785415]" />
+            <span>In-Campus ICSE Education • Nursery to Grade 12</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-serif font-bold text-[#070D1A] leading-tight">
+            World-class learning, <br />
+            <span class="italic font-light text-gradient-champagne">zero school commute.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-700 font-sans font-medium leading-relaxed">
+            One of Pune's most esteemed educational institutions, <strong>Blue Ridge Public School (BRPS)</strong> is nestled safely inside the 138-acre Paranjape Blue Ridge township in Hinjewadi Phase 1. Children walk to school through tranquil, tree-lined pedestrian avenues without ever stepping onto congested city roads.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a
+              href="#admissions"
+              class="btn-champagne px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider no-underline shadow-md inline-flex items-center gap-2"
+            >
+              <span>Township Admission Assistance</span>
+              <ArrowRight size={14} />
+            </a>
+            <a
+              href="/#residences"
+              class="btn-glass-outline px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider no-underline inline-flex items-center gap-2"
+            >
+              <span>Explore Surrounding Residences</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden border-2 border-slate-200 bg-white p-3 shadow-lg">
+            <img 
+              src="/assets/images/school-modern-education.png" 
+              alt="Blue Ridge Public School Campus in Hinjewadi Phase 1" 
+              class="w-full h-80 sm:h-96 object-cover rounded-2xl"
+            />
+            <div class="grid grid-cols-3 gap-2 text-center pt-4 border-t border-slate-100 mt-2">
+              <div>
+                <div class="text-xl font-serif font-bold text-[#070D1A]">ICSE</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">Affiliation</div>
+              </div>
+              <div>
+                <div class="text-xl font-serif font-bold text-[#785415]">2,500+</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">Students</div>
+              </div>
+              <div>
+                <div class="text-xl font-serif font-bold text-[#070D1A]">Zero</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">Road Risk</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Academic Highlights */}
+      <div class="mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-serif font-bold text-[#070D1A]">Academic & Infrastructure Pillars</h2>
+          <p class="text-sm text-slate-600 font-sans mt-2">Designed to foster cognitive curiosity, leadership, and athletic excellence.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {academicHighlights.map((item, i) => (
+            <div key={i} class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-amber-300 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-[#785415] mb-4 font-mono font-bold text-sm">
+                0{i + 1}
+              </div>
+              <h3 class="text-base font-serif font-bold text-[#070D1A] mb-2">{item.title}</h3>
+              <p class="text-xs text-slate-600 font-sans leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Child Safety & Pedestrian Walkways */}
+      <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 sm:p-12 mb-20 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#785415] font-extrabold block">
+              The Parent's Ultimate Peace of Mind
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-serif font-bold text-[#070D1A]">
+              No Yellow Buses. No Traffic Jams. Just a Morning Stroll.
+            </h2>
+            <p class="text-sm text-slate-700 font-sans leading-relaxed">
+              Living at Promenade Residences, The Altius, or Ridges 41 gives your children the extraordinary luxury of walking to school through dedicated pedestrian pathways under the protective umbrella of Blue Ridge security.
+            </p>
+            <div class="space-y-2.5 pt-2">
+              {safetyFeatures.map((feat, i) => (
+                <div key={i} class="flex items-center gap-2.5 text-xs text-slate-700 font-sans">
+                  <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+                  <span>{feat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="p-6 rounded-2xl bg-amber-50/50 border border-amber-200 space-y-4">
+              <h3 class="text-lg font-serif font-bold text-[#785415]">Walking Distance from Clusters</h3>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-amber-200">
+                  <span class="text-xs font-serif font-bold text-[#070D1A]">Promenade Residences</span>
+                  <span class="text-xs font-mono font-bold text-[#785415]">400 meters • 5 Min Walk</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-amber-200">
+                  <span class="text-xs font-serif font-bold text-[#070D1A]">The Altius</span>
+                  <span class="text-xs font-mono font-bold text-[#785415]">650 meters • 7 Min Walk</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-amber-200">
+                  <span class="text-xs font-serif font-bold text-[#070D1A]">Ridges 41</span>
+                  <span class="text-xs font-mono font-bold text-[#785415]">300 meters • 4 Min Walk</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Inquiry Call to Action */}
+      <div id="admissions" class="text-center max-w-3xl mx-auto p-10 rounded-3xl bg-gradient-to-b from-white to-amber-50/40 border-2 border-slate-200">
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#070D1A] mb-3">
+          Interested in Blue Ridge Residential & School Proximity?
+        </h2>
+        <p class="text-sm text-slate-600 font-sans mb-6">
+          Connect with our residential advisory desk for home availability within easy walking distance of Blue Ridge Public School.
+        </p>
+        <a
+          href="/#enquiry"
+          class="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-widest no-underline shadow-md inline-block"
+        >
+          Request Township Residential Portfolio
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

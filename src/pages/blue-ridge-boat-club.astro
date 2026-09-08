@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Waves, CheckCircle2, ShieldCheck, Compass, ArrowRight, Sun, Anchor } from 'lucide-react';
+
+export const prerender = true;
+
+const waterActivities = [
+  { title: "Kayaking & Canoeing", desc: "Stable single and tandem recreational kayaks with certified safety gear and launch assistants." },
+  { title: "Private Boat Jetty", desc: "Engineered pontoon docking system for effortless river access and safe boarding for all age groups." },
+  { title: "Riverfront Promenade", desc: "Paved, illuminated 1.5 km waterfront promenade ideal for morning jogging and evening sunset strolls." },
+  { title: "Waterside Dining Deck", desc: "Al-fresco seating pavilions overlooking the river waters and twilight reflections." }
+];
+---
+
+<Layout
+  title="Riverfront Boat Club & Marina | Paranjape Blue Ridge Hinjewadi"
+  description="Discover the exclusive Mula Riverfront Boat Club & Marina at Paranjape Blue Ridge Hinjewadi Phase 1. Features private kayaking fleet, river promenade, and waterfront leisure."
+  pathname="/blue-ridge-boat-club"
+>
+  <div class="bg-[#FAF9F6] text-[#070D1A] min-h-screen pt-28 sm:pt-36 pb-24">
+    <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      
+      {/* Breadcrumb */}
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[11px] font-mono uppercase tracking-wider text-[#785415] mb-8 font-bold shadow-xs">
+        <a href="/" class="hover:text-[#070D1A] no-underline">Blue Ridge</a>
+        <span>/</span>
+        <span class="text-slate-500">Township Lifestyle</span>
+        <span>/</span>
+        <span class="text-[#070D1A]">Boat Club & Marina</span>
+      </div>
+
+      {/* Hero Section */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="chapter-badge">
+            <Anchor size={12} className="text-[#785415]" />
+            <span>Waterfront Leisure • Mula River Corridor</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-serif font-bold text-[#070D1A] leading-tight">
+            Pune's premier private <br />
+            <span class="italic font-light text-gradient-champagne">residential boat club.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-700 font-sans font-medium leading-relaxed">
+            Flowing along the northern boundary of the 138-acre township, the Mula River provides Paranjape Blue Ridge residents with an exclusive waterfront amenity unmatched in Pune real estate: a dedicated <strong>Boat Club and Kayak Marina</strong>.
+          </p>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a
+              href="/#enquiry"
+              class="btn-champagne px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider no-underline shadow-md inline-flex items-center gap-2"
+            >
+              <span>Explore Riverfront Residences</span>
+              <ArrowRight size={14} />
+            </a>
+            <a
+              href="/paranjape-blue-ridge-promenade-hinjewadi-pune"
+              class="btn-glass-outline px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider no-underline inline-flex items-center gap-2"
+            >
+              <span>View Promenade River Suites</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden border-2 border-slate-200 bg-white p-3 shadow-lg">
+            <img 
+              src="/assets/images/amenity-boat-club.png" 
+              alt="Blue Ridge Boat Club & Marina on Mula River Hinjewadi" 
+              class="w-full h-80 sm:h-96 object-cover rounded-2xl"
+            />
+            <div class="grid grid-cols-3 gap-2 text-center pt-4 border-t border-slate-100 mt-2">
+              <div>
+                <div class="text-xl font-serif font-bold text-[#070D1A]">Private</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">River Marina</div>
+              </div>
+              <div>
+                <div class="text-xl font-serif font-bold text-[#785415]">1.5 km</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">Promenade</div>
+              </div>
+              <div>
+                <div class="text-xl font-serif font-bold text-[#070D1A]">Kayaks</div>
+                <div class="text-[9px] font-mono text-slate-500 uppercase font-bold">Fleet Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Waterfront Features Grid */}
+      <div class="mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-serif font-bold text-[#070D1A]">Waterfront Tranquility & Nautical Adventure</h2>
+          <p class="text-sm text-slate-600 font-sans mt-2">Where serene waters meet luxury community living.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {waterActivities.map((item, i) => (
+            <div key={i} class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-amber-300 transition-all">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 mb-4 font-mono font-bold text-sm">
+                0{i + 1}
+              </div>
+              <h3 class="text-base font-serif font-bold text-[#070D1A] mb-2">{item.title}</h3>
+              <p class="text-xs text-slate-600 font-sans leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Promenade Enclave Synergy */}
+      <div class="bg-white rounded-3xl border-2 border-slate-200 p-8 sm:p-12 mb-20 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-[#785415] font-extrabold block">
+              Riverfront Architecture
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-serif font-bold text-[#070D1A]">
+              Live 41 storeys above the glistening Mula River.
+            </h2>
+            <p class="text-sm text-slate-700 font-sans leading-relaxed">
+              Promenade Residences was designed specifically to maximize river views. Staggered balconies and double-height sky lounges create an uninterrupted visual dialogue with the water below.
+            </p>
+            <div class="pt-2">
+              <a
+                href="/paranjape-blue-ridge-promenade-hinjewadi-pune"
+                class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#785415] uppercase tracking-wider hover:text-[#070D1A] no-underline"
+              >
+                <span>Discover Promenade 3 & 4 BHK Riverfront Suites</span>
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <h3 class="text-base font-serif font-bold text-[#070D1A]">Safety & Water Management</h3>
+              <div class="space-y-2 text-xs text-slate-600 font-sans">
+                <div class="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                  <span>Trained rescue lifeguards stationed during operational hours</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                  <span>Mandatory high-buoyancy life jackets provided on site</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                  <span>River embankment stabilization and ecological bio-retention</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>
