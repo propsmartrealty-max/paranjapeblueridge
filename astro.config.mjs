@@ -10,7 +10,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: {
-    format: 'directory'
+    format: 'file'
   },
   adapter: cloudflare({
     imageService: 'passthrough',
