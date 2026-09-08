@@ -109,6 +109,13 @@ export default {
       return Response.redirect(redirectTarget.toString(), 301);
     }
 
+    // ── 3b. Clean PSEO Legacy Aliases (redirect keyword-stuffed suffix to clean slug) ──
+    if (cleanPathname.endsWith('-paranjape-schemes-blue-ridge-hinjewadi')) {
+      const cleanTarget = cleanPathname.replace(/-paranjape-schemes-blue-ridge-hinjewadi$/, '');
+      const redirectTarget = new URL(cleanTarget + url.search, CANONICAL_ORIGIN);
+      return Response.redirect(redirectTarget.toString(), 301);
+    }
+
     // ── 4. Trailing Slash Normalization ──
     if (url.pathname !== '/' && url.pathname.endsWith('/')) {
       const redirectUrl = new URL(cleanPathname + url.search, CANONICAL_ORIGIN);

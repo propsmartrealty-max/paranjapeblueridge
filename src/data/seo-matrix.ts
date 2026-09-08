@@ -416,7 +416,7 @@ export const curatedPhrasesData: Array<{
 
 // Precompute sanitized, validated PSEO URLs
 export const curatedPseoUrls: PseoUrl[] = curatedPhrasesData.map(item => {
-  const slug = `${slugify(item.phrase)}-paranjape-schemes-blue-ridge-hinjewadi`;
+  const slug = slugify(item.phrase);
   const rawTitle = `${item.phrase} | Paranjape Blue Ridge`;
   const title = optimizeTitleLength(rawTitle);
   const intent = `${item.phrase} — Official Insights & Inventory at Paranjape Blue Ridge Hinjewadi`;

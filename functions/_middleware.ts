@@ -36,8 +36,8 @@ const EDGE_REDIRECTS: Record<string, string> = {
   '/rss': '/feed.xml',
   '/llm.txt': '/llms.txt',
   '/explore/hinjewadi': '/hinjewadi-micro-market',
-  '/explore/wakad': '/flats-in-wakad-near-hinjewadi-flyover-paranjape-schemes-blue-ridge-hinjewadi',
-  '/explore/baner': '/flats-near-baner-and-balewadi-high-street-pune-paranjape-schemes-blue-ridge-hinjewadi'
+  '/explore/wakad': '/flats-in-wakad-near-hinjewadi-flyover',
+  '/explore/baner': '/flats-near-baner-and-balewadi-high-street-pune'
 };
 
 const VERIFIED_SEARCH_BOTS = [
@@ -70,6 +70,12 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   if (EDGE_REDIRECTS[normalizedPath]) {
     const target = EDGE_REDIRECTS[normalizedPath];
     return Response.redirect(new URL(target, url.origin).toString(), 301);
+  }
+
+  // 2b. Clean PSEO Legacy Aliases (redirect keyword-stuffed suffix to clean slug)
+  if (normalizedPath.endsWith('-paranjape-schemes-blue-ridge-hinjewadi')) {
+    const cleanPath = normalizedPath.replace(/-paranjape-schemes-blue-ridge-hinjewadi$/, '');
+    return Response.redirect(new URL(cleanPath, url.origin).toString(), 301);
   }
 
   // 3. Trailing Slash Normalization (strip trailing slashes except for root '/')

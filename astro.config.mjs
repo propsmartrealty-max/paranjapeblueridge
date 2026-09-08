@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://paranjapeblueridge.com',
   output: 'static',
-  trailingSlash: 'ignore',
+  trailingSlash: 'never',
   build: {
     format: 'directory'
   },
@@ -22,6 +22,12 @@ export default defineConfig({
     }),
     sitemap({
       filter: (page) => !page.includes('/api/') && !page.includes('/404') && !page.includes('/sovereign-vault'),
+      serialize(item) {
+        if (item.url !== 'https://paranjapeblueridge.com/' && item.url.endsWith('/')) {
+          item.url = item.url.replace(/\/+$/, '');
+        }
+        return item;
+      },
     }),
   ],
   vite: {
