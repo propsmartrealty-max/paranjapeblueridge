@@ -23,10 +23,12 @@
 /41ridge /paranjape-blue-ridge-41-hinjewadi-pune 301
 
 # Township Feature Shortcuts
-/sez /#sez 301
-/blue-ridge-sez /#sez 301
-/golf /#golf 301
-/school /#lifestyle 301
+/sez /blue-ridge-sez-tech-park 301
+/blue-ridge-sez /blue-ridge-sez-tech-park 301
+/golf /blue-ridge-golf-course 301
+/school /blue-ridge-public-school 301
+/boat-club /blue-ridge-boat-club 301
+/marina /blue-ridge-boat-club 301
 /amenities /#lifestyle 301
 /masterplan /#masterplan 301
 /specifications /#specifications 301
