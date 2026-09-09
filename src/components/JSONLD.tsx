@@ -242,12 +242,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "name": t("Paranjape Schemes (Construction) Ltd.", "परंजपे स्कीम्स (कन्स्ट्रक्शन) लि."),
     "alternateName": [
       "Paranjape Schemes",
+      "Paranjape Schemes Construction Ltd",
+      "Paranjape Schemes Projects",
       "Paranjape Blue Ridge",
       "Paranjape Blue Ridge Hinjewadi",
+      "Paranjape Blue Ridge Phase 1",
       "Blue Ridge Hinjewadi",
       "Blue Ridge Township Pune",
       "Paranjape Schemes Construction Limited",
-      "PSCL"
+      "PSCL Pune",
+      "Paranjape Builders Pune"
     ],
     "url": SITE_URL,
     "logo": {
@@ -283,15 +287,25 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ],
     "knowsAbout": [
       "Pune Real Estate Market",
-      "Paranjape Schemes",
-      "Paranjape Blue Ridge",
-      "Hinjewadi Phase 1",
+      "Paranjape Schemes Projects",
+      "Paranjape Schemes Construction Ltd",
+      "Paranjape Blue Ridge Hinjewadi",
+      "Paranjape Blue Ridge Phase 1 Pune",
+      "Promenade Residences Blue Ridge",
+      "The Altius Riverside Blue Ridge",
+      "Ridges 41 Blue Ridge",
+      "Paranjape Forest Trails Bhugaon",
+      "Paranjape Athashri Senior Living",
+      "Paranjape Trident Towers Wakad",
+      "Paranjape Highgardens Hinjewadi",
       "138-Acre Integrated Townships",
       "MahaRERA Certified Projects",
       "NRI Real Estate Investment India",
       "Mivan Construction Technology",
       "Luxury High-Rise Apartments Pune",
-      "Walk-to-Work IT Park Housing"
+      "Walk-to-Work IT Park Housing",
+      "Blue Ridge IT SEZ Tech Park",
+      "Blue Ridge Public School ICSE"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -433,8 +447,14 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "@type": ["LocalBusiness", "RealEstateAgent", "Residence", "ApartmentComplex"],
     "@id": `${SITE_URL}/${slug}#business`,
     "name": businessName,
-    "parentOrganization": { "@id": `${SITE_URL}/#organization` },
-    "alternateName": ["Paranjape Schemes Pune", "Paranjape Projects", projectData?.name || "Blue Ridge Township"],
+    "alternateName": [
+      "Paranjape Schemes Projects",
+      "Paranjape Schemes Pune",
+      "Paranjape Blue Ridge Hinjewadi",
+      "Paranjape Blue Ridge Phase 1",
+      "Paranjape Schemes Construction Ltd",
+      projectData?.name || "Blue Ridge Township"
+    ],
     "description": t("Pune's premier 138-acre integrated township offering premium 2, 3 & 4 BHK luxury apartments in Hinjewadi Phase 1 near Rajiv Gandhi Infotech Park. Features include a 9-hole golf course, private boat club, ICSE school, walk-to-work SEZ, and Pune Metro Line 3 connectivity.", "राजीव गांधी इन्फोटेक पार्क जवळ हिंजवडी फेज १ मध्ये प्रीमियम २, ३ आणि ४ बीएचके लक्झरी अपार्टमेंट्स देणारा पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प. सुविधांमध्ये ९-होल गोल्फ कोर्स, खाजगी बोट क्लब, आयसीएसई शाळा आणि पुणे मेट्रो लाईन ३ कनेक्टिव्हिटी समाविष्ट आहे."),
     "url": `${SITE_URL}/${slug}`,
     "telephone": "+91-20-67210000",

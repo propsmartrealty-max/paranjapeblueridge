@@ -25,14 +25,14 @@ export default function FooterSEO() {
                 className="h-6 w-auto object-contain shrink-0"
               />
             </div>
-            <p className="mb-6 leading-relaxed font-medium text-slate-700">
-              Pune's premier 138-acre integrated township. Explore luxury 2BHK, 3BHK, 4BHK, 5BHK, Duplex, and Simplex configurations across Hinjewadi, Mahalunge, and Baner corridors.
+            <p className="mb-4 leading-relaxed font-medium text-slate-700">
+              <strong>Paranjape Schemes (Construction) Limited</strong> presents <strong>Paranjape Blue Ridge Hinjewadi Phase 1</strong>, Pune's landmark 138-acre integrated sovereign township. Explore luxury riverfront and golf-facing 2 BHK, 3 BHK, 4 BHK, and Duplex penthouses across <strong>Promenade Residences</strong>, <strong>The Altius</strong>, and <strong>Ridges 41</strong>.
             </p>
             
             <address className="not-italic flex flex-col gap-3 text-xs mb-6 text-slate-700">
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="text-[#785415] shrink-0 mt-0.5" />
-                <span className="font-medium">Blue Ridge Township, Near Rajiv Gandhi Infotech Park, Phase 1, Hinjewadi, Pune, Maharashtra 411057</span>
+                <span className="font-medium">Paranjape Blue Ridge Township, Near Rajiv Gandhi Infotech Park, Phase 1, Hinjewadi, Pune, Maharashtra 411057</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-[#785415] shrink-0" />
@@ -44,8 +44,8 @@ export default function FooterSEO() {
               </div>
             </address>
 
-            <a href="/insights" className="inline-block mt-2 text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold text-[11px] font-mono no-underline">
-              Read Market Insights & Blog →
+            <a href="/insights" className="inline-block mt-1 text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold text-[11px] font-mono no-underline">
+              Read Paranjape Real Estate Market Insights →
             </a>
           </div>
 
@@ -66,7 +66,7 @@ export default function FooterSEO() {
           {/* Column 3: Keyword Matrix Anchor Links */}
           <div className="lg:col-span-1 flex flex-col">
             <h4 className="text-[#070D1A] text-xs uppercase tracking-widest mb-4 font-bold border-b border-slate-200 pb-2 font-mono">
-              Trending Pune Real Estate
+              Paranjape Schemes & Blue Ridge Keywords
             </h4>
             <div className="flex flex-wrap gap-x-3 gap-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
               {displayedLinks.map((url) => (
