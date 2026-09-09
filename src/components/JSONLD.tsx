@@ -330,8 +330,16 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
   const webSiteSchema = {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    "url": SITE_URL,
-    "name": t("Paranjape Blue Ridge Hinjewadi", "परंजपे ब्लू रिज हिंजवडी"),
+    "url": `${SITE_URL}/`,
+    "name": t("Paranjape Blue Ridge", "परंजपे ब्लू रिज"),
+    "alternateName": [
+      "Paranjape Blue Ridge Hinjewadi",
+      "Blue Ridge Hinjewadi",
+      "Paranjape Schemes Blue Ridge",
+      "Blue Ridge Township Hinjewadi",
+      "Blue Ridge Pune",
+      "paranjapeblueridge.com"
+    ],
     "description": t("Official portal for Paranjape Blue Ridge — Pune's premier 138-acre integrated township in Hinjewadi Phase 1.", "परंजपे ब्लू रिज - हिंजवडी फेज १ मधील पुण्याचा प्रमुख १३८ एकरचा टाउनशिप प्रकल्प अधिकृत पोर्टल."),
     "publisher": { "@id": `${SITE_URL}/#organization` },
     "potentialAction": {

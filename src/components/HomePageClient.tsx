@@ -119,6 +119,9 @@ export default function HomePageClient() {
 
           {/* Signature Headline */}
           <h1 className="text-4xl sm:text-7xl lg:text-8xl font-serif font-bold text-[#070D1A] tracking-tight leading-[1.04] mb-6">
+            <span className="block text-base sm:text-xl lg:text-2xl font-mono font-bold tracking-[0.25em] text-[#785415] mb-3 uppercase">
+              Paranjape Blue Ridge Hinjewadi
+            </span>
             A CITY WITHIN. <br />
             <span className="italic font-light text-gradient-champagne">A WORLD APART.</span>
           </h1>
