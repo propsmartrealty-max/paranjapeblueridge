@@ -197,18 +197,18 @@ async function scanEntireWebsite() {
   // ── 5. GOOGLE & EDGE INFRASTRUCTURE AUDIT ──
   console.log("🌐 Phase 5: Google Ecosystem & Cloudflare Edge Verification...");
   const checks = [
-    { name: 'KML Geographic Boundary (/township.kml)', path: 'src/app/township.kml/route.ts' },
-    { name: 'AI Knowledge Graph Directives (/llm.txt)', path: 'src/app/llm.txt/route.ts' },
-    { name: 'Live Construction Portal (/construction-updates)', path: 'src/app/construction-updates/page.tsx' },
-    { name: 'NRI Investment Hub (/nri-investment)', path: 'src/app/nri-investment/page.tsx' },
-    { name: 'HTML Master Sitemap (/html-sitemap)', path: 'src/app/html-sitemap/page.tsx' },
-    { name: 'Progressive Web App Manifest (/manifest.ts)', path: 'src/app/manifest.ts' },
-    { name: 'Universal Error Boundary (/error.tsx)', path: 'src/app/error.tsx' },
-    { name: 'Cloudflare Edge SEO Worker', path: 'cloudflare/edge-seo-worker.ts' },
-    { name: 'Googlebot Fast-Path & Robots Rules', path: 'src/app/robots.ts' },
-    { name: 'Google Data Feed API (/api/google-data-feed)', path: 'src/app/api/google-data-feed/route.ts' },
-    { name: 'Google Search Console Live Inspector', path: 'src/app/api/gsc-inspect/route.ts' },
-    { name: 'Google Places Sync Edge Route', path: 'src/app/api/google-places-sync/route.ts' }
+    { name: 'AI Knowledge Graph Directives (/llm.txt)', path: 'src/pages/llm.txt.ts' },
+    { name: 'Live Construction Portal (/construction-updates)', path: 'src/pages/construction-updates.astro' },
+    { name: 'NRI Investment Hub (/nri-investment)', path: 'src/pages/nri-investment.astro' },
+    { name: 'Township Directory (/directory)', path: 'src/pages/directory/index.astro' },
+    { name: 'Progressive Web App Manifest (/manifest.json)', path: 'public/manifest.json' },
+    { name: 'Universal 404 Error Page (/404)', path: 'src/pages/404.astro' },
+    { name: 'Cloudflare Edge SEO Worker', path: 'workers/seo-optimiser.js' },
+    { name: 'Cloudflare Pages Edge Middleware', path: 'functions/_middleware.ts' },
+    { name: 'Googlebot Fast-Path & Robots Directives', path: 'public/robots.txt' },
+    { name: 'Google Data Feed API (/api/google-data-feed)', path: 'src/pages/api/google-data-feed.ts' },
+    { name: 'Google Products Real Estate Feed (/google-products.xml)', path: 'src/pages/google-products.xml.ts' },
+    { name: 'Master WebSub RSS Feed (/feed.xml)', path: 'src/pages/feed.xml.ts' }
   ];
 
   checks.forEach(c => {
