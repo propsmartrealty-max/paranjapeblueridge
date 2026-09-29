@@ -31,6 +31,17 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(pathname, Astro.site).href.replace(/\/$/, '') || 'https://paranjapeblueridge.com';
+
+const isMr = lang === 'mr' || pathname.startsWith('/mr');
+const englishPath = isMr 
+  ? (pathname === '/mr' ? '/' : pathname.replace(/^\/mr-?/, '/'))
+  : pathname;
+const marathiPath = isMr 
+  ? pathname 
+  : (pathname === '/' ? '/mr' : `/mr-${pathname.replace(/^\//, '')}`);
+
+const enUrl = new URL(englishPath, Astro.site).href.replace(/\/$/, '') || 'https://paranjapeblueridge.com';
+const mrUrl = new URL(marathiPath, Astro.site).href.replace(/\/$/, '');
 ---
 
 <!DOCTYPE html>
@@ -61,16 +72,16 @@ const canonicalUrl = new URL(pathname, Astro.site).href.replace(/\/$/, '') || 'h
     <meta name="google-site-verification" content="mYpEs9cTU_oB6wg8oUlgOZ4u_hbDolVa9HyUMjZqSW4" />
     <meta name="msvalidate.01" content="4F8E4DF8A7E0017AE3DE3946C37A3B7E" />
 
-    <!-- Hreflang Multi-Regional Links -->
-    <link rel="alternate" hreflang="x-default" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-IN" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-US" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-GB" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-AE" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-SG" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-AU" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="en-CA" href="https://paranjapeblueridge.com" />
-    <link rel="alternate" hreflang="mr-IN" href="https://paranjapeblueridge.com/mr" />
+    <!-- Dynamic Hreflang Multi-Regional Links (Self-referential & Page-specific) -->
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+    <link rel="alternate" hreflang="en-IN" href={enUrl} />
+    <link rel="alternate" hreflang="en-US" href={enUrl} />
+    <link rel="alternate" hreflang="en-GB" href={enUrl} />
+    <link rel="alternate" hreflang="en-AE" href={enUrl} />
+    <link rel="alternate" hreflang="en-SG" href={enUrl} />
+    <link rel="alternate" hreflang="en-AU" href={enUrl} />
+    <link rel="alternate" hreflang="en-CA" href={enUrl} />
+    <link rel="alternate" hreflang="mr-IN" href={mrUrl} />
 
     <!-- Open Graph & Social Cards -->
     <meta property="og:type" content="website" />

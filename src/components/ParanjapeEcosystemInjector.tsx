@@ -8,67 +8,6 @@ import { ChevronDown, Sparkles, Building2, MapPin, ArrowRight } from 'lucide-rea
  * Every single keyword resolves directly to a dedicated, high-authority canonical URL.
  */
 export default function ParanjapeEcosystemInjector() {
-  const ecosystemData = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Paranjape Schemes (Construction) Ltd. - Paranjape Blue Ridge Hinjewadi",
-    "alternateName": [
-      "Paranjape Schemes",
-      "PSCL Pune",
-      "Paranjape Blue Ridge Hinjewadi",
-      "Paranjape Builders Pune",
-      "Paranjape Schemes Projects"
-    ],
-    "description": "Premier property development portfolio of Paranjape Schemes (Construction) Limited in Pune, Maharashtra. Featuring landmark integrated townships including the 138-acre Paranjape Blue Ridge in Hinjewadi Phase 1, Forest Trails in Bhugaon, Athashri Senior Living, Trident Towers Wakad, and Highgardens.",
-    "url": "https://paranjapeblueridge.com",
-    "telephone": "+91-20-67210000",
-    "email": "sales@paranjapeschemes.in",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Blue Ridge Township, Near Rajiv Gandhi Infotech Park, Phase 1",
-      "addressLocality": "Hinjewadi",
-      "addressRegion": "Maharashtra",
-      "postalCode": "411057",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 18.577086,
-      "longitude": 73.734685
-    },
-    "founder": [
-      { "@type": "Person", "name": "Shashank Paranjape" },
-      { "@type": "Person", "name": "Shrikant Paranjape" }
-    ],
-    "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Hinjewadi" },
-      { "@type": "AdministrativeArea", "name": "Pune West" },
-      { "@type": "AdministrativeArea", "name": "Wakad" },
-      { "@type": "AdministrativeArea", "name": "Baner" },
-      { "@type": "AdministrativeArea", "name": "Mahalunge" }
-    ],
-    "brand": [
-      { "@type": "Brand", "name": "Paranjape Blue Ridge" },
-      { "@type": "Brand", "name": "Promenade Residences" },
-      { "@type": "Brand", "name": "The Altius Riverside" },
-      { "@type": "Brand", "name": "Ridges 41" },
-      { "@type": "Brand", "name": "Forest Trails" },
-      { "@type": "Brand", "name": "Athashri" },
-      { "@type": "Brand", "name": "Trident Towers" },
-      { "@type": "Brand", "name": "Highgardens" },
-      { "@type": "Brand", "name": "Swaniketan" }
-    ],
-    "mainEntity": {
-      "@type": "SiteNavigationElement",
-      "name": "Paranjape Schemes Projects & Blue Ridge Ecosystem Directory",
-      "hasPart": ecosystemCategories.map((category) => ({
-        "@type": "WebPage",
-        "name": category.title,
-        "text": category.keywords.join(", ")
-      }))
-    }
-  };
-
   const resolveKeywordHref = (keyword: string): string => {
     const k = keyword.toLowerCase();
 
@@ -163,12 +102,6 @@ export default function ParanjapeEcosystemInjector() {
 
   return (
     <section className="w-full bg-[#FAF9F6] border-t-2 border-slate-200 py-12 text-[#070D1A]">
-      {/* Schema.org Structured Graph */}
-      <script 
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ecosystemData) }}
-      />
-
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <details className="group border-2 border-slate-200 rounded-3xl overflow-hidden bg-white shadow-xs">
           <summary className="cursor-pointer px-6 py-5 flex items-center justify-between bg-slate-50 hover:bg-amber-50/50 transition-colors list-none">
@@ -178,10 +111,10 @@ export default function ParanjapeEcosystemInjector() {
               </div>
               <div>
                 <h4 className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono">
-                  Paranjape Schemes Projects & Paranjape Blue Ridge Keyword Ecosystem
+                  Paranjape Blue Ridge Township Directory & Infrastructure Guides
                 </h4>
                 <p className="text-slate-600 text-[11px] mt-0.5 font-sans font-medium">
-                  Verified topical directory of Paranjape Schemes projects in Pune, Blue Ridge clusters, IT SEZ infrastructure, and pricing indices.
+                  Verified topical index of Paranjape Blue Ridge residential clusters, IT SEZ infrastructure, and pricing guides.
                 </p>
               </div>
             </div>

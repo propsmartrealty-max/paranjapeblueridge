@@ -253,7 +253,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "PSCL Pune",
       "Paranjape Builders Pune"
     ],
-    "url": SITE_URL,
+    "url": "https://www.pscl.in",
     "logo": {
       "@type": "ImageObject",
       "url": `${SITE_URL}/assets/images/paranjape-logo.svg`,
@@ -262,7 +262,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     },
     "image": `${SITE_URL}/assets/images/township-night.png`,
     "description": t("Paranjape Schemes (Construction) Ltd. is a Pune-based real estate developer with 40+ years of experience and 50+ delivered projects. Blue Ridge Hinjewadi is their flagship 138-acre integrated township in Hinjewadi Phase 1, Pune.", "परंजपे स्कीम्स (कन्स्ट्रक्शन) लि. हा पुण्यातील ४०+ वर्षांचा अनुभव असलेला आणि ५०+ यशस्वी प्रकल्प पूर्ण केलेला अग्रगण्य रिअल इस्टेट डेव्हलपर आहे. ब्लू रिज हिंजवडी हा त्यांचा हिंजवडी फेज १ मधील १३८ एकरचा फ्लॅगशिप टाउनशिप प्रकल्प आहे."),
-        "paymentAccepted": ["Cash", "Credit Card", "UPI", "Net Banking"],
+    "paymentAccepted": ["Cash", "Credit Card", "UPI", "Net Banking"],
     "foundingDate": "1987",
     "address": {
       "@type": "PostalAddress",

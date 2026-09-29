@@ -115,11 +115,57 @@ export default {
       return Response.redirect(redirectTarget.toString(), 301);
     }
 
-    // ── 3b. Clean PSEO Legacy Aliases (redirect keyword-stuffed suffix to clean slug) ──
-    if (cleanPathname.endsWith('-paranjape-schemes-blue-ridge-hinjewadi')) {
-      const cleanTarget = cleanPathname.replace(/-paranjape-schemes-blue-ridge-hinjewadi$/, '');
-      const redirectTarget = new URL(cleanTarget + url.search, CANONICAL_ORIGIN);
-      return Response.redirect(redirectTarget.toString(), 301);
+    // ── 3b. Clean PSEO Legacy Aliases (redirect 6,300+ legacy keyword-stuffed URLs) ──
+    const lowerPath = cleanPathname.toLowerCase();
+    if (
+      lowerPath.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') ||
+      lowerPath.endsWith('-paranjape-blue-ridge-township-hinjewadi') ||
+      lowerPath.endsWith('-blue-ridge-hinjewadi')
+    ) {
+      if (
+        lowerPath.includes('duplex') ||
+        lowerPath.includes('penthouse') ||
+        lowerPath.includes('altius') ||
+        lowerPath.includes('4-bhk') ||
+        lowerPath.includes('5-bhk') ||
+        lowerPath.includes('sky-villa')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-the-altius-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (
+        lowerPath.includes('promenade') ||
+        lowerPath.includes('river-facing') ||
+        lowerPath.includes('3-bhk')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-promenade-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (
+        lowerPath.includes('ridges-41') ||
+        lowerPath.includes('ridges41') ||
+        lowerPath.includes('41-ridge') ||
+        lowerPath.includes('2-bhk') ||
+        lowerPath.includes('smart-homes') ||
+        lowerPath.includes('mivan')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-41-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('school') || lowerPath.includes('icse')) {
+        return Response.redirect(new URL('/blue-ridge-public-school', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('golf')) {
+        return Response.redirect(new URL('/blue-ridge-golf-course', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('boat') || lowerPath.includes('marina') || lowerPath.includes('kayak')) {
+        return Response.redirect(new URL('/blue-ridge-boat-club', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('sez') || lowerPath.includes('tech-park') || lowerPath.includes('commercial')) {
+        return Response.redirect(new URL('/blue-ridge-sez-tech-park', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('nri') || lowerPath.includes('fema')) {
+        return Response.redirect(new URL('/nri-investment', CANONICAL_ORIGIN).toString(), 301);
+      }
+
+      return Response.redirect(new URL('/', CANONICAL_ORIGIN).toString(), 301);
     }
 
     // ── 4. Trailing Slash Normalization ──
@@ -132,12 +178,17 @@ export default {
     const earlyHintsHeaders = new Headers();
     earlyHintsHeaders.append(
       'Link',
-      '</assets/images/township-night.png>; rel=preload; as=image; fetchpriority=high'
+      '</assets/images/pscl-blue-ridge-aerial-drone.webp>; rel=preload; as=image; fetchpriority=high'
     );
     earlyHintsHeaders.append('Link', '<https://fonts.googleapis.com>; rel=preconnect; crossorigin=anonymous');
 
     // ── 6. Fetch Origin Response ──
     const originResponse = await fetch(request);
+
+    // If 404 on an old /explore/ or legacy format, redirect to home instead of serving hard 404
+    if (originResponse.status === 404 && (lowerPath.includes('-hinjewadi') || lowerPath.includes('/explore/'))) {
+      return Response.redirect(new URL('/', CANONICAL_ORIGIN).toString(), 301);
+    }
 
     // Skip HTML rewriting on non-HTML responses (images, CSS, JS, API JSON)
     const contentType = originResponse.headers.get('content-type') || '';
@@ -145,34 +196,10 @@ export default {
       return originResponse;
     }
 
-    // ── 7. Streaming Edge HTMLRewriter for Instant SEO Injection ──
-    const pathname = url.pathname;
-    const isMarathi = pathname.startsWith('/mr');
-    const englishPath = isMarathi ? pathname.replace(/^\/mr-?/, '/') : pathname;
-    const marathiPath = isMarathi ? pathname : (pathname === '/' ? '/mr' : `/mr-${pathname.replace(/^\//, '')}`);
-
-    const canonicalUrl = `${CANONICAL_ORIGIN}${pathname}`;
-    const enUrl = `${CANONICAL_ORIGIN}${englishPath === '' ? '/' : englishPath}`;
-    const mrUrl = `${CANONICAL_ORIGIN}${marathiPath}`;
-
+    // ── 7. Streaming Edge HTMLRewriter for Verification & Performance ──
     const rewriter = new HTMLRewriter()
       .on('head', {
         element(head) {
-          // 1. Inject or update Edge Canonical Tag
-          head.append(`<link rel="canonical" href="${canonicalUrl}" />`, { html: true });
-
-          // 2. Inject Multilingual Alternate Hreflang Tags for Global Expat Hubs
-          head.append(`<link rel="alternate" hreflang="x-default" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-IN" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-US" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-GB" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-AE" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-SG" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-AU" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="en-CA" href="${enUrl}" />`, { html: true });
-          head.append(`<link rel="alternate" hreflang="mr-IN" href="${mrUrl}" />`, { html: true });
-
-          // 3. Inject Edge Verification & Bot Signal
           head.append(
             `<meta name="cloudflare-edge-seo" content="active-v2.0; crawler=${isSearchBot ? 'searchbot' : 'visitor'}; edge_pop=global" />`,
             { html: true }

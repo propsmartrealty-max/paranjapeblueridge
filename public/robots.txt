@@ -1,13 +1,11 @@
 # Enterprise Google & Global Search Engine Robots Directive
 # Domain: https://paranjapeblueridge.com
-# 100% Compliant with Google Search Essentials & Webmaster Guidelines
+# 100% Compliant with Google Search Essentials
 
 User-agent: *
 Allow: /
 Allow: /_astro/
 Allow: /assets/
-Allow: /assets/images/
-Allow: /assets/logos/
 Disallow: /api/
 Disallow: /admin/
 Disallow: /draft/
@@ -18,54 +16,51 @@ User-agent: Googlebot
 Allow: /
 Allow: /_astro/
 Allow: /assets/
-Allow: /assets/images/
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.svg$
-Allow: /*.webp$
+Disallow: /api/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /sovereign-vault
+Disallow: /sovereign-vault/
 
 User-agent: Googlebot-Image
 Allow: /assets/
-Allow: /assets/images/
 Allow: /*.png$
 Allow: /*.jpg$
 Allow: /*.svg$
 Allow: /*.webp$
-
-User-agent: Googlebot-Mobile
-Allow: /
-Allow: /_astro/
-Allow: /assets/
 
 User-agent: Bingbot
 Allow: /
 Allow: /_astro/
 Allow: /assets/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /sovereign-vault
+Disallow: /sovereign-vault/
 Crawl-delay: 1
 
 User-agent: Applebot
 Allow: /
 Allow: /_astro/
 Allow: /assets/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /sovereign-vault
+Disallow: /sovereign-vault/
 
 User-agent: DuckDuckBot
 Allow: /
 Allow: /_astro/
 Allow: /assets/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /sovereign-vault
+Disallow: /sovereign-vault/
 
-User-agent: Baiduspider
-Allow: /
-Allow: /_astro/
-Allow: /assets/
-
-User-agent: YandexBot
-Allow: /
-Allow: /_astro/
-Allow: /assets/
-
-# AI Crawlers (Search & Summarization)
+# AI Search & Summarization Crawlers
 User-agent: Google-Extended
 Allow: /
 

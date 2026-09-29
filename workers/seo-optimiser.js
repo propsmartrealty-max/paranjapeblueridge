@@ -1,90 +1,162 @@
 // workers/seo-optimiser.js
+// Cloudflare Edge Worker for Paranjape Blue Ridge
+// High-Performance Zero-Conflict Edge Optimizer
+
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
+  event.respondWith(handleRequest(event.request));
+});
+
+const CANONICAL_HOST = 'paranjapeblueridge.com';
+
+const EDGE_REDIRECTS = {
+  '/promenade': '/paranjape-blue-ridge-promenade-hinjewadi-pune',
+  '/altius': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/the-altius': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/paranjape-blue-ridge-altius-hinjewadi-pune': '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/ridges41': '/paranjape-blue-ridge-41-hinjewadi-pune',
+  '/ridges-41': '/paranjape-blue-ridge-41-hinjewadi-pune',
+  '/41-ridge': '/paranjape-blue-ridge-41-hinjewadi-pune',
+  '/41ridge': '/paranjape-blue-ridge-41-hinjewadi-pune',
+  '/sez': '/blue-ridge-sez-tech-park',
+  '/blue-ridge-sez': '/blue-ridge-sez-tech-park',
+  '/golf': '/blue-ridge-golf-course',
+  '/school': '/blue-ridge-public-school',
+  '/boat-club': '/blue-ridge-boat-club',
+  '/marina': '/blue-ridge-boat-club',
+  '/amenities': '/#lifestyle',
+  '/masterplan': '/#masterplan',
+  '/specifications': '/#specifications',
+  '/nri': '/nri-investment',
+  '/nri-desk': '/nri-investment',
+  '/construction': '/construction-updates',
+  '/rera': '/construction-updates',
+  '/brochure': '/#enquiry',
+  '/download-brochure': '/#enquiry',
+  '/cost-sheet': '/#enquiry',
+  '/floor-plans': '/#residences',
+  '/floorplans': '/#residences',
+  '/plans': '/#residences',
+  '/pricing': '/#residences',
+  '/sitemap': '/sitemap-index.xml',
+  '/sitemap.xml': '/sitemap-index.xml',
+  '/rss': '/feed.xml',
+  '/llm.txt': '/llms.txt',
+  '/explore/hinjewadi': '/hinjewadi-micro-market',
+  '/explore/wakad': '/flats-in-wakad-near-hinjewadi-flyover',
+  '/explore/baner': '/flats-near-baner-and-balewadi-high-street-pune'
+};
 
 async function handleRequest(request) {
-  const url = new URL(request.url)
-  const response = await fetch(request)
-  const contentType = response.headers.get('Content-Type') || ''
-  if (!contentType.includes('text/html')) {
-    return response
+  const url = new URL(request.url);
+
+  // 1. Enforce Non-WWW Apex Domain
+  if (url.hostname === `www.${CANONICAL_HOST}`) {
+    url.hostname = CANONICAL_HOST;
+    url.protocol = 'https:';
+    return Response.redirect(url.toString(), 301);
   }
 
-  const ldJson = generateLDJSON(url)
-  const canonicalUrl = url.origin + url.pathname
+  // 2. Exact Match Redirects
+  const normalizedPath = url.pathname.toLowerCase().replace(/\/$/, '');
+  if (EDGE_REDIRECTS[normalizedPath]) {
+    const target = EDGE_REDIRECTS[normalizedPath];
+    return Response.redirect(new URL(target, url.origin).toString(), 301);
+  }
 
+  // 3. Catch & 301 Redirect ALL 6,300+ Legacy PSEO URLs to Eliminate 404s
+  if (
+    normalizedPath.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') ||
+    normalizedPath.endsWith('-paranjape-blue-ridge-township-hinjewadi') ||
+    normalizedPath.endsWith('-blue-ridge-hinjewadi')
+  ) {
+    if (
+      normalizedPath.includes('duplex') ||
+      normalizedPath.includes('penthouse') ||
+      normalizedPath.includes('altius') ||
+      normalizedPath.includes('4-bhk') ||
+      normalizedPath.includes('5-bhk') ||
+      normalizedPath.includes('sky-villa')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-the-altius-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (
+      normalizedPath.includes('promenade') ||
+      normalizedPath.includes('river-facing') ||
+      normalizedPath.includes('3-bhk')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-promenade-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (
+      normalizedPath.includes('ridges-41') ||
+      normalizedPath.includes('ridges41') ||
+      normalizedPath.includes('41-ridge') ||
+      normalizedPath.includes('2-bhk') ||
+      normalizedPath.includes('smart-homes') ||
+      normalizedPath.includes('mivan')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-41-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('school') || normalizedPath.includes('icse')) {
+      return Response.redirect(new URL('/blue-ridge-public-school', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('golf')) {
+      return Response.redirect(new URL('/blue-ridge-golf-course', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('boat') || normalizedPath.includes('marina') || normalizedPath.includes('kayak')) {
+      return Response.redirect(new URL('/blue-ridge-boat-club', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('sez') || normalizedPath.includes('tech-park') || normalizedPath.includes('commercial')) {
+      return Response.redirect(new URL('/blue-ridge-sez-tech-park', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('nri') || normalizedPath.includes('fema')) {
+      return Response.redirect(new URL('/nri-investment', url.origin).toString(), 301);
+    }
+
+    return Response.redirect(new URL('/', url.origin).toString(), 301);
+  }
+
+  // 4. Trailing Slash Normalization
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    url.pathname = url.pathname.slice(0, -1);
+    return Response.redirect(url.toString(), 301);
+  }
+
+  // 5. Fetch Origin Response
+  const response = await fetch(request);
+  const contentType = response.headers.get('Content-Type') || '';
+  if (!contentType.includes('text/html')) {
+    return response;
+  }
+
+  // If origin returns 404 for an old keyword URL, catch and redirect to home
+  if (response.status === 404 && (normalizedPath.includes('-hinjewadi') || normalizedPath.includes('/explore/'))) {
+    return Response.redirect(new URL('/', url.origin).toString(), 301);
+  }
+
+  // 6. Non-Destructive HTMLRewriter: Only optimize LCP preconnects, never override page meta/canonicals
   const rewriter = new HTMLRewriter()
     .on('head', {
       element(head) {
-        // Preload hero image for LCP optimisation
+        // Preload valid high-priority hero image for LCP
         head.append(
-          '<link rel="preload" href="/assets/images/hero.jpg" as="image" fetchpriority="high">',
+          '<link rel="preload" href="/assets/images/pscl-blue-ridge-aerial-drone.webp" as="image" fetchpriority="high">',
           { html: true }
-        )
-        // Canonical URL
-        head.append(
-          '<link rel="canonical" href="' + canonicalUrl + '">',
-          { html: true }
-        )
-        // Fallback description (appended; browsers use the first one they find)
-        head.prepend(
-          '<meta name="description" content="Explore Paranjape Blue Ridge – a 138-acre integrated township in Hinjewadi Phase 1, Pune. Luxury 2 &amp; 3 BHK apartments, world-class amenities and RERA compliance.">',
-          { html: true }
-        )
+        );
       }
-    })
-    .on('body', {
-      element(body) {
-        body.append(
-          '<script type="application/ld+json">' + JSON.stringify(ldJson) + '<\/script>',
-          { html: true }
-        )
-      }
-    })
+    });
 
-  return rewriter.transform(response)
-}
+  const modifiedResponse = rewriter.transform(response);
+  const headers = new Headers(modifiedResponse.headers);
 
-function generateLDJSON(url) {
-  var segments = url.pathname.split('/').filter(function(s) { return s.length > 0 })
-  var breadcrumbs = [{
-    '@type': 'ListItem',
-    position: 1,
-    name: 'Home',
-    item: url.origin
-  }]
+  // Clean security and caching headers
+  headers.set('X-Content-Type-Options', 'nosniff');
+  headers.set('X-Frame-Options', 'SAMEORIGIN');
+  headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
-  for (var i = 0; i < segments.length; i++) {
-    breadcrumbs.push({
-      '@type': 'ListItem',
-      position: i + 2,
-      name: decodeURIComponent(segments[i].replace(/-/g, ' ')),
-      item: url.origin + '/' + segments.slice(0, i + 1).join('/')
-    })
-  }
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    url: url.href,
-    name: 'Paranjape Blue Ridge – Luxury Real Estate Hinjewadi Pune',
-    description: 'Paranjape Blue Ridge is a 138-acre integrated township in Hinjewadi Phase 1, Pune offering 2 & 3 BHK apartments.',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Paranjape Schemes Construction Ltd',
-      url: url.origin
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: breadcrumbs
-    },
-    potentialAction: {
-      '@type': 'ReadAction',
-      target: [{
-        '@type': 'EntryPoint',
-        urlTemplate: url.origin + url.pathname
-      }]
-    }
-  }
+  return new Response(modifiedResponse.body, {
+    status: modifiedResponse.status,
+    statusText: modifiedResponse.statusText,
+    headers
+  });
 }
