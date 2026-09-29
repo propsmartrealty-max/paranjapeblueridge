@@ -115,12 +115,11 @@ export default {
       return Response.redirect(redirectTarget.toString(), 301);
     }
 
-    // ── 3b. Clean PSEO Legacy Aliases (redirect 6,300+ legacy keyword-stuffed URLs) ──
+    // ── 3b. Clean PSEO Legacy Aliases (redirect known bulk legacy patterns) ──
     const lowerPath = cleanPathname.toLowerCase();
     if (
       lowerPath.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') ||
-      lowerPath.endsWith('-paranjape-blue-ridge-township-hinjewadi') ||
-      lowerPath.endsWith('-blue-ridge-hinjewadi')
+      lowerPath.endsWith('-paranjape-blue-ridge-township-hinjewadi')
     ) {
       if (
         lowerPath.includes('duplex') ||
@@ -185,9 +184,53 @@ export default {
     // ── 6. Fetch Origin Response ──
     const originResponse = await fetch(request);
 
-    // If 404 on an old /explore/ or legacy format, redirect to home instead of serving hard 404
-    if (originResponse.status === 404 && (lowerPath.includes('-hinjewadi') || lowerPath.includes('/explore/'))) {
-      return Response.redirect(new URL('/', CANONICAL_ORIGIN).toString(), 301);
+    // If 404, catch and 301 redirect to relevant cluster or home (0ms 404 crawl penalty)
+    if (originResponse.status === 404) {
+      if (
+        lowerPath.includes('duplex') ||
+        lowerPath.includes('penthouse') ||
+        lowerPath.includes('altius') ||
+        lowerPath.includes('4-bhk') ||
+        lowerPath.includes('5-bhk') ||
+        lowerPath.includes('sky-villa')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-the-altius-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (
+        lowerPath.includes('promenade') ||
+        lowerPath.includes('river-facing') ||
+        lowerPath.includes('3-bhk')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-promenade-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (
+        lowerPath.includes('ridges-41') ||
+        lowerPath.includes('ridges41') ||
+        lowerPath.includes('41-ridge') ||
+        lowerPath.includes('2-bhk') ||
+        lowerPath.includes('smart-homes') ||
+        lowerPath.includes('mivan')
+      ) {
+        return Response.redirect(new URL('/paranjape-blue-ridge-41-hinjewadi-pune', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('school') || lowerPath.includes('icse')) {
+        return Response.redirect(new URL('/blue-ridge-public-school', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('golf')) {
+        return Response.redirect(new URL('/blue-ridge-golf-course', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('boat') || lowerPath.includes('marina') || lowerPath.includes('kayak')) {
+        return Response.redirect(new URL('/blue-ridge-boat-club', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('sez') || lowerPath.includes('tech-park') || lowerPath.includes('commercial')) {
+        return Response.redirect(new URL('/blue-ridge-sez-tech-park', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('nri') || lowerPath.includes('fema')) {
+        return Response.redirect(new URL('/nri-investment', CANONICAL_ORIGIN).toString(), 301);
+      }
+      if (lowerPath.includes('-hinjewadi') || lowerPath.includes('/explore/')) {
+        return Response.redirect(new URL('/', CANONICAL_ORIGIN).toString(), 301);
+      }
     }
 
     // Skip HTML rewriting on non-HTML responses (images, CSS, JS, API JSON)

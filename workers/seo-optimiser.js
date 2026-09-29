@@ -63,11 +63,10 @@ async function handleRequest(request) {
     return Response.redirect(new URL(target, url.origin).toString(), 301);
   }
 
-  // 3. Catch & 301 Redirect ALL 6,300+ Legacy PSEO URLs to Eliminate 404s
+  // 3. Catch & 301 Redirect Known Legacy Bulk PSEO Suffixes at Edge
   if (
     normalizedPath.endsWith('-paranjape-schemes-blue-ridge-hinjewadi') ||
-    normalizedPath.endsWith('-paranjape-blue-ridge-township-hinjewadi') ||
-    normalizedPath.endsWith('-blue-ridge-hinjewadi')
+    normalizedPath.endsWith('-paranjape-blue-ridge-township-hinjewadi')
   ) {
     if (
       normalizedPath.includes('duplex') ||
@@ -128,9 +127,53 @@ async function handleRequest(request) {
     return response;
   }
 
-  // If origin returns 404 for an old keyword URL, catch and redirect to home
-  if (response.status === 404 && (normalizedPath.includes('-hinjewadi') || normalizedPath.includes('/explore/'))) {
-    return Response.redirect(new URL('/', url.origin).toString(), 301);
+  // If origin returns 404, catch and 301 redirect to relevant cluster or home (0ms 404 crawl penalty)
+  if (response.status === 404) {
+    if (
+      normalizedPath.includes('duplex') ||
+      normalizedPath.includes('penthouse') ||
+      normalizedPath.includes('altius') ||
+      normalizedPath.includes('4-bhk') ||
+      normalizedPath.includes('5-bhk') ||
+      normalizedPath.includes('sky-villa')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-the-altius-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (
+      normalizedPath.includes('promenade') ||
+      normalizedPath.includes('river-facing') ||
+      normalizedPath.includes('3-bhk')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-promenade-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (
+      normalizedPath.includes('ridges-41') ||
+      normalizedPath.includes('ridges41') ||
+      normalizedPath.includes('41-ridge') ||
+      normalizedPath.includes('2-bhk') ||
+      normalizedPath.includes('smart-homes') ||
+      normalizedPath.includes('mivan')
+    ) {
+      return Response.redirect(new URL('/paranjape-blue-ridge-41-hinjewadi-pune', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('school') || normalizedPath.includes('icse')) {
+      return Response.redirect(new URL('/blue-ridge-public-school', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('golf')) {
+      return Response.redirect(new URL('/blue-ridge-golf-course', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('boat') || normalizedPath.includes('marina') || normalizedPath.includes('kayak')) {
+      return Response.redirect(new URL('/blue-ridge-boat-club', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('sez') || normalizedPath.includes('tech-park') || normalizedPath.includes('commercial')) {
+      return Response.redirect(new URL('/blue-ridge-sez-tech-park', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('nri') || normalizedPath.includes('fema')) {
+      return Response.redirect(new URL('/nri-investment', url.origin).toString(), 301);
+    }
+    if (normalizedPath.includes('-hinjewadi') || normalizedPath.includes('/explore/')) {
+      return Response.redirect(new URL('/', url.origin).toString(), 301);
+    }
   }
 
   // 6. Enterprise Edge Security & Performance Headers
