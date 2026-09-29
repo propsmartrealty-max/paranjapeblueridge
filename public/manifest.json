@@ -39,14 +39,14 @@
       "name": "Price List 2026",
       "short_name": "Prices",
       "description": "View official 2 BHK, 3 BHK & 4 BHK pricing",
-      "url": "/2-bhk-price-list-blue-ridge-hinjewadi",
+      "url": "/paranjape-blue-ridge-price-list-and-cost-sheet-2026",
       "icons": [{ "src": "/favicon.png", "sizes": "512x512" }]
     },
     {
       "name": "NRI Desk",
       "short_name": "NRI Desk",
       "description": "NRI Investment & Legal Concierge Desk",
-      "url": "/buy-pune-property-from-usa",
+      "url": "/nri-real-estate-investment-in-pune-hinjewadi",
       "icons": [{ "src": "/favicon.png", "sizes": "512x512" }]
     }
   ]
