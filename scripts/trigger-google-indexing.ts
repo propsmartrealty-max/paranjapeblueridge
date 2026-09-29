@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 import { google } from 'googleapis';
 import { generatePseoUrls } from '../src/data/seo-matrix';
 import { projects, articles } from '../src/data/master-data';
