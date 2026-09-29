@@ -177,15 +177,100 @@ function getSiloFAQs(silo: string, title: string, isMarathi: boolean) {
           a: t('Blue Ridge commands the highest resale and rental value in Hinjewadi Phase 1 due to its mature infrastructure, active 9-hole golf course, and the operational Blue Ridge Public School.', 'ब्लू रिज हिंजवडी फेज १ मध्ये त्याचे विकसित इन्फ्रास्ट्रक्चर, सक्रिय ९-होल गोल्फ कोर्स आणि शाळेमुळे सर्वाधिक रिसेल आणि रेंटल व्हॅल्यू मिळवते.') 
         }
       ];
-    case 'paranjape-schemes':
+    case 'paranjape-schemes': {
+      const lower = title.toLowerCase();
+      if (lower.includes('forest trails')) {
+        return [
+          {
+            q: t('What is Paranjape Forest Trails and what amenities does it offer?', 'परंजपे फॉरेस्ट ट्रेल्स काय आहे आणि येथे कोणत्या सुविधा आहेत?'),
+            a: t('Paranjape Forest Trails is a 170-acre nature township in Bhugaon near Kothrud, Pune. It features luxury villas, nature towers, Pune’s only residential equestrian club, The Cliff ICSE school, and lifestyle clubhouses surrounded by the Western Ghats.', 'परंजपे फॉरेस्ट ट्रेल्स ही पुण्यातील कोथरूडजवळ भुगाव येथे १७० एकरांची निसर्गरम्य टाउनशिप आहे. यात लक्झरी व्हिला, निसर्ग टॉवर्स, पुण्यातील एकमेव निवासी अश्वारोहण क्लब, द क्लिफ आयसीएसई शाळा आणि निसर्गाने वेढलेले क्लबहाऊस आहेत.')
+          },
+          {
+            q: t('How far is Forest Trails Bhugaon from Kothrud and Chandani Chowk?', 'फॉरेस्ट ट्रेल्स भुगाव हे कोथरूड आणि चांदणी चौकापासून किती अंतरावर आहे?'),
+            a: t('Forest Trails is situated just 10 minutes from Chandani Chowk and Kothrud, offering quick access to Pune city center while providing tranquil, pollution-free living.', 'फॉरेस्ट ट्रेल्स चांदणी चौक आणि कोथरूडपासून अवघ्या १० मिनिटांच्या अंतरावर आहे, ज्यामुळे पुणे शहराच्या मध्यवर्ती भागाशी जलद संपर्क आणि प्रदूषणमुक्त शांत जीवनशैली मिळते.')
+          }
+        ];
+      }
+      if (lower.includes('athashri')) {
+        return [
+          {
+            q: t('What is Paranjape Athashri Senior Living and where are its Pune campuses?', 'परंजपे अथश्री सीनियर लिव्हिंग काय आहे आणि याचे पुण्यात कुठे कॅम्पस आहेत?'),
+            a: t('Paranjape Athashri is India’s pioneering senior citizen housing brand created by Paranjape Schemes. With campuses across Bavdhan, Baner, Hinjewadi, and Hadapsar, it provides zero-barrier architecture, 24/7 geriatric medical care, and an active retired lifestyle for over 3,000 senior citizens.', 'परंजपे अथश्री हा भारतातील ज्येष्ठ नागरिकांच्या घरांचा अग्रगण्य ब्रँड आहे. बावधन, बाणेर, हिंजवडी आणि हडपसर येथील कॅम्पसमध्ये व्हीलचेअर-सुलभ रचना, २४/७ वैद्यकीय सेवा आणि ३,००० हून अधिक ज्येष्ठांसाठी सक्रिय जीवनशैली प्रदान केली जाते.')
+          },
+          {
+            q: t('What medical and lifestyle facilities are provided at Athashri?', 'अथश्री येथे कोणत्या वैद्यकीय आणि जीवनशैली सुविधा पुरवल्या जातात?'),
+            a: t('Facilities include on-campus geriatric nursing, doctor-on-call, emergency alert switches in every room, diet-specific dining mess, library, meditation halls, and daily cultural events.', 'सुविधांमध्ये निवासी नर्सिंग, डॉक्टर-ऑन-कॉल, प्रत्येक खोलीत इमर्जन्सी अलार्म, विशेष आहार मेस, लायब्ररी, ध्यान केंद्र आणि सांस्कृतिक कार्यक्रमांचा समावेश आहे.')
+          }
+        ];
+      }
+      if (lower.includes('trident')) {
+        return [
+          {
+            q: t('What configurations and amenities are available at Paranjape Trident Towers Wakad?', 'परंजपे ट्रायडेंट टॉवर्स वाकड येथे कोणते पर्याय आणि सुविधा आहेत?'),
+            a: t('Paranjape Trident Towers offers premium 2 & 3 BHK high-rise residences with expansive deck balconies, rooftop infinity amenities, fitness studios, and podium landscaped gardens adjacent to the Hinjewadi flyover.', 'परंजपे ट्रायडेंट टॉवर्समध्ये भव्य बाल्कनीसह २ आणि ३ बीएचके प्रीमियम घरे, रूफटॉप इन्फिनिटी सुविधा, फिटनेस स्टुडिओ आणि सुंदर उद्याने उपलब्ध आहेत.')
+          },
+          {
+            q: t('How close is Trident Towers Wakad to Hinjewadi Phase 1 IT Park?', 'ट्रायडेंट टॉवर्स वाकड हे हिंजवडी फेज १ आयटी पार्कपासून किती अंतरावर आहे?'),
+            a: t('Trident Towers is located directly at the Wakad-Hinjewadi junction, just 3 minutes from Blue Ridge and Rajiv Gandhi Infotech Park Phase 1.', 'ट्रायडेंट टॉवर्स थेट वाकड-हिंजवडी जंक्शनवर स्थित आहे, जे ब्लू रिज आणि राजीव गांधी इन्फोटेक पार्क फेज १ पासून अवघ्या ३ मिनिटांच्या अंतरावर आहे.')
+          }
+        ];
+      }
+      if (lower.includes('highgardens')) {
+        return [
+          {
+            q: t('What makes Paranjape Highgardens in Hinjewadi Phase 1 unique?', 'हिंजवडी फेज १ मधील परंजपे हायगार्डन्सचे वैशिष्ट्य काय आहे?'),
+            a: t('Paranjape Highgardens is a high-rise boutique tower offering ergonomic 1 & 2 BHK smart homes tailored for IT innovators, featuring co-working lounges, sky cafes, and walking proximity to Wipro and Infosys.', 'परंजपे हायगार्डन्स हे आयटी व्यावसायिकांसाठी १ आणि २ बीएचके स्मार्ट घरे देणारे आधुनिक टॉवर आहे, ज्यामध्ये को-वर्किंग लाउंज, स्काय कॅफे आणि विप्रो व इन्फोसिसच्या जवळ चालत जाण्याचे अंतर आहे.')
+          },
+          {
+            q: t('Is Paranjape Highgardens suitable for rental investment in Hinjewadi?', 'परंजपे हायगार्डन्स हिंजवडीत भाड्याच्या गुंतवणुकीसाठी फायदेशीर आहे का?'),
+            a: t('Yes. Due to its prime location in Phase 1 and compact smart configurations, Highgardens delivers exceptional 5%+ gross rental yields and continuous corporate tenant occupancy.', 'होय. फेज १ मधील उत्तम स्थान आणि कॉम्पॅक्ट स्मार्ट घरांच्या डिझाइनमुळे हायगार्डन्स ५%+ चे उत्कृष्ट रेंटल यील्ड आणि सातत्यपूर्ण कॉर्पोरेट भाडेकरू मिळवून देते.')
+          }
+        ];
+      }
+      if (lower.includes('swaniketan')) {
+        return [
+          {
+            q: t('What is Paranjape Swaniketan and how does it support adults with special needs?', 'परंजपे स्वनिकेतन काय आहे आणि ते विशेष गरजा असलेल्या व्यक्तींना कशी मदत करते?'),
+            a: t('Paranjape Swaniketan in Bhugaon, Pune is India’s first dedicated residential community engineered for adults with intellectual challenges and special needs, offering lifelong assisted living, vocational therapy, sensory gardens, and 24/7 care.', 'परंजपे स्वनिकेतन ही भारतातील पहिली विशेष गरजा असलेल्या व्यक्तींसाठी तयार केलेली निवासी कम्युनिटी आहे, जी आयुष्यभरासाठी सहाय्यक जीवनशैली, व्यावसायिक थेरपी आणि २४/७ काळजी प्रदान करते.')
+          },
+          {
+            q: t('Where is Swaniketan located and what is its community environment?', 'स्वनिकेतन कुठे आहे आणि त्याचे वातावरण कसे आहे?'),
+            a: t('Swaniketan is nestled within the tranquil 170-acre Forest Trails campus in Bhugaon, providing a secure, serene, green environment with dedicated medical attendants and activity coordinators.', 'स्वनिकेतन भुगाव येथील १७० एकरांच्या फॉरेस्ट ट्रेल्स कॅम्पसमध्ये सुरक्षित, निसर्गरम्य आणि हिरवेगार वातावरणात वसलेले आहे.')
+          }
+        ];
+      }
+      if (lower.includes('windermere')) {
+        return [
+          {
+            q: t('What makes Paranjape Windermere Koregaon Park Pune’s premier luxury address?', 'परंजपे विंडरमीअर कोरेगाव पार्क हे पुण्यातील सर्वात लक्झरी निवासस्थान का मानले जाते?'),
+            a: t('Paranjape Windermere is an iconic ultra-luxury residential development in Koregaon Park featuring expansive full-floor presidential apartments, private elevators, and lush tree canopy views in Pune’s most elite neighborhood.', 'परंजपे विंडरमीअर हे कोरेगाव पार्क मधील एक भव्य अति-लक्झरी प्रकल्प आहे ज्यामध्ये संपूर्ण मजल्याचे प्रेसिडेन्शियल अपार्टमेंट्स, खाजगी लिफ्ट्स आणि कोरेगाव पार्कच्या निसर्गरम्य परिसराचे दर्शन घडते.')
+          },
+          {
+            q: t('What are the configurations and key features of Paranjape Windermere?', 'परंजपे विंडरमीअरचे कॉन्फिगरेशन्स आणि प्रमुख वैशिष्ट्ये काय आहेत?'),
+            a: t('Windermere offers ultra-exclusive 4 & 5 BHK bespoke apartments with private temperature-controlled pools, concierge services, and ultra-high security in Koregaon Park, Pune.', 'विंडरमीअर कोरेगाव पार्कमध्ये खाजगी तापमान-नियंत्रित पूल, कॉन्सिअर्ज सेवा आणि कडक सुरक्षेसह ४ आणि ५ बीएचके घरे प्रदान करते.')
+          }
+        ];
+      }
       return [
         { 
-          q: t(`What is the developer reputation of Paranjape Schemes for ${title}?`, `${title} साठी परंजपे स्कीम्सची डेव्हलपर म्हणून प्रतिष्ठा कशी आहे?`), 
-          a: t('Paranjape Schemes (Construction) Ltd has over 40 years of track record in Pune, with 50+ delivered projects, zero RERA complaints, and is highly respected for on-time delivery.', 'परंजपे स्कीम्सचा पुण्यात ४० पेक्षा जास्त वर्षांचा अनुभव आहे, ५० हून अधिक पूर्ण झालेले प्रकल्प आहेत, रेरा अंतर्गत कोणतीही तक्रार नाही आणि वेळेवर ताबा देण्यासाठी ते अत्यंत प्रतिष्ठित आहेत.') 
+          q: t(`What is the developer reputation of Paranjape Schemes across Pune real estate?`, `पुणे रिअल इस्टेटमध्ये परंजपे स्कीम्सची डेव्हलपर म्हणून प्रतिष्ठा कशी आहे?`), 
+          a: t('Paranjape Schemes (Construction) Ltd (PSCL) has over 35 years of engineering excellence in Pune, delivering 20M+ sq. ft. of residential and commercial spaces across 50+ landmark projects with over 75,000 happy residents and 100% MahaRERA statutory compliance.', 'परंजपे स्कीम्स (कन्स्ट्रक्शन) लि. चा पुण्यात ३५ पेक्षा जास्त वर्षांचा गौरवशाली इतिहास आहे, ५० हून अधिक प्रकल्पांमधून २ कोटी+ चौ. फूट क्षेत्र पूर्ण केले आहे आणि ७५,००० हून अधिक समाधानी नागरिक येथे राहतात.') 
         },
         { 
-          q: t(`Where is the project ${title} located?`, `हा प्रकल्प ${title} कुठे स्थित आहे?`), 
-          a: t(`The project ${title} is located in a prime growth corridor of Pune, offering excellent connectivity, social infrastructure, and high investment potential.`, `हा प्रकल्प ${title} पुण्याच्या मुख्य विकास क्षेत्रात स्थित आहे, जो उत्तम कनेक्टिव्हिटी, सामाजिक पायाभूत सुविधा आणि उच्च परताव्याची क्षमता देतो.`) 
+          q: t(`What are the major ongoing and completed township projects by Paranjape Schemes in Pune?`, `परंजपे स्कीम्सचे पुण्यातील प्रमुख चालू आणि पूर्ण झालेले टाउनशिप प्रकल्प कोणते आहेत?`), 
+          a: t('Key landmark projects include Paranjape Blue Ridge (138-acre integrated IT township in Hinjewadi Phase 1 with Promenade, The Altius, and Ridges 41), Forest Trails (170-acre nature township in Bhugaon), Athashri Senior Living campuses, Trident Towers in Wakad, and Highgardens in Hinjewadi.', 'प्रमुख प्रकल्पांमध्ये परंजपे ब्लू रिज (हिंजवडी फेज १ मधील १३८ एकरांची आयटी टाउनशिप ज्यामध्ये प्रोमेनेड, द आल्टियस, रिजेस ४१ समाविष्ट आहेत), फॉरेस्ट ट्रेल्स (भुगाव येथील १७० एकरांची टाउनशिप), अथश्री सीनियर लिव्हिंग, ट्रायडेंट टॉवर्स वाकड आणि हायगार्डन्स हिंजवडी यांचा समावेश आहे.') 
+        }
+      ];
+    }
+    case 'pune-dominance':
+      return [
+        {
+          q: t(`Why is Paranjape Blue Ridge ranked #1 among townships in Pune real estate?`, `पुणे रिअल इस्टेटमधील टाउनशिप्समध्ये परंजपे ब्लू रिज प्रथम क्रमांकावर का आहे?`),
+          a: t('Paranjape Blue Ridge stands apart as Pune’s only 138-acre fully operational township with an on-site ICSE school, 9-hole executive golf course, private riverfront marina boat club, captive 3M+ sq.ft IT SEZ, and direct 800m connectivity to Pune Metro Line 3.', 'परंजपे ब्लू रिज ही पुण्यातील एकमेव १३८ एकरांची पूर्णपणे कार्यरत टाउनशिप आहे ज्यामध्ये कॅम्पसमध्ये आयसीएसई शाळा, ९-होल गोल्फ कोर्स, मुळा नदीवरील खाजगी बोट क्लब, ३० लाख+ चौ.फूट आयटी एसईझेड आणि पुणे मेट्रो लाईन ३ पासून ८०० मीटर अंतर आहे.')
+        },
+        {
+          q: t(`How does Pune West (Hinjewadi, Wakad, Baner) compare for property investment?`, `मालमत्ता गुंतवणुकीसाठी पश्चिम पुणे (हिंजवडी, वाकड, बाणेर) कसे आहे?`),
+          a: t('Pune West represents the highest-velocity real estate corridor driven by 400,000+ technology professionals in Rajiv Gandhi Infotech Park. Average gross rental yields stand at 4.8% to 5.2% with annual capital appreciation between 10% and 12.8%.', 'पश्चिम पुणे हा पुण्यातील सर्वाधिक मागणी असलेला कॉरिडॉर आहे. सरासरी रेंटल यील्ड ४.८% ते ५.२% आणि वार्षिक भांडवली वाढ १०% ते १२.८% आहे.')
         }
       ];
     case 'nri':

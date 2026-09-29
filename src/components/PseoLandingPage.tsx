@@ -40,6 +40,10 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
       case 'competitor':
       case 'battleground':
         return ['138-Acre Mega Township', 'Ready Possession Clusters', 'Golf Course & Boat Club', 'Blue Ridge Public School'];
+      case 'paranjape-schemes':
+        return ['35+ Years Developer Track Record', '20M+ Sq. Ft. Delivered in Pune', '100% MahaRERA Statutory Compliance', 'Over 75,000+ Happy Resident Families'];
+      case 'pune-dominance':
+        return ['#1 Ranked Township in West Pune', 'Direct Metro Line 3 Proximity (800m)', 'Walk-to-Work IT SEZ Campus Inside', 'Unmatched Lifestyle & Riverfront Marina'];
       default:
         return ['High Rental Yield', 'Walk to Work', 'Premium Amenities', 'Capital Appreciation'];
     }

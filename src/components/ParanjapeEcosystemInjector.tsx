@@ -66,11 +66,32 @@ export default function ParanjapeEcosystemInjector() {
     if (k.includes('maan road') || k.includes('wakad link')) return '/flats-near-maan-road-hinjewadi';
     if (k.includes('baner') || k.includes('balewadi')) return '/flats-near-baner-and-balewadi-high-street-pune';
 
-    // 6. Developer Heritage & Legacy
-    if (k.includes('paranjape schemes projects') || k.includes('projects in hinjewadi')) {
+    // 6. Developer Heritage & Landmark Projects Ecosystem
+    if (k.includes('forest trails')) return '/paranjape-forest-trails-bhugaon-pune';
+    if (k.includes('athashri')) return '/paranjape-athashri-senior-living-pune';
+    if (k.includes('trident')) return '/paranjape-trident-towers-wakad-pune';
+    if (k.includes('highgardens')) return '/paranjape-highgardens-hinjewadi-phase-1';
+    if (k.includes('swaniketan')) return '/paranjape-swaniketan-inclusive-housing-pune';
+    if (k.includes('windermere')) return '/paranjape-windermere-koregaon-park-pune';
+    if (k.includes('projects in pune') || k.includes('schemes projects in pune')) {
+      return '/paranjape-schemes-projects-in-pune';
+    }
+    if (k.includes('projects in hinjewadi')) {
       return '/paranjape-schemes-projects-in-hinjewadi-pune';
     }
-    if (k.includes('paranjape schemes') || k.includes('pscl') || k.includes('forest trails') || k.includes('athashri') || k.includes('trident') || k.includes('highgardens') || k.includes('swaniketan') || k.includes('windermere')) {
+    if (k.includes('ready possession flats in pune') || (k.includes('ready possession') && k.includes('schemes'))) {
+      return '/paranjape-schemes-ready-possession-flats-in-pune';
+    }
+    if (k.includes('1 bhk') || k.includes('2 bhk 3 bhk flats in pune')) {
+      return '/paranjape-schemes-1-bhk-2-bhk-3-bhk-flats-in-pune';
+    }
+    if (k.includes('new launch')) {
+      return '/paranjape-schemes-new-launch-projects-pune';
+    }
+    if (k.includes('construction ltd') || k.includes('pscl developer')) {
+      return '/paranjape-schemes-construction-ltd';
+    }
+    if (k.includes('paranjape schemes') || k.includes('pscl')) {
       return '/why-paranjape';
     }
 
@@ -85,6 +106,8 @@ export default function ParanjapeEcosystemInjector() {
     if (k.includes('mivan')) return '/mivan-construction-projects-in-hinjewadi-phase-1';
 
     // 8. Investor Intelligence & Comparisons
+    if (k.includes('best real estate developers') || k.includes('best builders')) return '/best-real-estate-developers-in-pune';
+    if (k.includes('integrated townships in pune')) return '/integrated-townships-in-pune-real-estate';
     if (k.includes('rental yield')) return '/rental-yield-in-hinjewadi-phase-1-real-estate';
     if (k.includes('capital appreciation')) return '/capital-appreciation-trends-in-hinjewadi-phase-1';
     if (k.includes('nri') || k.includes('fema')) return '/nri-investment';

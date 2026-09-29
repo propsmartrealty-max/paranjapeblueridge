@@ -483,6 +483,99 @@ export const curatedPhrasesData: Array<{
     type: "Civic Guide",
     description: "Official address, 411057 pin code, landmark directions, and postal navigation for Paranjape Blue Ridge Township Hinjewadi Phase 1 Pune.",
     location: "Hinjewadi Phase 1, Pune - 411057"
+  },
+
+  // ─── 10. PARANJAPE SCHEMES & PUNE DEVELOPER AUTHORITY ──────────────────────
+  {
+    phrase: "Paranjape Schemes Projects in Pune",
+    silo: "paranjape-schemes",
+    type: "Developer Portfolio",
+    description: "Explore all residential townships, luxury apartments, and senior living projects by Paranjape Schemes (Construction) Ltd across Pune.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Paranjape Schemes Construction Ltd",
+    silo: "paranjape-schemes",
+    type: "Corporate Overview",
+    description: "Official overview of Paranjape Schemes (Construction) Ltd (PSCL): 35+ years of excellence, 20M+ sq.ft delivered, and 75,000+ happy residents.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Paranjape Forest Trails Bhugaon Pune",
+    silo: "paranjape-schemes",
+    type: "Nature Township",
+    description: "Paranjape Forest Trails: A 170-acre nature township in Bhugaon near Kothrud with equestrian club, luxury villas, nature towers, and serene hill views.",
+    location: "Bhugaon - Kothrud, Pune"
+  },
+  {
+    phrase: "Paranjape Athashri Senior Living Pune",
+    silo: "paranjape-schemes",
+    type: "Senior Housing",
+    description: "India's pioneer senior living community by Paranjape Schemes. Geriatric healthcare, barrier-free design, and vibrant lifestyle across Pune campuses.",
+    location: "Bavdhan, Baner & Hinjewadi, Pune"
+  },
+  {
+    phrase: "Paranjape Trident Towers Wakad Pune",
+    silo: "paranjape-schemes",
+    type: "Luxury Residences",
+    description: "Paranjape Trident Towers in Wakad: Contemporary 2 & 3 BHK high-rise residences minutes from Hinjewadi Phase 1 flyover and Balewadi High Street.",
+    location: "Wakad, Pune"
+  },
+  {
+    phrase: "Paranjape Highgardens Hinjewadi Phase 1",
+    silo: "paranjape-schemes",
+    type: "Smart Residences",
+    description: "Paranjape Highgardens: Smart ergonomic 1 & 2 BHK high-rise homes in Hinjewadi Phase 1 designed for technology professionals and young couples.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Paranjape Schemes Ready Possession Flats in Pune",
+    silo: "paranjape-schemes",
+    type: "Ready Possession",
+    description: "Discover ready possession 2, 3 & 4 BHK apartments with Occupancy Certificate (OC) across Paranjape Schemes projects in Pune and Hinjewadi.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Paranjape Schemes 1 BHK 2 BHK 3 BHK Flats in Pune",
+    silo: "paranjape-schemes",
+    type: "Configuration Guide",
+    description: "Complete configuration guide for 1 BHK, 2 BHK, 3 BHK, and 4 BHK luxury residences across all Paranjape Schemes developments in Pune.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Paranjape Swaniketan Inclusive Housing Pune",
+    silo: "paranjape-schemes",
+    type: "Assisted Living",
+    description: "Paranjape Swaniketan at Bhugaon Pune: India's landmark assisted residential community providing lifelong care and dignity for adults with special needs.",
+    location: "Bhugaon, Pune"
+  },
+  {
+    phrase: "Paranjape Windermere Koregaon Park Pune",
+    silo: "paranjape-schemes",
+    type: "Ultra Luxury",
+    description: "Paranjape Windermere: Pune's most prestigious ultra-luxury private residences in Koregaon Park offering expansive presidential suites and green vistas.",
+    location: "Koregaon Park, Pune"
+  },
+  {
+    phrase: "Paranjape Schemes New Launch Projects Pune",
+    silo: "paranjape-schemes",
+    type: "New Launches",
+    description: "Explore upcoming new launch residential projects, pre-launch pricing, and investment opportunities by Paranjape Schemes in Pune for 2026.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Best Real Estate Developers in Pune",
+    silo: "pune-dominance",
+    type: "Builder Ranking",
+    description: "Guide to the best real estate developers in Pune. Discover why Paranjape Schemes ranks #1 for delivery track record, township masterplanning, and customer trust.",
+    location: "Pune, Maharashtra"
+  },
+  {
+    phrase: "Integrated Townships in Pune Real Estate",
+    silo: "pune-dominance",
+    type: "Township Living",
+    description: "Comparative analysis of integrated mega-townships in Pune: Paranjape Blue Ridge (138 acres) and Forest Trails (170 acres) leading sustainable urban living.",
+    location: "Pune, Maharashtra"
   }
 ];
 
@@ -529,7 +622,7 @@ export function getPopularSearchSections() {
     { title: 'Infra & Guides', links: curatedPseoUrls.filter(u => u.silo === 'infrastructure').slice(0, 8) },
     { title: 'Amenity & Lifestyle', links: curatedPseoUrls.filter(u => u.silo === 'amenities').slice(0, 8) },
     { title: 'Pune Real Estate', links: curatedPseoUrls.filter(u => u.silo === 'pune-dominance').slice(0, 8) },
-    { title: 'Paranjape Schemes', links: curatedPseoUrls.filter(u => u.silo === 'branded' || u.silo === 'clusters').slice(0, 8) },
+    { title: 'Paranjape Schemes', links: curatedPseoUrls.filter(u => u.silo === 'branded' || u.silo === 'clusters' || u.silo === 'paranjape-schemes').slice(0, 10) },
   ];
 }
 

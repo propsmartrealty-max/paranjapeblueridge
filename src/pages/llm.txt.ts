@@ -42,6 +42,18 @@ export const GET: APIRoute = async () => {
 
 ---
 
+## Paranjape Schemes (Construction) Ltd. Pune Projects Portfolio
+- **Paranjape Blue Ridge Hinjewadi**: 138-acre flagship IT township in Phase 1 (Promenade, The Altius, Ridges 41).
+- **Paranjape Forest Trails Bhugaon**: 170-acre nature township near Kothrud with equestrian club, luxury villas, and nature towers.
+- **Paranjape Athashri Senior Living**: India's pioneering senior citizen community across Bavdhan, Baner, Hinjewadi, and Hadapsar.
+- **Paranjape Trident Towers Wakad**: 2 & 3 BHK luxury high-rise residences minutes from Hinjewadi flyover.
+- **Paranjape Highgardens Hinjewadi Phase 1**: Smart ergonomic high-rise boutique homes for IT professionals.
+- **Paranjape Swaniketan Bhugaon**: India's first dedicated inclusive residential community for adults with special needs.
+- **Paranjape Windermere Koregaon Park**: Ultra-exclusive private presidential residences in Pune's premier neighborhood.
+- **Developer Track Record**: 35+ years of engineering excellence, 20M+ sq.ft delivered, 75,000+ happy resident families across Pune.
+
+---
+
 ## Legal & Compliance
 - **All projects 100% MahaRERA Certified**
 - **Home Loan Approvals**: HDFC Bank, SBI, ICICI Bank, Axis Bank, Bank of Baroda

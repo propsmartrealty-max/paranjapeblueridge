@@ -77,5 +77,13 @@ export const ecosystemCategories = [
       "Blue Ridge vs Lodha Belmondo Pune", "Blue Ridge vs Kohinoor Central Park Hinjewadi",
       "Best Integrated Township in Hinjewadi Phase 1 Pune"
     ]
+  },
+  {
+    title: "Pune Real Estate & Developer Dominance",
+    keywords: [
+      "Best Real Estate Developers in Pune", "Integrated Townships in Pune Real Estate", "Best Township in Pune for Families",
+      "Luxury Apartments in Pune West", "Gated Community Flats in Pune Hinjewadi", "High Rental Yield Properties in Pune",
+      "Ready to Move Flats in Hinjewadi Phase 1", "Townships in Hinjewadi vs Baner Wakad Comparison"
+    ]
   }
 ];

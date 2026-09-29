@@ -79,10 +79,18 @@ export default function ParanjapeLegacySection() {
                 </div>
 
                 <a
-                  href="/why-paranjape"
+                  href={
+                    proj.id === 'forest-trails' ? '/paranjape-forest-trails-bhugaon-pune' :
+                    proj.id === 'athashri-pune' ? '/paranjape-athashri-senior-living-pune' :
+                    proj.id === 'trident-towers' ? '/paranjape-trident-towers-wakad-pune' :
+                    proj.id === 'highgardens' ? '/paranjape-highgardens-hinjewadi-phase-1' :
+                    proj.id === 'swaniketan' ? '/paranjape-swaniketan-inclusive-housing-pune' :
+                    proj.id === 'blue-ridge-heritage' ? '/blue-ridge-hinjewadi-resale-flats-and-inventory' :
+                    '/paranjape-schemes-projects-in-pune'
+                  }
                   className="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-wider uppercase text-[#785415] hover:text-[#5a3e0f] no-underline pt-2 group/link"
                 >
-                  <span>Explore Developer Legacy</span>
+                  <span>Explore {proj.name}</span>
                   <ArrowRight size={13} className="group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
