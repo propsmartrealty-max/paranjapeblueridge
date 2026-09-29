@@ -41,13 +41,38 @@ const EDGE_REDIRECTS = {
   '/sitemap.xml': '/sitemap-index.xml',
   '/rss': '/feed.xml',
   '/llm.txt': '/llms.txt',
+  '/llm.json': '/llms.json',
   '/explore/hinjewadi': '/hinjewadi-micro-market',
   '/explore/wakad': '/flats-in-wakad-near-hinjewadi-flyover',
   '/explore/baner': '/flats-near-baner-and-balewadi-high-street-pune'
 };
 
+const VERIFIED_SEARCH_BOTS = [
+  'googlebot',
+  'bingbot',
+  'duckduckbot',
+  'yandexbot',
+  'baiduspider',
+  'applebot',
+  'applebot-extended',
+  'gptbot',
+  'oai-searchbot',
+  'perplexitybot',
+  'claudebot',
+  'claude-web',
+  'cohere-ai',
+  'amazonbot',
+  'meta-externalagent',
+  'facebookexternalhit',
+  'whatsapp',
+  'twitterbot',
+  'linkedinbot'
+];
+
 async function handleRequest(request) {
   const url = new URL(request.url);
+  const userAgent = (request.headers.get('user-agent') || '').toLowerCase();
+  const isSearchBot = VERIFIED_SEARCH_BOTS.some(bot => userAgent.includes(bot));
 
   // 1. Enforce Canonical Host (redirect www, pages.dev, or any non-canonical host to apex domain)
   if (url.hostname !== CANONICAL_HOST && !url.hostname.includes('localhost') && !url.hostname.includes('127.0.0.1')) {
@@ -194,6 +219,11 @@ async function handleRequest(request) {
   headers.set('X-Frame-Options', 'SAMEORIGIN');
   headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+
+  if (isSearchBot) {
+    headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+  }
 
   // 7. Edge HTMLRewriter Transformation (Zero-Latency Rust/C++ Streaming Parser)
   const rewriter = new HTMLRewriter()

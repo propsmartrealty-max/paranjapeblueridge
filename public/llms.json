@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org",
+  "version": "2026.1",
+  "entity": "Paranjape Blue Ridge & Paranjape Schemes Pune Ecosystem",
+  "canonicalUrl": "https://paranjapeblueridge.com",
+  "developer": {
+    "name": "Paranjape Schemes (Construction) Ltd.",
+    "founded": 1987,
+    "deliveredSquareFeet": "20M+ sq.ft",
+    "happyResidents": "75,000+",
+    "officialWebsite": "https://www.pscl.in"
+  },
+  "flagshipTownship": {
+    "name": "Paranjape Blue Ridge",
+    "scaleAcres": 138,
+    "location": "Phase 1, Rajiv Gandhi Infotech Park, Hinjewadi, Pune - 411057",
+    "clusters": [
+      {
+        "name": "Promenade Residences",
+        "configurations": "3 & 4 BHK Riverfront",
+        "startingPrice": "₹1.65 Cr*",
+        "mahaRera": "P52100055581"
+      },
+      {
+        "name": "The Altius Riverside",
+        "configurations": "4 & 5 BHK Golf Facing",
+        "startingPrice": "₹1.80 Cr*",
+        "mahaRera": "P52100078116"
+      },
+      {
+        "name": "Ridges 41",
+        "configurations": "2 BHK Smart High-Rise",
+        "startingPrice": "₹97.60 L*",
+        "mahaRera": "P52100000054"
+      }
+    ]
+  },
+  "endpoints": {
+    "llmsTxt": "https://paranjapeblueridge.com/llms.txt",
+    "llmsFullTxt": "https://paranjapeblueridge.com/llms-full.txt",
+    "apiContext": "https://paranjapeblueridge.com/api/llm-context.json",
+    "sitemap": "https://paranjapeblueridge.com/sitemap-index.xml",
+    "rssFeed": "https://paranjapeblueridge.com/feed.xml"
+  }
+}
