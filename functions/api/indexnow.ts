@@ -11,7 +11,7 @@ const KEY_LOCATION = `https://${HOST}/37ed22dc3eab4b13b1cd3f21975e533c.txt`;
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   try {
-    const body = await context.request.json<{ urlList?: string[] }>();
+    const body = (await context.request.json()) as { urlList?: string[] };
     const urlList = body.urlList && body.urlList.length > 0 
       ? body.urlList 
       : [

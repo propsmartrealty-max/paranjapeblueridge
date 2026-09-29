@@ -158,7 +158,7 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
             } 
           />
           <FAQSection />
-          <RelatedSearchesMesh currentSlug={current.slug} />
+          <RelatedSearchesMesh currentSlug={current.slug} silo={current.silo} />
         </div>
       </section>
     </div>

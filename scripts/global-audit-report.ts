@@ -1,5 +1,5 @@
 import { projects, articles } from '../src/data/master-data';
-import { getPseoTotalCount, seoMatrix } from '../src/data/seo-matrix';
+import { getPseoTotalCount } from '../src/data/seo-matrix';
 
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 console.log('🌍 360° GLOBAL AUDIT REPORT: PARANJAPE BLUE RIDGE SOVEREIGN PORTAL');

@@ -25,7 +25,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   };
 
   try {
-    const payload = await context.request.json<EnquiryPayload>();
+    const payload = (await context.request.json()) as EnquiryPayload;
 
     // Input validation
     if (!payload.name || !payload.phone) {

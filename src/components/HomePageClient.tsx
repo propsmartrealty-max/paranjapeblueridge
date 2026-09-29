@@ -91,7 +91,7 @@ export default function HomePageClient() {
             className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
             loading="eager"
             decoding="sync"
-            fetchpriority="high"
+            fetchPriority="high"
           />
           {/* Luminous Porcelain & Sunlight Gradient Layer for High-Contrast Crisp Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-[#FAF9F6]/85 to-transparent"></div>
