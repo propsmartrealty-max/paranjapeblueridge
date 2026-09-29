@@ -211,3 +211,21 @@ export async function onRequestPost(context) {
     );
   }
 }
+
+export async function onRequestGet() {
+  return new Response(
+    JSON.stringify({
+      status: 'active',
+      endpoint: '/api/lead',
+      methods: ['POST', 'OPTIONS'],
+      service: 'Paranjape Blue Ridge Edge Lead Dispatcher'
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    }
+  );
+}
