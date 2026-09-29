@@ -218,9 +218,42 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self)');
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
-  return new Response(response.body, {
+  const baseResponse = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers
   });
+
+  if (response.headers.get('content-type')?.includes('text/html')) {
+    const rewriter = new HTMLRewriter()
+      .on('img', {
+        element(el) {
+          const src = el.getAttribute('src') || '';
+          if (src.includes('drone') || el.getAttribute('fetchpriority') === 'high') {
+            el.setAttribute('fetchpriority', 'high');
+            el.removeAttribute('loading');
+          } else {
+            if (!el.hasAttribute('loading')) el.setAttribute('loading', 'lazy');
+            if (!el.hasAttribute('decoding')) el.setAttribute('decoding', 'async');
+          }
+        }
+      })
+      .on('a', {
+        element(el) {
+          const href = el.getAttribute('href') || '';
+          if (href.startsWith('http://') || href.startsWith('https://')) {
+            if (!href.includes('paranjapeblueridge.com')) {
+              const rel = el.getAttribute('rel') || '';
+              if (!rel.includes('noopener')) {
+                el.setAttribute('rel', (rel ? rel + ' ' : '') + 'noopener noreferrer');
+              }
+            }
+          }
+        }
+      });
+
+    return rewriter.transform(baseResponse);
+  }
+
+  return baseResponse;
 };
