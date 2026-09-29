@@ -170,12 +170,30 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 };
 
+export const onRequestGet: PagesFunction = async () => {
+  return new Response(
+    JSON.stringify({
+      status: 'active',
+      endpoint: '/api/enquiry',
+      methods: ['POST', 'OPTIONS'],
+      service: 'Paranjape Blue Ridge Lead Intake Gateway'
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    }
+  );
+};
+
 export const onRequestOptions: PagesFunction = async () => {
   return new Response(null, {
     status: 204,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Max-Age': '86400'
     }
