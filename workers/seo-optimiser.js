@@ -49,11 +49,10 @@ const EDGE_REDIRECTS = {
 async function handleRequest(request) {
   const url = new URL(request.url);
 
-  // 1. Enforce Non-WWW Apex Domain
-  if (url.hostname === `www.${CANONICAL_HOST}`) {
-    url.hostname = CANONICAL_HOST;
-    url.protocol = 'https:';
-    return Response.redirect(url.toString(), 301);
+  // 1. Enforce Canonical Host (redirect www, pages.dev, or any non-canonical host to apex domain)
+  if (url.hostname !== CANONICAL_HOST && !url.hostname.includes('localhost') && !url.hostname.includes('127.0.0.1')) {
+    const targetUrl = new URL(url.pathname + url.search, `https://${CANONICAL_HOST}`);
+    return Response.redirect(targetUrl.toString(), 301);
   }
 
   // 2. Exact Match Redirects

@@ -34,27 +34,8 @@ export default function FAQSection() {
     }
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
-      }
-    }))
-  };
-
   return (
     <section id="faq" className="py-24 sm:py-32 bg-[#FAF9F6] relative overflow-hidden">
-      {/* FAQPage JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
         <div className="text-center mb-16">
           <div className="chapter-badge mb-4 mx-auto">

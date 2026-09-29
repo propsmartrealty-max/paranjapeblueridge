@@ -42,6 +42,34 @@ const marathiPath = isMr
 
 const enUrl = new URL(englishPath, Astro.site).href.replace(/\/$/, '') || 'https://paranjapeblueridge.com';
 const mrUrl = new URL(marathiPath, Astro.site).href.replace(/\/$/, '');
+const BILINGUAL_PATHS = new Set([
+  '/',
+  '/mr',
+  '/hinjewadi-micro-market',
+  '/mr-hinjewadi-micro-market',
+  '/paranjape-blue-ridge-promenade-hinjewadi-pune',
+  '/mr-paranjape-blue-ridge-promenade-hinjewadi-pune',
+  '/paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/mr-paranjape-blue-ridge-the-altius-hinjewadi-pune',
+  '/paranjape-blue-ridge-41-hinjewadi-pune',
+  '/mr-paranjape-blue-ridge-41-hinjewadi-pune',
+  '/paranjape-blue-ridge-promenade-hinjewadi-pune/3-bhk-flats-1316',
+  '/mr-paranjape-blue-ridge-promenade-hinjewadi-pune/3-bhk-flats-1316',
+  '/paranjape-blue-ridge-promenade-hinjewadi-pune/4-bhk-flats-1633',
+  '/mr-paranjape-blue-ridge-promenade-hinjewadi-pune/4-bhk-flats-1633',
+  '/paranjape-blue-ridge-promenade-hinjewadi-pune/4-bhk-flats-1718',
+  '/mr-paranjape-blue-ridge-promenade-hinjewadi-pune/4-bhk-flats-1718',
+  '/paranjape-blue-ridge-the-altius-hinjewadi-pune/3-bhk-flats',
+  '/mr-paranjape-blue-ridge-the-altius-hinjewadi-pune/3-bhk-flats',
+  '/paranjape-blue-ridge-the-altius-hinjewadi-pune/4-bhk-flats',
+  '/mr-paranjape-blue-ridge-the-altius-hinjewadi-pune/4-bhk-flats',
+  '/paranjape-blue-ridge-41-hinjewadi-pune/2-bhk-flats',
+  '/mr-paranjape-blue-ridge-41-hinjewadi-pune/2-bhk-flats',
+  '/paranjape-blue-ridge-41-hinjewadi-pune/3-bhk-flats',
+  '/mr-paranjape-blue-ridge-41-hinjewadi-pune/3-bhk-flats'
+]);
+
+const hasMarathiCounterpart = BILINGUAL_PATHS.has(pathname);
 ---
 
 <!DOCTYPE html>
@@ -81,7 +109,9 @@ const mrUrl = new URL(marathiPath, Astro.site).href.replace(/\/$/, '');
     <link rel="alternate" hreflang="en-SG" href={enUrl} />
     <link rel="alternate" hreflang="en-AU" href={enUrl} />
     <link rel="alternate" hreflang="en-CA" href={enUrl} />
-    <link rel="alternate" hreflang="mr-IN" href={mrUrl} />
+    {hasMarathiCounterpart && (
+      <link rel="alternate" hreflang="mr-IN" href={mrUrl} />
+    )}
 
     <!-- Open Graph & Social Cards -->
     <meta property="og:type" content="website" />
