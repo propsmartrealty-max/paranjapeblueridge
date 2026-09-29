@@ -14,6 +14,8 @@ interface Competitor {
   schoolInside: boolean;
   metroDistance: string;
   constructionTech: string;
+  rentalYield?: string;
+  residentFamilies?: string;
 }
 
 const COMPETITORS: Competitor[] = [
@@ -27,7 +29,9 @@ const COMPETITORS: Competitor[] = [
     boatClub: true,
     schoolInside: true,
     metroDistance: '800 Meters (7 Min Walk)',
-    constructionTech: 'Advanced MiVAN Monolithic'
+    constructionTech: 'Advanced MiVAN Monolithic',
+    rentalYield: '4.8% - 5.2% (Highest in Pune West)',
+    residentFamilies: '3,500+ Families Living'
   },
   {
     id: 'vtp-blue-waters',
@@ -39,7 +43,9 @@ const COMPETITORS: Competitor[] = [
     boatClub: false,
     schoolInside: false,
     metroDistance: '3.5 KM',
-    constructionTech: 'Standard Aluminium Formwork'
+    constructionTech: 'Standard Aluminium Formwork',
+    rentalYield: '3.4% - 3.8%',
+    residentFamilies: 'Partial Handover'
   },
   {
     id: 'life-republic',
@@ -51,7 +57,23 @@ const COMPETITORS: Competitor[] = [
     boatClub: false,
     schoolInside: true,
     metroDistance: '4.2 KM',
-    constructionTech: 'Conventional / RCC'
+    constructionTech: 'Conventional / RCC',
+    rentalYield: '3.6% - 4.0%',
+    residentFamilies: '2,800+ Families'
+  },
+  {
+    id: 'godrej-hinjewadi',
+    name: 'Godrej Hinjewadi (24 / Woodsville)',
+    location: 'Hinjewadi Phase 1 / Maan',
+    townshipSize: '15-40 Acres (Cluster)',
+    sezInside: false,
+    golfCourse: false,
+    boatClub: false,
+    schoolInside: false,
+    metroDistance: '2.5 KM',
+    constructionTech: 'Standard Aluminium Formwork',
+    rentalYield: '3.5% - 3.9%',
+    residentFamilies: 'Under Handover'
   },
   {
     id: 'megapolis',
@@ -63,12 +85,21 @@ const COMPETITORS: Competitor[] = [
     boatClub: false,
     schoolInside: true,
     metroDistance: '6.0 KM',
-    constructionTech: 'Pre-cast / RCC'
+    constructionTech: 'Pre-cast / RCC',
+    rentalYield: '3.2% - 3.6%',
+    residentFamilies: '4,000+ Families'
   }
 ];
 
-export default function CompetitorComparison() {
-  const [selectedCompetitorId, setSelectedCompetitorId] = useState<string>('vtp-blue-waters');
+interface CompetitorComparisonProps {
+  defaultCompetitorId?: string;
+}
+
+export default function CompetitorComparison({ defaultCompetitorId }: CompetitorComparisonProps = {}) {
+  const initialId = defaultCompetitorId && COMPETITORS.some(c => c.id === defaultCompetitorId)
+    ? defaultCompetitorId
+    : 'vtp-blue-waters';
+  const [selectedCompetitorId, setSelectedCompetitorId] = useState<string>(initialId);
   const blueRidge = COMPETITORS[0];
   const selectedCompetitor = COMPETITORS.find(c => c.id === selectedCompetitorId) || COMPETITORS[1];
 
@@ -188,6 +219,16 @@ export default function CompetitorComparison() {
               <td className="p-3 font-semibold text-slate-500">Metro Line 3 Distance</td>
               <td className="p-3 bg-amber-50/40 font-bold text-emerald-700 border-x border-amber-200/50">{blueRidge.metroDistance}</td>
               <td className="p-3 text-slate-700">{selectedCompetitor.metroDistance}</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-semibold text-slate-500">Rental Yield (ROI)</td>
+              <td className="p-3 bg-amber-50/40 font-bold text-emerald-700 border-x border-amber-200/50">{blueRidge.rentalYield}</td>
+              <td className="p-3 text-slate-700">{selectedCompetitor.rentalYield || '3.5% avg'}</td>
+            </tr>
+            <tr>
+              <td className="p-3 font-semibold text-slate-500">Living Community</td>
+              <td className="p-3 bg-amber-50/40 font-bold text-emerald-700 border-x border-amber-200/50">{blueRidge.residentFamilies}</td>
+              <td className="p-3 text-slate-700">{selectedCompetitor.residentFamilies || 'Under Development'}</td>
             </tr>
           </tbody>
         </table>

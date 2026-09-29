@@ -93,7 +93,16 @@ export default function ParanjapeEcosystemInjector() {
     if (k.includes('life republic')) return '/blue-ridge-vs-life-republic-township-comparison';
     if (k.includes('megapolis')) return '/blue-ridge-vs-megapolis-hinjewadi-phase-3';
     if (k.includes('godrej')) return '/blue-ridge-vs-godrej-hinjewadi-comparison';
-    if (k.includes('vtp')) return '/blue-ridge-vs-vtp-blue-waters-mahalunge';
+    if (k.includes('best township') || k.includes('families')) return '/best-township-in-pune-for-families';
+    if (k.includes('luxury apartments in pune') || k.includes('pune west')) return '/luxury-apartments-in-pune-west';
+    if (k.includes('gated community')) return '/gated-community-flats-in-pune-hinjewadi';
+    if (k.includes('metro line 3 stations') || k.includes('metro station')) return '/flats-near-pune-metro-line-3-stations';
+    if (k.includes('high rental yield')) return '/high-rental-yield-properties-in-pune';
+    if (k.includes('new residential projects') || k.includes('new launches')) return '/new-residential-projects-in-hinjewadi-phase-1';
+    if (k.includes('ready to move flats')) return '/ready-to-move-flats-in-hinjewadi-phase-1';
+    if (k.includes('baner wakad') || k.includes('hinjewadi vs baner')) return '/townships-in-hinjewadi-vs-baner-wakad-comparison';
+    if (k.includes('maintenance') || k.includes('society charges')) return '/blue-ridge-hinjewadi-maintenance-and-society-charges';
+    if (k.includes('pin code') || k.includes('address guide')) return '/blue-ridge-township-pin-code-and-address-guide';
     if (k.includes('best integrated township')) return '/best-integrated-township-in-hinjewadi-pune';
 
     // Default Fallback to Main Master Page

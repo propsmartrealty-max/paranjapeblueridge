@@ -411,6 +411,78 @@ export const curatedPhrasesData: Array<{
     type: "Engineering",
     description: "Monolithic MiVAN RCC construction technology ensuring seismic resistance and smooth finishes at Paranjape Blue Ridge.",
     location: "Hinjewadi Phase 1, Pune"
+  },
+
+  // ─── 9. PUNE REAL ESTATE SERP DOMINANCE ─────────────────────────────────────
+  {
+    phrase: "Best Township in Pune for Families",
+    silo: "pune-dominance",
+    type: "Township Living",
+    description: "Discover why Paranjape Blue Ridge is ranked Pune's #1 integrated township for families with ICSE school, golf course, and 24/7 security inside the gates.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Luxury Apartments in Pune West",
+    silo: "pune-dominance",
+    type: "Luxury Living",
+    description: "Ultra-luxury 3, 4 & 5 BHK riverfront sky residences in Pune West at The Altius and Promenade, Paranjape Blue Ridge Hinjewadi.",
+    location: "Pune West - Hinjewadi"
+  },
+  {
+    phrase: "Gated Community Flats in Pune Hinjewadi",
+    silo: "pune-dominance",
+    type: "Gated Community",
+    description: "138-acre masterplanned gated township community in Hinjewadi Phase 1 Pune with 3,500+ resident families and self-sufficient amenities.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Flats near Pune Metro Line 3 Stations",
+    silo: "infrastructure",
+    type: "Transit Oriented",
+    description: "Rapid-transit connected 2, 3 & 4 BHK apartments within 800m of Hinjewadi Phase 1 Station on the upcoming Pune Metro Line 3.",
+    location: "Hinjewadi - Metro Corridor"
+  },
+  {
+    phrase: "High Rental Yield Properties in Pune",
+    silo: "investor",
+    type: "Investment ROI",
+    description: "Data-backed Pune property investment guide: how Paranjape Blue Ridge delivers 4.8% to 5.2% gross rental yields driven by 400k+ IT workforce.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "New Residential Projects in Hinjewadi Phase 1",
+    silo: "branded",
+    type: "New Launches",
+    description: "Official 2026 new residential project launches in Hinjewadi Phase 1 by Paranjape Schemes: Promenade, The Altius, and Ridges 41.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Ready to Move Flats in Hinjewadi Phase 1",
+    silo: "transactions",
+    type: "Ready to Move",
+    description: "Explore verified ready-to-move 2 BHK and 3 BHK resale apartments in Paranjape Blue Ridge Hinjewadi with immediate possession and OC.",
+    location: "Hinjewadi Phase 1, Pune"
+  },
+  {
+    phrase: "Townships in Hinjewadi vs Baner Wakad Comparison",
+    silo: "battleground",
+    type: "Macro Location",
+    description: "Location comparison: Hinjewadi Phase 1 integrated townships vs standalone towers in Baner and Wakad for price, lifestyle, and traffic.",
+    location: "Hinjewadi vs Baner - Wakad"
+  },
+  {
+    phrase: "Blue Ridge Hinjewadi Maintenance and Society Charges",
+    silo: "transactions",
+    type: "Society Guide",
+    description: "Transparent guide to society maintenance charges, water management, captive 220 KV substation power, and township operations at Blue Ridge.",
+    location: "Blue Ridge Township, Hinjewadi"
+  },
+  {
+    phrase: "Blue Ridge Township Pin Code and Address Guide",
+    silo: "branded",
+    type: "Civic Guide",
+    description: "Official address, 411057 pin code, landmark directions, and postal navigation for Paranjape Blue Ridge Township Hinjewadi Phase 1 Pune.",
+    location: "Hinjewadi Phase 1, Pune - 411057"
   }
 ];
 
@@ -456,6 +528,7 @@ export function getPopularSearchSections() {
     { title: 'Project Comparisons', links: curatedPseoUrls.filter(u => u.silo === 'battleground').slice(0, 8) },
     { title: 'Infra & Guides', links: curatedPseoUrls.filter(u => u.silo === 'infrastructure').slice(0, 8) },
     { title: 'Amenity & Lifestyle', links: curatedPseoUrls.filter(u => u.silo === 'amenities').slice(0, 8) },
+    { title: 'Pune Real Estate', links: curatedPseoUrls.filter(u => u.silo === 'pune-dominance').slice(0, 8) },
     { title: 'Paranjape Schemes', links: curatedPseoUrls.filter(u => u.silo === 'branded' || u.silo === 'clusters').slice(0, 8) },
   ];
 }

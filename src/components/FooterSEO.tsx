@@ -3,7 +3,7 @@ import { getCuratedPseoLinks } from '@/data/seo-matrix';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 export default function FooterSEO() {
-  const displayedLinks = getCuratedPseoLinks(60);
+  const displayedLinks = getCuratedPseoLinks(100);
 
   return (
     <footer className="bg-white border-t-2 border-slate-200 pt-12 pb-8 px-4 relative overflow-hidden">

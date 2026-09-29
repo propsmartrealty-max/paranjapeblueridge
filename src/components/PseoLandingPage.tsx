@@ -145,7 +145,14 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
         <div className="space-y-16">
           <ProximityMatrix />
           <RoiCalculator />
-          <CompetitorComparison />
+          <CompetitorComparison 
+            defaultCompetitorId={
+              current.slug?.includes('life-republic') ? 'life-republic' :
+              current.slug?.includes('godrej') ? 'godrej-hinjewadi' :
+              current.slug?.includes('megapolis') ? 'megapolis' :
+              current.slug?.includes('vtp') ? 'vtp-blue-waters' : undefined
+            } 
+          />
           <FAQSection />
           <RelatedSearchesMesh currentSlug={current.slug} />
         </div>
