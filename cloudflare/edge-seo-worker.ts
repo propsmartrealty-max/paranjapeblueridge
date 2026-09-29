@@ -210,8 +210,9 @@ export default {
     const transformedResponse = rewriter.transform(originResponse);
 
     // ── 8. Edge Telemetry, Security & Tiered Caching Headers ──
+    const canonicalTarget = new URL(cleanPathname || '/', CANONICAL_ORIGIN).toString();
     const responseHeaders = new Headers(transformedResponse.headers);
-    responseHeaders.set('X-Edge-Canonical', canonicalUrl);
+    responseHeaders.set('X-Edge-Canonical', canonicalTarget);
     responseHeaders.set('X-Edge-Crawler-State', isSearchBot ? 'Priority-Indexed' : 'Standard');
     responseHeaders.set('X-Edge-Location', 'Cloudflare Sovereign Global Edge PoP');
     responseHeaders.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
@@ -221,7 +222,7 @@ export default {
     responseHeaders.set('Timing-Allow-Origin', '*');
     
     // Tiered Stale-While-Revalidate Caching: 24h browser, 30 days global edge
-    if (!pathname.includes('/api/') && !pathname.includes('/sovereign-vault')) {
+    if (!url.pathname.includes('/api/') && !url.pathname.includes('/sovereign-vault')) {
       responseHeaders.set('Cache-Control', 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400, stale-if-error=604800');
     }
 
@@ -230,7 +231,11 @@ export default {
       responseHeaders.set('X-Crawler-Hints', 'IndexNow-RealTime-Emit');
     }
     
-    responseHeaders.set('Link', '</assets/images/real-township-day.jpg>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect');
+    if (url.pathname === '/' || url.pathname === '/mr') {
+      responseHeaders.set('Link', '</assets/images/pscl-blue-ridge-aerial-drone.webp>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect');
+    } else {
+      responseHeaders.set('Link', '<https://fonts.googleapis.com>; rel=preconnect');
+    }
 
     return new Response(transformedResponse.body, {
       status: transformedResponse.status,

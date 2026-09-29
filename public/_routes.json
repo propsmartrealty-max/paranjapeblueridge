@@ -1,16 +1,22 @@
 {
   "version": 1,
   "include": [
-    "/api/*"
+    "/*"
   ],
   "exclude": [
-    "/assets/*",
     "/_astro/*",
+    "/assets/*",
+    "/favicon.ico",
     "/favicon.png",
+    "/favicon.svg",
     "/apple-icon.png",
+    "/manifest.json",
     "/robots.txt",
     "/sitemap*.xml",
-    "/manifest.json",
-    "/feed.xml"
+    "/feed.xml",
+    "/google-products*.xml",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/37ed22dc3eab4b13b1cd3f21975e533c.txt"
   ]
 }

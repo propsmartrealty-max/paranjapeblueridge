@@ -133,30 +133,29 @@ async function handleRequest(request) {
     return Response.redirect(new URL('/', url.origin).toString(), 301);
   }
 
-  // 6. Non-Destructive HTMLRewriter: Only optimize LCP preconnects, never override page meta/canonicals
-  const rewriter = new HTMLRewriter()
-    .on('head', {
-      element(head) {
-        // Preload valid high-priority hero image for LCP
-        head.append(
-          '<link rel="preload" href="/assets/images/pscl-blue-ridge-aerial-drone.webp" as="image" fetchpriority="high">',
-          { html: true }
-        );
-      }
-    });
+  // 6. Enterprise Edge Security & Performance Headers
+  const headers = new Headers(response.headers);
 
-  const modifiedResponse = rewriter.transform(response);
-  const headers = new Headers(modifiedResponse.headers);
+  if (url.pathname === '/' || url.pathname === '/mr') {
+    headers.set(
+      'Link',
+      '</assets/images/pscl-blue-ridge-aerial-drone.webp>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+    );
+  } else {
+    headers.set(
+      'Link',
+      '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+    );
+  }
 
-  // Clean security and caching headers
   headers.set('X-Content-Type-Options', 'nosniff');
   headers.set('X-Frame-Options', 'SAMEORIGIN');
   headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
 
-  return new Response(modifiedResponse.body, {
-    status: modifiedResponse.status,
-    statusText: modifiedResponse.statusText,
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
     headers
   });
 }

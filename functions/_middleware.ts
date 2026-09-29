@@ -149,10 +149,17 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   // 6. Early Hints / Link Preload Header for Real Drone Hero Image
   if (response.headers.get('content-type')?.includes('text/html')) {
-    headers.set(
-      'Link',
-      '</assets/images/pscl-blue-ridge-aerial-drone.webp>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
-    );
+    if (url.pathname === '/' || url.pathname === '/mr') {
+      headers.set(
+        'Link',
+        '</assets/images/pscl-blue-ridge-aerial-drone.webp>; rel=preload; as=image; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+      );
+    } else {
+      headers.set(
+        'Link',
+        '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+      );
+    }
 
     // Ensure search bots receive optimal crawler directive headers
     if (isSearchBot) {
