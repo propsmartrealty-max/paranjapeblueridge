@@ -797,6 +797,30 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "position": 4,
         "name": "Hinjewadi Market Guide",
         "url": `${SITE_URL}/hinjewadi-micro-market`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 5,
+        "name": "Price List & Cost Sheet",
+        "url": `${SITE_URL}/paranjape-blue-ridge-price-list-and-cost-sheet-2026`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 6,
+        "name": "Floor Plans & Layouts",
+        "url": `${SITE_URL}/paranjape-blue-ridge-floor-plans-and-layouts-pdf`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 7,
+        "name": "Paranjape Schemes Pune Projects",
+        "url": `${SITE_URL}/paranjape-schemes-projects-in-pune`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 8,
+        "name": "NRI Investment Desk",
+        "url": `${SITE_URL}/nri-investment`
       }
     ]
   };
@@ -816,7 +840,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     "dateModified": new Date().toISOString().split('T')[0],
     "speakable": {
       "@type": "SpeakableSpecification",
-      "cssSelector": ["#speakable-title", "#speakable-summary"]
+      "cssSelector": ["h1", "h2", ".hero-subheading", ".speakable-summary", "#speakable-title", "#speakable-summary", "p"]
     }
   };
 
@@ -849,7 +873,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
         "position": 3,
         "name": t("Schedule a Site Visit", "साइट व्हिजिटचे नियोजन करा"),
         "text": t("Book a complimentary site visit at Blue Ridge Township, Phase 1, Hinjewadi, Pune. Sales gallery open 9 AM to 8 PM, 7 days a week.", "ब्लू रिज टाउनशिप, फेज १, हिंजवडी, पुणे येथे मोफत साइट व्हिजिट बुक करा. सेल्स गॅलरी आठवड्याचे ७ दिवस सकाळी ९ ते रात्री ८ वाजेपर्यंत उघडी असते."),
-        "url": `${SITE_URL}/blue-ridge-hinjewadi-site-visit`
+        "url": `${SITE_URL}/paranjape-blue-ridge-site-visit-booking-and-sales-gallery`
       },
       {
         "@type": "HowToStep",

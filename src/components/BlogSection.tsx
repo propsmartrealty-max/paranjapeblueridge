@@ -62,7 +62,7 @@ export default function BlogSection() {
                 <span className="group-hover:translate-x-1.5 transition-transform">→</span>
               </div>
               <div className="luminous-line-gold absolute bottom-0 left-0 right-0 opacity-0 group-hover:opacity-40 transition-opacity"></div>
-            </Link>
+            </a>
           </motion.div>
         ))}
       </div>

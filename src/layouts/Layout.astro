@@ -1,6 +1,7 @@
 ---
 import '../styles/globals.css';
 import Navbar from '../components/Navbar';
+import PopularSearches from '../components/PopularSearches';
 import FooterSEO from '../components/FooterSEO';
 import StickyCTA from '../components/StickyCTA';
 import ExitIntentPopup from '../components/ExitIntentPopup';
@@ -248,6 +249,7 @@ const hasMarathiCounterpart = BILINGUAL_PATHS.has(pathname);
     </main>
 
     <ParanjapeEcosystemInjector />
+    <PopularSearches client:visible />
     <FooterSEO client:visible />
     <StickyCTA client:load />
     <ExitIntentPopup client:idle />

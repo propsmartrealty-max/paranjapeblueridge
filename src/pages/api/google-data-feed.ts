@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { projects } from '../../data/master-data';
 
-export const prerender = false;
+export const prerender = true;
 
 export const GET: APIRoute = async () => {
   const now = new Date().toISOString();
