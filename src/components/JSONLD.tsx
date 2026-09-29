@@ -449,7 +449,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
     ? t(`${projectData.name} - Official Sales Gallery`, `${projectData.name} - अधिकृत सेल्स गॅलरी`)
     : slug && (slug.includes('wakad') || slug.includes('baner') || slug.includes('balewadi') || slug.includes('punawale'))
       ? t(`Paranjape Schemes - Local Real Estate Gallery (${regionName} Region)`, `परंजपे स्कीम्स - स्थानिक रिअल इस्टेट गॅलरी (${regionName} विभाग)`)
-      : t("Paranjape Schemes - Sovereign Sales Gallery", "परंजपे स्कीम्स - सोव्हरेन सेल्स गॅलरी");
+      : t("Paranjape Blue Ridge Hinjewadi Pune", "परांजपे ब्लू रिज हिंजवडी पुणे");
 
   const realEstateAgentSchema = {
     "@type": ["LocalBusiness", "RealEstateAgent", "Residence", "ApartmentComplex"],
