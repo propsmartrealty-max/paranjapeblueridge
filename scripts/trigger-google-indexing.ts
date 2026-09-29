@@ -16,21 +16,21 @@ async function runGoogleIndexing() {
   console.log("🚀 Starting Google Indexing API Intelligent State Machine...");
   
   function getCredentials() {
-    const rawEnv = process.env.GCP_SERVICE_ACCOUNT || process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-    if (rawEnv) {
-      try {
-        return typeof rawEnv === 'string' ? JSON.parse(rawEnv) : rawEnv;
-      } catch (e) {
-        console.error('❌ Failed to parse GCP/Google service account env var:', e);
-      }
-    }
-
     const localPath = path.join(process.cwd(), 'scripts/google-service-account.json');
     if (fs.existsSync(localPath)) {
       try {
         return JSON.parse(fs.readFileSync(localPath, 'utf-8'));
       } catch (e) {
         console.error('❌ Failed to read scripts/google-service-account.json:', e);
+      }
+    }
+
+    const rawEnv = process.env.GCP_SERVICE_ACCOUNT || process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    if (rawEnv) {
+      try {
+        return typeof rawEnv === 'string' ? JSON.parse(rawEnv) : rawEnv;
+      } catch (e) {
+        console.error('❌ Failed to parse GCP/Google service account env var:', e);
       }
     }
 
