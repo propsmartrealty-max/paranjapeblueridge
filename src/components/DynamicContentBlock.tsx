@@ -13,6 +13,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
     switch (silo) {
       case 'pune-macro':
       case 'west-pune-macro':
+      case 'pune-dominance':
         return (
           <>
             <h3 className="text-2xl font-serif text-[#070D1A] mb-4">Understanding the Pune Real Estate Market Landscape</h3>
@@ -44,30 +45,30 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                     <th className="px-6 py-4">Eastern Corridor (Kharadi/Hadapsar)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Primary Tech Hubs</td>
-                    <td className="px-6 py-4 text-emerald-400">Rajiv Gandhi Infotech Park (Phase 1, 2 & 3), Blue Ridge SEZ</td>
+                    <td className="px-6 py-4 text-emerald-700">Rajiv Gandhi Infotech Park (Phase 1, 2 & 3), Blue Ridge SEZ</td>
                     <td className="px-6 py-4">EON Free Zone, World Trade Center, Magarpatta City</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Average Rental Yield</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">4.5% - 5.5% (High Cashflow)</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">4.5% - 5.5% (High Cashflow)</td>
                     <td className="px-6 py-4">3.8% - 4.5% (Moderate Cashflow)</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Avg. Capital Appreciation</td>
-                    <td className="px-6 py-4 text-emerald-400">12% - 15% YoY (Metro Proximity Boost)</td>
+                    <td className="px-6 py-4 text-emerald-700">12% - 15% YoY (Metro Proximity Boost)</td>
                     <td className="px-6 py-4">8% - 11% YoY</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Mass Transit Line</td>
-                    <td className="px-6 py-4 text-emerald-400">Pune Metro Line 3 (Hinjewadi-Shivajinagar Elevated)</td>
+                    <td className="px-6 py-4 text-emerald-700">Pune Metro Line 3 (Hinjewadi-Shivajinagar Elevated)</td>
                     <td className="px-6 py-4">Pune Metro Line 2 Extension (Ramwadi-Kharadi)</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Ecosystem Integration</td>
-                    <td className="px-6 py-4 text-emerald-400">138-Acre Integrated Township model (School, Golf inside)</td>
+                    <td className="px-6 py-4 text-emerald-700">138-Acre Integrated Township model (School, Golf inside)</td>
                     <td className="px-6 py-4">Predominantly Standalone high-rises or scattered layouts</td>
                   </tr>
                 </tbody>
@@ -103,7 +104,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                     <th className="px-6 py-4">VTP Blue Waters</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Total Land Area</td>
                     <td className="px-6 py-4">138 Acres</td>
@@ -113,35 +114,35 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Location Zone</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">Hinjewadi Phase 1 (Prime)</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">Hinjewadi Phase 1 (Prime)</td>
                     <td className="px-6 py-4">Marunji (Outskirts)</td>
                     <td className="px-6 py-4">Hinjewadi Phase 3</td>
                     <td className="px-6 py-4">Mahalunge</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">9-Hole Golf Course</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">Yes (Fully Functional)</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">Yes (Fully Functional)</td>
                     <td className="px-6 py-4">No</td>
                     <td className="px-6 py-4">No</td>
                     <td className="px-6 py-4">No</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">ICSE School Inside</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">Yes (Blue Ridge School)</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">Yes (Blue Ridge School)</td>
                     <td className="px-6 py-4">Yes (Anisha School)</td>
                     <td className="px-6 py-4">No (External only)</td>
                     <td className="px-6 py-4">No (Proposed only)</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Private Boat Club</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">Yes (Mula River Front)</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">Yes (Mula River Front)</td>
                     <td className="px-6 py-4">No</td>
                     <td className="px-6 py-4">No</td>
                     <td className="px-6 py-4">No</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Power & Water Security</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">Captive Substation + WTP</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">Captive Substation + WTP</td>
                     <td className="px-6 py-4">Shared Utility Grid</td>
                     <td className="px-6 py-4">Shared Utility Grid</td>
                     <td className="px-6 py-4">Shared Utility Grid</td>
@@ -188,24 +189,24 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                     <th className="px-6 py-4">Annual Yield %</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">2 BHK Smart Flat</td>
                     <td className="px-6 py-4">₹97.60 L - ₹1.15 Cr</td>
                     <td className="px-6 py-4">₹26,000 - ₹32,000</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">4.2% - 4.8%</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">4.2% - 4.8%</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">3 BHK Premium Flat</td>
                     <td className="px-6 py-4">₹1.25 Cr - ₹1.75 Cr</td>
                     <td className="px-6 py-4">₹38,000 - ₹48,000</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">4.5% - 5.2%</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">4.5% - 5.2%</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">4 BHK Luxury Apartment</td>
                     <td className="px-6 py-4">₹1.80 Cr - ₹2.25 Cr</td>
                     <td className="px-6 py-4">₹55,000 - ₹68,000</td>
-                    <td className="px-6 py-4 text-emerald-400 font-bold">4.8% - 5.5%</td>
+                    <td className="px-6 py-4 text-emerald-700 font-bold">4.8% - 5.5%</td>
                   </tr>
                 </tbody>
               </table>
@@ -234,7 +235,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                     <th className="px-6 py-4">Strategic Impact</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Metro Line 3 Station</td>
                     <td className="px-6 py-4">800 Meters</td>
@@ -272,6 +273,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
             </p>
           </>
         );
+      case 'branded':
       case 'township':
         return (
           <>
@@ -357,6 +359,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
             </p>
           </>
         );
+      case 'features':
       case 'ecosystem':
         return (
           <>
@@ -587,7 +590,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
                     <th className="px-6 py-4">Filing Authority</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   <tr>
                     <td className="px-6 py-4 font-bold text-[#070D1A]">Stamp Duty</td>
                     <td className="px-6 py-4">5% to 6%</td>
@@ -741,7 +744,7 @@ export default function DynamicContentBlock({ silo, title }: DynamicContentBlock
         <div className="flex items-center gap-4 text-[#B88E3E] font-bold tracking-[4px] uppercase text-[10px] mb-8">
           <BookOpen size={16} /> Semantic Market Analysis
         </div>
-        <article className="prose prose-invert prose-gold max-w-none">
+        <article className="prose prose-slate max-w-none text-slate-700">
           {renderContent()}
         </article>
       </div>
