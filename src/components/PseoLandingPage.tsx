@@ -116,6 +116,8 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img 
             src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 
+            width="1920"
+            height="1438"
             className="w-full h-full object-cover opacity-20 filter brightness-105"
             alt={`Paranjape Blue Ridge Township - ${current.title}`}
           />
@@ -223,6 +225,9 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
                         '/assets/images/ridges-hero.png'
                       }
                       alt={`${p.name} at Paranjape Blue Ridge Hinjewadi`}
+                      width="800"
+                      height="500"
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -261,19 +266,19 @@ export default function PseoLandingPage({ pageData, data }: PseoProps) {
 
                     <div className="grid grid-cols-2 gap-3 text-xs">
                       <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        <span className="block text-slate-400 text-[10px] uppercase font-mono">Carpet Area</span>
-                        <span className="font-bold text-slate-700 font-mono">{p.carpetArea}</span>
+                        <span className="block text-slate-600 text-[10px] uppercase font-mono font-bold">Carpet Area</span>
+                        <span className="font-bold text-slate-800 font-mono">{p.carpetArea}</span>
                       </div>
                       <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                        <span className="block text-slate-400 text-[10px] uppercase font-mono">Configurations</span>
-                        <span className="font-bold text-slate-700 font-mono">
+                        <span className="block text-slate-600 text-[10px] uppercase font-mono font-bold">Configurations</span>
+                        <span className="font-bold text-slate-800 font-mono">
                           {p.id === 'ridge41' ? '2 & 3 BHK' : p.id === 'promenade' ? '3 & 4 BHK' : '3, 4 & 5 BHK'}
                         </span>
                       </div>
                     </div>
 
                     <div className="space-y-2 pt-2">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-bold block">Cluster USPs:</span>
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-slate-700 font-bold block">Cluster USPs:</span>
                       {p.usp.slice(0, 2).map((uspItem, idx) => (
                         <div key={idx} className="flex items-start gap-2 text-xs text-slate-600 font-sans">
                           <CheckCircle2 size={13} className="text-[#B88E3E] shrink-0 mt-0.5" />

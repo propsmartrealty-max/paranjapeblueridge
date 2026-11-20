@@ -203,10 +203,12 @@ export default function SiteVisitBooking() {
               {/* Cab Pickup Location selector (if cab_pickup selected) */}
               {visitType === 'cab_pickup' && (
                 <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200">
-                  <label className="text-xs font-mono uppercase tracking-wider text-[#785415] font-bold block mb-2">
+                  <label htmlFor="pickup-location-select" className="text-xs font-mono uppercase tracking-wider text-[#785415] font-bold block mb-2">
                     Select Pickup Region (Pune & PCMC)
                   </label>
                   <select
+                    id="pickup-location-select"
+                    aria-label="Select Pickup Region (Pune & PCMC)"
                     value={pickupLocation}
                     onChange={(e) => setPickupLocation(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-amber-300 bg-white text-sm font-sans font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#785415]"
@@ -294,6 +296,8 @@ export default function SiteVisitBooking() {
                   </div>
                   <div>
                     <select
+                      id="site-visit-cluster-select"
+                      aria-label="Select Preferred Cluster or Township Tour"
                       value={formData.preferredCluster}
                       onChange={(e) => setFormData({ ...formData, preferredCluster: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-sm font-sans focus:outline-none focus:border-[#785415] focus:bg-white transition-all text-slate-800"

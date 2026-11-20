@@ -139,7 +139,7 @@ export default function EmiCalculator({ initialPrice = 9760000, projectName = 'P
                 onChange={(e) => setPropertyPrice(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#785415]"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <div className="flex justify-between text-[10px] font-mono text-slate-600 font-medium">
                 <span>₹ 75 L</span>
                 <span>₹ 1.85 Cr</span>
                 <span>₹ 3.00 Cr</span>
@@ -163,7 +163,7 @@ export default function EmiCalculator({ initialPrice = 9760000, projectName = 'P
                 onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#785415]"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <div className="flex justify-between text-[10px] font-mono text-slate-600 font-medium">
                 <span>10% (Min)</span>
                 <span>20% (Standard)</span>
                 <span>50%</span>
@@ -187,7 +187,7 @@ export default function EmiCalculator({ initialPrice = 9760000, projectName = 'P
                 onChange={(e) => setInterestRate(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#785415]"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <div className="flex justify-between text-[10px] font-mono text-slate-600 font-medium">
                 <span>7.5% (Prime)</span>
                 <span>8.5% (Average)</span>
                 <span>11.5%</span>
@@ -211,7 +211,7 @@ export default function EmiCalculator({ initialPrice = 9760000, projectName = 'P
                 onChange={(e) => setTenureYears(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#785415]"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <div className="flex justify-between text-[10px] font-mono text-slate-600 font-medium">
                 <span>5 Years</span>
                 <span>20 Years</span>
                 <span>30 Years</span>

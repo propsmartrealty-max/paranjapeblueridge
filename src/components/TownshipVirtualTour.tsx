@@ -135,6 +135,9 @@ export default function TownshipVirtualTour() {
                 <img
                   src={activeTab.image}
                   alt={activeTab.title}
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
                   className="w-full h-full object-cover opacity-85 hover:scale-102 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30"></div>

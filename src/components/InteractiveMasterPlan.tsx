@@ -100,6 +100,9 @@ export default function InteractiveMasterPlan() {
             <img 
               src="/assets/images/master-layout-plan-hq.jpg" 
               alt="Paranjape Blue Ridge 138-Acre Official Master Layout Plan"
+              width="1800"
+              height="1200"
+              loading="lazy"
               className={`absolute inset-0 w-full h-full object-contain md:object-cover object-center transition-all duration-700 ${viewMode === 'blueprint' ? 'opacity-95 contrast-110 filter brightness-105' : 'opacity-40 filter contrast-125 group-hover:opacity-65'}`}
             />
             {viewMode === 'hybrid' && (
@@ -276,6 +279,8 @@ export default function InteractiveMasterPlan() {
                 <img
                   src="/assets/images/master-layout-plan-hq.jpg"
                   alt="Paranjape Blue Ridge 138-Acre Official Master Layout Plan"
+                  width="1800"
+                  height="1200"
                   className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
                 />
               </div>

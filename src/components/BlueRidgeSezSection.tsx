@@ -37,6 +37,9 @@ export default function BlueRidgeSezSection() {
               <img 
                 src="/assets/images/pscl-blue-ridge-sez.webp" 
                 alt="Blue Ridge IT / ITES Special Economic Zone Hinjewadi Phase 1"
+                width="2048"
+                height="1012"
+                loading="lazy"
                 className="w-full h-80 sm:h-96 object-cover rounded-2xl"
               />
               <div className="p-4 flex items-center justify-between text-xs font-mono text-slate-700 border-t border-slate-200/80 mt-2">

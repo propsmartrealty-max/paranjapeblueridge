@@ -56,6 +56,8 @@ export default function Navbar() {
               <img 
                 src="/assets/images/paranjape-official-logo.png" 
                 alt="Paranjape Schemes Official Logo" 
+                width="160"
+                height="32"
                 className="h-7 sm:h-8 w-auto object-contain shrink-0"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = '/assets/logos/paranjape-schemes.png';
@@ -65,6 +67,8 @@ export default function Navbar() {
               <img 
                 src="/assets/images/blue-ridge-official-logo.png" 
                 alt="Blue Ridge Official Logo" 
+                width="41"
+                height="32"
                 className="h-7 sm:h-8 w-auto object-contain shrink-0"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = '/assets/logos/blue-ridge.png';
@@ -220,12 +224,16 @@ export default function Navbar() {
             <img 
               src="/assets/images/paranjape-official-logo.png" 
               alt="Paranjape Schemes" 
+              width="120"
+              height="24"
               className="h-6 w-auto object-contain shrink-0"
             />
             <div className="h-4 w-px bg-slate-300 shrink-0"></div>
             <img 
               src="/assets/images/blue-ridge-official-logo.png" 
               alt="Blue Ridge" 
+              width="31"
+              height="24"
               className="h-6 w-auto object-contain shrink-0"
             />
           </div>

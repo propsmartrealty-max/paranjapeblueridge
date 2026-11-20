@@ -71,10 +71,11 @@ export default function HomePageClient() {
 
       {/* Hidden button for navbar to trigger modal */}
       <button 
+        type="button"
         data-enquiry-trigger 
         onClick={() => handleOpenModal('Master Township Inquiry')} 
         className="hidden" 
-        aria-hidden="true"
+        aria-label="Open Master Township Inquiry Modal"
       />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -88,6 +89,8 @@ export default function HomePageClient() {
           <img 
             src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 
             alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township"
+            width="1920"
+            height="1438"
             className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
             loading="eager"
             decoding="sync"
@@ -225,6 +228,8 @@ export default function HomePageClient() {
                 <img 
                   src="/assets/images/pscl-blue-ridge-township-skyline.jpg" 
                   alt="Blue Ridge Township Aerial Panorama"
+                  width="2500"
+                  height="1874"
                   className="w-full h-96 object-cover rounded-2xl"
                   loading="lazy"
                 />
@@ -304,6 +309,8 @@ export default function HomePageClient() {
                 <img 
                   src="/assets/images/pscl-blue-ridge-golf.webp" 
                   alt="Blue Ridge 9-Hole Executive Golf Course & Marina"
+                  width="2400"
+                  height="1500"
                   className="w-full h-80 sm:h-96 object-cover rounded-2xl"
                   loading="lazy"
                 />

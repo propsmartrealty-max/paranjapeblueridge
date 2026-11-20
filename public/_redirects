@@ -57,3 +57,27 @@
 /explore/baner /flats-near-baner-and-balewadi-high-street-pune 301
 /explore/* /hinjewadi-micro-market 301
 
+# Legacy CMS & WordPress 404 Prevention
+/about /why-paranjape 301
+/about-us /why-paranjape 301
+/contact-us /#enquiry 301
+/location /#location 301
+/gallery /#lifestyle 301
+/amenities-and-facilities /#lifestyle 301
+/privacy /privacy-policy 301
+/terms-and-conditions /terms 301
+/disclaimer-policy /disclaimer 301
+/project/* /blue-ridge/ongoing-projects 301
+/projects/* /blue-ridge/ongoing-projects 301
+/property/* /blue-ridge/ongoing-projects 301
+/properties/* /blue-ridge/ongoing-projects 301
+/tag/* /insights 301
+/category/* /insights 301
+/author/* /insights 301
+/wp-content/* / 301
+/wp-includes/* / 301
+/wp-json/* / 301
+/blog /insights 301
+/blog/* /insights 301
+
+

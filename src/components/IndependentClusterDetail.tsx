@@ -111,6 +111,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
           <img
             src={cluster.heroImage}
             alt={`${cluster.name} - Paranjape Blue Ridge Hinjewadi Phase 1`}
+            width="1920"
+            height="1080"
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover scale-105 opacity-25 filter saturate-115 brightness-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-[#FAF9F6]/90 to-transparent"></div>
@@ -260,6 +264,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src={cluster.gallery[1] || cluster.heroImage}
                   alt={`${cluster.name} Architectural Facade`}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-80 sm:h-96 object-cover rounded-2xl transition-transform duration-700 group-hover/facade:scale-[1.02]"
                 />
                 <div className="absolute inset-3 bg-black/20 opacity-0 group-hover/facade:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
@@ -321,6 +329,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src="/assets/images/master-layout-plan-hq.jpg"
                   alt={`Master Layout Plan showing ${cluster.name} in Paranjape Blue Ridge`}
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto max-h-[480px] object-contain rounded-2xl mx-auto transition-transform duration-500 group-hover/masterplan:scale-[1.01]"
                 />
                 <div className="p-3 text-center text-xs font-mono text-slate-600 border-t border-slate-200/80 mt-2 flex items-center justify-between">
@@ -413,6 +425,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src={currentPlan.planImage2D}
                   alt={`${cluster.name} - ${currentPlan.configTitle}`}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-[420px] w-auto max-w-full object-contain transition-transform duration-500 group-hover/blueprint:scale-[1.02]"
                 />
                 
@@ -676,8 +692,11 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src={imgSrc}
                   alt={`${cluster.name} - Official Photograph ${idx + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/photo:scale-105"
+                  width="600"
+                  height="400"
                   loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover/photo:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-end p-4">
                   <div className="flex items-center justify-between w-full text-white">
@@ -907,6 +926,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src={currentPlan.planImage2D}
                   alt={`${currentPlan.configTitle} Blueprint`}
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
                 />
               </div>
@@ -978,6 +1001,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <img
                   src="/assets/images/master-layout-plan-hq.jpg"
                   alt="Official Paranjape Blue Ridge 138-Acre Master Layout Plan"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
                 />
               </div>
@@ -1031,6 +1058,10 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
               <img
                 src={cluster.gallery[galleryModalIndex]}
                 alt={`${cluster.name} - Photo ${galleryModalIndex + 1}`}
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
                 className="max-h-[80vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
               />
 
@@ -1050,11 +1081,20 @@ export default function IndependentClusterDetail({ clusterSlug }: IndependentClu
                 <button
                   key={tIdx}
                   onClick={() => setGalleryModalIndex(tIdx)}
+                  aria-label={`View photo ${tIdx + 1} of ${cluster.name}`}
                   className={`w-14 h-10 rounded-lg overflow-hidden border-2 transition-all cursor-pointer flex-shrink-0 ${
                     galleryModalIndex === tIdx ? 'border-[#DFC28D] scale-105' : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={thumb} alt="" className="w-full h-full object-cover" />
+                  <img 
+                    src={thumb} 
+                    alt={`${cluster.name} Thumbnail ${tIdx + 1}`} 
+                    width="56" 
+                    height="40" 
+                    loading="lazy" 
+                    decoding="async"
+                    className="w-full h-full object-cover" 
+                  />
                 </button>
               ))}
             </div>

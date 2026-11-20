@@ -16,12 +16,18 @@ export default function FooterSEO() {
               <img 
                 src="/assets/images/paranjape-official-logo.png" 
                 alt="Paranjape Schemes" 
+                width="120"
+                height="24"
+                loading="lazy"
                 className="h-6 w-auto object-contain shrink-0"
               />
               <div className="h-4 w-px bg-slate-200 shrink-0"></div>
               <img 
                 src="/assets/images/blue-ridge-official-logo.png" 
                 alt="Paranjape Blue Ridge" 
+                width="31"
+                height="24"
+                loading="lazy"
                 className="h-6 w-auto object-contain shrink-0"
               />
             </div>
@@ -65,15 +71,15 @@ export default function FooterSEO() {
 
           {/* Column 3: Keyword Matrix Anchor Links */}
           <div className="lg:col-span-1 flex flex-col">
-            <h4 className="text-[#070D1A] text-xs uppercase tracking-widest mb-4 font-bold border-b border-slate-200 pb-2 font-mono">
+            <h3 className="text-[#070D1A] text-xs uppercase tracking-widest mb-4 font-bold border-b border-slate-200 pb-2 font-mono">
               Paranjape Schemes & Blue Ridge Keywords
-            </h4>
-            <div className="flex flex-wrap gap-x-3 gap-y-2 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
+            </h3>
+            <div className="flex flex-wrap gap-x-2 gap-y-1.5 max-h-56 overflow-y-auto pr-2 custom-scrollbar">
               {displayedLinks.map((url) => (
                 <a
                   key={url.slug}
                   href={`/${url.slug}`}
-                  className="text-slate-600 hover:text-[#785415] transition-colors text-[10px] uppercase tracking-wider font-semibold no-underline"
+                  className="text-slate-600 hover:text-[#785415] transition-colors text-[10px] uppercase tracking-wider font-semibold no-underline py-1 px-1.5 rounded inline-block"
                 >
                   {url.title}
                 </a>
@@ -84,28 +90,28 @@ export default function FooterSEO() {
         </div>
 
         {/* Absolute bottom SEO string & Sitemap Link */}
-        <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-[10px] text-slate-600 gap-4 font-sans font-medium">
+        <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-600 gap-4 font-sans font-medium">
           <p className="text-center sm:text-left">
             Paranjape Blue Ridge • Hinjewadi Phase 1, Pune • 138-Acre Integrated Township • MahaRERA Certified
           </p>
-          <div className="flex gap-3 sm:gap-4 shrink-0 flex-wrap justify-center font-mono">
-            <a href="/blue-ridge-public-school" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">ICSE School</a>
-            <span className="text-slate-300">|</span>
-            <a href="/blue-ridge-golf-course" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">9-Hole Golf</a>
-            <span className="text-slate-300">|</span>
-            <a href="/blue-ridge-boat-club" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Boat Club</a>
-            <span className="text-slate-300">|</span>
-            <a href="/blue-ridge-sez-tech-park" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">IT SEZ</a>
-            <span className="text-slate-300">|</span>
-            <a href="/hinjewadi-micro-market" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Hinjewadi Guide</a>
-            <span className="text-slate-300">|</span>
-            <a href="/blue-ridge/ongoing-projects" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Active Clusters</a>
-            <span className="text-slate-300">|</span>
-            <a href="/construction-updates" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Construction</a>
-            <span className="text-slate-300">|</span>
-            <a href="/nri-investment" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">NRI Desk</a>
-            <span className="text-slate-300">|</span>
-            <a href="/directory" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline">Directory</a>
+          <div className="flex gap-1 sm:gap-2 shrink-0 flex-wrap justify-center font-mono">
+            <a href="/blue-ridge-public-school" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">ICSE School</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/blue-ridge-golf-course" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">9-Hole Golf</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/blue-ridge-boat-club" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Boat Club</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/blue-ridge-sez-tech-park" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">IT SEZ</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/hinjewadi-micro-market" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Hinjewadi Guide</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/blue-ridge/ongoing-projects" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Active Clusters</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/construction-updates" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Construction</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/nri-investment" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">NRI Desk</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/directory" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Directory</a>
           </div>
         </div>
 
@@ -114,12 +120,12 @@ export default function FooterSEO() {
           <p className="text-center sm:text-left max-w-2xl leading-relaxed">
             <strong>MahaRERA Registration Details:</strong> Promenade Residences: <strong>P52100055581</strong> | The Altius: <strong>P52100078116</strong> | Ridges 41: <strong>P52100000054</strong>. Project details available at <a href="https://maharera.maharerait.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#785415] underline">maharera.maharerait.gov.in</a>. Managed by authorized channel partner Propsmart Realty. Conceptual images for illustration only.
           </p>
-          <div className="flex gap-3 shrink-0 font-mono text-[9px] uppercase tracking-wider">
-            <a href="/privacy-policy" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Privacy Policy</a>
-            <span>•</span>
-            <a href="/terms" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Terms & Conditions</a>
-            <span>•</span>
-            <a href="/disclaimer" className="text-slate-600 hover:text-[#785415] transition-colors no-underline">Disclaimer</a>
+          <div className="flex gap-2 shrink-0 font-mono text-[10px] uppercase tracking-wider">
+            <a href="/privacy-policy" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Privacy Policy</a>
+            <span className="self-center">•</span>
+            <a href="/terms" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Terms & Conditions</a>
+            <span className="self-center">•</span>
+            <a href="/disclaimer" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Disclaimer</a>
           </div>
         </div>
 

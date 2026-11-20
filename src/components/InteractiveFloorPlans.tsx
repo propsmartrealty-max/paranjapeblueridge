@@ -181,8 +181,10 @@ export default function InteractiveFloorPlans() {
                   <img 
                     src={activeTab.image} 
                     alt={`Architectural Floor Plan layout for ${activeTab.name} - Paranjape Blue Ridge Hinjewadi`}
+                    width="1200"
+                    height="800"
                     className="max-h-[420px] w-auto max-w-full object-contain mx-auto transition-transform duration-500 group-hover/canvas:scale-[1.02]"
-                    loading="eager"
+                    loading="lazy"
                   />
                   {/* Subtle hover prompt */}
                   <div className="absolute inset-0 bg-navy/20 opacity-0 group-hover/canvas:opacity-100 transition-opacity flex items-center justify-center pointer-events-none rounded-2xl">
@@ -273,6 +275,8 @@ export default function InteractiveFloorPlans() {
                 <img
                   src={activeTab.image}
                   alt={`${activeTab.name} Architectural Blueprint`}
+                  width="1200"
+                  height="800"
                   className="max-h-[75vh] w-auto max-w-full object-contain select-none pointer-events-none"
                 />
               </div>

@@ -35,6 +35,9 @@ export default function BlogSection() {
                   <img 
                     src={article.image} 
                     alt={`Paranjape Blue Ridge Real Estate Insights: ${article.title}`}
+                    width="800"
+                    height="450"
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70"></div>

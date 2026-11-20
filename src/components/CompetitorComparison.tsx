@@ -121,8 +121,10 @@ export default function CompetitorComparison({ defaultCompetitorId }: Competitor
 
         {/* Competitor Selector Dropdown */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-500 font-semibold font-sans">Compare Vs:</span>
+          <label htmlFor="competitor-select" className="text-xs text-slate-500 font-semibold font-sans">Compare Vs:</label>
           <select
+            id="competitor-select"
+            aria-label="Compare Paranjape Blue Ridge against competing township"
             value={selectedCompetitorId}
             onChange={e => setSelectedCompetitorId(e.target.value)}
             className="bg-slate-50 border border-slate-300 text-[#070D1A] font-bold text-xs rounded-xl p-2.5 outline-none cursor-pointer hover:border-[#B88E3E]"

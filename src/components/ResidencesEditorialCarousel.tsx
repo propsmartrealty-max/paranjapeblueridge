@@ -125,6 +125,9 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
                   <img
                     src={cluster.heroImage}
                     alt={`${cluster.name} - Paranjape Blue Ridge Hinjewadi`}
+                    width="1200"
+                    height="800"
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   

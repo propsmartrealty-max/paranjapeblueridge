@@ -91,6 +91,8 @@ export default function TrustBadgesSection({ clusterId = 'all' }: TrustBadgesSec
                     <img 
                       src={project.qrImage} 
                       alt={`MahaRERA QR Code for ${project.name} - ${project.number}`} 
+                      width="80"
+                      height="80"
                       className="w-20 h-20 object-contain rounded-md"
                       loading="lazy"
                     />

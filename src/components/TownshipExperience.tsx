@@ -62,6 +62,9 @@ export default function TownshipExperience() {
         <img 
           src="/assets/images/real-township-day-2.jpg"
           alt="Blue Ridge Township lifestyle amenities - Boat Club, Golf Course, and Riverfront living in Hinjewadi"
+          width="1440"
+          height="960"
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/60 to-transparent"></div>

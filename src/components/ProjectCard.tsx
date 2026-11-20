@@ -44,6 +44,9 @@ export default function ProjectCard({ project, reverse }: ProjectCardProps) {
             <img 
               src={imageSrc} 
               alt={`Paranjape Blue Ridge ${project.name} - Luxury ${bhkTypes.join(', ')} Apartments in Hinjewadi Phase 1`}
+              width="800"
+              height="600"
+              loading="lazy"
               className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
             />
             

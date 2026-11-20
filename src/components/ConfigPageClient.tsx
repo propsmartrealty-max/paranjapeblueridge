@@ -63,6 +63,10 @@ export default function ConfigPageClient({ project, config: configuration }: Pro
               <img 
                 src={configuration.image || (configuration.slug.includes('3') ? '/assets/images/unit-plan-3bhk.png' : '/assets/images/floor-plan-4bhk.png')} 
                 alt={`${configuration.title} Blueprint Paranjape Blue Ridge ${project.name}`}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 className="max-h-[360px] max-w-full object-contain"
               />
             </div>

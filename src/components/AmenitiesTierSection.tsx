@@ -137,6 +137,9 @@ export default function AmenitiesTierSection() {
                       <img
                         src={item.image}
                         alt={item.title}
+                        width="800"
+                        height="500"
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-3 left-3 glass-pill px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest text-[#070D1A] font-bold">
@@ -178,6 +181,9 @@ export default function AmenitiesTierSection() {
                     <img
                       src={item.image}
                       alt={item.title}
+                      width="800"
+                      height="500"
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 glass-pill px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-widest text-[#785415] font-bold">

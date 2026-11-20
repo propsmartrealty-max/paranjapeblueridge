@@ -324,11 +324,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         Phone {countryCode !== '+91' && <span className="text-gold font-normal normal-case tracking-normal ml-1">(NRI)</span>}
                       </label>
                       <div className="flex gap-2">
+                        <label htmlFor="enquiry-country-code" className="sr-only">Country Dialing Code</label>
                         <select
                           id="enquiry-country-code"
+                          name="enquiry-country-code"
                           value={countryCode}
                           onChange={e => setCountryCode(e.target.value)}
-                          aria-label="Country code"
+                          aria-label="Country Dialing Code"
                           className="px-3 py-3.5 lux-input rounded-2xl text-warm-white focus:border-gold outline-none text-xs font-bold shrink-0 cursor-pointer"
                         >
                           <option value="+91">🇮🇳 +91</option>
@@ -387,6 +389,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <label htmlFor="enquiry-bhk" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Interested Configuration</label>
                       <select 
                         id="enquiry-bhk"
+                        name="enquiry-bhk"
+                        aria-label="Select interested configuration"
                         required
                         value={formData.bhk}
                         onChange={e => setFormData({...formData, bhk: e.target.value})}
@@ -403,6 +407,8 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       <label htmlFor="enquiry-budget" className="block text-xs text-gold uppercase font-bold tracking-widest ml-1">Approximate Budget</label>
                       <select 
                         id="enquiry-budget"
+                        name="enquiry-budget"
+                        aria-label="Select approximate budget"
                         required
                         value={formData.budget}
                         onChange={e => setFormData({...formData, budget: e.target.value})}

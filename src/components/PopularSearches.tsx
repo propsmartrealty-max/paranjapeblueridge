@@ -26,7 +26,7 @@ export default function PopularSearches() {
             <div key={idx} className="space-y-4">
               <div className="flex items-center gap-2 text-gold">
                  <section.icon size={15} />
-                 <h4 className="text-[10px] font-bold uppercase tracking-widest font-mono text-warm-white/90">{section.title}</h4>
+                 <h3 className="text-[10px] font-bold uppercase tracking-widest font-mono text-warm-white/90">{section.title}</h3>
               </div>
               <ul className="space-y-2.5 list-none p-0 m-0">
                 {section.links.map((link, lIdx) => (
@@ -46,7 +46,7 @@ export default function PopularSearches() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-           <p className="text-[10px] text-slate-400 uppercase tracking-widest font-mono font-medium">
+           <p className="text-[10px] text-slate-600 uppercase tracking-widest font-mono font-medium">
              Total Indexed Sovereign Nodes: <span className="text-gold font-bold">{totalCount.toLocaleString()}+ High-Intent Paths</span>
            </p>
            <div className="flex gap-3">

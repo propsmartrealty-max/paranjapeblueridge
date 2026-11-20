@@ -142,9 +142,9 @@ export default function ParanjapeEcosystemInjector() {
                 <Building2 size={18} />
               </div>
               <div>
-                <h4 className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono">
+                <h3 className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono">
                   Paranjape Blue Ridge Township Directory & Infrastructure Guides
-                </h4>
+                </h3>
                 <p className="text-slate-600 text-[11px] mt-0.5 font-sans font-medium">
                   Verified topical index of Paranjape Blue Ridge residential clusters, IT SEZ infrastructure, and pricing guides.
                 </p>
@@ -158,9 +158,9 @@ export default function ParanjapeEcosystemInjector() {
           <div className="p-6 md:p-8 bg-white border-t border-slate-200">
             {/* Editorial Overview */}
             <div className="mb-8 pb-6 border-b border-slate-100">
-              <h5 className="text-[#070D1A] text-xs font-bold mb-2 uppercase tracking-wider font-mono">
+              <div className="text-[#070D1A] text-xs font-bold mb-2 uppercase tracking-wider font-mono">
                 Paranjape Schemes (Construction) Ltd Portfolio & Blue Ridge Authority
-              </h5>
+              </div>
               <p className="text-xs text-slate-700 leading-relaxed text-justify font-sans font-medium">
                 <strong>Paranjape Schemes (Construction) Limited (PSCL)</strong> is one of Western India's most distinguished real estate developers with over 35 years of engineering excellence, delivering 20M+ sq. ft. of residential and commercial spaces for 75,000+ happy residents across Pune, Mumbai, and Bengaluru. Its flagship development, <strong>Paranjape Blue Ridge in Hinjewadi Phase 1</strong>, is a landmark 138-acre integrated sovereign township comprising premium residential enclaves like <strong>Promenade Residences (3 & 4 BHK Riverfront)</strong>, <strong>The Altius Riverside (3 & 4 BHK Golf Facing)</strong>, and <strong>Ridges 41 (Smart High-Rise)</strong>, supported by an operational 3M+ sq. ft. IT/ITES SEZ, the ICSE Blue Ridge Public School, an executive 9-hole golf course, and Pune's first private residential boat club.
               </p>
@@ -170,10 +170,10 @@ export default function ParanjapeEcosystemInjector() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-8">
               {ecosystemCategories.map((category, idx) => (
                 <div key={idx} className="space-y-3">
-                  <h6 className="text-[#070D1A] text-xs font-bold font-mono uppercase tracking-wider pb-1.5 border-b border-slate-200 flex items-center justify-between">
+                  <div className="text-[#070D1A] text-xs font-bold font-mono uppercase tracking-wider pb-1.5 border-b border-slate-200 flex items-center justify-between">
                     <span>{category.title}</span>
                     <span className="text-[10px] text-slate-500 font-normal">({category.keywords.length})</span>
-                  </h6>
+                  </div>
                   <ul className="space-y-1.5 list-none p-0 m-0">
                     {category.keywords.map((kw, kIdx) => {
                       const href = resolveKeywordHref(kw);
