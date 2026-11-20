@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../data/master-data';
+import { curatedPseoUrls } from '../data/seo-matrix';
+import { getAllPosts } from '../utils/mdxUtils';
+
+export const prerender = true;
+
+const mdxPosts = getAllPosts();
+---
+
+<Layout
+  title="Paranjape Blue Ridge HTML Sitemap | Complete Township Index 2026"
+  description="Official HTML sitemap for Paranjape Blue Ridge Hinjewadi, Pune. Explore all residential clusters, floor plans, pricing, MahaRERA registrations, and real estate insights."
+  pathname="/html-sitemap"
+>
+  <div class="container mx-auto px-4 sm:px-6 py-20 max-w-7xl">
+    <div class="mb-12 border-b border-slate-200 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-[#785415] text-[11px] font-mono uppercase tracking-wider font-bold mb-4">
+        <span>Google Crawl Architecture • 100% Canonical Index</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-[#070D1A] mb-4">
+        Paranjape Blue Ridge Master Sitemap
+      </h1>
+      <p class="text-slate-700 max-w-3xl leading-relaxed font-sans font-medium">
+        Comprehensive architectural index of all canonical pages, active residential enclaves, configuration blueprints, MahaRERA compliance disclosures, and Pune real estate intelligence across the 138-acre township ecosystem.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- 1. Active Residential Enclaves -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <h2 class="text-lg font-serif font-bold text-[#070D1A] flex items-center justify-between border-b border-slate-100 pb-3">
+          <span>Residential Clusters</span>
+          <span class="text-xs font-mono text-[#785415]">Phase 1</span>
+        </h2>
+        <ul class="space-y-2 text-xs font-sans">
+          {projects.map((p) => (
+            <li class="space-y-1">
+              <a href={`/${p.slug}`} class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+                {p.name} — {p.price}
+              </a>
+              <span class="text-[10px] font-mono text-slate-500 block">MahaRERA: {p.reraNumber}</span>
+              {p.configurations && (
+                <ul class="pl-3 border-l-2 border-amber-200 space-y-1 mt-1">
+                  {p.configurations.map((c) => (
+                    <li>
+                      <a href={`/${p.slug}/${c.slug}`} class="text-slate-600 hover:text-[#785415] transition-colors block">
+                        {c.title} ({c.carpetArea || p.carpetArea})
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+          <li class="pt-2 border-t border-slate-100">
+            <a href="/blue-ridge/ongoing-projects" class="font-bold text-[#785415] hover:underline block">
+              View All Ongoing Projects Portfolio &rarr;
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 2. Township Pillars & Infrastructure -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <h2 class="text-lg font-serif font-bold text-[#070D1A] flex items-center justify-between border-b border-slate-100 pb-3">
+          <span>Township Infrastructure</span>
+          <span class="text-xs font-mono text-[#785415]">138 Acres</span>
+        </h2>
+        <ul class="space-y-2.5 text-xs font-sans">
+          <li>
+            <a href="/blue-ridge-public-school" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Blue Ridge Public School (ICSE)
+            </a>
+            <span class="text-[10px] text-slate-500 block">Co-ed campus inside township perimeter</span>
+          </li>
+          <li>
+            <a href="/blue-ridge-golf-course" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              9-Hole Professional Golf Course
+            </a>
+            <span class="text-[10px] text-slate-500 block">Driving range, putting greens & The Cliff clubhouse</span>
+          </li>
+          <li>
+            <a href="/blue-ridge-boat-club" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Private Boat Club & Marina
+            </a>
+            <span class="text-[10px] text-slate-500 block">Mula River kayaking, marina promenade & dining</span>
+          </li>
+          <li>
+            <a href="/blue-ridge-sez-tech-park" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Blue Ridge IT/ITES SEZ
+            </a>
+            <span class="text-[10px] text-slate-500 block">3M+ sq. ft. Grade-A walk-to-work tech park</span>
+          </li>
+          <li>
+            <a href="/hinjewadi-micro-market" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Hinjewadi Infrastructure & Metro 3
+            </a>
+            <span class="text-[10px] text-slate-500 block">Metro Line 3 station (800m) & Mahalunge bridge</span>
+          </li>
+          <li>
+            <a href="/why-paranjape" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Why Paranjape Schemes
+            </a>
+            <span class="text-[10px] text-slate-500 block">35+ years developer track record, 50,000+ homes</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. Buyer & Investor Tools -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <h2 class="text-lg font-serif font-bold text-[#070D1A] flex items-center justify-between border-b border-slate-100 pb-3">
+          <span>Buyer & NRI Concierge</span>
+          <span class="text-xs font-mono text-[#785415]">Advisory</span>
+        </h2>
+        <ul class="space-y-2.5 text-xs font-sans">
+          <li>
+            <a href="/nri-investment" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              NRI Real Estate Investment Desk
+            </a>
+            <span class="text-[10px] text-slate-500 block">FEMA, RBI & repatriation advisory for global Indians</span>
+          </li>
+          <li>
+            <a href="/construction-updates" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Live Construction Updates & Milestones
+            </a>
+            <span class="text-[10px] text-slate-500 block">Tower-by-tower progress & photographic reports</span>
+          </li>
+          <li>
+            <a href="/directory" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Master Property Directory
+            </a>
+            <span class="text-[10px] text-slate-500 block">Hierarchical index of township configurations</span>
+          </li>
+          <li>
+            <a href="/insights" class="font-bold text-[#070D1A] hover:text-[#785415] transition-colors block">
+              Real Estate Market Insights
+            </a>
+            <span class="text-[10px] text-slate-500 block">Price appreciation forecasts & rental yields</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 4. Programmatic High-Intent Search Silos (All 74 URLs) -->
+    <div class="mt-12 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 gap-2">
+        <h2 class="text-xl font-serif font-bold text-[#070D1A]">
+          Hinjewadi & West Pune Programmatic Search Index
+        </h2>
+        <span class="text-xs font-mono font-bold text-[#785415]">{curatedPseoUrls.length} Targeted Landings</span>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {curatedPseoUrls.map((item) => (
+          <a
+            href={`/${item.slug}`}
+            class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-[#B88E3E] text-slate-700 hover:text-[#785415] transition-all text-xs font-medium block leading-tight no-underline"
+          >
+            {item.title}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- 5. Editorial Intelligence & Research Papers -->
+    <div class="mt-8 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+      <h2 class="text-xl font-serif font-bold text-[#070D1A] border-b border-slate-200 pb-4">
+        Editorial Insights & Infrastructure Papers
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {mdxPosts.map((post) => (
+          <a
+            href={`/insights/${post.slug}`}
+            class="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-[#B88E3E] text-slate-800 hover:text-[#785415] transition-all text-xs font-semibold block leading-snug no-underline"
+          >
+            {post.title}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- 6. Legal, Statutory & Machine-Readable Feeds -->
+    <div class="mt-8 pt-8 border-t border-slate-200 flex flex-wrap gap-4 text-xs font-mono text-slate-600 justify-between items-center">
+      <div class="flex gap-4 flex-wrap">
+        <a href="/privacy-policy" class="hover:text-[#785415]">Privacy Policy</a>
+        <span>•</span>
+        <a href="/terms" class="hover:text-[#785415]">Terms & Conditions</a>
+        <span>•</span>
+        <a href="/disclaimer" class="hover:text-[#785415]">Legal Disclaimer</a>
+      </div>
+      <div class="flex gap-4 flex-wrap text-[11px]">
+        <a href="/sitemap-index.xml" class="text-[#785415] font-bold">XML Sitemap Index</a>
+        <span>•</span>
+        <a href="/feed.xml" class="text-[#785415] font-bold">RSS Feed</a>
+        <span>•</span>
+        <a href="/llms.txt" class="text-[#785415] font-bold">llms.txt</a>
+        <span>•</span>
+        <a href="/api/llm-context.json" class="text-[#785415] font-bold">JSON-LD Graph</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

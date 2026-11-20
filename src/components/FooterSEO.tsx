@@ -112,6 +112,8 @@ export default function FooterSEO() {
             <a href="/nri-investment" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">NRI Desk</a>
             <span className="text-slate-300 self-center">|</span>
             <a href="/directory" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Directory</a>
+            <span className="text-slate-300 self-center">|</span>
+            <a href="/html-sitemap" className="text-[#785415] hover:text-[#070D1A] transition-colors uppercase tracking-widest font-bold no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">HTML Sitemap</a>
           </div>
         </div>
 
@@ -126,6 +128,8 @@ export default function FooterSEO() {
             <a href="/terms" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Terms & Conditions</a>
             <span className="self-center">•</span>
             <a href="/disclaimer" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Disclaimer</a>
+            <span className="self-center">•</span>
+            <a href="/html-sitemap" className="text-slate-600 hover:text-[#785415] transition-colors no-underline py-2.5 px-2 min-h-[44px] inline-flex items-center">Sitemap</a>
           </div>
         </div>
 
