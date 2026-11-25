@@ -133,7 +133,7 @@ export default function ParanjapeEcosystemInjector() {
   };
 
   return (
-    <section className="w-full bg-[#FAF9F6] border-t-2 border-slate-200 py-12 text-[#070D1A]">
+    <section aria-label="Paranjape Blue Ridge Keyword Ecosystem" className="w-full bg-[#FAF9F6] border-t-2 border-slate-200 py-12 text-[#070D1A]">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <details className="group border-2 border-slate-200 rounded-3xl overflow-hidden bg-white shadow-xs">
           <summary className="cursor-pointer px-6 py-5 flex items-center justify-between bg-slate-50 hover:bg-amber-50/50 transition-colors list-none">

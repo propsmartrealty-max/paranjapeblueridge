@@ -107,6 +107,7 @@ export default function TownshipVirtualTour() {
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab)}
+              aria-label={`View tour: ${tab.title}`}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-sans font-bold transition-all whitespace-nowrap cursor-pointer border ${
                 activeTab.id === tab.id
                   ? 'bg-[#785415] text-white border-[#785415] shadow-md'

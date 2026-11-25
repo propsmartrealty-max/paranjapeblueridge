@@ -86,7 +86,7 @@ export default function FloatingWhatsApp() {
             <span>Start WhatsApp Chat</span>
             <Send size={14} />
           </a>
-          <span className="text-[10px] text-slate-500 font-medium text-center block mt-2">⚡ Typical response time: ~2 minutes</span>
+          <span className="text-[10px] text-slate-600 font-semibold text-center block mt-2">⚡ Typical response time: ~2 minutes</span>
         </div>
       )}
 

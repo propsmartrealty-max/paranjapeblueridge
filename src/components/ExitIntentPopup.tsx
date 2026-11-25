@@ -81,21 +81,22 @@ export default function ExitIntentPopup() {
               
               <button 
                 onClick={handleClose}
-                className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors p-1 cursor-pointer bg-transparent border-none"
-                aria-label="Close"
+                className="absolute top-4 right-4 text-slate-500 hover:text-slate-800 transition-colors p-1 cursor-pointer bg-transparent border-none"
+                aria-label="Close Exit Intent Modal"
               >
                 <X size={20} />
               </button>
 
-              <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-200 text-[#B88E3E]">
+              <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-200 text-[#785415]">
                 <Calendar size={26} />
               </div>
               
               <h3 className="text-2xl font-serif text-[#070D1A] font-bold mb-2">{headline}</h3>
-              <p className="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed font-sans">{subheadline}</p>
+              <p className="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-sans font-medium">{subheadline}</p>
 
               <button 
                 onClick={handleAction}
+                aria-label={buttonText}
                 className="w-full btn-champagne py-3.5 rounded-xl text-xs font-sans font-bold uppercase tracking-wider cursor-pointer border-none shadow-md"
               >
                 {buttonText}
@@ -103,7 +104,8 @@ export default function ExitIntentPopup() {
               
               <button 
                 onClick={handleClose}
-                className="w-full mt-3 py-2 text-[10px] text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-widest cursor-pointer bg-transparent border-none font-mono"
+                aria-label="Dismiss Modal"
+                className="w-full mt-3 py-2 text-[10px] text-slate-600 hover:text-slate-900 transition-colors uppercase tracking-widest cursor-pointer bg-transparent border-none font-mono font-medium"
               >
                 No thanks, I will browse later
               </button>

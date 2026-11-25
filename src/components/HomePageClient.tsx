@@ -72,7 +72,9 @@ export default function HomePageClient() {
       {/* Hidden button for navbar to trigger modal */}
       <button 
         type="button"
-        data-enquiry-trigger 
+        data-enquiry-trigger="true"
+        aria-hidden="true"
+        tabIndex={-1}
         onClick={() => handleOpenModal('Master Township Inquiry')} 
         className="hidden" 
         aria-label="Open Master Township Inquiry Modal"
@@ -86,16 +88,25 @@ export default function HomePageClient() {
         
         {/* Background Architectural Canvas with Authentic Drone Shot */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img 
-            src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 
-            alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township"
-            width="1920"
-            height="1438"
-            className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-          />
+          <picture className="w-full h-full block">
+            <source
+              media="(max-width: 640px)"
+              srcSet="/assets/images/pscl-blue-ridge-aerial-drone-mobile.webp"
+              type="image/webp"
+              width={640}
+              height={479}
+            />
+            <img 
+              src="/assets/images/pscl-blue-ridge-aerial-drone.webp" 
+              alt="Paranjape Blue Ridge Hinjewadi Phase 1 - 138 Acre Integrated Township"
+              width="1920"
+              height="1438"
+              className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+            />
+          </picture>
           {/* Luminous Porcelain & Sunlight Gradient Layer for High-Contrast Crisp Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-[#FAF9F6]/85 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F6]/90 via-transparent to-[#FAF9F6]/90"></div>
@@ -138,6 +149,7 @@ export default function HomePageClient() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center w-full max-w-md sm:max-w-none">
             <button
               onClick={() => scrollToSection('township-story')}
+              aria-label="Discover Blue Ridge Township Details"
               className="w-full sm:w-auto btn-champagne px-8 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-[0.16em] cursor-pointer shadow-md transition-all"
             >
               Discover Blue Ridge
@@ -145,6 +157,7 @@ export default function HomePageClient() {
 
             <button
               onClick={() => scrollToSection('residences')}
+              aria-label="Explore Residential Clusters in Blue Ridge"
               className="w-full sm:w-auto btn-glass-outline px-8 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-[0.16em] cursor-pointer transition-all flex items-center justify-center gap-2"
             >
               <span>Explore Residences</span>
@@ -153,6 +166,7 @@ export default function HomePageClient() {
 
             <button
               onClick={() => scrollToSection('sez')}
+              aria-label="Explore Blue Ridge IT SEZ Tech Park"
               className="w-full sm:w-auto px-6 py-4 rounded-full text-xs font-mono uppercase tracking-wider text-[#785415] bg-amber-50 hover:bg-amber-100/70 border border-amber-300 transition-all flex items-center justify-center gap-2 cursor-pointer font-bold"
             >
               <Briefcase size={14} className="text-[#785415]" />
@@ -208,6 +222,7 @@ export default function HomePageClient() {
               <div className="pt-4 flex flex-wrap gap-4">
                 <button
                   onClick={() => handleOpenModal('Download Master Township Brochure')}
+                  aria-label="Download Master Township Brochure"
                   className="btn-champagne px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center gap-2"
                 >
                   <Download size={14} />
@@ -215,6 +230,7 @@ export default function HomePageClient() {
                 </button>
                 <button
                   onClick={() => handleOpenModal('Book VIP Site Visit')}
+                  aria-label="Book Private Presentation and Site Tour"
                   className="btn-glass-outline px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center gap-2"
                 >
                   <Eye size={14} className="text-[#785415]" />
@@ -226,10 +242,10 @@ export default function HomePageClient() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden glass-surface p-3 shadow-md">
                 <img 
-                  src="/assets/images/pscl-blue-ridge-township-skyline.jpg" 
+                  src="/assets/images/pscl-blue-ridge-township-skyline.webp" 
                   alt="Blue Ridge Township Aerial Panorama"
-                  width="2500"
-                  height="1874"
+                  width="1200"
+                  height="900"
                   className="w-full h-96 object-cover rounded-2xl"
                   loading="lazy"
                 />
@@ -400,6 +416,7 @@ export default function HomePageClient() {
 
             <button
               onClick={() => handleOpenModal('Private Consultation Request')}
+              aria-label="Connect With Private Real Estate Advisor"
               className="btn-champagne px-10 py-4 rounded-full text-xs font-sans font-bold uppercase tracking-widest cursor-pointer shadow-md"
             >
               Connect With Private Advisor

@@ -96,6 +96,7 @@ export default function Navbar() {
                 className="flex items-center gap-1.5 text-slate-800 hover:text-[#785415] transition-colors py-1 bg-transparent border-none cursor-pointer uppercase font-bold text-[11px] xl:text-[12px] tracking-[0.1em] whitespace-nowrap"
                 onClick={() => setIsResidencesDropdownOpen(!isResidencesDropdownOpen)}
                 aria-expanded={isResidencesDropdownOpen}
+                aria-label="Toggle Residences Submenu"
               >
                 <span>Residences</span>
                 <ChevronDown size={13} className={`transition-transform duration-200 text-[#785415] ${isResidencesDropdownOpen ? 'rotate-180' : ''}`} />
@@ -196,6 +197,7 @@ export default function Navbar() {
 
             <button
               onClick={openEnquiry}
+              aria-label="Open Private Enquiry Modal"
               className="btn-champagne px-5 xl:px-6 py-2.5 rounded-full text-[11px] xl:text-xs font-sans font-bold uppercase tracking-[0.12em] cursor-pointer border-none flex items-center gap-2 shadow-sm hover:shadow-md transition-all shrink-0 whitespace-nowrap"
             >
               <span>Private Enquiry</span>
@@ -283,6 +285,7 @@ export default function Navbar() {
             </div>
             <button
               onClick={() => { setIsMobileMenuOpen(false); openEnquiry(); }}
+              aria-label="Book Private Presentation"
               className="w-full btn-champagne py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider border-none shadow-md"
             >
               Book Private Presentation

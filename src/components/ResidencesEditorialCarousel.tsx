@@ -68,6 +68,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
         <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-4 border-b border-slate-200">
           <button
             onClick={() => setSelectedFilter('all')}
+            aria-label="Filter All Residential Clusters"
             className={`px-5 py-2 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
               selectedFilter === 'all'
                 ? 'bg-[#785415] text-white border-2 border-[#785415] shadow-sm'
@@ -78,6 +79,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
           </button>
           <button
             onClick={() => setSelectedFilter('2bhk')}
+            aria-label="Filter 2 BHK Smart Homes"
             className={`px-5 py-2 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
               selectedFilter === '2bhk'
                 ? 'bg-[#785415] text-white border-2 border-[#785415] shadow-sm'
@@ -88,6 +90,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
           </button>
           <button
             onClick={() => setSelectedFilter('3bhk')}
+            aria-label="Filter 3 BHK Residences"
             className={`px-5 py-2 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
               selectedFilter === '3bhk'
                 ? 'bg-[#785415] text-white border-2 border-[#785415] shadow-sm'
@@ -98,6 +101,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
           </button>
           <button
             onClick={() => setSelectedFilter('4bhk')}
+            aria-label="Filter 4 BHK Luxury Residences"
             className={`px-5 py-2 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all cursor-pointer ${
               selectedFilter === '4bhk'
                 ? 'bg-[#785415] text-white border-2 border-[#785415] shadow-sm'
@@ -187,6 +191,7 @@ export default function ResidencesEditorialCarousel({ onSelectCluster }: Residen
                   <div className="grid grid-cols-2 gap-2 pt-2">
                     <button
                       onClick={() => onSelectCluster && onSelectCluster(cluster)}
+                      aria-label={`Get Cost Sheet for ${cluster.name}`}
                       className="py-3 px-3 rounded-xl btn-champagne text-center text-xs font-sans font-bold uppercase tracking-wider cursor-pointer border-none flex items-center justify-center gap-1.5 shadow-sm"
                     >
                       <Download size={13} />

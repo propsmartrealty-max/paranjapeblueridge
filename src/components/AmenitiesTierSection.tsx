@@ -101,6 +101,7 @@ export default function AmenitiesTierSection() {
           <div className="flex items-center p-1 rounded-full glass-surface shadow-sm">
             <button
               onClick={() => setActiveTab('township')}
+              aria-label="View 138-Acre Master Township Amenities"
               className={`px-6 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all border-none cursor-pointer ${
                 activeTab === 'township'
                   ? 'bg-[#785415] text-white shadow-sm'
@@ -111,6 +112,7 @@ export default function AmenitiesTierSection() {
             </button>
             <button
               onClick={() => setActiveTab('cluster')}
+              aria-label="View Cluster-Exclusive Privileges"
               className={`px-6 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-all border-none cursor-pointer ${
                 activeTab === 'cluster'
                   ? 'bg-[#785415] text-white shadow-sm'

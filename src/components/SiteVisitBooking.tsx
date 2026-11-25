@@ -147,6 +147,7 @@ export default function SiteVisitBooking() {
                   <button
                     type="button"
                     onClick={() => setVisitType('cab_pickup')}
+                    aria-label="Select Free AC Cab Pickup"
                     className={`p-4 rounded-2xl border-2 text-left transition-all cursor-pointer ${
                       visitType === 'cab_pickup'
                         ? 'border-[#785415] bg-amber-50/60 shadow-xs'
@@ -165,6 +166,7 @@ export default function SiteVisitBooking() {
                   <button
                     type="button"
                     onClick={() => setVisitType('self_drive')}
+                    aria-label="Select Self Drive Visit"
                     className={`p-4 rounded-2xl border-2 text-left transition-all cursor-pointer ${
                       visitType === 'self_drive'
                         ? 'border-[#785415] bg-amber-50/60 shadow-xs'
@@ -183,6 +185,7 @@ export default function SiteVisitBooking() {
                   <button
                     type="button"
                     onClick={() => setVisitType('virtual')}
+                    aria-label="Select Virtual 3D Tour"
                     className={`p-4 rounded-2xl border-2 text-left transition-all cursor-pointer ${
                       visitType === 'virtual'
                         ? 'border-[#785415] bg-amber-50/60 shadow-xs'
@@ -231,6 +234,7 @@ export default function SiteVisitBooking() {
                       key={d.iso}
                       type="button"
                       onClick={() => setSelectedDate(d.iso)}
+                      aria-label={`Select date ${d.day} ${d.date} ${d.month}`}
                       className={`min-w-[76px] py-3 px-2 rounded-2xl border-2 text-center transition-all cursor-pointer shrink-0 ${
                         selectedDate === d.iso
                           ? 'border-[#785415] bg-[#785415] text-white shadow-sm'
@@ -256,6 +260,7 @@ export default function SiteVisitBooking() {
                       key={slot}
                       type="button"
                       onClick={() => setSelectedSlot(slot)}
+                      aria-label={`Select time window ${slot}`}
                       className={`py-3 px-3 rounded-xl border-2 text-xs font-mono font-bold transition-all cursor-pointer text-center ${
                         selectedSlot === slot
                           ? 'border-[#785415] bg-amber-50 text-[#785415] shadow-xs'
@@ -316,6 +321,7 @@ export default function SiteVisitBooking() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  aria-label="Confirm VIP Reservation and Get Pass"
                   className="w-full btn-champagne py-4 px-8 rounded-full text-xs font-sans font-bold uppercase tracking-[0.16em] cursor-pointer shadow-md flex items-center justify-center gap-3 disabled:opacity-60"
                 >
                   {isSubmitting ? (
