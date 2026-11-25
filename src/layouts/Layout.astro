@@ -212,11 +212,16 @@ const hasMarathiCounterpart = BILINGUAL_PATHS.has(pathname);
     <JSONLD pathname={pathname} projectData={projectData} pseoData={pseoData} />
   </head>
   <body class="antialiased bg-[#FAF9F6] text-[#070D1A] min-h-screen flex flex-col">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2.5 focus:bg-[#785415] focus:text-white focus:rounded-xl focus:font-bold focus:shadow-xl focus:outline-none">
+      Skip to main content
+    </a>
+
     <div class="architect-grid"></div>
 
     <Navbar client:load />
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
       <ParanjapeEcosystemInjector />
       <PopularSearches client:visible />

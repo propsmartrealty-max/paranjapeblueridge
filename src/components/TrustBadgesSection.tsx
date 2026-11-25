@@ -136,9 +136,9 @@ export default function TrustBadgesSection({ clusterId = 'all' }: TrustBadgesSec
                 <Landmark size={24} />
               </div>
               <div>
-                <h4 className="text-base font-serif font-bold text-[#070D1A]">
+                <h3 className="text-base font-serif font-bold text-[#070D1A]">
                   Approved Project Finance (APF) Partners
-                </h4>
+                </h3>
                 <p className="text-xs text-slate-600 font-sans font-medium">
                   Pre-approved for hassle-free home loan disbursements with maximum LTV ratios
                 </p>

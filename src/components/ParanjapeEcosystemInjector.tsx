@@ -142,9 +142,9 @@ export default function ParanjapeEcosystemInjector() {
                 <Building2 size={18} />
               </div>
               <div>
-                <h3 className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono">
+                <span className="text-[#070D1A] text-xs sm:text-sm uppercase tracking-wider font-bold font-mono block">
                   Paranjape Blue Ridge Township Directory & Infrastructure Guides
-                </h3>
+                </span>
                 <p className="text-slate-600 text-[11px] mt-0.5 font-sans font-medium">
                   Verified topical index of Paranjape Blue Ridge residential clusters, IT SEZ infrastructure, and pricing guides.
                 </p>

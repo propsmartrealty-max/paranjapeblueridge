@@ -49,7 +49,17 @@ export default function HomePageClient() {
     };
     handleHashCheck();
     window.addEventListener('hashchange', handleHashCheck);
-    return () => window.removeEventListener('hashchange', handleHashCheck);
+
+    const handleEnquiryEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ interest?: string }>;
+      handleOpenModal(customEvent.detail?.interest || 'Master Township Inquiry');
+    };
+    window.addEventListener('open-enquiry-modal', handleEnquiryEvent);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashCheck);
+      window.removeEventListener('open-enquiry-modal', handleEnquiryEvent);
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -67,17 +77,6 @@ export default function HomePageClient() {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         initialInterest={modalInterest} 
-      />
-
-      {/* Hidden button for navbar to trigger modal */}
-      <button 
-        type="button"
-        data-enquiry-trigger="true"
-        aria-hidden="true"
-        tabIndex={-1}
-        onClick={() => handleOpenModal('Master Township Inquiry')} 
-        className="hidden" 
-        aria-label="Open Master Township Inquiry Modal"
       />
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

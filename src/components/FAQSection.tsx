@@ -59,7 +59,7 @@ export default function FAQSection() {
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 aria-expanded={openIndex === i}
-                aria-controls={`faq-answer-${i}`}
+                aria-controls={openIndex === i ? `faq-answer-${i}` : undefined}
                 aria-label={`Toggle question: ${faq.q}`}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-white/40 transition-colors cursor-pointer bg-transparent border-none"
               >

@@ -53,11 +53,8 @@ export default function EmiCalculator({ initialPrice = 9760000, projectName = 'P
   const interestPercent = 100 - principalPercent;
 
   const triggerLeadModal = () => {
-    const trigger = document.querySelector('[data-enquiry-trigger="true"]') as HTMLButtonElement;
-    if (trigger) {
-      trigger.click();
-    } else {
-      window.location.href = '#enquiry';
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('open-enquiry-modal', { detail: { interest: 'EMI & Payment Plan Consultation' } }));
     }
   };
 

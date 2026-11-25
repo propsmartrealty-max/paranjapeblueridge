@@ -220,11 +220,13 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       {/* Backdrop overlay */}
       <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-md"
-        onClick={onClose}
+        className="absolute inset-0 bg-black/70 backdrop-blur-md pointer-events-none"
         aria-hidden="true"
       />
       
@@ -251,7 +253,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
         <div className="p-8 sm:p-12">
           <div className="mb-10">
             <span className="text-gold font-bold tracking-[6px] uppercase text-xs block mb-4">Step {step} of 3</span>
-            <h2 className="text-4xl font-serif text-warm-white leading-tight">
+            <h2 id="enquiry-modal-title" className="text-4xl font-serif text-warm-white leading-tight">
               {step === 1 ? 'Priority ' : 'Qualification '}
               <span className="italic font-normal text-gold">{step === 1 ? 'Enquiry' : 'Protocol'}</span>
             </h2>

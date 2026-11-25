@@ -34,8 +34,7 @@ export default function Navbar() {
 
   const openEnquiry = () => {
     if (typeof window !== 'undefined') {
-      const trigger = document.querySelector('[data-enquiry-trigger]') as HTMLButtonElement;
-      if (trigger) trigger.click();
+      window.dispatchEvent(new CustomEvent('open-enquiry-modal', { detail: { interest: 'Private Enquiry' } }));
     }
   };
 
@@ -80,7 +79,7 @@ export default function Navbar() {
           {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
               2. STREAMLINED DESKTOP NAVIGATION (ZERO WRAPPING / ZERO COLLISION)
               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 text-[11px] xl:text-[12px] font-sans font-bold uppercase tracking-[0.1em] shrink-0">
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 text-[11px] xl:text-[12px] font-sans font-bold uppercase tracking-[0.1em] shrink-0">
             <a href="/#township-story" className="text-slate-800 hover:text-[#785415] transition-colors no-underline whitespace-nowrap shrink-0">
               The Township
             </a>
@@ -221,7 +220,7 @@ export default function Navbar() {
           4. MOBILE FLYOUT DRAWER
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed top-16 sm:top-20 left-0 right-0 bg-white border-b-2 border-slate-300 px-6 py-6 space-y-4 shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto z-[95]">
+        <nav aria-label="Mobile Navigation" className="lg:hidden fixed top-16 sm:top-20 left-0 right-0 bg-white border-b-2 border-slate-300 px-6 py-6 space-y-4 shadow-2xl max-h-[calc(100vh-80px)] overflow-y-auto z-[95]">
           <div className="flex items-center gap-2.5 bg-slate-50 py-2 px-3 rounded-xl border border-slate-200 w-fit mb-2 shrink-0">
             <img 
               src="/assets/images/paranjape-official-logo.png" 
@@ -291,7 +290,7 @@ export default function Navbar() {
               Book Private Presentation
             </button>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
