@@ -15,7 +15,7 @@ export interface JournalArticle {
 export const journalArticles: JournalArticle[] = [
   {
     id: "macro-2026",
-    slug: "pune-real-estate-appreciation-2026-blue-ridge",
+    slug: "paranjape-blue-ridge-hinjewadi-pune-real-estate-appreciation-2026",
     title: "The 2026 Inflection Point: Why West Pune's Township Corridors Outperform Standalone Developments",
     category: "Investment",
     readingTime: "5 min read",
@@ -43,7 +43,7 @@ Integrated townships hold resale value significantly better than standalone sing
   },
   {
     id: "architecture-mivan",
-    slug: "mivan-construction-technology-benefits-blue-ridge",
+    slug: "paranjape-blue-ridge-hinjewadi-mivan-construction-technology-benefits",
     title: "Monolithic MiVAN Formwork: Structural Integrity, Acoustic Dampening & Zero-Seepage Engineering",
     category: "Architecture",
     readingTime: "4 min read",
@@ -67,7 +67,7 @@ Modern luxury architecture demands precision down to the millimeter. At Paranjap
   },
   {
     id: "riverfront-living",
-    slug: "riverfront-living-hinjewadi-mula-promenade",
+    slug: "paranjape-blue-ridge-hinjewadi-riverfront-properties-in-pune",
     title: "Sanctuary Along the Mula: The Psychology & Exclusivity of Riverfront Living",
     category: "Living",
     readingTime: "6 min read",

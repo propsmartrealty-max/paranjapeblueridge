@@ -7,7 +7,7 @@ export const prerender = true;
 ---
 
 <Layout
-  title="Blue Ridge Ongoing Developments | Paranjape Blue Ridge Hinjewadi Phase 1"
+  title="Ongoing Projects in Paranjape Blue Ridge Hinjewadi | PSCL"
   description="Explore current and ongoing residential clusters within Paranjape Blue Ridge Hinjewadi Phase 1: Promenade (3 & 4 BHK), The Altius (3 & 4 BHK), and Ridges 41 (2 & 3 BHK)."
   pathname="/blue-ridge/ongoing-projects"
 >
@@ -89,7 +89,7 @@ export const prerender = true;
             <!-- Actions -->
             <div class="pt-4 border-t border-slate-100 flex gap-3">
               <a
-                href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
+                href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug === 'altius' ? 'the-altius' : cluster.slug}-hinjewadi-pune`}
                 class="flex-1 py-3 px-4 rounded-xl btn-champagne text-center text-xs font-bold uppercase tracking-wider no-underline transition-all"
               >
                 Explore Cluster

@@ -338,7 +338,7 @@ export default function JSONLD({ pathname = '/' }: JSONLDProps) {
       "PSCL Pune",
       "Paranjape Builders Pune"
     ],
-    "url": "https://www.pscl.in",
+    "url": `${SITE_URL}/`,
     "logo": {
       "@type": "ImageObject",
       "url": `${SITE_URL}/assets/images/paranjape-logo.svg`,

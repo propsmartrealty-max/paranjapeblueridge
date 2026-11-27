@@ -12,7 +12,7 @@ const reraProjects = [
     id: 'promenade',
     name: 'Promenade Residences',
     number: 'P52100055581',
-    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fmaharera.maharerait.gov.in%2Fproject-details%3Fproject_id%3DP52100055581',
+    qrImage: '/assets/images/qr/maharera-promenade-P52100055581.png',
     status: 'RERA Registered & Active',
     completion: 'Sept 2029',
     url: 'https://maharera.maharerait.gov.in'
@@ -21,7 +21,7 @@ const reraProjects = [
     id: 'altius',
     name: 'The Altius',
     number: 'P52100078116',
-    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fmaharera.maharerait.gov.in%2Fproject-details%3Fproject_id%3DP52100078116',
+    qrImage: '/assets/images/qr/maharera-altius-P52100078116.png',
     status: 'RERA Registered & Active',
     completion: 'Dec 2029',
     url: 'https://maharera.maharerait.gov.in'
@@ -30,7 +30,7 @@ const reraProjects = [
     id: 'ridges-41',
     name: 'Ridges 41',
     number: 'P52100000054',
-    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fmaharera.maharerait.gov.in%2Fproject-details%3Fproject_id%3DP52100000054',
+    qrImage: '/assets/images/qr/maharera-ridges41-P52100000054.png',
     status: 'RERA Registered & Active',
     completion: 'Dec 2028',
     url: 'https://maharera.maharerait.gov.in'

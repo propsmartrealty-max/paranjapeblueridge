@@ -33,11 +33,18 @@ const article = mdxPost ? {
   author: staticArticle?.author || 'Paranjape Insights',
 };
 
+const rawTitle = article.title.trim();
+const hasBrand = /blue\s*ridge/i.test(rawTitle);
+let seoTitle = hasBrand ? rawTitle : `${rawTitle} | Blue Ridge`;
+if (seoTitle.length > 65) {
+  seoTitle = seoTitle.slice(0, 62).replace(/\s+\S*$/, '') + '...';
+}
+
 const ogImage = "https://paranjapeblueridge.com/assets/images/township-night.png";
 ---
 
 <Layout
-  title={`${article.title} | Paranjape Blue Ridge Hinjewadi`}
+  title={seoTitle}
   description={article.excerpt}
   pathname={`/insights/${article.slug}`}
   ogImage={ogImage}

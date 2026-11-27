@@ -50,7 +50,7 @@ const { bhkTitle, bhkNumber, slug, headline, tagline, description, clusters } = 
 ---
 
 <Layout
-  title={`${bhkTitle} in Paranjape Blue Ridge Hinjewadi Phase 1 | Floor Plans & Price`}
+  title={`${bhkNumber} BHK Flats in Paranjape Blue Ridge Hinjewadi | Price & Plans`}
   description={description}
   pathname={`/blue-ridge/${slug}`}
 >
@@ -112,7 +112,7 @@ const { bhkTitle, bhkNumber, slug, headline, tagline, description, clusters } = 
 
             <div class="pt-4 border-t border-slate-100 flex gap-3">
               <a
-                href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug}-hinjewadi-pune`}
+                href={`/paranjape-blue-ridge-${cluster.slug === 'ridges-41' ? '41' : cluster.slug === 'altius' ? 'the-altius' : cluster.slug}-hinjewadi-pune`}
                 class="flex-1 py-3 rounded-xl btn-champagne text-center text-xs font-bold uppercase tracking-wider no-underline shadow-sm"
               >
                 View Residence Details
