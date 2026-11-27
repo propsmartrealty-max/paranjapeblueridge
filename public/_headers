@@ -17,6 +17,36 @@
   Surrogate-Control: max-age=86400, stale-while-revalidate=86400
   Cache-Tag: blueridge-core,blueridge-pages
 
+/
+  Link: <https://paranjapeblueridge.com/>; rel="canonical"
+
+/paranjape-blue-ridge-promenade-hinjewadi-pune
+  Link: <https://paranjapeblueridge.com/paranjape-blue-ridge-promenade-hinjewadi-pune>; rel="canonical"
+
+/paranjape-blue-ridge-the-altius-hinjewadi-pune
+  Link: <https://paranjapeblueridge.com/paranjape-blue-ridge-the-altius-hinjewadi-pune>; rel="canonical"
+
+/paranjape-blue-ridge-41-hinjewadi-pune
+  Link: <https://paranjapeblueridge.com/paranjape-blue-ridge-41-hinjewadi-pune>; rel="canonical"
+
+/blue-ridge-golf-course
+  Link: <https://paranjapeblueridge.com/blue-ridge-golf-course>; rel="canonical"
+
+/blue-ridge-boat-club
+  Link: <https://paranjapeblueridge.com/blue-ridge-boat-club>; rel="canonical"
+
+/blue-ridge-public-school
+  Link: <https://paranjapeblueridge.com/blue-ridge-public-school>; rel="canonical"
+
+/blue-ridge-sez-tech-park
+  Link: <https://paranjapeblueridge.com/blue-ridge-sez-tech-park>; rel="canonical"
+
+/hinjewadi-micro-market
+  Link: <https://paranjapeblueridge.com/hinjewadi-micro-market>; rel="canonical"
+
+/nri-investment
+  Link: <https://paranjapeblueridge.com/nri-investment>; rel="canonical"
+
 /404.html
   Content-Type: text/html; charset=utf-8
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
