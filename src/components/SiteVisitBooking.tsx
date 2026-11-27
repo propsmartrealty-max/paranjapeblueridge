@@ -281,22 +281,26 @@ export default function SiteVisitBooking() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <input
+                      id="site-visit-name"
                       type="text"
                       required
+                      aria-label="Full Name"
                       placeholder="Full Name *"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-sm font-sans focus:outline-none focus:border-[#785415] focus:bg-white transition-all"
+                      className="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-sm font-sans focus:outline-none focus:border-[#785415] focus:bg-white transition-all text-slate-800"
                     />
                   </div>
                   <div>
                     <input
+                      id="site-visit-phone"
                       type="tel"
                       required
+                      aria-label="WhatsApp Mobile Number"
                       placeholder="WhatsApp Mobile Number *"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-sm font-sans focus:outline-none focus:border-[#785415] focus:bg-white transition-all"
+                      className="w-full px-4 py-3.5 rounded-xl border border-slate-300 bg-slate-50 text-sm font-sans focus:outline-none focus:border-[#785415] focus:bg-white transition-all text-slate-800"
                     />
                   </div>
                   <div>
@@ -333,8 +337,8 @@ export default function SiteVisitBooking() {
                     </>
                   )}
                 </button>
-                <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-slate-500 font-sans">
-                  <ShieldCheck size={13} className="text-emerald-600" />
+                <div className="flex items-center justify-center gap-2 mt-3 text-[11px] text-slate-700 font-sans font-medium">
+                  <ShieldCheck size={13} className="text-emerald-700" />
                   <span>Zero Spam Guarantee • Authorized Paranjape Sales Desk</span>
                 </div>
               </div>

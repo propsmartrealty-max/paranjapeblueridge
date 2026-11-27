@@ -81,7 +81,7 @@ export default function TrustBadgesSection({ clusterId = 'all' }: TrustBadgesSec
                     <CheckCircle2 size={12} />
                     <span>{project.status}</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 font-bold">
+                  <span className="text-[10px] font-mono text-slate-700 font-bold">
                     Target: {project.completion}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export default function TrustBadgesSection({ clusterId = 'all' }: TrustBadgesSec
                       className="w-20 h-20 object-contain rounded-md"
                       loading="lazy"
                     />
-                    <div className="flex items-center justify-center gap-1 mt-1 text-[8px] font-mono text-slate-500 uppercase font-bold">
+                    <div className="flex items-center justify-center gap-1 mt-1 text-[8px] font-mono text-slate-700 uppercase font-bold">
                       <QrCode size={9} /> Scan RERA
                     </div>
                   </div>
@@ -167,7 +167,7 @@ export default function TrustBadgesSection({ clusterId = 'all' }: TrustBadgesSec
             ))}
           </div>
 
-          <div className="mt-6 text-center text-[11px] text-slate-500 font-sans">
+          <div className="mt-6 text-center text-[11px] text-slate-700 font-sans">
             Disclaimer: Loans are disbursed at the sole discretion of the lending financial institutions under prevailing RBI norms.
           </div>
         </div>

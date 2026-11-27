@@ -299,6 +299,7 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                         id="enquiry-bot-field"
                         tabIndex={-1} 
                         autoComplete="off"
+                        aria-label="Do not fill this field"
                         value={formData.bot_field}
                         onChange={e => setFormData({...formData, bot_field: e.target.value})}
                       />
@@ -472,8 +473,15 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                       />
                     </div>
 
-                    <label className="flex items-start gap-2 text-xs text-text-muted cursor-pointer my-3">
-                      <input type="checkbox" required defaultChecked className="mt-0.5 accent-gold" />
+                    <label htmlFor="enquiry-consent-checkbox" className="flex items-start gap-2 text-xs text-text-muted cursor-pointer my-3">
+                      <input 
+                        id="enquiry-consent-checkbox"
+                        type="checkbox" 
+                        required 
+                        defaultChecked 
+                        aria-label="I consent to receive project updates, pricing & site visit confirmation via Call/WhatsApp as per DPDP Privacy Policy"
+                        className="mt-0.5 accent-gold" 
+                      />
                       <span>I consent to receive project updates, pricing & site visit confirmation via Call/WhatsApp as per DPDP Privacy Policy.</span>
                     </label>
 
@@ -487,14 +495,16 @@ export default function EnquiryModal({ isOpen, onClose, initialInterest }: Enqui
                        <button 
                          type="button" 
                          onClick={() => startTransition(() => setStep(2))}
-                         className="py-4 border border-white/10 text-text-light rounded-2xl text-xs font-bold uppercase tracking-widest"
+                         aria-label="Go back to previous step"
+                         className="py-4 border border-white/10 text-text-light rounded-2xl text-xs font-bold uppercase tracking-widest cursor-pointer"
                        >
                          Back
                        </button>
                        <button 
                          type="submit" 
                          disabled={status === 'submitting'}
-                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-xs uppercase tracking-widest disabled:opacity-50 shadow-xl shadow-gold/20"
+                         aria-label="Complete Request"
+                         className="bg-gold text-navy font-bold py-4 rounded-2xl text-xs uppercase tracking-widest disabled:opacity-50 shadow-xl shadow-gold/20 cursor-pointer"
                        >
                          {status === 'submitting' ? 'Processing...' : 'Complete Request'}
                        </button>

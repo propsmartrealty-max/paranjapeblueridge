@@ -43,11 +43,11 @@ interface PseoProps {
 }
 
 export default function PseoLandingPage({ pageData, data }: PseoProps) {
-  const current = pageData || data;
-  if (!current) return null;
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInterest, setModalInterest] = useState('');
+
+  const current = pageData || data;
+  if (!current) return null;
 
   const handleOpenModal = (interest: string) => {
     setModalInterest(interest);

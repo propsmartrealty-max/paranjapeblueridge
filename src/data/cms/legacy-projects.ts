@@ -27,7 +27,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "Phase-wise 2012 – 2022",
     configuration: "1, 2, 3 & 4 BHK Apartments & Duplexes",
     totalAcresOrUnits: "138-Acre Township • 3,500+ Delivered Homes",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "The foundation of modern integrated township living in Maharashtra. Conceptualized as Pune's first comprehensive walk-to-work IT township, the initial 24 residential towers of Blue Ridge revolutionized living standards for global technology leaders in Hinjewadi.",
     architectureHighlights: [
       "Pioneered riverfront high-rise residential engineering in West Pune",
@@ -38,7 +38,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Positioned directly adjacent to Rajiv Gandhi Infotech Park Phase 1, adjacent to the upcoming Hinjewadi Metro Line 3.",
     legacyStatus: "Completed & Delivered",
     gallery: [
-      "/assets/images/real-township-day.jpg",
+      "/assets/images/real-township-day-thumb.webp",
       "/assets/images/township-day.jpg"
     ],
     relatedSearchKeywords: [
@@ -57,7 +57,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "2018 – Ongoing Extensions",
     configuration: "Bungalows, Luxury Villas & Nature Towers",
     totalAcresOrUnits: "170 Acres • Over 2,000 Delivered Residences",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "Spread across 170 tranquil acres amidst the Western Ghats, Forest Trails is Paranjape Schemes' monumental nature township featuring an operational equestrian club, lifestyle lakes, and the Cliff ICSE school.",
     architectureHighlights: [
       "Environment-sensitive master planning preserving natural hill contours",
@@ -68,7 +68,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Bhugaon corridor, 10 minutes from Chandani Chowk and Kothrud.",
     legacyStatus: "Operational Landmark",
     gallery: [
-      "/assets/images/real-township-day.jpg"
+      "/assets/images/real-township-day-thumb.webp"
     ],
     relatedSearchKeywords: [
       "Forest Trails Bhugaon resale villas",
@@ -85,7 +85,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "Multiple Phases • 2003 to Present",
     configuration: "1 & 2 BHK Senior-Friendly Residences",
     totalAcresOrUnits: "10+ Campuses • Over 3,000 Happy Senior Residents",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "India's pioneer in senior citizen housing. Created with empathy, dignity, and specialized geriatric healthcare support, Athashri gives senior citizens an active, engaged, and secure post-retirement community.",
     architectureHighlights: [
       "Zero-barrier architecture with wheelchair accessibility throughout",
@@ -96,7 +96,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Multiple prime hubs across Pune West and East.",
     legacyStatus: "Operational Landmark",
     gallery: [
-      "/assets/images/real-township-day.jpg"
+      "/assets/images/real-township-day-thumb.webp"
     ],
     relatedSearchKeywords: [
       "Paranjape Athashri senior living Pune",
@@ -113,7 +113,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "2023",
     configuration: "2 & 3 BHK Contemporary High-Rise Flats",
     totalAcresOrUnits: "4 Towers • 450+ Luxury Residences",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "A towering architectural statement in Wakad, Trident Towers bridges the vibrant commercial energy of Hinjewadi Phase 1 with the urban lifestyle of Baner and Balewadi High Street.",
     architectureHighlights: [
       "Striking triple-tower geometric facade with expansive deck balconies",
@@ -124,7 +124,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Prime Wakad junction, 3 minutes from Blue Ridge Hinjewadi.",
     legacyStatus: "Completed & Delivered",
     gallery: [
-      "/assets/images/real-township-day.jpg"
+      "/assets/images/real-township-day-thumb.webp"
     ],
     relatedSearchKeywords: [
       "Paranjape Trident Towers Wakad",
@@ -141,7 +141,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "2024",
     configuration: "1 & 2 BHK Smart Boutique Homes",
     totalAcresOrUnits: "High-Rise Tower • 350+ Residences",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "Engineered specifically for ambitious young tech innovators and IT couples working in Rajiv Gandhi Infotech Park. Smart ergonomic layouts packed with resort amenities.",
     architectureHighlights: [
       "Compact luxury spaces with zero wasted square footage",
@@ -152,7 +152,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Hinjewadi Phase 1 IT corridor.",
     legacyStatus: "Completed & Delivered",
     gallery: [
-      "/assets/images/real-township-day.jpg"
+      "/assets/images/real-township-day-thumb.webp"
     ],
     relatedSearchKeywords: [
       "Paranjape Highgardens Hinjewadi Phase 1",
@@ -169,7 +169,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     completionYear: "2022",
     configuration: "Special Needs Supported Living Homes",
     totalAcresOrUnits: "Dedicated Community Campus",
-    heroImage: "/assets/images/real-township-day.jpg",
+    heroImage: "/assets/images/real-township-day-thumb.webp",
     legacyStory: "A humanitarian milestone in Indian real estate. India's first residential community tailored for adults with intellectual disabilities, providing lifelong assisted living, therapy, and creative empowerment.",
     architectureHighlights: [
       "Sensory-friendly architectural acoustics and natural lighting",
@@ -180,7 +180,7 @@ export const completedParanjapeProjects: CompletedProject[] = [
     locationContext: "Set within the serene greens of Forest Trails Bhugaon.",
     legacyStatus: "Operational Landmark",
     gallery: [
-      "/assets/images/real-township-day.jpg"
+      "/assets/images/real-township-day-thumb.webp"
     ],
     relatedSearchKeywords: [
       "Paranjape Swaniketan special needs Pune",

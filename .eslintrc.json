@@ -1,6 +1,27 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:astro/recommended"
+  ],
   "rules": {
-    "react/no-unescaped-entities": "off"
-  }
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-img-element": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "rules": {
+        "react/jsx-key": "off",
+        "react/no-unknown-property": "off",
+        "react/self-closing-comp": "off",
+        "@next/next/no-head-element": "off",
+        "@next/next/no-page-custom-font": "off",
+        "@next/next/no-sync-scripts": "off",
+        "@next/next/no-css-tags": "off",
+        "@next/next/no-html-link-for-pages": "off",
+        "@next/next/no-title-in-document-head": "off",
+        "@next/next/next-script-for-ga": "off"
+      }
+    }
+  ]
 }

@@ -61,7 +61,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Promenade Residences",
     tagline: "The Benchmark of Riverfront High-Rise Living in Hinjewadi Phase 1",
     eyebrow: "41-Storey Iconic Towers • Mula Riverfront",
-    heroImage: "/assets/images/promenade-hero.png",
+    heroImage: "/assets/images/promenade-hero.webp",
     gallery: [
       "/assets/images/promenade-hero.png",
       "/assets/images/official/promenade-about.jpg",
@@ -191,7 +191,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "The Altius",
     tagline: "Ultra-Luxury 3 & 4 BHK Sky Residences & Golfview Suites",
     eyebrow: "Flagship Riverside Enclave • Overlooking the 9-Hole Greens",
-    heroImage: "/assets/images/official/altius-elevation-2048.webp",
+    heroImage: "/assets/images/official/altius-elevation.webp",
     gallery: [
       "/assets/images/official/altius-elevation-2048.webp",
       "/assets/images/official/altius-banner.jpg",
@@ -310,7 +310,7 @@ export const blueRidgeClusters: ClusterResidence[] = [
     name: "Ridges 41",
     tagline: "Modern 41-Storey Smart Residences for Global IT Professionals",
     eyebrow: "Walk-to-Work Technology Precinct • Smart 2 & 3 BHK Homes",
-    heroImage: "/assets/images/official/ridges41-banner.jpg",
+    heroImage: "/assets/images/official/ridges41-banner.webp",
     gallery: [
       "/assets/images/official/ridges41-banner.jpg",
       "/assets/images/official/ridges41-about.jpg",

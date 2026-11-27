@@ -108,7 +108,7 @@ export default function Navbar() {
                 <div className="absolute top-[calc(100%+8px)] left-0 w-[380px] sm:w-[420px] p-4 rounded-2xl bg-white border-2 border-slate-300 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] space-y-2.5 z-[100] animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-2 pb-2 text-[10px] font-mono uppercase tracking-widest text-[#785415] border-b border-slate-200 font-extrabold flex items-center justify-between">
                     <span>Active Residential Enclaves</span>
-                    <span className="text-[9px] text-slate-500 font-normal">Direct Booking</span>
+                    <span className="text-[9px] text-slate-700 font-bold">Direct Booking</span>
                   </div>
                   {blueRidgeClusters.map((cluster) => {
                     const clusterUrl = cluster.id === 'ridges-41' 

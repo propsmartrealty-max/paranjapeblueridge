@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { 
   Building2, Trees, Waves, GraduationCap, ArrowRight, ShieldCheck, 
   MapPin, CheckCircle2, ChevronRight, Phone, Download, Eye, Sparkles, 
@@ -26,15 +25,6 @@ import { blueRidgeClusters } from '@/data/cms/clusters';
 export default function HomePageClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInterest, setModalInterest] = useState('Paranjape Blue Ridge Master Inquiry');
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const handleOpenModal = (interest: string) => {
     setModalInterest(interest);
@@ -83,14 +73,14 @@ export default function HomePageClient() {
           1. LUMINOUS LUXURY HERO SECTION
           "PARANJAPE BLUE RIDGE — A CITY WITHIN. A WORLD APART."
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-28 sm:pt-32 pb-20 bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-28 sm:pt-32 pb-20 bg-gradient-to-b from-[#F3F5F8] via-[#FAF9F6] to-[#FAF9F6] border-b border-slate-200 arch-section-divider">
         
         {/* Background Architectural Canvas with Authentic Drone Shot */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture className="w-full h-full block">
             <source
               media="(max-width: 640px)"
-              srcSet="/assets/images/pscl-blue-ridge-aerial-drone-mobile.webp"
+              srcSet="/assets/images/pscl-blue-ridge-aerial-drone-mobile-v2.webp"
               type="image/webp"
               width={640}
               height={479}
@@ -102,7 +92,7 @@ export default function HomePageClient() {
               height="1438"
               className="w-full h-full object-cover scale-105 opacity-30 filter saturate-110 brightness-105"
               loading="eager"
-              decoding="sync"
+              decoding="async"
               fetchPriority="high"
             />
           </picture>
@@ -115,8 +105,7 @@ export default function HomePageClient() {
         </div>
 
         {/* Master Headline Content */}
-        <motion.div 
-          style={{ y: heroY, opacity: heroOpacity }} 
+        <div 
           className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl text-center flex flex-col items-center"
         >
           {/* Eyebrow Pill */}
@@ -192,7 +181,7 @@ export default function HomePageClient() {
               <div className="text-sm font-sans font-bold text-[#070D1A]">800m to Metro Line 3</div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

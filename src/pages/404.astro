@@ -38,4 +38,51 @@ export const prerender = true;
       </div>
     </div>
   </section>
+
+  <!-- Intelligent Client-Side Canonical Recovery for Legacy Search Engine URLs -->
+  <script is:inline>
+    (function() {
+      try {
+        var path = window.location.pathname.toLowerCase();
+        if (path === '/404' || path === '/404.html') return;
+
+        var target = null;
+        if (path.indexOf('tower-') !== -1 || path.indexOf('blue-ridge-tower') !== -1) {
+          target = '/';
+        } else if (path.indexOf('athashri') !== -1) {
+          target = '/paranjape-athashri-senior-living-pune';
+        } else if (path.indexOf('cost-sheet') !== -1 || path.indexOf('price-list') !== -1) {
+          target = '/paranjape-blue-ridge-price-list-and-cost-sheet-2026';
+        } else if (path.indexOf('resale') !== -1) {
+          target = '/blue-ridge-hinjewadi-resale-flats-and-inventory';
+        } else if (path.indexOf('golf') !== -1) {
+          target = '/blue-ridge-golf-course';
+        } else if (path.indexOf('school') !== -1) {
+          target = '/blue-ridge-public-school';
+        } else if (path.indexOf('boat') !== -1 || path.indexOf('marina') !== -1) {
+          target = '/blue-ridge-boat-club';
+        } else if (path.indexOf('promenade') !== -1) {
+          target = '/paranjape-blue-ridge-promenade-hinjewadi-pune';
+        } else if (path.indexOf('altius') !== -1) {
+          target = '/paranjape-blue-ridge-the-altius-hinjewadi-pune';
+        } else if (path.indexOf('ridges') !== -1 || path.indexOf('41') !== -1) {
+          target = '/paranjape-blue-ridge-41-hinjewadi-pune';
+        } else if (path.indexOf('sez') !== -1 || path.indexOf('tech-park') !== -1) {
+          target = '/blue-ridge-sez-tech-park';
+        } else if (path.indexOf('metro') !== -1) {
+          target = '/flats-near-hinjewadi-phase-1-metro-station';
+        } else if (path.indexOf('mula-river') !== -1) {
+          target = '/mula-river-rejuvenation-and-promenade-at-blue-ridge';
+        } else if (path.indexOf('township') !== -1) {
+          target = '/integrated-townships-in-pune-real-estate';
+        } else if (path.indexOf('hinjewadi') !== -1) {
+          target = '/hinjewadi-micro-market';
+        }
+
+        if (target && target !== path) {
+          window.location.replace(target);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </Layout>

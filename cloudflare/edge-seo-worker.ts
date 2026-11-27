@@ -87,7 +87,7 @@ const MALICIOUS_SCRAPERS = [
   'bytespider'
 ];
 
-export default {
+const edgeSeoWorker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     const userAgent = (request.headers.get('user-agent') || '').toLowerCase();
@@ -287,3 +287,5 @@ export default {
     });
   },
 };
+
+export default edgeSeoWorker;

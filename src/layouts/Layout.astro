@@ -142,7 +142,7 @@ const hasMarathiCounterpart = BILINGUAL_PATHS.has(pathname);
     <link rel="alternate" type="application/rss+xml" title="Paranjape Blue Ridge Insights" href="https://paranjapeblueridge.com/feed.xml" />
     {(pathname === '/' || pathname === '/mr') && (
       <>
-        <link rel="preload" as="image" href="/assets/images/pscl-blue-ridge-aerial-drone-mobile.webp" media="(max-width: 640px)" fetchpriority="high" type="image/webp" />
+        <link rel="preload" as="image" href="/assets/images/pscl-blue-ridge-aerial-drone-mobile-v2.webp" media="(max-width: 640px)" fetchpriority="high" type="image/webp" />
         <link rel="preload" as="image" href="/assets/images/pscl-blue-ridge-aerial-drone.webp" media="(min-width: 641px)" fetchpriority="high" type="image/webp" />
       </>
     )}
@@ -170,12 +170,8 @@ const hasMarathiCounterpart = BILINGUAL_PATHS.has(pathname);
       }
     </script>
 
-    <!-- Google Fonts (Optimized Critical Subset with display=swap) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
-    </noscript>
+    <!-- Google Fonts (Zero-Render-Blocking with Preconnect & display=swap) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- Google Consent Mode v2 Initialization -->
     <script is:inline>

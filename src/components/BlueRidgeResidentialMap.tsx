@@ -102,6 +102,7 @@ export default function BlueRidgeResidentialMap() {
                   <button
                     key={cluster.id}
                     onClick={() => setSelectedCluster(cluster)}
+                    aria-label={`Select ${cluster.name} residential cluster on masterplan`}
                     style={{
                       left: `${cluster.masterplanPosition.coordinates.x}%`,
                       top: `${cluster.masterplanPosition.coordinates.y}%`
@@ -133,8 +134,8 @@ export default function BlueRidgeResidentialMap() {
               })}
 
               {/* Map Footer Compass */}
-              <div className="absolute bottom-4 left-4 flex items-center gap-2 text-[10px] font-mono text-slate-300">
-                <Navigation size={12} className="text-[#DFC28D] rotate-45" />
+              <div className="absolute bottom-4 left-4 flex items-center gap-2 text-[10px] font-mono text-slate-600 font-bold">
+                <Navigation size={12} className="text-[#785415] rotate-45" />
                 <span>138-Acre Master Precinct Schematic</span>
               </div>
             </div>

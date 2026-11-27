@@ -77,7 +77,7 @@ export default function ResidentTestimonials() {
                 <div className="text-xs font-mono font-bold text-[#070D1A]">
                   Google Rating • 384+ Verified Reviews
                 </div>
-                <div className="text-[10px] text-slate-500 font-sans flex items-center gap-1 mt-0.5">
+                <div className="text-[10px] text-slate-700 font-sans flex items-center gap-1 mt-0.5">
                   <CheckCircle2 size={11} className="text-emerald-600" />
                   <span>100% Verified Township Residents</span>
                 </div>
@@ -118,7 +118,7 @@ export default function ResidentTestimonials() {
                   <h3 className="text-base font-serif font-bold text-[#070D1A] group-hover:text-[#785415] transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-slate-500 font-sans font-medium">
+                  <p className="text-xs text-slate-700 font-sans font-medium">
                     {item.designation}
                   </p>
                 </div>
@@ -126,7 +126,7 @@ export default function ResidentTestimonials() {
                   <div className="text-xs font-mono font-bold text-[#785415]">
                     {item.cluster}
                   </div>
-                  <div className="text-[10px] text-slate-500 font-mono">
+                  <div className="text-[10px] text-slate-700 font-mono">
                     {item.tenure}
                   </div>
                 </div>
