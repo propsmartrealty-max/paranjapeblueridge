@@ -23,13 +23,14 @@ const project = projects.find(p => p.slug === englishSlug);
 const configuration = project?.configurations?.find(c => c.slug === config);
 
 const priceStr = configuration?.price || project?.price || '';
-const title = isMarathi 
-  ? `${configuration?.title} — ${project?.name} ब्लू रिज (${priceStr})`
-  : `${configuration?.title} — ${project?.name} Blue Ridge Hinjewadi (${priceStr})`;
+const rawTitle = isMarathi 
+  ? `${configuration?.title} — ${project?.name} (${priceStr})`
+  : `${configuration?.title} | ${project?.name} (${priceStr})`;
+const title = rawTitle.length > 65 ? rawTitle.slice(0, 62).replace(/\s+\S*$/, '') + '...' : rawTitle;
   
 const description = isMarathi
-  ? `अधिकृत ${configuration?.title} तपशील: ${project?.name}, परंजपे ब्लू रिज हिंजवडी. कारपेट एरिया: ${configuration?.carpetArea || project?.carpetArea}. किंमत: ${priceStr}. महारेरा: ${project?.reraNumber}.`
-  : `Official ${configuration?.title} at ${project?.name}, Paranjape Blue Ridge Hinjewadi. Carpet: ${configuration?.carpetArea || project?.carpetArea}. Price: ${priceStr}. MahaRERA: ${project?.reraNumber}.`;
+  ? `${configuration?.title}: ${project?.name}, ब्लू रिज हिंजवडी. कारपेट: ${configuration?.carpetArea || project?.carpetArea}. किंमत: ${priceStr}. MahaRERA: ${project?.reraNumber}.`
+  : `${configuration?.title} at ${project?.name}, Blue Ridge Hinjewadi. Carpet: ${configuration?.carpetArea || project?.carpetArea}. Price: ${priceStr}. MahaRERA: ${project?.reraNumber}.`;
 
 const ogImage = configuration?.image
   ? `https://paranjapeblueridge.com${configuration.image}`
